@@ -7,7 +7,7 @@ credit: ours
 ---
 # Card D (day 32)
 
-Two panels, read aloud once to everyone. For items s01-A40, s01-A41, s01-A44 to s01-A50. Say aloud: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line.
+Two panels, read aloud once to everyone. For item s01-A45 only; s01-A40v2, s01-A41v2 and s01-A46v2 to s01-A50v2 use pages 8 to 10 of Kofi and the Bicycle. Say aloud: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line.
 
 **First panel:** "I am Min. Nana and I stand in the garden. Leaves cover the path."
 

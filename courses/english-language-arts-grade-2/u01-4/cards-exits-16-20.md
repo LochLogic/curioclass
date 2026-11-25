@@ -13,11 +13,12 @@ Say aloud each time: "This card is made up for practice." Print "invented for pr
 - **Day 17 (s01-X17).** "The job board lists names. It names who wipes the tables each day. Pupils check it every morning." Ask: "These facts have no first sentence. Say a first sentence that tells what the paragraph explains."
 - **Day 20, a child with no recorded letter (s01-X20).** Draft: "Pupils save used envelopes in a box. They draw on the blank backs." Printed feedback: "End by explaining what saving the envelopes helps pupils do." Ask: "Say an ending for the draft so that a listener understands."
 
-## Day 20 retry card, by recorded letter (A, D, F or G)
+## Day 20 retry card, by recorded letter (D, F or G)
+
+Letter A has no card: reread aloud twice the 02-b paragraph that begins "One school in the town" and ask (s01-X20av2): "What do children earn when they come?"
 
 Card: "Pupils hang aprons on pegs. A peg is a small hook. Each apron has its own peg." Read it twice.
 
-- **A (s01-X20a).** Ask: "What do pupils hang on pegs?"
 - **D (s01-X20d).** Ask: "Say a first sentence that tells what a paragraph about this card explains."
 - **F (s01-X20f).** Ask: "Tell me what a peg is, using the card."
 - **G (s01-X20g).** Ask: "Say an ending that follows from these facts."

@@ -11,4 +11,4 @@ Say aloud each time: "This card is made up for practice." Print "invented for pr
 
 - **Day 52 (s02-X52).** This card is invented for practice. Card: "A frog's feet left round marks in wet clay." Ask: Write one sentence that gives the situation for a tale explaining these marks.
 - **Day 52 (s02-X52b).** This card is invented for practice. Card: "A frog's feet left round marks in wet clay." Ask: Write one sentence that closes a tale explaining these marks.
-- **Day 53 (s02-X53).** This card is invented for practice. Passage: "Some bats rest in caves during the day. Most bats are active at night. A bat's wings let it fly out of the cave." Ask: Say in one sentence what the passage is mostly about.
+- **Day 53 (s02-X53v2).** No card: the exit asks on page 1 of the frog book (items.csv).

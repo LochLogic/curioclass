@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Days 87 to 89 turn what the class found into a labelled drawing, a talk and a response. Each child draws a bird foot, labels two parts, adds a source note and changes one detail by pointing to a sentence. On day 88 the class hears a short story about a child at a window and talks with the teacher in small groups, one child at a time. Day 89 is a response day: the teacher returns the check work, repairs what it showed and sets a fresh retry.
+Days 87 to 89 turn what the class found into a labeled drawing, a talk and a response. Each child draws a bird foot, labels two parts, adds a source note and changes one detail by pointing to a sentence. On day 88 the class hears a short story about a child at a window and talks with the teacher in small groups, one child at a time. Day 89 is a response day: the teacher returns the check work, repairs what it showed and sets a fresh retry.
 
 ## How the days run
 

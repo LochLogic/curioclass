@@ -7,19 +7,19 @@ credit: ours
 ---
 # Exit cards, days 63 to 67
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. Where a line says "heard in the day's rotating six", no card is printed. A child outside the six is "not yet heard", never "missed".
+Print "invented for practice" in small letters at the foot of each card still marked "invented for practice" below; the exit pictures read a named passage and carry no foot line. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. Where a line says "heard in the day's rotating six", no card is printed. A child outside the six is "not yet heard", never "missed".
 
-## Day 63 card (s02-X63, RL.1.2)
+## Day 63 exit pictures (s02-X63v2, RL.1.2)
 
-This card is invented for practice. Read aloud the poem: "First a hen stepped out of the coop. Next the hen scratched in the grass. At last the hen sat down to rest. Calm felt good." Show two strips of three pictures: out, scratch, rest; and rest, scratch, out. Say: "Point to the strip that follows the poem." Hear the day's rotating six. 
+Passage: Quiet Sky, pages 1 and 2; day 63 works Sun's Day. Reread Quiet Sky, pages 1 and 2, aloud. Show two strips of three pictures: the sun gone down, the first star, the moon over the hill; and the moon over the hill, the first star, the sun gone down. Say: "Point to the strip that follows the poem." Hear the day's rotating six.
 
-**Right answer:** The strip out, scratch, rest.
+**Right answer:** The strip sun gone down, first star, moon over the hill.
 
-## Day 64 card (s02-X64a, RL.1.5)
+## Day 64 exit pictures (s02-X64av2, RL.1.5)
 
-This card is invented for practice. Read aloud the line: "The moon peeks and waves at the sleepy town." Show two pictures: a moon with a waving hand, and a plain moon above houses. Say: "Point to the picture that is imagined, not real." Hear the day's rotating six. 
+Passage: Quiet Sky, page 2, lines 3 and 4 ("The moon peeks over the hill"); day 64 works Moon's Walk and The Changing Moon, page 2. Reread two lines of Quiet Sky, page 2: "The moon peeks over the hill, a pale and gentle ring." Show two pictures: a moon with eyes peeking over a hill, and a plain moon above a hill. Say: "Point to the picture that is imagined, not real." Hear the day's rotating six.
 
-**Right answer:** The picture of the moon with a waving hand.
+**Right answer:** The moon with eyes peeking over the hill.
 
 ## Day 64 card (s02-X64b, SL.1.6)
 

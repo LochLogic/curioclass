@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 141 to 144
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
+Print "invented for practice" in small letters at the foot of the day 141 and 143 cards. The day 142 and 144 exits use named pages of the unit's texts: reread those pages aloud and show the pictures listed. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
 
 ## Day 141 card (s04-X141a, W.1.2)
 
@@ -28,17 +28,17 @@ Heard in the rotation, not on a card. Show page 2 of *Windows Birds Can See*, th
 **Right answer:** Bright lights inside a building.
 
 
-## Day 142 card (s04-X142a, RI.1.8)
+## Day 142 pages (s04-X142av2, RI.1.8)
 
-This card is invented for practice. Show the card and read it aloud: "A writer says, 'Walk in the hall.' Runners can bump into children. The writer's shoes are red." Show three pictures: two children bumping, red shoes, a long empty hall. Say: "Which picture shows the writer's reason?" Hear the day's rotating six.
+Read aloud page 3 of Marks Outside. Show three pictures: birds flying past a dark building at night, children with paper windows, an empty room. Say: "Which picture shows the writer's reason?" Hear the day's rotating six.
 
-**Right answer:** Two children bumping.
+**Right answer:** The birds flying past the dark building: with the lights off, birds are not pulled toward the glass.
 
-## Day 142 card (s04-X142b, RI.1.8)
+## Day 142 pages (s04-X142bv2, RI.1.8)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "A writer says, 'Walk in the hall.' Runners can bump into children. The writer's shoes are red." Say: "Say what the writer wants." Hear the day's rotating six.
+Page 3 of Marks Outside stays open; reread it if the child asks. Say: "Say what the writer wants." Hear the day's rotating six.
 
-**Right answer:** "Walk in the hall."
+**Right answer:** Turn off lights that are not needed at night.
 
 ## Day 142 page (s04-X142c, RI.1.10)
 
@@ -66,20 +66,20 @@ Heard in the rotation, not on a card. Show page 2 of *Marks Outside*. Say: "Say 
 **Right answer:** Any way the page names: dots, lines, tape, stickers, cords, a screen or paint that washes off.
 
 
-## Day 144 card (s04-X144a, RI.1.9)
+## Day 144 pages (s04-X144av2, RI.1.9)
 
-This card is invented for practice. Show the card and read it aloud: "A crate has a lid and a handle. The lid keeps the toys in. The handle is for carrying." Show three pictures: toys inside a closed crate, a hand carrying a crate by its handle, an open empty crate. Say: "Which picture shows what the lid is for?" Hear the day's rotating six.
+Reread aloud page 3 of Nests Need Space and page 3 of Windows Birds Can See. Show three pictures: people standing far back from a nest tree, a window with dots, an empty nest. Say: "Which picture shows what the nest page asks people to do?" Hear the day's rotating six.
 
-**Right answer:** Toys inside a closed crate.
+**Right answer:** The people standing far back from the nest tree.
 
-## Day 144 card (s04-X144b, RI.1.9)
+## Day 144 pages (s04-X144bv2, RI.1.9)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "A crate has a lid and a handle. The lid keeps the toys in. The handle is for carrying." Say: "Say one thing the handle does that the lid does not." Hear the day's rotating six.
+The same two pages stay open. Say: "Say one thing the window page asks people to do that the nest page does not." Hear the day's rotating six.
 
-**Right answer:** "It is for carrying."
+**Right answer:** Put marks on windows so birds can see the glass.
 
-## Day 144 card (s04-X144c, RI.1.9)
+## Day 144 pages (s04-X144cv2, RI.1.9)
 
-This card is invented for practice. Read it aloud once: "A park has a feeder and a bath. The feeder holds seeds. The bath holds water." Say: "Say one thing the feeder and the bath both do." Hear the day's rotating six.
+The same two pages stay open; reread them if the child asks. Say: "Say one thing the two pages both do." Hear the day's rotating six.
 
-**Right answer:** Both help birds, or both give birds something they need.
+**Right answer:** Both tell how people can protect birds.

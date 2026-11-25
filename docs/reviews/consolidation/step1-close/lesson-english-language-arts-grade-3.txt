@@ -1,0 +1,1026 @@
+  FAIL section 1.1 (english-language-arts-grade-3-u01-1) is not in data/units.csv
+  FAIL section 1.2 (english-language-arts-grade-3-u01-2) is not in data/units.csv
+  FAIL section 1.3 (english-language-arts-grade-3-u01-3) is not in data/units.csv
+  FAIL section 1.4 (english-language-arts-grade-3-u01-4) is not in data/units.csv
+  FAIL section 1.5 (english-language-arts-grade-3-u01-5) is not in data/units.csv
+  FAIL section 1.6 (english-language-arts-grade-3-u01-6) is not in data/units.csv
+  FAIL section 1.7 (english-language-arts-grade-3-u01-7) is not in data/units.csv
+  FAIL section 1.8 (english-language-arts-grade-3-u01-8) is not in data/units.csv
+  FAIL section 2.1 (english-language-arts-grade-3-u02-1) is not in data/units.csv
+  FAIL section 2.2 (english-language-arts-grade-3-u02-2) is not in data/units.csv
+  FAIL section 2.3 (english-language-arts-grade-3-u02-3) is not in data/units.csv
+  FAIL section 2.4 (english-language-arts-grade-3-u02-4) is not in data/units.csv
+  FAIL section 2.5 (english-language-arts-grade-3-u02-5) is not in data/units.csv
+  FAIL section 2.6 (english-language-arts-grade-3-u02-6) is not in data/units.csv
+  FAIL section 2.7 (english-language-arts-grade-3-u02-7) is not in data/units.csv
+  FAIL section 2.8 (english-language-arts-grade-3-u02-8) is not in data/units.csv
+  FAIL section 2.9 (english-language-arts-grade-3-u02-9) is not in data/units.csv
+  FAIL section 3.1 (english-language-arts-grade-3-u03-1) is not in data/units.csv
+  FAIL section 3.2 (english-language-arts-grade-3-u03-2) is not in data/units.csv
+  FAIL section 3.3 (english-language-arts-grade-3-u03-3) is not in data/units.csv
+  FAIL section 3.4 (english-language-arts-grade-3-u03-4) is not in data/units.csv
+  FAIL section 3.5 (english-language-arts-grade-3-u03-5) is not in data/units.csv
+  FAIL section 3.6 (english-language-arts-grade-3-u03-6) is not in data/units.csv
+  FAIL section 3.7 (english-language-arts-grade-3-u03-7) is not in data/units.csv
+  FAIL section 3.8 (english-language-arts-grade-3-u03-8) is not in data/units.csv
+  FAIL section 3.9 (english-language-arts-grade-3-u03-9) is not in data/units.csv
+  FAIL section 4.1 (english-language-arts-grade-3-u04-1) is not in data/units.csv
+  FAIL section 4.2 (english-language-arts-grade-3-u04-2) is not in data/units.csv
+  FAIL section 4.3 (english-language-arts-grade-3-u04-3) is not in data/units.csv
+  FAIL section 4.4 (english-language-arts-grade-3-u04-4) is not in data/units.csv
+  FAIL section 4.5 (english-language-arts-grade-3-u04-5) is not in data/units.csv
+  FAIL section 4.6 (english-language-arts-grade-3-u04-6) is not in data/units.csv
+  FAIL section 4.7 (english-language-arts-grade-3-u04-7) is not in data/units.csv
+  FAIL section 4.8 (english-language-arts-grade-3-u04-8) is not in data/units.csv
+  FAIL section 4.9 (english-language-arts-grade-3-u04-9) is not in data/units.csv
+  FAIL day 38: the items shows names miss part(s) RF.3.3a (whole), RF.3.3d (whole) of parts.csv
+  FAIL day 156: the items shows names miss part(s) RF.3.3d (whole), L.3.2e (whole), L.3.2f (whole), W.3.10 (whole), RF.3.3c (whole), RI.3.7 (whole), L.3.4a (whole), L.3.4b (whole), L.3.4c (whole), L.3.4d (whole), RF.3.4a (whole), RF.3.4b (whole), RF.3.4c (whole), RI.3.5 (whole) of parts.csv
+  FAIL materials.csv: day 8 names "note card" in its materials, print line or Before class, but no row for it lists day 8 in used_days
+  FAIL materials.csv: day 9 names "note card" in its materials, print line or Before class, but no row for it lists day 9 in used_days
+  FAIL materials.csv: day 30 names "word record" in its materials, print line or Before class, but no row for it lists day 30 in used_days
+  FAIL materials.csv: day 60 names "beginning dictionary" in its materials, print line or Before class, but no row for it lists day 60 in used_days
+  FAIL materials.csv: day 68 names "note card" in its materials, print line or Before class, but no row for it lists day 68 in used_days
+  FAIL materials.csv: day 69 names "note card" in its materials, print line or Before class, but no row for it lists day 69 in used_days
+  FAIL materials.csv: day 70 names "note card" in its materials, print line or Before class, but no row for it lists day 70 in used_days
+courses/english-language-arts-grade-3/u01-1/d001.md: teacher 1157 words, student 91 words (42 frame, 49 questions), 90 min, 2 side(s), at home 86 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-1/d002.md: teacher 943 words, student 46 words (46 frame, 0 questions), 90 min, 2 side(s), at home 111 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-1/d002.md: the section plan's day 2 block names 30, 155, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-1/d003.md: teacher 884 words, student 79 words (59 frame, 20 questions), 90 min, 2 side(s), at home 80 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-1/d003.md: the section plan's day 3 block names 19, 30, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-1/d003.md: part "55 min. Rotations" lists activities adding to 94 minutes
+courses/english-language-arts-grade-3/u01-1/d004.md: teacher 801 words, student 61 words (45 frame, 16 questions), 90 min, 2 side(s), at home 80 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-1/d004.md: the section plan's day 4 block names 30, 105, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-2/d005.md: teacher 1275 words, student 62 words (36 frame, 26 questions), 90 min, 2 side(s), at home 96 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-2/d006.md: teacher 1181 words, student 60 words (31 frame, 29 questions), 90 min, 2 side(s), at home 84 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-2/d006.md: the section plan's day 6 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-2/d006.md: part "20 min. Skills" lists activities adding to 36 minutes
+courses/english-language-arts-grade-3/u01-2/d007.md: teacher 1327 words, student 90 words (31 frame, 59 questions), 90 min, 2 side(s), at home 78 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-2/d007.md: the section plan's day 7 block names 30, 150, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-2/d007.md: part "20 min. Skills" lists activities adding to 21.5 minutes
+courses/english-language-arts-grade-3/u01-2/d008.md: teacher 1076 words, student 52 words (24 frame, 28 questions), 90 min, 2 side(s), at home 87 words, 35 min, 0 failure(s)
+  FAIL turn-time: courses/english-language-arts-grade-3/u01-2/d008.md: part "20 min. Skills" gives each child 360 seconds; 5 children take 30.0 minutes, more than the part's 20 (say a rotating group, or shorten the turn)
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-2/d008.md: part "20 min. Skills" lists activities adding to 21 minutes
+courses/english-language-arts-grade-3/u01-2/d009.md: teacher 500 words, student 15 words (15 frame, 0 questions), 90 min, 1 side(s), at home 71 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-2/d009.md: end items can show error(s) Q, R, S, T, U, but the respond part names no group for them
+courses/english-language-arts-grade-3/u01-3/d010.md: teacher 1146 words, student 54 words (21 frame, 33 questions), 90 min, 2 side(s), at home 82 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-3/d011.md: teacher 1090 words, student 103 words (35 frame, 68 questions), 90 min, 2 side(s), at home 77 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-3/d012.md: teacher 947 words, student 42 words (18 frame, 24 questions), 90 min, 2 side(s), at home 82 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-3/d013.md: teacher 449 words, student 77 words (7 frame, 70 questions), 90 min, 2 side(s), at home 63 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-3/d013.md: end items can show error(s) A, B, C, D, E, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u01-3/d013.md: the section plan's day 13 block names 165, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-4/d014.md: teacher 956 words, student 77 words (24 frame, 53 questions), 90 min, 2 side(s), at home 68 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-4/d014.md: the section plan's day 14 block names 90, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-4/d015.md: teacher 1005 words, student 102 words (32 frame, 70 questions), 90 min, 2 side(s), at home 66 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-4/d015.md: the section plan's day 15 block names 18, 19, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-4/d016.md: teacher 855 words, student 46 words (21 frame, 25 questions), 90 min, 2 side(s), at home 60 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-4/d017.md: teacher 993 words, student 102 words (42 frame, 60 questions), 90 min, 2 side(s), at home 70 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-4/d018.md: teacher 956 words, student 174 words (31 frame, 143 questions), 90 min, 2 side(s), at home 74 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-4/d019.md: teacher 476 words, student 94 words (7 frame, 87 questions), 90 min, 2 side(s), at home 69 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-4/d019.md: end items can show error(s) A, AC, B, F, G, V, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u01-4/d019.md: the section plan's day 19 block names 95, 1905, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-5/d020.md: teacher 1320 words, student 265 words (118 frame, 147 questions), 90 min, 2 side(s), at home 91 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-5/d021.md: teacher 649 words, student 65 words (31 frame, 34 questions), 90 min, 2 side(s), at home 61 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-5/d022.md: teacher 718 words, student 117 words (14 frame, 103 questions), 90 min, 2 side(s), at home 61 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-5/d022.md: the section plan's day 22 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-5/d023.md: teacher 632 words, student 81 words (17 frame, 64 questions), 90 min, 2 side(s), at home 66 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-5/d023.md: the section plan's day 23 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-5/d024.md: teacher 458 words, student 138 words (17 frame, 121 questions), 90 min, 2 side(s), at home 70 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-5/d024.md: end items can show error(s) A, B, H, I, J, K, L, but the respond part names no group for them
+courses/english-language-arts-grade-3/u01-5/d025.md: teacher 702 words, student 78 words (13 frame, 65 questions), 90 min, 2 side(s), at home 76 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-5/d025.md: the section plan's day 25 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-6/d026.md: teacher 756 words, student 65 words (13 frame, 52 questions), 90 min, 2 side(s), at home 78 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-6/d026.md: the section plan's day 26 block names 120, 336, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-6/d026.md: part "10 min. Opening" lists activities adding to 11.5 minutes
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-6/d026.md: part "20 min. Skills" lists activities adding to 30 minutes
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-6/d026.md: part "20 min. Text and model" lists activities adding to 40 minutes
+courses/english-language-arts-grade-3/u01-6/d027.md: teacher 712 words, student 53 words (10 frame, 43 questions), 90 min, 2 side(s), at home 78 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-6/d027.md: the section plan's day 27 block names 21, 30, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-6/d027.md: part "20 min. Skills" lists activities adding to 22 minutes
+courses/english-language-arts-grade-3/u01-6/d028.md: teacher 476 words, student 90 words (17 frame, 73 questions), 90 min, 2 side(s), at home 57 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-6/d028.md: end items can show error(s) H, I, J, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u01-6/d028.md: the section plan's day 28 block names 65, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-6/d029.md: teacher 768 words, student 43 words (10 frame, 33 questions), 90 min, 2 side(s), at home 66 words, 35 min, 0 failure(s)
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-6/d029.md: part "20 min. Skills" lists activities adding to 22 minutes
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-6/d029.md: part "30 min. Return and repair" lists activities adding to 32 minutes
+courses/english-language-arts-grade-3/u01-7/d030.md: teacher 807 words, student 70 words (7 frame, 63 questions), 90 min, 2 side(s), at home 61 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-7/d030.md: the section plan's day 30 block names 502, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-7/d030.md: part "20 min. Skills" lists activities adding to 30 minutes
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-7/d030.md: part "20 min. Text and model" lists activities adding to 24 minutes
+courses/english-language-arts-grade-3/u01-7/d031.md: teacher 666 words, student 43 words (18 frame, 25 questions), 90 min, 2 side(s), at home 54 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u01-7/d032.md: teacher 669 words, student 65 words (9 frame, 56 questions), 90 min, 2 side(s), at home 57 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-7/d032.md: the section plan's day 32 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-7/d033.md: teacher 585 words, student 90 words (9 frame, 81 questions), 90 min, 2 side(s), at home 60 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-7/d033.md: the section plan's day 33 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-3/u01-7/d033.md: part "20 min. Skills" lists activities adding to 24 minutes
+courses/english-language-arts-grade-3/u01-7/d034.md: teacher 691 words, student 77 words (10 frame, 67 questions), 90 min, 2 side(s), at home 60 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-7/d034.md: the section plan's day 34 block names 60, 80, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-8/d035.md: teacher 481 words, student 36 words (10 frame, 26 questions), 90 min, 1 side(s), at home 84 words, 50 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-8/d035.md: end items can show error(s) P, X, Y, but the respond part names no group for them
+courses/english-language-arts-grade-3/u01-8/d036.md: teacher 479 words, student 50 words (11 frame, 39 questions), 90 min, 2 side(s), at home 76 words, 50 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-8/d036.md: end items can show error(s) H, Q, R, S, T, U, Z, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u01-8/d036.md: the section plan's day 36 block names 18, 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-8/d037.md: teacher 467 words, student 97 words (8 frame, 89 questions), 90 min, 2 side(s), at home 73 words, 50 min, 1 failure(s)
+  FAIL courses/english-language-arts-grade-3/u01-8/d037.md: items 45 and 46 and 47 and 48 and 49 and 50 and 51 and 52 and 53 and 54 and 55 are judged after class, but day 38 never hands back "day 37's assessment"
+  NOTE courses/english-language-arts-grade-3/u01-8/d037.md: end items can show error(s) A, AB, G, H, I, J, K, L, N, O, but the respond part names no group for them
+courses/english-language-arts-grade-3/u01-8/d038.md: teacher 443 words, student 155 words (9 frame, 146 questions), 90 min, 2 side(s), at home 54 words, 50 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u01-8/d038.md: end items can show error(s) A, AA, AC, B, C, D, E, F, G, K, M, V, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u01-8/d038.md: the section plan's day 38 block names 40, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u01-8/d039.md: teacher 718 words, student 39 words (4 frame, 35 questions), 90 min, 1 side(s), at home 71 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u02-1/d040.md: teacher 823 words, student 152 words (3 frame, 149 questions), 90 min, 1 side(s), at home 97 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-1/d040.md: the section plan's day 40 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-1/d041.md: teacher 669 words, student 91 words (4 frame, 87 questions), 90 min, 1 side(s), at home 71 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-1/d041.md: the section plan's day 41 block names 30, 1919, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-1/d042.md: teacher 767 words, student 152 words (4 frame, 148 questions), 90 min, 1 side(s), at home 81 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-1/d042.md: the section plan's day 42 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL copied-exit: courses/english-language-arts-grade-3/u02-1/d042.md: exit s02-X42 repeats s02-P42-4 ("situation events order ending")
+courses/english-language-arts-grade-3/u02-2/d043.md: teacher 744 words, student 79 words (6 frame, 73 questions), 90 min, 1 side(s), at home 87 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-2/d043.md: the section plan's day 43 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-2/d044.md: teacher 747 words, student 87 words (6 frame, 81 questions), 90 min, 1 side(s), at home 76 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-2/d044.md: the section plan's day 44 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-2/d045.md: teacher 748 words, student 89 words (6 frame, 83 questions), 90 min, 1 side(s), at home 66 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-2/d045.md: the section plan's day 45 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-2/d046.md: teacher 405 words, student 267 words (46 frame, 221 questions), 90 min, 2 side(s), at home 74 words, 45 min, 0 failure(s)
+courses/english-language-arts-grade-3/u02-2/d047.md: teacher 810 words, student 82 words (4 frame, 78 questions), 90 min, 1 side(s), at home 67 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-2/d047.md: the section plan's day 47 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-3/d048.md: teacher 877 words, student 103 words (22 frame, 81 questions), 90 min, 2 side(s), at home 84 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-3/d048.md: the section plan's day 48 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-3/d049.md: teacher 863 words, student 90 words (27 frame, 63 questions), 90 min, 2 side(s), at home 82 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-3/d049.md: the student page prints s02-P49-7 before s02-P49-12, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u02-3/d049.md: the section plan's day 49 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-3/d050.md: teacher 812 words, student 68 words (16 frame, 52 questions), 90 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-3/d050.md: the student page prints s02-P50-10 before s02-P50-8, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u02-3/d050.md: the section plan's day 50 block names 48, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-3/d051.md: teacher 497 words, student 236 words (59 frame, 177 questions), 90 min, 2 side(s), at home 70 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-3/d051.md: end items can show error(s) D, E, H, I, J, L, M, N, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u02-3/d051.md: the section plan's day 51 block names 42, 44, 47, 49, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-4/d052.md: teacher 497 words, student 201 words (76 frame, 125 questions), 90 min, 2 side(s), at home 62 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-4/d052.md: the student page prints s02-A35 before s02-A28, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u02-4/d052.md: end items can show error(s) O, P, Q, R, S, T, U, but the respond part names no group for them
+courses/english-language-arts-grade-3/u02-4/d053.md: teacher 636 words, student 119 words (10 frame, 109 questions), 90 min, 2 side(s), at home 57 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-4/d053.md: the section plan's day 53 block names 30, 450, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-5/d054.md: teacher 654 words, student 146 words (13 frame, 133 questions), 90 min, 2 side(s), at home 59 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-5/d054.md: the section plan's day 54 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-5/d055.md: teacher 571 words, student 168 words (12 frame, 156 questions), 90 min, 2 side(s), at home 51 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-5/d055.md: the section plan's day 55 block names 30, 330, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-5/d056.md: teacher 640 words, student 118 words (12 frame, 106 questions), 90 min, 2 side(s), at home 60 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-5/d056.md: the section plan's day 56 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-3/u02-5/d056.md: part "10 min. Talk" lists activities adding to 13 minutes
+courses/english-language-arts-grade-3/u02-6/d057.md: teacher 775 words, student 86 words (15 frame, 71 questions), 90 min, 2 side(s), at home 76 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-6/d057.md: the section plan's day 57 block names 30, 430, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-3/u02-6/d057.md: part "10 min. Talk" lists activities adding to 13 minutes
+courses/english-language-arts-grade-3/u02-6/d058.md: teacher 621 words, student 81 words (16 frame, 65 questions), 90 min, 2 side(s), at home 68 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-6/d058.md: the section plan's day 58 block names 2.4, 30, 105, 290, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-6/d059.md: teacher 604 words, student 64 words (10 frame, 54 questions), 90 min, 2 side(s), at home 70 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-6/d059.md: the section plan's day 59 block names 30, 260, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-6/d060.md: teacher 498 words, student 269 words (116 frame, 153 questions), 90 min, 2 side(s), at home 61 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-6/d060.md: end items can show error(s) A, D, V, W, X, Z, but the respond part names no group for them
+courses/english-language-arts-grade-3/u02-6/d061.md: teacher 729 words, student 96 words (16 frame, 80 questions), 90 min, 2 side(s), at home 51 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-6/d061.md: the section plan's day 61 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-7/d062.md: teacher 871 words, student 123 words (19 frame, 104 questions), 90 min, 2 side(s), at home 79 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-7/d062.md: the student page prints s02-P62-11 before s02-P62-12, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u02-7/d062.md: the section plan's day 62 block names 2.5, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-7/d063.md: teacher 759 words, student 93 words (17 frame, 76 questions), 90 min, 2 side(s), at home 70 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-7/d063.md: the student page prints s02-P63-15 before s02-P63-16, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u02-7/d063.md: the section plan's day 63 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-7/d064.md: teacher 817 words, student 73 words (18 frame, 55 questions), 90 min, 2 side(s), at home 75 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-7/d064.md: the section plan's day 64 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-7/d065.md: teacher 456 words, student 201 words (72 frame, 129 questions), 90 min, 2 side(s), at home 56 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-7/d065.md: end items can show error(s) A, AA, AB, D, Q, Z, but the respond part names no group for them
+courses/english-language-arts-grade-3/u02-7/d066.md: teacher 800 words, student 96 words (21 frame, 75 questions), 90 min, 2 side(s), at home 76 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-7/d066.md: the student page prints s02-P66-10 before s02-P66-12, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u02-7/d066.md: the section plan's day 66 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-8/d067.md: teacher 852 words, student 72 words (7 frame, 65 questions), 90 min, 1 side(s), at home 93 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-8/d067.md: the section plan's day 67 block names 30, 270, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-8/d068.md: teacher 913 words, student 60 words (6 frame, 54 questions), 90 min, 1 side(s), at home 84 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-8/d068.md: the student page prints s02-P68-8 before s02-P68-4, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u02-8/d068.md: the section plan's day 68 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-8/d069.md: teacher 816 words, student 33 words (5 frame, 28 questions), 90 min, 1 side(s), at home 76 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u02-8/d070.md: teacher 937 words, student 98 words (10 frame, 88 questions), 90 min, 1 side(s), at home 74 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-8/d070.md: the section plan's day 70 block names 2.9, 190, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL copied-exit: courses/english-language-arts-grade-3/u02-8/d070.md: exit s02-X70 repeats the day's teaching parts ("whether sources support claim")
+courses/english-language-arts-grade-3/u02-8/d071.md: teacher 482 words, student 131 words (19 frame, 112 questions), 90 min, 2 side(s), at home 56 words, 50 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-8/d071.md: end items can show error(s) AA, AB, Q, Y, Z, but the respond part names no group for them
+courses/english-language-arts-grade-3/u02-8/d072.md: teacher 652 words, student 53 words (6 frame, 47 questions), 90 min, 1 side(s), at home 62 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-8/d072.md: the section plan's day 72 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-9/d073.md: teacher 867 words, student 123 words (11 frame, 112 questions), 90 min, 2 side(s), at home 74 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u02-9/d074.md: teacher 491 words, student 250 words (36 frame, 214 questions), 90 min, 2 side(s), at home 65 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-9/d074.md: end items can show error(s) AA, AB, AC, D, Q, W, X, Y, Z, but the respond part names no group for them
+courses/english-language-arts-grade-3/u02-9/d075.md: teacher 498 words, student 206 words (13 frame, 193 questions), 90 min, 2 side(s), at home 56 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-9/d075.md: the student page prints s02-A101 before s02-A102, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u02-9/d075.md: end items can show error(s) AB, AD, AE, AF, AG, AH, L, M, N, but the respond part names no group for them
+courses/english-language-arts-grade-3/u02-9/d076.md: teacher 495 words, student 252 words (13 frame, 239 questions), 90 min, 2 side(s), at home 70 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u02-9/d076.md: end items can show error(s) B, C, D, E, O, P, Q, R, S, U, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u02-9/d076.md: the section plan's day 76 block names 30, 71, 72, 73, 74, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u02-9/d077.md: teacher 717 words, student 52 words (7 frame, 45 questions), 90 min, 1 side(s), at home 72 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u02-9/d078.md: teacher 467 words, student 184 words (27 frame, 157 questions), 90 min, 2 side(s), at home 59 words, 45 min, 0 failure(s)
+courses/english-language-arts-grade-3/u02-9/d079.md: teacher 396 words, student 196 words (23 frame, 173 questions), 90 min, 2 side(s), at home 53 words, 45 min, 0 failure(s)
+courses/english-language-arts-grade-3/u02-9/d080.md: teacher 396 words, student 50 words (18 frame, 32 questions), 90 min, 1 side(s), at home 79 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-1/d081.md: teacher 756 words, student 51 words (6 frame, 45 questions), 90 min, 1 side(s), at home 69 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-1/d082.md: teacher 694 words, student 82 words (10 frame, 72 questions), 90 min, 2 side(s), at home 73 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-1/d082.md: the section plan's day 82 block names 375, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-1/d083.md: teacher 676 words, student 87 words (7 frame, 80 questions), 90 min, 1 side(s), at home 68 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-1/d084.md: teacher 671 words, student 98 words (13 frame, 85 questions), 90 min, 2 side(s), at home 66 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-1/d085.md: teacher 437 words, student 179 words (60 frame, 119 questions), 90 min, 2 side(s), at home 59 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-1/d085.md: end items can show error(s) C, E, but the respond part names no group for them
+courses/english-language-arts-grade-3/u03-1/d086.md: teacher 678 words, student 122 words (5 frame, 117 questions), 90 min, 1 side(s), at home 63 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-2/d087.md: teacher 931 words, student 57 words (8 frame, 49 questions), 90 min, 2 side(s), at home 72 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-2/d088.md: teacher 869 words, student 110 words (8 frame, 102 questions), 90 min, 2 side(s), at home 68 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-2/d089.md: teacher 950 words, student 88 words (9 frame, 79 questions), 90 min, 2 side(s), at home 87 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-2/d090.md: teacher 856 words, student 92 words (8 frame, 84 questions), 90 min, 2 side(s), at home 74 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-2/d090.md: the section plan's day 90 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-3/d091.md: teacher 1066 words, student 113 words (7 frame, 106 questions), 90 min, 2 side(s), at home 99 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-3/d092.md: teacher 496 words, student 231 words (120 frame, 111 questions), 90 min, 2 side(s), at home 76 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-3/d092.md: end items can show error(s) AC, E, but the respond part names no group for them
+courses/english-language-arts-grade-3/u03-3/d093.md: teacher 865 words, student 128 words (22 frame, 106 questions), 90 min, 2 side(s), at home 106 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-3/d093.md: the section plan's day 93 block names 19, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-4/d094.md: teacher 877 words, student 90 words (9 frame, 81 questions), 90 min, 2 side(s), at home 103 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-4/d095.md: teacher 855 words, student 121 words (10 frame, 111 questions), 90 min, 2 side(s), at home 93 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-4/d095.md: the section plan's day 95 block names 250, 650, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-4/d096.md: teacher 890 words, student 191 words (20 frame, 171 questions), 90 min, 2 side(s), at home 96 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-4/d096.md: the section plan's day 96 block names 250, 560, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-4/d097.md: teacher 954 words, student 154 words (18 frame, 136 questions), 90 min, 2 side(s), at home 99 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-4/d097.md: the section plan's day 97 block names 400, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-5/d098.md: teacher 1105 words, student 144 words (23 frame, 121 questions), 90 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-5/d098.md: the student page prints s03-P98-16 before s03-P98-17, but the day teaches them the other way round
+courses/english-language-arts-grade-3/u03-5/d099.md: teacher 492 words, student 292 words (190 frame, 102 questions), 90 min, 2 side(s), at home 92 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-5/d099.md: end items can show error(s) G, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u03-5/d099.md: the section plan's day 99 block names 19, 20, 150, 250, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-5/d100.md: teacher 987 words, student 269 words (170 frame, 99 questions), 90 min, 2 side(s), at home 75 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-6/d101.md: teacher 957 words, student 132 words (14 frame, 118 questions), 90 min, 2 side(s), at home 75 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-6/d101.md: the section plan's day 101 block names 21, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-6/d102.md: teacher 948 words, student 141 words (44 frame, 97 questions), 90 min, 2 side(s), at home 74 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-6/d102.md: the section plan's day 102 block names 21, 104, 106, 150, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-6/d103.md: teacher 874 words, student 133 words (17 frame, 116 questions), 90 min, 2 side(s), at home 82 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-6/d103.md: the section plan's day 103 block names 22, 150, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-6/d104.md: teacher 946 words, student 109 words (15 frame, 94 questions), 90 min, 2 side(s), at home 68 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-6/d104.md: the section plan's day 104 block names 22, 150, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-7/d105.md: teacher 1123 words, student 153 words (18 frame, 135 questions), 90 min, 2 side(s), at home 70 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-7/d105.md: the section plan's day 105 block names 250, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-7/d106.md: teacher 497 words, student 165 words (8 frame, 157 questions), 90 min, 2 side(s), at home 77 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-7/d106.md: end items can show error(s) AG, AH, AJ, AK, AM, J, K, L, R, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u03-7/d106.md: the section plan's day 106 block names 101, 104, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-7/d107.md: teacher 965 words, student 143 words (24 frame, 119 questions), 90 min, 2 side(s), at home 86 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-7/d107.md: the section plan's day 107 block names 22, 100, 150, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-8/d108.md: teacher 957 words, student 122 words (11 frame, 111 questions), 90 min, 2 side(s), at home 85 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-8/d108.md: the section plan's day 108 block names 23, 113, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-8/d109.md: teacher 912 words, student 189 words (14 frame, 175 questions), 90 min, 2 side(s), at home 77 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-8/d109.md: the section plan's day 109 block names 100, 150, 250, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL copied-exit: courses/english-language-arts-grade-3/u03-8/d109.md: exit s03-X109 repeats s03-X109b ("' looked shoes grinned")
+courses/english-language-arts-grade-3/u03-8/d110.md: teacher 885 words, student 168 words (14 frame, 154 questions), 90 min, 2 side(s), at home 68 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-8/d110.md: the section plan's day 110 block names 150, 250, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL copied-exit: courses/english-language-arts-grade-3/u03-8/d110.md: exit s03-X110 repeats s03-X110b ("rafe tapped shelf space")
+  FAIL timing-sum: courses/english-language-arts-grade-3/u03-8/d110.md: part "20 min. Draft dialogue, description and ending" lists activities adding to 30 minutes
+courses/english-language-arts-grade-3/u03-8/d111.md: teacher 844 words, student 133 words (11 frame, 122 questions), 90 min, 2 side(s), at home 80 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u03-8/d112.md: teacher 877 words, student 135 words (11 frame, 124 questions), 90 min, 2 side(s), at home 77 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-8/d112.md: the section plan's day 112 block names 3.9, 100, 150, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-8/d113.md: teacher 483 words, student 212 words (8 frame, 204 questions), 90 min, 2 side(s), at home 77 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-8/d113.md: the student page prints s03-A36 before s03-A37, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u03-8/d113.md: end items can show error(s) AL, L, but the respond part names no group for them
+courses/english-language-arts-grade-3/u03-9/d114.md: teacher 492 words, student 159 words (23 frame, 136 questions), 90 min, 2 side(s), at home 79 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-9/d114.md: the section plan's day 114 block names 23, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-9/d115.md: teacher 502 words, student 163 words (10 frame, 153 questions), 90 min, 2 side(s), at home 74 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-9/d115.md: end items can show error(s) AM, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u03-9/d115.md: the section plan's day 115 block names 23, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-9/d116.md: teacher 666 words, student 125 words (7 frame, 118 questions), 90 min, 2 side(s), at home 63 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-9/d116.md: the section plan's day 116 block names 118, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-9/d117.md: teacher 476 words, student 123 words (14 frame, 109 questions), 90 min, 2 side(s), at home 75 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-9/d117.md: end items can show error(s) AA, AB, AC, AD, AI, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u03-9/d117.md: the section plan's day 117 block names 23, 30, 119, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-9/d118.md: teacher 485 words, student 126 words (20 frame, 106 questions), 90 min, 2 side(s), at home 79 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-9/d118.md: end items can show error(s) AA, AB, AC, AD, AI, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u03-9/d118.md: the section plan's day 118 block names 23, 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u03-9/d119.md: teacher 500 words, student 112 words (8 frame, 104 questions), 90 min, 2 side(s), at home 58 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u03-9/d119.md: end items can show error(s) AE, AF, AN, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u03-9/d119.md: the section plan's day 119 block names 23, 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-1/d120.md: teacher 781 words, student 140 words (54 frame, 86 questions), 90 min, 2 side(s), at home 73 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-1/d120.md: the section plan's day 120 block names 24, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-1/d121.md: teacher 831 words, student 158 words (11 frame, 147 questions), 90 min, 2 side(s), at home 75 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-1/d122.md: teacher 852 words, student 94 words (10 frame, 84 questions), 90 min, 2 side(s), at home 80 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-1/d123.md: teacher 775 words, student 149 words (51 frame, 98 questions), 90 min, 2 side(s), at home 80 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-1/d123.md: the section plan's day 123 block names 25, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-1/d124.md: teacher 428 words, student 211 words (116 frame, 95 questions), 90 min, 2 side(s), at home 58 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-1/d124.md: end items can show error(s) A, B, C, D, E, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u04-1/d124.md: the section plan's day 124 block names 24, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-1/d125.md: teacher 737 words, student 168 words (17 frame, 151 questions), 90 min, 2 side(s), at home 68 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-1/d125.md: the section plan's day 125 block names 19, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-2/d126.md: teacher 878 words, student 211 words (18 frame, 193 questions), 90 min, 2 side(s), at home 69 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-2/d126.md: the section plan's day 126 block names 21, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-2/d127.md: teacher 855 words, student 186 words (19 frame, 167 questions), 90 min, 2 side(s), at home 70 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-3/d128.md: teacher 986 words, student 165 words (22 frame, 143 questions), 90 min, 2 side(s), at home 66 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-3/d128.md: the section plan's day 128 block names 22, 23, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-3/d129.md: teacher 980 words, student 140 words (17 frame, 123 questions), 90 min, 2 side(s), at home 65 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-3/d130.md: teacher 997 words, student 119 words (16 frame, 103 questions), 90 min, 2 side(s), at home 67 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-3/d130.md: the section plan's day 130 block names 24, 25, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-3/d131.md: teacher 407 words, student 255 words (150 frame, 105 questions), 90 min, 2 side(s), at home 61 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-3/d131.md: end items can show error(s) A, B, C, F, G, H, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u04-3/d131.md: the section plan's day 131 block names 26, 135, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-3/d132.md: teacher 1054 words, student 276 words (22 frame, 254 questions), 90 min, 2 side(s), at home 68 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-4/d133.md: teacher 1034 words, student 188 words (41 frame, 147 questions), 90 min, 2 side(s), at home 74 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-4/d134.md: teacher 968 words, student 177 words (13 frame, 164 questions), 90 min, 2 side(s), at home 68 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-4/d134.md: the section plan's day 134 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-4/d135.md: teacher 490 words, student 164 words (60 frame, 104 questions), 90 min, 2 side(s), at home 61 words, 50 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-4/d135.md: end items can show error(s) A, AU, D, J, but the respond part names no group for them
+courses/english-language-arts-grade-3/u04-4/d136.md: teacher 946 words, student 277 words (51 frame, 226 questions), 90 min, 2 side(s), at home 72 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-4/d136.md: the section plan's day 136 block names 28, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-5/d137.md: teacher 892 words, student 282 words (76 frame, 206 questions), 90 min, 2 side(s), at home 73 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-5/d138.md: teacher 888 words, student 216 words (47 frame, 169 questions), 90 min, 2 side(s), at home 77 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-5/d139.md: teacher 785 words, student 115 words (16 frame, 99 questions), 90 min, 2 side(s), at home 75 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-5/d140.md: teacher 782 words, student 141 words (16 frame, 125 questions), 90 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-5/d141.md: teacher 796 words, student 158 words (19 frame, 139 questions), 90 min, 2 side(s), at home 73 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-5/d141.md: the student page prints s04-P141-10 before s04-P141-9, but the day teaches them the other way round
+courses/english-language-arts-grade-3/u04-6/d142.md: teacher 1014 words, student 181 words (26 frame, 155 questions), 90 min, 2 side(s), at home 75 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-6/d142.md: the section plan's day 142 block names 215, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-6/d143.md: teacher 837 words, student 127 words (21 frame, 106 questions), 90 min, 2 side(s), at home 88 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-6/d144.md: teacher 496 words, student 168 words (43 frame, 125 questions), 90 min, 2 side(s), at home 60 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-6/d144.md: end items can show error(s) AQ, L, O, P, Q, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u04-6/d144.md: the section plan's day 144 block names 137, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-6/d145.md: teacher 485 words, student 111 words (15 frame, 96 questions), 90 min, 2 side(s), at home 60 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-6/d145.md: end items can show error(s) AO, R, S, but the respond part names no group for them
+courses/english-language-arts-grade-3/u04-7/d146.md: teacher 1135 words, student 271 words (9 frame, 262 questions), 90 min, 2 side(s), at home 79 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-7/d146.md: the section plan's day 146 block names 70, 190, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-7/d147.md: teacher 883 words, student 128 words (7 frame, 121 questions), 90 min, 2 side(s), at home 76 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-7/d147.md: the section plan's day 147 block names 153, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-7/d148.md: teacher 884 words, student 159 words (9 frame, 150 questions), 90 min, 2 side(s), at home 68 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-7/d148.md: the student page prints s04-P148-3 before s04-P148-4, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u04-7/d148.md: the section plan's day 148 block names 153, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-7/d149.md: teacher 1014 words, student 155 words (10 frame, 145 questions), 90 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-7/d149.md: the student page prints s04-P149-3 before s04-P149-4, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-3/u04-7/d149.md: the section plan's day 149 block names 60, 65, 153, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-8/d150.md: teacher 1113 words, student 208 words (35 frame, 173 questions), 90 min, 2 side(s), at home 93 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-8/d150.md: the section plan's day 150 block names 40, 80, 59000, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-8/d151.md: teacher 1131 words, student 146 words (17 frame, 129 questions), 90 min, 2 side(s), at home 94 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-8/d152.md: teacher 869 words, student 221 words (22 frame, 199 questions), 90 min, 2 side(s), at home 91 words, 50 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-8/d152.md: end items can show error(s) A, AK, AR, AS, N, O, Z, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u04-8/d152.md: the section plan's day 152 block names 150, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-9/d153.md: teacher 498 words, student 52 words (14 frame, 38 questions), 90 min, 1 side(s), at home 77 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d153.md: end items can show error(s) AA, AB, AC, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u04-9/d153.md: the section plan's day 153 block names 25, 151, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-9/d154.md: teacher 500 words, student 83 words (5 frame, 78 questions), 90 min, 1 side(s), at home 64 words, 40 min, 9 failure(s)
+  FAIL courses/english-language-arts-grade-3/u04-9/d154.md: end item s04-A49 is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-3/u04-9/d154.md: end item s04-A50 is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-3/u04-9/d154.md: end item s04-A51 is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-3/u04-9/d154.md: end item s04-A52 is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-3/u04-9/d154.md: end item s04-A53 is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-3/u04-9/d154.md: end item s04-A54 is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-3/u04-9/d154.md: end item s04-A55 is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-3/u04-9/d154.md: end item s04-A56 is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-3/u04-9/d154.md: end item s04-A57 is not on the student page, so the At home view cannot say where it is
+  NOTE courses/english-language-arts-grade-3/u04-9/d154.md: end items can show error(s) AD, AM, AN, AT, D, E, but the respond part names no group for them
+courses/english-language-arts-grade-3/u04-9/d155.md: teacher 808 words, student 63 words (8 frame, 55 questions), 90 min, 1 side(s), at home 73 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-9/d156.md: teacher 470 words, student 35 words (5 frame, 30 questions), 90 min, 1 side(s), at home 61 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d156.md: end items can show error(s) AE, AF, AG, AH, AI, AJ, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-3/u04-9/d156.md: the section plan's day 156 block names 25, 149, 153, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-3/u04-9/d157.md: teacher 421 words, student 327 words (16 frame, 311 questions), 90 min, 2 side(s), at home 53 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d157.md: end items can show error(s) AF, AG, AH, AI, AJ, AK, AL, AM, AN, B, C, D, E, F, G, L, R, S, T, U, V, W, X, Y, but the respond part names no group for them
+courses/english-language-arts-grade-3/u04-9/d158.md: teacher 412 words, student 170 words (18 frame, 152 questions), 90 min, 2 side(s), at home 51 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d158.md: end items can show error(s) A, AA, AB, AC, AD, AE, E, G, P, R, S, T, U, V, W, X, Y, Z, but the respond part names no group for them
+courses/english-language-arts-grade-3/u04-9/d159.md: teacher 388 words, student 16 words (3 frame, 13 questions), 90 min, 1 side(s), at home 74 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-3/u04-9/d160.md: teacher 375 words, student 30 words (16 frame, 14 questions), 90 min, 1 side(s), at home 68 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-1/cards-exits-1-4.md: story, 129 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-1/discussion-chart.md: blank, 85 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-1/family.md: family, 196 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-1/feedback-card.md: blank, 58 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-1/opener.md: opener, 333 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-1/reading-log.md: blank, 29 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-1/record.md: record, 152 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-1/screen-cards.md: blank, 146 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-1/words-and-picture-table.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-1/writing-frame-card.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-2/cards-exits-5-9.md: story, 108 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-2/cause-result-cards.md: blank, 67 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-2/dictionary-page-day-7.md: blank, 81 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-2/opener.md: opener, 306 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-2/phrase-cards.md: blank, 106 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-2/story-map-sheet.md: blank, 80 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-3/bus-event-cards.md: blank, 76 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-3/crow-picture-art-spec.md: facts, 84 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-3/dictionary-page-day-11.md: blank, 64 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-3/opener.md: opener, 263 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-3/recount-map-sheet.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-4/bar-graph-day-17.md: blank, 74 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-4/cards-exits-14-19.md: story, 200 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-4/check-day-19-art-spec.md: facts, 173 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-4/expert-card-day-17.md: blank, 54 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-4/glossary-and-dictionary-page-day-18.md: blank, 91 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-4/main-idea-chart.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-4/opener.md: opener, 314 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-4/sort-cards-day-14.md: blank, 151 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-5/audit-card-day-24.md: blank, 119 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-5/cards-exits-20-25.md: story, 429 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-5/day-25-picture-and-graph-art-spec.md: facts, 137 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-5/note-strips-and-frame-day-20.md: blank, 311 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-5/opener.md: opener, 379 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-5/repair-cards-day-25.md: blank, 243 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/cap-panel-art-spec-day-28.md: facts, 115 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/cards-exits-26-29.md: story, 268 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/context-and-did-chart-day-26.md: blank, 97 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/context-bridge-cards-and-timeline-day-26.md: blank, 151 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/dictionary-page-day-27.md: blank, 109 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/feedback-card-day-29.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/goal-card-day-29.md: blank, 84 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/opener.md: opener, 364 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/reading-group-lines-day-28.md: blank, 209 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/repair-cards-day-29.md: blank, 277 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/strategy-menu-day-29.md: blank, 167 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-6/voice-and-retelling-chart-day-27.md: blank, 175 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-7/cards-exits-30-34.md: story, 423 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-7/look-for-card-day-31.md: blank, 76 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-7/opener.md: opener, 335 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-7/plan-frame-day-30.md: blank, 74 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-7/recording-picture-set-and-signup-day-34.md: blank, 112 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-7/word-check-day-30.md: blank, 116 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-8/art-spec-days-36-and-38.md: facts, 315 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-8/bookmark-strip-day-38.md: blank, 57 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-8/cards-exits-35-39.md: story, 263 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-8/opener.md: opener, 271 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u01-8/repair-cards-and-regroup-sheet-day-39.md: blank, 431 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-1/cards-exits-40-42.md: story, 169 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-1/event-cards.md: blank, 87 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-1/family.md: family, 207 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-1/opener.md: opener, 408 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-1/plan-card.md: blank, 63 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-1/record.md: record, 150 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-2/cards-exits-43-47.md: story, 336 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-2/item-sheets-day-46.md: story, 300 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-2/opener.md: opener, 424 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-2/three-time-line.md: blank, 54 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-2/verb-cards.md: story, 106 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-2/word-check-day-45.md: story, 111 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-3/cards-exits-48-51.md: story, 307 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-3/display-leaf-sheet.md: blank, 64 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-3/effect-verb-cards.md: story, 100 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-3/item-sheets-day-51.md: story, 345 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-3/opener.md: opener, 435 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-4/cards-exits-52-53.md: story, 137 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-4/item-sheet-day-52.md: story, 166 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-4/opener.md: opener, 313 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-4/repair-page.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-4/tale-page.md: blank, 56 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-5/answer-sheet.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-5/cards-exits-54-56.md: story, 139 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-5/opener.md: opener, 393 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-5/page-lookup-card.md: blank, 47 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-5/panel-a-sheet.md: story, 98 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-6/cards-exits-57-61.md: story, 399 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-6/item-sheets-day-60.md: blank, 320 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-6/keyword-page-spec.md: blank, 67 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-6/note-card.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-6/opener.md: opener, 248 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-6/question-card.md: blank, 29 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-6/results-card.md: blank, 41 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-7/cards-exits-62-66.md: story, 584 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-7/item-sheet-day-65.md: blank, 227 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-7/opener.md: opener, 252 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-7/question-starter-card.md: blank, 49 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-8/cards-exits-67-72.md: story, 654 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-8/discussion-card.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-8/item-sheet-day-71.md: blank, 231 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-8/opener.md: opener, 258 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-8/three-box-plan.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-9/audit-sheet-day-76.md: blank, 233 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-9/cards-exits-73-77.md: story, 493 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-9/cards-exits-78-80.md: story, 172 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-9/check-1-oral-cards.md: story, 245 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-9/frog-card-sheet.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-9/group-cards-day-80.md: story, 186 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-9/item-sheet-day-74.md: blank, 259 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-9/language-card-day-75.md: blank, 204 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u02-9/opener.md: opener, 216 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-1/cards-exits-81-86.md: story, 493 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-1/chapter-map-frame.md: blank, 75 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-1/family.md: family, 212 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-1/hook-drawings-day-81.md: story, 133 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-1/item-sheets-day-85.md: story, 172 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-1/one-note-card.md: blank, 61 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-1/opener.md: opener, 499 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-1/record.md: record, 181 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-1/view-table.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-2/cards-exits-87-90.md: story, 310 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-2/discussion-record.md: blank, 46 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-2/key-sentences-to-repair-88.md: blank, 58 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-2/opener.md: opener, 461 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-2/prepared-detail-card.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-2/talk-slip.md: blank, 42 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-2/word-check-sheet.md: blank, 74 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-3/arc-sheet.md: blank, 61 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-3/cards-exits-91-93.md: story, 180 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-3/item-sheets-day-92.md: story, 229 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-3/opener.md: opener, 388 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-3/opening-chart.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-4/cards-exits-94-97.md: story, 355 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-4/opener.md: opener, 371 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-4/recount-sheet.md: blank, 58 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-4/sort-cards-day-95.md: blank, 106 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-4/two-book-map.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-5/cards-exits-98-100.md: story, 224 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-5/item-sheets-day-99.md: story, 267 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-5/o01-sheet.md: blank, 68 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-5/opener.md: opener, 360 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-5/reasons-sheet.md: blank, 68 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-6/cards-exits-101-104.md: story, 271 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-6/key-link-pairs-day-103.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-6/link-pairs-day-103.md: blank, 106 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-6/look-for-card.md: blank, 90 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-6/opener.md: opener, 443 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-6/plan-page.md: blank, 89 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-6/title-rule-card.md: blank, 105 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-7/cards-exits-105-107.md: story, 294 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-7/key-word-check-sheet-105.md: blank, 54 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-7/opener.md: opener, 346 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-7/prepared-claim-card.md: blank, 66 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-7/review-audit-card.md: blank, 156 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-7/word-check-sheet-105.md: blank, 120 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-8/cards-exits-108-113.md: story, 388 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-8/g110-sheet.md: blank, 109 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-8/g112-sheet.md: blank, 203 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-8/opener.md: opener, 451 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-8/peer-question-card.md: blank, 82 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-8/scene-audit-card.md: blank, 185 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-8/scene-plan-card.md: blank, 90 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-9/cards-exits-114-119.md: story, 347 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-9/item-sheets-day-114.md: story, 408 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-9/key-oral-forms-117-118.md: blank, 133 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-9/opener.md: opener, 438 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-9/oral-record-sheet.md: blank, 75 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-9/presentation-cards.md: blank, 104 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-9/reflection-card.md: blank, 33 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-9/report-record-sheet.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u03-9/script-to-delivery-sheet.md: blank, 62 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-1/book-account-table.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-1/cards-exits-120-125.md: story, 478 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-1/family.md: family, 259 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-1/opener.md: opener, 521 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-1/record.md: record, 194 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-1/three-box-chart.md: blank, 43 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-2/cards-exits-126-127.md: story, 253 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-2/opener.md: opener, 270 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-2/two-column-chart.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-3/cards-exits-128-132.md: story, 320 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-3/discussion-record.md: blank, 61 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-3/four-category-sheet.md: blank, 42 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-3/opener.md: opener, 370 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-4/cards-exits-133-136.md: story, 277 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-4/opener.md: opener, 343 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-4/view-label-sheet.md: blank, 54 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-5/cards-exits-137-141.md: story, 291 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-5/opener.md: opener, 441 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-5/opinion-plan-page.md: blank, 49 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-5/research-note-sheet.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-6/cards-exits-142-145.md: story, 255 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-6/look-for-card-of-four.md: blank, 77 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-6/opener.md: opener, 449 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-6/peer-look-for-strip.md: blank, 74 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-6/plural-strip.md: blank, 87 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-7/cards-exits-146-149.md: story, 304 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-7/cue-plan-template.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-7/i10-plan-list.md: blank, 61 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-7/listening-card.md: blank, 75 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-7/opener.md: opener, 399 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-8/cards-exits-150-152.md: story, 333 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-8/dictation-sheet.md: blank, 24 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-8/heard-words-card.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-8/letter-plan-list.md: blank, 76 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-8/opener.md: opener, 414 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-9/announcement-feedback-card.md: blank, 73 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-9/cards-exits-153-156.md: story, 294 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-9/cards-exits-159-160.md: story, 110 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-9/check-2-oral-cards.md: story, 265 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-9/component-sheet.md: blank, 54 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-9/group-cards-days-159-160.md: story, 210 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-9/opener.md: opener, 444 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-9/p154a.md: blank, 208 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-9/p154b.md: blank, 255 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+courses/english-language-arts-grade-3/u04-9/p156-chart-and-drawing.md: blank, 135 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the written task c2-P160-1 is judged but day 161 is not written yet; its writer must hand back c2-P160-1
+  NOTE courses/english-language-arts-grade-3/u04-9/d160.md: the exit ticket c2-X160 goes back, but day 161 is not written yet; its writer must hand back c2-X160
+lesson_course: 40 failure(s) in 160 day(s)

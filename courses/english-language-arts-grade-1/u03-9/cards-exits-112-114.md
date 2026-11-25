@@ -21,26 +21,12 @@ This card is invented for practice. The same card stays in view. Say: "Which sou
 
 **Right answer:** Y2.
 
-## Day 113 card (s03-X113a, RI.1.2)
-
-This card is invented for practice. Show the card and read it aloud: "An avocet has a long beak that curves up. It sweeps the beak side to side to find food. Choices: beak topic card, wing topic card." Show two pictures: the beak topic card, the wing topic card. Say: "Which topic picture holds these clues?" Hear the day's rotating six.
-
-**Right answer:** The beak topic card.
-
 ## Day 113 card (s03-X113b, W.1.2)
 
-This card is invented for practice. The same card stays in view. Say: "Say the first clue of a riddle, without the bird's name." Hear the day's rotating six.
+This card is invented for practice. Show the card and read it aloud: "An avocet has a long beak that curves up. It sweeps the beak side to side to find food." Say: "Say the first clue of a riddle, without the bird's name." Hear the day's rotating six.
 
 **Right answer:** I have a long beak that curves up.
 
-## Day 114 card (s03-X114a, RI.1.5)
+## Reading exits of days 113 and 114
 
-This card is invented for practice. Show the card and read it aloud: "Contents: Feet, 4. Heading: Gripping Claws. Glossary: talon, a claw. An osprey grips fish with its claws." Show two pictures: the contents line Feet, 4, the glossary line. Say: "Which line sends you to this fact? Point to it." Hear the day's rotating six.
-
-**Right answer:** The contents line Feet, 4.
-
-## Day 114 card (s03-X114b, RI.1.5)
-
-This card is invented for practice. The same card stays in view. Say: "Point to the words that say what the claws do." Hear the day's rotating six.
-
-**Right answer:** The words grips fish.
+These exits are read from the unit's texts and have no card. Day 113 (s03-X113av2): Fluffing Up in Feathers Protect, with the feathers and wing topic cards as the two pictures. Day 114 (s03-X114av2, s03-X114bv2): Wings Push the Air in Wings in Motion; the two pictures are its contents line Wings Push the Air, page 2, and its glossary line wing.

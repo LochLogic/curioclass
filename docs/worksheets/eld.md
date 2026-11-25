@@ -32,6 +32,7 @@ Covers English Language Development, Kindergarten through Grade 12 (WIDA ELD Sta
 | 30 | Picture Town Map | Map | My Community Words | After the Community Map Words tool, circle and name 5 places on a picture map: school, store, park, library, hospital. |
 | 31 | Where Do We Go? | Apply | My Community Words | For 5 picture needs (a sick bunny, a hungry bear, a book), circle the place to go and say "Go to the ___." |
 | 32 | Community Helper Riddles | Puzzle | My Community Words | The teacher reads 4 riddles ("I put out fires"); students circle the helper and say "You are a ___." |
+| 33 | Helper Hats Cut and Match | Practice | My Community Words | Cut out 4 hat pictures and glue each on the right helper, saying "He is a ___" or "She is a ___." |
 | 34 | Community Words Picture Check | Review | My Community Words | Match helpers, places and tools in 6 picture items using read-aloud frames. |
 | 35 | Bear Picks This or That | Practice | Choosing and Giving Reasons | Circle what Bear picks in 5 picture pairs (apple or banana, slide or swing) and say "Bear wants the ___." |
 | 36 | Because Bubbles | Writing frame | Choosing and Giving Reasons | Draw a reason in the bubble for 4 picture choices and say "___ because ___" while the teacher writes the words. |
@@ -59,6 +60,7 @@ Covers English Language Development, Kindergarten through Grade 12 (WIDA ELD Sta
 | 17 | Draw the Story Problem | Apply | Math Talk: Numbers and Shapes | Draw and solve 4 read-aloud story problems, then complete "There are ___ in all" or "___ are left." |
 | 18 | Sides and Corners | Practice | Math Talk: Numbers and Shapes | Count sides and corners for 5 shapes and complete "A ___ has ___ sides and ___ corners." |
 | 19 | Longer and Shorter | Practice | Math Talk: Numbers and Shapes | Measure 4 pictured objects with printed cubes and complete "The ___ is longer than the ___." |
+| 20 | Number Line Before and After | Diagram | Math Talk: Numbers and Shapes | Mark 5 numbers on a number line and complete "___ comes before ___" and "___ comes after ___." |
 | 21 | Math Talk Check | Review | Math Talk: Numbers and Shapes | Compare numbers, name shape attributes and explain one story problem with frames. |
 | 22 | Two Describing Words | Practice | Describing What I See | Add two adjectives to describe 6 picture objects using "The ___ is ___ and ___." |
 | 23 | Bird and Fish Body Parts | Diagram | Describing What I See | Label a bird and a fish with picture-supported words (wing, beak, fin, tail) and say what each part does. |
@@ -97,6 +99,7 @@ Covers English Language Development, Kindergarten through Grade 12 (WIDA ELD Sta
 | 17 | Greater, Less, Equal Sentences | Practice | Math Talk: Numbers and Shapes | Write sentences with greater than, less than and equal to for 8 number pairs, then add the symbols. |
 | 18 | Write a Shape Riddle | Puzzle | Math Talk: Numbers and Shapes | Write 3 riddles for flat and solid shapes using sides, corners and faces, then solve a partner's riddles. |
 | 19 | How Many Inches Longer? | Lab | Math Talk: Numbers and Shapes | Measure 5 objects in inches, record them, and compare with "The ___ is ___ inches longer than the ___." |
+| 20 | First I, Then I, So | Writing frame | Math Talk: Numbers and Shapes | Explain how you solved 3 addition problems: "First I ___. Then I ___. So the answer is ___." |
 | 21 | Math Talk Review | Review | Math Talk: Numbers and Shapes | Describe place value, compare numbers and explain one strategy in mixed items. |
 | 23 | Butterfly Life Cycle Sentences | Diagram | Describing What I See | Label a butterfly life cycle and write 4 sentences with first, next, then and finally. |
 | 25 | Desert and Ocean Venn | Organizer | Describing What I See | Compare a desert and an ocean in a Venn diagram: "Both ___. A desert ___, but an ocean ___." |
@@ -161,6 +164,7 @@ Covers English Language Development, Kindergarten through Grade 12 (WIDA ELD Sta
 | 4 | Question Stem Task Cards | Apply | Academic Conversations | Cut apart 8 question-stem cards and glue each beside the moment it fits in a printed discussion transcript. |
 | 5 | Zoo Discussion Planner | Planner | Academic Conversations | Plan for a discussion on whether zoos help animals: 2 ideas, evidence for each and 3 frames to use. |
 | 6 | Transcript Mark-Up | Critique | Academic Conversations | Read a 12-line student discussion and mark where speakers used evidence, built on ideas or went off topic. |
+| 7 | Talk Moves Tracker | Log | Academic Conversations | Over two weeks, log which talk moves you used in discussions and one new frame to try. |
 | 8 | Academic Conversations Check | Review | Academic Conversations | Paraphrase, cite a page and build on an idea in 6 short discussion moments. |
 | 9 | Reason Strength Cut and Sort | Practice | Opinions with Reasons | Cut and sort 10 reasons for a school garden into strong, weak or off topic, then explain one. |
 | 10 | Garden Evidence Hunt | Read and respond | Opinions with Reasons | Read a 220-word passage on school gardens and choose 3 pieces of evidence for an opinion with frames. |
@@ -208,6 +212,7 @@ Covers English Language Development, Kindergarten through Grade 12 (WIDA ELD Sta
 | 17 | Decimal Place Value Talk | Practice | Explaining My Solution | Explain 6 decimal comparisons with frames: "___ is greater because the ___ place has ___." |
 | 18 | Volume Explained | Diagram | Explaining My Solution | Draw and label 3 rectangular prisms and explain volume with "I multiplied ___ by ___ by ___." |
 | 19 | Order of Operations Steps | Writing frame | Explaining My Solution | Explain the steps for 3 expressions using first, next and "because the rule says ___." |
+| 20 | Word Problem Task Strips | Apply | Explaining My Solution | Solve 6 word problems on task-card strips and write a one-sentence explanation for each. |
 | 21 | Of, Times, Per | Vocabulary | Explaining My Solution | Match 8 math phrases (of, times, split into, per) to operations and use 4 in problem sentences. |
 | 22 | Solution Critique | Critique | Explaining My Solution | Score 3 sample written explanations on a 4-point checklist and improve the weakest one. |
 | 23 | Word Problem Cross-Number | Puzzle | Explaining My Solution | Solve a cross-number puzzle whose clues are short word problems with fractions and decimals. |
@@ -363,6 +368,7 @@ Covers English Language Development, Kindergarten through Grade 12 (WIDA ELD Sta
 | 29 | Formal Email Makeover | Practice | College and Career Language | Rewrite 3 casual emails to a teacher into formal emails with a subject line, greeting and closing. |
 | 31 | Job Posting Decoder | Read and respond | College and Career Language | Read 2 fictional job postings and answer questions on duties, requirements and how to apply. |
 | 32 | Application Form Practice | Apply | College and Career Language | Complete a sample job application for a fictional applicant, using formal language in each field. |
+| 33 | Register Ladder | Organizer | College and Career Language | Place 8 versions of a request on a ladder from very casual to very formal and pick one for each audience. |
 | 34 | College and Career Language Check | Review | College and Career Language | Fix a casual email, decode a job posting and match register to audience. |
 | 35 | Flash Fiction Planner | Planner | Telling Stories and Experiences | Plan a 300-word story about an invented character with a single moment, clear sequence and strong ending. |
 | 37 | Oral Story Performance Notes | Critique | Telling Stories and Experiences | Score a partner's retelling of a folktale for sequence, time words, voice and audience contact. |

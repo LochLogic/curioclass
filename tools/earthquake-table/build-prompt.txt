@@ -1,0 +1,27 @@
+Build me an interactive web toy called Earthquake Table. It is for Curio Class, a free K-12 learning site, and belongs to a family of tools we call Curiosities: each one is a real instrument that kids and adults open just to play with, where the learning happens as a side effect.
+
+THE REAL THING
+A structural engineering shake table. Engineers build a model building on a steel platform, shake it with earthquake motion, and watch where it fails. Here, the student builds a small tower, shakes it, watches it sway, crack and fall, and then tries to build one that stands.
+
+WHAT IT HAS TO DO
+- Build: put together a tower of a few stories on the table. The student picks things like the number of floors, how heavy each floor is, how stiff the columns are, and how it is held up. At least these four ways to hold it up should be possible: a plain rigid frame, cross bracing, a tuned mass damper near the top, and base isolation (the building sits on bearings that let the ground move under it).
+- Shake: the student controls the shaking, at least its strength and its rhythm (how fast it goes back and forth), and can pick from a few presets that feel different, for example a short sharp jolt close to the fault and a long slow roll from a distant quake. Do not name or claim to reproduce any real historic earthquake; we will add real recorded motions later.
+- Watch: the tower moves the way a real one would. Use a real, simple physics model (for example each floor as a mass joined by springs and dampers, driven from the ground). The big idea that must come through honestly is resonance: when the shaking rhythm matches the building's own natural sway, the motion grows dramatically, and different heights sway at different natural rhythms. Members that are pushed too far should visibly strain and then break, and the collapse should be satisfying to watch, with a slow-motion replay.
+- Read: live readouts in monospace with units, such as ground acceleration in g, floor drift, the building's natural period in seconds, and the force in the most stressed part.
+- Explain: a fold-out Manual drawer, written like a good field guide, that explains what the student is seeing (resonance, why bracing helps, why a damper or base isolation works) in plain words a 12-year-old can follow, without talking down to an adult.
+
+THE RULES IT MUST KEEP
+- No score, no levels and no finish line. The student explores. A light optional challenge on top is fine (for example "build a tower that survives this shake"), as long as the tool is just as fun without it.
+- No people anywhere, not even as figures in windows. It is a test model, not a city.
+- It looks like the real lab, not like an app: the table and tower fill the screen, the controls look like real hardware (knobs, faders, switches, dials, needle gauges) placed where they would be on real equipment, and the colors come from the real place. No sidebar full of buttons.
+- A small engraved maker's plate in one corner reads: Curio Class Curiosities · No. 14 · Earthquake Table
+- A small power panel, styled like the equipment, with three switches: Motion (respects reduced motion), Sound (off by default; when on, controls click and the tower creaks), and Read (reads the Manual aloud with the browser's speech).
+- One single HTML file that works offline: no external libraries, fonts, images or network calls. It must run smoothly on a cheap school Chromebook.
+- Everything works by keyboard as well as mouse and touch, with visible focus and good contrast.
+- Plain US English. Do not mention AI anywhere in the tool.
+
+WHERE YOU DECIDE
+Everything else is yours: the visual style of the lab, how building works (drag parts, a parts tray, a blueprint view, something better), the camera, how the collapse looks, the sound design, what the Manual says and how it is laid out, and any surprising thing that would make an adult say "oh, cool" in the first two minutes. Surprise me. If you see a better way to show resonance than the ones above, use it and tell me.
+
+WHEN YOU ARE DONE
+Give me the one HTML file, then a short note: the physics model you used and what it leaves out, any number in the tool that came from a real-world source (so we can check it), and the three things you would improve with more time.

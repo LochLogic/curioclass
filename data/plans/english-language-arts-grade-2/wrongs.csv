@@ -1,15 +1,20 @@
 item_id,shown,compute,value,error,note
-s01-X1,"He writes a word first, then sorts the cards.",,,A,the order is reversed against the card
-s01-X2,Mira waits by the sink.,,,A,the wrong person at the place; the card puts Mira at her desk
-s01-X3,Leo is shy.,,,B,a trait with no action
-s01-X3,Leo is a good friend.,,,B,a trait with no action
-s01-X4,There is a tree outside.,,,A,a setting the picture does not show
-s01-X4,It is a tent.,,,C,repeats the words and names no picture detail
-s01-X5,She wants to dance.,,,A,an action the card does not say
-s01-X5,Because Ada is mean.,,,A,a reason the card does not give
-s01-X6,He leaves the line and goes home.,,,A,the two responses are reversed or invented
-s01-X7,The crate is brown.,,,C,names a picture feature with no contribution
-s01-X8,She throws the ribbon away and leaves her paper.,,,A,contradicts both actions
+s01-X1v2,"She wonders if she will know what to do, then what it is like inside.",,,A,the order is reversed against the story
+s01-X1v2,She wonders what is for lunch.,,,A,a detail the paragraph does not give
+s01-X2v2,Over the M.,,,A,the wrong place on the card; the story says over the i
+s01-X2v2,On the window.,,,A,a place the lines do not give
+s01-X3v2,Ada is nice.,,,B,a trait with no action
+s01-X3v2,Ada tells Ms. Park.,,,A,an action the lines do not give
+s01-X4v2,There is a fish tank.,,,A,a setting the picture does not show
+s01-X4v2,It has a chart.,,,C,repeats the words and names no picture detail
+s01-X5v2,Because she won the card game.,,,A,"a reason from a later chapter, not these lines"
+s01-X5v2,Because Ada sat with her.,,,A,a reason the lines do not give
+s01-X6v2,She looks at Leo.,,,A,the story says she looks at the name card
+s01-X6v2,Mira is brave.,,,B,a trait with no response
+s01-X7v2,The picture has a napkin.,,,C,names a picture feature with no contribution
+s01-X7v2,She is playing cards.,,,A,contradicts the words and the picture
+s01-X8v2,She folds her hands and watches.,,,A,contradicts what she does in these lines
+s01-X8v2,Mira is clever.,,,B,a trait with no response
 s01-X9,My bag is green.,,,I,a comment unrelated to the last one
 s01-X10,Reads all three sentences in one breath with no pause.,,,O,rushing hides the sentences' meaning
 s01-A1,What color was the sign?,,,A,a detail the text does not give
@@ -21,12 +26,15 @@ s01-A6,Because Leo asked her to.,,,A,contradicts the text
 s01-A7,She asked the teacher to move the table.,,,A,contradicts the text
 s01-A8,She is kind.,,,B,a trait with no response
 s01-A9,The picture is pretty.,,,C,explains no contribution of the picture
-s01-X12,Mira is friendly.,,,B,a trait with no response
-s01-X12a,On the floor.,,,A,a place the card does not name
-s01-X12c,The picture has chairs.,,,C,names a feature with no contribution
+s01-X12v2,Mira is kind.,,,B,a trait with no response
+s01-X12v2,She asks Ada to help him.,,,A,an action the lines do not give
+s01-X12av2,In the yard.,,,A,a place the paragraph does not name
+s01-X12cv2,The picture has a pencil.,,,C,names a feature with no contribution
 s01-X13,It is about bags.,,,N,loses the key ideas
-s01-X14,It has mats.,,,C,names a feature with no contribution
-s01-X15,"Wash, then store, then draw.",,,A,contradicts the order
+s01-X14v2,It has a classroom.,,,C,names a feature with no contribution
+s01-X14v2,The pupils are eating.,,,A,the photograph shows no children
+s01-X15v2,There are two buildings.,,,A,contradicts the diagram
+s01-X15v2,The full day has four meals.,,,A,"answers another part of the diagram, not the two shifts"
 s01-A10,What do they eat at lunch?,,,A,a detail the text does not give
 s01-A11,The teacher reads alone.,,,A,contradicts the text
 s01-A12,A game.,,,A,contradicts the text
@@ -40,7 +48,7 @@ s01-A18,Reading partners choose books. A partner works with another person.,,,G,
 s01-A19,Talks over a speaker.,,,H,interrupts a turn
 s01-A20,A lunch comment after a reading comment.,,,I,a comment unrelated to the last one
 s01-A21,Nods and says OK to They moved it over there.,,,J,accepts an unclear remark
-s01-A22,What is your favourite food?,,,K,a question that ignores the speaker
+s01-A22,What is your favorite food?,,,K,a question that ignores the speaker
 s01-A23,It is about school.,,,N,no key meaning
 s01-A24,Runs two sentences together with no pause.,,,O,rushing hides the meaning
 s01-A25,Looks at the picture and says flowers.,,,P,the picture replaces reading the letters
@@ -71,23 +79,24 @@ s01-X16,A kind of bag.,,,E,the meaning contradicts the card
 s01-X17,Tables are nice.,,,D,no topic that explains anything
 s01-X20,I like apples.,,,E,an ending that ignores the facts
 s01-X20,Said so fast that the words run together and the ending is lost.,,,O,rushing hides the meaning
-s01-X20a,Hats.,,,A,contradicts the card
+s01-X20av2,Money.,,,A,contradicts the paragraph
+s01-X20av2,Books.,,,A,a thing the paragraph does not give
 s01-X20d,Aprons are fun.,,,D,no topic that explains anything
 s01-X20f,Pegs are good.,,,F,says the word and gives no meaning
 s01-X20g,Aprons are red.,,,G,an ending that does not follow from the facts
 s01-X21,Read in a rush with no pause at the line ends.,,,O,rushing hides the meaning
-s01-X22,The star.,,,A,contradicts the card
-s01-X23,Both keep the globe on a shelf.,,,A,contradicts the second card and the photograph
-s01-X23,The second globe sits on a table.,,,A,a place the photograph does not show
+s01-X22v2,From a shop.,,,A,a place the paragraph does not name
+s01-X22v2,The pupils grow it.,,,A,contradicts the paragraph
+s01-X23v2,Both articles say pupils have four meals.,,,A,contradicts 02-b
+s01-X23v2,The diagram shows no meals.,,,A,contradicts the diagram
 s01-X24,A hard box with a lid.,,,E,the meaning contradicts the card
 s01-X25,Nods or says OK and asks nothing.,,,J,accepts an unclear word without asking
 s01-X25,I like the bell.,,,I,an unrelated comment that links to nothing
 s01-X27,The first sentence.,,,E,the page is not supported by that line
 s01-X28,A stencil: a bucket with a handle.,,,E,the meaning contradicts the card
 s01-X29,The umbrellas are all red.,,,E,adds a fact the draft does not give
-s01-X32,Jo leaves the papers on the floor.,,,A,contradicts the card
-s01-X32,It is about papers.,,,N,loses the key idea
-s01-X32,The picture has a folder.,,,C,names a feature with no contribution
+s01-X32v2,The teacher cleans the school.,,,A,contradicts the paragraph
+s01-X32v2,It is about cleaning.,,,N,loses the key idea
 s01-X32d,Notices are fun.,,,D,no topic that explains anything
 s01-X32d,Notices are red.,,,E,a fact the card does not give
 s01-X32d,A magnet is a notice.,,,F,a wrong meaning for the word
@@ -95,49 +104,61 @@ s01-X32d,I like boards.,,,G,an ending that does not follow from the facts
 s01-X32h,Talks over the speaker before the speaker has finished.,,,H,does not wait for the speaker
 s01-X32h,My hat is red.,,,I,an unrelated comment
 s01-X32h,OK.,,,J,accepts an unclear word without asking
-s01-X32h,What is your favourite colour?,,,K,a question that ignores the speaker
+s01-X32h,What is your favorite color?,,,K,a question that ignores the speaker
 s01-X32l,The word ship.,,,L,gives the long and short vowels one sound
 s01-X32l,Reads the word as shep.,,,M,the team ee is read with a short vowel
 s01-X32q,Copies gote from the draft and does not use the entry.,,,R,spelling copied without the reference
 s01-X32q,The sope is on the sink.,,,Q,the learned pattern oa is not carried over
-s02-X33,"She reads the label first, then draws the shape, then notices it.",,,B,the event order is reversed against the card
-s02-X34,The beginning is that Idris labels the drawing.,,,A,"the finished action is named as the introduction, which reverses its function"
+s02-X33v2,"She puts the stone in her bag, then draws it.",,,B,the order is reversed against page 10
+s02-X33v2,Amara writes the label.,,,B,page 10 says Dr. Lee writes the label
+s02-X34v2,The beginning is that the corn is not hurt.,,,A,the ending is named as the introduction
+s02-X34v2,The jar falls off the cart.,,,A,a later event is named as what the beginning introduces
 s02-X35,Mary learned fossil collecting from a teacher at school.,,,B,"the detail contradicts the card, which says her father"
 s02-X35,Where did Mary find her first fossil?,,,,"a question the card cannot answer; no register letter, record not yet seen and note it"
-s02-X36,The ending is that Kemi starts a blank page.,,,A,"the beginning is named as the conclusion, which reverses the functions"
+s02-X36v2,The ending is that Barb turns the cart up the path.,,,A,"the beginning is named as the conclusion, which reverses the functions"
+s02-X36v2,At the end the corn is smashed.,,,B,page 5 says the corn is not hurt
 s02-X37,A sorter is a person who mixes the finds up.,,,I,the known root meaning is lost
 s02-X37,A sorter is a machine that plays music.,,,G,a meaning that does not fit the sentence is chosen
-s02-X38,The ending starts the search for the sketch.,,,A,"the final search is named as the closing, which reverses the functions"
-s02-X39,Arlo numbers them because he likes numbers.,,,B,"a reason the card does not give, which contradicts the card"
-s02-X40,A visitor smudges the label at the end.,,,B,the action is contradicted by the card
-s02-X41,Raj draws the fossil outdoors after lunch.,,,B,place and time contradict the card
-s02-X41,Where does Raj eat lunch?,,,,"a question the card cannot answer; no register letter, record not yet seen and note it"
-s02-X42,Pia takes all the labels off the drawings.,,,B,the action contradicts the card
+s02-X38v2,The first part is that the bird hops off.,,,A,"the ending is named as the beginning, which reverses the functions"
+s02-X38v2,At the end the bird is still hurt in the box.,,,B,the passage says the bird hops off
+s02-X39v2,Roy gets a job because he likes sticks.,,,B,a reason the story does not give
+s02-X39v2,Because the shop is closed.,,,B,a reason the pages contradict
+s02-X40v2,At the end Roy still cannot get the boat.,,,B,page 6 says Roy gets the toy boat
+s02-X40v2,The ending is that Roy sees the boat in the shop.,,,A,the beginning is named as the ending
+s02-X41v2,Amara and Ben are at the park gate.,,,B,page 11 says they are on the bus
+s02-X41v2,Where does Ben live?,,,,"a question page 11 cannot answer; no register letter, record not yet seen and note it"
+s02-X42v2,Gran finds the ring under the bed.,,,B,the story says the ring is in the last sock
+s02-X42v2,The ending is that the ring is lost.,,,A,the opening problem is named as the ending
 s02-X43,Anning felt eager to look closely at a picture.,,,AJ,a feeling is given to the real person with no source
 s02-X43,Anning wondered how she noticed tiny details.,,,AJ,a thought is given to the real person with no source
 s02-X44,Reads every word at once without pausing at the full stops or the question mark.,,,W,rushing hides the meaning from the listener
 s02-X45,Then we had a picnic.,,,P,an ending unrelated to the event gives no closure
-s02-X46,Ferns.,,,C,one paragraph focus is used as the whole topic
-s02-X46b,Fossil clues in rock.,,,x,the topic is given for one paragraph
-s02-X47,Look under the subheading Shell Shapes.,,,E,a useful feature is ignored in the search
-s02-X47b,The caption.,,,E,the wrong feature is used for a key word
-s02-X47c,The subheading.,,,E,the wrong feature is used for a picture
-s02-X48,The author wants to sell pencils.,,,D,a purpose the card does not support
-s02-X48,Describe what.,,,D,a purpose the card does not support: it tells steps
-s02-X48b,Explain how.,,,D,a purpose the card does not support: there are no steps
-s02-X49,The glossary.,,,E,the glossary tells what a word means and does not say where to look
-s02-X49,"The bag icon in the menu, page 2.",,,E,the label route is taken for track facts
+s02-X46v2,A riverbed.,,,C,one detail is used as the whole topic
+s02-X46v2,How an animal moved.,,,C,one paragraph detail is used as the whole topic
+s02-X46bv2,Fossil tracks.,,,x,the topic is given for one paragraph
+s02-X46bv2,A footprint in soft mud turns to rock.,,,C,the focus of paragraph one is given for paragraph two
+s02-X47v2,Read from the first line to the end.,,,E,a useful feature is ignored in the search
+s02-X47v2,The caption under the pictures.,,,E,the wrong feature is used for a part
+s02-X47bv2,The subheading Signs of What Animals Did.,,,E,the wrong feature is used for a key word
+s02-X47cv2,The subheading What Fossils Show.,,,E,the wrong feature is used for a picture
+s02-X48v2,The author wants to sell seashells.,,,D,a purpose the text does not support
+s02-X48v2,Describe what a seashell looks like.,,,D,a purpose the text does not support: it tells steps
+s02-X48bv2,Explain how.,,,D,a purpose the text does not support: there are no steps
+s02-X49v2,The glossary.,,,E,the glossary tells what a word means and does not say where to look
+s02-X49v2,Read every page until I find it.,,,E,a useful tool is ignored in the search
 s02-X49b,"The index, page 2.",,,E,"the index says where to look, not what a word means"
-s02-X49c,"The paw icon, Tracks.",,,E,the wrong icon is chosen
+s02-X49cv2,"The seashell icon, Shapes.",,,E,the wrong icon is chosen
 s02-X50,Unfinished means finished again.,,,H,the prefix meaning is mistaken (un- read as again)
 s02-X51,A book made of grass.,,,J,the parts are joined with a meaning that does not fit the sentence
 s02-X51b,"One, a tool for writing with ink.",,,G,the first meaning is chosen without checking the sentence
-s02-X52,Photographs.,,,C,one paragraph focus is used as the whole topic
-s02-X52b,Ways to record a find.,,,x,the whole topic is given for one paragraph
-s02-X52b,A drawing shows the shape.,,,x,the first paragraph is named
-s02-X53,It is meant to sell cameras.,,,D,a purpose the card does not support
-s02-X53b,Every page.,,,E,the child searches every page instead of using the subheading
-s02-X53b,The glossary.,,,x,"a feature that tells what a word means, not what a part is about"
+s02-X52v2,Fossil teeth.,,,C,one detail is used as the whole topic
+s02-X52v2,Taking photographs.,,,C,one paragraph detail is used as the whole topic
+s02-X52bv2,How scientists study fossils.,,,x,the whole topic is given for one paragraph
+s02-X52bv2,They brush the rock and take photographs.,,,x,the first paragraph is named
+s02-X53v2,It is meant to describe what a bone looks like.,,,D,a purpose the text does not support
+s02-X53v2,It tells a story about an animal.,,,D,a purpose the text does not support
+s02-X53bv2,Read every page.,,,E,the child searches every page instead of using the subheading
+s02-X53bv2,The subheading Growing Up by the Sea.,,,E,the wrong subheading is chosen
 s02-A1,The beginning is when the class hears all her notes.,,,A,the ending is named as the introduction
 s02-A2,The ending starts the wind problem.,,,A,the opening and ending functions are confused
 s02-A3,Her teacher catches the pages.,,,B,the detail contradicts the text
@@ -209,10 +230,10 @@ s02-X55a,Her friend.,,,S,a reflexive pronoun is matched to the other person
 s02-X55b,Bea hided a shell. Then she telled Tam.,,,T,an irregular past verb is regularized
 s02-X56,Calm.,,,U,an adjective is chosen for an action
 s02-X56b,Cheerfully.,,,x,an adverb is chosen for a thing
-s02-X57,The frame of sticks.,,,C,the focus of the other paragraph is given for this one
+s02-X57v2,The skull Joseph found.,,,C,the focus of the other paragraph is given for this one
 s02-X58,Buckled again.,,,H,a prefix meaning is mistaken
-s02-X59,Tess sees a nest.,,,P,the ending is not named; the opening is repeated
-s02-X59,Tess likes birds.,,,P,an ending unrelated to the event gives no closure
+s02-X59v2,Rob is skipping.,,,P,the ending is not named; the opening is repeated
+s02-X59v2,Rob trips on a rock.,,,P,"a middle event is given as the ending, so the start is not finished"
 s02-X59b,"He wonders, Is it a bone?",,,x,a part that does belong to the find is named
 s02-X59b,He brushes it clean.,,,x,a part that does belong to the find is named
 s02-X60,While Pru holds the lamp.,,,AD,a sentence is incomplete
@@ -237,34 +258,40 @@ s02-X66a,"Dear wes,",,,AE,a name is left lowercase
 s02-X66b,See you soon,,,AF,the closing lacks its comma
 s02-X67a,Finns,,,AG,a possessive apostrophe is omitted
 s02-X67b,"h, a, v, e, n, t",,,AH,a contraction apostrophe is omitted
-s02-X68,The ending is the gap in the fence.,,,A,the opening is named as the ending
+s02-X68v2,The ending is that Dan must make a decision.,,,A,the opening is named as the ending
 s02-X69,Ned tripped on a cord.,,,P,the ending leaves the problem unfinished
 s02-X70,Across the yard.,,,AD,a sentence is incomplete
 s02-X71,bakers lamp,,,AG,a possessive apostrophe is omitted
 s02-X72,I just watched.,,,AI,a child observes publishing without contributing
-s02-X73,A hand drops the tile in a bin.,,,B,the picture detail contradicts the sentence
+s02-X73v2,Amara runs away with the stone.,,,B,"the picture detail contradicts page 6, where Amara waits"
 s02-X74,Not planted.,,,H,a prefix meaning is mistaken
-s03-X78,Sam sets out water. A sparrow drinks.,,,B,two statements said with no word that joins them
-s03-X78,"The sparrow drinks, so Sam sets out water.",,,C,the link runs the wrong way and contradicts the card
-s03-X78b,Pollination.,,,x,"the moving is named, not the animal that moves pollen"
-s03-X78b,Pollen.,,,x,"the powder is named, not the animal that moves it"
-s03-X79,The tassel. The pollen. The silk. The kernels.,,,B,steps said as a list with no order words or links
-s03-X79b,Because the wind carries the kernels.,,,A,moving the kernels is mistaken for moving pollen
-s03-X79c,Points to the title.,,,C,the title does not say where the pollen lands
-s03-X79c,Points to The wind shakes the tassel and pollen floats out.,,,C,the line does not say where the pollen lands
-s03-X80,Reads flower as plant.,,,S,a word is guessed from the picture instead of the letters
-s03-X80b,Seeds.,,,A,seed travel is mistaken for pollen travel
-s03-X80b,Nectar.,,,C,the card does not say she carried nectar to the second flower
+s03-X78v2,A butterfly probes a flower. Nectar is its energy food.,,,B,two statements said with no word that joins them
+s03-X78v2,Nectar is its energy food because the butterfly probes the flower.,,,C,the link runs the wrong way and contradicts the paragraph
+s03-X78bv2,Pollination.,,,x,"the moving is named, not the animal that moves pollen"
+s03-X78bv2,Pollen.,,,x,"the powder is named, not the animal that moves it"
+s03-X79v2,The butterfly. The pollen. The flower.,,,B,steps said as a list with no order words or links
+s03-X79v2,First it flies to the next flower. Then it sips nectar.,,,C,the order contradicts the paragraph
+s03-X79bv2,Because the butterfly carries seeds.,,,A,moving seeds is mistaken for moving pollen
+s03-X79bv2,Because it looks for pollen.,,,C,the paragraph says it does not look for pollen; it moves it by accident
+s03-X79cv2,Points to the sentence that says pollen sticks to its body.,,,C,"that line says where pollen sticks, not where it comes off"
+s03-X79cv2,Points to It moves pollen by accident.,,,C,the line does not say where the pollen comes off
+s03-X80v2,Reads pale as pal.,,,T,the silent-e vowel is read short
+s03-X80v2,Reads nectar as nature.,,,S,a word is guessed from its first letters instead of read
+s03-X80bv2,Because the flowers are pale.,,,C,the paragraph links the visit to the flowers opening after dark
+s03-X80bv2,Because bats carry seeds at night.,,,A,seed travel is mistaken for the visit for nectar
 s03-X81,Points to the arrow that goes into the first flower.,,,C,the arrow does not match the words of the card
 s03-X81b,The bee flies home.,,,C,the card does not say the bee goes home
 s03-X81b,Seeds fly.,,,A,seeds are named where the card names pollen
 s03-X82,I just know it.,,,AB,no strategy is named
 s03-X82b,Uncurls means curls.,,,AL,the prefix un- is treated as if it meant nothing
-s03-X82c,Uncurls. Dusts. Flies. Brushes.,,,B,the steps are a list with no links
-s03-X82d,The moth carries seeds.,,,A,seeds are named where the card names pollen
-s03-X84,The bee carries the seeds.,,,A,seeds are named where the card names pollen
-s03-X84,Pollen sticks. She flies. Some rubs off.,,,B,the steps are said with no word that links them
-s03-X84b,On the bee.,,,C,"the answer contradicts the card: the pollen rubs off on the flower, not on the bee"
+s03-X82cv2,Hold. Buzz. Pollen.,,,B,the steps are a list with no links
+s03-X82cv2,"It buzzes, then it holds on to the flower.",,,C,the order contradicts the paragraph
+s03-X82dv2,Because the bee drinks the nectar.,,,C,the paragraph says the shaking makes the pollen fall out
+s03-X82dv2,Because seeds fall out of the flower.,,,A,seeds are named where the paragraph names pollen
+s03-X84v2,The bee carries the seeds to the next flower.,,,A,seeds are named where the paragraph names pollen
+s03-X84v2,She drinks nectar. She lands. Some brushes off.,,,B,the steps are said with no word that links them
+s03-X84bv2,In her nest.,,,C,the paragraph says she takes pollen to her nest as food; it brushes off onto the next flower's stigma
+s03-X84bv2,On the bee.,,,C,"the pollen brushes off the bee onto the flower, not onto the bee"
 s03-X85,Bumpy is bumpy.,,,P,the word is repeated with no real place
 s03-X85b,Because it is bumpy.,,,P,the word is used as its own reason
 s03-X85c,Shows the same speed for both.,,,Q,two near words are treated as the same
@@ -277,11 +304,12 @@ s03-X86b,A slimy crawl.,,,R,an adjective is used to modify the action
 s03-X88,a seed sleeps in a jar,,,E,a fact from the card that does not answer the question
 s03-X88,"A bean seed sleeps in a dry jar. When it gets wet, it swells.",,,D,the sentence is copied word for word
 s03-X88b,"The text card, for a note that says water and warmth.",,,AE,warmth is only on the picture caption card
-s03-X89,Where ants live.,,,AB,a subheading that does not lead to the fact asked is chosen
-s03-X89,Read the whole page.,,,AB,the subheadings are not used to find the fact
-s03-X90,It is about where ants keep their food.,,,AC,one detail is named for the whole paragraph
-s03-X91,The seed gets wet. Then it swells.,,,B,then gives the order but not why
-s03-X91,"The seed swells, so it gets wet.",,,B,the link runs backwards
+s03-X89v2,"A long, slender bill.",,,AB,a heading that does not lead to the fact asked is chosen
+s03-X89v2,Read the whole page.,,,AB,the headings are not used to find the fact
+s03-X90v2,It is about goldenrod.,,,AC,one detail is named for the whole paragraph
+s03-X90v2,It is about the butterfly's long legs.,,,AC,one detail is named for the whole paragraph
+s03-X91v2,It pushes its bill in. Then its face is dusted.,,,B,then gives the order but not why
+s03-X91v2,"Its face is dusted, so it pushes its bill in.",,,B,the link runs backwards
 s03-X93,"Yes, it matches.",,,C,a note that contradicts the source is accepted
 s03-X93b,Bees like flowers.,,,E,a fact that does not fix the wrong word
 s03-X93c,Points to the note instead of the source.,,,AE,the note is read as if it were the source
@@ -458,7 +486,7 @@ s03-X107,A dusk bug rests on the plant.,,,S,dusty is read from its first letters
 s03-X107,A dusty bug roots on the plant.,,,T,the vowel of rests is misread
 s03-X108,The bee takes dust.,,,I,the line is said again unchanged
 s03-X108,The bee eats the pollen.,,,C,"a fact the sources do not give, with no word from Source B"
-s03-X109,What is your favourite colour?,,,M,a question that does not ask about the speaker's detail
+s03-X109,What is your favorite color?,,,M,a question that does not ask about the speaker's detail
 s03-X109,I like beetles.,,,L,"a remark, not a question"
 s03-X110,The beetle came to the flower.,,,Z,said again with no new word
 s03-X110b,The slowly beetle came to the flower.,,,R,a word for the coming is put on the beetle
@@ -472,8 +500,8 @@ s03-X113,On its body.,,,O,a fragment
 s03-X113,It carries seeds.,,,A,a fact that contradicts the note
 s03-X114,Scratchy is when it is scratchy.,,,P,the word is repeated with no real situation
 s03-X114,Scratchy is something to eat.,,,AP,a meaning the word does not have
-s03-X115,It rests. It flies. Pollen falls.,,,B,the steps are a list with no connections
-s03-X115,The moth plants seeds.,,,A,a fact that contradicts the card
+s03-X115v2,It feeds. It flies. Pollen brushes.,,,B,the steps are a list with no connections
+s03-X115v2,The bat plants seeds in the next flower.,,,A,seed dispersal is mistaken for pollination
 s03-X116,At the flower.,,,O,a fragment
 s03-X116,The pollen is yellow.,,,E,a fact that does not answer the feedback
 s03-X117,Next I flew to a red flower.,,,AI,"an event, no feeling"
@@ -487,37 +515,41 @@ s03-A121,"Names a picture, not the word on the card.",,,S,a picture guess replac
 s03-A119,Reads the first vowel as a short vowel.,,,T,a taught long vowel is misread
 s03-A120,Reads the first vowel as a short vowel.,,,T,a taught long vowel is misread
 s03-A121,Reads the first vowel as a short vowel.,,,T,a taught long vowel is misread
-s04-X119,"building, gathering, rain",,,A,the first two events are swapped
-s04-X119,"rain, gathering, building",,,A,the last event is put first
-s04-X119b,Rain is last because its picture is the biggest.,,,A,"the order comes from a picture, not from the story"
-s04-X120,the picture of Jay eating,,,B,"the lesson is fastened to the result, not to the getting ready"
-s04-X120b,Jay was hungry.,,,B,a feeling is named that does not support the lesson
-s04-X121,the picture of the hand giving a crumb,,,D,"the gift is in both versions, so the difference is left out"
-s04-X121b,Robin asks Wren for a crumb.,,,D,a line found in both versions is named as the difference
-s04-X122,the picture with the leaf in one scene only,,,E,the leaf that both versions share is left out
-s04-X122b,Nothing changes.,,,D,the difference is left out
-s04-X123,the picture of Ana at the start of the long road,,,,"the card claims more than the source says; no register letter, the teacher records not yet seen"
-s04-X123b,Ana made up the tale first.,,,,a beginning is claimed that the card does not state; no register letter
+s04-X119v2,"the grasshopper asking, the ants handing out grain, the wings",,,A,the first two events are swapped against the story
+s04-X119v2,"the wings, the ants handing out grain, the grasshopper asking",,,A,the last event is put first
+s04-X119bv2,The wings are last because that picture is the biggest.,,,A,"the order is taken from the picture, not from the story"
+s04-X119bv2,"She wrapped her wings first, then she asked.",,,A,the order is reversed against the story
+s04-X120v2,the picture of the ants opening their store,,,B,"the lesson is fastened to the result, not to the warning"
+s04-X120bv2,The grasshopper was hungry.,,,B,a feeling is named that does not support the lesson
+s04-X120bv2,Because the grasshopper sang.,,,B,an event is named that does not hold up this lesson
+s04-X121v2,the picture of the grasshopper asking for grain,,,D,"the request is in both tellings, so the difference is left out"
+s04-X121bv2,May I have a few grains?,,,D,"the grasshopper's request, found in both tellings, is named as the difference"
+s04-X121bv2,"In summer we gathered, and you sang.",,,D,the first telling's line is named as the second telling's
+s04-X122v2,the picture of the ants handing out grain,,,E,a scene only the first telling has is taken for what both share
+s04-X122bv2,Nothing changes.,,,D,the difference is left out
+s04-X122bv2,The wind is cold.,,,D,a detail both tellings share is named as the change
+s04-X123v2,the picture of La Fontaine at the start of the long road,,,,"the note says he took his ideas from older fables, so he did not begin it; no register letter, the teacher records not yet seen"
+s04-X123bv2,La Fontaine made up the fable first.,,,,a beginning is claimed that the note does not state; no register letter
 s04-X124,the cave with the smile sign,,,C,Owl's view is given to Mouse
 s04-X124b,The cave is safe.,,,C,another character's view is given to Mouse
 s04-X125,the picture of the waiting snail,,,C,Snail's want is given to Beetle
 s04-X125b,To move before the rain.,,,C,Beetle's want is given to Snail
-s04-X126,the picture of the cricket sitting still,,,,the picture does not fit the words; no register letter
-s04-X126b,It repeats.,,,O,the device is named and its effect is left out
-s04-X126b,The line is the same twice.,,,O,the device is named and its effect is left out
-s04-X127,the picture of the sleeping pup,,,,the picture does not fit the words; no register letter
-s04-X127b,They rhyme.,,,O,the device is named and its effect is left out
-s04-X128,the picture of the agreeing pair,,,D,the change is left out
-s04-X128b,Cross now.,,,D,a line found in both versions is named as the change
-s04-X128b,Frog and Toad want the same thing.,,,C,two characters are given one view
+s04-X126v2,the picture of the child sitting still beside a bare pot,,,,the picture does not fit the words; no register letter
+s04-X126bv2,It repeats.,,,O,the device is named and its effect is left out
+s04-X126bv2,It says plant a flower a lot.,,,O,the device is named and its effect is left out
+s04-X127v2,the picture of the bare field,,,,the picture does not fit the words; no register letter
+s04-X127bv2,They rhyme.,,,O,the device is named and its effect is left out
+s04-X128v2,the picture of the grasshopper wrapping her wings,,,D,the first telling's ending is taken for the change
+s04-X128bv2,The grasshopper wraps her wings.,,,D,the first telling's ending is named as the second's
+s04-X128bv2,The ant gives her some grain.,,,,a detail neither telling has; no register letter
 s04-X131,the picture of the uncovered basket,,,B,"the event that spoils Hare's basket is marked, so the lesson is fastened to the wrong event"
 s04-X131b,Turtles are slow.,,,B,an unrelated lesson that no event supports
-s04-X132,the picture of the child in the grey jacket,,,G,a picture is attached to the wrong point
-s04-X132b,A bright jacket is warm.,,,G,a reason the article does not give
-s04-X133,the picture of the radish sprout,,,G,the reason for planting is attached to the point about watering
-s04-X133b,Radishes sprout fast.,,,G,the reason for the first point is attached to the second point
-s04-X134,the picture of the brush washing a dish,,,F,a detail only article A gives replaces the point both share
-s04-X134b,Wash the dish each week.,,,F,a detail from article A alone replaces the shared point
+s04-X132v2,the picture of the raked bed with every stem cut,,,G,a picture is attached to the wrong point
+s04-X132bv2,Stems look nice.,,,G,a reason the article does not give
+s04-X133v2,the picture of the bee on the stone,,,G,the reason for the stones is attached to the point about changing the water
+s04-X133bv2,The stones keep small insects from drowning.,,,G,the reason for the stones is attached to the point about changing the water
+s04-X134v2,the picture of the pot with holes in the bottom,,,F,a detail only 05-d gives replaces the point both share
+s04-X134bv2,The pot needs holes in the bottom.,,,F,a detail from 05-d alone replaces the shared point
 s04-X135,the strip with a topic label only,,,I,a topic is named and no opinion can be stated
 s04-X135,neither strip marked,,,H,no topic is chosen
 s04-X135b,Our school should put up a walking sign. The floor is slippery.,,,K,the reason has no linking word
@@ -686,35 +718,34 @@ s04-X138b,tossed,,,X,the word of the other sentence; set and tossed are treated 
 s04-X142,strip 1,,,K,the reason has no linking word
 s04-X142b,Flowers can offer food.,,,L,the reason is said again and no ending is added
 s04-X142b,Our pot is pink because pink is nice.,,,J,a reason that is not on the card
-s04-X143,the picture of the brush with thick paint,,,Z,the rinse step has no explained effect
-s04-X143b,Because it is next.,,,Z,"order stated, no connection"
-s04-X143b,Because it is on the list.,,,Z,"order stated, no connection"
+s04-X143v2,the picture of the bare soil just sown,,,Z,the step before the waiting is taken for what comes after
+s04-X143bv2,Because it is next.,,,Z,"order stated, no connection"
+s04-X143bv2,Because it is on the list.,,,Z,"order stated, no connection"
 s04-X144,fact B,,,J,a fact that does not help the opinion
 s04-X144b,The mat is blue.,,,J,an irrelevant fact given as the help
 s04-X145,strip B,,,L,the reason is said again and no ending is added
 s04-X145b,Our class should make a suggestion box. A box can hold good ideas.,,,K,the reason has no linking word
 s04-X145b,Our class should make a suggestion box because I like blue.,,,J,a reason that is not on the card
-s04-X146,step C,,,Z,the order is guessed with no connection
-s04-X146b,Because it is on the list.,,,Z,"order stated, no connection"
-s04-X146b,Because it is next.,,,Z,"order stated, no connection"
+s04-X146v2,step C (accept a few holes in the leaves),,,Z,the order is guessed with no connection
+s04-X146bv2,Because it is next.,,,Z,"order stated, no connection"
+s04-X146bv2,Because it is on the list.,,,Z,"order stated, no connection"
 s04-X147,only the first word capitalised and no commas,,,,capitals and commas not seen
 s04-X147,park left small,,,,the place name is not capitalised
 s04-X147b,because it is big,,,,"a reason about size, not about a name"
 s04-X148,layout 1,,,,the room line is left small
 s04-X148b,My partner typed it.,,,AA,watching the work replaces making a choice
-s04-X149,Gull's line,,,C,the characters are given the same viewpoint
-s04-X149b,both lines in one voice,,,C,the characters are given the same viewpoint
-s04-X149b,the two voices swapped,,,C,the eager and waiting voices are on the wrong animals
-s04-X150,step D (tape the sign to the shelf),,,Z,the order is guessed with no connection
-s04-X150,step A (write the shelf name in pencil),,,Z,the order is guessed with no connection
-s04-X150b,Because it is next.,,,Z,"order stated, no connection"
-s04-X150b,Because it is on the list.,,,Z,"order stated, no connection"
+s04-X149v2,the ant's line,,,C,the characters are given the same viewpoint
+s04-X149bv2,both lines in one voice,,,C,the characters are given the same viewpoint
+s04-X149bv2,the two voices swapped,,,C,the playful and busy voices are on the wrong animals
+s04-X150v2,strip A (bees wake up hungry in early spring),,,Z,the order is guessed with no connection
+s04-X150bv2,Because it is next.,,,Z,"order stated, no connection"
+s04-X150bv2,Because it is on the list.,,,Z,"order stated, no connection"
 s04-X151,strip B,,,P,a requested sentence is a fragment
 s04-X151b,A red kite.,,,P,a requested sentence is a fragment
 s04-X151b,Because.,,,P,a requested sentence is a fragment
 s04-X151b,It is my packet.,,,W,the answer ignores the question
-s04-X152,pitter and patter,,,,two words that sound alike inside a line are taken for the end rhyme
-s04-X152b,Pane and lane rhyme.,,,O,a sound device is named without its effect
+s04-X152v2,leave and leaf,,,,two words that start alike inside a line are taken for the end rhyme
+s04-X152bv2,Stem and them rhyme.,,,O,a sound device is named without its effect
 s04-X157,fact B,,,J,a fact that does not help the choice
 s04-X157b,We should set a shallow water dish. Pollinators need a safe place to sip.,,,K,the reason has no linking word
 s04-X157b,Because they sip.,,,P,a requested sentence is a fragment
@@ -805,3 +836,8 @@ c2-X160c,says packed the paddles,,,T,"an event from the text, but not the last o
 c2-X160d,says unfar for unfair,,,W,a prefix dropped or read as part of another word
 c2-X160e,says vacat for vacate,,,D,a long vowel or part dropped
 c2-X160f,builds spul for spool,,,H,the build stops at the sound and misses the pattern
+s04-X127cv2,They start the same.,,,O,the device is named and its effect is left out
+s04-X128cv2,"the jaguar's line read in the hummingbird's small, sure voice",,,C,two characters are given one view
+s04-X128cv2,the hummingbird's answer read in place of the jaguar's line,,,C,the other character's line and view are given
+s04-X155v2,You read it louder.,,,,a change of voice is named with no tie to a character; no register letter
+s04-X155v2,Both were the ant.,,,C,the two characters are given one voice and one view

@@ -1,0 +1,583 @@
+  FAIL section 1.1 (english-language-arts-grade-1-u01-1) is not in data/units.csv
+  FAIL section 1.2 (english-language-arts-grade-1-u01-2) is not in data/units.csv
+  FAIL section 1.3 (english-language-arts-grade-1-u01-3) is not in data/units.csv
+  FAIL section 1.4 (english-language-arts-grade-1-u01-4) is not in data/units.csv
+  FAIL section 1.5 (english-language-arts-grade-1-u01-5) is not in data/units.csv
+  FAIL section 1.6 (english-language-arts-grade-1-u01-6) is not in data/units.csv
+  FAIL section 1.7 (english-language-arts-grade-1-u01-7) is not in data/units.csv
+  FAIL section 2.1 (english-language-arts-grade-1-u02-1) is not in data/units.csv
+  FAIL section 2.10 (english-language-arts-grade-1-u02-10) is not in data/units.csv
+  FAIL section 2.2 (english-language-arts-grade-1-u02-2) is not in data/units.csv
+  FAIL section 2.3 (english-language-arts-grade-1-u02-3) is not in data/units.csv
+  FAIL section 2.4 (english-language-arts-grade-1-u02-4) is not in data/units.csv
+  FAIL section 2.5 (english-language-arts-grade-1-u02-5) is not in data/units.csv
+  FAIL section 2.6 (english-language-arts-grade-1-u02-6) is not in data/units.csv
+  FAIL section 2.7 (english-language-arts-grade-1-u02-7) is not in data/units.csv
+  FAIL section 2.8 (english-language-arts-grade-1-u02-8) is not in data/units.csv
+  FAIL section 2.9 (english-language-arts-grade-1-u02-9) is not in data/units.csv
+  FAIL section 3.1 (english-language-arts-grade-1-u03-1) is not in data/units.csv
+  FAIL section 3.10 (english-language-arts-grade-1-u03-10) is not in data/units.csv
+  FAIL section 3.2 (english-language-arts-grade-1-u03-2) is not in data/units.csv
+  FAIL section 3.3 (english-language-arts-grade-1-u03-3) is not in data/units.csv
+  FAIL section 3.4 (english-language-arts-grade-1-u03-4) is not in data/units.csv
+  FAIL section 3.5 (english-language-arts-grade-1-u03-5) is not in data/units.csv
+  FAIL section 3.6 (english-language-arts-grade-1-u03-6) is not in data/units.csv
+  FAIL section 3.7 (english-language-arts-grade-1-u03-7) is not in data/units.csv
+  FAIL section 3.8 (english-language-arts-grade-1-u03-8) is not in data/units.csv
+  FAIL section 3.9 (english-language-arts-grade-1-u03-9) is not in data/units.csv
+  FAIL section 4.1 (english-language-arts-grade-1-u04-1) is not in data/units.csv
+  FAIL section 4.2 (english-language-arts-grade-1-u04-2) is not in data/units.csv
+  FAIL section 4.3 (english-language-arts-grade-1-u04-3) is not in data/units.csv
+  FAIL section 4.4 (english-language-arts-grade-1-u04-4) is not in data/units.csv
+  FAIL section 4.5 (english-language-arts-grade-1-u04-5) is not in data/units.csv
+  FAIL section 4.6 (english-language-arts-grade-1-u04-6) is not in data/units.csv
+  FAIL section 4.7 (english-language-arts-grade-1-u04-7) is not in data/units.csv
+  FAIL section 4.8 (english-language-arts-grade-1-u04-8) is not in data/units.csv
+  FAIL source-map.csv row 119 (EL G1 M4 U1 L8): days must be day numbers, space separated
+  FAIL source-map.csv row 119 (EL G1 M4 U1 L8): an order conflict needs harms_learning (yes, no or unclear)
+courses/english-language-arts-grade-1/u01-1/d001.md: teacher 1739 words, student 20 words (20 frame, 0 questions), 120 min, 1 side(s), at home 154 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/d002.md: teacher 1252 words, student 23 words (23 frame, 0 questions), 120 min, 1 side(s), at home 127 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-1/d002.md: the section plan's day 2 block names 2026, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u01-1/d003.md: teacher 1319 words, student 26 words (26 frame, 0 questions), 120 min, 1 side(s), at home 140 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/d004.md: teacher 1160 words, student 25 words (25 frame, 0 questions), 120 min, 1 side(s), at home 120 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/d005.md: teacher 1271 words, student 23 words (23 frame, 0 questions), 120 min, 1 side(s), at home 160 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/d006.md: teacher 1179 words, student 23 words (23 frame, 0 questions), 120 min, 1 side(s), at home 136 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/d007.md: teacher 1214 words, student 26 words (26 frame, 0 questions), 120 min, 1 side(s), at home 133 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/d008.md: teacher 497 words, student 31 words (31 frame, 0 questions), 120 min, 1 side(s), at home 134 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-2/d008.md: end items can show error(s) A, AI, B, C, but the respond part names no group for them
+courses/english-language-arts-grade-1/u01-2/d009.md: teacher 873 words, student 26 words (26 frame, 0 questions), 120 min, 1 side(s), at home 118 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-3/d010.md: teacher 1574 words, student 22 words (22 frame, 0 questions), 120 min, 1 side(s), at home 119 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-3/d011.md: teacher 1306 words, student 25 words (25 frame, 0 questions), 120 min, 1 side(s), at home 152 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-3/d012.md: teacher 1301 words, student 17 words (17 frame, 0 questions), 120 min, 1 side(s), at home 142 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-3/d013.md: teacher 1283 words, student 17 words (17 frame, 0 questions), 120 min, 1 side(s), at home 130 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-3/d014.md: teacher 1275 words, student 29 words (29 frame, 0 questions), 120 min, 1 side(s), at home 133 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-4/d015.md: teacher 1355 words, student 18 words (18 frame, 0 questions), 120 min, 1 side(s), at home 122 words, 30 min, 0 failure(s)
+  FAIL timing-sum: courses/english-language-arts-grade-1/u01-4/d015.md: part "15 min. Reread aloud" lists activities adding to 21 minutes
+courses/english-language-arts-grade-1/u01-4/d016.md: teacher 1283 words, student 25 words (25 frame, 0 questions), 120 min, 1 side(s), at home 117 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-4/d017.md: teacher 1295 words, student 27 words (27 frame, 0 questions), 120 min, 1 side(s), at home 111 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-4/d018.md: teacher 1220 words, student 26 words (26 frame, 0 questions), 120 min, 1 side(s), at home 115 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-4/d019.md: teacher 497 words, student 47 words (47 frame, 0 questions), 120 min, 2 side(s), at home 143 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-4/d019.md: end items can show error(s) AI, but the respond part names no group for them
+courses/english-language-arts-grade-1/u01-4/d020.md: teacher 1126 words, student 22 words (22 frame, 0 questions), 120 min, 1 side(s), at home 130 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/d021.md: teacher 1787 words, student 19 words (19 frame, 0 questions), 120 min, 1 side(s), at home 147 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/d022.md: teacher 1695 words, student 22 words (22 frame, 0 questions), 120 min, 1 side(s), at home 148 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/d023.md: teacher 1493 words, student 14 words (14 frame, 0 questions), 120 min, 1 side(s), at home 134 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/d024.md: teacher 1317 words, student 14 words (14 frame, 0 questions), 120 min, 1 side(s), at home 139 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-6/d025.md: teacher 1673 words, student 17 words (17 frame, 0 questions), 120 min, 1 side(s), at home 143 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-6/d026.md: teacher 1433 words, student 19 words (19 frame, 0 questions), 120 min, 1 side(s), at home 134 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-6/d026.md: the section plan's day 26 block names 52, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u01-6/d027.md: teacher 1444 words, student 18 words (18 frame, 0 questions), 120 min, 1 side(s), at home 93 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-6/d027.md: the section plan's day 27 block names 52, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-1/u01-6/d027.md: part "15 min. Closing" lists activities adding to 16 minutes
+courses/english-language-arts-grade-1/u01-7/d028.md: teacher 1800 words, student 19 words (19 frame, 0 questions), 120 min, 1 side(s), at home 91 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-7/d028.md: the section plan's day 28 block names 52, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u01-7/d029.md: teacher 1774 words, student 18 words (18 frame, 0 questions), 120 min, 1 side(s), at home 99 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-7/d029.md: the section plan's day 29 block names 52, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u01-7/d030.md: teacher 1678 words, student 22 words (22 frame, 0 questions), 120 min, 1 side(s), at home 101 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-7/d030.md: the section plan's day 30 block names 52, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-1/u01-7/d030.md: part "25 min. Add the closing and revise" lists activities adding to 26 minutes
+courses/english-language-arts-grade-1/u01-7/d031.md: teacher 1369 words, student 25 words (25 frame, 0 questions), 120 min, 1 side(s), at home 97 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-7/d031.md: the section plan's day 31 block names 52, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u01-7/d032.md: teacher 498 words, student 29 words (29 frame, 0 questions), 120 min, 1 side(s), at home 109 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-7/d032.md: end items can show error(s) A, AI, E, but the respond part names no group for them
+courses/english-language-arts-grade-1/u01-7/d033.md: teacher 1051 words, student 23 words (23 frame, 0 questions), 120 min, 1 side(s), at home 109 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u01-7/d033.md: the section plan's day 33 block names 60, 100, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-1/d034.md: teacher 1743 words, student 22 words (22 frame, 0 questions), 120 min, 1 side(s), at home 107 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-1/d034.md: the section plan's day 34 block names 26, 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-1/d035.md: teacher 1542 words, student 31 words (31 frame, 0 questions), 120 min, 1 side(s), at home 138 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-1/d035.md: the day uses strips, which no materials, print or leans_on line names
+  NOTE courses/english-language-arts-grade-1/u02-1/d035.md: the section plan's day 35 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-1/d036.md: teacher 1264 words, student 19 words (19 frame, 0 questions), 120 min, 1 side(s), at home 151 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-1/d036.md: the section plan's day 36 block names 27, 28, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-1/d037.md: teacher 1297 words, student 21 words (21 frame, 0 questions), 120 min, 1 side(s), at home 142 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-1/d037.md: the section plan's day 37 block names 27, 29, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-1/d038.md: teacher 1340 words, student 25 words (25 frame, 0 questions), 120 min, 1 side(s), at home 151 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-1/d038.md: the section plan's day 38 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-10/d072.md: teacher 500 words, student 58 words (18 frame, 40 questions), 120 min, 2 side(s), at home 88 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-10/d072.md: end items can show error(s) H, P, Q, R, S, U, V, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-1/u02-10/d072.md: the section plan's day 72 block names 38, 58, 63, 78, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-10/d073.md: teacher 875 words, student 98 words (10 frame, 88 questions), 120 min, 2 side(s), at home 93 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/d074.md: teacher 679 words, student 84 words (9 frame, 75 questions), 120 min, 2 side(s), at home 93 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/d075.md: teacher 1416 words, student 96 words (8 frame, 88 questions), 120 min, 2 side(s), at home 85 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-10/d075.md: the section plan's day 75 block names 78, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-10/d076.md: teacher 676 words, student 13 words (13 frame, 0 questions), 120 min, 2 side(s), at home 92 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/d077.md: teacher 663 words, student 13 words (13 frame, 0 questions), 120 min, 2 side(s), at home 92 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/d078.md: teacher 577 words, student 11 words (11 frame, 0 questions), 120 min, 2 side(s), at home 108 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-2/d039.md: teacher 1392 words, student 23 words (23 frame, 0 questions), 120 min, 1 side(s), at home 135 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-2/d039.md: the section plan's day 39 block names 27, 31, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-2/d040.md: teacher 1196 words, student 23 words (23 frame, 0 questions), 120 min, 1 side(s), at home 132 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-2/d040.md: the section plan's day 40 block names 27, 32, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-2/d041.md: teacher 1277 words, student 19 words (19 frame, 0 questions), 120 min, 1 side(s), at home 144 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-2/d041.md: the section plan's day 41 block names 27, 33, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-2/d042.md: teacher 1231 words, student 21 words (21 frame, 0 questions), 120 min, 1 side(s), at home 137 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-2/d042.md: the section plan's day 42 block names 27, 34, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-3/d043.md: teacher 1460 words, student 25 words (25 frame, 0 questions), 120 min, 1 side(s), at home 139 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-3/d043.md: the section plan's day 43 block names 27, 35, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-3/d044.md: teacher 1365 words, student 22 words (22 frame, 0 questions), 120 min, 1 side(s), at home 140 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-3/d044.md: the section plan's day 44 block names 27, 36, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-3/d045.md: teacher 1126 words, student 20 words (20 frame, 0 questions), 120 min, 1 side(s), at home 124 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-3/d045.md: the section plan's day 45 block names 27, 37, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-3/d046.md: teacher 1177 words, student 22 words (22 frame, 0 questions), 120 min, 1 side(s), at home 139 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-3/d046.md: the section plan's day 46 block names 27, 38, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL timing-sum: courses/english-language-arts-grade-1/u02-3/d046.md: part "20 min. Independent retelling" lists activities adding to 26 minutes
+courses/english-language-arts-grade-1/u02-4/d047.md: teacher 478 words, student 19 words (19 frame, 0 questions), 120 min, 1 side(s), at home 104 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-4/d047.md: end items can show error(s) A, B, E, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-1/u02-4/d047.md: the section plan's day 47 block names 39, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-4/d048.md: teacher 496 words, student 50 words (21 frame, 29 questions), 120 min, 1 side(s), at home 103 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-4/d048.md: end items can show error(s) C, D, M, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-1/u02-4/d048.md: the section plan's day 48 block names 40, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-4/d049.md: teacher 1165 words, student 21 words (21 frame, 0 questions), 120 min, 1 side(s), at home 102 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-4/d049.md: the section plan's day 49 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-5/d050.md: teacher 1436 words, student 20 words (20 frame, 0 questions), 120 min, 1 side(s), at home 125 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/d051.md: teacher 1165 words, student 22 words (22 frame, 0 questions), 120 min, 1 side(s), at home 119 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/d052.md: teacher 1145 words, student 16 words (16 frame, 0 questions), 120 min, 1 side(s), at home 122 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/d053.md: teacher 1231 words, student 14 words (14 frame, 0 questions), 120 min, 1 side(s), at home 126 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/d054.md: teacher 1263 words, student 18 words (18 frame, 0 questions), 120 min, 1 side(s), at home 154 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/d055.md: teacher 1151 words, student 18 words (18 frame, 0 questions), 120 min, 1 side(s), at home 133 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-6/d056.md: teacher 1437 words, student 21 words (21 frame, 0 questions), 120 min, 1 side(s), at home 118 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-6/d057.md: teacher 1271 words, student 17 words (17 frame, 0 questions), 120 min, 1 side(s), at home 134 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-6/d058.md: teacher 1453 words, student 23 words (23 frame, 0 questions), 120 min, 1 side(s), at home 148 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-6/d059.md: teacher 1417 words, student 14 words (14 frame, 0 questions), 120 min, 1 side(s), at home 156 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-7/d060.md: teacher 1537 words, student 11 words (11 frame, 0 questions), 120 min, 1 side(s), at home 163 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-7/d061.md: teacher 500 words, student 77 words (22 frame, 55 questions), 120 min, 2 side(s), at home 114 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-7/d061.md: end items can show error(s) O, X, Y, Z, but the respond part names no group for them
+courses/english-language-arts-grade-1/u02-7/d062.md: teacher 1315 words, student 7 words (7 frame, 0 questions), 120 min, 1 side(s), at home 164 words, 30 min, 0 failure(s)
+  FAIL copied-exit: courses/english-language-arts-grade-1/u02-7/d062.md: exit s02-X62a repeats the day's teaching parts ("arrow sun moon lamp")
+courses/english-language-arts-grade-1/u02-8/d063.md: teacher 1359 words, student 15 words (15 frame, 0 questions), 120 min, 1 side(s), at home 121 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/d064.md: teacher 1174 words, student 17 words (17 frame, 0 questions), 120 min, 1 side(s), at home 162 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/d065.md: teacher 1187 words, student 17 words (17 frame, 0 questions), 120 min, 1 side(s), at home 165 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/d066.md: teacher 1133 words, student 11 words (11 frame, 0 questions), 120 min, 1 side(s), at home 155 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/d067.md: teacher 1066 words, student 10 words (10 frame, 0 questions), 120 min, 1 side(s), at home 163 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-9/d068.md: teacher 1128 words, student 19 words (19 frame, 0 questions), 120 min, 2 side(s), at home 157 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u02-9/d068.md: the section plan's day 68 block names 46, 65, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u02-9/d069.md: teacher 1119 words, student 18 words (18 frame, 0 questions), 120 min, 2 side(s), at home 168 words, 35 min, 0 failure(s)
+  FAIL turn-time: courses/english-language-arts-grade-1/u02-9/d069.md: part "10 min. Name the ending" gives each child 30 seconds; 30 children take 15.0 minutes, more than the part's 10 (say a rotating group, or shorten the turn)
+courses/english-language-arts-grade-1/u02-9/d070.md: teacher 498 words, student 67 words (14 frame, 53 questions), 120 min, 2 side(s), at home 89 words, 45 min, 0 failure(s)
+courses/english-language-arts-grade-1/u02-9/d071.md: teacher 494 words, student 55 words (15 frame, 40 questions), 120 min, 2 side(s), at home 104 words, 45 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/d079.md: teacher 1696 words, student 27 words (27 frame, 0 questions), 120 min, 2 side(s), at home 136 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-1/d079.md: the section plan's day 79 block names 27, 82, 83, 84, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-1/d080.md: teacher 1429 words, student 25 words (25 frame, 0 questions), 120 min, 2 side(s), at home 133 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-1/d080.md: the section plan's day 80 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-1/d081.md: teacher 1301 words, student 24 words (24 frame, 0 questions), 120 min, 2 side(s), at home 113 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-1/d081.md: the section plan's day 81 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-1/d082.md: teacher 1238 words, student 26 words (26 frame, 0 questions), 120 min, 2 side(s), at home 118 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-1/d082.md: the section plan's day 82 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-1/d083.md: teacher 1482 words, student 21 words (21 frame, 0 questions), 120 min, 2 side(s), at home 127 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-1/d083.md: the section plan's day 83 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-10/d116.md: teacher 1665 words, student 28 words (28 frame, 0 questions), 120 min, 2 side(s), at home 136 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-10/d116.md: the section plan's day 116 block names 0.75, 1.75, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-10/d117.md: teacher 1532 words, student 32 words (32 frame, 0 questions), 120 min, 2 side(s), at home 138 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-10/d117.md: the section plan's day 117 block names 0.75, 1.75, 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-10/d118.md: teacher 1498 words, student 31 words (31 frame, 0 questions), 120 min, 2 side(s), at home 116 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-10/d118.md: the section plan's day 118 block names 0.75, 1.75, 158, 159, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-10/d119.md: teacher 1271 words, student 34 words (34 frame, 0 questions), 120 min, 2 side(s), at home 112 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-10/d119.md: the section plan's day 119 block names 60, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-2/d084.md: teacher 1440 words, student 25 words (25 frame, 0 questions), 120 min, 2 side(s), at home 128 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-2/d084.md: the section plan's day 84 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-2/d085.md: teacher 1370 words, student 20 words (20 frame, 0 questions), 120 min, 2 side(s), at home 138 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-2/d085.md: the section plan's day 85 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-2/d086.md: teacher 491 words, student 22 words (22 frame, 0 questions), 120 min, 2 side(s), at home 104 words, 45 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/d087.md: teacher 1618 words, student 31 words (31 frame, 0 questions), 120 min, 2 side(s), at home 128 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/d088.md: teacher 1563 words, student 34 words (34 frame, 0 questions), 120 min, 2 side(s), at home 111 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/d089.md: teacher 1399 words, student 27 words (27 frame, 0 questions), 120 min, 2 side(s), at home 118 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/d090.md: teacher 1606 words, student 29 words (29 frame, 0 questions), 120 min, 2 side(s), at home 110 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/d091.md: teacher 1538 words, student 28 words (28 frame, 0 questions), 120 min, 2 side(s), at home 106 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/d092.md: teacher 1449 words, student 31 words (31 frame, 0 questions), 120 min, 2 side(s), at home 134 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-4/d092.md: the section plan's day 92 block names 240, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-4/d093.md: teacher 1467 words, student 32 words (32 frame, 0 questions), 120 min, 2 side(s), at home 125 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/d094.md: teacher 1435 words, student 30 words (30 frame, 0 questions), 120 min, 2 side(s), at home 101 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/d095.md: teacher 1713 words, student 27 words (27 frame, 0 questions), 120 min, 2 side(s), at home 97 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/d096.md: teacher 1519 words, student 27 words (27 frame, 0 questions), 120 min, 2 side(s), at home 122 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/d097.md: teacher 1525 words, student 31 words (31 frame, 0 questions), 120 min, 2 side(s), at home 103 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/d098.md: teacher 1707 words, student 30 words (30 frame, 0 questions), 120 min, 2 side(s), at home 123 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/d099.md: teacher 1574 words, student 23 words (23 frame, 0 questions), 120 min, 2 side(s), at home 116 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-5/d099.md: the section plan's day 99 block names 15, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-6/d100.md: teacher 1516 words, student 25 words (25 frame, 0 questions), 120 min, 2 side(s), at home 145 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-6/d101.md: teacher 1255 words, student 23 words (23 frame, 0 questions), 120 min, 2 side(s), at home 139 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-6/d101.md: the section plan's day 101 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-6/d102.md: teacher 1314 words, student 26 words (26 frame, 0 questions), 120 min, 2 side(s), at home 137 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-6/d102.md: the section plan's day 102 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-6/d103.md: teacher 1419 words, student 26 words (26 frame, 0 questions), 120 min, 2 side(s), at home 137 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-6/d103.md: the section plan's day 103 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-6/d104.md: teacher 496 words, student 27 words (27 frame, 0 questions), 120 min, 2 side(s), at home 87 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-6/d104.md: end items can show error(s) F, G, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-1/u03-6/d104.md: the section plan's day 104 block names 16, 104, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-6/d105.md: teacher 491 words, student 70 words (25 frame, 45 questions), 120 min, 2 side(s), at home 92 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-7/d106.md: teacher 1341 words, student 29 words (29 frame, 0 questions), 120 min, 2 side(s), at home 136 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-7/d106.md: the section plan's day 106 block names 120, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-7/d107.md: teacher 1391 words, student 32 words (32 frame, 0 questions), 120 min, 2 side(s), at home 114 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-8/d108.md: teacher 1705 words, student 37 words (37 frame, 0 questions), 120 min, 2 side(s), at home 135 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-8/d108.md: the section plan's day 108 block names 120, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-8/d109.md: teacher 1517 words, student 36 words (36 frame, 0 questions), 120 min, 2 side(s), at home 128 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-8/d109.md: the section plan's day 109 block names 17, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-8/d110.md: teacher 1439 words, student 33 words (33 frame, 0 questions), 120 min, 2 side(s), at home 121 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-8/d110.md: the section plan's day 110 block names 120, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-8/d111.md: teacher 1406 words, student 34 words (34 frame, 0 questions), 120 min, 2 side(s), at home 122 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-9/d112.md: teacher 1512 words, student 32 words (32 frame, 0 questions), 120 min, 2 side(s), at home 125 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-9/d112.md: the section plan's day 112 block names 120, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u03-9/d113.md: teacher 1530 words, student 29 words (29 frame, 0 questions), 120 min, 2 side(s), at home 123 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-9/d114.md: teacher 1308 words, student 29 words (29 frame, 0 questions), 120 min, 2 side(s), at home 122 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u03-9/d115.md: teacher 495 words, student 27 words (27 frame, 0 questions), 120 min, 2 side(s), at home 93 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u03-9/d115.md: the section plan's day 115 block names 115, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-1/d120.md: teacher 1461 words, student 24 words (24 frame, 0 questions), 120 min, 2 side(s), at home 162 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/d121.md: teacher 1486 words, student 24 words (24 frame, 0 questions), 120 min, 2 side(s), at home 118 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/d122.md: teacher 1391 words, student 22 words (22 frame, 0 questions), 120 min, 2 side(s), at home 132 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/d123.md: teacher 1377 words, student 20 words (20 frame, 0 questions), 120 min, 2 side(s), at home 124 words, 30 min, 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/d124.md: teacher 1683 words, student 19 words (19 frame, 0 questions), 120 min, 2 side(s), at home 157 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-1/d124.md: the section plan's day 124 block names 120, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-2/d125.md: teacher 1497 words, student 19 words (19 frame, 0 questions), 120 min, 2 side(s), at home 146 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-2/d125.md: the section plan's day 125 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-2/d126.md: teacher 1371 words, student 13 words (13 frame, 0 questions), 120 min, 2 side(s), at home 138 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-2/d126.md: the section plan's day 126 block names 27, 270, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-2/d127.md: teacher 1242 words, student 12 words (12 frame, 0 questions), 120 min, 2 side(s), at home 136 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-2/d127.md: the section plan's day 127 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-2/d128.md: teacher 1228 words, student 13 words (13 frame, 0 questions), 120 min, 2 side(s), at home 146 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-2/d128.md: the section plan's day 128 block names 27, 122, 124, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-2/d129.md: teacher 492 words, student 31 words (31 frame, 0 questions), 120 min, 2 side(s), at home 125 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-2/d129.md: end items can show error(s) A, AB, V, Z, but the respond part names no group for them
+courses/english-language-arts-grade-1/u04-2/d130.md: teacher 1246 words, student 16 words (16 frame, 0 questions), 120 min, 2 side(s), at home 132 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-2/d130.md: the section plan's day 130 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL copied-exit: courses/english-language-arts-grade-1/u04-2/d130.md: exit s04-X130d repeats the day's teaching parts ("11 ben bird 5")
+courses/english-language-arts-grade-1/u04-3/d131.md: teacher 1406 words, student 16 words (16 frame, 0 questions), 120 min, 2 side(s), at home 136 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-3/d131.md: the section plan's day 131 block names 27, 280, 330, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-3/d132.md: teacher 1189 words, student 16 words (16 frame, 0 questions), 120 min, 2 side(s), at home 125 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-3/d132.md: the section plan's day 132 block names 27, 300, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-3/d133.md: teacher 1196 words, student 16 words (16 frame, 0 questions), 120 min, 2 side(s), at home 121 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-3/d133.md: the section plan's day 133 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-3/d134.md: teacher 1180 words, student 15 words (15 frame, 0 questions), 120 min, 2 side(s), at home 114 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-3/d134.md: the section plan's day 134 block names 136, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL copied-exit: courses/english-language-arts-grade-1/u04-3/d134.md: exit s04-X134e repeats the day's teaching parts ("5 city nest views")
+courses/english-language-arts-grade-1/u04-3/d135.md: teacher 1190 words, student 16 words (16 frame, 0 questions), 120 min, 2 side(s), at home 135 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-3/d135.md: the section plan's day 135 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-4/d136.md: teacher 1399 words, student 20 words (20 frame, 0 questions), 120 min, 2 side(s), at home 108 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-4/d136.md: the section plan's day 136 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-4/d137.md: teacher 1231 words, student 20 words (20 frame, 0 questions), 120 min, 2 side(s), at home 110 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-4/d137.md: the section plan's day 137 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-4/d138.md: teacher 1128 words, student 20 words (20 frame, 0 questions), 120 min, 2 side(s), at home 127 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-4/d138.md: the section plan's day 138 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-4/d139.md: teacher 498 words, student 17 words (17 frame, 0 questions), 120 min, 2 side(s), at home 114 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-4/d139.md: end items can show error(s) B, V, but the respond part names no group for them
+courses/english-language-arts-grade-1/u04-4/d140.md: teacher 1314 words, student 21 words (21 frame, 0 questions), 120 min, 2 side(s), at home 128 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u04-5/d141.md: teacher 1164 words, student 22 words (22 frame, 0 questions), 120 min, 2 side(s), at home 107 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-5/d141.md: the section plan's day 141 block names 22, 27, 150, 190, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL copied-exit: courses/english-language-arts-grade-1/u04-5/d141.md: exit s04-X141c repeats the day's teaching parts ("birds toward windows night")
+courses/english-language-arts-grade-1/u04-5/d142.md: teacher 1161 words, student 23 words (23 frame, 0 questions), 120 min, 2 side(s), at home 88 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-5/d142.md: the section plan's day 142 block names 4.3, 27, 147, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-5/d143.md: teacher 1099 words, student 18 words (18 frame, 0 questions), 120 min, 2 side(s), at home 110 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-5/d143.md: the section plan's day 143 block names 27, 149, 170, 280, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-5/d144.md: teacher 1157 words, student 24 words (24 frame, 0 questions), 120 min, 2 side(s), at home 117 words, 30 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-5/d144.md: the section plan's day 144 block names 27, 154, 330, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-6/d145.md: teacher 1180 words, student 18 words (18 frame, 0 questions), 120 min, 2 side(s), at home 105 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-6/d145.md: the section plan's day 145 block names 23, 27, 147, 190, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL copied-exit: courses/english-language-arts-grade-1/u04-6/d145.md: exit s04-X145c repeats the day's teaching parts ("3 birds help plants")
+courses/english-language-arts-grade-1/u04-6/d146.md: teacher 1210 words, student 23 words (23 frame, 0 questions), 120 min, 2 side(s), at home 100 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-6/d146.md: the section plan's day 146 block names 4.2, 27, 220, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL copied-exit: courses/english-language-arts-grade-1/u04-6/d146.md: exit s04-X146c repeats the day's teaching parts ("3 birds help animals")
+courses/english-language-arts-grade-1/u04-6/d147.md: teacher 485 words, student 15 words (15 frame, 0 questions), 120 min, 2 side(s), at home 114 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-6/d147.md: the section plan's day 147 block names 145, 147, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-7/d148.md: teacher 1196 words, student 21 words (21 frame, 0 questions), 120 min, 2 side(s), at home 137 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-7/d148.md: the section plan's day 148 block names 27, 90, which the day and its items never use; if the data overruled the plan, correct the plan
+  FAIL copied-exit: courses/english-language-arts-grade-1/u04-7/d148.md: exit s04-X148c repeats the day's teaching parts ("aloud mailbox door b")
+courses/english-language-arts-grade-1/u04-7/d149.md: teacher 1317 words, student 22 words (22 frame, 0 questions), 120 min, 2 side(s), at home 123 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-7/d149.md: the section plan's day 149 block names 27, 145, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-7/d150.md: teacher 1242 words, student 19 words (19 frame, 0 questions), 120 min, 2 side(s), at home 115 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-7/d150.md: the section plan's day 150 block names 19, 24, 154, 155, 157, 158, 159, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-7/d151.md: teacher 1182 words, student 20 words (20 frame, 0 questions), 120 min, 2 side(s), at home 107 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-7/d151.md: the section plan's day 151 block names 19, 24, 27, 154, 155, 157, 158, 159, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-7/d152.md: teacher 1353 words, student 18 words (18 frame, 0 questions), 120 min, 2 side(s), at home 96 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-7/d152.md: the section plan's day 152 block names 19, 24, 27, 155, 156, 158, 159, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-8/d153.md: teacher 1276 words, student 19 words (19 frame, 0 questions), 120 min, 2 side(s), at home 108 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-8/d153.md: the section plan's day 153 block names 4.1, 19, 24, 27, 80, 149, 155, 157, 158, 159, 300, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-8/d154.md: teacher 1294 words, student 19 words (19 frame, 0 questions), 120 min, 2 side(s), at home 108 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-8/d154.md: the section plan's day 154 block names 19, 24, 27, 149, 158, 159, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-8/d155.md: teacher 484 words, student 26 words (26 frame, 0 questions), 120 min, 2 side(s), at home 94 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-8/d155.md: the section plan's day 155 block names 19, 24, 25, 149, 150, 157, 158, 159, 160, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-8/d156.md: teacher 500 words, student 17 words (17 frame, 0 questions), 120 min, 2 side(s), at home 99 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-8/d156.md: the section plan's day 156 block names 19, 25, 150, 152, 154, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-8/d157.md: teacher 993 words, student 19 words (19 frame, 0 questions), 120 min, 2 side(s), at home 132 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-8/d157.md: the section plan's day 157 block names 154, 159, 160, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-1/u04-8/d158.md: teacher 677 words, student 13 words (13 frame, 0 questions), 120 min, 2 side(s), at home 92 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-8/d158.md: end items can show error(s) R, S, but the respond part names no group for them
+courses/english-language-arts-grade-1/u04-8/d159.md: teacher 651 words, student 13 words (13 frame, 0 questions), 120 min, 2 side(s), at home 92 words, 40 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-1/u04-8/d159.md: end items can show error(s) R, S, but the respond part names no group for them
+courses/english-language-arts-grade-1/u04-8/d160.md: teacher 544 words, student 11 words (11 frame, 0 questions), 120 min, 2 side(s), at home 114 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/cards-exits-1-4.md: story, 130 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/define-a-tool-frame-day4.md: blank, 61 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/detail-cards-day2.md: blank, 97 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/family.md: family, 263 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/kitchen-sort-day4.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/opener.md: opener, 365 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/picture-fold-card-day2.md: blank, 67 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/placement-card.md: story, 67 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/record.md: record, 135 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-1/sort-two-sources-day3.md: blank, 96 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/card-a.md: story, 90 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/cards-exits-5-9.md: story, 257 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/my-tool-three-parts-day7.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/opener.md: opener, 287 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/paper-items-day8.md: blank, 65 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/pip-lines-day6.md: blank, 79 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-2/repair-cards-day9.md: story, 148 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-3/character-cards-day11.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-3/event-cards-day12.md: blank, 54 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-3/opener.md: opener, 266 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-3/story-map-strip-day10.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-3/teller-cards-day13.md: blank, 78 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-4/card-b.md: story, 143 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-4/cards-exits-15-20.md: story, 119 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-4/fresh-card-day20.md: story, 117 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-4/opener.md: opener, 233 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-4/two-tries-sheet-days16-17.md: blank, 67 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/cards-exits-21-24.md: story, 308 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/fresh-teller-card-day21.md: story, 133 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/hearing-note-slip-day23.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/job-menu-cards-day21.md: story, 102 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/model-record-sheet-day24.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/opener.md: opener, 362 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/paragraph-frame-cards-day21.md: blank, 91 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/plan-sheet-day23.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/sound-box-sheet-day22.md: blank, 60 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-5/tool-material-cards-day22.md: blank, 93 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-6/card-f-and-item-cards-day27.md: story, 169 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-6/cards-exits-25-27.md: story, 249 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-6/change-drawing-sheet-day25.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-6/closing-sheet-day27.md: blank, 25 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-6/letter-sample-sheet-day26.md: blank, 113 words, student page 2 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-6/observation-sheet-day27.md: blank, 74 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-6/opener.md: opener, 295 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-6/question-strips-day26.md: blank, 44 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/card-c-day32.md: story, 118 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/card-d-day32.md: story, 134 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/cards-exits-28-33.md: story, 466 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/checklist-day30.md: blank, 56 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/explanation-booklet-days28-31.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/opener.md: opener, 327 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/paper-item-sheet-day32.md: blank, 159 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/retry-cards-day33.md: story, 706 words, 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/topic-sentence-sheet-day28.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/w12-score-sheet-day31.md: blank, 49 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u01-7/word-card-v-and-sort-cards-day29.md: story, 152 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/cards-exits-34-38.md: story, 683 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/family.md: family, 261 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/opener.md: opener, 375 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/pip-turn-lines-day38.md: blank, 65 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/record.md: record, 137 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/retrieval-card-day34.md: blank, 114 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/sentence-lines-day35.md: blank, 68 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/sky-record-cards-day34.md: blank, 100 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/tale-map-cards-day36.md: blank, 60 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/two-columns-sheet-day35.md: blank, 69 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-1/water-rising-strip-day37.md: blank, 75 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/book-pages-day73.md: blank, 55 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/caption-card-e-day72.md: story, 81 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/cards-check-76-77.md: story, 910 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/cards-u-n-day75.md: story, 175 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/moon-picture-sheet-day72.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/opener.md: opener, 356 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/question-detail-sheet-day72.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/retry-card-day75.md: blank, 88 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-10/retry-cards-day78.md: story, 219 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-2/cards-exits-39-42.md: story, 525 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-2/feeling-sense-chart-day39.md: blank, 95 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-2/opener.md: opener, 284 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-2/tale2-map-cards-day41.md: blank, 73 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-3/cards-exits-43-46.md: story, 407 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-3/opener.md: opener, 301 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-3/poem-chart-day43.md: blank, 63 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-3/poem-fact-cards-day44.md: blank, 65 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-4/card-t-cloud-lantern.md: story, 119 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-4/cards-exit-49.md: story, 136 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-4/cold-passage-day47.md: story, 319 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-4/cold-passages-day48.md: story, 310 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-4/opener.md: opener, 264 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/because-so-cards-day54.md: blank, 59 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/cards-exits-50-55.md: story, 581 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/notebook-page-day50.md: blank, 64 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/opener.md: opener, 287 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/picture-log-day50.md: blank, 74 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/sequence-cards-day51.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-5/two-columns-notes-day52.md: blank, 63 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-6/barn-log-day58.md: blank, 137 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-6/calendar-card-day59.md: blank, 121 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-6/cards-exits-56-59.md: story, 541 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-6/cycle-9-progress-sample-day58.md: blank, 128 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-6/moon-strips-day56.md: blank, 193 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-6/opener.md: opener, 351 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-7/card-m-day61.md: story, 117 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-7/cards-exits-60-62.md: story, 463 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-7/opener.md: opener, 327 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-7/score-grid-day61.md: record, 96 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-7/talk-cards-day60.md: blank, 129 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/arc-chart-day63.md: blank, 108 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/cards-exits-63-67.md: story, 673 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/device-record-day67.md: record, 62 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/eight-box-sheet-day66.md: blank, 102 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/feedback-notes-day65.md: blank, 87 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/opener.md: opener, 362 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/shared-moon-poem-day66.md: blank, 102 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-8/writing-process-chart-day65.md: blank, 36 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-9/cards-exits-68-69.md: story, 388 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-9/cycle-11-progress-sample-day68.md: blank, 102 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-9/grid-card-day71.md: blank, 83 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u02-9/opener.md: opener, 292 words, 0 failure(s)
+courses/english-language-arts-grade-1/u02-9/planning-page-day68.md: blank, 85 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/bird-body-outline-day83.md: blank, 65 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/bird-head-drawing-page-day80.md: blank, 58 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/cards-exits-79-83.md: story, 745 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/cycle-12-sample-words.md: blank, 86 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/family.md: family, 280 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/feature-cards-day81.md: blank, 72 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/feeding-cards-day79.md: blank, 80 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/opener.md: opener, 385 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/picture-word-sort-day80.md: blank, 80 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/record.md: record, 136 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/route-sheet-day81.md: blank, 74 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/talk-rules-and-pip-lines-day79.md: blank, 81 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/topic-detail-cards-day79.md: blank, 87 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-1/wing-detail-cards-day82.md: blank, 73 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-10/cards-exits-116-119.md: story, 482 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-10/opener.md: opener, 247 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-10/peer-strips-day117.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-10/reserved-word-lists-day119.md: blank, 38 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-2/card-a-day86.md: blank, 150 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-2/cards-exits-84-85.md: story, 318 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-2/connection-page-day84.md: blank, 72 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-2/opener.md: opener, 304 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-2/printed-menu-day85.md: blank, 133 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-2/trace-sheet-day86.md: blank, 67 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/cards-exits-87-89.md: story, 482 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/cycle-13-sample-words.md: blank, 73 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/flamingo-card-day89.md: blank, 89 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/foot-drawing-sheet-day87.md: blank, 74 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/observation-and-fact-sheet-day88.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/observation-grid-day88.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/opener.md: opener, 313 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/question-cards-day89.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-3/repair-note-day89.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/cards-exits-90-94.md: story, 700 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/class-duck-picture-day92.md: blank, 57 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/cycle-14-sample-words.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/note-cards-and-label-chart-day91.md: blank, 66 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/opener.md: opener, 267 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/paragraph-page-day93.md: blank, 54 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/planted-error-draft-day94.md: blank, 79 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-4/question-strips-day90.md: blank, 68 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/beak-notes-folder-day96.md: blank, 62 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/cards-exits-95-99.md: story, 733 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/connection-sentence-sheet-day98.md: blank, 94 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/cycle-15-sample-words.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/opener.md: opener, 302 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/shared-answer-chart-day97.md: blank, 60 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-5/species-page-day99.md: blank, 127 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-6/card-b-eagle-day104.md: story, 91 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-6/cards-exits-100-103.md: story, 456 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-6/cold-passage-day104.md: story, 230 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-6/cold-passage-day105.md: story, 473 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-6/cycle-16-sample-words.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-6/model-strips-day100.md: blank, 107 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-6/opener.md: opener, 273 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-6/research-organizer-day103.md: blank, 73 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-7/cards-exits-106-107.md: story, 301 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-7/opener.md: opener, 207 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-7/share-card-day106.md: blank, 64 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-8/cards-exits-108-111.md: story, 240 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-8/cycle-17-sample-words.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-8/drawing-card-model-day109.md: blank, 245 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-8/expert-bird-pages-day110.md: blank, 336 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-8/note-strips-day110.md: blank, 37 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-8/opener.md: opener, 249 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-8/poem-pages-day108.md: story, 124 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-8/riddle-card-day108.md: blank, 61 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-8/route-card-day111.md: blank, 83 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-9/cards-exits-112-114.md: story, 277 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-9/cold-passage-day115.md: story, 413 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-9/cycle-18-sample-words.md: blank, 72 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u03-9/opener.md: opener, 234 words, 0 failure(s)
+courses/english-language-arts-grade-1/u03-9/topic-cards-day113.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/both-and-but-picture-day124.md: blank, 93 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/cards-exits-120-124.md: story, 417 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/cycle-19-sample-words.md: blank, 86 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/family.md: family, 269 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/fly-cards-day124.md: blank, 71 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/noun-cards-day121.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/opener.md: opener, 272 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/printing-set-sheets-day120.md: blank, 84 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/pronoun-cards-day123.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/record.md: record, 133 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/retrieval-cards-jo-al-day120.md: blank, 140 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/sentence-clue-card-day121.md: blank, 60 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/story-map-sheet-day120.md: blank, 56 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/two-event-strip-day122.md: blank, 95 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-1/verb-cards-day122.md: blank, 59 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/adjective-cards-day128.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/cards-exits-125-130.md: story, 384 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/cycle-20-sample-words.md: blank, 86 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/ending-cards-day126.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/event-pictures-day125.md: blank, 98 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/helper-card-day126.md: blank, 60 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/opener.md: opener, 231 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/part-cards-day126.md: blank, 47 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/poem-page-day127.md: blank, 85 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/response-sheet-129-day129.md: blank, 83 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/tense-strip-day126.md: blank, 61 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/two-column-sort-day127.md: blank, 86 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-2/whole-story-map-day128.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/cards-exits-131-135.md: story, 1103 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/clue-cards-fly-nest-day131.md: blank, 87 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/conjunction-cards-day131.md: blank, 35 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/cycle-21-sample-words.md: blank, 86 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/determiner-cards-day132.md: blank, 41 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/opener.md: opener, 240 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/opinion-picture-day134.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/pair-picture-day131.md: blank, 208 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/part-cards-un-re-day131.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/point-and-reason-strips-day132.md: blank, 178 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/preposition-marks-day133.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/sentence-forms-cards-day133.md: blank, 44 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/two-column-reason-sort-day133.md: blank, 44 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-3/two-page-picture-day135.md: blank, 46 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-4/cards-exits-136-140.md: story, 1039 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-4/cycle-22-sample-words.md: blank, 86 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-4/feedback-strips-day138.md: blank, 155 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-4/four-part-strips-day136.md: blank, 290 words, student page 2 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-4/opener.md: opener, 227 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-4/paragraph-frame-day136.md: blank, 37 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-4/response-sheet-139-day139.md: blank, 71 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-5/both-and-but-sheet-day144.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-5/cards-exits-141-144.md: story, 791 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-5/cycle-23-sample-words.md: blank, 72 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-5/fact-strips-day141.md: blank, 94 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-5/opener.md: opener, 411 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-5/organizer-day143.md: blank, 84 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-5/portrait-task-card-day141.md: blank, 103 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-5/practice-strips-day142.md: blank, 107 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-5/word-cards-day142.md: blank, 58 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-6/cards-exits-145-146.md: story, 281 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-6/ending-and-affix-cards-day146.md: blank, 125 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-6/held-cards-day147.md: blank, 79 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-6/opener.md: opener, 406 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-6/response-sheet-day147.md: blank, 104 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-6/sort-strips-day145.md: blank, 120 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/cards-exits-148-152.md: story, 860 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/contribution-log-day152.md: blank, 47 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/cycle-24-sample-words.md: blank, 72 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/draft-strips-day150.md: blank, 63 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/final-sheet-day152.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/hearing-sheet-day150.md: blank, 46 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/lights-out-card-day148.md: blank, 65 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/model-strips-day148.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/opener.md: opener, 436 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/peer-question-strips-day151.md: blank, 60 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/plan-page-day149.md: blank, 66 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-7/syllable-cards-day150.md: blank, 77 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-8/both-and-but-sheet-day153.md: blank, 57 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-8/both-and-but-sheet-day154.md: blank, 43 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-8/cards-check-158-159.md: story, 894 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-8/cards-exits-153-154.md: story, 304 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-8/cycle-25-sample-words.md: blank, 72 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-8/missing-evidence-list-day156.md: blank, 46 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-8/opener.md: opener, 404 words, 0 failure(s)
+courses/english-language-arts-grade-1/u04-8/opinion-sheet-day156.md: blank, 59 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-8/retry-cards-day157.md: blank, 266 words, student page 1 side(s), 0 failure(s)
+courses/english-language-arts-grade-1/u04-8/retry-cards-day160.md: story, 265 words, 0 failure(s)
+lesson_course: 14 failure(s) in 160 day(s), 12 in day files

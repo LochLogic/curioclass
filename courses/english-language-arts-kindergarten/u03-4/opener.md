@@ -32,7 +32,7 @@ Wrong examples are said by a puppet or as "someone might say", never by a child.
 
 ## Supplies
 
-Texts 04 and 06 in large print, the three unused source cards, the covered sapling card, the feedback slips, the reader Gus in a Tub, the three-box chart and the unit record sheet.
+Texts 04 and 06 in large print, the three unused source cards, card C1 (page 3 of A Tree Is a Living Thing), the feedback slips, the reader Gus in a Tub, the three-box chart and the unit record sheet.
 
 ## A room with nothing
 

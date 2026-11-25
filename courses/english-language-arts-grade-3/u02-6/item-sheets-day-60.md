@@ -7,7 +7,7 @@ credit: ours
 ---
 # Item sheets, day 60
 
-Print one sheet for each child, ruled. Print "invented for practice" in small letters at the foot. Silent.
+Print one sheet for each child, ruled. Print "Panel B is invented for practice" in small letters at the foot. Silent.
 
 ## Panel B
 
@@ -15,15 +15,11 @@ Print one sheet for each child, ruled. Print "invented for practice" in small le
 >
 > Their habitats include forests with running streams. Habitat means the place an animal lives. The grainy Cochran frog, one kind of glass frog, blends into leaves during the day. Its eggs rest on leaves over a stream. After hatching, tadpoles drop into the water when it rains. The stream provides a place for the tadpoles to grow.
 
-## Panel A2
-
-> A hen lays an egg and sits on it. Her body keeps the egg warm, so the chick can grow inside. After about three weeks, the chick pecks a crack in the shell with a small hard bump on its beak. Then it pushes out and rests while its damp feathers dry.
-
-Panel A2 and Panel B are printed once each. Items 1 to 4 and 8 to 11 use Panel B; items 5 to 7 use Panel A2. Item 2 uses the one device and the local search page.
+Panel B is printed once and used by items 3, 4, 10 and 11. Items 1 and 9 use the glass frog page's Habitat paragraph and items 5 to 7 use pages 15 and 16 of the frog book, none read in class yet; item 8 uses page 12. Item 2 uses the one device and the local search page.
 
 ## Then answer
 
-1. Copy the words that tell where glass frogs live.
+1. Habitat paragraph: copy the words that tell where glass frogs live.
 
    ____________________________________________
 
@@ -39,23 +35,23 @@ Panel A2 and Panel B are printed once each. Items 1 to 4 and 8 to 11 use Panel B
 
    ____________________________________________
 
-5. Put these in the order Panel A2 gives: the chick pushes out, the hen sits on the egg, the chick pecks a crack.
+5. Page 15: number the toad steps 1 to 3. Tadpoles hatch. The young toads leave the water. A mother toad lays eggs in water.
 
    ____________________________________________
 
-6. Why does the hen sit on the egg?
+6. Page 16, The jumpers: why does jumping well help a frog?
 
    ____________________________________________
 
-7. How do "After about three weeks, the chick pecks a crack in the shell with a small hard bump on its beak." and "Then it pushes out and rests while its damp feathers dry." connect?
+7. Page 15, The young: how does the sentence about young toads connect to the ones about young frogs?
 
    ____________________________________________
 
-8. How does the second paragraph connect to the first?
+8. Page 12: how does the last paragraph connect to the two before it?
 
    ____________________________________________
 
-9. What does habitat mean in the panel?
+9. Habitat paragraph, first sentence: what does running water mean? Use the words after it.
 
    ____________________________________________
 

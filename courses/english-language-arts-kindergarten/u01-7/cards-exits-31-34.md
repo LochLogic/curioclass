@@ -7,15 +7,15 @@ credit: ours
 ---
 # Exit cards, days 31, 32, 33 and 34
 
-Each card is marked by every child and goes with a spoken question heard from the day's six. Say aloud each time: "This card is made up for practice." Print "invented for practice" at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line.
+Each card or strip is marked by every child and goes with a spoken question heard from the day's six. The cards for days 32 to 34 are made up: say aloud each time "This card is made up for practice" and print "invented for practice" at the foot of each. The day 31 strip goes with a page of a class book, read aloud again. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line.
 
-## Day 31 card: the rattle
+## Day 31 strip: A Toy Can Turn, page 3
 
-**Read:** "This page is about rattles. Our rattle shakes. The handle fits my hand."
+**Read:** page 3 of A Toy Can Turn, aloud twice.
 
-**Picture:** three pictures in a row, each in a ring: a hand shaking a rattle with short motion lines; a rattle lying on a shelf; a drum with two sticks.
+**Picture:** three pictures in a row, each in a ring: a top spinning upright, then leaning, then lying on its side; a top in a toy box; a drum with two sticks.
 
-**Mark:** circle the picture that explains the topic with a detail. **Spoken, to the day's six:** "Clap the parts of rattle."
+**Mark:** circle the picture that explains the page with a detail. **Spoken, to the day's six:** "Clap the parts of over."
 
 ## Day 32 card: hot and springy
 
@@ -43,7 +43,7 @@ Each card is marked by every child and goes with a spoken question heard from th
 
 ## Key (teacher)
 
-- Day 31: the hand shaking the rattle. Spoken: "rat-tle" with two claps. Not yet: the drum or the rattle lying on the shelf (B); one clap for each letter or sound (R).
+- Day 31: the top that spins, leans and falls. Spoken: "o-ver" with two claps. Not yet: the drum or the top in a toy box (B); one clap for each letter or sound (R).
 - Day 32: strip 1. Spoken: "night". Not yet: strip 2, two steaming bowls with one called cold (V); strip 3, both movements the same (W).
 - Day 33: "I like the globe best." Not yet: "The globe is blue" or "Mo drew a toy globe" (L).
 - Day 34: a drawing of the puppet with a soft hat, labelled puppet. Spoken: "The puppet has a soft hat." Not yet: the label "I like it" (X); "puppet" and no fact (M). The retry is not scored.

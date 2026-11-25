@@ -1,0 +1,2667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earthquake Table — Curio Class Curiosities · No. 14</title>
+<style>
+  :root {
+    --lab-wall: #dad5cb;
+    --lab-wall-dark: #c5beb1;
+    --steel-dark: #1b1f24;
+    --steel-panel: #252a30;
+    --steel-bezel: #343b43;
+    --steel-edge: #4b545f;
+    --brass: #c8a258;
+    --brass-ink: #271e0c;
+    --amber: #f39c2b;
+    --danger: #e24a33;
+    --ok: #46c47e;
+    --cyan: #56ccf2;
+    --blueprint: #206896;
+    --scope-bg: #0f1613;
+    --scope-green: #58e69a;
+    --scope-amber: #f5b041;
+    --paper: #f3eee2;
+    --ink: #1e2124;
+    --ink-muted: #525860;
+    --focus: #58c4ff;
+    --mono: ui-monospace, 'Cascadia Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+    --sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--steel-dark);
+    color: #e6eaee;
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+  }
+
+  :focus-visible { outline: 2.5px solid var(--focus); outline-offset: 2px; }
+
+  .app { display: flex; flex-direction: column; width: 100vw; height: 100vh; }
+
+  /* ==================== LAB VIEWPORT ==================== */
+  .lab-stage {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 280px;
+    background: radial-gradient(circle at 52% 38%, #e6e1d7 0%, var(--lab-wall) 58%, var(--lab-wall-dark) 100%);
+    overflow: hidden;
+    border-bottom: 3px solid #121518;
+  }
+
+  .lab-stage.build-mode {
+    background: radial-gradient(circle at 52% 38%, #e4e9ed 0%, #d4dce2 60%, #c1ccd4 100%);
+  }
+
+  #labCanvas { display: block; width: 100%; height: 100%; cursor: default; touch-action: none; }
+
+  /* Engraved Brass Maker's Plate */
+  .makers-plate {
+    position: absolute;
+    top: 10px; left: 12px;
+    padding: 5px 13px;
+    background: linear-gradient(160deg, #dfc17f 0%, #c19a4e 52%, #a68039 100%);
+    border: 1px solid #6e5220;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(255, 248, 224, 0.55), 0 2px 6px rgba(0, 0, 0, 0.28);
+    color: var(--brass-ink);
+    font-family: var(--mono);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    display: flex; align-items: center; gap: 8px;
+    pointer-events: none; z-index: 5;
+  }
+
+  .makers-plate::before, .makers-plate::after {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #f5e2b0, #5e4417);
+  }
+
+  .lab-mode-pill {
+    position: absolute;
+    top: 40px; left: 12px;
+    padding: 3px 9px; border-radius: 3px;
+    font-family: var(--mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    pointer-events: none; z-index: 5;
+    border: 1px solid rgba(32, 104, 150, 0.35);
+    background: rgba(235, 244, 250, 0.86); color: #164e73;
+  }
+
+  .lab-mode-pill.armed {
+    border-color: rgba(196, 98, 24, 0.45);
+    background: rgba(253, 240, 224, 0.88); color: #8f4109;
+  }
+
+  /* Top-Right Power Panel & Utility Rack */
+  .top-right-rack {
+    position: absolute; top: 10px; right: 12px;
+    display: flex; align-items: flex-start; gap: 7px; z-index: 8;
+  }
+
+  .power-panel {
+    background: linear-gradient(180deg, #323840 0%, #23282e 100%);
+    border: 1.5px solid #14171a; border-radius: 4px;
+    padding: 5px 9px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 3px 10px rgba(0, 0, 0, 0.35);
+    display: flex; align-items: center; gap: 9px;
+  }
+
+  .power-panel-label {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; color: #9aa3ad; text-transform: uppercase;
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    border-left: 1px solid rgba(255, 255, 255, 0.12); padding-left: 4px; margin-right: -2px;
+  }
+
+  .hw-switch {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    background: none; border: none; padding: 2px 3px; cursor: pointer;
+    color: #d6dce2; font-family: var(--mono); font-size: 9px; font-weight: 600; text-transform: uppercase; border-radius: 3px;
+  }
+  .hw-switch:hover { background: rgba(255, 255, 255, 0.06); }
+
+  .toggle-well {
+    width: 17px; height: 25px; border-radius: 9px;
+    background: #14171a; border: 1px solid #4d5560; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+    position: relative; display: flex; justify-content: center;
+  }
+  .toggle-bat {
+    width: 11px; height: 12px; border-radius: 6px;
+    background: linear-gradient(180deg, #cfd6de 0%, #808994 100%);
+    border: 1px solid #3a4048; position: absolute; top: 10px; transition: top 0.12s ease;
+  }
+  .hw-switch[aria-pressed="true"] .toggle-bat { top: 2px; background: linear-gradient(180deg, #f3f6f9 0%, #aeb6c0 100%); }
+  .led-dot { width: 6px; height: 6px; border-radius: 50%; background: #333a42; border: 1px solid #111; }
+  .hw-switch[aria-pressed="true"] .led-dot { background: var(--ok); box-shadow: 0 0 6px rgba(70, 196, 126, 0.85); }
+  .hw-switch[data-led="amber"][aria-pressed="true"] .led-dot { background: var(--amber); box-shadow: 0 0 6px rgba(243, 156, 43, 0.85); }
+
+  .rack-btn {
+    background: linear-gradient(180deg, #383f47 0%, #262b31 100%);
+    border: 1.5px solid #14171a; border-radius: 4px; color: #ece8dc;
+    font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 8px 10px; cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 3px 8px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+  }
+  .rack-btn:hover { background: linear-gradient(180deg, #434b54 0%, #2d333a 100%); }
+  .rack-btn[aria-expanded="true"], .rack-btn[aria-pressed="true"] {
+    background: linear-gradient(180deg, #c79f52 0%, #9b7733 100%); color: #1e1607; border-color: #5b4316;
+  }
+
+  /* Slow-Motion Replay Bar */
+  .replay-bar {
+    position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+    background: rgba(20, 24, 28, 0.94); border: 1.5px solid var(--amber); border-radius: 5px;
+    padding: 6px 12px; display: none; align-items: center; gap: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45); z-index: 8; font-family: var(--mono); font-size: 11px; color: #f3eee2;
+  }
+  .replay-bar.active { display: flex; }
+  .replay-badge { color: var(--amber); font-weight: 700; display: flex; align-items: center; gap: 5px; }
+  .replay-badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--danger); box-shadow: 0 0 6px var(--danger); }
+  .replay-scrub { width: 170px; accent-color: var(--amber); cursor: pointer; }
+  .replay-mini-btn { background: #2f363e; border: 1px solid #525b66; color: #eef2f5; font-family: var(--mono); font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 3px; cursor: pointer; }
+
+  /* Optional Challenges */
+  .challenge-card {
+    position: absolute; top: 54px; right: 12px; width: 285px;
+    background: var(--paper); color: var(--ink); border: 1.5px solid #9b917d; border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32); padding: 12px 14px; z-index: 9; display: none; font-size: 12.5px;
+  }
+  .challenge-card.open { display: block; }
+  .challenge-card-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #c9bfab; padding-bottom: 6px; margin-bottom: 8px; font-family: var(--mono); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .challenge-item { border: 1px solid #d2c8b4; background: #faf7f0; border-radius: 3px; padding: 7px 9px; margin-bottom: 7px; cursor: pointer; text-align: left; width: 100%; color: var(--ink); font-family: var(--sans); }
+  .challenge-item:hover { border-color: #7c6844; background: #fffdf8; }
+  .challenge-item.selected { border-color: #b56c16; background: #fff6e5; box-shadow: inset 3px 0 0 #d98218; }
+  .challenge-title { font-weight: 700; font-size: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+  .challenge-stamp { font-family: var(--mono); font-size: 9.5px; font-weight: 700; padding: 1px 5px; border-radius: 2px; border: 1px solid #2f855a; color: #226644; background: #e6f6ec; }
+  .challenge-desc { font-size: 11.5px; color: var(--ink-muted); line-height: 1.35; }
+
+  .challenge-banner {
+    position: absolute; top: 68px; left: 12px;
+    background: rgba(243, 238, 226, 0.95); color: var(--ink);
+    border: 1.5px solid #9b8c71; border-left: 4px solid var(--amber); border-radius: 3px;
+    padding: 5px 10px; font-size: 11.5px; display: none; align-items: center; gap: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18); z-index: 6; max-width: 360px;
+  }
+  .challenge-banner.active { display: flex; }
+  .challenge-banner.passed { border-left-color: #2e9b5c; }
+  .challenge-banner.failed { border-left-color: var(--danger); }
+  .challenge-banner-close { background: none; border: none; color: var(--ink-muted); font-weight: 700; cursor: pointer; font-size: 14px; padding: 0 4px; }
+
+  /* ==================== HARDWARE CONTROL CONSOLE ==================== */
+  .console {
+    flex: 0 0 auto;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.014) 0 1px, transparent 1px 3px),
+      linear-gradient(180deg, #2d333a 0%, #1d2126 100%);
+    border-top: 2px solid #4c5560;
+    padding: 7px 10px 8px;
+    display: grid;
+    grid-template-columns: minmax(520px, 2.35fr) minmax(300px, 1.12fr);
+    gap: 9px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .bay {
+    background: linear-gradient(180deg, #252a30 0%, #1c2025 100%);
+    border: 1.5px solid #121518; border-radius: 5px;
+    padding: 6px 9px 7px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+
+  .deck-header {
+    display: flex; justify-content: space-between; align-items: center; gap: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 4px; flex-wrap: wrap;
+  }
+
+  .mode-interlock {
+    display: inline-flex; background: #131619; border: 1px solid #3f4750; border-radius: 4px; padding: 2px; gap: 2px;
+  }
+
+  .interlock-btn {
+    background: transparent; border: none; border-radius: 3px; color: #9ba4ae;
+    font-family: var(--mono); font-size: 9.5px; font-weight: 800; letter-spacing: 0.07em;
+    padding: 4px 10px; cursor: pointer; text-transform: uppercase;
+  }
+  .interlock-btn:hover { color: #e6ecf2; }
+  .interlock-btn.build-tab[aria-pressed="true"] {
+    background: linear-gradient(180deg, #2b7eb0 0%, #1d5d85 100%); color: #fff;
+    box-shadow: 0 0 8px rgba(43, 126, 176, 0.45);
+  }
+  .interlock-btn.test-tab[aria-pressed="true"] {
+    background: linear-gradient(180deg, #d87a24 0%, #a55612 100%); color: #fff;
+    box-shadow: 0 0 8px rgba(243, 156, 43, 0.45);
+  }
+
+  .deck-actions { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+
+  .mini-hw-btn {
+    background: linear-gradient(180deg, #39414a 0%, #272d34 100%);
+    border: 1px solid #14171a; border-radius: 3px; color: #d5dde5;
+    font-family: var(--mono); font-size: 9px; font-weight: 700; padding: 4px 7px; cursor: pointer; text-transform: uppercase;
+  }
+  .mini-hw-btn:hover { background: #464f5a; }
+  .mini-hw-btn.active-rig { background: #2c6e50; border-color: var(--ok); color: #fff; }
+  .mini-hw-btn.active-rig-b { background: #21607a; border-color: var(--cyan); color: #fff; }
+  .mini-hw-btn.clear-btn { color: #f5b9b0; }
+  .mini-hw-btn.clear-btn:hover { background: #642c24; color: #fff; }
+
+  /* ==================== FABRICATION PARTS TRAY (10 PARTS!) ==================== */
+  .build-panel { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: stretch; }
+
+  .parts-tray {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(46px, 1fr));
+    gap: 4px;
+  }
+
+  .part-card {
+    background: linear-gradient(180deg, #343b43 0%, #252a30 100%);
+    border: 1.5px solid #14171a; border-radius: 4px;
+    padding: 4px 2px 3px; cursor: grab;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 2px;
+    color: #d6dde5; font-family: var(--mono); font-size: 8.5px; font-weight: 700; text-transform: uppercase;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 4px rgba(0, 0, 0, 0.4);
+    position: relative;
+  }
+  .part-card:hover { background: linear-gradient(180deg, #3f4751 0%, #2d333b 100%); }
+  .part-card:active { cursor: grabbing; transform: translateY(1px); }
+  .part-card[aria-pressed="true"] {
+    background: linear-gradient(180deg, #275675 0%, #1b3d54 100%);
+    border-color: #58c4ff; color: #fff;
+    box-shadow: 0 0 9px rgba(88, 196, 255, 0.35);
+  }
+  .part-card.toggle-on { border-color: var(--amber); box-shadow: 0 0 8px rgba(243, 156, 43, 0.35); }
+  .part-icon { width: 30px; height: 22px; display: block; pointer-events: none; }
+  .part-key { position: absolute; top: 2px; left: 3px; font-size: 7.5px; opacity: 0.55; }
+  .part-sub { font-size: 7px; color: #93a0ad; font-weight: 500; }
+  .part-card[aria-pressed="true"] .part-sub { color: #b8e3ff; }
+
+  .build-right-col { display: flex; flex-direction: column; justify-content: space-between; gap: 4px; min-width: 122px; }
+  .spec-plate { background: #13171b; border: 1px solid #38414a; border-radius: 3px; padding: 4px 6px; font-family: var(--mono); font-size: 8.5px; color: #a6b2be; line-height: 1.4; }
+  .spec-plate strong { color: var(--amber); }
+
+  .arm-test-btn {
+    background: linear-gradient(180deg, #d84b36 0%, #a53120 100%);
+    border: 1.5px solid #4a120a; border-radius: 4px; color: #fff6f2;
+    font-family: var(--mono); font-size: 10px; font-weight: 800; letter-spacing: 0.06em;
+    padding: 7px 8px; cursor: pointer; text-transform: uppercase;
+  }
+  .arm-test-btn:hover { background: linear-gradient(180deg, #e75842 0%, #b83825 100%); }
+
+  /* ==================== HYDRAULIC ACTUATOR DECK (TEST MODE) ==================== */
+  .test-panel { display: none; flex-direction: column; gap: 6px; }
+  .preset-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+
+  .hw-btn {
+    background: linear-gradient(180deg, #383f47 0%, #272c32 100%);
+    border: 1.5px solid #14171a; border-radius: 3px; color: #cdd4dc;
+    font-family: var(--mono); font-size: 9px; font-weight: 700; padding: 5px 3px; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 3px; text-transform: uppercase;
+  }
+  .hw-btn:hover { background: linear-gradient(180deg, #434b54 0%, #2e343b 100%); }
+  .btn-bar { width: 20px; height: 3px; border-radius: 2px; background: #15181c; }
+  .hw-btn[aria-pressed="true"] { background: #23282e; color: #fff; border-color: #6b532b; }
+  .hw-btn[aria-pressed="true"] .btn-bar { background: var(--amber); box-shadow: 0 0 7px var(--amber); }
+
+  .actuator-middle { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: center; }
+  .knob-unit { display: flex; align-items: center; gap: 9px; }
+  .knob-dial {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #58606a 0%, #2c3138 55%, #171a1e 100%);
+    border: 2px solid #121417; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    position: relative; cursor: ns-resize; flex-shrink: 0; touch-action: none;
+  }
+  .knob-pointer {
+    position: absolute; top: 4px; left: 50%; width: 3px; height: 13px; margin-left: -1.5px; border-radius: 2px;
+    background: var(--amber); box-shadow: 0 0 4px rgba(243, 156, 43, 0.65); transform-origin: 50% 17px;
+  }
+  .knob-meta { display: flex; flex-direction: column; gap: 1px; }
+  .knob-name { font-family: var(--mono); font-size: 9px; color: #9fa8b2; text-transform: uppercase; }
+  .knob-readout { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #f4f7fa; }
+  .knob-sub { font-family: var(--mono); font-size: 8.5px; color: #7d8792; white-space: nowrap; }
+
+  .action-stack { display: flex; flex-direction: column; gap: 4px; min-width: 126px; }
+  .shake-btn {
+    background: linear-gradient(180deg, #d84b36 0%, #a53120 100%);
+    border: 1.5px solid #4a120a; border-radius: 4px; color: #fff6f2;
+    font-family: var(--mono); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; padding: 7px 14px; cursor: pointer; text-transform: uppercase;
+  }
+  .shake-btn.running { background: linear-gradient(180deg, #e69324 0%, #b56d10 100%); border-color: #4f2f04; color: #1c1202; box-shadow: 0 0 12px rgba(243, 156, 43, 0.45); }
+  .sub-actions { display: flex; gap: 4px; }
+  .util-btn { flex: 1; background: linear-gradient(180deg, #394049 0%, #272c33 100%); border: 1px solid #14171a; border-radius: 3px; color: #d7dee6; font-family: var(--mono); font-size: 9px; font-weight: 700; padding: 4px 6px; cursor: pointer; text-transform: uppercase; }
+  .util-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .util-btn.highlight { border-color: var(--amber); color: var(--amber); box-shadow: 0 0 8px rgba(243, 156, 43, 0.3); }
+
+  /* ==================== TELEMETRY & OSCILLOSCOPE ==================== */
+  .bay-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.09); padding-bottom: 3px; gap: 6px; }
+  .bay-title { font-family: var(--mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em; color: #a9b2bc; text-transform: uppercase; }
+  .bay-sub { font-family: var(--mono); font-size: 9px; color: #88929c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .telemetry-top { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+  .lcd-box { background: #101513; border: 1px solid #343d39; border-radius: 3px; padding: 3px 5px; display: flex; flex-direction: column; }
+  .lcd-label { font-family: var(--mono); font-size: 7.5px; color: #7c9288; text-transform: uppercase; }
+  .lcd-val { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--scope-green); white-space: nowrap; }
+  .lcd-val.amber { color: var(--scope-amber); }
+  .lcd-val.danger { color: #ff6b57; }
+  .lcd-sub { font-family: var(--mono); font-size: 8px; color: #6b7d75; white-space: nowrap; }
+
+  .telemetry-bottom { display: grid; grid-template-columns: 88px 1fr; gap: 7px; align-items: stretch; }
+  .gauge-wrap { background: #14181b; border: 1px solid #3b434c; border-radius: 4px; padding: 2px; display: flex; align-items: center; justify-content: center; }
+  #gaugeCanvas { display: block; width: 84px; height: 54px; }
+  .scope-wrap { position: relative; background: var(--scope-bg); border: 1.5px solid #353f3b; border-radius: 4px; overflow: hidden; min-height: 58px; }
+  #scopeCanvas { display: block; width: 100%; height: 60px; cursor: pointer; }
+  .scope-controls { position: absolute; top: 3px; right: 3px; display: flex; gap: 3px; }
+  .scope-mini-btn { background: rgba(16, 26, 21, 0.88); border: 1px solid #3c5448; color: #93c4ab; font-family: var(--mono); font-size: 8px; font-weight: 700; padding: 2px 4px; border-radius: 2px; cursor: pointer; text-transform: uppercase; }
+  .scope-mini-btn[aria-pressed="true"] { background: #234957; border-color: var(--cyan); color: #d8f4ff; }
+
+  .drag-ghost {
+    position: fixed; pointer-events: none; z-index: 40;
+    background: rgba(27, 61, 84, 0.92); border: 1.5px solid #58c4ff; color: #fff;
+    font-family: var(--mono); font-size: 10px; font-weight: 700; padding: 4px 9px; border-radius: 4px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); display: none; transform: translate(-50%, -120%);
+  }
+
+  /* ==================== FIELD MANUAL DRAWER ==================== */
+  .manual-drawer {
+    position: fixed; top: 0; right: 0; width: min(440px, 94vw); height: 100vh;
+    background: var(--paper); color: var(--ink); border-left: 3px solid #7e735e;
+    box-shadow: -8px 0 28px rgba(0, 0, 0, 0.45);
+    transform: translateX(102%); transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 30; display: flex; flex-direction: column; user-select: text;
+  }
+  .manual-drawer.open { transform: translateX(0); }
+  .manual-header { background: #e7dfd0; border-bottom: 2px solid #bfb49d; padding: 13px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .manual-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: #6b5d44; text-transform: uppercase; font-weight: 700; }
+  .manual-title { margin: 2px 0 0; font-size: 18px; font-weight: 800; }
+  .manual-close { background: #d8cebc; border: 1px solid #9c9079; color: var(--ink); font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 3px; cursor: pointer; }
+  .manual-body { flex: 1; overflow-y: auto; padding: 16px 18px 32px; line-height: 1.54; font-size: 13.5px; }
+  .manual-body h2 { font-size: 14px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1.5px solid #c9bfab; padding-bottom: 4px; margin: 18px 0 9px; color: #2c2415; }
+  .manual-body h2:first-child { margin-top: 0; }
+  .manual-body p { margin: 0 0 9px; }
+  .manual-callout { background: #ebe4d4; border-left: 3.5px solid #b57722; padding: 9px 11px; margin: 10px 0; font-size: 12.5px; border-radius: 0 3px 3px 0; }
+  .manual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 9px 0 12px; }
+  .manual-card { background: #faf7f0; border: 1px solid #d1c7b3; border-radius: 4px; padding: 8px 9px; font-size: 12px; }
+  .manual-card strong { display: block; font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; color: #4f3b16; margin-bottom: 3px; }
+  .manual-svg { width: 100%; height: auto; display: block; background: #faf7f0; border: 1px solid #d1c7b3; border-radius: 4px; margin: 9px 0 11px; }
+  .manual-list { margin: 5px 0 10px; padding-left: 18px; }
+  .manual-list li { margin-bottom: 5px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+
+  @media (max-width: 1040px) {
+    .console { grid-template-columns: 1fr; max-height: 44vh; overflow-y: auto; }
+    .parts-tray { grid-template-columns: repeat(5, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ==================== TESTING LAB & DRAFTING STAGE ==================== -->
+  <main class="lab-stage build-mode" id="labStage" aria-label="Earthquake shake table drafting and testing rig">
+    <canvas id="labCanvas" tabindex="0" role="application" aria-label="Interactive 5-bay by 8-story structural drafting grid and shake table. Use arrow keys to move the blueprint cursor and Enter to place parts."></canvas>
+
+    <div class="makers-plate" aria-label="Curio Class Curiosities No. 14 Earthquake Table">
+      Curio Class Curiosities · No. 14 · Earthquake Table
+    </div>
+
+    <div class="lab-mode-pill" id="labModePill">BUILD BENCH · SAFETY LOCK ON</div>
+
+    <div class="challenge-banner" id="challengeBanner" role="status" aria-live="polite">
+      <div id="challengeBannerText"></div>
+      <button type="button" class="challenge-banner-close" id="challengeCloseBtn" aria-label="Dismiss test card">×</button>
+    </div>
+
+    <div class="top-right-rack">
+      <div class="power-panel" role="group" aria-label="Equipment power panel">
+        <span class="power-panel-label" aria-hidden="true">PWR</span>
+        <button type="button" class="hw-switch" id="swMotion" aria-pressed="true" title="Toggle full motion effects">
+          <span class="led-dot" aria-hidden="true"></span>
+          <span class="toggle-well" aria-hidden="true"><span class="toggle-bat"></span></span>
+          <span>Motion</span>
+        </button>
+        <button type="button" class="hw-switch" id="swSound" aria-pressed="false" data-led="amber" title="Toggle equipment and structural sound">
+          <span class="led-dot" aria-hidden="true"></span>
+          <span class="toggle-well" aria-hidden="true"><span class="toggle-bat"></span></span>
+          <span>Sound</span>
+        </button>
+        <button type="button" class="hw-switch" id="swRead" aria-pressed="false" data-led="amber" title="Read the Field Manual aloud">
+          <span class="led-dot" aria-hidden="true"></span>
+          <span class="toggle-well" aria-hidden="true"><span class="toggle-bat"></span></span>
+          <span>Read</span>
+        </button>
+      </div>
+
+      <button type="button" class="rack-btn" id="btnCompare" aria-pressed="false" title="Bolt two structures side-by-side on the same shake table">2 Rigs</button>
+      <button type="button" class="rack-btn" id="btnChallenges" aria-expanded="false" aria-controls="challengeCard">Tests</button>
+      <button type="button" class="rack-btn" id="btnManual" aria-expanded="false" aria-controls="manualDrawer">Manual</button>
+    </div>
+
+    <section class="challenge-card" id="challengeCard" aria-label="Optional lab test challenges">
+      <div class="challenge-card-head">
+        <span>Optional Lab Tests</span>
+        <span style="color:#7c6f58;font-weight:400;">Free play always open</span>
+      </div>
+      <div id="challengeList"></div>
+    </section>
+
+    <div class="replay-bar" id="replayBar" role="region" aria-label="Slow-motion replay controls">
+      <span class="replay-badge">0.25× REPLAY</span>
+      <input type="range" class="replay-scrub" id="replayScrub" min="0" max="100" value="0" aria-label="Replay timeline position">
+      <span id="replayTime">0.00 s</span>
+      <button type="button" class="replay-mini-btn" id="btnReplayPause">Pause</button>
+      <button type="button" class="replay-mini-btn" id="btnReplayExit">Live</button>
+    </div>
+  </main>
+
+  <!-- ==================== HARDWARE CONTROL CONSOLE ==================== -->
+  <section class="console" aria-label="Fabrication deck, hydraulic actuator, and telemetry">
+    <div class="bay">
+      <div class="deck-header">
+        <div class="mode-interlock" role="group" aria-label="Lab mode interlock">
+          <button type="button" class="interlock-btn build-tab" id="tabBuild" aria-pressed="true">01 · Design &amp; Build</button>
+          <button type="button" class="interlock-btn test-tab" id="tabTest" aria-pressed="false">02 · Shake Test</button>
+        </div>
+
+        <div class="deck-actions" id="buildQuickActions">
+          <button type="button" class="mini-hw-btn clear-btn" id="btnBlankSlate" title="Clear steel platen to build from scratch">Blank Platen</button>
+          <button type="button" class="mini-hw-btn" data-bp="pyramid" title="Load 5-bay sloped triangular truss pyramid">Pyramid</button>
+          <button type="button" class="mini-hw-btn" data-bp="viaduct" title="Load curved steel arch viaduct">Arch Viaduct</button>
+          <button type="button" class="mini-hw-btn" data-bp="skybridge" title="Load twin towers connected by an arched skybridge">Skybridge</button>
+          <button type="button" class="mini-hw-btn" data-bp="starter5" title="Load classic 5-story rigid frame">5F Frame</button>
+          <button type="button" class="mini-hw-btn" id="btnUndo" title="Undo last edit (Ctrl+Z)">Undo</button>
+          <button type="button" class="mini-hw-btn active-rig" id="btnSelectA" style="display:none">Rig A</button>
+          <button type="button" class="mini-hw-btn" id="btnSelectB" style="display:none">Rig B</button>
+          <button type="button" class="mini-hw-btn" id="btnCloneAB" style="display:none" title="Copy Rig A onto Rig B">Clone A→B</button>
+        </div>
+
+        <span class="bay-sub" id="presetDesc" style="display:none">STEADY SINE WAVE</span>
+      </div>
+
+      <!-- ===== PANEL A: 10-PART FABRICATION TRAY ===== -->
+      <div class="build-panel" id="buildPanel">
+        <div class="parts-tray" role="toolbar" aria-label="Structural parts tray. Click to select or drag directly onto the blueprint grid.">
+          <button type="button" class="part-card" data-part="box" aria-pressed="true" title="Bolt a rectangular steel frame bay (1)">
+            <span class="part-key">1</span>
+            <svg class="part-icon" viewBox="0 0 36 26" aria-hidden="true">
+              <rect x="4" y="4" width="28" height="4" fill="#9aa5b1" stroke="#181c20" stroke-width="1"/>
+              <rect x="5" y="8" width="3.5" height="15" fill="#7c8794"/>
+              <rect x="27.5" y="8" width="3.5" height="15" fill="#7c8794"/>
+            </svg>
+            <span>Box Bay</span>
+            <span class="part-sub">Frame</span>
+          </button>
+
+          <button type="button" class="part-card" data-part="tri" aria-pressed="false" title="Bolt a triangular truss / sloped buttress. Click again to rotate ◢ ▲ ◣ (2)">
+            <span class="part-key">2</span>
+            <svg class="part-icon" viewBox="0 0 36 26" aria-hidden="true">
+              <polygon points="18,4 31,22 5,22" fill="rgba(243,156,43,0.14)" stroke="#e2b35a" stroke-width="2.2" stroke-linejoin="round"/>
+              <line x1="18" y1="4" x2="18" y2="22" stroke="#9aa5b1" stroke-width="1.3"/>
+            </svg>
+            <span>Triangle</span>
+            <span class="part-sub">◢ ▲ ◣</span>
+          </button>
+
+          <button type="button" class="part-card" data-part="arch" aria-pressed="false" title="Bolt a curved steel arch span (3)">
+            <span class="part-key">3</span>
+            <svg class="part-icon" viewBox="0 0 36 26" aria-hidden="true">
+              <rect x="4" y="4" width="28" height="3.5" fill="#9aa5b1"/>
+              <path d="M 6 23 Q 18 4 30 23" fill="none" stroke="#6ec5e9" stroke-width="3" stroke-linecap="round"/>
+              <line x1="6" y1="7" x2="6" y2="23" stroke="#7c8794" stroke-width="2"/>
+              <line x1="30" y1="7" x2="30" y2="23" stroke="#7c8794" stroke-width="2"/>
+            </svg>
+            <span>Arch</span>
+            <span class="part-sub">Curved</span>
+          </button>
+
+          <button type="button" class="part-card" data-part="brace" aria-pressed="false" title="Cycle X-Brace or Chevron V-Brace on any box bay (4)">
+            <span class="part-key">4</span>
+            <svg class="part-icon" viewBox="0 0 36 26" aria-hidden="true">
+              <rect x="5" y="4" width="26" height="19" fill="none" stroke="#6d7885" stroke-width="1.4"/>
+              <line x1="6" y1="5" x2="30" y2="22" stroke="#f39c2b" stroke-width="2"/>
+              <line x1="30" y1="5" x2="6" y2="22" stroke="#f39c2b" stroke-width="2"/>
+            </svg>
+            <span>X / V</span>
+            <span class="part-sub">Brace</span>
+          </button>
+
+          <button type="button" class="part-card" data-part="wall" aria-pressed="false" title="Bolt a corrugated steel shear wall core into any bay (5)">
+            <span class="part-key">5</span>
+            <svg class="part-icon" viewBox="0 0 36 26" aria-hidden="true">
+              <rect x="6" y="4" width="24" height="19" fill="#5e6b78" stroke="#c8d2dc" stroke-width="1.3"/>
+              <line x1="12" y1="5" x2="12" y2="22" stroke="#36404a" stroke-width="1.4"/>
+              <line x1="18" y1="5" x2="18" y2="22" stroke="#36404a" stroke-width="1.4"/>
+              <line x1="24" y1="5" x2="24" y2="22" stroke="#36404a" stroke-width="1.4"/>
+            </svg>
+            <span>Wall</span>
+            <span class="part-sub">Core</span>
+          </button>
+
+          <button type="button" class="part-card" data-part="col" aria-pressed="false" title="Cycle member gauge: Light / Standard / Heavy I-Beam (6)">
+            <span class="part-key">6</span>
+            <svg class="part-icon" viewBox="0 0 36 26" aria-hidden="true">
+              <rect x="6" y="4" width="2.5" height="19" fill="#7c8794"/>
+              <rect x="15" y="4" width="4.5" height="19" fill="#aeb8c4"/>
+              <rect x="25" y="4" width="6.5" height="19" fill="#e2c179"/>
+            </svg>
+            <span>Gauge</span>
+            <span class="part-sub">Lt/Md/Hvy</span>
+          </button>
+
+          <button type="button" class="part-card" data-part="mass" aria-pressed="false" title="Stack +1 kg brass ballast weights onto any module (7)">
+            <span class="part-key">7</span>
+            <svg class="part-icon" viewBox="0 0 36 26" aria-hidden="true">
+              <rect x="7" y="15" width="22" height="6" rx="1" fill="#c8a258" stroke="#5e4416" stroke-width="1"/>
+              <rect x="9" y="8" width="18" height="6" rx="1" fill="#dfb96d" stroke="#5e4416" stroke-width="1"/>
+            </svg>
+            <span>Ballast</span>
+            <span class="part-sub">+1 kg</span>
+          </button>
+
+          <button type="button" class="part-card" id="partTmd" data-part="tmd" aria-pressed="false" title="Toggle brass Tuned Mass Damper on the top roof (8)">
+            <span class="part-key">8</span>
+            <svg class="part-icon" viewBox="0 0 36 26" aria-hidden="true">
+              <line x1="4" y1="15" x2="32" y2="15" stroke="#c8d2dc" stroke-width="2"/>
+              <rect x="12" y="7" width="12" height="14" rx="1" fill="#dfb96d" stroke="#4f3912" stroke-width="1.2"/>
+            </svg>
+            <span>TMD</span>
+            <span class="part-sub">Damper</span>
+          </button>
+
+          <button type="button" class="part-card" id="partIso" data-part="iso" aria-pressed="false" title="Toggle rubber-lead Base Isolation bearings under the foundation (9)">
+            <span class="part-key">9</span>
+            <svg class="part-icon" viewBox="0 0 36 26" aria-hidden="true">
+              <rect x="6" y="7" width="24" height="3" fill="#9aa5b1"/>
+              <rect x="8" y="10" width="20" height="3" fill="#1b1e22"/>
+              <rect x="8" y="13" width="20" height="2.5" fill="#9aa5b1"/>
+              <rect x="8" y="15.5" width="20" height="3" fill="#1b1e22"/>
+              <rect x="6" y="18.5" width="24" height="3" fill="#9aa5b1"/>
+            </svg>
+            <span>Isolate</span>
+            <span class="part-sub">Bearings</span>
+          </button>
+
+          <button type="button" class="part-card" data-part="erase" aria-pressed="false" title="Unbolt brace/wall/ballast or remove module (0 · or Right-Click)">
+            <span class="part-key">0</span>
+            <svg class="part-icon" viewBox="0 0 36 26" aria-hidden="true">
+              <line x1="10" y1="6" x2="26" y2="20" stroke="#e86a58" stroke-width="2.6" stroke-linecap="round"/>
+              <line x1="26" y1="6" x2="10" y2="20" stroke="#e86a58" stroke-width="2.6" stroke-linecap="round"/>
+            </svg>
+            <span>Unbolt</span>
+            <span class="part-sub">Remove</span>
+          </button>
+        </div>
+
+        <div class="build-right-col">
+          <div class="spec-plate">
+            <div>PARTS: <strong id="specBays">9</strong></div>
+            <div>SPAN: <strong id="specSpan">5-BAY</strong></div>
+            <div>MASS: <strong id="specMass">12.4 kg</strong></div>
+          </div>
+          <button type="button" class="arm-test-btn" id="btnArmTest">ARM &amp; TEST →</button>
+        </div>
+      </div>
+
+      <!-- ===== PANEL B: HYDRAULIC ACTUATOR CONTROLLER (TEST MODE) ===== -->
+      <div class="test-panel" id="testPanel">
+        <div class="preset-row" role="group" aria-label="Earthquake motion presets">
+          <button type="button" class="hw-btn preset-btn" data-preset="sine" aria-pressed="true"><span class="btn-bar"></span><span>Sine</span></button>
+          <button type="button" class="hw-btn preset-btn" data-preset="sweep" aria-pressed="false"><span class="btn-bar"></span><span>Sweep</span></button>
+          <button type="button" class="hw-btn preset-btn" data-preset="near" aria-pressed="false"><span class="btn-bar"></span><span>Near Jolt</span></button>
+          <button type="button" class="hw-btn preset-btn" data-preset="distant" aria-pressed="false"><span class="btn-bar"></span><span>Long Roll</span></button>
+          <button type="button" class="hw-btn preset-btn" data-preset="broadband" aria-pressed="false"><span class="btn-bar"></span><span>Complex</span></button>
+          <button type="button" class="hw-btn preset-btn" data-preset="file" aria-pressed="false" title="Load local PEER .AT2 or .CSV ground motion"><span class="btn-bar"></span><span>.AT2/CSV</span></button>
+          <input type="file" id="fileMotionInput" accept=".at2,.csv,.txt,.dat" style="display:none" aria-label="Load ground motion file">
+        </div>
+
+        <div class="actuator-middle">
+          <div class="knob-unit">
+            <div class="knob-dial" id="knobAmp" role="slider" tabindex="0"
+                 aria-label="Shake strength in g" aria-valuemin="0.05" aria-valuemax="1.50" aria-valuenow="0.35" aria-valuetext="0.35 g">
+              <div class="knob-pointer" id="ptrAmp"></div>
+            </div>
+            <div class="knob-meta">
+              <span class="knob-name">Strength</span>
+              <span class="knob-readout" id="valAmp">0.35 g</span>
+              <span class="knob-sub">Drag or ↑↓</span>
+            </div>
+          </div>
+
+          <div class="knob-unit">
+            <div class="knob-dial" id="knobFreq" role="slider" tabindex="0"
+                 aria-label="Shake rhythm frequency in Hertz" aria-valuemin="0.40" aria-valuemax="4.50" aria-valuenow="1.10" aria-valuetext="1.10 Hz">
+              <div class="knob-pointer" id="ptrFreq"></div>
+            </div>
+            <div class="knob-meta">
+              <span class="knob-name">Rhythm</span>
+              <span class="knob-readout" id="valFreq">1.10 Hz</span>
+              <span class="knob-sub" id="freqMatchHint">Period 0.91 s</span>
+            </div>
+          </div>
+
+          <div class="action-stack">
+            <button type="button" class="shake-btn" id="btnShake" aria-pressed="false">SHAKE</button>
+            <div class="sub-actions">
+              <button type="button" class="util-btn" id="btnReset" title="Rebuild structure (R)">Rebuild</button>
+              <button type="button" class="util-btn" id="btnReplay" disabled title="Watch 0.25x slow-motion replay (P)">Replay</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAY 3: ALWAYS-LIVE TELEMETRY & OSCILLOSCOPE -->
+    <div class="bay">
+      <div class="bay-head">
+        <span class="bay-title">03 · Live Telemetry</span>
+        <span class="bay-sub" id="rigStatus">RIG A · INTACT</span>
+      </div>
+
+      <div class="telemetry-top">
+        <div class="lcd-box">
+          <span class="lcd-label">Ground Accel</span>
+          <span class="lcd-val amber" id="readGround">0.00 g</span>
+          <span class="lcd-sub" id="readGroundPk">PK 0.00 g</span>
+        </div>
+        <div class="lcd-box">
+          <span class="lcd-label">Max Drift</span>
+          <span class="lcd-val" id="readDrift">0.00 %</span>
+          <span class="lcd-sub" id="readDriftMm">0.0 mm</span>
+        </div>
+        <div class="lcd-box">
+          <span class="lcd-label">Nat. Period</span>
+          <span class="lcd-val" id="readPeriod">0.58 s</span>
+          <span class="lcd-sub" id="readFreq">1.72 Hz</span>
+        </div>
+        <div class="lcd-box">
+          <span class="lcd-label">Peak Force</span>
+          <span class="lcd-val" id="readForce">0.0 N</span>
+          <span class="lcd-sub" id="readCap">0% CAP</span>
+        </div>
+      </div>
+
+      <div class="telemetry-bottom">
+        <div class="gauge-wrap" aria-label="Analog structural stress meter">
+          <canvas id="gaugeCanvas" width="172" height="110"></canvas>
+        </div>
+        <div class="scope-wrap">
+          <canvas id="scopeCanvas" width="440" height="122" aria-label="Oscilloscope display"></canvas>
+          <div class="scope-controls">
+            <button type="button" class="scope-mini-btn" id="btnMode1" aria-pressed="false" title="Animate fundamental sway shape (Mode 1)">M1</button>
+            <button type="button" class="scope-mini-btn" id="btnMode2" aria-pressed="false" title="Animate second S-bend sway shape (Mode 2)">M2</button>
+            <button type="button" class="scope-mini-btn" id="btnScopeMode" title="Switch between Resonance Curve and Time Trace">FREQ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="drag-ghost" id="dragGhost"></div>
+  <div class="sr-only" id="srStatus" aria-live="polite"></div>
+</div>
+
+<!-- ==================== FIELD MANUAL DRAWER ==================== -->
+<aside class="manual-drawer" id="manualDrawer" aria-label="Earthquake Table Field Manual" aria-hidden="true">
+  <div class="manual-header">
+    <div>
+      <div class="manual-kicker">Curio Class Curiosities · Field Guide No. 14</div>
+      <h1 class="manual-title">Earthquake Table Manual</h1>
+    </div>
+    <button type="button" class="manual-close" id="btnManualClose" aria-label="Close Field Manual">CLOSE</button>
+  </div>
+
+  <div class="manual-body" id="manualContent">
+    <h2>1. Design Anything on the 5-Bay Blueprint Grid</h2>
+    <p>
+      In <strong>Design &amp; Build</strong> mode, a 5-bay by 8-story drafting grid opens over the steel platen and the
+      camera automatically frames your structure big and clear. Hit <strong>Blank Platen</strong> to build from scratch,
+      or explore starter blueprints like the <strong>Pyramid</strong>, <strong>Arch Viaduct</strong>, and <strong>Skybridge</strong>.
+    </p>
+    <p>
+      Click or <strong>drag-and-drop</strong> parts right onto the grid. Right-click any cell to unbolt. As you add shapes,
+      watch the live <strong>Nat. Period</strong> and green <strong>Resonance Curve</strong> update immediately.
+    </p>
+    <ul class="manual-list">
+      <li><strong>Triangles (◢ ▲ ◣):</strong> Inherently rigid truss shapes that are lighter than full box bays (0.85 kg vs. 1.2 kg) and deliver 2.2× lateral stiffness. Click an existing triangle to rotate its slope—perfect for pyramids, A-frames, and flying buttresses.</li>
+      <li><strong>Steel Arches:</strong> Curved ribs that channel gravity loads outward into compression thrust—great for open colonnades, viaducts, and arched skybridges spanning between twin towers.</li>
+      <li><strong>X-Brace &amp; Chevron V-Brace:</strong> Click any box bay with the <strong>X / V</strong> tool to cycle between crossed diagonals and modern inverted-V seismic bracing.</li>
+      <li><strong>Shear Walls, Heavy Columns &amp; Brass Ballast:</strong> Mix stiff steel core walls with flexible outer frames, taper column gauges from thick at the bottom to light at the top, or drop heavy brass weights onto specific bays.</li>
+    </ul>
+
+    <h2>2. Resonance &amp; Mode Shapes</h2>
+    <p>
+      Every structure has natural sway rhythms called <strong>modes</strong>. Its slowest rhythm is <strong>Mode 1</strong>
+      (period <em>T₁</em> in seconds, frequency <em>f₁</em> in Hz). When shaking matches <em>f₁</em>, sway grows dramatically.
+      Click <strong>M1</strong> or <strong>M2</strong> on the scope to watch your structure's exact Mode 1 (single whip) and Mode 2 (S-bend) shapes.
+    </p>
+
+    <svg class="manual-svg" viewBox="0 0 360 94" aria-hidden="true">
+      <rect width="360" height="94" fill="#faf7f0"/>
+      <line x1="28" y1="76" x2="342" y2="76" stroke="#8a816e" stroke-width="1.2"/>
+      <line x1="28" y1="14" x2="28" y2="76" stroke="#8a816e" stroke-width="1.2"/>
+      <path d="M 30 72 Q 95 70 128 52 T 156 16 T 186 54 Q 220 71 338 74" fill="none" stroke="#c94b28" stroke-width="2.2"/>
+      <path d="M 30 73 Q 100 70 132 47 Q 146 57 156 59 Q 166 57 182 46 Q 214 70 338 74" fill="none" stroke="#2c7a52" stroke-width="2" stroke-dasharray="5 3"/>
+      <circle cx="156" cy="16" r="3.5" fill="#c94b28"/>
+      <text x="165" y="21" font-family="monospace" font-size="9.5" fill="#9c3216" font-weight="bold">RESONANT PEAK (f₁)</text>
+      <text x="192" y="45" font-family="monospace" font-size="8.5" fill="#236141">WITH DAMPER: PEAK SPLITS</text>
+      <text x="270" y="88" font-family="monospace" font-size="8.5" fill="#5e5749">SHAKE FREQ (Hz) →</text>
+    </svg>
+
+    <h2>3. Four Classic Protection Systems</h2>
+    <div class="manual-grid">
+      <div class="manual-card">
+        <strong>Rigid Frame</strong>
+        Columns bend in an S-shape to absorb motion. Open and ductile, but flexible—tall narrow frames feel strong gravity P-Δ push once they lean.
+      </div>
+      <div class="manual-card">
+        <strong>Trusses, Braces &amp; Walls</strong>
+        Triangles, X/V braces, and shear walls stiffen the frame and cut drift sharply, raising natural frequency—but overloaded braces and walls can snap abruptly.
+      </div>
+      <div class="manual-card">
+        <strong>Tuned Mass Damper</strong>
+        A brass weight on roof rails tuned to <em>f₁</em>. At resonance it swings opposite the roof, splitting one tall resonant peak into two small humps.
+      </div>
+      <div class="manual-card">
+        <strong>Base Isolation</strong>
+        Laminated rubber-lead bearings let the steel platen slide underneath while the structure glides almost straight. Weakest near very slow 0.5 Hz motion.
+      </div>
+    </div>
+
+    <div class="manual-callout">
+      <strong>Side-by-Side Comparison &amp; Real Quake Files:</strong> Toggle <strong>2 Rigs</strong> to bolt two different designs
+      onto one shake table (e.g., an Arch Viaduct vs. a Box Frame) and watch them ride the exact same quake. In Shake Test mode,
+      click <strong>.AT2/CSV</strong> to load any local PEER NGA <code>.at2</code> or CSV ground-motion file offline.
+    </div>
+  </div>
+</aside>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ============================================================================
+     PHYSICAL CONSTANTS (5-Bay × 8-Story Benchtop Shake Table Model)
+     ============================================================================ */
+  const G_ACCEL = 9.81;
+  const MAX_STORIES = 8;
+  const MAX_BAYS = 5;
+  const STORY_H = 0.22;               // m (220 mm story height)
+  const BAY_W = 0.26;                 // m (260 mm per bay; 5 bays = 1.30 m span)
+  const COL_GAUGES = [550, 1100, 2200]; // Light, Standard, Heavy N/m
+  const TRI_STIFF_MULT = 2.2;         // Triangular truss inherent stiffness
+  const ARCH_STIFF_MULT = 1.85;       // Parabolic steel arch stiffness
+  const XBRACE_MULT = 2.6;
+  const VBRACE_MULT = 2.3;
+  const WALL_MULT = 5.5;
+  const WALL_BREAK_DRIFT = 0.028;
+  const BRACE_BREAK_DRIFT = 0.036;
+  const COL_YIELD_DRIFT = 0.040;
+  const COL_BREAK_DRIFT = 0.100;
+  const ISO_FREQ_HZ = 0.50;
+  const ISO_ZETA = 0.14;
+  const ISO_MAX_STROKE = 0.075;
+  const TMD_MASS_RATIO = 0.10;
+  const TMD_MAX_STROKE = 0.14;
+  const VISUAL_DEFLECT_GAIN = 1.65;
+  const SUBSTEPS = 8;
+  const MAX_REPLAY_FRAMES = 480;
+
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ============================================================================
+     MULTI-SHAPE TOWER DATA MODEL
+     shape: 'box' | 'triL' (◢) | 'triP' (▲) | 'triR' (◣) | 'arch'
+     braceMode: 0 (none) | 1 (X-brace) | 2 (Chevron V-brace)
+     ============================================================================ */
+  function makeCell(shape = 'box', gauge = 1, braceMode = 0, wall = false, ballast = 0) {
+    return { shape, gauge, braceMode, wall, ballast, braceBroken: false, wallBroken: false };
+  }
+
+  function createEmptyGrid() {
+    return Array.from({ length: MAX_STORIES }, () => new Array(MAX_BAYS).fill(null));
+  }
+
+  function cloneGrid(g) {
+    return g.map(row => row.map(c => (c ? { ...c } : null)));
+  }
+
+  function createTower(id, bp = 'pyramid') {
+    const tw = {
+      id,
+      grid: createEmptyGrid(),
+      tmdOn: false, isoOn: false,
+      history: [],
+      N: 0, minBay: 2, maxBay: 2,
+      storyMass: [], storyColK: [], storyBraceK: [], storyWallK: [],
+      baseWidthM: BAY_W, totalMass: 0, totalBays: 0,
+      u: [], v: [], theta: [], plastic: [], strain: [], force: [],
+      u0: 0, v0: 0, ud: 0, vd: 0,
+      f1: 0, T1: 0, f2: 0, T2: 0, mode1: [], mode2: [], pDeltaUnstable: false,
+      tmdK: 0, tmdC: 0, tmdM: 0, isoK: 0, isoC: 0, isoM: 0,
+      frfFreqs: [], frfMag: [], frfDirty: true,
+      collapsed: false, collapseTime: 0, debris: [],
+      peakDriftPct: 0, peakForceN: 0, peakCapPct: 0,
+      traceRoof: new Float32Array(240)
+    };
+    applyBlueprint(tw, bp, false);
+    return tw;
+  }
+
+  function pushHistory(tw) {
+    tw.history.push({ grid: cloneGrid(tw.grid), tmdOn: tw.tmdOn, isoOn: tw.isoOn });
+    if (tw.history.length > 25) tw.history.shift();
+  }
+
+  function applyBlueprint(tw, bp, recordUndo = true) {
+    if (recordUndo) pushHistory(tw);
+    tw.grid = createEmptyGrid();
+    tw.tmdOn = false; tw.isoOn = false;
+
+    if (bp === 'blank') {
+      // Blank steel platen
+    } else if (bp === 'pyramid') {
+      // 5-bay sloped triangular truss pyramid!
+      tw.grid[0][0] = makeCell('triL', 2, 0, false, 0);
+      tw.grid[0][1] = makeCell('box', 2, 2, false, 1);
+      tw.grid[0][2] = makeCell('arch', 2, 0, false, 0);
+      tw.grid[0][3] = makeCell('box', 2, 2, false, 1);
+      tw.grid[0][4] = makeCell('triR', 2, 0, false, 0);
+
+      tw.grid[1][1] = makeCell('triL', 1, 0, false, 0);
+      tw.grid[1][2] = makeCell('box', 1, 1, false, 1);
+      tw.grid[1][3] = makeCell('triR', 1, 0, false, 0);
+
+      tw.grid[2][2] = makeCell('box', 1, 2, false, 0);
+      tw.grid[3][2] = makeCell('triP', 1, 0, false, 0);
+    } else if (bp === 'viaduct') {
+      // Curved steel arch colonnade carrying a 3-story upper deck
+      for (let b = 0; b < 5; b++) tw.grid[0][b] = makeCell('arch', 2, 0, false, 0);
+      for (let b = 1; b <= 3; b++) tw.grid[1][b] = makeCell('box', 1, b === 2 ? 1 : 0, false, 1);
+      tw.grid[2][1] = makeCell('triL', 1, 0, false, 0);
+      tw.grid[2][2] = makeCell('box', 1, 0, false, 1);
+      tw.grid[2][3] = makeCell('triR', 1, 0, false, 0);
+      tw.grid[3][2] = makeCell('triP', 1, 0, false, 0);
+    } else if (bp === 'skybridge') {
+      // Twin 5-story towers connected by an arched skybridge on floor 4!
+      for (let s = 0; s < 5; s++) {
+        tw.grid[s][0] = makeCell('box', s < 2 ? 2 : 1, s === 0 ? 1 : 0, false, 1);
+        tw.grid[s][4] = makeCell('box', s < 2 ? 2 : 1, s === 0 ? 1 : 0, false, 1);
+      }
+      tw.grid[3][1] = makeCell('arch', 1, 0, false, 0);
+      tw.grid[3][2] = makeCell('arch', 1, 0, false, 0);
+      tw.grid[3][3] = makeCell('arch', 1, 0, false, 0);
+      tw.grid[5][0] = makeCell('triP', 1, 0, false, 0);
+      tw.grid[5][4] = makeCell('triP', 1, 0, false, 0);
+    } else if (bp === 'starter5') {
+      for (let s = 0; s < 5; s++) tw.grid[s][2] = makeCell('box', 1, 0, false, 1);
+    }
+    rebuildTowerDynamics(tw);
+  }
+
+  function syncTowerPropertiesFromGrid(tw) {
+    let topStory = -1, totalBays = 0, totalMass = 0;
+    let minBAll = MAX_BAYS, maxBAll = -1;
+    for (let s = 0; s < MAX_STORIES; s++) {
+      for (let b = 0; b < MAX_BAYS; b++) {
+        if (tw.grid[s][b]) {
+          topStory = s; totalBays++;
+          if (b < minBAll) minBAll = b;
+          if (b > maxBAll) maxBAll = b;
+        }
+      }
+    }
+    const N = topStory + 1;
+    tw.N = N; tw.totalBays = totalBays;
+    tw.minBay = maxBAll >= minBAll ? minBAll : 2;
+    tw.maxBay = maxBAll >= minBAll ? maxBAll : 2;
+    tw.storyMass = new Array(N).fill(0);
+    tw.storyColK = new Array(N).fill(0);
+    tw.storyBraceK = new Array(N).fill(0);
+    tw.storyWallK = new Array(N).fill(0);
+
+    let minB0 = MAX_BAYS, maxB0 = -1;
+    for (let b = 0; b < MAX_BAYS; b++) if (tw.grid[0][b]) { minB0 = Math.min(minB0, b); maxB0 = Math.max(maxB0, b); }
+    tw.baseWidthM = maxB0 >= minB0 ? (maxB0 - minB0 + 1) * BAY_W : BAY_W;
+
+    for (let s = 0; s < N; s++) {
+      let mSum = 0, cSum = 0, bSum = 0, wSum = 0;
+      for (let b = 0; b < MAX_BAYS; b++) {
+        const cell = tw.grid[s][b];
+        if (!cell) continue;
+        const isTri = cell.shape.startsWith('tri');
+        const isArch = cell.shape === 'arch';
+        // Triangles are lighter (0.85 kg), Arches 1.05 kg, Boxes 1.2 kg
+        const baseM = isTri ? 0.85 : isArch ? 1.05 : 1.20;
+        mSum += baseM + cell.ballast * 1.0;
+
+        const supported = (s === 0) || Boolean(tw.grid[s - 1][b]);
+        const bridged = !supported && b > 0 && b < MAX_BAYS - 1 && Boolean(tw.grid[s][b - 1]) && Boolean(tw.grid[s][b + 1]);
+        const kBay = COL_GAUGES[cell.gauge];
+
+        if (supported) {
+          if (isTri) cSum += kBay * TRI_STIFF_MULT;
+          else if (isArch) cSum += kBay * ARCH_STIFF_MULT;
+          else cSum += kBay * 0.92;
+
+          if (cell.braceMode > 0 && !cell.braceBroken) {
+            bSum += kBay * (cell.braceMode === 1 ? XBRACE_MULT : VBRACE_MULT);
+          }
+          if (cell.wall && !cell.wallBroken) {
+            wSum += kBay * WALL_MULT;
+          }
+        } else if (bridged && (isArch || isTri)) {
+          // Arched/truss skybridges tie twin towers together with real frame stiffness!
+          cSum += kBay * 0.65;
+        }
+      }
+      tw.storyMass[s] = Math.max(0.5, mSum);
+      tw.storyColK[s] = Math.max(120, cSum);
+      tw.storyBraceK[s] = bSum;
+      tw.storyWallK[s] = wSum;
+      totalMass += tw.storyMass[s];
+    }
+    tw.totalMass = totalMass;
+  }
+
+  function isCellBuildable(tw, s, b) {
+    if (s < 0 || s >= MAX_STORIES || b < 0 || b >= MAX_BAYS) return false;
+    if (tw.grid[s][b]) return false;
+    if (s === 0) return true;
+    if (tw.grid[s - 1][b]) return true;
+    const lowerExists = tw.grid[s - 1].some(Boolean);
+    if (lowerExists && ((b > 0 && tw.grid[s][b - 1]) || (b < MAX_BAYS - 1 && tw.grid[s][b + 1]))) return true;
+    return false;
+  }
+
+  const app = {
+    labMode: 'build',
+    compareMode: false,
+    activeIdx: 0,
+    part: 'box',
+    hoverCell: null,
+    kbCursor: { s: 0, b: 2 },
+    kbActive: false,
+    modeInspect: 0,
+    modePhase: 0,
+    preset: 'sine',
+    ampG: 0.35,
+    freqHz: 1.10,
+    scopeMode: 'spectrum',
+    motionOn: !prefersReducedMotion,
+    soundOn: false,
+    readOn: false,
+    fileMotion: null
+  };
+
+  const towers = [createTower('A', 'pyramid'), createTower('B', 'starter5')];
+
+  const sim = {
+    running: false, t: 0, xg: 0, vg: 0, ag: 0,
+    activeFreqHz: 1.10, presetEnded: false, peakGroundG: 0, sparks: [],
+    dragTowerIdx: -1, dragStoryIdx: -1, dragTargetX: 0,
+    traceGround: new Float32Array(240), traceHead: 0
+  };
+
+  const replay = { frames: [], active: false, paused: false, cursor: 0, speed: 0.25 };
+
+  const CHALLENGES = [
+    { id: 'distant', title: '1. The Slow Roll', desc: 'Design a 5+ story structure that survives a 0.45 g Long Roll without collapsing.', preset: 'distant', ampG: 0.45, minStories: 5, maxDriftPct: 9.9, passed: false },
+    { id: 'near', title: '2. Near-Fault Punch', desc: 'Survive a 0.85 g Near Jolt with 5+ stories and keep max drift under 2.5%.', preset: 'near', ampG: 0.85, minStories: 5, maxDriftPct: 2.5, passed: false },
+    { id: 'bridge', title: '3. Heavy Span', desc: 'Survive a 0.45 g Sweep with 5+ stories and at least 16 kg total mass.', preset: 'sweep', ampG: 0.45, minStories: 5, minMass: 16, maxDriftPct: 9.9, passed: false },
+    { id: 'complex', title: '4. Zero Damage', desc: 'Survive a 0.70 g Complex quake with 6+ stories and zero snapped braces/walls.', preset: 'broadband', ampG: 0.70, minStories: 6, noDamage: true, maxDriftPct: 9.9, passed: false }
+  ];
+  let activeChallenge = null;
+
+  function activeTower() { return towers[app.activeIdx]; }
+  function activeTowersList() { return app.compareMode ? [towers[0], towers[1]] : [towers[0]]; }
+
+  /* ============================================================================
+     DOM REFERENCES
+     ============================================================================ */
+  const labStage = document.getElementById('labStage');
+  const labCanvas = document.getElementById('labCanvas');
+  const ctx = labCanvas.getContext('2d');
+  const gaugeCanvas = document.getElementById('gaugeCanvas');
+  const gCtx = gaugeCanvas.getContext('2d');
+  const scopeCanvas = document.getElementById('scopeCanvas');
+  const sCtx = scopeCanvas.getContext('2d');
+
+  const labModePill = document.getElementById('labModePill');
+  const tabBuild = document.getElementById('tabBuild');
+  const tabTest = document.getElementById('tabTest');
+  const buildPanel = document.getElementById('buildPanel');
+  const testPanel = document.getElementById('testPanel');
+  const buildQuickActions = document.getElementById('buildQuickActions');
+  const presetDesc = document.getElementById('presetDesc');
+
+  const partCards = Array.from(document.querySelectorAll('.part-card[data-part]'));
+  const partTmd = document.getElementById('partTmd');
+  const partIso = document.getElementById('partIso');
+  const btnBlankSlate = document.getElementById('btnBlankSlate');
+  const bpBtns = Array.from(document.querySelectorAll('[data-bp]'));
+  const btnUndo = document.getElementById('btnUndo');
+  const btnArmTest = document.getElementById('btnArmTest');
+  const btnCompare = document.getElementById('btnCompare');
+  const btnSelectA = document.getElementById('btnSelectA');
+  const btnSelectB = document.getElementById('btnSelectB');
+  const btnCloneAB = document.getElementById('btnCloneAB');
+  const dragGhost = document.getElementById('dragGhost');
+
+  const specBays = document.getElementById('specBays');
+  const specSpan = document.getElementById('specSpan');
+  const specMass = document.getElementById('specMass');
+
+  const presetBtns = Array.from(document.querySelectorAll('.preset-btn'));
+  const fileMotionInput = document.getElementById('fileMotionInput');
+  const knobAmp = document.getElementById('knobAmp');
+  const knobFreq = document.getElementById('knobFreq');
+  const ptrAmp = document.getElementById('ptrAmp');
+  const ptrFreq = document.getElementById('ptrFreq');
+  const valAmp = document.getElementById('valAmp');
+  const valFreq = document.getElementById('valFreq');
+  const freqMatchHint = document.getElementById('freqMatchHint');
+
+  const btnShake = document.getElementById('btnShake');
+  const btnReset = document.getElementById('btnReset');
+  const btnReplay = document.getElementById('btnReplay');
+  const btnScopeMode = document.getElementById('btnScopeMode');
+  const btnMode1 = document.getElementById('btnMode1');
+  const btnMode2 = document.getElementById('btnMode2');
+
+  const readGround = document.getElementById('readGround');
+  const readGroundPk = document.getElementById('readGroundPk');
+  const readDrift = document.getElementById('readDrift');
+  const readDriftMm = document.getElementById('readDriftMm');
+  const readPeriod = document.getElementById('readPeriod');
+  const readFreq = document.getElementById('readFreq');
+  const readForce = document.getElementById('readForce');
+  const readCap = document.getElementById('readCap');
+  const rigStatus = document.getElementById('rigStatus');
+
+  const swMotion = document.getElementById('swMotion');
+  const swSound = document.getElementById('swSound');
+  const swRead = document.getElementById('swRead');
+  const btnManual = document.getElementById('btnManual');
+  const btnManualClose = document.getElementById('btnManualClose');
+  const manualDrawer = document.getElementById('manualDrawer');
+  const btnChallenges = document.getElementById('btnChallenges');
+  const challengeCard = document.getElementById('challengeCard');
+  const challengeList = document.getElementById('challengeList');
+  const challengeBanner = document.getElementById('challengeBanner');
+  const challengeBannerText = document.getElementById('challengeBannerText');
+  const challengeCloseBtn = document.getElementById('challengeCloseBtn');
+  const srStatus = document.getElementById('srStatus');
+
+  const replayBar = document.getElementById('replayBar');
+  const replayScrub = document.getElementById('replayScrub');
+  const replayTime = document.getElementById('replayTime');
+  const btnReplayPause = document.getElementById('btnReplayPause');
+  const btnReplayExit = document.getElementById('btnReplayExit');
+
+  /* ============================================================================
+     WEB AUDIO SYNTHESIZER
+     ============================================================================ */
+  const audio = {
+    ctx: null, humOsc: null, humGain: null, lastCreakTime: 0,
+    init() {
+      if (this.ctx) return;
+      const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+      this.ctx = new AC();
+      this.humOsc = this.ctx.createOscillator(); this.humOsc.type = 'sawtooth'; this.humOsc.frequency.value = 54;
+      const filt = this.ctx.createBiquadFilter(); filt.type = 'lowpass'; filt.frequency.value = 140;
+      this.humGain = this.ctx.createGain(); this.humGain.gain.value = 0;
+      this.humOsc.connect(filt); filt.connect(this.humGain); this.humGain.connect(this.ctx.destination);
+      this.humOsc.start();
+    },
+    click(pitch = 620, vol = 0.08) {
+      if (!app.soundOn) return;
+      this.init(); if (!this.ctx) return;
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+      const now = this.ctx.currentTime, osc = this.ctx.createOscillator(), g = this.ctx.createGain();
+      osc.type = 'triangle'; osc.frequency.setValueAtTime(pitch, now); osc.frequency.exponentialRampToValueAtTime(pitch * 0.35, now + 0.028);
+      g.gain.setValueAtTime(vol, now); g.gain.exponentialRampToValueAtTime(0.0008, now + 0.03);
+      osc.connect(g); g.connect(this.ctx.destination); osc.start(now); osc.stop(now + 0.032);
+    },
+    bolt(kind = 'box') {
+      if (!app.soundOn) return;
+      this.init(); if (!this.ctx) return;
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+      const now = this.ctx.currentTime, osc = this.ctx.createOscillator(), g = this.ctx.createGain();
+      const map = { box: ['square', 240, 110, 0.09], tri: ['triangle', 580, 320, 0.09], arch: ['sine', 380, 220, 0.11], brace: ['triangle', 760, 420, 0.09], wall: ['sawtooth', 190, 95, 0.11], mass: ['sine', 150, 62, 0.14], col: ['triangle', 500, 290, 0.08], erase: ['triangle', 340, 160, 0.07] };
+      const [type, f0, f1, v] = map[kind] || map.box;
+      osc.type = type; osc.frequency.setValueAtTime(f0, now); osc.frequency.exponentialRampToValueAtTime(f1, now + 0.07);
+      g.gain.setValueAtTime(v, now); g.gain.exponentialRampToValueAtTime(0.001, now + 0.085);
+      osc.connect(g); g.connect(this.ctx.destination); osc.start(now); osc.stop(now + 0.09);
+    },
+    modalPing(f1, f2, hasTmd) {
+      if (!app.soundOn || !f1) return;
+      this.init(); if (!this.ctx) return;
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+      const now = this.ctx.currentTime, decay = hasTmd ? 0.35 : 0.95;
+      const p1 = Math.max(95, Math.min(720, f1 * 165)), p2 = Math.max(180, Math.min(1400, (f2 || f1 * 2.8) * 165));
+      for (const [freq, amp] of [[p1, 0.11], [p2, 0.045]]) {
+        const osc = this.ctx.createOscillator(), g = this.ctx.createGain();
+        osc.type = 'sine'; osc.frequency.setValueAtTime(freq, now);
+        g.gain.setValueAtTime(amp, now); g.gain.exponentialRampToValueAtTime(0.0008, now + decay);
+        osc.connect(g); g.connect(this.ctx.destination); osc.start(now); osc.stop(now + decay + 0.02);
+      }
+    },
+    snap() {
+      if (!app.soundOn) return;
+      this.init(); if (!this.ctx) return;
+      const now = this.ctx.currentTime, osc = this.ctx.createOscillator(), g = this.ctx.createGain();
+      osc.type = 'sawtooth'; osc.frequency.setValueAtTime(980, now); osc.frequency.exponentialRampToValueAtTime(190, now + 0.22);
+      g.gain.setValueAtTime(0.18, now); g.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+      osc.connect(g); g.connect(this.ctx.destination); osc.start(now); osc.stop(now + 0.25);
+    },
+    collapse() {
+      if (!app.soundOn) return;
+      this.init(); if (!this.ctx) return;
+      const now = this.ctx.currentTime, bufSize = Math.floor(this.ctx.sampleRate * 0.45);
+      const buf = this.ctx.createBuffer(1, bufSize, this.ctx.sampleRate), data = buf.getChannelData(0);
+      for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufSize * 0.22));
+      const noise = this.ctx.createBufferSource(); noise.buffer = buf;
+      const filt = this.ctx.createBiquadFilter(); filt.type = 'bandpass'; filt.frequency.value = 240; filt.Q.value = 1.2;
+      const g = this.ctx.createGain(); g.gain.setValueAtTime(0.30, now); g.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+      noise.connect(filt); filt.connect(g); g.connect(this.ctx.destination); noise.start(now);
+    },
+    creak(intensity) {
+      if (!app.soundOn || intensity < 0.48) return;
+      this.init(); if (!this.ctx) return;
+      const now = this.ctx.currentTime; if (now - this.lastCreakTime < 0.14) return;
+      this.lastCreakTime = now;
+      const osc = this.ctx.createOscillator(), g = this.ctx.createGain();
+      osc.type = 'sawtooth'; const base = 180 + intensity * 240 + Math.random() * 60;
+      osc.frequency.setValueAtTime(base, now); osc.frequency.linearRampToValueAtTime(base * 0.82, now + 0.09);
+      const filt = this.ctx.createBiquadFilter(); filt.type = 'bandpass'; filt.frequency.value = 650; filt.Q.value = 4;
+      g.gain.setValueAtTime(0.001, now); g.gain.linearRampToValueAtTime(Math.min(0.08, (intensity - 0.45) * 0.12), now + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+      osc.connect(filt); filt.connect(g); g.connect(this.ctx.destination); osc.start(now); osc.stop(now + 0.11);
+    },
+    updateHum(active, velMag) {
+      if (!this.ctx || !this.humGain) return;
+      this.humGain.gain.setTargetAtTime((app.soundOn && active) ? Math.min(0.075, 0.014 + velMag * 0.18) : 0, this.ctx.currentTime, 0.05);
+      if (this.humOsc) this.humOsc.frequency.setTargetAtTime(48 + Math.min(55, velMag * 90), this.ctx.currentTime, 0.06);
+    }
+  };
+
+  /* ============================================================================
+     MODAL EIGENSOLVER + FRF
+     ============================================================================ */
+  function solveSymmetricEigenSystem(A) {
+    const n = A.length;
+    const M = A.map(r => r.slice());
+    const V = Array.from({ length: n }, (_, i) => Array.from({ length: n }, (__, j) => (i === j ? 1 : 0)));
+    for (let iter = 0; iter < 45 * n * n; iter++) {
+      let p = 0, q = 1, maxOff = 0;
+      for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
+        const val = Math.abs(M[i][j]); if (val > maxOff) { maxOff = val; p = i; q = j; }
+      }
+      if (maxOff < 1e-9) break;
+      const th = 0.5 * Math.atan2(2 * M[p][q], M[q][q] - M[p][p]), c = Math.cos(th), s = Math.sin(th);
+      for (let i = 0; i < n; i++) if (i !== p && i !== q) {
+        const mip = M[i][p], miq = M[i][q];
+        M[i][p] = M[p][i] = c * mip - s * miq; M[i][q] = M[q][i] = s * mip + c * miq;
+      }
+      const mpp = M[p][p], mqq = M[q][q], mpq = M[p][q];
+      M[p][p] = c * c * mpp - 2 * s * c * mpq + s * s * mqq;
+      M[q][q] = s * s * mpp + 2 * s * c * mpq + c * c * mqq;
+      M[p][q] = M[q][p] = 0;
+      for (let i = 0; i < n; i++) { const vip = V[i][p], viq = V[i][q]; V[i][p] = c * vip - s * viq; V[i][q] = s * vip + c * viq; }
+    }
+    const pairs = [];
+    for (let i = 0; i < n; i++) { const vec = []; for (let r = 0; r < n; r++) vec.push(V[r][i]); pairs.push({ val: M[i][i], vec }); }
+    pairs.sort((a, b) => a.val - b.val);
+    return pairs;
+  }
+
+  function getStoryK(tw, i) { return (tw.storyColK[i] || 0) + (tw.storyBraceK[i] || 0) + (tw.storyWallK[i] || 0); }
+  function getStoryKG(tw, i) {
+    let m = tw.tmdOn ? tw.tmdM : 0;
+    for (let j = i; j < tw.N; j++) m += tw.storyMass[j];
+    return (m * G_ACCEL) / STORY_H;
+  }
+
+  function computeTowerModal(tw) {
+    syncTowerPropertiesFromGrid(tw);
+    const N = tw.N;
+    if (N === 0) { tw.f1 = 0; tw.T1 = 0; tw.f2 = 0; tw.T2 = 0; tw.mode1 = []; tw.mode2 = []; tw.pDeltaUnstable = false; tw.frfDirty = true; return; }
+
+    tw.tmdM = tw.totalMass * TMD_MASS_RATIO;
+    const mVec = tw.storyMass;
+    const K = Array.from({ length: N }, () => new Array(N).fill(0));
+    for (let i = 0; i < N; i++) {
+      const kB = Math.max(10, getStoryK(tw, i) - getStoryKG(tw, i));
+      const kA = i < N - 1 ? Math.max(10, getStoryK(tw, i + 1) - getStoryKG(tw, i + 1)) : 0;
+      K[i][i] = kB + kA; if (i > 0) K[i][i - 1] = K[i - 1][i] = -kB;
+    }
+    const B = Array.from({ length: N }, (_, r) => Array.from({ length: N }, (_, c) => K[r][c] / Math.sqrt(mVec[r] * mVec[c])));
+    const eigBase = solveSymmetricEigenSystem(B);
+    tw.pDeltaUnstable = eigBase[0].val <= 0.5;
+    const w1Fix = Math.sqrt(Math.max(0.25, eigBase[0].val));
+    const w2Fix = eigBase.length > 1 ? Math.sqrt(Math.max(0.5, eigBase[1].val)) : w1Fix * 2.9;
+
+    const normM = (pair) => {
+      if (!pair) return new Array(N).fill(0);
+      const phi = pair.vec.map((v, i) => v / Math.sqrt(mVec[i]));
+      const sgn = phi[N - 1] < 0 ? -1 : 1, mx = Math.max(1e-6, ...phi.map(Math.abs));
+      return phi.map(v => (v * sgn) / mx);
+    };
+    tw.mode1 = normM(eigBase[0]);
+    tw.mode2 = eigBase.length > 1 ? normM(eigBase[1]) : tw.mode1.slice();
+
+    const muEff = tw.tmdM / (0.75 * tw.totalMass);
+    const wD = w1Fix / (1 + muEff), zD = Math.sqrt((3 * muEff) / (8 * (1 + muEff)));
+    tw.tmdK = tw.tmdM * wD * wD; tw.tmdC = 2 * zD * tw.tmdM * wD;
+
+    tw.isoM = Math.max(1.5, tw.storyMass[0] * 1.1);
+    const totIsoM = tw.totalMass + tw.isoM + (tw.tmdOn ? tw.tmdM : 0), wIso = 2 * Math.PI * ISO_FREQ_HZ;
+    tw.isoK = totIsoM * wIso * wIso; tw.isoC = 2 * ISO_ZETA * totIsoM * wIso;
+
+    if (tw.isoOn) {
+      const D = N + 1, mFull = [tw.isoM, ...mVec], KF = Array.from({ length: D }, () => new Array(D).fill(0));
+      const k0 = Math.max(10, getStoryK(tw, 0) - getStoryKG(tw, 0));
+      KF[0][0] = tw.isoK + k0; KF[0][1] = KF[1][0] = -k0;
+      for (let i = 0; i < N; i++) {
+        const kB = Math.max(10, getStoryK(tw, i) - getStoryKG(tw, i));
+        const kA = i < N - 1 ? Math.max(10, getStoryK(tw, i + 1) - getStoryKG(tw, i + 1)) : 0;
+        KF[i + 1][i + 1] = kB + kA; if (i > 0) KF[i + 1][i] = KF[i][i + 1] = -kB;
+      }
+      const BF = Array.from({ length: D }, (_, r) => Array.from({ length: D }, (_, c) => KF[r][c] / Math.sqrt(mFull[r] * mFull[c])));
+      const eigFull = solveSymmetricEigenSystem(BF);
+      tw.f1 = Math.sqrt(Math.max(0.25, eigFull[0].val)) / (2 * Math.PI); tw.T1 = 1 / tw.f1;
+      tw.f2 = eigFull.length > 1 ? Math.sqrt(Math.max(0.5, eigFull[1].val)) / (2 * Math.PI) : tw.f1 * 3; tw.T2 = 1 / tw.f2;
+    } else {
+      tw.f1 = w1Fix / (2 * Math.PI); tw.T1 = 1 / tw.f1;
+      tw.f2 = w2Fix / (2 * Math.PI); tw.T2 = 1 / tw.f2;
+    }
+    tw.frfDirty = true;
+  }
+
+  function computeTowerFRF(tw) {
+    const N = tw.N;
+    if (N === 0) { tw.frfFreqs = new Float32Array(0); tw.frfMag = new Float32Array(0); tw.frfDirty = false; return; }
+    const hasIso = tw.isoOn, hasTmd = tw.tmdOn, D = N + (hasIso ? 1 : 0) + (hasTmd ? 1 : 0);
+    const idxF = i => (hasIso ? i + 1 : i), idxT = D - 1;
+    const mVec = new Float64Array(D);
+    if (hasIso) mVec[0] = tw.isoM;
+    for (let i = 0; i < N; i++) mVec[idxF(i)] = tw.storyMass[i];
+    if (hasTmd) mVec[idxT] = tw.tmdM;
+    const K = Array.from({ length: D }, () => new Float64Array(D)), C = Array.from({ length: D }, () => new Float64Array(D));
+    const hasStiff = tw.storyBraceK.some(v => v > 0) || tw.storyWallK.some(v => v > 0);
+    const wRef = Math.max(2.0, 2 * Math.PI * tw.f1), avgZ = hasStiff ? 0.032 : 0.022;
+    if (hasIso) { K[0][0] += tw.isoK; C[0][0] += tw.isoC; }
+    for (let i = 0; i < N; i++) {
+      const k = Math.max(10, getStoryK(tw, i) - getStoryKG(tw, i)), c = (2 * avgZ / wRef) * getStoryK(tw, i), a = idxF(i);
+      K[a][a] += k; C[a][a] += c;
+      if (i > 0) { const b = idxF(i - 1); K[b][b] += k; C[b][b] += c; K[a][b] -= k; K[b][a] -= k; C[a][b] -= c; C[b][a] -= c; }
+      else if (hasIso) { K[0][0] += k; C[0][0] += c; K[a][0] -= k; K[0][a] -= k; C[a][0] -= c; C[0][a] -= c; }
+    }
+    if (hasTmd) {
+      const top = idxF(N - 1);
+      K[top][top] += tw.tmdK; C[top][top] += tw.tmdC; K[idxT][idxT] += tw.tmdK; C[idxT][idxT] += tw.tmdC;
+      K[top][idxT] -= tw.tmdK; K[idxT][top] -= tw.tmdK; C[top][idxT] -= tw.tmdC; C[idxT][top] -= tw.tmdC;
+    }
+    const numPts = 96, fMin = 0.35, fMax = 4.6, freqs = new Float32Array(numPts), mags = new Float32Array(numPts);
+    const Ar = Array.from({ length: D }, () => new Float64Array(D)), Ai = Array.from({ length: D }, () => new Float64Array(D));
+    const br = new Float64Array(D), bi = new Float64Array(D);
+    for (let p = 0; p < numPts; p++) {
+      const f = fMin + (fMax - fMin) * (p / (numPts - 1)), w = 2 * Math.PI * f, w2 = w * w;
+      freqs[p] = f;
+      for (let r = 0; r < D; r++) {
+        for (let c = 0; c < D; c++) { Ar[r][c] = K[r][c] - (r === c ? w2 * mVec[r] : 0); Ai[r][c] = w * C[r][c]; }
+        br[r] = -mVec[r] * G_ACCEL; bi[r] = 0;
+      }
+      for (let k = 0; k < D; k++) {
+        let piv = k, maxMag = Ar[k][k] * Ar[k][k] + Ai[k][k] * Ai[k][k];
+        for (let r = k + 1; r < D; r++) { const mg = Ar[r][k] * Ar[r][k] + Ai[r][k] * Ai[r][k]; if (mg > maxMag) { maxMag = mg; piv = r; } }
+        if (piv !== k) { [Ar[k], Ar[piv]] = [Ar[piv], Ar[k]]; [Ai[k], Ai[piv]] = [Ai[piv], Ai[k]]; [br[k], br[piv]] = [br[piv], br[k]]; [bi[k], bi[piv]] = [bi[piv], bi[k]]; }
+        const dr = Ar[k][k], di = Ai[k][k], dn = dr * dr + di * di + 1e-18;
+        for (let r = k + 1; r < D; r++) {
+          const mr = (Ar[r][k] * dr + Ai[r][k] * di) / dn, mi = (Ai[r][k] * dr - Ar[r][k] * di) / dn;
+          for (let c = k + 1; c < D; c++) { Ar[r][c] -= mr * Ar[k][c] - mi * Ai[k][c]; Ai[r][c] -= mr * Ai[k][c] + mi * Ar[k][c]; }
+          br[r] -= mr * br[k] - mi * bi[k]; bi[r] -= mr * bi[k] + mi * br[k];
+        }
+      }
+      const xr = new Float64Array(D), xi = new Float64Array(D);
+      for (let k = D - 1; k >= 0; k--) {
+        let sr = br[k], si = bi[k];
+        for (let c = k + 1; c < D; c++) { sr -= Ar[k][c] * xr[c] - Ai[k][c] * xi[c]; si -= Ar[k][c] * xi[c] + Ai[k][c] * xr[c]; }
+        const dr = Ar[k][k], di = Ai[k][k], dn = dr * dr + di * di + 1e-18;
+        xr[k] = (sr * dr + si * di) / dn; xi[k] = (si * dr - sr * di) / dn;
+      }
+      const top = idxF(N - 1);
+      mags[p] = Math.hypot(xr[top] - (hasIso ? xr[0] : 0), xi[top] - (hasIso ? xi[0] : 0));
+    }
+    tw.frfFreqs = freqs; tw.frfMag = mags; tw.frfDirty = false;
+  }
+
+  /* ============================================================================
+     GROUND MOTION GENERATORS + OFFLINE .AT2 / .CSV PARSER
+     ============================================================================ */
+  function parseGroundMotionFile(filename, text) {
+    const lines = text.replace(/\r/g, '').split('\n').map(l => l.trim()).filter(Boolean);
+    let dt = 0.01, values = [], at2End = -1;
+    for (let i = 0; i < Math.min(8, lines.length); i++) {
+      const mDt = lines[i].match(/DT\s*=\s*([0-9.eE+-]+)/i) || lines[i].match(/([0-9.]+)\s*SEC/i);
+      if (mDt) { dt = parseFloat(mDt[1]); at2End = i + 1; break; }
+    }
+    if (at2End > 0) {
+      for (let i = at2End; i < lines.length; i++) for (const n of lines[i].split(/\s+/).map(Number).filter(Number.isFinite)) values.push(n);
+    } else {
+      const times = [], accels = [];
+      for (const line of lines) {
+        if (/^[a-zA-Z#%]/.test(line)) continue;
+        const p = line.split(/[,\t;\s]+/).map(Number).filter(Number.isFinite);
+        if (p.length >= 2) { times.push(p[0]); accels.push(p[1]); } else if (p.length === 1) accels.push(p[0]);
+      }
+      if (times.length >= 3 && times[1] > times[0]) dt = Math.max(0.0005, times[1] - times[0]);
+      values = accels;
+    }
+    if (values.length < 10) return null;
+    const arr = new Float32Array(values.length); let peakG = 0;
+    for (let i = 0; i < values.length; i++) { arr[i] = values[i]; if (Math.abs(values[i]) > peakG) peakG = Math.abs(values[i]); }
+    return peakG < 1e-6 ? null : { name: filename, dt, values: arr, duration: (arr.length - 1) * dt, peakG };
+  }
+
+  function sampleGroundAccel(t) {
+    const A = app.ampG * G_ACCEL;
+    if (app.preset === 'file' && app.fileMotion) {
+      const fm = app.fileMotion; if (t > fm.duration) return { ag: 0, freq: 1.5, done: true };
+      const idxF = t / fm.dt, i0 = Math.floor(idxF), i1 = Math.min(fm.values.length - 1, i0 + 1);
+      const rawG = fm.values[i0] * (1 - (idxF - i0)) + fm.values[i1] * (idxF - i0);
+      return { ag: rawG * (app.ampG / fm.peakG) * G_ACCEL, freq: 1.8, done: false };
+    }
+    if (app.preset === 'sine') return { ag: A * Math.min(1, t / 0.6) * Math.sin(2 * Math.PI * app.freqHz * t), freq: app.freqHz, done: false };
+    if (app.preset === 'sweep') {
+      const dur = 16.0; if (t > dur + 1.5) return { ag: 0, freq: 4.5, done: true };
+      const f0 = 0.45, f1 = 4.50, u = Math.min(1, t / dur);
+      const phase = 2 * Math.PI * (f0 * t + 0.5 * (f1 - f0) * t * t / dur);
+      const env = Math.min(1, t / 0.5) * (t > dur ? Math.max(0, 1 - (t - dur) / 1.5) : 1);
+      return { ag: A * env * Math.sin(phase), freq: f0 + (f1 - f0) * u, done: false };
+    }
+    if (app.preset === 'near') {
+      if (t > 5.5) return { ag: 0, freq: 3.1, done: true };
+      const env = Math.min(1, t / 0.18) * Math.exp(-Math.max(0, t - 0.55) * 0.95);
+      const s = 0.55 * Math.sin(2 * Math.PI * 2.85 * t) + 0.32 * Math.sin(2 * Math.PI * 4.10 * t + 0.8) + 0.25 * Math.sin(2 * Math.PI * 1.65 * t - 0.4);
+      return { ag: A * env * s * 1.15, freq: 2.85, done: false };
+    }
+    if (app.preset === 'distant') {
+      if (t > 13.5) return { ag: 0, freq: 0.95, done: true };
+      const env = Math.min(1, t / 2.2) * (t > 9.5 ? Math.max(0, 1 - (t - 9.5) / 4.0) : 1);
+      const s = 0.62 * Math.sin(2 * Math.PI * 0.92 * t) + 0.34 * Math.sin(2 * Math.PI * 1.18 * t + 1.1) + 0.18 * Math.sin(2 * Math.PI * 0.68 * t + 2.3);
+      return { ag: A * env * s * 1.05, freq: 0.95, done: false };
+    }
+    if (t > 12.0) return { ag: 0, freq: 1.9, done: true };
+    const env = t < 1.6 ? 0.22 * (t / 1.6) : t < 2.6 ? 0.22 + 0.78 * (t - 1.6) : t < 7.6 ? 1.0 - 0.15 * ((t - 2.6) / 5.0) : 0.85 * Math.max(0, 1 - (t - 7.6) / 4.4);
+    const s = 0.34 * Math.sin(2 * Math.PI * 0.95 * t + 0.3) + 0.36 * Math.sin(2 * Math.PI * 1.62 * t + 1.7) + 0.28 * Math.sin(2 * Math.PI * 2.55 * t + 0.9) + 0.22 * Math.sin(2 * Math.PI * 3.70 * t + 2.4);
+    return { ag: A * env * s * 1.18, freq: 1.75, done: false };
+  }
+
+  /* ============================================================================
+     PHYSICS RESET & RK4 INTEGRATOR
+     ============================================================================ */
+  function rebuildTowerDynamics(tw) {
+    for (let s = 0; s < MAX_STORIES; s++) for (let b = 0; b < MAX_BAYS; b++) {
+      if (tw.grid[s][b]) { tw.grid[s][b].braceBroken = false; tw.grid[s][b].wallBroken = false; }
+    }
+    syncTowerPropertiesFromGrid(tw);
+    const N = tw.N;
+    tw.u = new Array(N).fill(0); tw.v = new Array(N).fill(0); tw.theta = new Array(N).fill(0);
+    tw.plastic = new Array(N).fill(0); tw.strain = new Array(N).fill(0); tw.force = new Array(N).fill(0);
+    tw.u0 = 0; tw.v0 = 0; tw.ud = 0; tw.vd = 0;
+    tw.collapsed = false; tw.collapseTime = 0; tw.debris = [];
+    tw.peakDriftPct = 0; tw.peakForceN = 0; tw.peakCapPct = 0; tw.traceRoof.fill(0);
+    computeTowerModal(tw);
+  }
+
+  function resetAllTowers(keepRunning = false) {
+    exitReplay();
+    for (const tw of towers) rebuildTowerDynamics(tw);
+    sim.xg = 0; sim.vg = 0; sim.ag = 0; sim.t = 0;
+    sim.peakGroundG = 0; sim.presetEnded = false; sim.sparks = [];
+    sim.traceGround.fill(0); sim.traceHead = 0;
+    replay.frames = []; btnReplay.disabled = true; btnReplay.classList.remove('highlight');
+    if (!keepRunning) { sim.running = false; updateShakeButton(); }
+    syncUI();
+  }
+
+  function computeTowerDerivatives(tw, twIdx, u, v, u0, v0, ud, vd, ag) {
+    const N = tw.N, au = new Array(N).fill(0), F = new Array(N).fill(0);
+    let a0 = 0, ad = 0;
+    const hasStiff = tw.storyBraceK.some(x => x > 0) || tw.storyWallK.some(x => x > 0);
+    const cFactor = (2 * (hasStiff ? 0.032 : 0.022)) / Math.max(2.0, 2 * Math.PI * tw.f1);
+    for (let i = 0; i < N; i++) {
+      const belowU = i === 0 ? (tw.isoOn ? u0 : 0) : u[i - 1], belowV = i === 0 ? (tw.isoOn ? v0 : 0) : v[i - 1];
+      const drift = u[i] - belowU, dVel = v[i] - belowV, elastic = drift - tw.plastic[i], yCol = COL_YIELD_DRIFT * STORY_H;
+      const fCol = Math.abs(elastic) <= yCol ? tw.storyColK[i] * elastic : Math.sign(elastic) * tw.storyColK[i] * (yCol + 0.15 * (Math.abs(elastic) - yCol));
+      let fBrace = 0;
+      if (tw.storyBraceK[i] > 0) { const yB = 0.018 * STORY_H; fBrace = Math.abs(drift) <= yB ? tw.storyBraceK[i] * drift : Math.sign(drift) * tw.storyBraceK[i] * (yB + 0.12 * (Math.abs(drift) - yB)); }
+      let fWall = 0;
+      if (tw.storyWallK[i] > 0) { const yW = 0.014 * STORY_H; fWall = Math.abs(drift) <= yW ? tw.storyWallK[i] * drift : Math.sign(drift) * tw.storyWallK[i] * (yW + 0.10 * (Math.abs(drift) - yW)); }
+      F[i] = fCol + fBrace + fWall - getStoryKG(tw, i) * drift + cFactor * getStoryK(tw, i) * dVel;
+    }
+    let fTmd = 0;
+    if (tw.tmdOn) {
+      const st = ud - u[N - 1], sv = vd - v[N - 1];
+      fTmd = tw.tmdK * st + tw.tmdC * sv + (Math.abs(st) > TMD_MAX_STROKE ? Math.sign(st) * tw.tmdK * 14 * (Math.abs(st) - TMD_MAX_STROKE) : 0);
+      ad = -ag - fTmd / tw.tmdM;
+    }
+    if (tw.isoOn) {
+      const fIso = tw.isoK * u0 + tw.isoC * v0 + (Math.abs(u0) > ISO_MAX_STROKE ? Math.sign(u0) * tw.isoK * 18 * (Math.abs(u0) - ISO_MAX_STROKE) : 0);
+      a0 = -ag + (F[0] - fIso) / tw.isoM;
+    }
+    for (let i = 0; i < N; i++) {
+      let net = -F[i] + (i < N - 1 ? F[i + 1] : 0) + (i === N - 1 && tw.tmdOn ? fTmd : 0);
+      if (sim.dragTowerIdx === twIdx && sim.dragStoryIdx === i && !sim.running) net += 1500 * (sim.dragTargetX - u[i]) - 46 * v[i];
+      au[i] = -ag + net / tw.storyMass[i];
+    }
+    return { au, a0, ad, F };
+  }
+
+  function stepTowerRK4(tw, twIdx, dt, ag) {
+    const N = tw.N; if (N === 0) return 0;
+    if (tw.collapsed) { stepDebris(tw, dt); return 0; }
+    const u = tw.u, v = tw.v;
+    const d1 = computeTowerDerivatives(tw, twIdx, u, v, tw.u0, tw.v0, tw.ud, tw.vd, ag);
+    const u2 = u.map((x, i) => x + 0.5 * dt * v[i]), v2 = v.map((x, i) => x + 0.5 * dt * d1.au[i]);
+    const d2 = computeTowerDerivatives(tw, twIdx, u2, v2, tw.u0 + 0.5 * dt * tw.v0, tw.v0 + 0.5 * dt * d1.a0, tw.ud + 0.5 * dt * tw.vd, tw.vd + 0.5 * dt * d1.ad, ag);
+    const u3 = u.map((x, i) => x + 0.5 * dt * v2[i]), v3 = v.map((x, i) => x + 0.5 * dt * d2.au[i]);
+    const d3 = computeTowerDerivatives(tw, twIdx, u3, v3, tw.u0 + 0.5 * dt * (tw.v0 + 0.5 * dt * d1.a0), tw.v0 + 0.5 * dt * d2.a0, tw.ud + 0.5 * dt * (tw.vd + 0.5 * dt * d1.ad), tw.vd + 0.5 * dt * d2.ad, ag);
+    const u4 = u.map((x, i) => x + dt * v3[i]), v4 = v.map((x, i) => x + dt * d3.au[i]);
+    const d4 = computeTowerDerivatives(tw, twIdx, u4, v4, tw.u0 + dt * (tw.v0 + 0.5 * dt * d2.a0), tw.v0 + dt * d3.a0, tw.ud + dt * (tw.vd + 0.5 * dt * d2.ad), tw.vd + dt * d3.ad, ag);
+
+    for (let i = 0; i < N; i++) {
+      tw.u[i] += (dt / 6) * (v[i] + 2 * v2[i] + 2 * v3[i] + v4[i]);
+      tw.v[i] += (dt / 6) * (d1.au[i] + 2 * d2.au[i] + 2 * d3.au[i] + d4.au[i]);
+    }
+    if (tw.isoOn) {
+      const v0_2 = tw.v0 + 0.5 * dt * d1.a0, v0_3 = tw.v0 + 0.5 * dt * d2.a0, v0_4 = tw.v0 + dt * d3.a0;
+      tw.u0 += (dt / 6) * (tw.v0 + 2 * v0_2 + 2 * v0_3 + v0_4); tw.v0 += (dt / 6) * (d1.a0 + 2 * d2.a0 + 2 * d3.a0 + d4.a0);
+    }
+    if (tw.tmdOn) {
+      const vd_2 = tw.vd + 0.5 * dt * d1.ad, vd_3 = tw.vd + 0.5 * dt * d2.ad, vd_4 = tw.vd + dt * d3.ad;
+      tw.ud += (dt / 6) * (tw.vd + 2 * vd_2 + 2 * vd_3 + vd_4); tw.vd += (dt / 6) * (d1.ad + 2 * d2.ad + 2 * d3.ad + d4.ad);
+    }
+
+    let maxStrain = 0, cumMoment = 0;
+    for (let i = N - 1; i >= 0; i--) {
+      cumMoment += Math.abs(d1.F[i]) * STORY_H;
+      const belowU = i === 0 ? (tw.isoOn ? tw.u0 : 0) : tw.u[i - 1], drift = tw.u[i] - belowU, driftR = Math.abs(drift) / STORY_H;
+      tw.theta[i] = (drift / STORY_H) * (tw.storyWallK[i] > 0 ? 0.05 : tw.storyBraceK[i] > 0 ? 0.09 : 0.22);
+      const effBreak = COL_BREAK_DRIFT * Math.max(0.72, 1.0 - (cumMoment / (tw.baseWidthM * 170)) * 0.09);
+      const yCol = COL_YIELD_DRIFT * STORY_H, elastic = drift - tw.plastic[i];
+      if (Math.abs(elastic) > yCol) tw.plastic[i] += (elastic - Math.sign(elastic) * yCol) * 0.14;
+
+      if (tw.storyWallK[i] > 0 && driftR > WALL_BREAK_DRIFT) {
+        for (let b = 0; b < MAX_BAYS; b++) if (tw.grid[i][b] && tw.grid[i][b].wall) tw.grid[i][b].wallBroken = true;
+        audio.snap(); spawnSparks(twIdx, i, 14, '#e2c179'); computeTowerModal(tw);
+        updateRigStatusLabel(`RIG ${tw.id} · F${i + 1} SHEAR WALL CRACKED`);
+      }
+      if (tw.storyBraceK[i] > 0 && driftR > BRACE_BREAK_DRIFT) {
+        for (let b = 0; b < MAX_BAYS; b++) if (tw.grid[i][b] && tw.grid[i][b].braceMode > 0) tw.grid[i][b].braceBroken = true;
+        audio.snap(); spawnSparks(twIdx, i, 12, '#ffd36b'); computeTowerModal(tw);
+        updateRigStatusLabel(`RIG ${tw.id} · F${i + 1} BRACE SNAPPED`);
+      }
+      const limit = tw.storyWallK[i] > 0 ? WALL_BREAK_DRIFT : tw.storyBraceK[i] > 0 ? BRACE_BREAK_DRIFT : effBreak;
+      tw.strain[i] = driftR / limit; tw.force[i] = Math.abs(d1.F[i]);
+      if (tw.strain[i] > maxStrain) maxStrain = tw.strain[i];
+      if (app.motionOn && tw.strain[i] > 0.65 && Math.random() < 0.07) spawnSparks(twIdx, i, 1, '#ff9f43');
+      if (driftR > effBreak) { triggerCollapse(tw, twIdx, i); break; }
+    }
+    return maxStrain;
+  }
+
+  function stepPhysics(dtFrame) {
+    const dt = dtFrame / SUBSTEPS, list = activeTowersList();
+    for (let s = 0; s < SUBSTEPS; s++) {
+      let ag = 0;
+      if (sim.running) {
+        sim.t += dt;
+        const gs = sampleGroundAccel(sim.t); ag = gs.ag; sim.activeFreqHz = gs.freq;
+        if (gs.done && !sim.presetEnded) { sim.presetEnded = true; sim.running = false; updateShakeButton(); evaluateChallengeOnFinish(); }
+      }
+      sim.ag = ag;
+      sim.vg += (ag - 3.2 * sim.vg - 4.5 * sim.xg) * dt;
+      sim.xg = Math.max(-0.14, Math.min(0.14, sim.xg + sim.vg * dt));
+      let peakSt = 0;
+      for (let idx = 0; idx < list.length; idx++) { const st = stepTowerRK4(list[idx], idx, dt, ag); if (st > peakSt) peakSt = st; }
+      if (peakSt > 0.55) audio.creak(peakSt);
+    }
+    for (let i = sim.sparks.length - 1; i >= 0; i--) {
+      const p = sim.sparks[i]; p.x += p.vx * dtFrame; p.y += p.vy * dtFrame; p.vy += 4.5 * dtFrame; p.life -= dtFrame;
+      if (p.life <= 0) sim.sparks.splice(i, 1);
+    }
+    sim.traceGround[sim.traceHead] = sim.ag / G_ACCEL;
+    for (const tw of list) {
+      const rd = (tw.N > 0 && !tw.collapsed) ? (tw.u[tw.N - 1] - (tw.isoOn ? tw.u0 : 0)) : 0;
+      tw.traceRoof[sim.traceHead] = tw.N > 0 ? rd / (STORY_H * tw.N * 0.08) : 0;
+    }
+    sim.traceHead = (sim.traceHead + 1) % sim.traceGround.length;
+    if (sim.running || list.some(tw => (tw.collapsed && tw.collapseTime < 2.0) || (tw.N > 0 && Math.abs(tw.v[tw.N - 1]) > 0.02))) recordReplayFrame();
+    audio.updateHum(sim.running, Math.abs(sim.vg));
+  }
+
+  function towerOffsetM(twIdx) { return app.compareMode ? (twIdx === 0 ? -0.78 : 0.78) : 0; }
+
+  function spawnSparks(twIdx, storyIdx, count, color) {
+    if (!app.motionOn) return;
+    const tw = towers[twIdx], xB = towerOffsetM(twIdx) + sim.xg * 1.4 + (tw.u[storyIdx] || 0) * VISUAL_DEFLECT_GAIN, yB = (storyIdx + 0.5) * STORY_H;
+    for (let k = 0; k < count; k++) sim.sparks.push({ x: xB + (Math.random() - 0.5) * tw.baseWidthM, y: yB + (Math.random() - 0.5) * 0.06, vx: (Math.random() - 0.5) * 1.4, vy: -0.4 - Math.random() * 1.1, life: 0.35 + Math.random() * 0.45, color });
+  }
+
+  function triggerCollapse(tw, twIdx, failStory) {
+    tw.collapsed = true; tw.collapseTime = 0;
+    audio.collapse(); spawnSparks(twIdx, failStory, 28, '#ff7f45');
+    updateRigStatusLabel(`RIG ${tw.id} COLLAPSED · F${failStory + 1}`);
+    const belowU = failStory > 0 ? tw.u[failStory - 1] : (tw.isoOn ? tw.u0 : 0);
+    const dir = Math.sign(tw.u[failStory] - belowU) || 1, offM = towerOffsetM(twIdx);
+    tw.debris = [];
+    for (let s = 0; s < tw.N; s++) {
+      const above = s >= failStory;
+      for (let b = 0; b < MAX_BAYS; b++) {
+        const c = tw.grid[s][b]; if (!c) continue;
+        tw.debris.push({
+          s, shape: c.shape, ballast: c.ballast,
+          x: offM + (b - 2) * BAY_W + sim.xg * 1.4 + tw.u[s] * VISUAL_DEFLECT_GAIN,
+          y: (s + 0.6) * STORY_H,
+          vx: sim.vg + tw.v[s] * 1.3 + (above ? dir * (0.25 + 0.08 * (s - failStory)) : 0) + (Math.random() - 0.5) * 0.16,
+          vy: above ? -0.05 : 0,
+          angle: (tw.theta[s] || 0) + (above ? dir * 0.05 * (s - failStory + 1) : 0),
+          vAngle: above ? dir * (1.2 + Math.random() * 1.6) : (Math.random() - 0.5) * 0.35
+        });
+      }
+    }
+    btnReplay.disabled = false; btnReplay.classList.add('highlight');
+    if (activeChallenge && twIdx === 0 && !activeChallenge.passed) {
+      challengeBanner.classList.remove('passed'); challengeBanner.classList.add('failed');
+      challengeBannerText.innerHTML = `<strong>${activeChallenge.title}:</strong> Collapsed at Floor ${failStory + 1}. Back to Build to strengthen it.`;
+    }
+  }
+
+  function stepDebris(tw, dt) {
+    tw.collapseTime += dt;
+    const slabH = 0.04;
+    for (const d of tw.debris) {
+      d.vy -= G_ACCEL * 0.65 * dt; d.x += d.vx * dt; d.y += d.vy * dt; d.angle += d.vAngle * dt;
+      const gY = slabH * 0.55 + d.s * (slabH * 0.85);
+      if (d.y < gY) {
+        d.y = gY; d.vy = Math.abs(d.vy) > 0.12 ? -d.vy * 0.22 : 0;
+        d.vx += (sim.vg - d.vx) * Math.min(1, 9 * dt);
+        d.vAngle *= Math.max(0, 1 - 10 * dt); d.angle *= Math.max(0, 1 - 4 * dt);
+      }
+    }
+  }
+
+  /* ============================================================================
+     SLOW-MOTION REPLAY
+     ============================================================================ */
+  function snapshotTower(tw) {
+    return {
+      u: tw.u.slice(), theta: tw.theta.slice(), strain: tw.strain.slice(), force: tw.force.slice(),
+      u0: tw.u0, ud: tw.ud, collapsed: tw.collapsed, debris: tw.debris.map(d => ({ ...d })),
+      brokenMap: tw.grid.map(r => r.map(c => c ? (c.braceBroken ? 1 : 0) | (c.wallBroken ? 2 : 0) : 0))
+    };
+  }
+  function recordReplayFrame() {
+    replay.frames.push({ t: sim.t, xg: sim.xg, ag: sim.ag, towers: [snapshotTower(towers[0]), snapshotTower(towers[1])] });
+    if (replay.frames.length > MAX_REPLAY_FRAMES) replay.frames.shift();
+    if (replay.frames.length > 30) btnReplay.disabled = false;
+  }
+  function enterReplay() {
+    if (replay.frames.length < 10) return;
+    sim.running = false; updateShakeButton();
+    replay.active = true; replay.paused = false; replay.cursor = 0;
+    replayScrub.max = replay.frames.length - 1; replayScrub.value = 0;
+    btnReplayPause.textContent = 'Pause'; replayBar.classList.add('active');
+    rigStatus.textContent = '0.25× SLOW-MO REPLAY'; audio.click(540);
+  }
+  function exitReplay() {
+    if (!replay.active) return;
+    replay.active = false; replayBar.classList.remove('active'); updateRigStatusLabel();
+  }
+
+  /* ============================================================================
+     AUTO-FRAMING CAMERA & MULTI-SHAPE RENDERER (TRIANGLES, ARCHES, V-BRACES!)
+     ============================================================================ */
+  const viewMetrics = { w: 800, h: 480, pxPerM: 280, targetPxPerM: 280, tableY: 420, centerX: 430 };
+
+  function computeTargetScale() {
+    const { w, h } = viewMetrics;
+    const list = activeTowersList();
+    const maxStoriesBuilt = Math.max(0, ...list.map(t => t.N));
+    const storiesToFrame = app.labMode === 'build'
+      ? Math.min(MAX_STORIES + 0.5, Math.max(4.4, maxStoriesBuilt + 1.4))
+      : Math.max(3.6, maxStoriesBuilt + 0.9);
+    const hasIso = list.some(t => t.isoOn);
+    const hasTmd = list.some(t => t.tmdOn);
+    const totalHeightM = storiesToFrame * STORY_H + (hasIso ? 0.11 : 0) + (hasTmd ? 0.11 : 0) + 0.08;
+
+    const availH = Math.max(180, h - 78);
+    const availW = Math.max(240, w - 120);
+    const widthSpanM = app.compareMode ? 3.15 : (app.labMode === 'build' ? 1.55 : Math.max(1.05, (list[0].maxBay - list[0].minBay + 1) * BAY_W + 0.45));
+
+    const byH = availH / totalHeightM;
+    const byW = availW / widthSpanM;
+    viewMetrics.targetPxPerM = Math.max(82, Math.min(390, byH, byW));
+  }
+
+  function resizeCanvases() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = labCanvas.parentElement.getBoundingClientRect();
+    labCanvas.width = Math.max(300, Math.floor(rect.width * dpr));
+    labCanvas.height = Math.max(200, Math.floor(rect.height * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    viewMetrics.w = rect.width; viewMetrics.h = rect.height;
+    viewMetrics.tableY = rect.height - 44;
+    viewMetrics.centerX = rect.width * 0.53;
+    computeTargetScale();
+    viewMetrics.pxPerM = viewMetrics.targetPxPerM;
+  }
+
+  function strainColor(s) {
+    if (s < 0.42) return '#495360';
+    if (s < 0.72) { const k = (s - 0.42) / 0.30; return `rgb(${Math.round(73 + 170 * k)},${Math.round(83 + 73 * k)},${Math.round(96 - 53 * k)})`; }
+    const k = Math.min(1, (s - 0.72) / 0.28);
+    return `rgb(${Math.round(243 - 15 * k)},${Math.round(156 - 98 * k)},${Math.round(43 - 5 * k)})`;
+  }
+
+  function drawSingleTower(tw, twIdx, snap, tableCenterX, baseYTop, pxPerM) {
+    const bayWpx = BAY_W * pxPerM, storyHpx = STORY_H * pxPerM;
+    const rigX = tableCenterX + towerOffsetM(twIdx) * pxPerM;
+
+    if (app.compareMode) {
+      const isSel = twIdx === app.activeIdx;
+      ctx.fillStyle = isSel ? (twIdx === 0 ? '#2f9660' : '#2587ad') : 'rgba(90, 100, 110, 0.65)';
+      ctx.font = 'bold 10px ui-monospace, Menlo, monospace'; ctx.textAlign = 'center';
+      ctx.fillText(`RIG ${tw.id}${isSel ? ' · EDITING' : ''} (${tw.T1 ? tw.T1.toFixed(2) + 's' : 'BLANK'})`, rigX, baseYTop + 26);
+    }
+
+    let baseY = baseYTop, baseCenterX = rigX;
+
+    if (tw.isoOn) {
+      const isoH = Math.max(14, 0.075 * pxPerM);
+      baseCenterX = rigX + (snap.u0 || 0) * pxPerM * VISUAL_DEFLECT_GAIN;
+      const isoSpan = Math.max(bayWpx * 1.4, tw.baseWidthM * pxPerM);
+      for (const side of [-0.46, 0, 0.46]) {
+        if (side === 0 && isoSpan < bayWpx * 2.5) continue;
+        const bx0 = rigX + side * isoSpan, bx1 = baseCenterX + side * isoSpan, bw = 20;
+        for (let l = 0; l < 5; l++) {
+          const lx = bx0 + (bx1 - bx0) * ((l + 0.5) / 5);
+          ctx.fillStyle = l % 2 === 0 ? '#222528' : '#8b949e';
+          ctx.fillRect(lx - bw / 2, baseY - (l + 1) * (isoH / 5), bw, isoH / 5 + 0.5);
+        }
+      }
+      const matH = 8;
+      ctx.fillStyle = '#4c5661'; ctx.fillRect(baseCenterX - isoSpan * 0.55, baseY - isoH - matH, isoSpan * 1.1, matH);
+      ctx.strokeStyle = '#1f2429'; ctx.lineWidth = 1.2; ctx.strokeRect(baseCenterX - isoSpan * 0.55, baseY - isoH - matH, isoSpan * 1.1, matH);
+      baseY = baseY - isoH - matH;
+    }
+
+    // 1. 5-BAY BLUEPRINT DRAFTING GRID (in BUILD mode)
+    if (app.labMode === 'build' && !sim.running && !replay.active && (!app.compareMode || twIdx === app.activeIdx)) {
+      const showRows = Math.min(MAX_STORIES, Math.max(4, tw.N + 2));
+      for (let s = 0; s < showRows; s++) {
+        for (let b = 0; b < MAX_BAYS; b++) {
+          const cx = baseCenterX + (b - 2) * bayWpx;
+          const cyTop = baseY - (s + 1) * storyHpx;
+          const hasCell = Boolean(tw.grid[s][b]);
+          const buildable = isCellBuildable(tw, s, b);
+          const isHover = app.hoverCell && app.hoverCell.twIdx === twIdx && app.hoverCell.s === s && app.hoverCell.b === b;
+          const isKb = app.kbActive && twIdx === app.activeIdx && app.kbCursor.s === s && app.kbCursor.b === b;
+
+          if (!hasCell && buildable) {
+            ctx.fillStyle = (isHover || isKb) ? 'rgba(32, 104, 150, 0.20)' : 'rgba(32, 104, 150, 0.045)';
+            ctx.strokeStyle = (isHover || isKb) ? 'rgba(32, 104, 150, 0.88)' : 'rgba(32, 104, 150, 0.26)';
+            ctx.lineWidth = (isHover || isKb) ? 1.8 : 1;
+            ctx.setLineDash([4, 4]);
+            ctx.fillRect(cx - bayWpx / 2 + 2, cyTop + 2, bayWpx - 4, storyHpx - 4);
+            ctx.strokeRect(cx - bayWpx / 2 + 2, cyTop + 2, bayWpx - 4, storyHpx - 4);
+            ctx.setLineDash([]);
+            if (isHover || isKb || (tw.N === 0 && s === 0 && b === 2)) {
+              ctx.fillStyle = '#185378'; ctx.font = 'bold 10px ui-monospace, Menlo, monospace'; ctx.textAlign = 'center';
+              ctx.fillText(tw.N === 0 ? '+ BOLT HERE' : `+ F${s + 1}`, cx, cyTop + storyHpx * 0.5 + 3);
+            }
+          } else if (hasCell && (isHover || isKb)) {
+            ctx.strokeStyle = app.part === 'erase' ? '#e24a33' : '#2b8ac6';
+            ctx.lineWidth = 2.2;
+            ctx.strokeRect(cx - bayWpx / 2 + 1, cyTop + 1, bayWpx - 2, storyHpx - 2);
+          }
+        }
+      }
+    }
+
+    if (tw.N === 0) return;
+
+    // 2. COLLAPSED MULTI-SHAPE DEBRIS
+    if (snap.collapsed && snap.debris && snap.debris.length > 0) {
+      const slabH = Math.max(7, 0.036 * pxPerM);
+      for (const d of snap.debris) {
+        const sx = viewMetrics.centerX + d.x * pxPerM, sy = baseY - d.y * pxPerM;
+        ctx.save(); ctx.translate(sx, sy); ctx.rotate(d.angle);
+        if (d.shape && d.shape.startsWith('tri')) {
+          ctx.strokeStyle = '#5c6773'; ctx.lineWidth = 3;
+          ctx.beginPath(); ctx.moveTo(-bayWpx * 0.42, slabH); ctx.lineTo(0, -slabH * 1.4); ctx.lineTo(bayWpx * 0.42, slabH); ctx.closePath(); ctx.stroke();
+        } else if (d.shape === 'arch') {
+          ctx.strokeStyle = '#4e6c7c'; ctx.lineWidth = 4;
+          ctx.beginPath(); ctx.moveTo(-bayWpx * 0.45, slabH); ctx.quadraticCurveTo(0, -slabH * 1.8, bayWpx * 0.45, slabH); ctx.stroke();
+        } else {
+          ctx.fillStyle = '#5d6773'; ctx.fillRect(-bayWpx / 2, -slabH / 2, bayWpx, slabH);
+          ctx.strokeStyle = '#1f2328'; ctx.lineWidth = 1.1; ctx.strokeRect(-bayWpx / 2, -slabH / 2, bayWpx, slabH);
+        }
+        ctx.restore();
+      }
+      return;
+    }
+
+    // 3. MODE-SHAPE BLUEPRINT GHOST
+    if (app.modeInspect > 0 && !sim.running && !replay.active && twIdx === app.activeIdx) {
+      const modeVec = app.modeInspect === 1 ? tw.mode1 : tw.mode2;
+      if (modeVec && modeVec.length === tw.N) {
+        const osc = Math.sin(app.modePhase), ampPx = Math.min(48, bayWpx * 0.6);
+        ctx.save();
+        ctx.strokeStyle = app.modeInspect === 1 ? 'rgba(28, 138, 178, 0.8)' : 'rgba(186, 102, 22, 0.82)';
+        ctx.lineWidth = 2.6; ctx.setLineDash([5, 4]);
+        let prevX = baseCenterX, prevY = baseY;
+        for (let s = 0; s < tw.N; s++) {
+          const mx = baseCenterX + modeVec[s] * ampPx * osc, my = baseY - (s + 1) * storyHpx;
+          ctx.beginPath(); ctx.moveTo(prevX, prevY); ctx.lineTo(mx, my); ctx.stroke();
+          ctx.beginPath(); ctx.arc(mx, my, 4.5, 0, Math.PI * 2); ctx.stroke();
+          prevX = mx; prevY = my;
+        }
+        ctx.setLineDash([]);
+        ctx.fillStyle = app.modeInspect === 1 ? '#176785' : '#8f4d0e';
+        ctx.font = 'bold 11px ui-monospace, Menlo, monospace'; ctx.textAlign = 'center';
+        ctx.fillText(`MODE ${app.modeInspect} · ${(app.modeInspect === 1 ? tw.f1 : tw.f2).toFixed(2)} Hz`, baseCenterX, baseY - tw.N * storyHpx - 24);
+        ctx.restore();
+      }
+    }
+
+    // 4. DRAW INTACT MULTI-SHAPE STRUCTURE
+    const fx = new Array(tw.N + 1), fy = new Array(tw.N + 1);
+    fx[0] = baseCenterX; fy[0] = baseY;
+    for (let s = 0; s < tw.N; s++) {
+      fx[s + 1] = rigX + (snap.u[s] || 0) * pxPerM * VISUAL_DEFLECT_GAIN;
+      fy[s + 1] = baseY - (s + 1) * storyHpx;
+    }
+
+    const slabH = Math.max(7.5, 0.036 * pxPerM);
+
+    for (let s = 0; s < tw.N; s++) {
+      const x0 = fx[s], y0 = fy[s], x1 = fx[s + 1], y1 = fy[s + 1];
+      const strain = snap.strain[s] || 0, cCol = strainColor(strain);
+
+      for (let b = 0; b < MAX_BAYS; b++) {
+        const cell = tw.grid[s][b]; if (!cell) continue;
+        const bOff = (b - 2) * bayWpx, bx0 = x0 + bOff, bx1 = x1 + bOff, halfB = bayWpx / 2;
+        const bFlags = snap.brokenMap ? snap.brokenMap[s][b] : 0;
+        const braceBroken = Boolean(bFlags & 1), wallBroken = Boolean(bFlags & 2);
+        const colThick = [2.6, 4.6, 7.2][cell.gauge];
+
+        if (cell.shape === 'triL' || cell.shape === 'triR' || cell.shape === 'triP') {
+          // ===== TRIANGULAR STEEL TRUSS MODULE =====
+          ctx.save();
+          ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+          let pA, pB, pC;
+          if (cell.shape === 'triL') { pA = [bx0 - halfB + 3, y0 - 2]; pB = [bx0 + halfB - 2, y0 - 2]; pC = [bx1 + halfB - 2, y1 + 2]; }
+          else if (cell.shape === 'triR') { pA = [bx0 - halfB + 2, y0 - 2]; pB = [bx0 + halfB - 3, y0 - 2]; pC = [bx1 - halfB + 2, y1 + 2]; }
+          else { pA = [bx0 - halfB + 3, y0 - 2]; pB = [bx0 + halfB - 3, y0 - 2]; pC = [bx1, y1 + 4]; }
+
+          // Subtle steel truss fill
+          ctx.fillStyle = strain > 0.55 ? 'rgba(243, 156, 43, 0.16)' : 'rgba(84, 98, 112, 0.12)';
+          ctx.beginPath(); ctx.moveTo(pA[0], pA[1]); ctx.lineTo(pB[0], pB[1]); ctx.lineTo(pC[0], pC[1]); ctx.closePath(); ctx.fill();
+
+          // Internal truss web strut
+          ctx.strokeStyle = strain > 0.55 ? cCol : '#6c7785';
+          ctx.lineWidth = Math.max(1.8, colThick * 0.45);
+          ctx.beginPath();
+          if (cell.shape === 'triP') {
+            ctx.moveTo(pC[0], pC[1]); ctx.lineTo((pA[0] + pB[0]) / 2, y0 - 2);
+          } else {
+            ctx.moveTo((pA[0] + pC[0]) / 2, (pA[1] + pC[1]) / 2); ctx.lineTo(pB[0], pB[1]);
+          }
+          ctx.stroke();
+
+          // Outer steel chords
+          ctx.strokeStyle = cCol; ctx.lineWidth = colThick;
+          ctx.beginPath(); ctx.moveTo(pA[0], pA[1]); ctx.lineTo(pB[0], pB[1]); ctx.lineTo(pC[0], pC[1]); ctx.closePath(); ctx.stroke();
+
+          // Riveted gusset pins at vertices
+          ctx.fillStyle = '#c8a258';
+          for (const pt of [pA, pB, pC]) { ctx.beginPath(); ctx.arc(pt[0], pt[1], 3.2, 0, Math.PI * 2); ctx.fill(); }
+          ctx.restore();
+        } else if (cell.shape === 'arch') {
+          // ===== CURVED PARABOLIC STEEL ARCH MODULE =====
+          ctx.save();
+          const left0 = bx0 - halfB + colThick * 0.5, right0 = bx0 + halfB - colThick * 0.5;
+          const left1 = bx1 - halfB + colThick * 0.5, right1 = bx1 + halfB - colThick * 0.5;
+          const apexX = bx1, apexY = y1 + slabH * 0.6;
+
+          // Subtle spandrel fill above arch curve
+          ctx.fillStyle = strain > 0.55 ? 'rgba(243, 156, 43, 0.16)' : 'rgba(72, 108, 128, 0.14)';
+          ctx.beginPath();
+          ctx.moveTo(left1, y1 + 2); ctx.lineTo(right1, y1 + 2);
+          ctx.lineTo(right0, y0 - 2);
+          ctx.quadraticCurveTo(apexX, apexY - storyHpx * 0.45, left0, y0 - 2);
+          ctx.closePath(); ctx.fill();
+
+          // Spandrel vertical ribs
+          ctx.strokeStyle = 'rgba(75, 88, 102, 0.55)'; ctx.lineWidth = 1.6;
+          for (const t of [0.22, 0.36, 0.64, 0.78]) {
+            const ax = (1 - t) * (1 - t) * left0 + 2 * (1 - t) * t * apexX + t * t * right0;
+            const ay = (1 - t) * (1 - t) * (y0 - 2) + 2 * (1 - t) * t * (apexY - storyHpx * 0.45) + t * t * (y0 - 2);
+            const tx = left1 + (right1 - left1) * t;
+            ctx.beginPath(); ctx.moveTo(tx, y1 + 2); ctx.lineTo(ax, ay); ctx.stroke();
+          }
+
+          // Main curved parabolic steel arch rib
+          ctx.strokeStyle = strain > 0.5 ? cCol : '#3e6278';
+          ctx.lineWidth = colThick + 1.8; ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(left0, y0 - 2);
+          ctx.quadraticCurveTo(apexX, apexY - storyHpx * 0.45, right0, y0 - 2);
+          ctx.stroke();
+
+          // Outer edge piers
+          ctx.strokeStyle = cCol; ctx.lineWidth = colThick * 0.85;
+          ctx.beginPath();
+          ctx.moveTo(left0, y0); ctx.lineTo(left1, y1);
+          ctx.moveTo(right0, y0); ctx.lineTo(right1, y1);
+          ctx.stroke();
+
+          // Brass keystone at arch crown
+          ctx.fillStyle = '#c8a258';
+          ctx.fillRect(apexX - 4, y1 + 2, 8, 7);
+          ctx.restore();
+        } else {
+          // ===== RECTANGULAR BOX FRAME BAY =====
+          if (cell.wall) {
+            if (!wallBroken) {
+              ctx.save();
+              ctx.beginPath();
+              ctx.moveTo(bx0 - halfB + 4, y0 - 2); ctx.lineTo(bx0 + halfB - 4, y0 - 2);
+              ctx.lineTo(bx1 + halfB - 4, y1 + 3); ctx.lineTo(bx1 - halfB + 4, y1 + 3);
+              ctx.closePath();
+              ctx.fillStyle = strain > 0.6 ? 'rgba(220, 120, 48, 0.45)' : 'rgba(92, 106, 120, 0.55)';
+              ctx.fill(); ctx.strokeStyle = strain > 0.6 ? cCol : '#4a5562'; ctx.lineWidth = 1.4; ctx.stroke();
+              ctx.strokeStyle = 'rgba(35, 42, 50, 0.35)';
+              for (let rib = -0.3; rib <= 0.31; rib += 0.2) {
+                ctx.beginPath(); ctx.moveTo(bx0 + rib * bayWpx, y0 - 2); ctx.lineTo(bx1 + rib * bayWpx, y1 + 3); ctx.stroke();
+              }
+              ctx.restore();
+            } else {
+              ctx.strokeStyle = '#9c3626'; ctx.lineWidth = 1.8; ctx.setLineDash([4, 3]);
+              ctx.beginPath(); ctx.moveTo(bx0 - halfB + 6, y0 - 4); ctx.lineTo(bx1 + halfB - 6, y1 + 6); ctx.stroke(); ctx.setLineDash([]);
+            }
+          }
+
+          if (cell.braceMode > 0) {
+            if (!braceBroken) {
+              ctx.strokeStyle = strain > 0.55 ? cCol : '#687482'; ctx.lineWidth = 2.2;
+              ctx.beginPath();
+              if (cell.braceMode === 1) {
+                // X-Brace
+                ctx.moveTo(bx0 - halfB + 4, y0 - 2); ctx.lineTo(bx1 + halfB - 4, y1 + 3);
+                ctx.moveTo(bx0 + halfB - 4, y0 - 2); ctx.lineTo(bx1 - halfB + 4, y1 + 3);
+              } else {
+                // Chevron Inverted-V Brace
+                ctx.moveTo(bx0 - halfB + 4, y0 - 2); ctx.lineTo(bx1, y1 + 4);
+                ctx.lineTo(bx0 + halfB - 4, y0 - 2);
+              }
+              ctx.stroke();
+              ctx.fillStyle = '#c8a258';
+              ctx.beginPath();
+              ctx.arc(cell.braceMode === 1 ? (bx0 + bx1) * 0.5 : bx1, cell.braceMode === 1 ? (y0 + y1) * 0.5 : y1 + 5, 3, 0, Math.PI * 2);
+              ctx.fill();
+            } else {
+              ctx.strokeStyle = '#993a2b'; ctx.lineWidth = 1.6; ctx.setLineDash([3, 3]);
+              ctx.beginPath(); ctx.moveTo(bx0 - halfB + 4, y0 - 2); ctx.lineTo((bx0 + bx1) * 0.5 - 8, (y0 + y1) * 0.5 + 8); ctx.stroke(); ctx.setLineDash([]);
+            }
+          }
+
+          const supported = (s === 0) || Boolean(tw.grid[s - 1][b]);
+          if (supported) {
+            ctx.strokeStyle = cCol; ctx.lineWidth = colThick;
+            const midY = (y0 + y1) * 0.5;
+            for (const side of [-1, 1]) {
+              const sx0 = bx0 + side * (halfB - colThick * 0.5), sx1 = bx1 + side * (halfB - colThick * 0.5);
+              ctx.beginPath(); ctx.moveTo(sx0, y0); ctx.bezierCurveTo(sx0, midY, sx1, midY, sx1, y1); ctx.stroke();
+            }
+          } else {
+            ctx.strokeStyle = '#5c6672'; ctx.lineWidth = 2;
+            const anchorSide = (b > 0 && tw.grid[s][b - 1]) ? -1 : 1;
+            ctx.beginPath(); ctx.moveTo(bx0 + anchorSide * halfB, y0); ctx.lineTo(bx1 - anchorSide * (halfB - 4), y1 + slabH / 2); ctx.stroke();
+          }
+        }
+      }
+
+      // Draw Floor Decks (for Box and Arch modules) & Brass Ballast
+      const rot = (snap.theta ? snap.theta[s] : 0) * 0.35;
+      for (let b = 0; b < MAX_BAYS; b++) {
+        const cell = tw.grid[s][b]; if (!cell) continue;
+        const bx = x1 + (b - 2) * bayWpx;
+        if (cell.shape === 'box' || cell.shape === 'arch') {
+          ctx.save(); ctx.translate(bx, y1); ctx.rotate(rot);
+          ctx.fillStyle = '#525c67'; ctx.fillRect(-bayWpx / 2 - 2, -slabH / 2, bayWpx + 4, slabH);
+          ctx.fillStyle = '#8d98a5'; ctx.fillRect(-bayWpx / 2 - 2, -slabH / 2, bayWpx + 4, 2);
+          ctx.strokeStyle = '#1f2328'; ctx.lineWidth = 1.1; ctx.strokeRect(-bayWpx / 2 - 2, -slabH / 2, bayWpx + 4, slabH);
+          for (let k = 0; k < cell.ballast; k++) {
+            ctx.fillStyle = k % 2 === 0 ? '#c8a258' : '#b28b42';
+            ctx.fillRect(-bayWpx * 0.36, -slabH / 2 - (k + 1) * 3.6, bayWpx * 0.72, 3.2);
+          }
+          ctx.restore();
+        } else if (cell.ballast > 0) {
+          // Brass ballast resting at base of triangle
+          for (let k = 0; k < cell.ballast; k++) {
+            ctx.fillStyle = '#c8a258';
+            ctx.fillRect(fx[s] + (b - 2) * bayWpx - bayWpx * 0.25, y0 - 5 - k * 3.8, bayWpx * 0.5, 3.2);
+          }
+        }
+      }
+    }
+
+    // 5. TUNED MASS DAMPER ON HIGHEST FLOOR
+    if (tw.tmdOn && tw.N > 0) {
+      const topS = tw.N - 1;
+      let bSum = 0, bCnt = 0, maxBal = 0;
+      for (let b = 0; b < MAX_BAYS; b++) if (tw.grid[topS][b]) { bSum += (b - 2); bCnt++; maxBal = Math.max(maxBal, tw.grid[topS][b].ballast); }
+      const centerOff = (bSum / Math.max(1, bCnt)) * bayWpx;
+      const roofX = fx[tw.N] + centerOff, roofY = fy[tw.N] - slabH / 2 - maxBal * 3.6;
+      const railW = Math.max(bayWpx * 0.92, bCnt * bayWpx * 0.65), railH = 17;
+      const tmdX = rigX + centerOff + (snap.ud || 0) * pxPerM * VISUAL_DEFLECT_GAIN;
+      const clampedX = Math.max(roofX - railW * 0.4, Math.min(roofX + railW * 0.4, tmdX));
+
+      ctx.fillStyle = '#343a42'; ctx.fillRect(roofX - railW / 2, roofY - railH, 4, railH); ctx.fillRect(roofX + railW / 2 - 4, roofY - railH, 4, railH);
+      ctx.fillStyle = '#d4dce4'; ctx.fillRect(roofX - railW / 2 + 4, roofY - railH + 4, railW - 8, 2.2); ctx.fillRect(roofX - railW / 2 + 4, roofY - 5, railW - 8, 2.2);
+      drawSpring(ctx, roofX - railW / 2 + 4, roofY - railH * 0.5, clampedX - 13, roofY - railH * 0.5, 5, 3.2);
+      drawSpring(ctx, clampedX + 13, roofY - railH * 0.5, roofX + railW / 2 - 4, roofY - railH * 0.5, 5, 3.2);
+      ctx.fillStyle = '#d6b162'; ctx.fillRect(clampedX - 13, roofY - 19, 26, 17);
+      ctx.strokeStyle = '#4a3510'; ctx.lineWidth = 1.1; ctx.strokeRect(clampedX - 13, roofY - 19, 26, 17);
+      ctx.fillStyle = '#2a1d06'; ctx.font = 'bold 8px ui-monospace, Menlo, monospace'; ctx.textAlign = 'center'; ctx.fillText('TMD', clampedX, roofY - 8);
+    }
+
+    if (sim.dragTowerIdx === twIdx && sim.dragStoryIdx >= 0 && !sim.running) {
+      const fyD = fy[sim.dragStoryIdx + 1], fxD = fx[sim.dragStoryIdx + 1];
+      ctx.strokeStyle = '#d98218'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
+      ctx.beginPath(); ctx.moveTo(rigX, fyD); ctx.lineTo(fxD, fyD); ctx.stroke(); ctx.setLineDash([]);
+    }
+  }
+
+  function renderLab(frameData) {
+    // Smooth auto-framing zoom so the structure always fills the screen cleanly!
+    computeTargetScale();
+    if (app.motionOn) viewMetrics.pxPerM += (viewMetrics.targetPxPerM - viewMetrics.pxPerM) * 0.14;
+    else viewMetrics.pxPerM = viewMetrics.targetPxPerM;
+
+    const { w, h, pxPerM, tableY, centerX } = viewMetrics;
+    const xg = frameData.xg;
+    ctx.clearRect(0, 0, w, h);
+
+    // Wall Grid
+    const gridPx = 0.22 * pxPerM;
+    ctx.strokeStyle = app.labMode === 'build' ? 'rgba(32, 104, 150, 0.10)' : 'rgba(48, 52, 58, 0.08)';
+    ctx.lineWidth = 1; ctx.beginPath();
+    for (let x = centerX % gridPx; x < w; x += gridPx) { ctx.moveTo(x, 0); ctx.lineTo(x, tableY + 26); }
+    for (let y = tableY; y > 0; y -= gridPx) { ctx.moveTo(0, y); ctx.lineTo(w, y); }
+    ctx.stroke();
+
+    // Concrete Lab Floor
+    ctx.fillStyle = '#99948b'; ctx.fillRect(0, tableY + 26, w, h - (tableY + 26));
+    ctx.fillStyle = '#79746b'; ctx.fillRect(0, tableY + 26, w, 4);
+
+    // Steel Shake Table Platen & Hydraulic Actuator
+    const platenW = app.compareMode ? Math.max(2.9 * pxPerM + 40, 420) : Math.max(MAX_BAYS * BAY_W * pxPerM + 64, 280);
+    const platenX = centerX + xg * pxPerM * 1.4 - platenW / 2;
+    const wallW = Math.max(28, Math.min(62, platenX - 54));
+
+    if (wallW > 18) {
+      ctx.fillStyle = '#3d444d'; ctx.fillRect(0, tableY - 68, wallW, 98);
+      ctx.fillStyle = '#535c67'; ctx.fillRect(wallW - 7, tableY - 68, 7, 98);
+      const cylY = tableY + 2, cylW = Math.max(22, Math.min(68, (platenX - wallW) * 0.52));
+      ctx.fillStyle = '#2b3036'; ctx.fillRect(wallW - 2, cylY - 10, cylW, 20);
+      ctx.fillStyle = app.labMode === 'build' ? '#2b7eb0' : '#c97a26'; ctx.fillRect(wallW + 6, cylY - 10, 9, 20);
+      ctx.fillStyle = '#dfe5ec'; ctx.fillRect(wallW - 2 + cylW, cylY - 3.5, Math.max(4, platenX - (wallW - 2 + cylW) + 2), 7);
+    }
+
+    // Linear guide rail bed
+    const railLeft = Math.max(12, wallW + 4), railRight = Math.min(w - 12, centerX + platenW * 0.62 + 24);
+    ctx.fillStyle = '#474f58'; ctx.fillRect(railLeft, tableY + 16, railRight - railLeft, 10);
+    ctx.fillStyle = '#c5ccd4'; ctx.fillRect(railLeft + 4, tableY + 18, railRight - railLeft - 8, 2.5);
+
+    // Moving Platen
+    ctx.fillStyle = '#2b3138';
+    ctx.fillRect(platenX + 18, tableY + 10, 26, 10);
+    ctx.fillRect(platenX + platenW - 44, tableY + 10, 26, 10);
+    const gradP = ctx.createLinearGradient(0, tableY - 4, 0, tableY + 12);
+    gradP.addColorStop(0, '#78828d'); gradP.addColorStop(0.5, '#545d67'); gradP.addColorStop(1, '#394048');
+    ctx.fillStyle = gradP; ctx.fillRect(platenX, tableY - 4, platenW, 14);
+    ctx.strokeStyle = '#1c2024'; ctx.lineWidth = 1.4; ctx.strokeRect(platenX, tableY - 4, platenW, 14);
+    ctx.fillStyle = '#d98c2b'; ctx.fillRect(platenX + 6, tableY + 1, 10, 4); ctx.fillRect(platenX + platenW - 16, tableY + 1, 10, 4);
+
+    const tableCenterX = platenX + platenW / 2;
+    const list = activeTowersList();
+    for (let idx = 0; idx < list.length; idx++) drawSingleTower(list[idx], idx, frameData.towers[idx], tableCenterX, tableY - 4, pxPerM);
+
+    if (!replay.active && app.motionOn && sim.sparks.length > 0) {
+      for (const p of sim.sparks) {
+        ctx.fillStyle = p.color; ctx.globalAlpha = Math.max(0, Math.min(1, p.life * 2));
+        ctx.fillRect(centerX + p.x * pxPerM - 1.5, (tableY - 4) - p.y * pxPerM - 1.5, 3, 3);
+      }
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  function drawSpring(c, x1, y1, x2, y2, coils, amp) {
+    const dx = x2 - x1; if (Math.abs(dx) < 5) return;
+    c.strokeStyle = '#3d454e'; c.lineWidth = 1.3; c.beginPath(); c.moveTo(x1, y1);
+    for (let i = 1; i <= coils; i++) c.lineTo(x1 + dx * (i / (coils + 1)), y1 + (i % 2 === 0 ? amp : -amp));
+    c.lineTo(x2, y2); c.stroke();
+  }
+
+  /* ============================================================================
+     GAUGE & OSCILLOSCOPE
+     ============================================================================ */
+  function renderGauge(capFrac, peakFrac) {
+    const w = gaugeCanvas.width, h = gaugeCanvas.height;
+    gCtx.clearRect(0, 0, w, h);
+    const cx = w / 2, cy = h - 14, r = 64, startA = Math.PI * 1.08, endA = Math.PI * 1.92;
+    gCtx.fillStyle = '#1b2025'; gCtx.beginPath(); gCtx.arc(cx, cy, r + 6, Math.PI, 0); gCtx.fill();
+    const arc = (f0, f1, col) => { gCtx.strokeStyle = col; gCtx.lineWidth = 7; gCtx.beginPath(); gCtx.arc(cx, cy, r - 6, startA + (endA - startA) * f0, startA + (endA - startA) * f1); gCtx.stroke(); };
+    arc(0, 0.45, '#3aa36b'); arc(0.45, 0.78, '#e69b2e'); arc(0.78, 1.0, '#d94832');
+    const pa = startA + (endA - startA) * Math.min(1, Math.max(0, peakFrac));
+    gCtx.fillStyle = '#f39c2b'; gCtx.beginPath(); gCtx.arc(cx + Math.cos(pa) * (r - 6), cy + Math.sin(pa) * (r - 6), 3.5, 0, Math.PI * 2); gCtx.fill();
+    const na = startA + (endA - startA) * Math.min(1.03, Math.max(0, capFrac));
+    gCtx.strokeStyle = '#f5f7fa'; gCtx.lineWidth = 2.5; gCtx.beginPath(); gCtx.moveTo(cx, cy); gCtx.lineTo(cx + Math.cos(na) * (r - 12), cy + Math.sin(na) * (r - 12)); gCtx.stroke();
+    gCtx.fillStyle = '#b9c2cc'; gCtx.beginPath(); gCtx.arc(cx, cy, 5.5, 0, Math.PI * 2); gCtx.fill();
+    gCtx.fillStyle = '#8b95a0'; gCtx.font = 'bold 13px ui-monospace, Menlo, monospace'; gCtx.textAlign = 'center'; gCtx.fillText('STRESS %', cx, cy - 20);
+  }
+
+  function renderScope() {
+    const w = scopeCanvas.width, h = scopeCanvas.height;
+    sCtx.fillStyle = '#0f1613'; sCtx.fillRect(0, 0, w, h);
+    sCtx.strokeStyle = 'rgba(88, 230, 154, 0.11)'; sCtx.lineWidth = 1; sCtx.beginPath();
+    for (let x = 0; x <= w; x += w / 8) { sCtx.moveTo(x, 0); sCtx.lineTo(x, h); }
+    for (let y = 0; y <= h; y += h / 4) { sCtx.moveTo(0, y); sCtx.lineTo(w, y); }
+    sCtx.stroke();
+
+    const list = activeTowersList();
+    if (app.scopeMode === 'spectrum') {
+      let maxM = 0.18;
+      for (const tw of list) {
+        if (tw.frfDirty) computeTowerFRF(tw);
+        for (let i = 0; i < tw.frfMag.length; i++) if (tw.frfMag[i] > maxM) maxM = tw.frfMag[i];
+      }
+      const scaleRef = maxM * 1.12, fMin = 0.35, fMax = 4.6;
+      list.forEach((tw, idx) => {
+        if (tw.frfFreqs.length === 0) return;
+        const col = idx === 0 ? '#58e69a' : '#56ccf2';
+        sCtx.beginPath();
+        for (let i = 0; i < tw.frfFreqs.length; i++) {
+          const px = (i / (tw.frfFreqs.length - 1)) * w;
+          const py = h - 16 - Math.min(1, tw.frfMag[i] / scaleRef) * (h - 28);
+          if (i === 0) sCtx.moveTo(px, py); else sCtx.lineTo(px, py);
+        }
+        sCtx.strokeStyle = col; sCtx.lineWidth = idx === app.activeIdx ? 2.4 : 1.6; sCtx.stroke();
+        if (idx === app.activeIdx) {
+          sCtx.lineTo(w, h - 16); sCtx.lineTo(0, h - 16); sCtx.closePath();
+          sCtx.fillStyle = idx === 0 ? 'rgba(88, 230, 154, 0.11)' : 'rgba(86, 204, 242, 0.11)'; sCtx.fill();
+        }
+      });
+      const curF = sim.running ? sim.activeFreqHz : app.freqHz;
+      const cx = Math.max(2, Math.min(w - 2, ((curF - fMin) / (fMax - fMin)) * w));
+      sCtx.strokeStyle = '#f5b041'; sCtx.lineWidth = 2; sCtx.setLineDash([5, 3]);
+      sCtx.beginPath(); sCtx.moveTo(cx, 6); sCtx.lineTo(cx, h - 16); sCtx.stroke(); sCtx.setLineDash([]);
+      const twA = activeTower();
+      if (twA.f1 > 0) {
+        const f1x = Math.max(4, Math.min(w - 4, ((twA.f1 - fMin) / (fMax - fMin)) * w));
+        sCtx.fillStyle = app.activeIdx === 0 ? '#58e69a' : '#56ccf2';
+        sCtx.font = 'bold 13px ui-monospace, Menlo, monospace';
+        sCtx.textAlign = f1x > w * 0.65 ? 'right' : 'left';
+        sCtx.fillText(`f₁ ${twA.f1.toFixed(2)}Hz`, f1x + (f1x > w * 0.65 ? -4 : 4), 17);
+      }
+      sCtx.fillStyle = '#7ba893'; sCtx.font = '12px ui-monospace, Menlo, monospace';
+      sCtx.textAlign = 'left'; sCtx.fillText('0.4Hz', 5, h - 3);
+      sCtx.textAlign = 'center'; sCtx.fillText(app.compareMode ? 'A (GRN) vs B (CYN)' : 'RESONANCE CURVE', w / 2, h - 3);
+      sCtx.textAlign = 'right'; sCtx.fillText('4.5Hz', w - 5, h - 3);
+    } else {
+      const len = sim.traceGround.length, midY = h * 0.5;
+      const wave = (buf, col, sc) => {
+        sCtx.strokeStyle = col; sCtx.lineWidth = 2; sCtx.beginPath();
+        for (let i = 0; i < len; i++) {
+          const px = (i / (len - 1)) * w;
+          const py = midY - Math.max(-0.92, Math.min(0.92, buf[(sim.traceHead + i) % len] * sc)) * (h * 0.42);
+          if (i === 0) sCtx.moveTo(px, py); else sCtx.lineTo(px, py);
+        }
+        sCtx.stroke();
+      };
+      wave(sim.traceGround, '#f5b041', 0.85); wave(towers[0].traceRoof, '#58e69a', 0.75);
+      if (app.compareMode) wave(towers[1].traceRoof, '#56ccf2', 0.75);
+      sCtx.font = 'bold 12px ui-monospace, Menlo, monospace'; sCtx.textAlign = 'left';
+      sCtx.fillStyle = '#f5b041'; sCtx.fillText('GND', 6, 15);
+      sCtx.fillStyle = '#58e69a'; sCtx.fillText('A', 42, 15);
+      if (app.compareMode) { sCtx.fillStyle = '#56ccf2'; sCtx.fillText('B', 58, 15); }
+    }
+  }
+
+  /* ============================================================================
+     DIRECT BUILDING INTERACTION (TRIANGLES, ARCHES, V-BRACES, DRAG-AND-DROP)
+     ============================================================================ */
+  function hitTestGrid(clientX, clientY) {
+    const rect = labCanvas.getBoundingClientRect();
+    const mx = clientX - rect.left, my = clientY - rect.top;
+    const { pxPerM, tableY, centerX } = viewMetrics;
+    const tableCenterX = centerX + sim.xg * pxPerM * 1.4;
+    const bayWpx = BAY_W * pxPerM, storyHpx = STORY_H * pxPerM;
+    const list = activeTowersList();
+
+    for (let idx = 0; idx < list.length; idx++) {
+      const tw = list[idx];
+      const rigX = tableCenterX + towerOffsetM(idx) * pxPerM;
+      const baseY = tableY - 4 - (tw.isoOn ? Math.max(14, 0.075 * pxPerM) + 8 : 0);
+      const b = Math.floor((mx - (rigX - 2.5 * bayWpx)) / bayWpx);
+      const s = Math.floor((baseY - my) / storyHpx);
+      if (b >= 0 && b < MAX_BAYS && s >= 0 && s < MAX_STORIES) return { twIdx: idx, s, b };
+    }
+    return null;
+  }
+
+  function smartTriShape(b) {
+    if (b < 2) return 'triL';
+    if (b > 2) return 'triR';
+    return 'triP';
+  }
+
+  function applyPartAtCell(tw, s, b, partId) {
+    const cell = tw.grid[s][b];
+    if (partId === 'tmd') { pushHistory(tw); tw.tmdOn = !tw.tmdOn; audio.bolt('mass'); rebuildTowerDynamics(tw); syncUI(); return; }
+    if (partId === 'iso') { pushHistory(tw); tw.isoOn = !tw.isoOn; audio.bolt('col'); rebuildTowerDynamics(tw); syncUI(); return; }
+
+    if (partId === 'erase') {
+      if (!cell) return;
+      pushHistory(tw);
+      if (cell.wall) cell.wall = false;
+      else if (cell.braceMode > 0) cell.braceMode = 0;
+      else if (cell.ballast > 0) cell.ballast--;
+      else tw.grid[s][b] = null;
+      audio.bolt('erase'); rebuildTowerDynamics(tw); syncUI();
+      return;
+    }
+
+    // Structural shape placement: Box, Triangle, or Arch
+    if (partId === 'box' || partId === 'tri' || partId === 'arch') {
+      if (!cell) {
+        if (!isCellBuildable(tw, s, b)) return;
+        pushHistory(tw);
+        const shp = partId === 'tri' ? smartTriShape(b) : partId;
+        tw.grid[s][b] = makeCell(shp, 1, 0, false, partId === 'box' ? 1 : 0);
+        audio.bolt(partId); rebuildTowerDynamics(tw); syncUI();
+      } else if (partId === 'tri') {
+        // Click existing cell with Triangle -> convert or cycle orientation ◢ -> ▲ -> ◣!
+        pushHistory(tw);
+        const order = ['triL', 'triP', 'triR'];
+        const cur = order.indexOf(cell.shape);
+        cell.shape = order[(cur + 1) % 3];
+        cell.braceMode = 0; cell.wall = false;
+        audio.bolt('tri'); rebuildTowerDynamics(tw); syncUI();
+      } else if (partId === 'arch' && cell.shape !== 'arch') {
+        pushHistory(tw);
+        cell.shape = 'arch'; cell.braceMode = 0; cell.wall = false;
+        audio.bolt('arch'); rebuildTowerDynamics(tw); syncUI();
+      } else if (partId === 'box' && cell.shape !== 'box') {
+        pushHistory(tw);
+        cell.shape = 'box';
+        audio.bolt('box'); rebuildTowerDynamics(tw); syncUI();
+      }
+      return;
+    }
+
+    // Modifiers (Brace, Wall, Gauge, Ballast) — auto-creates a box if dropped on an empty buildable slot!
+    if (!cell) {
+      if (!isCellBuildable(tw, s, b)) return;
+      pushHistory(tw);
+      tw.grid[s][b] = makeCell('box', partId === 'col' ? 2 : 1, partId === 'brace' ? 1 : 0, partId === 'wall', partId === 'mass' ? 2 : 1);
+      audio.bolt(partId); rebuildTowerDynamics(tw); syncUI();
+      return;
+    }
+
+    pushHistory(tw);
+    if (partId === 'brace') {
+      cell.shape = 'box';
+      cell.braceMode = (cell.braceMode + 1) % 3; // None -> X-Brace -> V-Brace -> None
+      if (cell.braceMode > 0) cell.wall = false;
+      cell.braceBroken = false;
+      audio.bolt('brace');
+    } else if (partId === 'wall') {
+      cell.shape = 'box';
+      cell.wall = !cell.wall;
+      if (cell.wall) cell.braceMode = 0;
+      cell.wallBroken = false;
+      audio.bolt('wall');
+    } else if (partId === 'col') {
+      cell.gauge = (cell.gauge + 1) % 3;
+      audio.bolt('col');
+    } else if (partId === 'mass') {
+      cell.ballast = (cell.ballast + 1) % 4;
+      audio.bolt('mass');
+    }
+    rebuildTowerDynamics(tw); syncUI();
+  }
+
+  let ptrDown = null, didPluck = false;
+
+  labCanvas.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    if (app.labMode !== 'build') return;
+    const hit = hitTestGrid(e.clientX, e.clientY);
+    if (hit) applyPartAtCell(towers[hit.twIdx], hit.s, hit.b, 'erase');
+  });
+
+  labCanvas.addEventListener('pointerdown', (e) => {
+    if (e.button === 2 || replay.active) return;
+    const hit = hitTestGrid(e.clientX, e.clientY);
+    if (!hit) return;
+    if (app.compareMode && hit.twIdx !== app.activeIdx) selectActiveRig(hit.twIdx);
+    if (app.labMode === 'build') {
+      app.kbActive = false;
+      applyPartAtCell(towers[hit.twIdx], hit.s, hit.b, e.shiftKey ? 'erase' : app.part);
+      return;
+    }
+    const tw = towers[hit.twIdx];
+    if (!sim.running && !tw.collapsed && hit.s < tw.N) {
+      ptrDown = { x: e.clientX, twIdx: hit.twIdx, s: hit.s }; didPluck = false;
+      labCanvas.setPointerCapture(e.pointerId);
+    }
+  });
+
+  labCanvas.addEventListener('pointermove', (e) => {
+    if (app.labMode === 'build') {
+      app.hoverCell = hitTestGrid(e.clientX, e.clientY);
+      labCanvas.style.cursor = app.hoverCell ? 'pointer' : 'default';
+      return;
+    }
+    if (!ptrDown) {
+      const hit = (!sim.running && !replay.active) ? hitTestGrid(e.clientX, e.clientY) : null;
+      labCanvas.style.cursor = (hit && hit.s < towers[hit.twIdx].N) ? 'grab' : 'default';
+      return;
+    }
+    const dx = e.clientX - ptrDown.x;
+    if (Math.abs(dx) > 6) {
+      didPluck = true; sim.dragTowerIdx = ptrDown.twIdx; sim.dragStoryIdx = ptrDown.s;
+      const maxPull = 0.055 * (ptrDown.s + 1) * 0.45;
+      sim.dragTargetX = Math.max(-maxPull, Math.min(maxPull, dx / (viewMetrics.pxPerM * VISUAL_DEFLECT_GAIN)));
+      labCanvas.style.cursor = 'grabbing';
+    }
+  });
+
+  labCanvas.addEventListener('pointerleave', () => { app.hoverCell = null; });
+  labCanvas.addEventListener('pointerup', () => {
+    if (didPluck && sim.dragTowerIdx >= 0) { const tw = towers[sim.dragTowerIdx]; audio.modalPing(tw.f1, tw.f2, tw.tmdOn); }
+    sim.dragTowerIdx = -1; sim.dragStoryIdx = -1; ptrDown = null; didPluck = false; labCanvas.style.cursor = 'default';
+  });
+
+  labCanvas.addEventListener('keydown', (e) => {
+    if (app.labMode !== 'build') return;
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+      e.preventDefault(); app.kbActive = true;
+      if (e.key === 'ArrowUp') app.kbCursor.s = Math.min(MAX_STORIES - 1, app.kbCursor.s + 1);
+      if (e.key === 'ArrowDown') app.kbCursor.s = Math.max(0, app.kbCursor.s - 1);
+      if (e.key === 'ArrowLeft') app.kbCursor.b = Math.max(0, app.kbCursor.b - 1);
+      if (e.key === 'ArrowRight') app.kbCursor.b = Math.min(MAX_BAYS - 1, app.kbCursor.b + 1);
+      audio.click(540, 0.03);
+    } else if (e.key === 'Enter') { e.preventDefault(); app.kbActive = true; applyPartAtCell(activeTower(), app.kbCursor.s, app.kbCursor.b, app.part); }
+    else if (e.key === 'Backspace' || e.key === 'Delete') { e.preventDefault(); applyPartAtCell(activeTower(), app.kbCursor.s, app.kbCursor.b, 'erase'); }
+  });
+
+  let trayDragPart = null;
+  partCards.forEach(card => {
+    card.addEventListener('pointerdown', (e) => {
+      const p = card.dataset.part; if (p === 'tmd' || p === 'iso') return;
+      trayDragPart = p;
+      dragGhost.textContent = card.querySelector('span:nth-of-type(2)').textContent;
+      dragGhost.style.left = `${e.clientX}px`; dragGhost.style.top = `${e.clientY}px`;
+    });
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (!trayDragPart) return;
+    dragGhost.style.display = 'block'; dragGhost.style.left = `${e.clientX}px`; dragGhost.style.top = `${e.clientY}px`;
+    app.hoverCell = hitTestGrid(e.clientX, e.clientY);
+  });
+  window.addEventListener('pointerup', (e) => {
+    if (!trayDragPart) return;
+    const hit = hitTestGrid(e.clientX, e.clientY);
+    if (hit && app.labMode === 'build') {
+      if (app.compareMode && hit.twIdx !== app.activeIdx) selectActiveRig(hit.twIdx);
+      applyPartAtCell(towers[hit.twIdx], hit.s, hit.b, trayDragPart);
+    }
+    trayDragPart = null; dragGhost.style.display = 'none'; app.hoverCell = null;
+  });
+
+  /* ============================================================================
+     UI SYNC, KNOBS, PRESETS, POWER PANEL & MANUAL
+     ============================================================================ */
+  function setLabMode(mode) {
+    app.labMode = mode; const isBuild = mode === 'build';
+    if (isBuild && sim.running) { sim.running = false; updateShakeButton(); }
+    if (isBuild) exitReplay();
+    labStage.classList.toggle('build-mode', isBuild);
+    tabBuild.setAttribute('aria-pressed', String(isBuild)); tabTest.setAttribute('aria-pressed', String(!isBuild));
+    buildPanel.style.display = isBuild ? 'grid' : 'none';
+    buildQuickActions.style.display = isBuild ? 'flex' : 'none';
+    testPanel.style.display = isBuild ? 'none' : 'flex';
+    presetDesc.style.display = isBuild ? 'none' : 'inline';
+    labModePill.textContent = isBuild ? 'BUILD BENCH · SAFETY LOCK ON' : 'HYDRAULIC ARMED · TEST MODE';
+    labModePill.classList.toggle('armed', !isBuild);
+    audio.click(isBuild ? 520 : 720);
+    computeTargetScale(); syncUI();
+  }
+
+  function selectPart(p) {
+    if (p === 'tmd' || p === 'iso') { applyPartAtCell(activeTower(), 0, 0, p); return; }
+    app.part = p;
+    partCards.forEach(c => { if (c.dataset.part !== 'tmd' && c.dataset.part !== 'iso') c.setAttribute('aria-pressed', String(c.dataset.part === p)); });
+    audio.click(640, 0.05);
+  }
+
+  partCards.forEach(c => c.addEventListener('click', () => selectPart(c.dataset.part)));
+  tabBuild.addEventListener('click', () => setLabMode('build'));
+  tabTest.addEventListener('click', () => setLabMode('test'));
+  btnArmTest.addEventListener('click', () => {
+    if (activeTowersList().every(tw => tw.N === 0)) applyBlueprint(activeTower(), 'pyramid', false);
+    setLabMode('test');
+  });
+
+  btnBlankSlate.addEventListener('click', () => { applyBlueprint(activeTower(), 'blank', true); selectPart('box'); audio.bolt('erase'); syncUI(); });
+  bpBtns.forEach(b => b.addEventListener('click', () => { applyBlueprint(activeTower(), b.dataset.bp, true); audio.bolt('box'); syncUI(); }));
+  btnUndo.addEventListener('click', () => {
+    const tw = activeTower(); if (tw.history.length === 0) return;
+    const prev = tw.history.pop(); tw.grid = prev.grid; tw.tmdOn = prev.tmdOn; tw.isoOn = prev.isoOn;
+    rebuildTowerDynamics(tw); audio.click(480); syncUI();
+  });
+
+  function selectActiveRig(idx) {
+    app.activeIdx = idx;
+    btnSelectA.className = 'mini-hw-btn' + (idx === 0 ? ' active-rig' : '');
+    btnSelectB.className = 'mini-hw-btn' + (idx === 1 ? ' active-rig-b' : '');
+    syncUI();
+  }
+
+  btnCompare.addEventListener('click', () => {
+    app.compareMode = !app.compareMode; btnCompare.setAttribute('aria-pressed', String(app.compareMode));
+    const disp = app.compareMode ? '' : 'none';
+    btnSelectA.style.display = disp; btnSelectB.style.display = disp; btnCloneAB.style.display = disp;
+    if (!app.compareMode) app.activeIdx = 0;
+    audio.click(app.compareMode ? 720 : 480);
+    computeTowerModal(towers[0]); computeTowerModal(towers[1]); computeTargetScale(); syncUI();
+  });
+
+  btnSelectA.addEventListener('click', () => { audio.click(580); selectActiveRig(0); });
+  btnSelectB.addEventListener('click', () => { audio.click(640); selectActiveRig(1); });
+  btnCloneAB.addEventListener('click', () => {
+    pushHistory(towers[1]); towers[1].grid = cloneGrid(towers[0].grid); towers[1].tmdOn = towers[0].tmdOn; towers[1].isoOn = towers[0].isoOn;
+    rebuildTowerDynamics(towers[1]); selectActiveRig(1); audio.bolt('box');
+  });
+
+  function updateRigStatusLabel(custom) {
+    if (custom) { rigStatus.textContent = custom; return; }
+    const tw = activeTower();
+    if (tw.N === 0) rigStatus.textContent = `RIG ${tw.id} · BLANK PLATEN`;
+    else if (tw.pDeltaUnstable) rigStatus.textContent = `RIG ${tw.id} · P-Δ UNSTABLE`;
+    else if (tw.collapsed) rigStatus.textContent = `RIG ${tw.id} · COLLAPSED`;
+    else rigStatus.textContent = sim.running ? 'ACTIVE · SHAKING' : `RIG ${tw.id} · INTACT`;
+  }
+
+  function updateFreqHint() {
+    const tw = activeTower();
+    if (app.preset !== 'sine') { freqMatchHint.textContent = tw.f1 ? `Nat: ${tw.f1.toFixed(2)} Hz` : 'Empty Rig'; freqMatchHint.style.color = '#7d8792'; }
+    else if (tw.f1 > 0 && Math.abs(app.freqHz / tw.f1 - 1) < 0.08) { freqMatchHint.textContent = '★ AT RESONANCE'; freqMatchHint.style.color = '#f39c2b'; }
+    else { freqMatchHint.textContent = `Period ${(1 / app.freqHz).toFixed(2)} s`; freqMatchHint.style.color = '#7d8792'; }
+  }
+
+  function syncUI() {
+    const tw = activeTower();
+    specBays.textContent = `${tw.totalBays}`;
+    const spanBays = tw.N > 0 ? (tw.maxBay - tw.minBay + 1) : 0;
+    specSpan.textContent = `${spanBays}-BAY × ${tw.N}F`;
+    specMass.textContent = `${tw.totalMass.toFixed(1)} kg`;
+    partTmd.classList.toggle('toggle-on', tw.tmdOn);
+    partIso.classList.toggle('toggle-on', tw.isoOn);
+    readPeriod.textContent = tw.T1 > 0 ? `${tw.T1.toFixed(2)} s` : '—';
+    readFreq.textContent = tw.f1 > 0 ? `${tw.f1.toFixed(2)} Hz` : '—';
+    updateFreqHint(); updateRigStatusLabel();
+  }
+
+  function updateTelemetryLive(frameData) {
+    const tw = activeTower(), snap = frameData.towers[app.activeIdx];
+    const gNow = Math.abs(frameData.ag) / G_ACCEL;
+    if (!replay.active && gNow > sim.peakGroundG) sim.peakGroundG = gNow;
+    let maxDriftM = 0, maxCap = 0, maxForce = 0;
+    if (tw.N > 0 && !snap.collapsed) {
+      for (let i = 0; i < tw.N; i++) {
+        const below = i === 0 ? (tw.isoOn ? snap.u0 : 0) : snap.u[i - 1], d = Math.abs((snap.u[i] || 0) - below);
+        if (d > maxDriftM) maxDriftM = d;
+        if ((snap.strain[i] || 0) > maxCap) maxCap = snap.strain[i];
+        if ((snap.force[i] || 0) > maxForce) maxForce = snap.force[i];
+      }
+    } else if (snap.collapsed) maxCap = 1.0;
+    const driftPct = (maxDriftM / STORY_H) * 100;
+    if (!replay.active) {
+      if (driftPct > tw.peakDriftPct) tw.peakDriftPct = driftPct;
+      if (maxForce > tw.peakForceN) tw.peakForceN = maxForce;
+      if (maxCap * 100 > tw.peakCapPct) tw.peakCapPct = Math.min(100, maxCap * 100);
+    }
+    readGround.textContent = `${gNow.toFixed(2)} g`; readGroundPk.textContent = `PK ${sim.peakGroundG.toFixed(2)} g`;
+    readDrift.textContent = `${driftPct.toFixed(2)} %`; readDriftMm.textContent = `${(maxDriftM * 1000).toFixed(1)} mm`;
+    readDrift.className = 'lcd-val' + (maxCap > 0.78 ? ' danger' : maxCap > 0.45 ? ' amber' : '');
+    readForce.textContent = `${maxForce.toFixed(1)} N`;
+    const capPct = Math.min(100, Math.round(maxCap * 100));
+    readCap.textContent = `${capPct}% CAP`;
+    readForce.className = 'lcd-val' + (capPct > 78 ? ' danger' : capPct > 45 ? ' amber' : '');
+    if (sim.running && app.preset === 'sweep') {
+      freqMatchHint.textContent = `SWEEP ${sim.activeFreqHz.toFixed(2)} Hz`;
+      freqMatchHint.style.color = tw.f1 > 0 && Math.abs(sim.activeFreqHz / tw.f1 - 1) < 0.1 ? '#f39c2b' : '#9fa8b2';
+    }
+    renderGauge(maxCap, tw.peakCapPct / 100);
+  }
+
+  function updateShakeButton() {
+    btnShake.setAttribute('aria-pressed', String(sim.running));
+    btnShake.classList.toggle('running', sim.running);
+    btnShake.textContent = sim.running ? 'STOP' : 'SHAKE';
+    if (sim.running) rigStatus.textContent = 'ACTIVE · SHAKING';
+  }
+
+  function bindKnob(el, ptr, { min, max, step, get, set, format }) {
+    function render() { const val = get(); ptr.style.transform = `rotate(${-135 + ((val - min) / (max - min)) * 270}deg)`; el.setAttribute('aria-valuenow', val.toFixed(2)); el.setAttribute('aria-valuetext', format(val)); }
+    function apply(val) { const cl = Math.max(min, Math.min(max, Math.round(val / step) * step)); if (Math.abs(cl - get()) > 1e-5) { set(cl); render(); audio.click(480 + ((cl - min) / (max - min)) * 320, 0.035); } }
+    let dr = false, sy = 0, sv = 0;
+    el.addEventListener('pointerdown', (e) => { dr = true; sy = e.clientY; sv = get(); el.setPointerCapture(e.pointerId); el.focus(); });
+    el.addEventListener('pointermove', (e) => { if (dr) apply(sv + ((sy - e.clientY) / 130) * (max - min)); });
+    el.addEventListener('pointerup', () => { dr = false; });
+    el.addEventListener('wheel', (e) => { e.preventDefault(); apply(get() + (e.deltaY < 0 ? step : -step)); }, { passive: false });
+    el.addEventListener('keydown', (e) => { if (e.key === 'ArrowUp' || e.key === 'ArrowRight') { e.preventDefault(); apply(get() + step); } else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') { e.preventDefault(); apply(get() - step); } });
+    render(); return render;
+  }
+
+  const updateAmpKnob = bindKnob(knobAmp, ptrAmp, { min: 0.05, max: 1.50, step: 0.05, get: () => app.ampG, set: v => { app.ampG = v; valAmp.textContent = `${v.toFixed(2)} g`; }, format: v => `${v.toFixed(2)} g` });
+  const updateFreqKnob = bindKnob(knobFreq, ptrFreq, { min: 0.40, max: 4.50, step: 0.05, get: () => app.freqHz, set: v => { app.freqHz = v; valFreq.textContent = `${v.toFixed(2)} Hz`; if (app.preset !== 'sine') selectPreset('sine', false); updateFreqHint(); }, format: v => `${v.toFixed(2)} Hz` });
+
+  const PRESET_LABELS = { sine: 'STEADY SINE WAVE', sweep: 'FREQ SWEEP 0.45 → 4.5 HZ', near: 'SHORT SHARP NEAR-FAULT JOLT', distant: 'LONG SLOW DISTANT ROLL', broadband: 'MULTI-FREQUENCY COMPLEX QUAKE', file: 'RECORDED GROUND MOTION FILE' };
+  function selectPreset(id, playClick = true) {
+    app.preset = id;
+    presetDesc.textContent = (id === 'file' && app.fileMotion) ? `${app.fileMotion.name.slice(0, 18)} (${app.fileMotion.duration.toFixed(1)}s)` : (PRESET_LABELS[id] || '');
+    presetBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.preset === id)));
+    updateFreqHint(); if (playClick) audio.click(640);
+  }
+  presetBtns.forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.preset === 'file') { fileMotionInput.value = ''; fileMotionInput.click(); return; }
+    selectPreset(b.dataset.preset); if (sim.running) { sim.t = 0; sim.presetEnded = false; }
+  }));
+
+  fileMotionInput.addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0]; if (!f) return;
+    const rd = new FileReader();
+    rd.onload = () => {
+      const p = parseGroundMotionFile(f.name, String(rd.result || ''));
+      if (!p) { presetDesc.textContent = 'UNREADABLE FILE FORMAT'; return; }
+      app.fileMotion = p; app.ampG = Math.max(0.05, Math.min(1.50, Math.round(p.peakG * 20) / 20));
+      valAmp.textContent = `${app.ampG.toFixed(2)} g`; updateAmpKnob(); selectPreset('file');
+    };
+    rd.readAsText(f);
+  });
+
+  btnShake.addEventListener('click', () => {
+    exitReplay();
+    if (app.labMode === 'build') setLabMode('test');
+    const list = activeTowersList();
+    if (list.every(tw => tw.N === 0)) applyBlueprint(activeTower(), 'pyramid', false);
+    if (list.some(tw => tw.collapsed)) resetAllTowers(true);
+    else {
+      sim.running = !sim.running;
+      if (sim.running) {
+        app.modeInspect = 0; btnMode1.setAttribute('aria-pressed', 'false'); btnMode2.setAttribute('aria-pressed', 'false');
+        sim.t = 0; sim.presetEnded = false; sim.peakGroundG = 0;
+        for (const tw of list) { tw.peakDriftPct = 0; tw.peakForceN = 0; tw.peakCapPct = 0; }
+        replay.frames = [];
+      }
+      updateShakeButton();
+    }
+    audio.click(sim.running ? 420 : 320, 0.1);
+  });
+
+  btnReset.addEventListener('click', () => { audio.click(580); resetAllTowers(false); });
+  btnReplay.addEventListener('click', () => { if (replay.active) exitReplay(); else enterReplay(); });
+  btnReplayPause.addEventListener('click', () => { replay.paused = !replay.paused; btnReplayPause.textContent = replay.paused ? 'Play' : 'Pause'; audio.click(500); });
+  btnReplayExit.addEventListener('click', () => { audio.click(440); exitReplay(); });
+  replayScrub.addEventListener('input', () => { replay.paused = true; btnReplayPause.textContent = 'Play'; replay.cursor = parseFloat(replayScrub.value); });
+
+  btnScopeMode.addEventListener('click', () => { app.scopeMode = app.scopeMode === 'spectrum' ? 'trace' : 'spectrum'; btnScopeMode.textContent = app.scopeMode === 'spectrum' ? 'FREQ' : 'TRACE'; audio.click(680); });
+  function toggleModeInspect(n) {
+    app.modeInspect = app.modeInspect === n ? 0 : n;
+    btnMode1.setAttribute('aria-pressed', String(app.modeInspect === 1)); btnMode2.setAttribute('aria-pressed', String(app.modeInspect === 2));
+    if (app.modeInspect > 0) { sim.running = false; updateShakeButton(); const tw = activeTower(); audio.modalPing(app.modeInspect === 1 ? tw.f1 : tw.f2, tw.f2, false); }
+    else audio.click(460);
+  }
+  btnMode1.addEventListener('click', () => toggleModeInspect(1));
+  btnMode2.addEventListener('click', () => toggleModeInspect(2));
+  scopeCanvas.addEventListener('click', (e) => {
+    if (app.scopeMode !== 'spectrum') return;
+    const rect = scopeCanvas.getBoundingClientRect();
+    const f = Math.round((0.35 + Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width)) * 4.25) / 0.05) * 0.05;
+    app.freqHz = Math.max(0.40, Math.min(4.50, f)); valFreq.textContent = `${app.freqHz.toFixed(2)} Hz`; updateFreqKnob(); selectPreset('sine');
+  });
+
+  swMotion.setAttribute('aria-pressed', String(app.motionOn));
+  swMotion.addEventListener('click', () => { app.motionOn = !app.motionOn; swMotion.setAttribute('aria-pressed', String(app.motionOn)); audio.click(560); });
+  swSound.addEventListener('click', () => { app.soundOn = !app.soundOn; swSound.setAttribute('aria-pressed', String(app.soundOn)); if (app.soundOn) { audio.init(); audio.click(700, 0.09); } else audio.updateHum(false, 0); });
+  function stopReading() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); app.readOn = false; swRead.setAttribute('aria-pressed', 'false'); }
+  swRead.addEventListener('click', () => {
+    audio.click(600); if (app.readOn) { stopReading(); return; }
+    if (!('speechSynthesis' in window)) return;
+    openManual(true); app.readOn = true; swRead.setAttribute('aria-pressed', 'true');
+    const u = new SpeechSynthesisUtterance(document.getElementById('manualContent').innerText.replace(/\s+/g, ' ').trim());
+    u.lang = 'en-US'; u.rate = 0.98; u.onend = u.onerror = () => { app.readOn = false; swRead.setAttribute('aria-pressed', 'false'); };
+    window.speechSynthesis.cancel(); window.speechSynthesis.speak(u);
+  });
+
+  function openManual(open) {
+    manualDrawer.classList.toggle('open', open); manualDrawer.setAttribute('aria-hidden', String(!open)); btnManual.setAttribute('aria-expanded', String(open));
+    if (open) { challengeCard.classList.remove('open'); btnChallenges.setAttribute('aria-expanded', 'false'); btnManualClose.focus(); }
+  }
+  btnManual.addEventListener('click', () => { audio.click(620); openManual(!manualDrawer.classList.contains('open')); });
+  btnManualClose.addEventListener('click', () => { audio.click(480); openManual(false); btnManual.focus(); });
+
+  function renderChallengeList() {
+    challengeList.innerHTML = '';
+    CHALLENGES.forEach(ch => {
+      const btn = document.createElement('button'); btn.type = 'button';
+      btn.className = 'challenge-item' + (activeChallenge && activeChallenge.id === ch.id ? ' selected' : '');
+      btn.innerHTML = `<div class="challenge-title"><span>${ch.title}</span>${ch.passed ? '<span class="challenge-stamp">PASS</span>' : ''}</div><div class="challenge-desc">${ch.desc}</div>`;
+      btn.addEventListener('click', () => {
+        activeChallenge = ch; selectPreset(ch.preset); app.ampG = ch.ampG; valAmp.textContent = `${ch.ampG.toFixed(2)} g`; updateAmpKnob();
+        challengeBanner.className = 'challenge-banner active'; challengeBannerText.innerHTML = `<strong>${ch.title}:</strong> ${ch.desc}`;
+        challengeCard.classList.remove('open'); btnChallenges.setAttribute('aria-expanded', 'false'); renderChallengeList();
+      });
+      challengeList.appendChild(btn);
+    });
+  }
+
+  function evaluateChallengeOnFinish() {
+    if (!activeChallenge) return;
+    const ch = activeChallenge, tw = towers[0];
+    let anyDamaged = false;
+    for (let s = 0; s < tw.N; s++) for (let b = 0; b < MAX_BAYS; b++) if (tw.grid[s][b] && (tw.grid[s][b].braceBroken || tw.grid[s][b].wallBroken)) anyDamaged = true;
+    const ok = !tw.collapsed && tw.N >= ch.minStories && (!ch.minMass || tw.totalMass >= ch.minMass - 0.1)
+      && tw.peakDriftPct <= ch.maxDriftPct && (!ch.noDamage || !anyDamaged) && app.preset === ch.preset && app.ampG >= ch.ampG - 0.01;
+    if (ok) { ch.passed = true; challengeBanner.className = 'challenge-banner active passed'; challengeBannerText.innerHTML = `<strong>PASS · ${ch.title}!</strong> Peak drift ${tw.peakDriftPct.toFixed(2)}%.`; renderChallengeList(); audio.click(880, 0.1); }
+    else if (!tw.collapsed) { challengeBanner.className = 'challenge-banner active failed'; challengeBannerText.innerHTML = `<strong>${ch.title}:</strong> Check requirements (height ${tw.N}F, mass ${tw.totalMass.toFixed(1)}kg, drift ${tw.peakDriftPct.toFixed(2)}%).`; }
+  }
+
+  btnChallenges.addEventListener('click', () => {
+    audio.click(620); const willOpen = !challengeCard.classList.contains('open');
+    challengeCard.classList.toggle('open', willOpen); btnChallenges.setAttribute('aria-expanded', String(willOpen));
+    if (willOpen) openManual(false);
+  });
+  challengeCloseBtn.addEventListener('click', () => { activeChallenge = null; challengeBanner.classList.remove('active'); renderChallengeList(); });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); btnUndo.click(); return; }
+    if (e.code === 'Space' && e.target !== labCanvas) { e.preventDefault(); btnShake.click(); }
+    else if (e.key === 'b' || e.key === 'B') setLabMode(app.labMode === 'build' ? 'test' : 'build');
+    else if (app.labMode === 'build' && '1234567890'.includes(e.key)) {
+      const order = ['box', 'tri', 'arch', 'brace', 'wall', 'col', 'mass', 'tmd', 'iso', 'erase'];
+      selectPart(order['1234567890'.indexOf(e.key)]);
+    } else if (e.key === 'r' || e.key === 'R') btnReset.click();
+    else if (e.key === 'm' || e.key === 'M') btnManual.click();
+    else if (e.key === 'p' || e.key === 'P') { if (!btnReplay.disabled) btnReplay.click(); }
+    else if (e.key === 'Escape') { openManual(false); challengeCard.classList.remove('open'); exitReplay(); }
+  });
+
+  window.addEventListener('resize', resizeCanvases);
+  window.addEventListener('beforeunload', stopReading);
+
+  /* ============================================================================
+     MAIN LOOP
+     ============================================================================ */
+  let lastTs = 0;
+  function tick(ts) {
+    if (!lastTs) lastTs = ts;
+    const dt = Math.min(0.033, Math.max(0.004, (ts - lastTs) / 1000));
+    lastTs = ts;
+    if (app.modeInspect > 0) {
+      const tw = activeTower();
+      app.modePhase += 2 * Math.PI * Math.min(2.2, Math.max(0.6, app.modeInspect === 1 ? tw.f1 : tw.f2)) * dt;
+    }
+    if (replay.active && replay.frames.length > 0) {
+      if (!replay.paused) {
+        replay.cursor += replay.speed * (dt * 60);
+        if (replay.cursor >= replay.frames.length - 1) replay.cursor = 0;
+        replayScrub.value = String(Math.floor(replay.cursor));
+      }
+      const frame = replay.frames[Math.max(0, Math.min(replay.frames.length - 1, Math.floor(replay.cursor)))];
+      replayTime.textContent = `${frame.t.toFixed(2)} s`;
+      renderLab(frame); updateTelemetryLive(frame); renderScope();
+    } else {
+      stepPhysics(dt);
+      const liveFrame = { xg: sim.xg, ag: sim.ag, towers: [snapshotTower(towers[0]), snapshotTower(towers[1])] };
+      renderLab(liveFrame); updateTelemetryLive(liveFrame); renderScope();
+    }
+    requestAnimationFrame(tick);
+  }
+
+  renderChallengeList();
+  resizeCanvases();
+  resetAllTowers(false);
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

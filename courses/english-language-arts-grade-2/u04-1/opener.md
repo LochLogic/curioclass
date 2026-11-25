@@ -13,14 +13,14 @@ For four days the class reads two tellings of the fable of the ant and the grass
 
 ## How the days run
 
-Each day is 120 minutes in two blocks of 60. The topic block holds a short opening repair, the day's reading, a model, talk, pair work and a five-minute exit. The foundations block holds a repair, work on the cycle's spelling pattern, a reader, a rotation of stations with the oral card, and a close. Every exit is one card you read aloud twice and one ask on paper or aloud. A child outside the group heard is "not yet heard", never "missed". A child may pass at any time. Say aloud that every practice card is made up.
+Each day is 120 minutes in two blocks of 60. The topic block holds a short opening repair, the day's reading, a model, talk, pair work and a five-minute exit. The foundations block holds a repair, work on the cycle's spelling pattern, a reader, a rotation of stations with the oral card, and a close. Every exit rereads one passage of the two tellings aloud twice and asks one thing on paper or aloud. A child outside the group heard is "not yet heard", never "missed". A child may pass at any time. Say aloud that any practice case you invent is made up.
 
 ## The ideas at an adult's level
 
 - **A fable is a short story with a lesson.** The lesson is a moral. It is accepted only when an event in the story holds it up.
 - **A version is one telling.** Another telling of the same story is another version. Two versions can be alike and different.
 - **A comparison needs both.** Say one thing that is the same and one that is different, and show both in the words.
-- **The two texts here are our own words.** The first follows a telling credited to Aesop in a book by Joseph Jacobs (1894). The second follows La Fontaine as put into English by Elizur Wright, a translation from the 1800s. Say that the practice cards are made up.
+- **The two texts here are our own words.** The first follows a telling credited to Aesop in a book by Joseph Jacobs (1894). The second follows La Fontaine as put into English by Elizur Wright, a translation from the 1800s. Say that the practice notes and lines are made up.
 
 ## The errors in plain words
 

@@ -7,13 +7,11 @@ credit: ours
 ---
 # Item sheet, day 74
 
-Print one sheet for each child, ruled. Print "invented for practice" in small letters at the foot. Silent.
+Print one sheet for each child, ruled. Silent. Items 9 to 14 use the child's own printed glass frog excerpt.
 
-## Panel E
+## The glass frog excerpt
 
-> Glass frogs live in forests with streams and waterfalls. They need running water that is permanent, which means it lasts all year. Running water means water that flows.
->
-> Like all amphibians, glass frogs are highly vulnerable to pollution. Vulnerable means easily harmed. Clean running water therefore matters to them.
+Use your copy of the glass frog page. Reread the Habitat part.
 
 Items 1 to 8 are about your own essay and folder; item 8 uses the one device for one minute.
 
@@ -51,11 +49,11 @@ Items 1 to 8 are about your own essay and folder; item 8 uses the one device for
 
    ____________________________________________
 
-9. What does permanent mean in Panel E?
+9. What does permanent mean in "permanent bodies of running water such as streams and waterfalls"?
 
    ____________________________________________
 
-10. What does vulnerable mean in Panel E?
+10. What does vulnerable mean in "highly vulnerable to pollution"?
 
    ____________________________________________
 
@@ -63,14 +61,14 @@ Items 1 to 8 are about your own essay and folder; item 8 uses the one device for
 
    ____________________________________________
 
-12. Write what pollution can do to glass frogs and why clean water matters.
+12. Why does clean running water matter to glass frogs?
 
    ____________________________________________
 
-13. How do "Glass frogs live in forests with streams and waterfalls." and "They need running water that is permanent" connect?
+13. How does the sentence "They range from southern Mexico..." connect to the sentence before it?
 
    ____________________________________________
 
-14. How does the second paragraph connect to the first?
+14. How does the Habitat part connect to the Description part?
 
    ____________________________________________

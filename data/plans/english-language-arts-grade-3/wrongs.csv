@@ -1,32 +1,33 @@
 item_id,shown,compute,value,error,note
-s01-X1,She has no money for the truck.,,,A,a fact the card does not give
-s01-X1,The picture has a truck and a girl.,,,D,a pictured object named with no contribution
+s01-X1v2,"The boat is late, so Lia cannot reach it.",,,A,a fact page 3 does not give
+s01-X1v2,The picture has people and boards.,,,D,a pictured object named with no contribution
 s01-X2,Our bakers cat was sitting on the step.,,,N,the apostrophe is missing
 s01-X2,Our baker's cat was siting on the step.,,,O,the double t is missing
 s01-X3,Lia read the name twice and showed the page to her mother.,,,A,the card says sister
 s01-X3,"frog, page, sister",,,K,a list with no explanation for a younger child
-s01-X4,I picked it because the cover has a boat.,,,AD,"chosen by the cover, not the purpose"
-s01-X4,How Books Travel. The card says it has pictures of trucks.,,,A,a detail the card does not give
-s01-X5,The strip is about books.,,,B,a topic given as the message
-s01-X5,"Lia held half, so her friend had too many books.",,,C,the cause and result reversed
-s01-X6,He borrowed the book and so he missed the stop.,,,C,the action and the result are reversed
-s01-X6,He likes books.,,,B,a trait with no link to the events
-s01-X7,"The line was a mile long, so she walked a mile.",,,E,a nonliteral phrase read as a real distance
-s01-X7,The picture has children in a line.,,,D,a pictured object named with no contribution
-s01-X8,The story is about books.,,,B,a topic given as the message
-s01-X8,Dry books. Be nice. Return things.,,,K,a list of tips with no events as proof
+s01-X4v2,"Page 8, because its picture is nice.",,,AD,"a page chosen by its picture, not the purpose"
+s01-X4v2,Page 7. It says Lia rides the boat home.,,,A,a detail the page does not give
+s01-X5v2,Page 2 is about a book.,,,B,a topic given as the message
+s01-X5v2,"Lia sets the book by the door, so the boat does not stay long.",,,C,the cause and result reversed
+s01-X6v2,"The week is shorter, so Sam reads the book.",,,C,the action and the result are reversed
+s01-X6v2,He likes books.,,,B,a trait with no link to the events
+s01-X7v2,The walls walk up the hill.,,,E,a nonliteral phrase read as a real event
+s01-X7v2,The picture has sheep and a barn.,,,D,a pictured object named with no contribution
+s01-X8v2,The story is about a hill.,,,B,a topic given as the message
+s01-X8v2,Walk home. Look at the walls. Smile.,,,K,a list with no events as proof
 s01-X9,I like Joao.,,,Q,a comment with no detail
 s01-X9,I still think the same.,,,T,"repeats the opening view, nothing learned from the partner"
 s01-X9,It was good.,,,U,vague after a request for detail
-s01-X10,Kofi finished the rhyme before the teacher helped.,,,C,the events are in the wrong order
-s01-X10,Kofi likes rhymes.,,,B,a topic with no events
-s01-X11,A door blocks the room.,,,E,a nonliteral phrase read as a real door
-s01-X11,Kofi is in the picture.,,,D,a pictured person named with no contribution
-s01-X12,It is about goats.,,,B,a topic given as the message
-s01-X12,"Both crossed safely, so one goat knelt.",,,C,the action and the result are reversed
-s01-X13,It is about an ant.,,,B,a topic given as the message
-s01-X15,It is about books.,,,B,a topic given as the main idea
-s01-X15,The picture shows it was a rainy Wednesday.,,,V,a claim beyond the caption and the picture
+s01-X10v2,"They climb another page, then they carry the lamp.",,,C,the events are in the wrong order
+s01-X10v2,Ama likes the lamp.,,,B,a topic with no events
+s01-X11v2,The picture shows Ama is cross with Grandmother.,,,V,a feeling the picture does not show
+s01-X11v2,Ama is in the picture with a pencil.,,,D,a pictured person named with no contribution
+s01-X12v2,It is about a lion and a mouse.,,,B,a topic given as the message
+s01-X12v2,"The Lion was free, so the Mouse gnawed the rope.",,,C,the action and the result are reversed
+s01-X13v2,It is about a mountain.,,,B,a topic given as the message
+s01-X13v2,They will climb the real mountain tomorrow.,,,E,a nonliteral phrase read as a real event
+s01-X15v2,It is about horses.,,,B,a topic given as the main idea
+s01-X15v2,The map shows where all 30 libraries were.,,,V,"a claim beyond the map, which marks only Hindman"
 s01-X19,Useful means without use.,,,AC,the suffix is read with the wrong meaning
 s01-X19,Useful means making a copy.,,,F,the sidebar line about copying is mistaken for the meaning of useful
 s01-A1,I like boats.,,,Q,a comment with no prepared detail
@@ -108,12 +109,12 @@ s01-X22,Visitors read the park sign. Ducks are protected. The sign names the rul
 s01-X22,"Visitors read the park sign. Ducks are protected, which means kept safe. The sign names the rules.",,,H,the sign facts are still apart
 s01-X23,Rinse. Dry. Shelf.,,,K,short reminders with no explanation or closing
 s01-X23b,The class pet is a hamster.,,,J,the closing is about another topic
-s01-X24,It shows the birds they will see.,,,A,the strip names no birds
-s01-X24,It is about a map.,,,B,a topic with no point
+s01-X24v2,It sells books to readers.,,,A,"the section says borrow, not sell"
+s01-X24v2,It is about a road and a river.,,,B,a topic with no point
 s01-X25,Six more.,,,Z,a bar height is read as the difference
 s01-X25,Four more bowls.,,,Z,the bars are read with the labels swapped
-s01-X26,A teacher came to teach him.,,,A,neither line names a teacher or school
-s01-X26,He wanted to learn.,,,W,the context is not used to explain the event
+s01-X26v2,A teacher came to teach him.,,,A,neither line names a teacher or school
+s01-X26v2,He wanted to learn.,,,W,the context is not used to explain the event
 s01-X30,Noor looks. Noor passes.,,,K,no name or explanation for the reader
 s01-X30,Her coach told Noor to look first.,,,A,the strip names no coach
 s01-X31,He sets his boots by the door and puts his bottle in a boot.,,,H,the details are listed with no reason
@@ -145,7 +146,6 @@ s01-P7-2,A library grew wheels.,,,E,a nonliteral phrase read as a physical event
 s01-P7-5,The picture has a road.,,,D,a pictured object named with no contribution
 s01-P8-1,The story is about books.,,,B,a topic given for what the actions show
 s01-P8-1,Bring a bag. Be early.,,,K,a list with no events as proof
-s01-X13,"The ant thanked the beetle, so the beetle pushed the leaf.",,,C,the action and the result are reversed
 s01-K10-1,"Grandmother read adventure, so she met a knot of letters.",,,C,the events are in the wrong order
 s01-P10-1,Grandmother reads the book alone at night.,,,A,a fact the story does not give
 s01-P10-2,"The story did not make sense, so Ama skipped a line.",,,C,the cause and result are reversed
@@ -157,8 +157,8 @@ s01-P11-2,A guess with no look-up.,,,P,"a word guessed, not looked up"
 s01-P11-3,There is a lamp.,,,D,a pictured thing named with no contribution
 s01-P12-1,"The Lion gnawed the rope, so the Mouse was free.",,,C,the action and the result are reversed
 s01-P12-2,It is about a lion and a mouse.,,,B,a topic given as the message
-s01-X14,It is information because the boat comes on Sunday.,,,A,the strip says Saturday
-s01-X14,It is about a boat.,,,B,a topic given as the reason
+s01-X14v2,It is information because the books come in boxes.,,,A,the section says canvas bags
+s01-X14v2,It is about mail.,,,B,a topic given as the reason
 s01-K14-2,A stop list shows how much a book costs.,,,A,a fact the article does not give
 s01-K15-1,It shows the carriers were happy.,,,V,a claim beyond the caption
 s01-K15-2,The map shows how many carriers there were.,,,V,a claim beyond the map
@@ -181,8 +181,8 @@ s01-X16,Paper goes into the blue box.,,,X,only one of the two facts that belong
 s01-K14-1,It is about books.,,,B,a topic given as the clue
 s01-P15-2,Card one.,,,B,a topic chosen as the main idea
 s01-P18-4,Card A for Books on the Move.,,,B,a topic chosen as the main idea
-s01-X18,The map proves the van comes every day.,,,V,a claim beyond the strip and the map
-s01-X18,It is about a van.,,,B,a topic given as the main idea
+s01-X18v2,The map proves the bus comes every day.,,,V,a claim beyond the section and the map
+s01-X18v2,It is about a bus.,,,B,a topic given as the main idea
 s01-X23b,The helpers work.,,,x,the closing says nothing about what the jobs show
 s01-X21b,"The wren builds its nest in spring. Also, the moon is round.",,,I,Also joins an unrelated fact
 s01-X21b,The wren builds its nest in spring. The wren feeds its chicks bugs.,,,x,no link word joins the two facts
@@ -197,10 +197,10 @@ s01-P23-2,the carriers hat,,,N,the apostrophe is left out
 s01-P23-3,the carrier's hats,,,AB,the apostrophe is placed for one owner
 s01-X26b,The alphabet.,,,x,"the letters came later, from the spelling book"
 s01-X26b,A spelling book.,,,x,the book came from his mother after the furnace number
-s01-X27,Line two.,,,A,the retelling is chosen as his own words
-s01-X27,Both lines.,,,A,no reason separates the voices
-s01-X28,School.,,,B,"a topic word, not a question"
-s01-X28,Did he want a new teacher and a new book?,,,A,the sentence gives neither
+s01-X27v2,Line two.,,,A,the retelling is chosen as his own words
+s01-X27v2,Both lines.,,,A,no reason separates the voices
+s01-X28v2,School.,,,B,"a topic word, not a question"
+s01-X28v2,Did he want a new teacher and a new book?,,,A,the sentence gives neither
 s01-X29,It is a good goal.,,,x,the goal is accepted with no move
 s01-X29,Faster would help her.,,,X,reading that races on is taken for a fix
 s01-X29b,Ask and listen.,,,x,a strategy that does not fit twenty pages to read
@@ -228,8 +228,8 @@ s01-A72,The plan copied out again with no change.,,,M,recopying is not a revisio
 s01-A72,Related facts are left apart.,,,H,related facts are left apart
 s02-X40,The frog plays the drums.,,,C,nonliteral drummed read as a physical event
 s02-X40,The frog lives in a desert.,,,A,a fact the card does not give
-s02-X41,She jumped into the pond because the water joined her toes with skin.,,,Y,cause and result reversed
-s02-X41,Frog feet are webbed.,,,B,a topic fact with no events
+s02-X41v2,Kikker showed them the exercises because every frog catches flies with its tongue.,,,Y,cause and result reversed
+s02-X41v2,Frogs eat flies.,,,B,a topic fact with no events
 s02-X42,The spots came. Then a beetle dusted a frog.,,,O,the ending placed before its cause
 s02-X42,"Frog, spots, beetle.",,,S,a list; no situation or explanation
 s02-X43,I goed to find water.,,,L,an irregular verb given a regular ending
@@ -255,19 +255,19 @@ s02-X51,mountain,,,K,a label that does not show the hiding place
 s02-X51b,the rain comes tiptoeing,,,x,a phrase that does not say where the frog waits
 s02-X52,"Frog, marks, clay.",,,S,words with no situation
 s02-X52b,Then a bird flew to a new lake.,,,Q,an ending on an unrelated topic
-s02-X53,Bats.,,,B,a topic given as the main idea
-s02-X53,Bats sleep in trees all year.,,,A,a fact the passage does not give
-s02-X54,Page 5.,,,V,the life-cycle section chosen without checking the index
-s02-X54,Any page.,,,V,pages opened at random
-s02-X54b,I guessed.,,,V,a search with no text feature
-s02-X54b,Webbing is skin that joins the toes.,,,A,"says what webbing is, not where it was found"
-s02-X55,The stream shrinking.,,,Y,cause and result reversed
-s02-X55,Fish.,,,B,a single noun that does not carry the idea
-s02-X55b,The shrinking stream made the weather dry.,,,Y,cause and result reversed
-s02-X55b,They are just a list of events.,,,Z,a connection named without checking the sentences
-s02-X56,In a week the seed is a tree.,,,A,a fact the strip and diagram do not give
-s02-X56,A seed changes.,,,AJ,the diagram not used
-s02-X56,Then a bird sat on the seed.,,,Q,an unrelated closing
+s02-X53v2,Frogs.,,,B,a topic given as the main idea
+s02-X53v2,Some frogs live in trees.,,,B,one detail given as the main idea
+s02-X53v2,Frogs live in Antarctica.,,,A,a fact the paragraph does not give
+s02-X54v2,Page 5.,,,V,the life-cycle section chosen without checking the index
+s02-X54v2,Any page.,,,V,pages opened at random
+s02-X54bv2,I guessed.,,,V,a search with no text feature
+s02-X54bv2,Webbing is skin that joins the toes.,,,A,"says what webbing is, not where it was found"
+s02-X55v2,The tadpoles.,,,G,a reference guessed from the words after These
+s02-X55v2,The pond.,,,G,"a reference guessed, not found in the sentence before"
+s02-X55bv2,"Frogs lay eggs in water, so the egg dries up.",,,Y,cause and result reversed
+s02-X55bv2,They are just two facts about eggs.,,,Z,a connection named without checking the sentences
+s02-X56v2,In a week the froglet is a frog.,,,A,a fact the page and diagram do not give
+s02-X56v2,The froglet grows into a frog.,,,AJ,the diagram not used
 s02-A1,-able means not.,,,F,a word part given the wrong meaning
 s02-A1,They are just endings.,,,F,no meaning given for the parts
 s02-A2,A word guessed from a picture and not blended.,,,J,a word guessed from its picture
@@ -304,18 +304,19 @@ s02-A32,I wrote stomped to make the step quiet.,,,R,a word that contradicts its 
 s02-A33,A list of facts about a frog's voice.,,,S,an unexplained list
 s02-A34,Wait said Frog.,,,U,speech with no speech marks or comma
 s02-A35,Only a copied final is kept.,,,T,one copied piece documents the writing
-s02-A36,Frogs.,,,B,a topic given as the main idea
-s02-A37,Frogs lay eggs in the sea.,,,A,a detail the panel does not give
-s02-A38,It is a frog. (the diagram is ignored),,,AJ,an explanation that ignores the illustration
-s02-A39,In deserts.,,,A,a claim the source does not support
+s02-A36v2,Frogs.,,,B,a topic given as the main idea
+s02-A36v2,Frogs have strong back legs.,,,B,one detail given as the main idea
+s02-A37v2,Frogs live in Antarctica.,,,A,a detail the pages do not give
+s02-A38v2,It is a foot. (the drawing is ignored),,,AJ,an explanation that ignores the illustration
+s02-A39v2,In deserts.,,,A,a claim the source does not support
 s02-A40,Opens pages at random.,,,V,a search that ignores text features
 s02-A41,Facts about frogs with no question written.,,,W,research with no focused question
 s02-A42,Forest with a stream under body.,,,X,a note in the wrong category
-s02-A43,"The chick pushes out, the hen sits on the egg, the chick pecks a crack.",,,Y,stages in the wrong order
-s02-A44,The egg keeps the hen warm.,,,Y,a cause reversed
-s02-A45,Both sentences are about the hen.,,,Z,a connection named without checking content
-s02-A46,Both paragraphs are in time order.,,,Z,a connection named without checking content
-s02-A47,The color of its skin.,,,D,a meaning that ignores the sentence clue
+s02-A43v2,"Tadpoles hatch, then the mother lays eggs, then the young toads leave.",,,Y,stages in the wrong order
+s02-A44v2,Trouble makes a frog jump well.,,,Y,a cause reversed
+s02-A45v2,Both sentences tell what happens next.,,,Z,a connection named without checking content
+s02-A46v2,All three paragraphs are in time order.,,,Z,a connection named without checking content
+s02-A47v2,Still water in a pond.,,,D,a meaning that ignores the sentence clue
 s02-A48,Relevant means a color.,,,D,a meaning that ignores the clue
 s02-A49,The habitat is its skin color.,,,D,a word used against its meaning
 s02-A50,It chases prey for miles.,,,A,a claim the panel does not make
@@ -352,13 +353,13 @@ s02-A80,A lizard also lives there.,,,Q,a closing on an unrelated animal
 s02-A81,The same draft recopied without the requested change.,,,AC,recopying treated as revision
 s02-A82,Facts about frogs with no question.,,,W,research with no focused question
 s02-A83,Forest with a stream under body.,,,X,a note in the wrong category
-s02-A84,Opens pages at random.,,,V,a search that ignores text features
-s02-A85,Permanent means lasting a short time.,,,D,a meaning that ignores the sentence clue
-s02-A86,Vulnerable means very strong.,,,D,a meaning that ignores the sentence clue
+s02-A84v2,Opens pages at random.,,,V,a search that ignores text features
+s02-A85v2,Permanent means lasting a short time.,,,D,a meaning that ignores the sentence clue
+s02-A86v2,Vulnerable means very strong.,,,D,a meaning that ignores the sentence clue
 s02-A87,Permanent water lasts a short time in the forest.,,,D,a word used against its meaning
-s02-A88,Clean water causes pollution.,,,Y,a cause reversed
-s02-A89,Both sentences are in time order.,,,Z,a connection named without checking content
-s02-A90,Both paragraphs are in time order.,,,Z,a connection named without checking content
+s02-A88v2,Clean water causes pollution.,,,Y,a cause reversed
+s02-A89v2,Both sentences are in time order.,,,Z,a connection named without checking content
+s02-A90v2,Both paragraphs are in time order.,,,Z,a connection named without checking content
 s02-A91,Only watches someone else type.,,,AD,watching counted as keyboarding
 s02-A92,Two mouses sit by the pond.,,,AE,an irregular plural given a regular ending
 s02-A93,Two gooses swim on the pond.,,,AE,an irregular plural given a regular ending
@@ -387,22 +388,24 @@ s02-A115,Then a bird took me to the moon.,,,Q,an ending on an unrelated adventur
 s02-A116,I wrote stomped to make the step quiet.,,,R,a word that contradicts its claimed effect
 s02-A117,A list of facts about a frog's voice.,,,S,an unexplained list
 s02-A118,Wait said Frog.,,,U,speech with no speech marks or comma
-s02-X57,It has webbed back feet.,,,X,a body fact named as the home
-s02-X57,It dives under the water.,,,X,a survival fact named as the home
+s02-X57v2,Eyes high on top of their heads.,,,X,a body fact named as the home
 s02-X57b,tall grass at a pond's edge,,,A,a note with no source label
 s02-X57b,"webbed back feet; Tullo frog book, p. 21",,,X,a body fact written as the home
-s02-X58,A kind of frog.,,,D,the meaning does not use the sentence clue
-s02-X58b,The back of the frog.,,,D,the meaning contradicts the clue
-s02-X59,The pads let it fly away.,,,A,a fact the strip does not give
-s02-X59,The leaves are wet because the toe pads are sticky.,,,Y,cause and result reversed
+s02-X58v2,It means green.,,,D,the meaning does not use the sentence clue
+s02-X58v2,It falls into the leaves.,,,D,the meaning contradicts the clue
+s02-X58bv2,To tell a story about frogs.,,,D,the meaning does not use the sentence clue
+s02-X58bv2,To take the frogs apart.,,,D,the meaning contradicts the clue
+s02-X59v2,The leaf is wet because the eggs are on it.,,,Y,cause and result reversed
+s02-X59v2,The eggs drop into the stream.,,,A,a fact the paragraph does not give (the tadpoles drop)
 s02-X60,Tell me about river frogs.,,,W,no focused question
 s02-X60,What do river frogs eat?,,,W,the strip does not answer it
 s02-X60b,"slow, shallow water; body; river frog book, p. 9",,,X,a home fact under body
 s02-X60b,"fast, deep water; habitat; river frog book, p. 9",,,A,a detail the strip does not give
-s02-X61,Habitat.,,,V,the search ignores what the heading tells
+s02-X61v2,From Egg to Frog.,,,V,the search ignores what the heading tells
+s02-X61v2,The glossary.,,,V,the search ignores what the request asks
 s02-X61b,"eggs in a desert; habitat; wildlife page, Habitat",,,A,a place the strip does not give
 s02-X61b,"cool, shallow pools; body; wildlife page, Habitat",,,X,a home fact under body
-s02-X62,"The book, page 5.",,,A,a claim the book strip does not make
+s02-X62v2,The glass frog page.,,,A,a claim the page does not make
 s02-X62b,"freezes in dry grass; survival; wildlife page, Habitat",,,X,a book fact under the wildlife page label
 s02-X62b,"needs a desert to lay eggs; habitat; wildlife page, Habitat",,,A,a place neither source gives
 s02-X63,It can jump far because the grass hides it.,,,AB,a joining word links unrelated ideas
@@ -417,7 +420,8 @@ s02-X65,Green treefrogs are hard to see.,,,W,"a statement, not a question"
 s02-X65b,Plants grow because the frogs are green.,,,Y,cause and result reversed
 s02-X65b,They are hard to see because they hide from foxes.,,,A,a reason the strip does not give
 s02-X66,Tell me about frogs.,,,W,no focused question
-s02-X66b,I would open the middle page.,,,V,a page chosen at random
+s02-X66bv2,I would open the middle page.,,,V,a page chosen at random
+s02-X66bv2,"Toads, page 15.",,,V,"an index word for another animal, not the horned frog"
 s02-X67,"cold streams; book, p. 6",,,X,a home fact under body
 s02-X67,wide head; wildlife page,,,A,the source named does not give it
 s02-X67b,"a desert; wildlife page, Habitat",,,A,a place neither source gives
@@ -430,7 +434,8 @@ s02-X69,I watched my partner type.,,,AD,watching counts as typing
 s02-X70,"Yes, it does.",,,A,accepts a claim the source does not make
 s02-X70b,No.,,,AO,a bare answer with no detail
 s02-X71,It has patches because it blends in.,,,Y,cause and result reversed
-s02-X71b,It means very fast.,,,D,the meaning ignores the sentence clue
+s02-X71bv2,It means very fast.,,,D,the meaning ignores the sentence clue
+s02-X71bv2,It means a big field.,,,D,"a meaning from another use of the word, not this sentence"
 s02-X72,Now let us discuss trucks.,,,Q,a closing on an unrelated topic
 s02-X72,Now let us discuss cars.,,,AC,the sentence recopied with no change
 s02-X72b,It is a good sentence.,,,S,does not say how it answers the feedback
@@ -438,7 +443,8 @@ s02-X73,Do you like frogs?,,,AM,the question does not connect to the discussion
 s02-X73b,The frog is green. The frog is hard to see in leaves.,,,AC,the same words copied
 s02-X73b,"The green frog is hard to see, so the pond is deep.",,,AB,a link joins unrelated ideas
 s02-X73c,It sounds better.,,,S,does not explain the change
-s02-X74,I will look through the pages.,,,V,no use of text features
+s02-X74v2,I will look through the pages.,,,V,no use of text features
+s02-X74v2,"Page 15, Frogs and Toads.",,,V,a heading picked without checking the index entry
 s02-X74b,a note with no label,,,A,no source support shown
 s02-X74c,It is the same.,,,AC,recopying treated as revision
 s02-X75,The frog has sharp tooths.,,,AE,an irregular plural kept with a regular ending
@@ -463,7 +469,8 @@ s02-P45-3,"croak, croaked, will croak",,,M,tense that conflicts with the time of
 s02-P45-6,A bird looked for a new nest.,,,Q,a closing about something unrelated
 s02-P45-7,(b),,,Q,an ending about something unrelated
 s02-P47-6,"growed, waved, singed, jumped",,,L,a regular ending on an irregular verb
-s02-P47-7,It is about a fox.,,,B,a topic given as the message
+s02-P47-7v2,It is about frogs.,,,B,a topic given as the message
+s02-P47-7v2,The jewels melted onto the frogs.,,,B,an event given as the message
 s02-P47-8,The sun has a mouth.,,,C,nonliteral language read as a physical thing
 s02-P47-9,Both mean the same.,,,E,certainty words treated as identical
 s02-P47-10,Very kind.,,,F,a word part given the wrong meaning
@@ -517,7 +524,7 @@ s02-P55-1,Pia,,,V,a page opened with no text feature
 s02-P55-6,yes,,,Z,a connection named without checking the sentences
 s02-P55-9,yes,,,Y,cause and result reversed
 s02-P55-8,(c),,,x,a fact from another part of the book
-s02-P56-1,(b),,,Y,cause and result reversed
+s02-P56-1v2,(b),,,Y,cause and result reversed
 s02-P56-4,the tale recopied with no change,,,AC,recopying treated as revision
 s02-K57-1,"No, it is too short.",,,x,a good note judged by length only
 s02-K57-2,Nothing is wrong.,,,x,a copied sentence accepted as a note
@@ -541,7 +548,6 @@ s02-P57-11,a whole sentence numbered,,,x,a phrase too long to be a note
 s02-P57-12,a number put by a word in the phrase,,,X,a note in the wrong category
 s02-P57-13,everything ticked,,,V,a search that ignores the page
 s02-P57-14,Because it has the word water.,,,X,a box chosen by a word in the fact
-s02-X61,Food.,,,V,the search ignores what the request asks
 s02-P58-1,"Yes, the book says water.",,,X,a box chosen by a word near the note
 s02-P58-2,excitment,,,x,the e dropped before -ment
 s02-P58-2,nervus,,,x,the ending -ous spelled -us
@@ -563,7 +569,7 @@ s02-P58-13,Both tell where it lives.,,,Z,both called the same without checking c
 s02-P58-14,the paragraph copied out,,,AC,recopying treated as revision
 s02-P58-15,Its skin is transparent green.,,,D,transparent used as a color
 s02-P58-16,The habitat is its leafs.,,,AE,an irregular plural kept regular
-s02-P59-1,"Yes, shade is a color.",,,D,a meaning that ignores its sentence clue
+s02-P59-1v2,"Yes, gills are a tadpole's tail.",,,D,a meaning that ignores its sentence clue
 s02-P59-2,amazment,,,x,the e dropped before -ment
 s02-P59-2,mountainus,,,x,the ending -ous spelled -us
 s02-P59-3,-ment,,,AC,a word part read with the wrong meaning
@@ -598,7 +604,7 @@ s02-K61-3,Long.,,,D,the opposite meaning
 s02-P61-10,I locate the frog.,,,D,locate used with no search
 s02-P61-11,My category is a frog.,,,D,"category used for a thing, not a group"
 s02-P61-12,Because it has the word water.,,,X,a box chosen by a word in the note
-s02-X62c,"It needs still, shallow water for its eggs.",,,X,a wildlife page fact given for the book
+s02-X62cv2,The eggs hang on a leaf over a stream.,,,X,a book-only fact given as one both sources give
 s02-X64e,grow,,,L,the base form used for yesterday
 s02-X66c,Tell me about glass frogs.,,,W,no focused question
 s02-X68d,I watched my partner type.,,,AD,watching counts as typing
@@ -618,51 +624,51 @@ s02-P76-1,calfs,,,AE,an irregular plural kept with a regular ending
 s02-P77-1,B,,,K,a display that does not match the line
 s02-K77-1,I looked anywhere.,,,V,no use of the index
 s02-P77-11,the page copied out,,,AC,recopying treated as repair
-s03-X81,He pressed his thumb on the bench to check.,,,B,the cause copied as the result: the order of the linked parts is reversed
-s03-X81,Tara shouted at Leo.,,,A,a fact the card does not give
-s03-X82,The writer thinks one weekend was too short.,,,E,a different view given as the writer's
-s03-X82,The writer thinks it rained all weekend.,,,A,a claim the passage does not make
-s03-P82-1,The writer believes a fence is needed.,,,E,the writer's view given where the reader's own was asked
-s03-P82-1,"I think the pond is deep, so it needs a fence.",,,A,a reason the passage does not give
-s03-X83,"The vase tipped over, so Kai chose a thin one.",,,B,the later event given as the cause of the earlier choice
-s03-X83,Kai wanted to break the vase.,,,A,a motive the card does not give
-s03-X84,"Dina says, ""Thank you, I can fix it.""",,,E,Dina's words copied as the one who thinks Hugo is rude
-s03-X84,Hugo says the pot has a crack.,,,E,Hugo's own remark copied as the view that he is rude
-s03-P84-1,Zoe is bossy.,,,E,"the narrator's view given as the child's own, with no reason"
-s03-P84-1,Zoe wants all the money.,,,A,a motive the card does not give
-s03-X85,He has ears all over.,,,D,the nonliteral phrase read as a physical event
-s03-X85,He wants her to stop talking.,,,A,a meaning the card does not support
+s03-X81v2,Ada followed him.,,,B,the action copied as its reason: the order of the linked parts is reversed
+s03-X81v2,She wanted to see the rug.,,,A,a reason the chapter does not give
+s03-X82v2,The writer thinks drafts should be thrown away.,,,E,a different view given as the writer's
+s03-X82v2,The writer thinks drafts should be typed.,,,A,a claim the passage does not make
+s03-P82-1v2,Making a series takes patience.,,,E,the writer's view given where the reader's own was asked
+s03-P82-1v2,"I think a series needs pictures, because the article says so.",,,A,a reason the article does not give
+s03-X83v2,"Ada crumples the plan, so the door hits the rug.",,,B,the later event given as the cause of the earlier problem
+s03-X83v2,Ada wanted to tear up Ben's plan.,,,A,a motive the chapters do not give
+s03-X84v2,"""A wrong plan is no use to anyone,"" said Ada.",,,E,Ada's words copied as the narrator's view of Ben
+s03-X84v2,"Ben held out his hand. ""Then may I have it?""",,,E,Ben's own words copied as the view of Ben
+s03-P84-1v2,Ben is silly.,,,E,"the narrator's view given as the child's own, with no reason"
+s03-P84-1v2,I think he keeps it to draw on the back.,,,A,a reason the chapter does not give
+s03-X85v2,The plan was made of stone.,,,D,the nonliteral phrase read as a physical fact
+s03-X85v2,Ada carried a box of books.,,,A,a meaning the chapter does not support
 s03-X86,It is a pronoun.,,,X,the class named with no job
 s03-X86,It tells how the cat dreams.,,,X,the job of another class given to the pronoun
-s03-X87,Pia is clever.,,,C,a trait with no action or effect
-s03-X87,She grew the seeds in the box.,,,A,a fact the card does not give
+s03-X87v2,Ada is brave.,,,C,a trait with no action or effect
+s03-X87v2,Ada fixed the arrow that day.,,,A,a fact the chapter does not give
 s03-X88,The tired hikers rests. They drink water.,,,Y,the verb still disagrees with the plural subject
 s03-X88,The tired hikers rest. It drinks water.,,,Z,the pronoun still does not match the hikers
-s03-X89,Ivy.,,,E,a character's view given as the narrator's
-s03-X89,Jonah.,,,E,the speaker given as the one who thinks he fusses
-s03-P89-1,Mara checks too often.,,,E,"the narrator's view given as the child's own, with no reason"
-s03-P89-1,I think a second test is fair.,,,P,a view with no reason and nothing taken from the card
-s03-X90,She wants to flip a coin at the door.,,,D,the nonliteral phrase read as a coin
-s03-X90,Arlo drew a monster.,,,A,a fact the card does not give
-s03-X91,"Rae moved the path uphill, so the ball rolled into the pond.",,,B,the move given as the cause of the test result
-s03-X91,Rae built the path of stones.,,,A,a fact the card does not give
-s03-X92,Cal is kind.,,,C,a trait with no action or effect
-s03-X92,A teacher made him share the ball.,,,A,a fact the card does not give
-s03-X93,Both stories are on a beach.,,,F,a similarity with no difference
-s03-X93,In story B the fort is near a lake.,,,A,a setting the card does not give
-s03-X94,Jo wires a doorbell in both stories.,,,F,a similarity with no difference
-s03-X94,Jo moves away in story B.,,,A,an event the card does not give
+s03-X89v2,Ben.,,,E,a character given the view about him
+s03-X89v2,Priya.,,,E,a character given the narrator's view
+s03-P89-1v2,Ben was wasting time.,,,E,"the narrator's view given as the child's own, with no reason"
+s03-P89-1v2,I think Ben is right.,,,P,a view with no reason and nothing taken from the chapter
+s03-X90v2,The mistakes hid in the room.,,,D,the nonliteral phrase read as a real hiding place
+s03-X90v2,Jun hid the plan on the shelf.,,,A,a fact the chapter does not give
+s03-X91v2,"Ada moved the beanbag, so Jun said it was too close.",,,B,the change given as the cause of what the walk found
+s03-X91v2,Ada erased all the arrows.,,,A,a fact the chapter does not give
+s03-X92v2,Ada is kind.,,,C,a trait with no action or effect
+s03-X92v2,Ms. Alvarez gave Nia and Sam a desk.,,,A,a fact the chapter does not give
+s03-X93v2,Both settings are at the school.,,,F,a similarity with no difference
+s03-X93v2,In book 2 the readers sit in the gym.,,,A,a setting the books do not give
+s03-X94v2,Ben checks the plan in both books.,,,F,a similarity with no difference
+s03-X94v2,In book 2 Ben finds a broken chair.,,,A,an event the books do not give
 s03-X96,"""Hello,"" said Ben. ""Hello,"" said Ada. They had books.",,,S,"no situation: no who, where or problem is named before the talk"
 s03-X96,"Finally, Ada asked Ben. First, she checked the list.",,,U,the time words reverse the order of the events
 s03-X96,The swap was saved. Then a storm came and blew the books away.,,,V,an unrelated problem opens at the end
-s03-X97,Owen forgot his shoes.,,,G,one event given as the message
-s03-X97,Both stories teach that Owen should stop playing sports.,,,A,a message the cards do not support
-s03-P97-1,Both are places where Dee waits.,,,F,a similarity given where a difference was asked
-s03-P97-1,In story B Dee waits at a school.,,,A,a setting the card does not give
+s03-X97v2,Ada moved the yellow beanbag.,,,G,one event given as the message
+s03-X97v2,Both books teach that you should draw alone.,,,A,a message the books do not support
+s03-P97-1v2,Both are places where Ada works on a plan.,,,F,a similarity given where a difference was asked
+s03-P97-1v2,In book 2 Ada works in the library.,,,A,a setting the books do not give
 s03-X98,I recommend it because it is a good story.,,,I,the opinion repeated as its own reason
 s03-X98,I recommend it because Dev flies over the trail.,,,A,an event the book does not hold
-s03-X99,Kit builds something for birds in both stories.,,,F,a similarity with no difference
-s03-X99,Kit moves away in story B.,,,A,an event the card does not give
+s03-X99v2,Everyone finds a place in both books.,,,F,a similarity with no difference
+s03-X99v2,In book 2 the readers go home early.,,,A,an event the books do not give
 s03-X100,Try them if you like soccer.,,,K,a closing that does not return to the reasons
 s03-X100,My lunch was good.,,,K,an unrelated thought as the ending
 s03-A1,She hates Ben.,,,A,a feeling the passage does not give
@@ -712,7 +718,8 @@ s03-A33,"Thundered, for a quiet secret, with no reason.",,,W,a word whose effect
 s03-A34,I only recopied.,,,L,neat recopying given as revision
 s03-A35,"Noun, pronoun, verb, adjective, adverb.",,,X,the classes named with no function
 s03-A37,Ben said Let us try.,,,AL,speech with no speech punctuation
-s03-A38,"Scene 2 happens first, then scene 1 asks the question.",,,B,the later part told as first
+s03-A38v2,"Ben says ""Your turn, Ada"" first, then he saves her turn.",,,B,the later scene told as first
+s03-A38v2,Ada gives the book back because Ben shouts at her.,,,A,evidence the panel does not give
 s03-A39,The narrator calls Ada's delay fair.,,,E,a character's view given to the narrator
 s03-A40,It makes every book sell out.,,,A,a claim the panel does not make
 s03-A41,The author prefers a new place.,,,E,the reader's preference given as the author's
@@ -771,14 +778,14 @@ s03-X118,scary,,,AA,guesses a word from the first letter and the sentence
 s03-X118,te-rr-ible,,,AI,divides the word so a chunk cannot be blended
 s03-X119,Because the map.,,,AF,an incomplete sentence where a clarification needs detail
 s03-X119,Stuff happens.,,,Q,a vague answer that names no action and no reason
-s03-X95,The message is that Teo drops the baton.,,,G,an event given as the message
-s03-X95,Teo won a trophy.,,,A,a fact the card does not give
-s03-X107,"The stew tastes right, then it needs salt.",,,B,puts the later scene first
-s03-X107,They talked.,,,T,a thin answer with nothing about how scene 2 follows scene 1
-s03-X107b,"The hands move, then the clock stands still.",,,B,puts the later stanza first
-s03-X107b,It is about a clock.,,,T,a thin answer with no development shown
-s03-X114,"Wren plays the song, then the recorder cracks.",,,B,puts the later chapter first
-s03-X114,Wren buys a new recorder.,,,A,an answer that is not in the strip
+s03-X95v2,The message is that the window won the vote.,,,G,an event given as the message
+s03-X95v2,Mateo won a prize.,,,A,a fact the chapter does not give
+s03-X107v2,"The plan works, then Ada says she will start again.",,,B,puts the later scene first
+s03-X107v2,They talked.,,,T,a thin answer with nothing about how scene 2 follows scene 1
+s03-X107bv2,"The leaf sails, then it rests by the stone.",,,B,puts the later stanza first
+s03-X107bv2,It is about a leaf.,,,T,a thin answer with no development shown
+s03-X114v2,"Ben shares the tomatoes, then they turn red.",,,B,puts the later chapter first
+s03-X114v2,Ben buys tomatoes at a shop.,,,A,an answer that is not on the panel
 s03-X118b,"Say speaks quickly, then the line.",,,AE,speaks the direction as if it were a line of speech
 s03-X118b,Quickly.,,,AF,a fragment that does not say what is done or left unsaid
 s03-A36,The painters holds their brushes.,,,Y,the verb does not agree with its subject
@@ -801,7 +808,7 @@ s03-P83-16,A drawing of a real wall with no meaning written.,,,D,the picture of 
 s03-P84-14,Nuisance is Ada's word.,,,E,the word given to a character
 s03-P84-13,All four strips are written under narrator says.,,,E,a character's words sorted as the narrator's
 s03-P86-10,Every judgment is labelled narrator.,,,E,a character's judgment given to the narrator
-s03-P86-11,Her heart fell to the floor.,,,D,the phrase read as a body part
+s03-P86-11,The plan was as heavy as a real rock.,,,D,the phrase read as a physical fact
 s03-P86-13,A line from she to tells the action.,,,X,the job of another class given to the pronoun
 s03-P86-14,books,,,X,a noun circled for the verb
 s03-P86-15,The same words recopied.,,,L,neat recopying given as revision
@@ -819,7 +826,7 @@ s03-K88-1,The quiet readers shares a plan now.,,,Y,the verb still disagrees with
 s03-K88-2,It stayed there.,,,Z,the pronoun does not match the labels
 s03-P88-5,"shakeing, pated, dryed",,,AH,the suffix added with no change to the base
 s03-P88-9,The same words recopied.,,,L,neat recopying given as revision
-s03-P88-10,Lena is careful.,,,C,a trait with no action or effect
+s03-P88-10v2,Ada is helpful.,,,C,a trait with no action or effect
 s03-P88-12,Took is a verb.,,,X,the class named with no job
 s03-P88-14,Four members votes for the window.,,,Y,the verb still disagrees with the plural subject
 s03-P88-15,She taped it to the shelf.,,,Z,the pronoun does not match the labels
@@ -845,8 +852,8 @@ s03-P90-1,"understod, probly, anywere, enuf, laf",,,AG,a studied word spelled by
 s03-P90-2,Ada thankt her frend for the help.,,,AG,a studied word spelled by an unrelated sound pattern
 s03-P90-3,unsafe means safe,,,x,the meaning of un- reversed
 s03-P90-4,guesses a word from its first letter,,,AA,guessing a word from its first letter
-s03-P90-6,Sam.,,,E,a character's view given as the narrator's
-s03-P90-7,Mia frets.,,,E,the narrator's word given as the child's own view
+s03-P90-6v2,Mateo.,,,E,a character's view given as the narrator's
+s03-P90-7v2,Ben picked a bad moment.,,,E,the narrator's view given as the child's own
 s03-P90-9,It means the room is dark.,,,D,the phrase read as a physical dark
 s03-P90-10,Ada is mad at Ben.,,,A,a fact the chapter does not give
 s03-P90-11,It means the lights are off.,,,D,the phrase read as a physical dark
@@ -870,8 +877,8 @@ s03-P93-2,"bild, beleive",,,AG,a studied word spelled by an unrelated sound patt
 s03-P93-3,She drew the cortyard on her paper.,,,AG,a studied word spelled by an unrelated sound pattern
 s03-P93-4,says rembered without chunking,,,AA,a word guessed with no chunks
 s03-P93-5,"makeing, ziped, worryed",,,AH,a suffix added with no base change
-s03-P93-8,Pip is kind.,,,C,a trait with no action or effect
-s03-P93-9,"Tess fetched a bowl, so the cup filled.",,,B,an action and its result reversed
+s03-P93-8v2,Ada is careful.,,,C,a trait with no action or effect
+s03-P93-9v2,"Ada moved the table, so the shelf was blocked.",,,B,an action and its result reversed
 s03-P93-10,the same answer in neater writing,,,L,neat recopying taken as revision
 s03-P93-12,Book 2: Ada moves away.,,,A,an event the opening does not give
 s03-P94-12,Book 2: Ada moves away.,,,A,an event the book does not give
@@ -885,12 +892,12 @@ s03-P96-14,Both have Ada.,,,F,a likeness given where a difference is asked
 s03-P97-15,Ada draws. Ada moves.,,,A,an event the book does not give
 s03-P97-16,The message is that Ada draws.,,,G,an event given as the message
 s03-P97-18,The message is that Ada asks readers.,,,G,an event given as the message
-s03-P96-19,Both children ask a teacher for help.,,,A,a person the card does not give
+s03-P96-19v2,Both times Ms. Alvarez is asked for help.,,,A,a person the chapters do not give
 s03-P98-1,"o-pi-nion, ex-cit-ing, fam-i-ly",,,AI,opinion split so a chunk cannot be blended
 s03-P98-2,beleive,,,AG,a studied word spelled by an unrelated sound pattern
 s03-P98-4,reads except for excited,,,AA,a word guessed from its first letters
 s03-P98-5,"jokeing, droped",,,AH,the suffix added with no change to the base
-s03-P98-7,Jo spilled the paint.,,,G,an event picked as what the story teaches
+s03-P98-7v2,Ben put the plan on the top shelf.,,,G,an event picked as what the book teaches
 s03-P98-8,I like apples because I like apples.,,,I,the opinion repeated picked as the stronger reason
 s03-P98-9,"Since it is a good book, I recommend it.",,,I,the opinion repeated as its reason
 s03-P98-9,"Since Ben flies over the school, I recommend book 1.",,,A,an event the books do not hold
@@ -1103,28 +1110,28 @@ s04-X120,I like the sign because it is nice.,,,M,liking alone
 s04-X120,The sign talks about a bay and a creek.,,,L,no opinion stated
 s04-X120,"Yes, because visitors like boats and the beach.",,,N,reasons that do not use the sign
 s04-X120,"Yes, because the sign names salt water and a safe creek.",,,O,no closing sentence
-s04-X121,The stream fills a lake.,,,B,a small detail as the idea
-s04-X121,The lake water is safe to drink.,,,AL,an unstated claim about safety
-s04-X122,gutter,,,E,reverses the order of the arrows
-s04-X122,The picture only says the same as the line.,,,AN,ignores what the picture adds
-s04-X123,Bakers fill the tubs each morning.,,,C,a detail from one card as the shared point
-s04-X123,Both places must save water.,,,A,a claim the cards do not state
-s04-X123b,Both places use water for washing.,,,C,the shared point where a detail was asked
-s04-X123b,A bakery uses more water than a car wash.,,,A,a claim the cards do not state
+s04-X121v2,It can carry litter.,,,B,a small detail as the idea
+s04-X121v2,The lake water is safe to drink.,,,AL,a claim about safety the part does not make
+s04-X122v2,Flocculation,,,E,reverses the order of the arrows
+s04-X122v2,The diagram only says the same as the line.,,,AN,ignores what the diagram adds
+s04-X123v2,Many communities build sand dams.,,,C,a detail from one text as the shared point
+s04-X123v2,Both say every village has a well.,,,A,a claim the texts do not state
+s04-X123bv2,Both say communities build wells.,,,C,the shared point where a detail was asked
+s04-X123bv2,Text B says the dam is made of wood.,,,A,a claim the text does not state
 s04-X124,Current means what is happening now.,,,D,a familiar meaning that does not fit the card
 s04-X125,Both cards are about schools and taps.,,,F,"a shared point only, no choice"
 s04-X125,My class likes card A best.,,,M,liking alone
 s04-X125,Card B because the water is tested and the tap is near.,,,O,no closing sentence
 s04-X125,"Card A, because the children are tired and thirsty.",,,A,a fact not on the cards
-s04-X126,Only B has a bucket.,,,C,"a detail given as the shared point, no shared point"
-s04-X126,Cafes waste water.,,,A,a claim the card does not state
-s04-X126,A has a hose and B has a bucket.,,,F,"differences only, no shared point"
-s04-X127,A float rises as the trough fills.,,,B,one step as the whole idea (any single sentence of the card)
-s04-X127,"The farm fills a trough, a float rises, the valve closes.",,,C,the steps listed with no joining idea
+s04-X126v2,Rain comes in seasons.,,,C,"a detail from text B only, given as the shared point"
+s04-X126v2,Both say the wells are broken.,,,A,a claim the texts do not state
+s04-X126v2,A is about supply and B is about ponds.,,,F,"differences only, no shared point"
+s04-X127v2,Fixing a leaky pipe helps.,,,B,one example as the whole idea (any single example of the part)
+s04-X127v2,Turn off the tap and fix the pipe.,,,C,the examples listed with no joining idea
 s04-X128,"Access, because the note names a creek.",,,AQ,filed under the wrong category
 s04-X128,"Pollution, because the fish died.",,,A,a fact the note does not state
-s04-X129,The city is big and has many homes.,,,C,restates the first sentence with no link
-s04-X129,"More homes needed water, so the city grew.",,,E,reverses cause and result
+s04-X129v2,Boreholes are deep wells with pumps.,,,C,restates the first sentence with no link
+s04-X129v2,"More people used the sources, so the boreholes broke down.",,,E,reverses cause and result
 s04-X130,Yes.,,,AJ,yes alone or a yes-or-no question where detail was asked
 s04-X130,I like swimming in the stream.,,,AH,changes the subject
 s04-X131,Sunlight,,,I,pronoun matched to the wrong noun
@@ -1132,8 +1139,8 @@ s04-X132,A is about a tap and B is about a pond.,,,F,"a shared point only, no ch
 s04-X132,I like B best.,,,M,liking alone
 s04-X132,"A first, because the tap stays dry in the afternoons.",,,O,no closing sentence
 s04-X132,"B first, because the farm uses the pond for its cows.",,,A,a claim not on the cards
-s04-X133,Sam,,,AM,a character's view made the narrator's
-s04-X133,The writer,,,AU,contradicts the stated detail: the writer asks for a bucket for every house
+s04-X133v2,The narrator,,,AM,a character's view made the narrator's
+s04-X133v2,Mr. Kioko,,,AU,contradicts the story: on page 7 Mr. Kioko says the sand is not endless
 s04-X134,The writer says I should clean the pond with a rake first.,,,J,the reader's view given as the writer's
 s04-X134,A net stops all the mess in a pond.,,,A,contradicts the text: a rake is also needed
 s04-X134,I agree because I like ponds.,,,M,liking alone
@@ -1267,8 +1274,8 @@ s04-X153,Before reopening it.,,,AA,a fragment
 s04-X153,Yes.,,,AJ,yes alone to a request for detail
 s04-X153b,I say slash slash.,,,AB,speaks the written cue
 s04-X153b,I read it fast with no stop.,,,Z,rushes past the meaning boundary
-s04-X154,The notice is mainly about roots.,,,B,the bulletin's detail given as the notice's idea
-s04-X154,Covered soil stops all floods.,,,A,adds a fact the notice does not state
+s04-X154v2,The stirring step makes the clumps big enough to sink.,,,B,one step given as the idea
+s04-X154v2,Workers can skip a step.,,,A,a claim the part does not state
 s04-X155,Water flow again.,,,AA,a fragment
 s04-X155,"The repair mattered, pause here, because water flows.",,,AB,a spoken cue inside the message
 s04-X156,The table.,,,AJ,a source without the detail asked for
@@ -1361,8 +1368,8 @@ s04-P127-12,Both texts use water.,,,B,"a shared word, not an idea"
 s04-P127-12,The town text has steps.,,,F,"a difference, no shared point"
 s04-P127-11,Rivers dried up. Sand dams.,,,C,details listed with no joining so
 s04-P127-4,It They,,,x,pronouns swapped for the noun number
-s04-X126b,Both rinse with water.,,,F,a shared point given as the detail only B has
-s04-X126b,The cooks sell the vegetables.,,,A,a claim the card does not state
+s04-X126bv2,Both say rivers hold less water.,,,F,a shared point given as the detail only B has
+s04-X126bv2,B says it never rains in Kitui County.,,,A,a claim the text does not state
 s04-X128b,fish,,,A,a word that is not in the note
 s04-X128b,creek,,,AQ,"the word creek points to access, not to what the note says"
 s04-P128-8,Rain is little.,,,A,a claim section 6 does not make
@@ -1372,12 +1379,12 @@ s04-P128-4,a title and no date,,,L,the record is incomplete
 s04-P128-5,I read it.,,,x,no purpose and no detail
 s04-P129-10,Both say water.,,,F,"a shared word, not a shared idea"
 s04-P129-11,The excerpt says that the city is big.,,,A,a claim neither text makes
-s04-P129-13,one,,,x,the list of many things in the sentence was not used
+s04-P129-13v2,one,,,x,the list of many things in the sentence was not used
 s04-P130-10,Is it good?,,,AJ,a yes-or-no question only
 s04-P130-13,Invented. The well is always full in every village.,,,AP,an invented episode written as a research fact
 s04-P130-4,a title and no date,,,L,the record is incomplete
 s04-P130-5,I read it.,,,x,no purpose and no detail
-s04-P132-8,Both say water.,,,F,"a shared word, not a shared idea"
+s04-P132-8v2,Both say water.,,,F,"a shared word, not a shared idea"
 s04-P132-9,slowly is an adverb,,,G,a class name with no job
 s04-P132-10,The pipes leaks.,,,H,a verb that does not match its subject
 s04-P132-11,It,,,I,a pronoun that does not match many buckets
@@ -1414,9 +1421,9 @@ s04-P135-3,"growth A, solution C, protect B",,,x,meanings crossed
 s04-P136-1,"groth, solushun",,,x,missed pattern repeated
 s04-P136-2,the|re|fore exam|ple,,,x,chunks cut in the wrong places
 s04-P136-3,"sins, exampel",,,x,words spelled by sound
-s04-P136-8,The writer thinks cows need a tank.,,,J,the reader's view given to the writer
+s04-P136-8v2,The writer thinks every child should visit the plant.,,,J,the reader's view given to the writer
 s04-P136-9,They fold their sleeves.,,,K,the nonliteral phrase read as a physical action
-s04-P136-10,The town fixed the pipe in June.,,,AU,the stated month contradicted
+s04-P136-10v2,The group built its first sand dam in 2023.,,,AU,the stated year contradicted
 s04-P136-13,"garden, soil",,,x,singular nouns circled
 s04-P136-14,soil,,,x,a thing you can touch underlined
 s04-P136-15,childs womans mouses neighbours,,,R,a plain s added to an irregular plural
@@ -1692,12 +1699,12 @@ c1-X80,The rug is blue.,,,E,a detail the card does not give
 c1-X80,Because it is soft.,,,G,no words copied from the card
 c1-P80-11,The corner has a rug. The corner has a lamp.,,,P,no linking word
 c1-P80-11,The corner has a rug but a lamp.,,,P,a link word that misstates the relationship
-c1-P80-1,the beans like water,,,A,the gap this group move repairs
-c1-P80-2,It is about a fox.,,,B,the gap this group move repairs
-c1-P80-3,Cats and dogs fell.,,,C,the gap this group move repairs
-c1-P80-4,"Sprouts, then rain.",,,H,the gap this group move repairs
-c1-P80-5,"Wind, page 3.",,,J,the gap this group move repairs
-c1-P80-6,happy,,,L,the gap this group move repairs
+c1-P80-1v2,because it rained,,,A,the gap this group move repairs
+c1-P80-2v2,It is about frogs and a crane.,,,B,the gap this group move repairs
+c1-P80-3v2,The sun hit the stones.,,,C,the gap this group move repairs
+c1-P80-4v2,"Tadpoles drop, then eggs hatch.",,,H,the gap this group move repairs
+c1-P80-5v2,"Glass frog, page 10.",,,J,the gap this group move repairs
+c1-P80-6v2,happy,,,L,the gap this group move repairs
 c1-P80-7,reads them and gives no meaning,,,T,the gap this group move repairs
 c1-P80-8,sounds out each word letter by letter,,,U,the gap this group move repairs
 c1-P80-9,the same flat reading twice,,,V,the gap this group move repairs
@@ -1816,22 +1823,22 @@ c2-A158W3,I like it. It is free. It is open.,,,P,no linking word
 c2-A158W3,and and and and,,,P,one link word does all the work
 c2-A158W4,The tent is open on weekends.,,,AE,"a last reason, not a closing"
 c2-A158W4,I like dogs.,,,AE,a closing about something else
-c2-X159,Do you like flags?,,,A,"a liking, not a question the words answer"
-c2-X159,Who made the flag?,,,A,a question the card cannot answer
+c2-X159v2,Do you like buckets?,,,A,"a liking, not a question the words answer"
+c2-X159v2,Who made the bucket?,,,A,a question the sidebar cannot answer
 c2-P159-16,The tent is cool. Families like it.,,,P,no linking word
 c2-P159-16,Because the tent is cool because.,,,P,the link word used wrongly
 c2-X160,It is easy to fly.,,,AE,"a last reason, not a closing"
 c2-X160,Kites are in the sky.,,,AE,a closing about something else
-c2-P159-1,Jo ate a snack.,,,E,a detail that is not the reason
-c2-P159-1,Jo.,,,G,no words that tell why
-c2-P159-2,It is about a hen.,,,B,"a topic, not a lesson"
-c2-P159-2,Hens are fast.,,,E,a lesson the card does not show
-c2-P159-3,Ty.,,,AL,"a name in both parts, not what builds on the first"
-c2-P159-3,Chapter B.,,,AL,a part named but not built on
-c2-P159-4,Ana says she is scared.,,,AM,the character's view given as the narrator's
-c2-P159-4,I think she is brave.,,,AM,the reader's view given as the narrator's
-c2-P159-5,A pup.,,,AN,one story only
-c2-P159-5,They are different.,,,AN,no likeness found
+c2-P159-1v2,there is water for every household,,,E,"the result, not the reason"
+c2-P159-1v2,Mr. Kioko.,,,G,no words that tell why
+c2-P159-2v2,It is about a well.,,,B,"a topic, not a lesson"
+c2-P159-2v2,Always be first in line.,,,E,a lesson the card does not show
+c2-P159-3v2,the storm,,,AL,a part of page 3 that does not point back
+c2-P159-3v2,Page 2.,,,AL,a part named but not built on
+c2-P159-4v2,Mutheu thinks the plan is fair.,,,AM,the character's view mixed with the narrator's
+c2-P159-4v2,I think it is fair.,,,AM,the reader's view given as the narrator's
+c2-P159-5v2,A reading corner.,,,AN,one story only
+c2-P159-5v2,They are different.,,,AN,no likeness found
 c2-P159-6,Smash the ice.,,,C,nonliteral words read as a physical event
 c2-P159-6,Drink water.,,,L,a meaning that ignores the sentence around it
 c2-P159-7,dogs,,,AF,"the subject circled, not the verb"
@@ -1848,12 +1855,17 @@ c2-P159-12,says a different long word from its first letters,,,R,guessed from th
 c2-P159-12,reads it part by part and never blends,,,V,"word by word, no whole word"
 c2-P159-13,reads each word on its own in one pitch,,,V,"word by word, no phrasing"
 c2-P159-13,reads it the same way as the first time,,,W,misread left on the reread
-c2-P159-14,The park is open from nine to five.,,,Z,a fact given as the writer's view
-c2-P159-14,I like parks.,,,Z,the reader's view given as the writer's
-c2-P159-15,Frogs lay eggs in ponds.,,,AA,a point from one text only
-c2-P159-15,Toads lay strings.,,,AA,a point from one text only
+c2-P159-14v2,Then the water rests in a large tank.,,,Z,a fact given as the writer's view
+c2-P159-14v2,I like clean water.,,,Z,the reader's view given as the writer's
+c2-P159-15v2,People walk a long way to reach water.,,,AA,a point from one text only
+c2-P159-15v2,More people used the sources that still worked.,,,AA,a point from one text only
 c2-P160-1,No change.,,,AD,the part in the note left as it was
 c2-P160-1,Rewrites the whole paragraph.,,,AD,more changed than the note named
 s01-A73,A thing.,,,U,vague after a request for detail
 s02-A119,A sketch of a pond with no cocoon.,,,AA,a sketch that does not show the asked part
 s02-A120,Add ing with no change.,,,AH,a suffix added without the taught spelling change
+s02-P63-1v2,rests flat on a leaf by day,,,A,takes a note the lines do not give as given
+s02-P72-12v2,very fast,,,D,a meaning that ignores the sentence clue
+s04-P128-12v2,how much water people want and need,,,x,"the meaning of demand, from the sentence before"
+s02-P55-4v2,The egg.,,,Y,the order of the stages reversed
+s02-P62-1v2,Habitat,,,V,the search ignores what the heading tells

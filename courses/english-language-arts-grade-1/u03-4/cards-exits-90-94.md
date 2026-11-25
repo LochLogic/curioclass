@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 90 to 94
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
+The "pictures" entries reread a named part of the unit's own texts (texts/g1-u3-01) and need only their three pictures: plain black line drawings on white, thick lines, no shading, no printed words except a label a picture names. The "card" entries are made up for practice: print "invented for practice" in small letters at the foot of each. Children do not read the cards; you read the lines aloud.
 
 ## Day 90 card (s03-X90a, W.1.8)
 
@@ -21,23 +21,29 @@ This card is invented for practice. The same card stays in view. Say: "Say one q
 
 **Right answer:** A question such as: How does the beak pick up seeds?
 
-## Day 91 card (s03-X91a, RI.1.5)
+## Day 91 pictures (s03-X91av2, RI.1.5)
 
-This card is invented for practice. Show the card and read it aloud: "Page 2 heading: New Feathers. Glossary: molt, to shed old feathers and grow new ones. The words under the heading: A bird molts. It sheds old feathers, and new feathers grow in their place. The cover shows a whole bird." Show three pictures: old feathers falling and new feathers growing, the cover, a bird asleep. Say: "Point to the picture that matches the fact you found." Hear the day's rotating six.
+Passage: Wings in Motion, page 2, Fast Hummingbird Wings, and the page 3 glossary line hover (day 91 works Feathers Protect).
 
-**Right answer:** Old feathers falling and new feathers growing.
+Read aloud the part of Wings in Motion headed Fast Hummingbird Wings, page 2, and its glossary line: "hover: to stay in one place in the air." Show three pictures: a hummingbird staying still in the air by a flower, the cover with its flock of birds, a bird asleep. Say: "Point to the picture that matches the fact you found." Hear the day's rotating six.
 
-## Day 91 card (s03-X91b, RI.1.5)
+**Right answer:** The hummingbird staying in one place in the air.
 
-This card is invented for practice. The same card stays in view. Say: "How do the heading and the glossary help you explain the fact?" Hear the day's rotating six.
+## Day 91 pictures (s03-X91bv2, RI.1.5)
 
-**Right answer:** The heading shows where to look; the glossary says what molt means.
+Passage: Wings in Motion, page 2, Fast Hummingbird Wings, and the page 3 glossary line hover (day 91 works Feathers Protect).
 
-## Day 92 card (s03-X92a, RI.1.2)
+The same page stays in view. Say: "How do the heading and the glossary help you explain the fact?" Hear the day's rotating six.
 
-This card is invented for practice. Show the card and read it aloud: "Source X: A swift has long, narrow wings. Source Y: A swift's long, narrow wings help it fly fast." Show three pictures: a swift's long, narrow wings, a fast blur, a bird at rest. Say: "Point to the picture that fits an answer about the swift's wings." Hear the day's rotating six.
+**Right answer:** The heading shows where to look; the glossary says hover means to stay in one place in the air.
 
-**Right answer:** The swift's long, narrow wings.
+## Day 92 pictures (s03-X92av2, RI.1.2)
+
+Passage: Duck at the Pond, page 2, Feet (day 92 works the Feathers part against Feathers Protect).
+
+Reread aloud the part of Duck at the Pond headed Feet, page 2. Show three pictures: a duck's webbed feet, a splash of water, a duck's beak. Say: "Point to the picture this part is mostly about." Hear the day's rotating six.
+
+**Right answer:** The duck's webbed feet.
 
 ## Day 92 card (s03-X92b, W.1.8)
 
@@ -45,11 +51,13 @@ This card is invented for practice. The same card stays in view. Say: "Tell me o
 
 **Right answer:** X: long and narrow wings. Y: the wings help it fly fast.
 
-## Day 93 card (s03-X93a, RI.1.2)
+## Day 93 pictures (s03-X93av2, RI.1.2)
 
-This card is invented for practice. Show the card and read it aloud: "A peacock has long, bright tail feathers. A peacock spreads them like a fan." Show three pictures: tail feathers spread like a fan, one bright color, a peacock eating. Say: "Point to the picture that is the topic of a paragraph about this card." Hear the day's rotating six.
+Passage: Feathers Protect, page 2, Feathers for Flight (day 93 drafts from the duck feather notes).
 
-**Right answer:** The tail feathers spread like a fan.
+Reread aloud the part of Feathers Protect headed Feathers for Flight, page 2. Show three pictures: a bird's wing feathers, a cloud alone, a bird eating. Say: "Point to the picture that is the topic of a paragraph about this part." Hear the day's rotating six.
+
+**Right answer:** The bird's wing feathers.
 
 ## Day 93 card (s03-X93b, W.1.2)
 

@@ -5,16 +5,12 @@ unit: 4.3
 version: draft, not yet taught
 credit: ours
 ---
-# Check cards, day 132 (C2)
+# Check sheet, day 132 (C2)
 
-Keep these two cards unseen until day 132. Never read, show or teach them before the check. Read card A aloud once and then again; read card B once. Each group of five has three minutes of card A and two minutes of card B.
+The check uses two pages of Wangari and the Tree Planters (texts/gk-u4-03.md) that the class has not heard: keep the book closed at pages 4 and 7 until day 132, and never read, show or teach them before the check. Read page 4 aloud once and then again; read page 7 once. Each group of five has three minutes of page 4 and two minutes of page 7.
 
-**Card A:** "Use tree labels. They show each tree's name and help visitors find it again."
-Ask: "What is the writer's point?" (the point: use tree labels) then "Say one reason the writer gives." (a label shows the tree's name; or it helps visitors find the tree again).
+**Page 4.** Ask: "What is the writer's point on this page?" (trees can help with these concerns) then "Say one reason the writer gives." (trees hold the soil in place; or they catch rainwater; or they give food and firewood).
 
-**Card B:** "At our tree, a label shows its name. Beside it, a drawing shows its leaves."
-Ask: "How are card A and card B the same?" (both say a label shows a tree's name) then "How are card A and card B different?" (A adds finding the tree again; B adds a drawing of leaves beside the label).
+**Page 7, beside page 4.** Ask: "How are the two pages the same?" (both say trees keep soil in place and hold rainwater) then "How are the two pages different?" (page 4 adds food and firewood; page 7 adds that more people joined in the planting).
 
-A mark on a liking ("I like blue labels") is error C; a supporting detail given as the point is error B; "they say the same" is error E. Give one prompt a child and never the answer. Marks: shown, shown with help, not yet seen.
-
-Print "invented for practice" in small letters at the foot of each card.
+A liking ("I like big trees") is error C; a supporting detail given as the point, such as "Trees catch rainwater", is error B; "they say the same" is error E. Give one prompt a child and never the answer. Marks: shown, shown with help, not yet seen.

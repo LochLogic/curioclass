@@ -1901,3 +1901,19 @@ Cory took the recommended pick on every call.
 - **Time Tides (L108):** credit the GPL-3.0 map data and keep it; restore the Wikipedia bios with CC BY-SA credit; use
   BCE/CE; fix the anachronisms, religion-based labels and the Qing Tibet and Xinjiang wording, with a fresh
   sensitivity read, before it is marked live.
+
+## 2026-11-24: ELA K to 3 exits on texts (q-ela-k3-text-gate)
+
+Cory took the recommended pick on both calls.
+- **The 80 percent text check in K to 3** counts reading items only (codes RL and RI). Phonics, conventions, writing
+  and talk items are judged by their own checks, because tying a decoding or writing item to the read-aloud would teach
+  worse. scripts/plan.py applies it to grades K, 1, 2 and 3; grades 4 and up still count every item.
+- **Grade 1 cold checks** (days 47, 48, 104, 105 and 115) get one short new passage each, written in Curio Class words
+  with a sensitivity read, since a cold check on a heard text measures memory as much as reading.
+
+## 2026-11-24: curriculum first, tools reshaped after (consolidation plan)
+
+Cory, in chat: the curriculum is the product. The tools never give shape to the curriculum; once the curriculum is
+done, the tools are reshaped to fit it. The tool-era topic catalog (modules.csv, sequence.csv, coverage.csv,
+data/concepts, the shape files) is frozen as tool-side data, and no curriculum script reads it.
+course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN.md step 4.1).

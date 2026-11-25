@@ -98,6 +98,9 @@ for folder in sorted(p for p in (ROOT / 'tools').iterdir() if p.is_dir()):
     if not (folder / 'tool.json').exists() and (folder / 'spec.md').exists():  # specced, not built yet
         print(f'spec  {folder.name}')
         continue
+    if not (folder / 'tool.json').exists() and not (folder / 'src.html').exists() and (folder / 'source').is_dir():
+        print(f'source {folder.name}')  # a rescued single file in source/, not built here yet (consolidation step 1)
+        continue
     problems = check(folder) + (notes_sections(folder) if (folder / 'tool.json').exists()
                                 and not json.loads((folder / 'tool.json').read_text(encoding='utf-8')).get('recess') else [])
     print(f'{"FAIL" if problems else "ok  "} {folder.name}')

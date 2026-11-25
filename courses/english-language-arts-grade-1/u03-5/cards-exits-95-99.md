@@ -7,31 +7,39 @@ credit: ours
 ---
 # Exit cards, days 95 to 99
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
+The "pictures" entries reread a named part of the unit's own texts (texts/g1-u3-01) and need only their three pictures: plain black line drawings on white, thick lines, no shading, no printed words except a label a picture names. The "card" entries are made up for practice: print "invented for practice" in small letters at the foot of each. Children do not read the cards; you read the lines aloud.
 
-## Day 95 card (s03-X95a, RI.1.2)
+## Day 95 pictures (s03-X95av2, RI.1.2)
 
-This card is invented for practice. Show the card and read it aloud: "A kingfisher has a long, pointed beak. It dives and catches small fish." Show three pictures: the kingfisher's beak, a small fish, a nest. Say: "Point to the picture that is the topic of the card." Hear the day's rotating six.
+Passage: Beaks Find Food, page 2, Long Beaks for Fish (day 95 works the hawk and sparrow parts).
 
-**Right answer:** The kingfisher's beak.
+Reread aloud the part of Beaks Find Food headed Long Beaks for Fish, page 2. Show three pictures: the heron's long beak, a small fish, a nest. Say: "Point to the picture that is the topic of this part." Hear the day's rotating six.
 
-## Day 95 card (s03-X95b, RI.1.2)
+**Right answer:** The heron's long beak.
 
-This card is invented for practice. The same card stays in view. Say: "Say one detail that tells about it." Hear the day's rotating six.
+## Day 95 pictures (s03-X95bv2, RI.1.2)
 
-**Right answer:** It is long and pointed, or it dives and catches small fish.
+Passage: Beaks Find Food, page 2, Long Beaks for Fish (day 95 works the hawk and sparrow parts).
 
-## Day 96 card (s03-X96a, RI.1.5)
+The same part stays in view. Say: "Say one detail that tells about it." Hear the day's rotating six.
 
-This card is invented for practice. Show the card and read it aloud: "Page 1 contents: Bark Hunters, page 2. Page 2 heading: Bark Hunters. Label on the picture: beak. Glossary: thin, not wide. The words under the heading: A nuthatch has a thin beak. It looks in bark for insects to eat. The cover shows the whole nuthatch." Show three pictures: the nuthatch's beak, the cover, a bark pattern. Say: "Point to the part that gets the food." Hear the day's rotating six.
+**Right answer:** It is long, or it catches the fish when the heron strikes fast.
 
-**Right answer:** The nuthatch's beak.
+## Day 96 pictures (s03-X96av2, RI.1.5)
 
-## Day 96 card (s03-X96b, RI.1.5)
+Passage: Duck at the Pond, pages 1 to 3: contents entry Beak, page 2 Beak with its diagram label, glossary line ridge (day 96 works Beaks Find Food).
 
-This card is invented for practice. The same card stays in view. Say: "What does the glossary tell you about thin?" Hear the day's rotating six.
+Show Duck at the Pond: the contents entry Beak, the heading Beak, the label beak and the glossary line "ridge: a thin raised line." Read the Beak part aloud. Show three pictures: the duck's beak, the cover with the duck on the pond, reeds. Say: "Point to the part that gets the food." Hear the day's rotating six.
 
-**Right answer:** Thin means not wide.
+**Right answer:** The duck's beak.
+
+## Day 96 pictures (s03-X96bv2, RI.1.5)
+
+Passage: Duck at the Pond, page 2 Beak and the page 3 glossary line ridge (day 96 works Beaks Find Food).
+
+The same pages stay in view. Say: "What does the glossary tell you about ridge?" Hear the day's rotating six.
+
+**Right answer:** A ridge is a thin raised line.
 
 ## Day 97 card (s03-X97a, W.1.7)
 
@@ -45,17 +53,21 @@ This card is invented for practice. The same card stays in view. Say: "Say one n
 
 **Right answer:** Flat, wide beak, label P; or swings the beak through water to find food, label Q.
 
-## Day 98 card (s03-X98a, RI.1.3)
+## Day 98 pictures (s03-X98av2, RI.1.3)
 
-This card is invented for practice. Show the card and read it aloud: "A black skimmer flies low over the water. Its long lower beak cuts through the water. The beak snaps shut when it touches a fish." Show three pictures: the lower beak cutting the water and touching a fish, the skimmer's wings, a fish alone. Say: "Point to the picture that shows how the skimmer gets food." Hear the day's rotating six.
+Passage: Heron by the Water, page 2, Waiting (day 98 models the hawk and works notes from Beaks Find Food and the Long Beak part).
 
-**Right answer:** The lower beak cutting the water and touching a fish.
+Reread aloud the part of Heron by the Water headed Waiting, page 2. Show three pictures: the heron striking a fish with its beak, the heron's long toes, a fish alone. Say: "Point to the picture that shows how the heron gets food." Hear the day's rotating six.
 
-## Day 98 card (s03-X98b, RI.1.3)
+**Right answer:** The heron striking a fish with its beak.
 
-This card is invented for practice. The same card stays in view. Say: "Say one sentence that connects the beak to the food." Hear the day's rotating six.
+## Day 98 pictures (s03-X98bv2, RI.1.3)
 
-**Right answer:** The long lower beak cuts the water, so the skimmer can catch fish.
+Passage: Heron by the Water, page 2, Waiting (day 98 models the hawk and works notes from Beaks Find Food and the Long Beak part).
+
+The same part stays in view. Say: "Say one sentence that connects the beak to the food." Hear the day's rotating six.
+
+**Right answer:** The heron strikes with its beak, so the fish is caught.
 
 ## Day 99 card (s03-X99a, W.1.8)
 

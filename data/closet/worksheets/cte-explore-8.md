@@ -48,6 +48,106 @@ write: Wind turbine technician grows fastest, but nurse practitioner adds more j
   lines: 3
   key: Answers vary. Percent growth shows how fast demand is rising; the number of new jobs shows how many openings there will be. A strong answer explains that a large number of openings can matter more for finding a job, while fast growth can signal a field with a strong future, and that interest and pay matter too.
 
+# 7. Skills Gap Plan
+minutes: 40
+materials: pencil, career information (the Occupational Outlook Handbook or a printed career profile)
+ican: I can identify the skills a career requires, rate my current level and plan ways to close the gap.
+directions: Study the model plan for an electrician. Then pick a career you are curious about, list five skills it requires, rate your level now from 1 to 4, and plan three ways to build each skill.
+mistakes: Students often list only technical skills; most careers also need transferable skills such as communication and problem solving. Watch for ways to build a skill that are too vague ("get better," "practice more"). A good way names an action, a place and a time: "take Algebra I next year," "join the robotics club this spring." Ratings are honest snapshots, not grades; a 1 is a starting point.
+notes: The model follows the U.S. Bureau of Labor Statistics Occupational Outlook Handbook profile for electricians: most learn through an apprenticeship that combines paid on-the-job training with classes, most states require a license, and important qualities include color vision (wires are color coded), troubleshooting, critical thinking and physical stamina. Students should use the "How to Become One" section (including Important Qualities) of a profile for their own career. Rating scale: 1 = just starting, 2 = some practice, 3 = solid, 4 = strong. Students rate skills only; no personal or family information is needed.
+
+## Model: Electrician
+table: Required skill | My level (1 to 4) | Way 1 | Way 2 | Way 3
+  - Math (measuring, fractions, algebra) | 2 | Take algebra seriously next year | Measure and cut for a home or school project | Do 10 practice problems a week
+  - Reading diagrams and plans | 1 | Read wiring diagrams in a library book | Build a circuit kit in science class | Join the robotics club
+  - Troubleshooting | 2 | Fix a bike or a broken toy step by step | Help a teacher solve tech problems | Keep a log of problems and fixes
+  - Safety habits | 3 | Follow lab safety rules every time | Take a first aid class | Learn how a circuit breaker works
+  - Talking with customers | 2 | Explain a project to an adult | Volunteer at a school event | Practice answering questions politely
+
+## Warm up
+choice: Which section of a career profile tells you the skills and training a job needs?
+  - Pay
+  * How to Become One
+  - Job Outlook
+  - Similar Occupations
+choice: Which is a **transferable** skill, useful in almost any job?
+  - Bending metal pipe for electrical wires
+  - Reading a dental X-ray
+  * Communicating clearly with a team
+  - Programming a welding robot
+fill:
+  - In the model, the skill with the biggest gap (the lowest level) is {reading diagrams and plans}.
+  - The model's strongest skill is {safety habits}, rated {3}.
+
+## Main: My skills gap plan
+text: Career I chose: {answers vary} Where I found the skills: {answers vary}
+chart: Required skill | Level (1 to 4) | Way 1 | Way 2 | Way 3
+  labels: 1; 2; 3; 4; 5
+  height: 0.6
+  key: Answers vary. A strong plan lists five skills taken from a real career profile, including at least one transferable skill; gives an honest rating for each; and plans three specific actions (what, where, when) per skill, using school, clubs, home, library or community.
+
+## Main: Check your plan
+write: Which skill has your biggest gap? Which of your three ways will you start first, and when?
+  lines: 3
+  key: Answers vary. A strong answer names the lowest-rated skill, picks one specific action and gives a time ("I will sign up for the robotics club in January").
+write: Circle one way in your plan that is vague. Rewrite it so it names an action, a place and a time.
+  lines: 2
+  key: Answers vary. Example: "Practice math" becomes "Do the 15-minute math practice in the library every Tuesday after school this semester."
+
+## Stretch
+write: Which skill on your list will also help you in a second, different career? Name the career and explain.
+  lines: 3
+  key: Answers vary. Example: talking with customers helps an electrician and also a nurse, a salesperson or a teacher, because all of them explain things to people and listen to their needs.
+
+# 20. Snow Season Prices Review
+minutes: 45
+materials: pencil, ruler, calculator
+ican: I can compute how price changes affect revenue, graph a price ceiling, and classify market structures.
+directions: Compute the revenue effect of two invented price increases and decide which demand is elastic. Draw a price ceiling on the lift ticket graph and find the shortage. Then classify six ski town businesses by market structure.
+mistakes: Students often think raising a price always raises revenue. When demand is elastic (many substitutes), customers leave and revenue falls. Watch for percent change computed from the new value instead of the original. A price ceiling only matters when it is set below the equilibrium price; then it causes a shortage, not a surplus. Many sellers does not always mean perfect competition: if the products differ, it is monopolistic competition.
+notes: All numbers are invented. Lift tickets: price +25% ($80 to $100), visitors -10% (1,000 to 900); revenue $80,000 to $90,000; elasticity 10 / 25 = 0.4, inelastic. Snowboard rentals: price +25% ($40 to $50), rentals -40% (200 to 120); revenue $8,000 to $6,000; elasticity 40 / 25 = 1.6, elastic. Graph: demand P = 120 - 10Q and supply P = 20 + 10Q (Q in hundreds of tickets), equilibrium 500 tickets at $70. A $50 ceiling: demand 700, supply 300, shortage 400.
+
+## Main: Elasticity and revenue
+table: | Lift tickets (per day) | Snowboard rentals (per day)
+  - Price | $80 to $100 | $40 to $50
+  - Percent change in price | {+25%} | {+25%}
+  - Quantity sold | 1,000 to 900 | 200 to 120
+  - Percent change in quantity | {-10%} | {-40%}
+  - Revenue before (price x quantity) | {$80,000} | {$8,000}
+  - Revenue after | {$90,000} | {$6,000}
+  - Revenue went up or down? | {up $10,000} | {down $2,000}
+fill:
+  - Elasticity = percent change in quantity / percent change in price. Lift tickets: {0.4}. Snowboard rentals: {1.6}.
+  - Demand for {snowboard rentals} is elastic, and demand for {lift tickets} is inelastic.
+write: Why would demand for lift tickets be less elastic than demand for snowboard rentals?
+  lines: 2
+  key: There are few substitutes for a lift ticket if you want to ski that mountain, but renters can go to another shop, borrow a board or bring their own, so they react more to a price increase.
+
+## Main: Graph a price ceiling
+text: The graph shows the invented market for lift tickets. Solid line: demand. Dashed line: supply. The town sets a price ceiling of **$50**. Draw it as a horizontal line and label it.
+graph: Lift tickets per day (hundreds) | 0 10 1 | Price ($) | 0 120 10
+  line: 0,120 10,20
+  line2: 0,20 10,120
+  key: 0,50 10,50
+fill:
+  - Without the ceiling, the equilibrium price is {$70} and {500} tickets are sold.
+  - At $50, skiers want {700} tickets, but the resort offers only {300}.
+  - The ceiling causes a {shortage} of {400} tickets.
+choice: Which ceiling would have **no effect** on this market?
+  - $30
+  - $50
+  - $60
+  * $90
+
+## Main: Market structures
+table: Business | Market structure | Clue
+  - 1. Dozens of farm stands sell identical bundles of firewood; none can charge more than the others. | {perfect competition} | {many sellers, identical product}
+  - 2. Twenty cafes in town, each with its own menu and style. | {monopolistic competition} | {many sellers, different products}
+  - 3. Three large companies own every ski resort in the region. | {oligopoly} | {a few big sellers}
+  - 4. One company holds the only permit to run the gondola up the mountain. | {monopoly} | {one seller, no close substitute}
+  - 5. Many ski schools, each with its own lesson style and prices. | {monopolistic competition} | {many sellers, different products}
+  - 6. Two airlines fly into the town's small airport. | {oligopoly} | {a few big sellers}
+
 # 21. Business Cycle Draw and Label
 minutes: 35
 materials: pencil, ruler
@@ -82,3 +182,45 @@ fill:
 write: A news report says, "The economy grew for the third quarter in a row." Using your graph, which quarters could the reporter be describing? Explain.
   lines: 3
   key: Any three rising quarters in a row: quarters 2, 3 and 4 (or 3, 4 and 5) in the first expansion, or quarters 9, 10 and 11 (or 10, 11 and 12) after the trough; GDP grew in each of those quarters compared with the quarter before.
+
+# 33. One-Minute Startup Pitch
+minutes: 45
+materials: pencil, calculator, a timer for practice
+ican: I can plan a short, clear pitch that explains a startup's problem, solution, customers, costs and risks.
+directions: Read the model pitch for a made-up startup and answer the questions. Then invent your own startup and plan a one-minute pitch, about 130 to 150 spoken words.
+mistakes: Students often start with the solution ("We make an app...") before the listener knows why it matters; open with the problem. Watch for "everyone" as the customer; a pitch names a specific group. Costs are often left out or guessed with no math, and risks skipped because they seem like weaknesses. Investors trust a pitch more when it names a risk and a plan for it.
+notes: The model startup is invented. Break-even: fixed costs / (price - cost per unit) = $450 / ($15 - $6) = 50 bags a month. People speak about 130 to 150 words a minute when presenting, so a one-minute pitch is about that long. Rubric for the student pitch: problem, solution, specific customers, costs with numbers, one risk and plan, a clear ask, and timing near one minute.
+
+## Read the model pitch
+passage: Model Pitch: Team Wash (a made-up startup)
+  Every Saturday, youth soccer parents in our town take home a bag of muddy uniforms, and most of them dread it. Coaches tell us that some uniforms come back stained, some come back late, and some do not come back at all, so teams spend money every season buying new ones. Team Wash solves this. In a survey of 25 parents, 21 said they would gladly pay for the service. After each game, we pick up the whole team's uniforms in one bag, wash them with stain remover, fold them by player number, and return them before the next practice. Parents get their Saturday afternoons back, and coaches know that every uniform will be clean, complete and ready for the next game. Our customers are the 40 youth sports teams in our town, and the coaches and parents who pay for them. We already wash uniforms for three teams, and two more coaches have asked to join next month. We charge $15 per team bag, which works out to about a dollar a player. Each bag costs us $6 in soap, water and gas, and we pay $450 a month to rent a washer and dryer and for insurance. Our biggest risk is a slow season in winter, so we plan to add basketball and wrestling teams. We are asking for $1,000 to buy a second washer. Thank you.
+
+## Warm up
+fill:
+  - The problem Team Wash solves is {muddy, lost and stained team uniforms}.
+  - Team Wash's customers are {the 40 youth sports teams in town (their coaches and parents)}.
+  - Each bag earns $15 - $6 = {$9} after supplies.
+  - Break-even = $450 / $9 = {50} bags a month.
+choice: Which line from the pitch names a risk and a plan?
+  - We charge $15 per team bag, which works out to about a dollar a player.
+  - Team Wash solves this.
+  * Our biggest risk is a slow season in winter, so we plan to add basketball and wrestling teams.
+  - Thank you.
+
+## Main: Plan your pitch
+text: My startup name: {answers vary} One sentence: what it does: {answers vary}
+chart: My notes | Seconds
+  labels: Hook (a fact or picture of the problem); Problem (who has it?); Solution (what you sell or do); Customers (a specific group); Costs and price (with numbers); Risk and plan; Ask and thank you
+  height: 0.55
+  key: Answers vary. Model timing: hook 5, problem 10, solution 10, customers 8, costs and price 12, risk and plan 8, ask 7, for 60 seconds. A strong plan names a specific customer group, a price and a cost per unit, and one honest risk with a plan.
+fill: My price {answers vary} minus my cost per unit {answers vary} = {answers vary} earned per sale. Fixed costs per month {answers vary} / earned per sale = {answers vary} sales to break even.
+
+## Main: Write your opening
+write: Write the first two sentences of your pitch: the hook and the problem.
+  lines: 3
+  key: Answers vary. A strong opening paints a specific picture of the problem for a specific group before naming the product, as the model does with muddy uniforms on a Saturday.
+
+## Stretch
+write: An investor asks, "What if a big company copies your idea?" Write your answer.
+  lines: 3
+  key: Answers vary. Strong answers name an advantage a big company lacks: knowing local customers, fast personal service, low costs, or a head start in building loyal customers; and a plan, such as signing season-long deals with teams.

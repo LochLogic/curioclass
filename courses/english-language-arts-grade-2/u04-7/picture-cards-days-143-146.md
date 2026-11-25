@@ -7,8 +7,8 @@ credit: ours
 ---
 # Picture cards, days 143 to 146
 
-Draw once on card, plain line, two to three colours.
+Draw once on card, plain line, two to three colors.
 
-- **Day 143, picture 1.** A paint brush held over a jar, clean water dripping from its bristles.
-- **Day 143, picture 2.** A paint brush lying on a table, thick paint on its bristles.
+- **Day 143, picture 1.** Open wildflowers in a pot, a bee feeding at one of them (05-d, last two paragraphs).
+- **Day 143, picture 2.** A pot of bare soil, just sown, nothing growing yet.
 - **Days 144 to 146.** No pictures; the strips are printed in 18 point.

@@ -7,11 +7,11 @@ credit: ours
 ---
 # Exit cards, days 128 to 132
 
-Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading. Every exit is one ask; read each card twice before the children answer. Answers and wrong answers are in items.csv and wrongs.csv, not here.
+A card marked invented: say aloud "This card is made up for practice," and print "invented for practice" in small letters at its foot. A card from the unit's texts names its text and part and is not marked invented. Plain black line drawings on white, thick lines, no shading. Every exit is one ask; read each card twice before the children answer. Answers and wrong answers are in items.csv and wrongs.csv, not here.
 
 - **Day 128 (s04-X128), Exit.** Invented for practice. Note: "Paint from a boat yard drips into a creek. The water turns cloudy." Ask: Which category does this note go under: access, demand, pollution or solutions? Write it.
 - **Day 128 (s04-X128b), Exit.** Invented for practice. Use the note on your slip. Ask: Write the word from the note that shows its category.
-- **Day 129 (s04-X129), Exit.** Invented for practice. Card: "A city grew fast. More homes needed more water. The city built a second pipe line." Ask: Write one sentence that links the first two sentences with so or because.
+- **Day 129 (s04-X129v2), Exit.** This is from Water Paths in Kitui County. It says: "Some boreholes, which are deep wells with pumps, had broken down. So more people used the sources that still worked, and waiting times grew." Ask: Write one sentence that links the boreholes to the sources with so or because.
 - **Day 130 (s04-X130), Exit.** Invented for practice. A partner says: "Litter can hurt a stream." Ask: Write one question to ask your partner for more detail.
 - **Day 131 (s04-X131), Exit.** Invented for practice. Strip: "Shade blocks sunlight. It steadily keeps the path cool." Ask: Which word does It stand for? Write it.
 - **Day 132 (s04-X132), Exit.** Invented for practice. A: "A tap in a village stays dry in the afternoons." B: "A pond near a farm has green slime on top." Ask: Which issue should a class explain first? Write your opinion, two reasons from the cards, a link word and a closing sentence.

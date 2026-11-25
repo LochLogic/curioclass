@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 1 to 4
 
-Each exit has a card every child marks (circle the dots or the picture) and a spoken question heard from the day's six. Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud.
+Each exit has a card or strip every child marks (circle the dots or the picture) and a spoken question heard from the day's six. Only the day 1 card is made up: say aloud "This card is made up for practice" and print "invented for practice" in small letters at its foot. Days 2 to 4 use the class books: you read the named page aloud again, and the strip shows pictures to choose from. Plain black line drawings on white, thick lines, no shading, no printed words. Children do not read the cards; you read aloud.
 
 ## Day 1 card: the paint jar
 
@@ -19,33 +19,33 @@ Each exit has a card every child marks (circle the dots or the picture) and a sp
 
 **Mark:** circle the dots for the one that asks Dan for help. **Spoken, to the day's six:** "Dan tells Lu how to twist the lid. What does Lu do while Dan talks?"
 
-## Day 2 card: A Little Boat
+## Day 2 strip: Push, Pull, Roll
 
-A four-page paper booklet. Page 1 is the front cover with the title and a drawing of a paper boat on water. Page 2 is an inside page: a boat floats. Page 3 is an inside page: a child catches the boat. Page 4 is the back cover: a plain frame with one small boat. Read aloud the words: "A paper boat floats. Jo catches it." Then read the credits: "Words by the Curio Class writing team. Pictures by the Curio Class art team."
+Use the book itself, not yet heard by the class. Show its front cover, page 2 and its back cover, then read the two credit lines on its title page aloud.
 
-**Mark:** a strip of three pictures: the front cover, an inside page, the back cover. Circle the back cover. **Spoken, to the day's six:** "What does an illustrator do?"
+**Mark:** a strip of three pictures: the front cover, page 2, the back cover. Circle the back cover. **Spoken, to the day's six:** "Who made the pictures in this book?"
 
-## Day 3 card: the block
+## Day 3 strip: page 7 of the story
 
-**Read:** "Paz gives Jo a block. Jo asks, 'Can we build a gate?' Paz nods."
+**Read:** page 7 of One Hoop, Two Friends, aloud again.
 
-**Picture:** two children and one block. In a row beneath: a gate, a tower and a wall, each in a ring.
+**Picture:** three pictures in a row, each in a ring: the two friends counting to ten with fingers raised; the two friends pulling the hoop between them; Noor walking off with the hoop.
 
-**Mark:** circle what Jo wants to build. **Spoken, to the day's six:** "What is one question you could ask about what Paz does?"
+**Mark:** circle how the friends will share the hoop. **Spoken, to the day's six:** "Ask me one question about what Teo says on this page."
 
-## Day 4 card: the chair
+## Day 4 strip: page 2 of the story
 
-**Read:** "The ball stops under the chair. Ren bends down and reaches for it."
+**Read:** page 2 of One Hoop, Two Friends, aloud again, its picture covered.
 
-**Picture:** three pictures in a row, each in a ring: a ball under a chair with nobody near; Ren bending to reach under the chair; a ball rolling on grass.
+**Picture:** three pictures in a row, each in a ring: Noor running after the rolling hoop; the two friends running to the basket; Teo asking Noor for a turn.
 
-**Mark:** circle the picture that goes with the last sentence. **Spoken, to the day's six:** "What could you ask if one word in the last sentence was new to you?"
+**Mark:** circle the picture that goes with the last sentence. **Spoken, to the day's six:** "What could you ask if one word on this page was new to you?"
 
 ## Key (teacher)
 
 - Day 1: two dots. Spoken: Lu listens, waits and looks at Dan. Not yet: one dot, a statement where a question is needed (E); three dots, an unrelated idea (A); "I say my idea too" (C).
-- Day 2: the back cover. Spoken: makes the pictures. Not yet: the inside page (AC); writes the words (I).
-- Day 3: the gate. Spoken: a question such as "What does nods mean?" or "Does Paz say yes?" Not yet: the tower (A); a statement such as "Paz is nice" (E).
-- Day 4: Ren reaching. Spoken: a question about a word, such as "What does reaches mean?" Not yet: the ball alone (B); "I do not know that word" (E).
+- Day 2: the back cover. Spoken: the art team, the illustrator. Not yet: page 2 (AC); the writing team (I).
+- Day 3: the friends counting to ten. Spoken: a question such as "Is it Teo's turn next?" or "What does Teo say?" Not yet: the pulling picture (A); a statement such as "Teo is happy" (E).
+- Day 4: Noor running after the hoop. Spoken: a question about a word, such as "What does edge mean?" Not yet: the friends running to the basket (B); "I do not know that word" (E).
 
 Marks: shown, shown with help, not yet seen. A child may point, act or use a home language; say the English back.

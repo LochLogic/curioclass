@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 155 and 157
 
-Say aloud each time: "This card is made up for practice." Read each card twice with its picture. Children do not read the cards; you read the lines aloud. Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. None of these cards is shown in teaching.
+Card E155 is made up: say aloud "This card is made up for practice", read it twice, and print "invented for practice" in small letters at its foot. Sheets E157a and E157b go with pages of the unit's own texts, read aloud again; they are not made up, so say nothing about practice for them. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read aloud. None of these is shown in teaching.
 
 ## Day 155 card E155 (unscored transfer)
 
@@ -15,13 +15,13 @@ Say aloud each time: "This card is made up for practice." Read each card twice w
 **Show:** cards A and B.
 **Ask:** "Choose the order for the two cards: A then B, or B then A." Right: either order, chosen by the child. Wrong: waits for the adult to choose (N). The recording itself is kept for P1.
 
-## Day 157 card E157a
+## Day 157 sheet E157a: page 10 of each story
 
-**Read:** "Text A: Kit watches a tree from a window because the path is closed for sweeping. Text B: Sal watches a tree from the porch because the wind blows hard."
-**Pictures:** two children watching a tree from a shelter; two children in coats; a lone cloud.
-**Ask:** "Mark the picture that shows what Kit and Sal both do." Right: the two children watching from a shelter. Wrong: the coats (A).
+**Read again:** page 10 of A Tree Beside Our Door, then page 10 of Reading Under the Tree.
+**Pictures:** a glad child beside a tree; two children in coats; a lone cloud.
+**Ask:** "Which picture shows what Lina and Ben both do?" Right: the glad child beside a tree. Wrong: the coats (A).
 
-## Day 157 card E157b
+## Day 157 sheet E157b: page 8 of Planting Together
 
-**Read:** "Put the lid on the glue. A lid keeps the glue from drying out."
-**Ask:** "Say the reason the author gives." Right: a lid keeps the glue from drying out. Wrong: "I like glue" (C).
+**Read again:** page 8 of Planting Together (texts/gk-u4-02-b.md).
+**Ask:** "What reason does the writer give for watering the new tree again and again?" Right: until the roots grow strong. Wrong: "I like watering" (C).

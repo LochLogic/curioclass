@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 137 and 139
 
-Say aloud each time: "This card is made up for practice." Read each card twice with its picture. Children do not read the cards; you read the lines aloud. Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. None of these cards is shown in teaching.
+Card E137 is made up: say aloud "This card is made up for practice", read it twice with its pictures, and print "invented for practice" in small letters at its foot. Sheet E139 goes with a page of Planting Together, read aloud again; it is not made up, so say nothing about practice for it. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read aloud. None of these is shown in teaching.
 
 ## Day 137 card E137
 
@@ -15,8 +15,7 @@ Say aloud each time: "This card is made up for practice." Read each card twice w
 **Pictures:** a tree beside a reading mat; a tree beside a wall.
 **Ask:** "Say your plan: I would put our tree ___. I like it ___." Right: a named place, the mat or the wall, with a liking; the shade is a welcome detail, not required. Wrong: "By the wall" with no liking (F); "I like it" with no place (G). Hear about six rotating children.
 
-## Day 139 card E139
+## Day 139 sheet E139: page 7 of Planting Together
 
-**Read:** "Text A: Trees help us because a tall tree shows where the path begins. Text B: Water the newly planted tree."
-**Picture:** a tall tree at the start of a path.
-**Ask:** "Say the reason Text A gives." Right: a tall tree shows where the path begins. Wrong: "I like tall trees" (C); "Water the newly planted tree", the other text (Y).
+**Read again:** page 7 of Planting Together (texts/gk-u4-02-b.md), the mulch.
+**Ask:** "What reason does the writer give for keeping the mulch back from the trunk?" Right: so the bark can stay dry. Wrong: "I like wood chips" (C); "Trees give us shaded places to rest", from the other text (Y).

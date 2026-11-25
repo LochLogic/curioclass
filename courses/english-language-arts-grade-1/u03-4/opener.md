@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Days 90 to 94 ask a research question a provided page can answer, gather source-labelled notes from two articles and a picture the class observes, and jointly build a short paragraph with a topic, facts and a closing. The class also finds a planted wrong fact by checking against its notes.
+Days 90 to 94 ask a research question a provided page can answer, gather source-labeled notes from two articles and a picture the class observes, and jointly build a short paragraph with a topic, facts and a closing. The class also finds a planted wrong fact by checking against its notes.
 
 ## How the days run
 

@@ -1,18 +1,18 @@
 from_day,to_day,what,where,minutes,error,note
-1,2,s01-X1,repair,5,A,show the wrong order beside the right one and say the order together
-2,3,s01-X2,repair,5,A,reread the card aloud with a finger on who and where
-3,4,s01-X3,repair,5,B,lay the event card beside two action cards; the child picks the action
-4,5,s01-X4,repair,5,A,reread the paragraph and the illustration together and replace the setting
-5,6,s01-X5,repair,5,A,reread the exit card aloud and replace the action
-6,7,s01-X6,repair,5,A,reread the card with a finger on the actions and replace the wrong one
-7,8,s01-X7,repair,5,C,"cover the words and ask what the hands show, then say it with the frame"
-8,9,s01-X8,repair,5,A,reread the card with a finger on each action
+1,2,s01-X1v2,repair,5,A,show the wrong order beside the right one and say the order together
+2,3,s01-X2v2,repair,5,A,reread the passage aloud with a finger on who and where
+3,4,s01-X3v2,repair,5,B,reread the event in the passage and lay two action cards beside it; the child picks the action
+4,5,s01-X4v2,repair,5,A,reread the paragraph and the illustration together and replace the setting
+5,6,s01-X5v2,repair,5,A,reread the exit passage aloud and replace the action
+6,7,s01-X6v2,repair,5,A,reread the passage with a finger on the actions and replace the wrong one
+7,8,s01-X7v2,repair,5,C,"cover the words and ask what the hands show, then say it with the frame"
+8,9,s01-X8v2,repair,5,A,reread the passage with a finger on each action
 9,10,s01-X9,repair,5,I,"say the last speaker's word, then add"
 10,11,cycle 2 written check,foundations,5,Q,compare with the word wall: ai and ay
-12,13,s01-X12,repair,5,B,repair the commonest day 12 retry letter
+12,13,s01-X12v2,repair,5,B,repair the commonest day 12 retry letter
 13,14,s01-X13,repair,5,N,cover the text and tell three ideas in order
-14,15,s01-X14,repair,5,C,ask what the photograph shows that the words do not
-15,16,s01-X15,repair,5,A,follow the arrows with a finger and say the labels in order
+14,15,s01-X14v2,repair,5,C,ask what the photograph shows that the words do not
+15,16,s01-X15v2,repair,5,A,follow the arrows with a finger and say the labels in order
 16,17,s01-X16,repair,5,E,reread the source sentence and say the meaning from it
 17,20,s01-X17,retry,15,D,"say what the whole paragraph explains, then say it as the first sentence"
 18,20,s01-A14,groups,10,A,find the line that says when; round four
@@ -21,8 +21,8 @@ from_day,to_day,what,where,minutes,error,note
 20,21,s01-X20,repair,5,E,point to the fact the ending comes from
 20,21,cycle 4 written check,foundations,5,Q,"compare with the word wall: igh, ie and final y"
 21,22,s01-X21,repair,5,O,reread at phrase boundaries for a listener
-22,23,s01-X22,repair,5,A,put the picture beside the line and check each detail
-23,24,s01-X23,repair,5,A,check each detail against its card
+22,23,s01-X22v2,repair,5,A,put the picture beside the line and check each detail
+23,24,s01-X23v2,repair,5,A,check each detail against its card
 24,25,s01-X24,repair,5,E,reread the source sentence and say the meaning from it
 25,27,cycle 5 written check,foundations,5,Q,compare with the word wall: oa and ow; day 26 foundations is retrieval only
 25,32,s01-X25,groups,5,J,"ask which part and wait for the answer; round three, day 26 has no slot"
@@ -41,25 +41,25 @@ from_day,to_day,what,where,minutes,error,note
 31,32,s01-A46,retry,2,C,ask what the arrows show that the words do not; fresh retry card
 31,32,s01-A47,retry,2,B,"say what she did, not what she is like; fresh retry card"
 31,32,s01-A45,retry,2,N,tell three ideas in order; fresh retry card
-33,34,s02-X33,repair,5,B,repair the commonest wrong answer of the exit; fresh card
-34,35,s02-X34,repair,5,A,repair the commonest wrong answer of the exit; fresh card
+33,34,s02-X33v2,repair,5,B,repair the commonest wrong answer of the exit; fresh card
+34,35,s02-X34v2,repair,5,A,repair the commonest wrong answer of the exit; fresh card
 35,36,s02-X35,repair,5,B,repair the commonest wrong answer of the exit; fresh card
-36,37,s02-X36,repair,5,A,repair the commonest wrong answer of the exit; fresh card
+36,37,s02-X36v2,repair,5,A,repair the commonest wrong answer of the exit; fresh card
 37,38,s02-X37,repair,5,I,repair the commonest wrong answer of the exit; fresh card
-38,39,s02-X38,repair,5,A,repair the commonest wrong answer of the exit; fresh card
-39,40,s02-X39,repair,5,B,repair the commonest wrong answer of the exit; fresh card
-42,43,s02-X42,repair,5,B,repair the commonest wrong answer of the exit; fresh card
+38,39,s02-X38v2,repair,5,A,repair the commonest wrong answer of the exit; fresh card
+39,40,s02-X39v2,repair,5,B,repair the commonest wrong answer of the exit; fresh card
+42,43,s02-X42v2,repair,5,B,repair the commonest wrong answer of the exit; fresh card
 43,44,s02-X43,repair,5,AJ,repair the commonest wrong answer of the exit; fresh card
 44,45,s02-X44,repair,5,W,repair the commonest wrong answer of the exit; fresh card
 45,46,s02-X45,repair,5,P,repair the commonest wrong answer of the exit; fresh card
-46,47,s02-X46,repair,5,C,repair the commonest wrong answer of the exit; fresh card
-47,48,s02-X47,repair,5,E,repair the commonest wrong answer of the exit; fresh card
-48,49,s02-X48,repair,5,D,repair the commonest wrong answer of the exit; fresh card
-49,50,s02-X49,repair,5,E,repair the commonest wrong answer of the exit; fresh card
+46,47,s02-X46v2,repair,5,C,repair the commonest wrong answer of the exit; fresh card
+47,48,s02-X47v2,repair,5,E,repair the commonest wrong answer of the exit; fresh card
+48,49,s02-X48v2,repair,5,D,repair the commonest wrong answer of the exit; fresh card
+49,50,s02-X49v2,repair,5,E,repair the commonest wrong answer of the exit; fresh card
 50,51,s02-X50,repair,5,H,repair the commonest wrong answer of the exit; fresh card
 51,52,s02-X51,repair,5,J,repair the commonest wrong answer of the exit; fresh card
-52,53,s02-X52,repair,5,C,repair the commonest wrong answer of the exit; fresh card
-53,54,s02-X53,repair,5,D,repair the commonest wrong answer of the exit; fresh card
+52,53,s02-X52v2,repair,5,C,repair the commonest wrong answer of the exit; fresh card
+53,54,s02-X53v2,repair,5,D,repair the commonest wrong answer of the exit; fresh card
 40,42,s02-A1,letter A,10,A,lay the beginning and ending cards on the map and say each job
 40,42,s02-A3,letter B,10,B,"reread the line, cover the choice, find the words that answer"
 40,42,s02-A2,retry,10,A,fresh retry card with a different case from the check
@@ -72,7 +72,7 @@ from_day,to_day,what,where,minutes,error,note
 55,56,s02-X55a,repair,3,S,repair the commonest wrong answer of the exit; fresh card
 55,56,s02-X55b,repair,2,T,repair the commonest wrong answer of the exit; fresh card
 56,58,s02-X56,repair,5,U,repair the commonest wrong answer of the exit; fresh card
-57,58,s02-X57 s02-A9 s02-A10 s02-A11 s02-A12,topic,5,C,repair the commonest wrong answer of the exit; fresh card
+57,58,s02-X57v2 s02-A9 s02-A10 s02-A11 s02-A12,topic,5,C,repair the commonest wrong answer of the exit; fresh card
 57,58,s02-A13 s02-A14,topic,5,D,repair the commonest wrong answer of the exit; fresh card
 57,58,s02-A15 s02-A17 s02-A18 s02-A19 s02-A20,features,5,E,repair the commonest wrong answer of the exit; fresh card
 57,58,s02-A26 s02-A27 s02-A28,features,5,G,repair the commonest wrong answer of the exit; fresh card
@@ -82,7 +82,7 @@ from_day,to_day,what,where,minutes,error,note
 57,58,s02-A24,word parts,3,I,repair the commonest wrong answer of the exit; fresh card
 57,58,s02-A25,word parts,3,J,repair the commonest wrong answer of the exit; fresh card
 58,59,s02-X58,repair,5,H,repair the commonest wrong answer of the exit; fresh card
-59,60,s02-X59,repair,5,P,repair the commonest wrong answer of the exit; fresh card
+59,60,s02-X59v2,repair,5,P,repair the commonest wrong answer of the exit; fresh card
 60,61,s02-X60,repair,5,AD,repair the commonest wrong answer of the exit; fresh card
 61,62,s02-X61a,repair,3,M,repair the commonest wrong answer of the exit; fresh card
 61,62,s02-X61b,repair,2,N,repair the commonest wrong answer of the exit; fresh card
@@ -95,7 +95,7 @@ from_day,to_day,what,where,minutes,error,note
 66,67,s02-X66b,repair,2,AF,repair the commonest wrong answer of the exit; fresh card
 67,72,s02-X67a,editing,1,AG,repair the commonest wrong answer of the exit; fresh card
 67,72,s02-X67b,editing,1,AH,repair the commonest wrong answer of the exit; fresh card
-68,74,s02-X68 s02-A33 s02-A34,reading,4,A,repair the commonest wrong answer of the exit; fresh card
+68,74,s02-X68v2 s02-A33 s02-A34,reading,4,A,repair the commonest wrong answer of the exit; fresh card
 68,74,s02-A29 s02-A30 s02-A31 s02-A32,reading,4,C,repair the commonest wrong answer of the exit; fresh card
 69,70,s02-A36,grammar,1,Q,repair the commonest wrong answer of the exit; fresh card
 69,70,s02-A37,grammar,1,R,repair the commonest wrong answer of the exit; fresh card
@@ -121,18 +121,18 @@ from_day,to_day,what,where,minutes,error,note
 71,74,s02-X71,conventions,2,AG,repair the commonest wrong answer of the exit; fresh card
 72,73,s02-X72,repair,5,AI,repair the commonest wrong answer of the exit; fresh card
 72,74,s02-A53,sharing,5,AI,repair the commonest wrong answer of the exit; fresh card
-73,74,s02-X73,repair,5,B,repair the commonest wrong answer of the exit; fresh card
-78,79,s03-X78,repair,5,B,"lay the joined card beside the two statements and point to the joining word, then check the link runs the way the card says; try a fresh card"
-79,80,s03-X79,repair,5,B,"say the four steps with First, Then, Next, Finally, pointing along the arrow cards"
-80,81,s03-X80,repair,5,S,read the card again with a finger under each word; blend any word guessed from the picture
+73,74,s02-X73v2,repair,5,B,repair the commonest wrong answer of the exit; fresh card
+78,79,s03-X78v2,repair,5,B,lay the joined butterfly sentence beside the two facts and point to the joining word
+79,80,s03-X79v2,repair,5,B,"say the four steps with First, Then, Next, Finally, pointing along the arrow cards"
+80,81,s03-X80v2,repair,5,S,reread the bat paragraph with a finger under each word; blend any guessed word
 81,82,s03-X81,repair,5,C,"point to the arrow, say what moves along it, and check it against the card"
-84,85,s03-X84,repair,5,A,"say the connection with so or because for a fresh card; pollen, not seeds"
+84,85,s03-X84v2,repair,5,A,"say the connection with so or because on a fresh line; pollen, not seeds"
 85,86,s03-X85,repair,5,Q,set the two near words on the ladder and show the difference with the hands
 86,87,s03-X86,repair,5,R,"name the thing, pick its describing word; name the action, pick its -ly word"
 88,89,s03-X88,repair,5,D,"write the fact in a few new words, then tag it to the card"
-89,90,s03-X89,repair,5,AB,read the question and both subheadings aloud; ask which one names the thing asked about
-90,91,s03-X90,repair,5,AC,"read the sentences again, then name what joins them before naming one detail"
-91,92,s03-X91,repair,5,B,"lay an arrow card, so or because, between the two slips and say the link aloud"
+89,90,s03-X89v2,repair,5,AB,read the question and both subheadings aloud; ask which one names the thing asked about
+90,91,s03-X90v2,repair,5,AC,"read the sentences again, then name what joins them before naming one detail"
+91,92,s03-X91v2,repair,5,B,"lay an arrow card, so or because, between the two slips and say the link aloud"
 93,94,s03-X93,repair,5,C,"point to the line in the source, read it aloud, then compare the note word by word"
 94,95,day 94 note slips,repair,5,D,"at most the two most missed branches: say a copied fact in four words (D), or hold up the question card for a fact that does not answer it (E)"
 95,96,day 95 note slips,repair,5,D,"at most the two most missed branches: say a copied fact in four words (D), or hold up the question card for a fact that does not answer it (E)"
@@ -162,23 +162,23 @@ from_day,to_day,what,where,minutes,error,note
 118,119,"day 118 exit s03-X118 and X118b, the four children not heard",retry,3,,"hear the four, 45 seconds each plus change-over"
 101,102,s03-X101 caption and entry (opening repair),opening repair,5,J,"find the entry first, then compare the letters, on a fresh draft"
 102,103,cycle 17 check sheets (commonest miss),opening repair,5,Y,the commonest miss written beside the right form
-119,120,s04-X119 order of the beaver cards (opening repair),opening repair,5,A,lay the three cards and tell the story with finger pointing
-120,121,s04-X120 which event holds the lesson (opening repair),opening repair,5,B,ask which event shows it and put the dot on that event
-121,122,s04-X121 the words only one version has (opening repair),opening repair,5,D,hold the two request lines side by side
-122,123,s04-X122 the event both versions share (opening repair),opening repair,3,E,find one thing that happens in both on the side-by-side print
+119,120,s04-X119v2 order of the winter cards (opening repair),opening repair,5,A,lay the three cards and tell the story with finger pointing
+120,121,s04-X120v2 which event holds the lesson (opening repair),opening repair,5,B,ask which event shows it and put the dot on that event
+121,122,s04-X121v2 the words only one version has (opening repair),opening repair,5,D,hold the two request lines side by side
+122,123,s04-X122v2 the event both versions share (opening repair),opening repair,3,E,find one thing that happens in both on the side-by-side print
 122,123,"cycle 20 oral records, days 120 to 122 (repair groups)",opening repair,2,AB,reread the sentence that answers the question
-123,124,s04-X123 what the book tells us (opening repair),opening repair,5,,say only what the card says about who told the tale
+123,124,s04-X123v2 what the book tells us (opening repair),opening repair,5,,say only what the note says about who told the fable
 124,125,s04-X124 what Mouse believes (opening repair),opening repair,5,C,read each animal's line and say what it wants
 125,126,s04-X125 what Beetle wants (opening repair),opening repair,5,C,read each animal's line and say what it wants
-126,127,s04-X126 what the repeated line adds (opening repair),opening repair,5,O,connect the sound to the beat or the meaning
-127,128,s04-X127 what the rhyming words add (opening repair),opening repair,5,O,connect the sound to the pace or the link
-128,129,s04-X128 what changes in version B (opening repair),opening repair,5,D,mark the one detail found only in version B
+126,127,s04-X126v2 what the repeated line adds (opening repair),opening repair,5,O,connect the sound to the beat or the meaning
+127,128,s04-X127v2 what the rhyming words add (opening repair),opening repair,5,O,connect the sound to the pace or the link
+128,129,s04-X128v2 what changes in version B (opening repair),opening repair,5,D,mark the one detail found only in version B
 129,131,"T1 and T2 commonest miss, read from the record (opening repair)",opening repair,3,A,sequence three event pictures before the retry
 130,131,"T3 commonest miss, read from the record (opening repair)",opening repair,2,D,mark one detail found in only one version
 131,132,s04-X131 the event that supports the lesson (opening repair),opening repair,5,B,connect the lesson to one event
-132,133,s04-X132 a reason matched to its point (opening repair),opening repair,5,G,draw an arrow to the point the reason explains
-133,134,s04-X133 a reason matched to its point (opening repair),opening repair,5,G,draw an arrow to the point the reason explains
-134,135,s04-X134 the point both articles share (opening repair),opening repair,5,F,name the point the details support
+132,133,s04-X132v2 a reason matched to its point (opening repair),opening repair,5,G,draw an arrow to the point the reason explains
+133,134,s04-X133v2 a reason matched to its point (opening repair),opening repair,5,G,draw an arrow to the point the reason explains
+134,135,s04-X134v2 the point both articles share (opening repair),opening repair,5,F,name the point the details support
 135,136,s04-X135 the parts of an opinion (opening repair),opening repair,5,I,add the writer's position to a topic label
 136,137,s04-X136 a reason that fits the opinion (opening repair),opening repair,5,J,replace it with a fact from the source
 137,138,s04-A9 to s04-A13 written response on cards M and N,repair,10,G,"written note on each sheet, then a short retry"
@@ -198,7 +198,7 @@ from_day,to_day,what,where,minutes,error,note
 153,155,"cycle 26 check sheets, commonest miss",record,8,R,the commonest miss written beside the right form
 138,144,the commonest answer on E138,repair,3,X,act set and toss once more
 138,144,describing words for a noun,repair,2,Y,name the word the describing word tells about
-143,146,the commonest answer on E143 s04-X143 s04-X143b,Shared,5,Z,state why one step must come before the next
+143,146,the commonest answer on E143 s04-X143v2 s04-X143bv2,Shared,5,Z,state why one step must come before the next
 144,145,draft card note,note,5,J,one written note on a reason that does not help
 144,145,tables of the commonest draft miss,Revise,25,,tables read before the revision
 147,148,contribution record,Opening,5,AA,who made which choice
@@ -268,4 +268,4 @@ from_day,to_day,what,where,minutes,error,note
 159,160,c2-A159n,Groups,1,P,"one move, taught in the group by the gap recorded"
 159,160,c2-A159n,Groups,1,Q,"one move, taught in the group by the gap recorded"
 142,143,"s04-X142b, the three children not heard",plan the packet,3,,"hear each, 45 seconds plus swap"
-146,147,"s04-X146b, the two children not heard",pairs check,2,,"hear each, 45 seconds plus swap"
+146,147,"s04-X146bv2, the two children not heard",pairs check,2,,"hear each, 45 seconds plus swap"

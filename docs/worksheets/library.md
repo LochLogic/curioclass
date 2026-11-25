@@ -466,6 +466,7 @@ This file covers Library and Research Skills for Kindergarten through Grade 12, 
 | 28 | Research Abstract | Writing frame | Enduring Questions | Write a 150-word abstract for a capstone project with question, method, findings and significance. |
 | 31 | Database Clue Hunt | Puzzle | Databases and Advanced Search | Follow 6 printed clue cards that require operators and filters to reach a single article. |
 | 32 | Fair Use Plan for Capstone | Planner | Citation, Copyright and Fair Use | Plan the media and quotes in a capstone presentation and apply fair use factors to each. |
+| 33 | Credit in Collaborative Work | Apply | Citation, Copyright and Fair Use | Decide how to credit team members, advisors and sources in 4 collaborative project scenarios. |
 | 34 | Source Diversity Data | Data and graphs | Source Portfolio | Graph your capstone portfolio by type, date and viewpoint and write a balance statement. |
 | 35 | Source Decision Log | Log | Source Portfolio | Log decisions to keep or drop 8 sources with reasons tied to authority and corroboration. |
 | 36 | Researcher Reflection | Reflection | Source Portfolio | Reflect on your growth as a researcher from grade 9 to 12 with 3 examples and a goal. |

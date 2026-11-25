@@ -7,11 +7,13 @@ credit: ours
 ---
 # Exit cards, days 126 to 128
 
-Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Read each card twice, then ask the one question. Answers and wrong answers are in items.csv; they are not printed here. Where a day has two rows, ask them one after another, one ask each. The first row of each day is marked on paper; the second is spoken and is heard from the rotating six.
+Every row here rereads a passage of the unit's own texts, named in the row; nothing is invented and nothing is printed as invented. Read the passage aloud twice while the children follow in their copy, then ask the one question. Answers and wrong answers are in items.csv; they are not printed here. Where a day has two rows, ask them one after another, one ask each. The first row of each day is marked on paper; the second is spoken and is heard from the rotating six.
 
-- **Day 126 (s04-X126).** This card is invented for practice. Read aloud twice: "Hop, hop, hop to the flower. Hop, hop, hop to the flower." Show two picture cards: a cricket hopping three times along a path; a cricket sitting still on a flower. Say: "Mark the picture that fits the poem."
-- **Day 126 (s04-X126b).** Same poem. Say: "Say what the repeated line adds."
-- **Day 127 (s04-X127).** This card is invented for practice. Read aloud twice: "Fast, fast, the pup ran past. Fast, fast, too fast." Show two picture cards: a pup running; a pup asleep. Say: "Mark the picture that fits the lines."
-- **Day 127 (s04-X127b).** Same lines. Say: "Say what the rhyming words fast and past add."
-- **Day 128 (s04-X128).** This card is invented for practice. Read aloud twice: "Version A: Frog says, Cross now. Toad agrees. Version B: Frog says, Cross now. Toad says, Wait for me." Show two picture cards: an agreeing pair; a disagreeing pair. Say: "Mark the picture that shows what changes in version B."
-- **Day 128 (s04-X128b).** Same versions. Say: "Say what Toad says in version B."
+- **Day 126 (s04-X126v2).** Read aloud twice the chorus of The Garden Refrain (06-b). Show two picture cards: children planting flowers one after another in a row; one child sitting still beside a bare pot. Say: "Mark the picture that fits the chorus."
+- **Day 126 (s04-X126bv2).** Same chorus. Say: "Say what the repeated words plant a flower add."
+- **Day 127 (s04-X127v2).** Reread aloud twice the last verse of The Garden Refrain, from "Little leaf" to "garden goes." Show two picture cards: a whole garden growing up from tiny rows of seeds; a bare, empty field. Say: "Mark the picture that fits the lines."
+- **Day 127 (s04-X127bv2).** Same lines. Say: "Say what the rhyming words rows and goes add."
+- **Day 127 (s04-X127cv2).** Reread aloud twice the line "Hummingbirds hum, humming high" from verse 2 of The Garden Refrain. Say: "Say what the words that start with the same sound make you hear."
+- **Day 128 (s04-X128v2).** Reread aloud twice the end of each telling. Show two pictures: the ant shutting her door; the grasshopper wrapping her wings. Say: "Mark what changes at the end of the second telling."
+- **Day 128 (s04-X128bv2).** Same endings. Say: "Say what the ant does at the end of the second telling."
+- **Day 128 (s04-X128cv2).** Reread aloud twice the jaguar's words in the hummingbird tale, paragraph 5. Say: "Read the jaguar's line in the voice the jaguar would use."

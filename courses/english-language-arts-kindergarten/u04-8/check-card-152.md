@@ -5,17 +5,13 @@ unit: 4.8
 version: draft, not yet taught
 credit: ours
 ---
-# Check card, day 152 (C5 and T3)
+# Check sheet, day 152 (C5 and T3)
 
-Keep this card unseen until day 152. Read it aloud twice, then reread it once for T3. Each group of five has one minute to read and reread and about three minutes and 45 seconds for the asks. Children point where speaking is slow.
+The check uses page 10 of Wangari and the Tree Planters (texts/gk-u4-03.md), heard once and never worked. Read it aloud twice, showing its picture, then reread it once for T3. Each group of five has one minute to read and reread and about three minutes and 45 seconds for the asks. Children point where speaking is slow.
 
-**Card:** "Keep fallen branches off our walking path. People can pass without stepping over them. Carts can roll along it."
-**Three picture strips:** branches off the path; people passing; a cart rolling.
-Ask 1: "What is the writer's point?" (keep fallen branches off the path). Ask 2: "What two reasons does the writer give?" (people can pass; carts can roll).
+Ask 1: "What is the writer's point?" (Wangari Maathai was a leader). Ask 2: "What two reasons does the writer give?" (many women organized and planted together; they showed how people can care for trees).
 
-**T3 pictures:** a clear path with people walking and a cart rolling; a path with fallen branches across it. **Purpose card:** a pointing hand and no other picture.
-T3 asks: what the whole card is about; two things it says; how taking branches off helps the carts; the picture that shows what the card wants; and, with the purpose card "find what clearing the path changes", joining the reread.
+**T3 pictures:** many people planting and watering young trees on a hillside; one woman planting alone. **Purpose card:** a pointing hand; you say its purpose aloud, "find what many women did". Plain black line drawings on white, thick lines, no shading, no printed words.
+T3 asks: what the whole page is about; two things it says; how working together helps (big things can grow from small seeds); the picture that goes with the page; and, with the purpose card, joining the reread.
 
-Carts given as the point is error B and "I like blue" as a reason is error C. Give one prompt a child and never the answer. Marks: shown, shown with help, not yet seen.
-
-Print "invented for practice" in small letters at the foot of the card.
+"Many women planted" given as the point is error B and "I like blue" as a reason is error C. Give one prompt a child and never the answer. Marks: shown, shown with help, not yet seen.

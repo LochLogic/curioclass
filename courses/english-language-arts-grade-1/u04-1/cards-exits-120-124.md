@@ -5,21 +5,15 @@ unit: 4.1
 version: draft, not yet taught
 credit: ours
 ---
-# Exit cards, days 120 to 124
+# Exit pictures and cards, days 120 to 124
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
+Plain black line drawings on white, thick lines, no shading, no printed words. Children do not read anything here; you reread the named story page aloud and show its pictures. Only the day 121 card is made up: print "invented for practice" in small letters at its foot.
 
-## Day 120 card (s04-X120a, RL.1.9)
+## Day 120 pictures (s04-X120av2, RL.1.9)
 
-This card is invented for practice. Show the card and read it aloud: "Ari's paper bird slides under the cupboard. Ari slides a long card strip under it and pushes the bird out." Show three pictures: Ari pushing the bird out with the strip, Ari dropping the bird in a bin, Ari measuring the cupboard. Say: "Which picture shows what Ari does?" Hear the day's rotating six.
+Reread page 3 of Ben and the Bird aloud. Three pictures: Dad crouching a few steps from the robin, Dad picking the robin up, Dad digging in the garden. The same page answers s04-X120bv2 (why Dad wants a trained helper).
 
-**Right answer:** Ari pushing the bird out with the strip.
-
-## Day 120 card (s04-X120b, RL.1.9)
-
-This card is invented for practice. The same card stays in view; read it again if the child asks: "Ari's paper bird slides under the cupboard. Ari slides a long card strip under it and pushes the bird out." Say: "Why does Ari do it?" Hear the day's rotating six.
-
-**Right answer:** The paper bird is stuck under the cupboard.
+**Right answer:** Dad crouching a few steps from the robin.
 
 ## Day 121 card (s04-X121a, L.1.4a)
 
@@ -33,44 +27,20 @@ This card is invented for practice. The same card stays in view; read it again i
 
 **Right answer:** "a bag holding tools for baking"
 
-## Day 122 card (s04-X122a, RL.1.9)
+## Day 122 picture strips (s04-X122av2, RL.1.9)
 
-This card is invented for practice. Show the card and read it aloud: "Ari finds that the paper bird will not stand. Ari folds a card, then props the bird against it." Show three pictures: a strip showing the fold and then the prop, a strip showing the prop and then the fold, the bird standing alone. Say: "Which picture strip shows the two events in order?" Hear the day's rotating six.
+Reread page 6 of Ben and the Bird aloud. Three strips: the dog pulls toward the robin, then Ben steps in its path; Ben steps in its path, then the dog pulls; the dog sniffing the robin. The same page answers s04-X122bv2 (how Ben fixes the problem with the dog).
 
-**Right answer:** Fold the card, then prop the bird.
+**Right answer:** The dog pulls toward the robin, then Ben steps in its path.
 
-## Day 122 card (s04-X122b, RL.1.9)
+## Day 123 pictures (s04-X123av2, RL.1.9)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "Ari finds that the paper bird will not stand. Ari folds a card, then props the bird against it." Say: "How does the second event answer the first problem?" Hear the day's rotating six.
+Reread page 5 of Nia Calls for Help aloud. Three pictures: the helper kneeling and lifting the dove in a towel, Nia lifting the dove, Nia and the helper driving away. The same page answers s04-X123bv2 (what makes Nia smile).
 
-**Right answer:** The folded card holds the bird up.
+**Right answer:** The helper lifting the dove in a towel.
 
-## Day 123 card (s04-X123a, RL.1.9)
+## Day 124 pictures (s04-X124av2, RL.1.9)
 
-This card is invented for practice. Show the card and read it aloud: "Rain wets Bea's paper bird signs. Bea carries the signs indoors." Show three pictures: Bea carrying the signs inside, Bea hanging the signs outdoors, Bea drawing new signs. Say: "Which picture records what Bea does?" Hear the day's rotating six.
+Reread page 9 of Ben and the Bird and the last paragraph of page 2 of Nia Calls for Help aloud. Three pictures: each child keeping their hands back from a bird, a robin beside a dove, Nia drawing in the dirt. The same two pages answer s04-X124bv2 and s04-X124cv2 (one thing the same, one thing different).
 
-**Right answer:** Bea carrying the signs inside.
-
-## Day 123 card (s04-X123b, RL.1.9)
-
-This card is invented for practice. The same card stays in view; read it again if the child asks: "Rain wets Bea's paper bird signs. Bea carries the signs indoors." Say: "Which event explains why she does it?" Hear the day's rotating six.
-
-**Right answer:** Rain wets the signs.
-
-## Day 124 card (s04-X124a, RL.1.9)
-
-This card is invented for practice. Show the card and read it aloud: "Cleo paints a sign with her uncle. Hana paints a sign with her teacher. Each lets the sign dry." Show three pictures: each child painting with a grown-up and a sign drying, two plain blue signs side by side, Hana watching her sign dry alone. Say: "Which comparison picture fits?" Hear the day's rotating six.
-
-**Right answer:** Each child paints a sign with a grown-up, and each sign dries.
-
-## Day 124 card (s04-X124b, RL.1.9)
-
-This card is invented for practice. The same card stays in view; read it again if the child asks: "Cleo paints a sign with her uncle. Hana paints a sign with her teacher. Each lets the sign dry." Say: "What is one thing the same?" Hear the day's rotating six.
-
-**Right answer:** Both children paint a sign with a grown-up (or both let the sign dry).
-
-## Day 124 card (s04-X124c, RL.1.9)
-
-This card is invented for practice. The same card stays in view; read it again if the child asks: "Cleo paints a sign with her uncle. Hana paints a sign with her teacher. Each lets the sign dry." Say: "What is one thing different?" Hear the day's rotating six.
-
-**Right answer:** Cleo paints with her uncle; Hana paints with her teacher.
+**Right answer:** Each child keeping their hands back from a bird.

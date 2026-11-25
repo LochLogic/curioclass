@@ -9,7 +9,6 @@ credit: ours
 
 Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading. You read each card twice (or hand over the printed card where the day says so), then ask the one question. Where a day has two or three asks, the rotating six split them, two children to an ask. Answers and wrong answers are in items.csv.
 
-- **Day 59 (s02-X59).** Card: "Tess sees a nest in the old fence. She wonders who built it. She waits quietly, and a robin lands on it." Ask: "Say how the ending finishes what the beginning started."
 - **Day 59 (s02-X59b).** Card: "Kofi finds a smooth pebble. He brushes it clean. He wonders, Is it a bone? He feels curious. Then he tells the class all about his birthday cake." Ask: "Say which part does not belong to this one find."
 - **Day 60 (s02-X60).** Card: "Pru holds the lamp. Her friend sorts the stones." Ask: "Say both jobs as one sentence that uses the word and."
 - **Day 60 (s02-X60b).** Card: "Leo painted a door." Ask: "Say the sentence again with one detail added."

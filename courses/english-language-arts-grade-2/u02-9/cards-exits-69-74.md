@@ -13,5 +13,4 @@ Say aloud each time: "This card is made up for practice." Print "invented for pr
 - **Day 70 (s02-X70).** Card: "Draft: Mia ran. Feedback: Tell where." Ask: "Say the sentence again with a detail that tells where."
 - **Day 71 (s02-X71).** Printed card: "dear gus" / "On labor day in maine, the bakers lamp isnt on the shelf." / "take care" / "Jude" Ask: "Fix the word bakers so the card says whose lamp it is."
 - **Day 72 (s02-X72).** Card: "Our pair wants the sentence directly under the picture so the next reader sees both." Ask: "Tell us one choice you would offer for the typed piece."
-- **Day 73 (s02-X73).** Card: "I wiped the tile with a soft cloth." Ask: "Tell me one detail a picture could show that these words leave out."
 - **Day 74 (s02-X74).** Card: "Hal replanted the seed because the wind blew it away. Now it is in the soil again." Ask: "Use re- and plant to say what replanted means here."

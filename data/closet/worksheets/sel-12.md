@@ -41,6 +41,93 @@ write: A fictional friend, Leo, is three weeks into a new job in a new city and 
   lines: 3
   key: Answers vary. Example: "What you're feeling sounds like the neutral zone. The passage says these feelings are normal and not proof the decision was a mistake. Could you try one small routine, like a weekly call home, or join one group at work?"
 
+# 7. Independent Week Planner
+minutes: 40
+materials: pencil, colored pencils (optional)
+ican: I can plan a balanced week of work, school, sleep, meals, errands and rest for someone living on their own.
+directions: Read about Sam's week. Do the time math, then fill in the planner: put in the fixed commitments first, then sleep, study, meals and errands, and protect time for rest. Answer the questions at the end.
+mistakes: Students fill every block with work and study and leave no rest, or they skip meals and travel time. A week with no breathing room breaks the first time something goes wrong. Another common miss: putting study time right after an 8-hour shift or late after class, when Sam will be most tired.
+notes: Sam is a fictional 19-year-old; the sheet does not ask about students' own homes or budgets. The sleep target uses the CDC recommendation of 7 or more hours a night for adults 18 to 60 (Sam aims for 8). The "about 2 hours of study for each hour in class" guideline is a common college rule of thumb, not a requirement. Accept any planner that includes every fixed commitment at the right time, at least 7 hours of sleep a night, all four errands, about 10 hours of study and at least one real block of rest or fun each day.
+
+## Read
+text: **Sam** finished high school last year and now rents a small apartment. This is Sam's week:
+text: **Work:** bike shop shifts Tuesday and Thursday 12 to 8 p.m. and Saturday 9 a.m. to 5 p.m. The bus to work takes 30 minutes each way.
+text: **Classes:** two community college classes, Monday and Wednesday 6:00 to 8:30 p.m. Instructors suggest about 2 hours of study for each hour in class.
+text: **Errands:** dentist appointment Wednesday at 10 a.m.; laundry; groceries; pay rent online by Friday.
+text: **Goals:** 8 hours of sleep a night, three meals a day, and time to rest, exercise and see friends.
+
+## Warm up: The time math
+fill:
+  - Hours in a week: 24 x 7 = {168}
+  - Sleep at 8 hours a night: {56} hours
+  - Work: {24} hours. Class: {5} hours.
+  - Study (2 hours for each hour in class): {10} hours
+  - Hours left for meals, travel, errands, chores, rest and fun: {73}
+
+## Main: Sam's week
+chart: Morning (7 a.m. to noon) | Afternoon (noon to 5 p.m.) | Evening (5 to 11 p.m.)
+  labels: Mon; Tue; Wed; Thu; Fri; Sat; Sun
+  height: 0.62
+  key: Model. Mon: breakfast, study 2 h, groceries | lunch, run or bike ride, laundry | dinner, class 6 to 8:30, bed by 11. Tue: breakfast, study 2 h | bus 11:30, work 12 to 8 (lunch break) | home 8:30, quick dinner, rest. Wed: dentist 10 a.m., lunch | study 2 h, free time | dinner, class 6 to 8:30. Thu: breakfast, study 1 h | work 12 to 8 | dinner, rest. Fri: pay rent online, study 2 h | lunch with a friend, free time | movie or friends. Sat: bus 8:30, work 9 to 5 | rest | dinner, see friends. Sun: sleep in, cook for the week | study 1 h, plan next week | rest. Sleep 11 p.m. to 7 a.m. each night. Study total: 10 hours.
+
+## Check the plan
+fill: Count the study hours in your plan: {about 10} hours.
+write: Where did you put rest or fun? Why does a week need it?
+  lines: 3
+  key: Example: Friday evening with friends, Sunday afternoon and short breaks after work shifts. Rest lowers stress and keeps Sam from burning out, so the rest of the week goes better.
+write: Sam's manager asks Sam to work an extra shift Sunday from noon to 6. What would you move, and is it worth it?
+  lines: 3
+  key: Answers vary. Example: Move the Sunday study hour to Friday morning and cook on Saturday evening. It could be worth it for the money once in a while, but not every week, because Sunday is Sam's main rest day.
+
+## Stretch
+write: Which day in your plan is the hardest, and what one change would make it easier?
+  lines: 3
+  key: Answers vary. Example: Tuesday, with an 8-hour shift and bus rides. Packing lunch and doing laundry on Monday instead keeps Tuesday evening free for rest.
+
+# 20. Letter from Birmingham Jail
+minutes: 45
+materials: pencil, highlighter; the full letter if available
+ican: I can analyze how a leader answers critics, using evidence and reasoning to argue that justice cannot wait.
+directions: Read the background and the summary of King's letter; its parts are numbered. Match each criticism to King's answer, analyze his strategies, and explain what he means about waiting.
+mistakes: Students assume the critics were open opponents of civil rights. The clergymen said they supported the goals; they objected to the timing and the methods, which is exactly why King answers them so carefully. Another miss: describing King's response to "wait" as only emotional. Point to the historical reasoning (centuries of waiting, other nations' progress) as well as the personal examples.
+notes: The summary paraphrases Martin Luther King Jr.'s "Letter from Birmingham Jail" (April 16, 1963). The letter is under copyright, so this sheet does not quote it; if you can, give students the full text (for example, from the Martin Luther King, Jr. Research and Education Institute at Stanford) and have them find the sentences behind each numbered part. Background: on April 12, 1963, eight white Alabama clergymen published a statement calling the Birmingham demonstrations "unwise and untimely" and urging Black residents to rely on negotiation and the courts. King, jailed that day for marching in defiance of a court injunction, began his reply in the margins of a newspaper. This sheet focuses on leadership and argument; the letter's discussion of just and unjust laws is a good extension.
+
+## Read
+text: **Background.** In the spring of 1963, Martin Luther King Jr. and local leaders led protests against segregation in Birmingham, Alabama, one of the most segregated cities in the country. Eight white clergymen published a statement that called the protests "unwise and untimely." They said the demonstrations were led partly by outsiders, that change should come through negotiation and the courts, and that Black residents should be patient. King was in jail for leading a march when he read it. His answer became one of the most important documents of the civil rights movement.
+source: Summary written for Curio Class, paraphrasing Martin Luther King Jr., "Letter from Birmingham Jail," April 16, 1963
+  [1] **On being an outsider.** King says he came because local leaders invited him and because injustice was in Birmingham. He argues that communities are tied together, so an injustice in one place threatens justice everywhere. No American who cares about justice can be an outsider anywhere in the country.
+  [2] **On negotiation.** King agrees that negotiation is the goal. He explains the steps of a nonviolent campaign: gather the facts, try to negotiate, prepare yourselves, then take direct action. Birmingham's leaders had broken promises made in earlier talks, such as removing humiliating "whites only" signs from stores. Peaceful protest creates a tension that forces a city that has refused to negotiate to finally come to the table.
+  [3] **On timing.** King says he has never seen a protest that the people in power considered well timed. For Black Americans, "wait" has nearly always meant "never." They have waited more than 340 years for their rights while nations in Africa and Asia move quickly toward independence. He then describes what waiting feels like: seeing violence go unpunished and trying to explain to his young daughter why she cannot go to an amusement park she saw advertised on TV.
+  [4] **On time itself.** King argues that time does not fix problems by itself. Time is neutral: people can use it for good or for harm. Progress comes only through the steady work of people willing to act, and the time to do right is always now.
+  [5] **On the "moderate."** King writes that he is deeply disappointed in white moderates who prefer order to justice. They agree with the goal but not the methods, and they believe they can set a timetable for someone else's freedom.
+
+## Match the criticism to the answer
+table: The critics said... | King's answer (part number) | King's answer in your own words
+  - Outsiders are causing trouble here. | {[1]} | {Injustice anywhere threatens justice everywhere, and he was invited.}
+  - Negotiate instead of protesting. | {[2]} | {Protest is what makes real negotiation happen.}
+  - These protests are untimely; be patient. | {[3] and [4]} | {Waiting has meant never, and time alone fixes nothing.}
+
+## Analyze the argument
+choice: In part 2, which kind of support does King mainly use?
+  * A step-by-step explanation of how a nonviolent campaign works
+  - A story about his family
+  - A comparison to other countries
+choice: Why does King describe his daughter and the amusement park in part 3?
+  - To change the subject away from Birmingham
+  - To show that his daughter likes television
+  * To help readers feel the personal cost of waiting, so "be patient" sounds less reasonable
+write: In part 4, King says time is neutral. What belief of the critics is he answering, and why does it matter to his argument?
+  lines: 3
+  key: The critics assumed that change would come naturally if Black residents just waited. King answers that time itself does nothing; only people working for change make progress. So waiting is not a neutral choice: it leaves injustice in place.
+write: Part 5 is about people who agree with a goal but not with acting now. Why might King be more disappointed in them than in open opponents?
+  lines: 3
+  key: Moderates have the power to help and claim to support justice, but by asking for patience they protect the unjust status quo. Their calm, reasonable-sounding delays can do more to slow change than open opposition, which is easier to recognize and challenge.
+
+## Leadership
+write: How does King lead in this letter? Name one move a leader today could learn from how he answers his critics.
+  lines: 4
+  key: Answers vary. Example: He takes his critics seriously and answers each point with reasons, facts and personal experience instead of insults. A leader today could learn to respond to criticism by restating the concern fairly, then explaining clearly why they disagree.
+
 # 21. Running for Local Office
 minutes: 45
 materials: pencil
@@ -90,3 +177,42 @@ match: Match each supporter to the job they do for the campaign.
 write: Daniela is young and has never held office. Write two sentences she could use at the candidate forum to turn that into a strength.
   lines: 4
   key: Answers vary. Example: "I graduated from Pine Valley High just two years ago, so I know what today's students need. I've already gone to every board meeting since February, and I'll bring a fresh voice for career and technical classes."
+
+# 33. Evaluating Sources for Bias
+minutes: 40
+materials: pencil, highlighter
+ican: I can evaluate sources for purpose, loaded language and missing views before I trust them.
+directions: Read four fictional sources about a city plan for bike lanes. Highlight loaded words. Use the checklist to rate each source, then decide which sources to use and rewrite one loaded sentence.
+mistakes: Students rate a source as biased just because it takes a side. A persuasive source can still be useful if its facts are accurate and labeled as opinion; the problem is hidden purpose, unfair language and missing views. Watch for students who rate Source D as trustworthy because they agree with bike lanes, or Source B because they agree with business owners. Rate the writing, not the side.
+notes: The city, the plan, the numbers and all four sources are fictional, and no source is meant to stand for a real group or person. Loaded language means words chosen to stir feelings rather than describe (reckless, strangle, steals, death trap, obsessed). Model trust ratings: A 4 or 5, B 2, C 4 or 5, D 1 or 2; accept ratings that are explained with checklist evidence.
+
+## Read the sources
+text: **The plan:** The city council will vote on adding protected bike lanes to 1.2 miles of Main Street. The plan removes 40 of the street's 310 parking spaces.
+text: **Source A: City transportation office fact sheet.** The plan adds 1.2 miles of protected bike lanes separated from traffic by a curb. It removes 40 of 310 parking spaces on Main Street; a public lot one block away has 120 spaces. In last spring's count, an average of 450 people biked on Main Street each weekday. Two public hearings will be held in May.
+text: **Source B: Opinion column by the head of a downtown business group.** This reckless scheme will strangle Main Street. Shoppers will flee to the mall when the city steals their parking. Who asked for this? A handful of hobbyists in bike shorts. Our members have served this town for generations, and the council should listen to them.
+text: **Source C: Local news article.** The council will vote June 3. Parents at two schools near Main Street say the lanes will let more students bike safely. Several store owners told the paper they worry that losing spaces will cost them customers. The city says a public lot one block away has room for most drivers.
+text: **Source D: Social media post from a bike club account.** Main Street is a DEATH TRAP for bikes!!! Every day the council waits, lives are on the line. Car-obsessed store owners only care about profits. Share if you want safe streets!
+
+## Main: The checklist
+table: Source | Purpose (inform, persuade or both)? | Loaded words | Missing views or facts | Trust (1 to 5)
+  - A | {inform} | {none} | {business owners' and riders' opinions} | {4 or 5}
+  - B | {persuade} | {reckless, strangle, flee, steals, hobbyists} | {safety, number of riders, the nearby lot, only 40 of 310 spaces} | {2}
+  - C | {inform} | {none} | {exact numbers on riders or parking} | {4 or 5}
+  - D | {persuade} | {DEATH TRAP, lives are on the line, car-obsessed} | {any data, store owners' real concerns} | {1 or 2}
+choice: You are writing an essay about the plan. Which pair of sources is best for **facts**?
+  - B and D
+  - A and B
+  * A and C
+  - C and D
+choice: What does Source B leave out that weakens its claim that shoppers will "flee"?
+  - The name of the mall
+  * That only 40 of 310 spaces are removed and a lot one block away has 120 spaces
+  - How long the business group has existed
+
+## Stretch
+write: Rewrite one loaded sentence from Source B or D so it states the same concern in neutral language.
+  lines: 3
+  key: Answers vary. Examples: Source B: "Business owners worry that losing 40 parking spaces could mean fewer customers." Source D: "Bike riders on Main Street share lanes with car traffic, and the club believes protected lanes would make riding safer."
+write: Is Source B useless because it is an opinion? Explain.
+  lines: 3
+  key: No. It shows a real concern of business owners, which a fair essay should include. But its claims need to be checked against facts like those in Sources A and C, and its loaded words should not be repeated as if they were facts.

@@ -7,17 +7,17 @@ credit: ours
 ---
 # Exit cards, days 95 and 96
 
-Say aloud each time: "This card is made up for practice." Read each card twice with its picture. Children do not read the cards; you read the lines aloud.
+Sheet E95 goes with a page of the unit's own texts, read aloud again with its picture covered; it is not made up, so say nothing about practice for it. The sheet is a strip of three pictures. Card E96 is made up: say aloud "This card is made up for practice", read it twice with its picture, and print "invented for practice" in small letters at its foot only.
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any label the key names. Children do not read the cards; you read the lines aloud. None of these cards is shown in teaching.
+The sheet and the card use plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any label the key names. Children do not read the cards; you read the lines aloud. None of these cards is shown in teaching.
 
-## Day 95 card E95
+## Day 95 sheet E95: page 6 of The Oak
 
-**Read:** "A fisher needs a small boat. A boat builder uses wood from a cedar tree to make it."
+**Read again:** page 6 of The Oak (texts/gk-u3-05-a.md), oak wood for chairs and tables.
 
-**Mark (item a):** Which person-and-resource drawing fits? Three pictures in a row, each in a ring: a builder shaping a cedar plank, with an arrow to a boat and the fisher; a boat on water alone; a cedar tree alone.
+**Mark (item a):** Which person-and-resource drawing fits? Three pictures in a row, each in a ring: oak planks with an arrow to a chair and a table where a girl and her grandfather sit; a table alone; an oak tree alone.
 
-**Spoken, to the day's six (item b):** "How do the words connect the fisher to the tree?"
+**Spoken, to the day's six (item b):** "How do the words connect the people to the oak?"
 
 ## Day 96 card E96
 
@@ -29,5 +29,5 @@ Print "invented for practice" in small letters at the foot of every card. Plain 
 
 ## Key (teacher)
 
-- Day 95: item a, The builder shaping a cedar plank, with an arrow to the boat and the fisher. Not yet: marks the boat alone or the cedar alone (B, a picture that leaves out the link). Item b, The cedar's wood becomes the fisher's boat. Not yet: says Fisher. Boat. Cedar. (A, three things named, none linked); says The fisher eats the cedar's seeds (D, not stated).
+- Day 95: item a, The oak planks with an arrow to the chair, the table and the people. Not yet: marks the table alone or the oak alone (B, a picture that leaves out the link). Item b, People make chairs and tables from the oak's hard, strong wood. Not yet: says People. Chairs. Oak. (A, three things named, none linked); says The people eat the acorns (D, not stated for people).
 - Day 96: item a, The sloth on a branch with a leaf, labelled A and B. Not yet: marks the sloth on the ground or the branch of leaves with no sloth (B, a plan that uses only one source). Item b, From A, it hangs from the branch; from B, it eats the tree's leaves. Not yet: says Sloths are slow (E, not about the question); swaps the two sources (AI, facts given the wrong source).

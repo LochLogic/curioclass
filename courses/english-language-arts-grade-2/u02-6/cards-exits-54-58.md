@@ -15,5 +15,4 @@ Say aloud each time: "This card is made up for practice." Print "invented for pr
 - **Day 55 (s02-X55b).** Card: "Bea hides a shell in her bag. Then she tells Tam a secret." Ask: "Say those two things again as if they happened last week."
 - **Day 56 (s02-X56).** Card: "Opal is a calm girl. She speaks calmly to the guide." Ask: "Say which word tells how Opal speaks."
 - **Day 56 (s02-X56b).** Card: "Kai wore a bright coat. He waved cheerfully." Ask: "Say which word tells what Kai's coat was like."
-- **Day 57 (s02-X57).** Card: "Heading: Kite Parts. The first paragraph says a kite has a light frame made of sticks. The second paragraph says a kite has a long tail that keeps it steady in the wind." Ask: "Say what the second paragraph is about."
 - **Day 58 (s02-X58).** Card: "Lena unbuckled the case. A buckle keeps a case shut. Now the case was open." Ask: "Use the next two sentences to say what unbuckled means here."

@@ -45,6 +45,114 @@ write: Reread the last sentence. Explain the author's point about "the same syst
   lines: 2
   key: The stress response is helpful when it turns on briefly and then off, but when it never gets to rest, the same changes that help in a challenge start to damage the body.
 
+# 7. Breaking Down a Big Project
+minutes: 40
+materials: pencil, calculator (optional)
+ican: I can break a big project into weekly milestones with buffer time and a plan for setbacks.
+directions: Read about Nia's research project. Add up the work and the time she has, then plan each week's milestone so she meets every checkpoint. Finish with an if-then plan for setbacks.
+mistakes: Plans often put most of the work in the last week, or schedule all 6 hours in Week 4, the week of Nia's chemistry test. Check each week against the hours available. Another common miss: no buffer at all, so one sick day wrecks the plan. Buffer time is planned empty time, not "extra work."
+notes: Nia and her project are fictional. The model plan is one of many good answers: accept any plan that meets the four checkpoints, keeps each week within its hours, finishes the 25 hours of work and keeps some buffer, ideally spread across the weeks rather than all at the end. The task hours are estimates; a useful habit to teach is to compare estimates with actual time after the project and adjust next time.
+
+## Read
+text: **The project:** Nia, a junior, has 6 weeks to write a research paper on water quality in her town's river and give a 5-minute presentation. Her teacher set four checkpoints:
+text: **Checkpoints:** topic proposal due Friday of Week 1; annotated bibliography (6 sources) due Friday of Week 3; full draft due Wednesday of Week 5 for peer review; final paper and presentation due Friday of Week 6.
+text: **Nia's time:** She can give the project about 6 hours a week, except Week 4, when she has a big chemistry test and can give only 2 hours.
+table: Task | Estimated hours
+  - A. Choose a topic, write a research question and proposal | 2
+  - B. Find, read and annotate 6 sources | 8
+  - C. Outline the paper | 2
+  - D. Write the full draft | 8
+  - E. Revise after peer review | 3
+  - F. Make slides and practice the presentation | 2
+
+## Warm up: Do the math
+fill:
+  - Total work: {25} hours.
+  - Total time Nia has in 6 weeks: {32} hours.
+  - Buffer time (time with nothing planned): {7} hours.
+choice: Which task must be finished by the Week 3 checkpoint?
+  - D. Write the full draft
+  * B. Find, read and annotate 6 sources
+  - F. Make slides and practice
+
+## Main: Plan the milestones
+chart: Tasks and hours this week | Milestone done by the end of the week
+  labels: Week 1 (6 hours); Week 2 (6 hours); Week 3 (6 hours); Week 4 (2 hours); Week 5 (6 hours); Week 6 (6 hours)
+  height: 0.65
+  key: Model. Week 1: A (2) and start B (4); proposal turned in Friday. Week 2: finish B (4) and C (2); bibliography done early, outline done. Week 3: start D (4), 2 hours buffer; bibliography turned in Friday. Week 4: D (2), the test week stays light. Week 5: finish D (2) by Wednesday, then E (3), 1 hour buffer; draft in for peer review, revisions done. Week 6: F (2), 4 hours buffer; final paper and presentation Friday. Total work 25 hours, buffer 7 hours.
+write: Why is it smart to finish the bibliography in Week 2, a week before its checkpoint?
+  lines: 2
+  key: Week 4 has only 2 hours, so finishing early protects the later checkpoints, and it gives her buffer time in Week 3 in case something goes wrong.
+
+## Plan for setbacks
+write: If-then plan 1: In Week 3, Nia gets sick and loses 4 hours. What does she do?
+  lines: 2
+  starter: If I lose 4 hours in Week 3, then I will ...
+  key: Use the 2 buffer hours in Week 3, move the other 2 hours of drafting to Week 5 or Week 6 buffer time, and let her teacher know early if the checkpoint is at risk.
+write: If-then plan 2: Two of her sources turn out to be unreliable after she reads them. What does she do?
+  lines: 2
+  starter: If two sources are unreliable, then I will ...
+  key: Ask the school librarian for help that same week, find two replacement sources using buffer time, and keep the bibliography checkpoint.
+
+## Stretch
+write: Many people underestimate how long tasks take. Which task in Nia's list do you think is most likely to take longer than estimated, and how should her plan handle that?
+  lines: 3
+  key: Answers vary. Example: Writing the draft (D), because writing often takes longer than people expect. Her plan should start D early in Week 3 and keep buffer hours after it in Weeks 5 and 6.
+
+# 20. Civic Participation Data
+minutes: 35
+materials: pencil, ruler
+ican: I can read voting data by age group and write claims and questions supported by the numbers.
+directions: Study the graph and table of reported voting rates in presidential elections from 1972 to 2024. Answer the questions, then write three claims supported by the data and one question the data raises.
+mistakes: Students compare the two lines' shapes but forget the gap between them, or they describe 18- to 24-year-olds as "not voting" when nearly half voted in some years. Insist on numbers and years in every claim. Another miss: a "question" that the graph already answers. A good question needs more information to answer, often about causes.
+notes: Data: U.S. Census Bureau, Current Population Survey, Voting and Registration Supplement, Table A-9, "Reported Voting Rates in Presidential Election Years, by Selected Characteristics: November 1964 to 2024." Rates are the percent of the total voting-age population (including noncitizens) who reported voting, so they are lower than citizen-only rates, and self-reports tend to run a little high. The graph starts in 1972, the first presidential election after the 26th Amendment (ratified 1971) lowered the voting age to 18 nationwide. Model claims and questions are in the key; accept any claim that is accurate and cites numbers.
+
+## The data
+graph: Election year | 1972 2024 4 | Percent who reported voting | 0 100 10
+  line: 1972,49.6 1976,42.2 1980,39.9 1984,40.8 1988,36.2 1992,42.8 1996,32.4 2000,32.3 2004,41.9 2008,44.3 2012,38.0 2016,39.4 2020,48.0 2024,43.9
+  show: 1972,49.6 1976,42.2 1980,39.9 1984,40.8 1988,36.2 1992,42.8 1996,32.4 2000,32.3 2004,41.9 2008,44.3 2012,38.0 2016,39.4 2020,48.0 2024,43.9
+  line2: 1972,63.5 1976,62.2 1980,65.1 1984,67.7 1988,68.8 1992,70.1 1996,67.0 2000,67.6 2004,68.9 2008,68.1 2012,69.7 2016,68.4 2020,71.9 2024,71.7
+  minor: off
+text: Solid line with dots: ages 18 to 24. Dashed line: ages 65 and over.
+table: Year | 1972 | 1976 | 1980 | 1984 | 1988 | 1992 | 1996
+  - Ages 18 to 24 | 49.6 | 42.2 | 39.9 | 40.8 | 36.2 | 42.8 | 32.4
+  - Ages 65 and over | 63.5 | 62.2 | 65.1 | 67.7 | 68.8 | 70.1 | 67.0
+table: Year | 2000 | 2004 | 2008 | 2012 | 2016 | 2020 | 2024
+  - Ages 18 to 24 | 32.3 | 41.9 | 44.3 | 38.0 | 39.4 | 48.0 | 43.9
+  - Ages 65 and over | 67.6 | 68.9 | 68.1 | 69.7 | 68.4 | 71.9 | 71.7
+text: *Source: U.S. Census Bureau, Current Population Survey, Table A-9 (percent of the voting-age population).*
+
+## Warm up: Read the data
+fill:
+  - The highest voting rate for ages 18 to 24 was in {1972}, at {49.6} percent.
+  - The lowest voting rate for ages 18 to 24 was in {2000}, at {32.3} percent.
+  - From 2016 to 2020, the rate for ages 18 to 24 rose by {8.6} percentage points.
+  - In 2020, the gap between ages 65 and over and ages 18 to 24 was {23.9} percentage points.
+  - In 1972, that gap was {13.9} points; in 2024 it was {27.8} points.
+choice: Which description of the 18 to 24 line is most accurate?
+  - It rises steadily every election.
+  - It stays almost flat.
+  * It goes up and down from election to election, mostly between 32 and 50 percent.
+
+## Main: Claims and a question
+write: Claim 1 (compare the two age groups). Use numbers from at least two years.
+  lines: 3
+  key: Example: Older Americans vote at much higher rates than young adults. In every election shown, ages 65 and over voted at 62 percent or more, while ages 18 to 24 never went above 49.6 percent.
+write: Claim 2 (describe a change over time for ages 18 to 24).
+  lines: 3
+  key: Example: Young adult voting has had big swings. It fell from 49.6 percent in 1972 to 32.3 percent in 2000, then rose to 48.0 percent in 2020.
+write: Claim 3 (describe a change over time for ages 65 and over).
+  lines: 3
+  key: Example: Voting by people 65 and over has stayed high and slowly risen, from 63.5 percent in 1972 to 71.9 percent in 2020 and 71.7 percent in 2024.
+write: One question the data raises that you would need more information to answer:
+  lines: 2
+  key: Answers vary. Examples: What made young adult turnout jump in 2004, 2008 and 2020? Why has the gap between age groups grown since 1972? Do young adults who vote once keep voting as they get older?
+
+## Stretch
+write: A club wants to raise turnout among 18- to 24-year-olds. Based on the data, what is one reason for hope and one challenge?
+  lines: 3
+  key: Answers vary. Example: Hope: young adult turnout reached 48.0 percent in 2020, close to its 1972 high, so big increases are possible. Challenge: it dropped again to 43.9 percent in 2024 and has swung up and down for 50 years, so gains are hard to keep.
+
 # 21. Testimony to the Town Council
 minutes: 50
 materials: pencil, a timer or clock with a second hand for practice
@@ -90,3 +198,48 @@ write: Write your full two-minute testimony. Begin by greeting the council and g
 write: Write one sentence that answers the strongest point the other side would make.
   lines: 2
   key: Answers vary. For a skate park: "Shop owners are right that parking is tight, but the skate park costs the town 20,000 dollars less, and the council could study other ways to ease weekend parking." For a parking lot: "A skate park is popular, but 15,000 dollars a year in fees could fund youth programs too."
+
+# 33. Thinking, Fast and Slow
+minutes: 35
+materials: pencil, highlighter
+ican: I can tell fast, automatic thinking from slow, effortful thinking and explain when each can lead to bias.
+directions: Read the summary of research on fast and slow thinking. Answer the questions, then classify eight decisions as most likely fast or slow and give a clue for each.
+mistakes: Students decide "fast thinking is bad, slow thinking is good." The summary says fast thinking handles most of daily life well; problems come when a quick answer feels right but isn't and slow thinking never checks it. Students also classify by how important a decision is instead of by how much effort and attention it takes. A big decision made on gut feeling is still fast thinking.
+notes: The summary is written for Curio Class and paraphrases ideas from Daniel Kahneman's book Thinking, Fast and Slow (2011); it does not quote the book. Kahneman, a psychologist who won the 2002 Nobel Prize in economics, used the labels System 1 and System 2, terms first proposed by psychologists Keith Stanovich and Richard West. The bat-and-ball puzzle comes from Shane Frederick's Cognitive Reflection Test (2005). Several of the eight decisions (reading a sign, sensing anger in a voice, parking in a tight space) echo examples Kahneman gives. Some items can be argued either way for an expert; accept a well-reasoned answer.
+
+## Read
+source: Summary written for Curio Class of ideas from Daniel Kahneman, *Thinking, Fast and Slow* (2011)
+  [1] The psychologist Daniel Kahneman described the mind as having two modes of thinking. He called them System 1 and System 2, but they are easier to remember as fast and slow.
+  [2] Fast thinking is automatic. It works without effort and often without our noticing: reading a word on a sign, recognizing a friend's face, sensing that someone is angry from their voice, or answering 2 + 2. It runs on patterns, habits and first impressions, and it is usually right. It lets us get through the day without thinking hard about everything.
+  [3] Slow thinking is deliberate. It takes effort and attention: multiplying 17 by 24 in your head, comparing two phone plans, checking a long argument for mistakes, or parking in a tight space. We can only do a little of it at a time, and it tires us out, so we tend to avoid it.
+  [4] Trouble comes when fast thinking offers an answer that feels right but is wrong, and slow thinking never checks it. Try this famous puzzle: a bat and a ball cost 1 dollar and 10 cents in all. The bat costs 1 dollar more than the ball. How much does the ball cost? Most people's first answer is 10 cents. It is wrong.
+  [5] Kahneman and his longtime research partner, Amos Tversky, showed that these quick shortcuts lead to predictable errors, which they called biases. Snap judgments about people are one example: fast thinking fills in a whole picture of a stranger from a single detail. The fix is not to stop thinking fast. It is to notice moments that deserve a second look, and then slow down.
+
+## Questions
+fill:
+  - Kahneman's name for fast thinking was {System 1}; his name for slow thinking was {System 2}.
+  - The ball costs {5} cents, because 5 cents + 1 dollar and 5 cents = 1 dollar and 10 cents.
+choice: Why do people tend to avoid slow thinking? [3]
+  - It is always wrong.
+  - It only works for math.
+  - It happens without our noticing.
+  * It takes effort and attention and tires us out.
+write: Explain why 10 cents feels right but is wrong. Which kind of thinking produced it, and which kind catches the mistake? [4]
+  lines: 3
+  key: Fast thinking sees "1 dollar and 10 cents" and "1 dollar more" and subtracts automatically. But if the ball were 10 cents, the bat would be 1 dollar and 10 cents, and the total would be 1 dollar and 20 cents. Slow thinking checks the answer and finds the ball costs 5 cents.
+
+## Main: Fast or slow?
+table: Decision | Fast or slow? | Clue
+  - 1. Stopping at a red light you've stopped at every day | {fast} | {a habit; no effort needed}
+  - 2. Choosing between two job offers by comparing pay, hours and travel time | {slow} | {comparing several factors takes effort}
+  - 3. Deciding a new classmate is unfriendly from one glance at their face | {fast} | {an instant first impression}
+  - 4. Checking a lease line by line before signing it | {slow} | {careful attention to details}
+  - 5. Swerving your bike to miss a ball that rolls into the street | {fast} | {an instant, automatic reaction}
+  - 6. Working out a tip of 18 percent on a 35 dollar bill in your head | {slow} | {mental math takes effort: 6.30 dollars}
+  - 7. Grabbing the same snack you always buy at the store | {fast} | {a habit}
+  - 8. Parallel parking in a tight space for the first time | {slow} | {needs full attention and effort}
+
+## Stretch
+write: Choose decision 3. How could a person use slow thinking to check that first impression?
+  lines: 3
+  key: Notice the snap judgment, then ask what else could explain the look: maybe the classmate is nervous, tired or concentrating. Gather more information before deciding, such as saying hello or watching how they act over a few days.
