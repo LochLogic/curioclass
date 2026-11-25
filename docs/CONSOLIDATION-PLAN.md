@@ -493,6 +493,14 @@ fact then lives in one place, so drift can't come back." The design is the pause
   name and treats the ten subject folders under docs/courses (arts, health and the rest) as known.
 - Each report starts from a baseline file of today's known misses (for example 28 handbacks rows and about 224 prose
   item mentions that do not resolve), so new breaks fail from day one and old ones are worked off by course.
+- Built 2026-11-25. scripts/index.py builds data/index.db in about 20 seconds: 43,110 nodes and 299,251 edges
+  (226,858 hard). Codes resolve against every standards file, so elective outcome lists count too. Skill ids resolve
+  against any subject's progression, because cross-subject rows exist. scripts/uses.py `<id>` and `--changed` group
+  uses by course and day; soft edges are marked. Baseline data/index-baseline.csv: resolve 7 known misses (11
+  lines: three bad item codes and four missing leans_on targets), orphans 386 pieces, layout waits for homes.csv
+  (4.H), status 0 contradictions (412 flow-status rows only restate a written plan, to drop in 4.H), drift 0. Prose
+  item ids are soft, so the review's "about 224" is shown by uses.py and never fails. Gates `index-reports` and
+  `selftest-index` were added to the runner. The misses are worked off under later.csv L125.
 
 ### 4.G One gate command (M)
 
