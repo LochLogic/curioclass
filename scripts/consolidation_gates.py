@@ -44,8 +44,7 @@ def gates(raw):
     g = [('plan-' + c, ['scripts/plan.py', 'check', c]) for c in cs]
     g += [('lesson-' + c, ['scripts/lesson_course.py', c]) for c in cs]
     g += [('unitplan-' + c, ['scripts/unitplan.py', 'check', c]) for c in cs]
-    g += [('ledger-' + s.stem, ['scripts/ledger.py', 'check', s.stem])
-          for s in sorted((ROOT / 'data' / 'plans' / 'ledgers').glob('*.csv'))]
+    g += [('ledger-' + s, ['scripts/ledger.py', 'check', s]) for s in ('ela', 'math', 'science', 'social-studies')]
     g += [('frame', ['scripts/frame.py', 'check']), ('sequence', ['scripts/sequence.py', 'check'])]
     g += [('selftest-' + s, ['scripts/%s.py' % s, '--self-test'])
           for s in ('day_skeleton', 'section_skeleton', 'unit_skeleton')]

@@ -684,7 +684,7 @@ def ledger_rows(course):
     """The subject ledger's rows for a course (scripts/ledger.py), or [] when the course climbs no ledger."""
     import ledger
     subj = next((k for k, v in ledger.LADDER.items() if course in v), None)
-    if subj is None or not ledger.path(subj).exists():
+    if subj is None or not ledger.exists(subj):
         return []
     if subj not in _LEDGER:
         _LEDGER[subj] = ledger.rows(subj)

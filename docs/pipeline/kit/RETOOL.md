@@ -85,3 +85,14 @@ Source: the Codex draft run (Cory, 2026-11-23: Codex drafts section plans and da
 | Finding (stage that found / made it) | Where it went |
 |---|---|
 | The generator stopped for science: no subject note (generator / kit) | notes/subject-science.txt, written from the science K to 3 run's defaults, safety pages and Cory's sign-off calls (Earth's age rule, spoken comparison counts as produce in K to 2) |
+
+## Retool 3: KIT-VERSION 4 (2026-11-25)
+
+Source: consolidation step 4.D (docs/CONSOLIDATION-PLAN.md). No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| Hand-written CSV writes kept causing truncation and wrong-row overwrites (lead reads / jobs) | scripts/rows.py upsert, named in the CSV safety line of common.txt |
+| Ledgers moved from data/plans/ledgers/<subject>.csv to data/plans/<course>/ledger.csv (consolidation / kit) | the CSV safety line of common.txt; scripts/ledger.py commands unchanged |
+| Skeletons were tracked and jobs could edit them, so generated files drifted from their source (consolidation / kit) | day.txt: skeletons are ignored working files, never edited; the edit line no longer lists them (step 4.E) |
+| day.txt still said "section not in data/units.csv" failures are known, after 4.B removed that check (consolidation / kit) | the line is dropped |

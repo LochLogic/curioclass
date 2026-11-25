@@ -10,7 +10,8 @@
     python -X utf8 scripts/ledger.py recheck <subject> [--all]
 
 Serves every course run (docs/COURSE-RUN.md); first built 2026-11-18 for the science K to 3 ladder test (L81).
-One file per subject, data/plans/ledgers/<subject>.csv (env LEDGER_DIR overrides the folder, for tests). Every
+One file per course, data/plans/<course>/ledger.csv (consolidation step 4.D; env LEDGER_DIR overrides the plans
+folder, for tests); the commands still name a subject, which reads its ladder's courses in ladder order. Every
 section writer and day writer in a run reads it (`show`, everything below its own course plus its own course so
 far) and adds what it teaches (`add`). Writers never edit the CSV by hand.
 
@@ -54,7 +55,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DIR = Path(os.environ['LEDGER_DIR']) if os.environ.get('LEDGER_DIR') else ROOT / 'data' / 'plans' / 'ledgers'
+DIR = Path(os.environ['LEDGER_DIR']) if os.environ.get('LEDGER_DIR') else ROOT / 'data' / 'plans'
 PLANS = ROOT / 'data' / 'plans'
 COLS = ['course', 'where', 'day', 'kind', 'entry', 'note', 'stage']
 KINDS = ('term', 'notation', 'model', 'case', 'investigation', 'material', 'routine', 'text', 'skill')
@@ -70,16 +71,42 @@ LADDER = {'science': ['science-kindergarten', 'science-grade-1', 'science-grade-
           + ['algebra-i', 'geometry', 'algebra-ii', 'precalculus']}
 
 
-def path(subject):
-    return DIR / ('%s.csv' % subject)
+def path(course):
+    """A course's ledger file."""
+    return DIR / course / 'ledger.csv'
 
 
-def rows(subject):
-    p = path(subject)
+def exists(subject):
+    return any(path(c).exists() for c in LADDER.get(subject, ()))
+
+
+def course_rows(course):
+    p = path(course)
     if not p.exists():
         return []
     with open(p, encoding='utf-8', newline='') as f:
         return list(csv.DictReader(f))
+
+
+def rows(subject):
+    """Every row of a subject's ladder, course by course in ladder order."""
+    return [r for c in LADDER.get(subject, ()) for r in course_rows(c)]
+
+
+def _write(course, rs):
+    """Writes one course's ledger through a temp file and os.replace, so a reader never sees half a file."""
+    p = path(course)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    tmp = p.with_name('ledger.csv.tmp')
+    with open(tmp, 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=COLS, lineterminator='\n')
+        w.writeheader()
+        w.writerows(rs)
+    os.replace(tmp, p)
+
+
+def _append(course, new_rows):
+    _write(course, course_rows(course) + [dict(zip(COLS, r)) for r in new_rows])
 
 
 def norm(text):
@@ -87,10 +114,11 @@ def norm(text):
 
 
 def write_all(subject, rs):
-    with open(path(subject), 'w', encoding='utf-8', newline='') as f:
-        w = csv.DictWriter(f, fieldnames=COLS, lineterminator='\n')
-        w.writeheader()
-        w.writerows(rs)
+    """Rewrites only the courses whose rows changed."""
+    for c in LADDER[subject]:
+        mine = [r for r in rs if r['course'] == c]
+        if mine != course_rows(c):
+            _write(c, mine)
 
 
 def add(subject, course, where, day, kind, entry, note=''):
@@ -102,8 +130,6 @@ def add(subject, course, where, day, kind, entry, note=''):
         sys.exit('ledger: day is a number or blank')
     if not entry.strip():
         sys.exit('ledger: entry is empty')
-    p = path(subject)
-    p.parent.mkdir(parents=True, exist_ok=True)
     if day:
         # A planned row of the same section, kind and entry (written at section-plan time) is promoted, not duplicated.
         rs = rows(subject)
@@ -117,13 +143,8 @@ def add(subject, course, where, day, kind, entry, note=''):
             write_all(subject, rs)
             print('promoted: %s %s day %s %s: %s' % (course, where, day, kind, entry.strip()))
             return
-    new = not p.exists()
     stage = 'written' if day else 'planned'
-    with open(p, 'a', encoding='utf-8', newline='') as f:
-        w = csv.writer(f, lineterminator='\n')
-        if new:
-            w.writerow(COLS)
-        w.writerow([course, where, day, kind, entry.strip(), note.strip(), stage])
+    _append(course, [[course, where, day, kind, entry.strip(), note.strip(), stage]])
     print('added: %s %s day %s %s: %s' % (course, where, day or '-', kind, entry.strip()))
 
 
@@ -157,10 +178,7 @@ def renote(subject, course, day, entry, note):
     if len(hit) != 1:
         sys.exit('ledger note: %d rows match %s day %s "%s"; need exactly one' % (len(hit), course, day, entry))
     hit[0]['note'] = note.strip()
-    with open(path(subject), 'w', encoding='utf-8', newline='') as f:
-        w = csv.DictWriter(f, fieldnames=COLS, lineterminator='\n')
-        w.writeheader()
-        w.writerows(rs)
+    write_all(subject, rs)
     print('note set: %s day %s %s: %s' % (course, day, entry.strip(), note.strip()))
 
 
@@ -218,14 +236,10 @@ def seed(subject, file):
     if errs:
         print('\n'.join(errs))
         sys.exit('ledger seed: refused, nothing added (%d problems)' % len(errs))
-    p = path(subject)
-    p.parent.mkdir(parents=True, exist_ok=True)
-    new = not p.exists()
-    with open(p, 'a', encoding='utf-8', newline='') as f:
-        w = csv.writer(f, lineterminator='\n')
-        if new:
-            w.writerow(COLS)
-        w.writerows(out)
+    for c in LADDER[subject]:
+        mine = [r for r in out if r[0] == c]
+        if mine:
+            _append(c, mine)
     print('seeded %d planned rows into the %s ledger' % (len(out), subject))
 
 

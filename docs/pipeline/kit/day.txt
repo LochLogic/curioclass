@@ -8,7 +8,7 @@ First run `python -X utf8 scripts/day_skeleton.py {COURSE} u{UNIT}` to make the 
 
 For each day follow docs/pipeline/briefs/write.md (read it first; its {day}, {prev}, {next}, {unit} are your day's), with these changes:
 - docs/agents/DAY-WRITER.md "Read first" 2 may name a worked case of another course: use the shape course the subject note names (headings and header fields, not content, length or tone).
-- The section plan docs/courses/{COURSE}/u{UU}-<n>.md is the day's spec (its `## Day N` block gives the parts and minutes); the day skeleton holds the mechanical fields from data: copy them. DEFAULTS.md in docs/courses/{COURSE}/ says what holds every day.
+- The section plan docs/courses/{COURSE}/u{UU}-<n>.md is the day's spec (its `## Day N` block gives the parts and minutes); the day skeleton holds the mechanical fields from data: copy them (skeletons are ignored working files: never edit one; fix the data and rerun day_skeleton.py). DEFAULTS.md in docs/courses/{COURSE}/ says what holds every day.
 - The shared pieces in the section folder exist: name the ones you use in `leans_on`.
 - Exit and end item rows already exist in data/plans/{COURSE}/items.csv and have had an answer-key read: use them, and items.csv is the truth over any stale plan line; add rows only for questions your day adds, each with its wrongs, answered cold.
 - {PREVDAY} If there is a day before, honor its "Tomorrow" line.
@@ -29,10 +29,10 @@ Exit and shape rules (held in every day):
 
 Ledger: look terms up with `python -X utf8 scripts/ledger.py show {SUBJ} --before {COURSE} --term "<word>"` (add `--course <course>` to narrow; never print the whole ledger, it is cut off), one call per term, model, case, text and routine your day touches, including this course's earlier units. A term, model or routine a lower grade or an earlier unit taught is named as review on the page, in the same words ("Review: ..." or "You learned ... in kindergarten"), never taught as new (a gate checks this); an earlier case may come back as a reminder, never as an exit or check. Review claim rule: a day may say an earlier grade taught something only for a ledger row at stage written; a row at stage planned is taught as new and listed in your reply for the lead. After each day, add a ledger row with that day's number for each term, notation, model, case, text, investigation, skill or routine the day actually teaches, one call each: `python -X utf8 scripts/ledger.py add {SUBJ} {COURSE} u{UU}-<n> <day> <kind> "<entry>" "<note>"` (review rows get the note "review of <course> <where>"). Never edit the CSV by hand; never use a kind outside the ledger's list.
 
-Gates: run plan.py check only as {PLANGATE} and lesson.py check only as {LESSONGATE}, from the very first run: never read either unfiltered (lesson.py check is slow: run it after your last day, and again after fixes). Before you report, grep the plan output for your day numbers and "materials": every materials.csv FAIL naming your days is yours to fix (add the day to the existing row's used_days, or drop a day the day never names). "section ... not in data/units.csv" failures are known; ignore them. Failures for days not yet written are expected.
+Gates: run plan.py check only as {PLANGATE} and lesson.py check only as {LESSONGATE}, from the very first run: never read either unfiltered (lesson.py check is slow: run it after your last day, and again after fixes). Before you report, grep the plan output for your day numbers and "materials": every materials.csv FAIL naming your days is yours to fix (add the day to the existing row's used_days, or drop a day the day never names). Failures for days not yet written are expected.
 
 {COMMON}
 
-Edit only: your days' files, the day skeletons of your days, data/plans/{COURSE}/ rows for your days, and the ledger through ledger.py.
+Edit only: your days' files, data/plans/{COURSE}/ rows for your days, and the ledger through ledger.py.
 
 Last message, under 250 words: per day, the file, teacher prose words, student page words and sides; ledger rows added (and any planned-only review you taught as new); gate failures left and why; template points; any change to days.csv or the plan; anything a reader should look at first.
