@@ -1,10 +1,12 @@
 # Consolidation plan: one flat product, then an architecture that scales
 
-Status: draft 5, 2026-11-25, for Cory. Steps 0 to 3 are done (reports in docs/reviews/consolidation/). Step 4 has
-not started; block one (4.A to 4.G) waits for Cory's one go. History: draft 1 (2026-11-24) was read by a fresh Fable
+Status: draft 6, 2026-11-25, for Cory. Steps 0 to 3 are done (reports in docs/reviews/consolidation/). Step 4: 4.A
+to 4.E are built and pushed (Cory's block-one go, 2026-11-25); work is paused at tag `pause-4e` for Cory's read of
+draft 6, and 4.E2 waits for his go. History: draft 1 (2026-11-24) was read by a fresh Fable
 agent and its 16 findings folded into draft 3 with Cory's comments and six decisions; draft 4 rewrote step 4 after a
 second Fable read (step4-fable-read.md), defined the end goal as tests and added the words architecture; draft 5 folds
-in the full Fable review of step 4 (step4-full-review.md: 18 findings, 10 rule changes), Cory decision 9.
+in the full Fable review of step 4 (step4-full-review.md: 18 findings, 10 rule changes), Cory decision 9; draft 6
+folds in the pause-4e review (pause-4e-review.md: 18 findings, 2 blockers) and Cory's skel choice, decision 10.
 
 ## Why
 
@@ -385,6 +387,9 @@ column is tool-side and is not carried over.
   course it changed, through a temp file and `os.replace`. `ledger.py check` before and after prints the same lines.
 - `scripts/rows.py upsert <course> <table> --key ...`: the one way the kit asks agents to write a CSV row, with the
   same temp-file write (`plan.py defect` is the precedent). The kit's hand-edit instructions point at it.
+- Built 2026-11-25 (e7ad0d3d8, kit version 4). Left open, done in 4.E2 step 0: the subject ladder is still a constant
+  in ledger.py (statistics, calculus, two sciences and social studies above grade 5 are missing), and writes take no
+  lock (pause-4e review findings 4 and 11).
 
 ### 4.E Skeletons are ignored working files (S)
 
@@ -395,8 +400,58 @@ column is tool-side and is not carried over.
 - The generator's UK spellings (day_skeleton.py:81 and :221, fixed only in the generated copies) are fixed in the
   generator.
 - A report-only drift check re-renders the `<!-- skel -->` blocks in written plans and lists drift. It runs before the
-  next course run starts, since those blocks feed new skeletons; Cory picks the fix from the count. No plans are
-  regenerated in step 4.
+  next course run starts, since those blocks feed new skeletons; Cory picks the fix from the count.
+- Built 2026-11-25 (b4bc01898, tag `pause-4e`): 860 of 916 written plans differ from a fresh render. The pause-4e
+  review read the drift line by line: most of it is data that arrived after the plan was written; about 14 percent
+  of changed hunks are hand edits (a 60-hunk sample). Cory's choice (decision 10): stop storing the copies; 4.E2. The
+  skeleton files are still on disk and the generators keep an existing file, so 4.E2 step 0 finishes this sub-step.
+
+### 4.E2 Plans hold judgment only; facts render from data (L, its own go, before 4.F)
+
+Cory, 2026-11-25: "Stop storing the copies at all. Written plans keep only the judgment prose. The mechanical fields
+are rendered from data whenever they're needed: in skeletons, in the site build, and in a read view for writers. Each
+fact then lives in one place, so drift can't come back." The design is the pause-4e review's outline
+(docs/reviews/consolidation/pause-4e-review.md); a data move, so full gate runs before and after.
+
+0. **Finish 4.D and 4.E first** (review findings 3, 4, 11, 13, 14, 15): delete the on-disk skeleton folders (history
+   and `pre-step4` keep them); ignored sidecars always rebuild (no keep rule), section.txt builds its own skeletons
+   at job start and coursegen always emits the build line; one shared write helper for ledger.py and rows.py (a lock
+   per target file, a temp name unique to the process, a retry), with a race test in both self-tests; ledger.py takes
+   its ladder from course-list.csv and the gate globs data/plans/*/ledger.csv; rows.py refuses `ledger` and path
+   separators, splits on line feeds only, and gains `delete`, `--value-file` and `check`; the 4.B leftovers
+   (draft-fix.txt, data/plans/README.md, coverage_ledger.py's dead column, later.csv L71, GLOSSARY.md) are fixed and
+   the twelve brief blind lists go on the 4.H task list by name. Kit version 5.
+1. **Line-level census.** skel_drift.py compares by content, not block position, and sorts each plan line that is
+   not in today's fresh render: (a) it is in the plan's baseline skeleton (the first-commit skeleton for unit plans,
+   the sidecar at the writing commit for section plans) or `git log -S` finds its change in the data or generator
+   history: a stale copy, data wins; (b) it quotes unit plan prose (section plans): its owner is the unit plan, no
+   action; (c) anything else: a hand edit, onto the review list. Counts are reported by cause (later data, stale, unit
+   plan prose, hand), so the headline is the hand edits. Social studies unit plans have no baseline and take (a) by
+   pickaxe only.
+2. **Stop for Cory** with the hand list, each line pre-marked with one of three outcomes: back-port to data (a fact the
+   data lacks or has wrong), move out of the markers into the plan's prose (judgment: standard splits, time budgets,
+   allocations), or discard (a mistake). Source-map rows typed by writers are one mechanical check (the plan's
+   decision equals source-map.csv). The ELA grade 11 sensitivity note goes to the frame. Nothing leaves a block until
+   its line has a mark.
+3. **Apply the list.** Back-ports through rows.py (frame and standards files by hand, listed); moves to prose by
+   script in one commit; word caps rechecked.
+4. **Change every reader and writer of the blocks** (review finding 7): unitplan.py's checks read data, and each check
+   whose only job was "the copy is present" is dropped; one header check takes the section from the file name and
+   days.csv. One `plan_facts` renderer is shared by the skeletons, the writer's read view, plan.py's unit packet and
+   front_office_docs.py, so the Front Office shows current facts beside the prose. unit_skeleton.py writes a sidecar,
+   never the plan file (codex_units.py and codex_unit_loop.py follow). section_skeleton.py keeps reading unit plan
+   prose. The briefs (section-write.md, section-lens.md), kit section.txt, UNIT-PLAN.md's blank copies and
+   PRODUCTION-PATH.md change in the strip commit.
+5. **Prove, then strip.** Before: the count of plan lines not in the fresh render is zero except lines on the signed
+   list. The strip commit: a script confirms each file equals its old text with the marked spans removed and nothing
+   else (moved lines listed). After: unitplan, plan and lesson gates with no new lines (the strip simulation on
+   scratch copies is the acceptance test: today it adds 8,200 lines, it must add none); section and day skeletons
+   rendered to scratch before and after, differences explained; the Front Office JSON diffed before and after.
+6. **Spelling.** The three generators' UK spellings are fixed in the strip commit.
+7. **Guard.** A `<!-- skel -->` marker in a written plan fails the gate; skel_drift.py retires. The two copies kept
+   outside markers (each unit plan's header line and its "Day list (from days.csv, do not edit)") stay as the only
+   allowed in-file copies: they are already gated against days.csv. data/homes.csv names them in 4.H.
+8. Full gate run and compare, as after any data move.
 
 ### 4.F The index, and the five reports (L)
 
@@ -414,7 +469,10 @@ column is tool-side and is not carried over.
 - **Five reports,** one flag each: `resolve` (every `leans_on`, CSV id and `[[...]]` link; "when it exists:" is the
   one allowed unresolved form), `orphans` (days with no plan row, pieces no day leans on: 451 today, plan rows with
   no frame unit), `layout` (against data/homes.csv once 4.H lands), `status` (one answer per object: the file's own
-  state wins, flow-status.csv keeps only what no file shows; tool status joins in step 5), `drift` (from 4.E).
+  state wins, flow-status.csv keeps only what no file shows; tool status joins in step 5), `drift` (the 4.E2 marker
+  guard plus a check of the two gated in-file copies).
+- index.py reads ledgers by globbing course folders, takes subjects from course-list.csv, skips the math-4 pilot by
+  name and treats the ten subject folders under docs/courses (arts, health and the rest) as known.
 - Each report starts from a baseline file of today's known misses (for example 28 handbacks rows and about 224 prose
   item mentions that do not resolve), so new breaks fail from day one and old ones are worked off by course.
 
@@ -423,7 +481,10 @@ column is tool-side and is not carried over.
 - `scripts/gate.py --course <id> | --changed | --all` runs plan, lesson_course, ledger, unitplan and frame checks,
   the index reports and lint for that scope, and prints new lines against a stored baseline. turn.py, the lead,
   coursegen's gate lines and the consolidation runner all call it; consolidation_gates.py becomes `gate.py --all`
-  plus the site build.
+  plus the site build. Its compare also flags a gate that disappears, an exit code that changes and a count that
+  rises (a count that falls is reported once); no line cap in the stored compare; the self-tests of rows.py and the
+  write helper, `lesson.py check` and `front_office.py check` join the gates. The kit's `{PLANGATE}` and
+  `{LESSONGATE}` become `gate.py --course`.
 - `scripts/lint.py`, inside gate.py: the catalog check (no curriculum script opens a tool catalog file, one named
   exception), the never-touch guard and the generated-file guard (from data/homes.csv once 4.H lands), and the three
   style checks (em dash, "Curio Class" in full, a US spelling list) in about ten lines, run over what generators print
@@ -431,13 +492,15 @@ column is tool-side and is not carried over.
 - One queue format: coursegen's job files. jobs.csv retires with the pilot.
 - AGENTS.md's first section is rewritten to current practice: the gate is `gate.py`; who commits (the lead, or a
   queued job's end); side-by-side work is allowed in different courses, never on the same files, which is safe once
-  ledgers are per course (4.D).
+  ledgers are per course (4.D) and their writes take a lock (4.E2 step 0); common.txt says the same.
 - **Curriculum writing may restart when 4.G closes.** H to J and step 5 touch no course data.
 
 ### 4.H Homes and ids (M)
 
 - `data/homes.csv`: path pattern, kind (source, generated and ignored, generated and committed, state, frozen,
-  never-touch), owner script, check. It replaces the never-touch and gate lists in AGENTS.md, turn.py and the kit,
+  never-touch), owner script, check. It includes plan prose ("judgment only; marker guard"), the skeleton sidecars
+  (generated, ignored, always rebuilt), the ten subject folders under docs/courses, and the two gated in-file copies
+  of 4.E2 step 7. The twelve brief blind lists that still name data/units.csv are replaced from it here. It replaces the never-touch and gate lists in AGENTS.md, turn.py and the kit,
   and the source and generated list of draft 4. lint reads it; HANDOFF links it.
   - **Generated, committed for reading on GitHub:** docs/COURSES-STATUS.md and docs/BUILD-BOARD.md, regenerated by
     the lead at session end or a queued job's end; the date line is left out of any comparison; no failing gate.
@@ -446,7 +509,8 @@ column is tool-side and is not carried over.
     modules.csv, tools-concepts.csv, sequence.csv, coverage.csv, data/concepts/, docs/agents/catalog/shape/,
     data/closet/.
   - **State, changed only by its script:** the two R2 manifests.
-- One shared module for grade bands (from data/bands.csv) and subject ids, imported by the curriculum scripts.
+- One shared module for grade bands (from data/bands.csv) and subject ids, imported by the curriculum scripts; it
+  absorbs ledger.py's ladder, coursegen.SUBJECTS, plan_flow.PFILE and the mapping in front_office.py.
 - `data/ids-retired.csv`: committed, append-only (old_id, new_id or blank, date, reason); the registry is generated
   from the index plus this file, never committed.
 - Item versions: "a revised item keeps its id; the version goes in the `version` column" (data/plans/README.md), and
@@ -484,13 +548,17 @@ See "Words: from the days, not from the tool catalog" in the end goal.
 ### 4.J Close step 4 (S)
 
 `gate.py --all` against `pre-step4`, the site built into scratch with the deploy flags, and the 12 tests printed as
-numbers into data/plans/goal-tests.csv. The step report lists every count that moved and why.
+numbers into data/plans/goal-tests.csv (goal test 3 reads the marker guard count, which prints 0). The step report
+lists every count that moved and why.
 
 ### 4.K Order
 
 A first, because everything after is judged by it. B, then C before the pilot folders change (the plan count cell
 moves). D before G, since side-by-side work is only safe once ledgers are per course. E before F, so the index never
-sees 2,763 files that are about to go. G closes block one. H, then I (it alone waits on a design answer), then J.
+sees 2,763 files that are about to go; E2 before F for the same reason (the index and its baselines would otherwise
+count block copies), and before writing restarts, so no new plan is born with markers. G closes block one.
+Order: A, B, C, D, E, E2, F, G, H, I, J. 4.E2 needs its own go and stops once, at its hand list (step 2); F and G
+then run under the block-one go. H, then I (it alone waits on a design answer), then J.
 
 ## Step 5: tools, plumbing standardized and play left free
 
@@ -561,3 +629,7 @@ hold the detail).
    4 is taken, including tracked files archived by git (rule 2), scoped gate runs (rule 3), one go for block one
    (rule 1), curriculum writing restarting when 4.G closes, the Word Wall route (read-only import in 4.I, conversion
    at the tool reshaping stage, never-touch rule kept whole), and cutting draft 4's course_pages step to later.csv.
+10. Skel copies (Cory, 2026-11-25, Desk card q-skel-drift-1): stop storing data copies in written plans; plans keep
+    only judgment prose, facts render from data in skeletons, the site build and a writer read view. Before it was
+    built, a pause point (tag `pause-4e`) and a Fable review of 4.A to 4.E and the proposal; draft 6 folds the review
+    in as 4.E2, before 4.F.
