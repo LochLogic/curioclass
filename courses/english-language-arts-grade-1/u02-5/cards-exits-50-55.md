@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 50 to 55
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud.
+Print "invented for practice" in small letters at the foot of each card still marked "invented for practice" below; the exit pictures read a named passage and carry no foot line. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud.
 
 ## Day 50 card (s02-X50, W.1.7)
 
@@ -15,11 +15,11 @@ This card is invented for practice. Read aloud: "Every night the street lamp com
 
 **Right answer:** The card "Where does the moth go in the day?" It asks to find something out that the page does not tell.
 
-## Day 51 card (s02-X51, RI.1.3)
+## Day 51 exit pictures (s02-X51v2, RI.1.3)
 
-This card is invented for practice. Read aloud: "First, the balloon goes up. Then it floats high. Last, it comes down." Show two strips of three pictures: up, high, down; and down, high, up. Say: "Point to the picture strip in the order of the card." Hear the day's rotating six. 
+Passage: Sky Patterns, page 6 (after morning, after the sun sets); day 51 works Sun Across the Sky, pages 2 to 5. Reread page 6 of Sky Patterns aloud: "After morning comes the afternoon. After the sun sets, the night comes." Show two strips of three pictures: morning, afternoon, night; and night, afternoon, morning. Say: "Point to the strip in the order of the page." Hear the day's rotating six.
 
-**Right answer:** The strip up, high, down.
+**Right answer:** The strip morning, afternoon, night.
 
 ## Day 52 card (s02-X52, W.1.8)
 
@@ -33,11 +33,11 @@ This card is invented for practice. Show three sentence cards and read each alou
 
 **Right answer:** The third card: Dev and June each begin with a capital letter.
 
-## Day 54 card (s02-X54a, RI.1.3)
+## Day 54 exit pictures (s02-X54av2, RI.1.3)
 
-This card is invented for practice. Read aloud: "The oven is hot, so the bread is warm." Show three pictures: a hot oven, warm bread on a plate, and a snowman. Say: "Point to the picture of what makes the bread warm." Hear the day's rotating six. 
+Passage: Sun Across the Sky, page 4 (long shadows); day 54 works pages 3 and 5. Reread page 4 of Sun Across the Sky aloud: "Our shadows grow long again, because the sun is low." Show three pictures: a low sun, long shadows on a field, and a snowman. Say: "Point to the picture of what makes the shadows long." Hear the day's rotating six.
 
-**Right answer:** The hot oven. The word so joins what makes it to what happens.
+**Right answer:** The low sun. The word because joins what happens to what makes it happen.
 
 ## Day 54 card (s02-X54b, L.1.2b)
 

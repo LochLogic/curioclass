@@ -7,25 +7,25 @@ credit: ours
 ---
 # Exit cards, days 131 to 135
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
+Most exits here use named pages of the unit's texts: reread those pages aloud and show the pictures listed. Print "invented for practice" in small letters at the foot of the day 135 bat card only. Plain black line drawings on white, thick lines, no shading, no printed words. Children do not read the cards; you read the lines aloud.
 
-## Day 131 card (s04-X131a, RI.1.9)
+## Day 131 pages (s04-X131av2, RI.1.9)
 
-This card is invented for practice. Show the card and read it aloud: "Page A: Our class keeps the reading corner tidy. Page B: Our class puts new labels on the book boxes." Show three pictures: a tidy corner beside labelled book boxes, the same page twice, a closed book alone. Say: "Which paired picture fits the two pages?" Hear the day's rotating six.
+Reread aloud page 1 of Nests Need Space and page 3 of Volunteers Build Bluebird Boxes. Show three pictures: young birds fed in a nest, beside a box wall with small steps; the nest picture twice; a hawk on a city ledge. Say: "Which paired picture fits the two pages?" Hear the day's rotating six.
 
-**Right answer:** A tidy corner beside labelled book boxes.
+**Right answer:** The young birds in a nest beside the box wall with small steps.
 
-## Day 131 card (s04-X131b, RI.1.9)
+## Day 131 pages (s04-X131bv2, RI.1.9)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "Page A: Our class keeps the reading corner tidy. Page B: Our class puts new labels on the book boxes." Say: "What is one thing the pages share?" Hear the day's rotating six.
+The same two pages stay open; reread them if the child asks. Say: "What is one thing the pages share?" Hear the day's rotating six.
 
-**Right answer:** Both are about taking care of the reading corner.
+**Right answer:** Both are about young birds and their nest home.
 
-## Day 131 card (s04-X131c, RI.1.9)
+## Day 131 pages (s04-X131cv2, RI.1.9)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "Page A: Our class keeps the reading corner tidy. Page B: Our class puts new labels on the book boxes." Say: "What is one difference?" Hear the day's rotating six.
+The same two pages stay open; reread them if the child asks. Say: "What is one difference?" Hear the day's rotating six.
 
-**Right answer:** Page A is about keeping the corner tidy; page B is about labelling the book boxes.
+**Right answer:** Nests Need Space says the parents bring the young food; the account says people cut small steps so baby birds can climb up to the hole.
 
 ## Day 131 card (s04-X131d, RI.1.10)
 
@@ -33,17 +33,17 @@ Show page 4 of Nests Need Space. Say: "A nest is in a place that causes a proble
 
 **Right answer:** Tells an adult.
 
-## Day 132 card (s04-X132a, RI.1.8)
+## Day 132 pages (s04-X132av2, RI.1.8)
 
-This card is invented for practice. Show the card and read it aloud: "The author says to push the chairs in because a chair left out can trip a child." Show three pictures: chairs pushed in under a table, a child sitting on a chair, a chair lying on its side. Say: "Which picture shows the author's point?" Hear the day's rotating six.
+Reread page 5 of A City Nest: Two Views aloud. Show three pictures: a clear sidewalk with a check mark, a nest on a ledge with a check mark, a hawk with a pigeon. Say: "Which picture shows what the people on this page want?" Hear the day's rotating six.
 
-**Right answer:** Chairs pushed in under a table.
+**Right answer:** The clear sidewalk with a check mark: people need room to walk.
 
-## Day 132 card (s04-X132b, RI.1.8)
+## Day 132 pages (s04-X132bv2, RI.1.8)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "The author says to push the chairs in because a chair left out can trip a child." Say: "What reason does the author give?" Hear the day's rotating six.
+Page 5 stays open; reread it if the child asks. Say: "What reason does this page give?" Hear the day's rotating six.
 
-**Right answer:** A chair left out can trip a child.
+**Right answer:** The street is too crowded with bird watchers, so people need room to walk.
 
 ## Day 132 card (s04-X132c, RI.1.8)
 
@@ -51,23 +51,23 @@ Show pages 2 and 4 of A City Nest: Two Views. Say: "Which page is the side that 
 
 **Right answer:** Page 4.
 
-## Day 133 card (s04-X133a, RI.1.8)
+## Day 133 pages (s04-X133av2, RI.1.8)
 
-This card is invented for practice. Show the card and read it aloud: "One writer wants a quiet corner because children need to think. Another writer wants the corner moved away from the door because the path is crowded." Show three pictures: a quiet corner with a thinking child beside a clear path to the door; the same pictures swapped between the writers; a plain blue corner. Say: "Which paired-reason picture fits?" Hear the day's rotating six.
+Reread aloud pages 3 and 5 of Nests Need Space. Show three pictures: a parent bird scared off as people come near, beside a tree with no holes; the same pictures under the wrong pages; a plain blue nest. Say: "Which paired-reason picture fits?" Hear the day's rotating six.
 
-**Right answer:** A thinking child in a quiet corner, and a clear path by the door.
+**Right answer:** Under stay back, the parent bird scared off; under nest boxes, the tree with no holes.
 
-## Day 133 card (s04-X133b, RI.1.8)
+## Day 133 pages (s04-X133bv2, RI.1.8)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "One writer wants a quiet corner because children need to think. Another writer wants the corner moved away from the door because the path is crowded." Say: "Which reason goes with the writer who wants a quiet corner?" Hear the day's rotating six.
+The same pages stay open; reread them if the child asks. Say: "Which reason goes with staying back from a nest?" Hear the day's rotating six.
 
-**Right answer:** Children need to think.
+**Right answer:** Getting too close can scare the parents away.
 
-## Day 133 card (s04-X133c, RI.1.8)
+## Day 133 pages (s04-X133cv2, RI.1.8)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "One writer wants a quiet corner because children need to think. Another writer wants the corner moved away from the door because the path is crowded." Say: "Which reason goes with the writer who wants the corner moved away from the door?" Hear the day's rotating six.
+The same pages stay open; reread them if the child asks. Say: "Which reason goes with building nest boxes?" Hear the day's rotating six.
 
-**Right answer:** The path is crowded.
+**Right answer:** There are few holes for birds like bluebirds.
 
 ## Day 133 card (s04-X133d, RI.1.8)
 
@@ -75,17 +75,17 @@ Show page 3 of A City Nest: Two Views. Say: "Some bird watchers say it is great 
 
 **Right answer:** The side that wants the nest left up.
 
-## Day 134 card (s04-X134a, RI.1.8)
+## Day 134 pages (s04-X134av2, RI.1.8)
 
-This card is invented for practice. Show the card and read it aloud: "The writer wants the class to put lids on the paint pots. Paint left open dries hard. The pots are round." Show three pictures: hard dry paint in an open pot, round pots in a row, a child painting. Say: "Which picture shows a useful reason for the writer's decision?" Hear the day's rotating six.
+Reread aloud the first part of page 4 of Nests Need Space. Show three pictures: a nest with eggs beside a law book, young birds fed in a nest, a child painting. Say: "Which picture shows a useful reason to leave nests alone?" Hear the day's rotating six.
 
-**Right answer:** Hard dry paint in an open pot.
+**Right answer:** The nest with eggs beside the law book.
 
-## Day 134 card (s04-X134b, RI.1.8)
+## Day 134 pages (s04-X134bv2, RI.1.8)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "The writer wants the class to put lids on the paint pots. Paint left open dries hard. The pots are round." Say: "Which words on the card support that choice?" Hear the day's rotating six.
+The page stays open; reread it if the child asks. Say: "Which words on the page tell why we leave nests alone?" Hear the day's rotating six.
 
-**Right answer:** "Paint left open dries hard."
+**Right answer:** "Most wild birds are protected by law." (The against the law line also counts.)
 
 ## Day 134 card (s04-X134c, RI.1.8)
 
@@ -111,17 +111,17 @@ This card is invented for practice. Show the card and read it aloud: "Page A: At
 
 **Right answer:** A bat animal beside a bat for hitting a ball.
 
-## Day 135 card (s04-X135b, RI.1.9)
+## Day 135 pages (s04-X135bv2, RI.1.9)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "Page A: At the park, a bat hangs from a branch. Page B: At the park, a child swings a bat at a ball." Say: "What is one thing the pages share?" Hear the day's rotating six.
+Reread aloud the second part of page 4 of Nests Need Space and page 2 of Volunteers Build Bluebird Boxes. Say: "What is one thing the pages share?" Hear the day's rotating six.
 
-**Right answer:** Both are at the park (both have a bat).
+**Right answer:** In both, grown-ups do a job that helps birds.
 
-## Day 135 card (s04-X135c, RI.1.9)
+## Day 135 pages (s04-X135cv2, RI.1.9)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "Page A: At the park, a bat hangs from a branch. Page B: At the park, a child swings a bat at a ball." Say: "What is one difference?" Hear the day's rotating six.
+The same two pages stay open; reread them if the child asks. Say: "What is one difference?" Hear the day's rotating six.
 
-**Right answer:** Page A has a bat that hangs from a branch (an animal); page B has a bat that hits a ball.
+**Right answer:** On the nest page an adult asks a wildlife office what to do; on the account page the staff cut and drill wood for nest boxes.
 
 ## Day 135 card (s04-X135d, L.1.4a)
 

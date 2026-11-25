@@ -7,19 +7,19 @@ credit: ours
 ---
 # Exit cards, days 145 and 146
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
+Print "invented for practice" in small letters at the foot of the day 146 cards. The day 145 exit uses a named page of Marks Outside: reread it aloud and show the pictures listed. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
 
-## Day 145 card (s04-X145a, RI.1.8)
+## Day 145 pages (s04-X145av2, RI.1.8)
 
-This card is invented for practice. Show the card and read it aloud: "A writer says the class needs a bigger table. The small table fills up, and pencils roll off. The table is blue." Show three pictures: pencils rolling off a full small table, a blue table, a smiling child. Say: "Which picture shows the writer's reason?" Hear the day's rotating six.
+Reread aloud page 2 of Marks Outside. Show three pictures: a bird flying through a big gap between marks, five windows with dots, lines and tape, a smiling child. Say: "Which picture shows the writer's reason?" Hear the day's rotating six.
 
-**Right answer:** Pencils rolling off the full table.
+**Right answer:** The bird flying through the big gap: marks go close together because a bird flies through a big gap.
 
-## Day 145 card (s04-X145b, RI.1.8)
+## Day 145 pages (s04-X145bv2, RI.1.8)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "A writer says the class needs a bigger table. The small table fills up, and pencils roll off. The table is blue." Say: "Say why 'the table is blue' does not tell why." Hear the day's rotating six.
+Page 2 stays open. Say: "Say why 'people can use dots or lines' does not tell why marks go close together." Hear the day's rotating six.
 
-**Right answer:** "Blue does not say why the class needs a bigger table."
+**Right answer:** It tells kinds of marks, not why they go close; the gap line tells why.
 
 ## Day 146 card (s04-X146a, L.1.4b)
 

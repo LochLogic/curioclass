@@ -1,32 +1,32 @@
 from_day,to_day,what,where,minutes,error,note
 1,2,s01-X1,reopen,5,E,"one repair, the more common of E and C: a puppet says a statement beside a question; children turn two statements into questions"
-2,3,s01-X2,reopen,4,AC,"one repair, the more common of I and AC: close the book and find its outside back"
-2,9,s01-X2,reopen,4,I,"match word cards and picture cards to the credit labels, only if many still miss it"
-3,4,s01-X3,reopen,4,E,"one repair, the more common of D and E: model one question that gets the missing help"
-4,6,s01-X4,repair,5,B,"lay both pictures beside the reread sentence; day 5 holds no repair, and day 6 takes the most missed of this and A1 to A6"
+2,3,s01-X2v2,reopen,4,AC,"one repair, the more common of I and AC: close the book and find its outside back"
+2,9,s01-X2v2,reopen,4,I,"match word cards and picture cards to the credit labels, only if many still miss it"
+3,4,s01-X3v2,reopen,4,E,"one repair, the more common of D and E: model one question that gets the missing help"
+4,6,s01-X4v2,repair,5,B,"lay both pictures beside the reread sentence; day 5 holds no repair, and day 6 takes the most missed of this and A1 to A6"
 6,7,s01-X6,repair,4,M,"one repair, the more common of A and M: add one fact the picture shows to the named topic"
 7,8,s01-X7,reteach,7,A,"the two most common errors of days 1 to 7 from a puppet, then the class tries; one is chosen from the record sheet"
-9,10,s01-X9,reopen,4,K,put two different details under the topic picture
+9,10,s01-X9v2,reopen,4,K,put two different details under the topic picture
 10,11,s01-X10,reopen,4,V,"one repair, the more common of V and T: compare the real object with the text example"
 11,12,s01-X11,reopen,4,T,keep the rule card above each group and sort again
 12,13,s01-X12,reopen,4,AE,"one repair, the more common of AE and V: act open beside close, then choose the reversing action"
 13,14,s01-X13,reopen,4,W,demonstrate two contrasting motions and have the child say which is which
-14,15,s01-X14,reopen,4,K,"one repair, the more common of K and W: topic above, details below"
+14,15,s01-X14v2,reopen,4,K,"one repair, the more common of K and W: topic above, details below"
 15,16,s01-X15,reopen,4,L,a puppet says a toy sentence beside a preference sentence; each child adds a preference
-20,21,s01-X20,reopen,5,B,put the catch picture and the dinosaur picture beside the reread sentence and point to the action it names
+20,21,s01-X20v2,reopen,5,B,put the catch picture and the dinosaur picture beside the reread sentence and point to the action it names
 20,21,cycle 2 check,response,10,O,"hear the sound, choose the letter, then write it; the first ten minutes of day 21 foundations"
-21,22,s01-X21,reopen,5,B,set the falling truck and the parked truck beside the sentence
-22,23,s01-X22,reopen,5,A,reread the card and point to the words I like
+21,22,s01-X21v2,reopen,5,B,set the falling truck and the parked truck beside the sentence
+22,23,s01-X22v2,reopen,5,A,reread the card and point to the words I like
 22,23,n and c practice,response,10,N,"say the name, then the sound with the letter card"
-23,24,s01-X23,reopen,5,A,reread the last line of the card and point to what Ana says
+23,24,s01-X23v2,reopen,5,A,reread the last line of the card and point to what Ana says
 24,25,s01-X24,reopen,5,E,the teacher models one question that gets the missing help; children echo it
-25,26,s01-X25c,reopen,5,I,"one repair, the most common of I, J and AC: match word and picture labels to real credit lines, or close the booklet and find the outside back"
+25,26,s01-X25cv2,reopen,5,I,"one repair, the most common of I, J and AC: match word and picture labels to real credit lines, or close the booklet and find the outside back"
 26,27,s01-X26,reopen,5,E,model one question that asks what a word means; children echo it
 26,27,cycle 3 check,response,10,N,"say the name, then the sound with the letter card; the first ten minutes of day 27 foundations"
 27,28,s01-X27,reopen,5,K,lay the labels beside their facts; put two different details under the topic picture
 29,30,s01-I3,reopen,5,D,"one repair, the most common of C, D and E: model a follow-up question"
 30,31,s01-P1,reopen,5,M,add one fact the picture shows to the named topic
-31,32,s01-X31,reopen,5,R,"one repair, the more common of R and B: say the whole word and tap its beats, or lay the picture beside the sentence"
+31,32,s01-X31v2,reopen,5,R,"one repair, the more common of R and B: say the whole word and tap its beats, or lay the picture beside the sentence"
 32,33,s01-X32,reopen,5,W,demonstrate two contrasting motions; each child says which is which
 31,33,spoken items not yet seen,observations,8,,make-up hearings for children with blanks on day 31
 32,33,spoken items not yet seen,observations,7,,make-up hearings for children with blanks on day 32
@@ -36,13 +36,13 @@ from_day,to_day,what,where,minutes,error,note
 30,34,s01-P1,response,5,M,"small group by recorded target: name the toy, add one fact, then the fresh card"
 18,34,s01-O4,response,5,L,"small group by recorded target: say the preference sentence, then the fresh card"
 16,18,s01-O4,assessment,0,L,"the day 16 piece, revised on day 17, is scored after class from the portfolio; no child minutes"
-35,36,s02-X35a,repair,5,B,"one repair, the more common of B and A: topic picture on top and three detail pictures below, then one fresh page"
+35,36,s02-X35av2,repair,5,B,"one repair, the more common of B and A: topic picture on top and three detail pictures below, then one fresh page"
 36,37,s02-X36,repair,5,AE,"one repair, the more common of AE, F and E: say who or what, then what it does, with two cards"
-37,38,s02-X37,repair,5,AB,"one repair: point to the word first, then ask about it"
+37,38,s02-X37v2,repair,5,AB,"one repair: point to the word first, then ask about it"
 38,39,s02-X38a,repair,5,I,"one repair, the more common of I, F and AT: match two pictures and say the one thing that is different"
 39,40,s02-X39a,repair,5,X,"one repair, the more common of X and Y: say one and two with objects and picture cards"
 40,41,s02-X40,repair,5,AF,"one repair, the more common of AF and AE: add where, then when, to one sentence with word cards"
-41,42,s02-X41a,repair,5,B,"one repair, the more common of B and A: topic card on top, detail cards under, one fresh page"
+41,42,s02-X41av2,repair,5,B,"one repair, the more common of B and A: topic card on top, detail cards under, one fresh page"
 42,43,s02-X42,repair,5,AR,"one repair, the more common of AR and AS: pass the token, puppets first, then pairs"
 43,44,s02-X43a,repair,5,Z,"one repair: match who to a person, then try where, with six picture cards"
 44,45,s02-X44a,repair,5,AC,"one repair: contrast two sentences with the sky and the clear cup, gesture each sense"
@@ -50,26 +50,26 @@ from_day,to_day,what,where,minutes,error,note
 46,47,s02-I1,repair,5,B,"one repair, the more common of B and C: topic card on top, details under, one fresh piece"
 46,48,s02-O1a,response,5,F,"response group by the day 46 record: recast with a named place or thing and what happened; D, E and AX are heard in the same group"
 47,48,s02-X47,response,5,AS,response group: practise a second turn with the token
-49,50,s02-X49b,warm-up,5,I,"one repair, the more common of G, H and I: match an action sentence to its event picture"
-50,51,s02-X50b,warm-up,5,H,"one repair, the more common of H and I: reread the place sentence and pick the scene"
-51,52,s02-X51b,warm-up,5,J,"one repair: order three cards while rereading first, next and last"
+49,50,s02-X49bv2,warm-up,5,I,"one repair, the more common of G, H and I: match an action sentence to its event picture"
+50,51,s02-X50bv2,warm-up,5,H,"one repair, the more common of H and I: reread the place sentence and pick the scene"
+51,52,s02-X51bv2,warm-up,5,J,"one repair: order three cards while rereading first, next and last"
 52,53,s02-X52a,repair,5,AE,"one repair, the more common of AE and E: recast with who and what happened"
 53,54,s02-X53b,warm-up,5,AD,"one repair, the more common of AD, B and C: contrast wrap, unwrap and rewrap with a real gift box"
-54,55,s02-X54,repair,5,I,"one repair, the more common of G, H and I: match an action sentence to its event picture, then one fresh card"
+54,55,s02-X54v2,repair,5,I,"one repair, the more common of G, H and I: match an action sentence to its event picture, then one fresh card"
 55,56,s02-X55b,repair,5,AE,"one repair, the more common of AE and AF: add where or when to the sentence and say it back"
 56,57,s02-X56a,repair,5,AJ,"one repair, the more common of AJ, AK and AL: circle the first word and change its first letter"
-57,58,s02-X57,repair,5,J,"one repair, the more common of J and AV: order the four cards while rereading first, then and last"
+57,58,s02-X57v2,repair,5,J,"one repair, the more common of J and AV: order the four cards while rereading first, then and last"
 58,59,s02-X58a,repair,5,D,"one repair, the most missed of D, E and AD (the other two go to small groups in the foundations rotation): redraw one spoken detail"
-59,60,s02-X59,repair,5,I,"one repair, the more common of G, H and I: match an action sentence to an event picture"
-60,61,s02-X60b,repair,5,I,"one repair, the more common of H and I: match an action sentence to an event picture"
-61,62,s02-X61,repair,5,J,"one repair, the more common of J and AV: order three cards while rereading the transition words"
-62,64,s02-X62a,reteaching,5,A,"one repair inside the targeted reteaching, day 63 is a check: reread the exact sentence and match its detail to the face"
+59,60,s02-X59v2,repair,5,I,"one repair, the more common of G, H and I: match an action sentence to an event picture"
+60,61,s02-X60bv2,repair,5,I,"one repair, the more common of H and I: match an action sentence to an event picture"
+61,62,s02-X61v2,repair,5,J,"one repair, the more common of J and AV: order three cards while rereading the transition words"
+62,64,s02-X62av2,reteaching,5,A,"one repair inside the targeted reteaching, day 63 is a check: reread the exact sentence and match its detail to the face"
 63,64,s02-S1b,reteaching,5,H,one repair inside the targeted reteaching: reread the place sentence and choose its picture
 64,65,s02-R1,repair,5,AV,"one repair, the more common of J and AV: add a card for each missing event while rereading"
 65,66,s02-X65,repair,5,I,"one repair, the more common of G, H and I: match an action sentence to an event picture"
-66,67,s02-X66a,repair,5,D,"one repair, the more common of D and A: redraw one spoken detail"
-67,68,s02-X67b,repair,5,AE,"one repair, the more common of H, AE and AF: recast with who and what happened, then add where or when"
-68,69,s02-X68a,repair,5,I,"one repair, the more common of I and AH: match an action sentence to an event picture"
+66,67,s02-X66av2,repair,5,D,"one repair, the more common of D and A: redraw one spoken detail"
+67,68,s02-X67bv2,repair,5,AE,"one repair, the more common of H, AE and AF: recast with who and what happened, then add where or when"
+68,69,s02-X68av2,repair,5,I,"one repair, the more common of I and AH: match an action sentence to an event picture"
 69,70,s02-X69b,repair,5,AW,"one repair, the more common of AG and AW: model a question that learns a missing detail"
 70,71,s02-X70a,repair,5,G,"one repair, the more common of G and H: match the person who acts to the who box"
 71,72,s02-X71a,repair,5,AH,"one repair, the more common of AH and X: order three picture cards while rereading first, next and then"
@@ -77,80 +77,80 @@ from_day,to_day,what,where,minutes,error,note
 73,74,s02-X73b,feedback,5,AI,one repair inside the returned written feedback: add words beside the draft that answer the partner
 72,75,s02-N1,assessment,0,AG,"the day 72 draft, revised on day 73 and edited on day 74, is scored after class from the kept work; no child minutes"
 75,76,s02-E1a,reteach,10,AJ,"response group by the days 70 to 75 records, the one error most missed: circle the first word, change its first letter; five minutes of a fresh retry follow"
-80,81,s03-X80a,Reopen,5,X,"one repair, the more common of X, E and P: ask what every sentence is about"
-81,82,s03-X81b,Reopen,5,A,"one repair, the more common of A and B: put an arrow card between two facts and say the joining word"
-82,83,s03-X82b,Reopen,5,D,"one repair, the more common of D, Q and A: point to the sentence that says it"
+80,81,s03-X80av2,Reopen,5,X,"one repair, the more common of X, E and P: ask what every sentence is about"
+81,82,s03-X81bv2,Reopen,5,A,"one repair, the more common of A and B: put an arrow card between two facts and say the joining word"
+82,83,s03-X82bv2,Reopen,5,D,"one repair, the more common of D, Q and A: point to the sentence that says it"
 83,84,s03-X83a,Reopen,5,C,"one repair, the more common of C and B: name the picture first, then dictate a label"
-84,85,s03-X84a,Reopen,5,Z,"one repair: place the pair beside its two sentences, first and later"
+84,85,s03-X84av2,Reopen,5,Z,"one repair: place the pair beside its two sentences, first and later"
 85,88,s03-X85b,repair,5,A,"one repair, the more common of A, P and E: an arrow card and the joining word"
-86,88,s03-C1a,repair,5,A,"one repair, the more common of A and B on the sapling card: an arrow card between the stake and the wind"
+86,88,s03-C1av2,repair,5,A,"one repair, the more common of A and B on the C1 page: an arrow card between the trunk and the water"
 87,88,s03-R0a,repair,5,F,one repair: offer two note roles and record the one chosen
-88,89,s03-X88b,Reopen,5,A,"one repair, the more common of A and B: say the joining word between two facts"
-89,90,s03-X89a,Reopen,5,X,"one repair, the more common of X, B and D: place the details under the topic"
-90,91,s03-X90b,Reopen,5,A,"one repair, the more common of A, B and D: fill the three boxes with an arrow"
+88,89,s03-X88bv2,Reopen,5,A,"one repair, the more common of A and B: say the joining word between two facts"
+89,90,s03-X89av2,Reopen,5,X,"one repair, the more common of X, B and D: place the details under the topic"
+90,91,s03-X90bv2,Reopen,5,A,"one repair, the more common of A, B and D: fill the three boxes with an arrow"
 91,92,s03-X91a,Reopen,5,B,"one repair, the more common of B and D: point to the words that support the drawing"
 92,93,s03-X92b,Reopen,5,AI,"one repair, the more common of E, D and AI: match the note to its sentence and source"
 93,94,s03-X93a,Reopen,5,C,"one repair, the more common of C, B and D: label the topic first"
-94,95,s03-X94b,Reopen,5,A,"one repair, the more common of A, B and D: join two notes with because or so"
-95,96,s03-X95b,Reopen,5,A,"one repair, the more common of A, B and D: trace the person, the resource and the arrow"
+94,95,s03-X94bv2,Reopen,5,A,"one repair, the more common of A, B and D: join two notes with because or so"
+95,96,s03-X95bv2,Reopen,5,A,"one repair, the more common of A, B and D: trace the person, the resource and the arrow"
 96,97,s03-X96b,Reopen,5,AI,"one repair, the more common of E, B and AI: match each fact to its source"
 97,101,s03-R97c,repair,5,C,"one repair on the animal piece, the more common of C and D: name the animal, then point to the card"
 98,101,s03-R98c,repair,5,D,one repair on the animal piece: point to the source sentence and set aside the unsupported part
 99,101,s03-R99b,repair,5,E,one repair: restate the question and choose the one answering card
 100,101,s03-X100a,Reopen,5,B,"one repair, the more common of B and D: check each statement against its source sentence"
 102,103,s03-X102a,Words,5,E,one repair: restate the question and choose the one answering card
-103,104,s03-X103a,Words,5,A,one repair: place a because arrow between the two facts and say so
+103,104,s03-X103av2,Words,5,A,one repair: place a because arrow between the two facts and say so
 104,105,s03-X104a,Words,5,C,"one repair: name the tree on a label strip first, then the fact"
 105,106,s03-X105a,Words,5,AI,one repair: match the fact to its exact line and relabel the card
 106,108,s03-X106a,Return,5,B,one repair: reread the exact sentence and trace its object and action in each picture
-107,108,s03-R107a s03-R107b s03-R107c,Words,3,A,"one repair: lay two loose notes, a squirrel and a seed, and add the arrow with so"
+107,108,s03-R107a s03-R107b s03-R107cv2,Words,3,A,"one repair: lay two loose notes, a squirrel and a seed, and add the arrow with so"
 108,109,s03-X108a,Words,5,E,one repair: lay a new card and a gap picture and place the line that names who uses the tree
-109,110,s03-R109a s03-R109b s03-R109c,Return,3,A,"one repair, the more common of A and E: a bee note and a flower note joined by an arrow with so, or the line that names who uses the tree"
-111,112,s03-X111a,Words,5,J,one repair: draw the named feature and point to it while speaking
+109,110,s03-R109a s03-R109b s03-R109cv2,Return,3,A,"one repair, the more common of A and E: a bee note and a flower note joined by an arrow with so, or the line that names who uses the tree"
+111,112,s03-X111av2,Words,5,J,one repair: draw the named feature and point to it while speaking
 112,113,s03-X112a,Words,5,D,one repair: point to the source line and set aside the unsupported part
 113,114,s03-X113a,Return,5,J,one repair: draw the named feature and point to it while speaking
 114,115,s03-X114a,Words,5,D,one repair: check each note against its sticker card line
-115,116,s03-X115a,Words,5,A,one repair: put a so arrow between the tree and the dependent and say the whole sentence
+115,116,s03-X115av2,Words,5,A,one repair: put a so arrow between the tree and the dependent and say the whole sentence
 116,117,s03-X116a,Words,5,E,one repair: restate who depends on the tree and choose the line that says it
-117,118,s03-X117a,Return,5,A,one repair: join the need and the dependent with two arrows and say how they go together
-107,111,s03-R107a s03-R107b s03-R107c,Words,1,F,"talk stickers go back with the notebooks: star, star with a dot, circle; partners say what the circle part adds on the collage page"
-109,111,s03-R109a s03-R109b s03-R109c,Words,1,F,"talk stickers go back with the notebooks: star, star with a dot, circle; partners say what the circle part adds on the collage page"
-110,111,s03-R110a s03-R110b s03-R110c s03-F110a s03-F110b s03-F110c,Words,1,F,"talk and F1 stickers go back with the notebooks: star, star with a dot, circle; partners say what the circle part adds on the collage page"
+117,118,s03-X117av2,Return,5,A,one repair: join the need and the dependent with two arrows and say how they go together
+107,111,s03-R107a s03-R107b s03-R107cv2,Words,1,F,"talk stickers go back with the notebooks: star, star with a dot, circle; partners say what the circle part adds on the collage page"
+109,111,s03-R109a s03-R109b s03-R109cv2,Words,1,F,"talk stickers go back with the notebooks: star, star with a dot, circle; partners say what the circle part adds on the collage page"
+110,111,s03-R110a s03-R110b s03-R110cv2 s03-F110a s03-F110b s03-F110c,Words,1,F,"talk and F1 stickers go back with the notebooks: star, star with a dot, circle; partners say what the circle part adds on the collage page"
 119,120,s04-X119b,Vocabulary,2,F,one card re-modelled with I like
 119,120,s04-X119b,Vocabulary,1,G,"name the subject, then say the liking"
-120,121,s04-X120,Vocabulary,2,Z,one repair: an actor card beside the event card
-120,121,s04-X120,Vocabulary,1,AA,find the place words and set the place card
-120,121,s04-X120,Vocabulary,1,AB,"order two event pictures, before and after"
-121,122,s04-X121,Vocabulary,3,U,find the sentence before choosing the picture
-122,123,s04-X122,Vocabulary,2,Z,one repair: an actor card beside the event card
-122,123,s04-X122,Vocabulary,1,AA,find the place words and set the place card
-122,123,s04-X122,Vocabulary,1,AB,"order two event pictures, before and after"
-123,124,s04-X123,Return,3,A,"the clothing card beside the event cards, then one new Both but sentence together"
+120,121,s04-X120v2,Vocabulary,2,Z,one repair: an actor card beside the event card
+120,121,s04-X120v2,Vocabulary,1,AA,find the place words and set the place card
+120,121,s04-X120v2,Vocabulary,1,AB,"order two event pictures, before and after"
+121,122,s04-X121v2,Vocabulary,3,U,find the sentence before choosing the picture
+122,123,s04-X122v2,Vocabulary,2,Z,one repair: an actor card beside the event card
+122,123,s04-X122v2,Vocabulary,1,AA,find the place words and set the place card
+122,123,s04-X122v2,Vocabulary,1,AB,"order two event pictures, before and after"
+123,124,s04-X123v2,Return,3,A,"the clothing card beside the event cards, then one new Both but sentence together"
 123,124,s04-F123c,Response,2,T,tap one word for each space-bounded group on a new line
 123,124,s04-F123a,Response,2,AG,"follow a finger along a new sentence, left to right and down"
 123,124,s04-F123b,Response,2,AH,"point to the letters that spell a spoken word, picture covered"
 123,124,s04-F123d,Response,2,AI,name one letter while matching its two cases
 123,124,s04-F123e s04-F123f,Response,1,AJ,"compare the endings of two spoken words, then a new rhyme family"
 123,124,s04-F123g,Response,1,AK,tap each whole part of a new two-part word
-124,125,s04-X124b,Return,2,A,"the clothing card beside the event cards, then one new Both but sentence"
-124,125,s04-X124a,Return,2,X,point to a detail and turn it into a who question
-124,125,s04-X124a,Return,1,Y,"find the sentence, then answer"
+124,125,s04-X124bv2,Return,2,A,"the clothing card beside the event cards, then one new Both but sentence"
+124,125,s04-X124av2,Return,2,X,point to a detail and turn it into a who question
+124,125,s04-X124av2,Return,1,Y,"find the sentence, then answer"
 125,128,s04-X125,Return,1,I,"the follow-up question card, a three-turn talk with fresh cards"
 125,128,s04-X125,Return,1,H,"wait for the turn card, then answer"
 126,128,s04-C1a s04-C1b,Return,2,A,"the clothing card beside the event cards, then a new Both but sentence"
 127,128,s04-C1c s04-C1d,Return,2,A,"the clothing card beside the event cards, then a new Both but sentence"
 127,128,s04-D127a,Return,2,H,small group with the turn card; the rest reread
 127,128,s04-D127b,Return,2,I,"the follow-up question card, a three-turn talk with fresh cards"
-128,129,s04-X128,Vocabulary,3,A,only for children who again compared clothing: a small group with the event cards
-129,130,s04-X129,Vocabulary,3,B,"one card: the pictures in the notebook are a detail, not the point"
+128,129,s04-X128v2,Vocabulary,3,A,only for children who again compared clothing: a small group with the event cards
+129,130,s04-X129v2,Vocabulary,3,B,"one card: the pictures in the notebook are a detail, not the point"
 129,130,s04-F129a,Response,3,S,"match the two forms to one name, then a fresh pair"
 129,130,s04-F129b,Response,3,AN,"sort name responses from sound responses, then a fresh consonant"
 129,130,s04-F129a,Response,2,AI,"name one letter while matching its two cases, in a new order"
-130,131,s04-X130,Vocabulary,3,C,"point to the writer's sentence first, then draw the arrow"
-131,133,s04-X131,Return,2,E,a pair of new cards: one unique step beside one benefit
-132,133,s04-C2a,Return,2,B,"the box with the whole claim in it, the detail on an arrow"
-132,133,s04-C2b,Return,2,C,point to the writer's sentence before drawing the arrow
-132,133,s04-C2c s04-C2d,Return,2,E,a pair of new cards: one unique detail beside each text
+130,131,s04-X130v2,Vocabulary,3,C,"point to the writer's sentence first, then draw the arrow"
+131,133,s04-X131v2,Return,2,E,a pair of new cards: one unique step beside one benefit
+132,133,s04-C2av2,Return,2,B,"the box with the whole claim in it, the detail on an arrow"
+132,133,s04-C2bv2,Return,2,C,point to the writer's sentence before drawing the arrow
+132,133,s04-C2cv2 s04-C2dv2,Return,2,E,a pair of new cards: one unique detail beside each text
 133,134,s04-X133,Vocabulary,2,F,add I prefer to a named planting choice
 133,134,s04-X133,Vocabulary,2,C,say which words are the writer's and which are my own
 134,135,s04-X134,Return,2,W,a new word card and a new who question
@@ -160,17 +160,17 @@ from_day,to_day,what,where,minutes,error,note
 134,135,s04-F134c,Response,2,R,exchange one counter rather than remove it; fresh pair
 134,135,s04-F134d,Response,2,AO,match the heard sound to its vowel letter in a shuffled row
 134,135,s04-F134e,Response,1,AP,attend to every spelling in the mapped word; new order
-135,136,s04-X135,Return,3,C,"point to the writer's sentence first, then say the reason"
-135,136,s04-X135,Return,2,Y,"find the author's sentence, then choose the reason"
-136,137,s04-X136,Words,1,V,remove the claim and pick a stated detail
-136,137,s04-X136,Words,1,AE,link an action to its stated result with a new pair
+135,136,s04-X135v2,Return,3,C,"point to the writer's sentence first, then say the reason"
+135,136,s04-X135v2,Return,2,Y,"find the author's sentence, then choose the reason"
+136,137,s04-X136v2,Words,1,V,remove the claim and pick a stated detail
+136,137,s04-X136v2,Words,1,AE,link an action to its stated result with a new pair
 137,138,s04-X137,Revise,2,F,add I like to the named place in the written note; new place
 137,138,s04-X137,Revise,2,G,"point to the place first, then say it; new place"
 138,139,s04-O138a,Topic response,2,F,add I like to a named place; three turns each
 138,139,s04-O138a,Topic response,2,G,"point to the place first, then say it"
-138,139,s04-O138b,Topic response,2,C,"find the sentence that says why, after the word then"
-139,140,s04-X139,Reread,2,C,"point to the writer sentence that follows because, then say it"
-139,140,s04-X139,Reread,2,Y,"find the sentence of the right text, then say its reason"
+138,139,s04-O138bv2,Topic response,2,C,"find the sentence that says why, after the word then"
+139,140,s04-X139v2,Reread,2,C,"point to the writer sentence that follows because, then say it"
+139,140,s04-X139v2,Reread,2,Y,"find the sentence of the right text, then say its reason"
 140,141,s04-X140,Compose,2,G,name the subject of the card before saying the liking
 140,141,s04-X140,Compose,2,F,add I like to the named subject
 140,141,s04-F140a,Foundations response,2,AR,model one unreadable form beside one readable form; fresh letters
@@ -181,11 +181,11 @@ from_day,to_day,what,where,minutes,error,note
 141,142,s04-X141,Revise,2,J,"point to one detail in the card, then draw it"
 142,144,s04-W142,Try and practise,2,F,add a liking to the named subject while the partner asks
 142,144,s04-W142,Try and practise,2,G,"name the subject first, then say the liking"
-143,144,s04-D143a,Try and practise,1,H,"a talking object in pairs; wait, then answer the partner"
-143,144,s04-D143b,Try and practise,1,I,"one follow-up stem, What else?, then a reply"
-143,144,s04-T143a,Check,1,X,one more pair turn with a new card
-143,144,s04-T143b,Check,1,Y,"find the sentence, then answer from it; new card"
-143,144,s04-T143f,Check,1,W,ask what the unclear word means; new card
+143,144,s04-D143av2,Try and practise,1,H,"a talking object in pairs; wait, then answer the partner"
+143,144,s04-D143bv2,Try and practise,1,I,"one follow-up stem, What else?, then a reply"
+143,144,s04-T143av2,Check,1,X,one more pair turn with a new card
+143,144,s04-T143bv2,Check,1,Y,"find the sentence, then answer from it; new card"
+143,144,s04-T143fv2,Check,1,W,ask what the unclear word means; new card
 144,145,s04-X144,Draft,2,M,write the answer beside the draft before changing the card
 144,145,s04-X144,Draft,1,K,"name the source detail, then draw only it"
 145,146,s04-X145,Reread,2,K,"name the source detail, then sketch only it"
@@ -193,7 +193,7 @@ from_day,to_day,what,where,minutes,error,note
 145,146,s04-F145a,Foundations response,2,AO,"hear the long sound, say it, show the card; fresh words"
 145,146,s04-F145b,Foundations response,2,AP,"sound the regular part, mark the part to remember; new sentence"
 146,147,s04-X146,Revise,2,K,name the source word and paint only it
-147,148,s04-X147,Reread,2,E,"two cards side by side, one difference each"
+147,148,s04-X147v2,Reread,2,E,"two cards side by side, one difference each"
 148,149,s04-R148,Add a useful detail,2,M,"write the answer next to the draft first, then add the detail"
 149,150,s04-X149,Finish and tell,2,M,answer the question beside the draft before changing the card
 149,150,s04-X149,Finish and tell,1,K,"name the source detail, then draw only it"
@@ -203,9 +203,9 @@ from_day,to_day,what,where,minutes,error,note
 150,151,s04-F150d,Foundations response,1,O,"read the line, then answer; no picture guess"
 150,151,s04-F150d,Foundations response,1,Y,"read to the end, then say where it ends up; new line"
 150,157,s04-C3a,Topic response,1,A,"compare what the people do, not what they wear"
-151,157,s04-C4a,Topic response,1,E,"two cards side by side, one difference each"
-152,157,s04-C5a,Topic response,1,B,ask which sentence tells what to do
-152,157,s04-C5b,Topic response,1,C,find the sentence that says why
+151,157,s04-C4av2,Topic response,1,E,"two cards side by side, one difference each"
+152,157,s04-C5av2,Topic response,1,B,ask which sentence tells what to do
+152,157,s04-C5bv2,Topic response,1,C,find the sentence that says why
 155,156,s04-X155,Words return,1,N,"choose which of two lines goes first; three children choose, the rest vote"
 155,156,s04-F155a,Foundations response,2,AO,"hear the long sound, say it, show the card; fresh words"
 155,156,s04-F155b,Foundations response,2,AP,"sound the regular part, mark the part to remember; new sentence"

@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 68 to 69
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. Where a line says "heard in the day's rotating six", no card is printed. A child outside the six is "not yet heard", never "missed".
+Print "invented for practice" in small letters at the foot of each card still marked "invented for practice" below; the exit pictures read a named passage and carry no foot line. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. Where a line says "heard in the day's rotating six", no card is printed. A child outside the six is "not yet heard", never "missed".
 
 ## Day 68 card (s02-X68a, W.1.3)
 
@@ -15,11 +15,11 @@ This card is invented for practice. Read aloud the model events: "A child waters
 
 **Right answer:** The strip water, then pick.
 
-## Day 68 card (s02-X68b, RL.1.5)
+## Day 68 exit pictures (s02-X68bv2, RL.1.5)
 
-Heard in the day's rotating six. Read aloud a model plan: "The sun is high in the middle of the day. A child waters a plant." Say: "Which part comes from our sun information, not from imagining? Say it." 
+Passage: Sun's Day, page 2 (midday shadows), checked against Sun Across the Sky, page 3; day 68 works page 1's imagined arms and the article's pages 3 and 4. Heard in the day's rotating six. Reread Sun's Day, page 2: "I see the children play. Their shadows hide beneath their feet, tiny, at midday." Say: "Which part is a sun fact from our article, not imagined? Say it."
 
-**Right answer:** "The sun is high in the middle of the day."
+**Right answer:** The shadows are tiny at midday.
 
 ## Day 69 card (s02-X69a, W.1.3)
 
@@ -27,11 +27,11 @@ This card is invented for practice. Read aloud the poem: "First a cat jumped up 
 
 **Right answer:** The strip jump, brush, curl.
 
-## Day 69 card (s02-X69b, RL.1.4)
+## Day 69 exit pictures (s02-X69bv2, RL.1.4)
 
-This card is invented for practice. Same poem, read aloud again. Show two pictures: a glad face, and a cat. Say: "Point to the picture for the feeling word in the poem." Hear the day's rotating six. 
+Passage: The Weaver Girl and the Cowherd, page 5, first line ("Zhinu was sad to go."); day 69 works Sun's Day. Reread the first line of page 5 of the Chinese tale: "Zhinu was sad to go." Show two pictures: a sad face, and a silver pin. Say: "Point to the picture for the feeling word." Hear the day's rotating six.
 
-**Right answer:** The glad face.
+**Right answer:** The sad face.
 
 ## Day 69 card (s02-X69c, W.1.3)
 

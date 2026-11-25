@@ -7,13 +7,13 @@ credit: ours
 ---
 # Exit cards, days 119 to 122
 
-Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Read each card twice, then ask the one question. Answers and wrong answers are in items.csv; they are not printed here. Where a day has two rows, ask them one after another, one ask each. The first row of each day is marked on paper; the second is spoken and is heard from the rotating six.
+Every row here rereads a passage of the unit's own texts, named in the row; nothing is invented and nothing is printed as invented. Read the passage aloud twice while the children follow in their copy, then ask the one question. Answers and wrong answers are in items.csv; they are not printed here. Where a day has two rows, ask them one after another, one ask each. The first row of each day is marked on paper; the second is spoken and is heard from the rotating six.
 
-- **Day 119 (s04-X119).** This card is invented for practice. Read aloud twice: "In the morning Beaver gathered sticks. At noon Beaver built a wall. At night rain fell, and the wall kept the water out." Show the three picture cards in a mixed row: gathering, building, rain. Say: "Put the pictures in the order the story tells."
-- **Day 119 (s04-X119b).** Same story and pictures. Say: "Tell how you know rain comes last."
-- **Day 120 (s04-X120).** This card is invented for practice. Read aloud twice: "In fall Jay hid acorns in a log. Snow came and the wind blew hard. Jay dug in the log and ate." Show two picture cards: Jay hiding acorns; Jay eating. Say: "A fable says: get ready before a hard time. Mark the picture that shows Jay doing what the fable says."
-- **Day 120 (s04-X120b).** Same story. Say: "Tell why that event teaches it."
-- **Day 121 (s04-X121).** This card is invented for practice. Read aloud twice: "Version A: Robin asks Wren for a crumb. Wren gives one. Version B: Robin asks Wren for a crumb. Wren says, bring one back tomorrow." Show two picture cards: a hand giving a crumb; a hand giving a crumb with an arrow back. Say: "Mark the picture that shows what is different in version B."
-- **Day 121 (s04-X121b).** Same versions. Say: "Say the words that are in version B and not in version A."
-- **Day 122 (s04-X122).** This card is invented for practice. Read aloud twice: "Version A: Mole carries a leaf home alone. Version B: Mole carries a leaf home with Shrew." Show two picture cards: a leaf in both scenes; a leaf in one scene only. Say: "Mark the picture that shows what stays the same in both versions."
-- **Day 122 (s04-X122b).** Same versions. Say: "Say what changes."
+- **Day 119 (s04-X119v2).** Reread aloud twice the winter part of the fable, from "One cold morning" to the end. Show the three picture cards in a mixed row: the ants handing out grain, the grasshopper asking, the grasshopper wrapping her wings. Say: "Put the pictures in the order the story tells."
+- **Day 119 (s04-X119bv2).** Same part and pictures. Say: "Tell how you know the wings come last."
+- **Day 120 (s04-X120v2).** Reread aloud twice the summer talk, from "Come and sing with me!" to "Why should I worry?" Show two picture cards: the ant telling the grasshopper to store food; the ants opening their store in winter. Say: "A fable says: listen when a friend warns you. Mark the picture of the event that shows it."
+- **Day 120 (s04-X120bv2).** Same part. Say: "Tell why that event teaches it."
+- **Day 121 (s04-X121v2).** Reread aloud twice what the ant says in winter in each telling: the first telling, paragraph 10, then the second telling, from "What were you doing all summer?" to "for anyone who came by." Show two picture cards: the ant asking the grasshopper a question; the grasshopper asking for grain. Say: "Mark the picture that shows what only the second telling has."
+- **Day 121 (s04-X121bv2).** Same parts. Say: "Say the question the ant asks in the second telling."
+- **Day 122 (s04-X122v2).** Reread aloud twice the part where winter comes in each telling: the first telling, paragraph 7, then the second telling, paragraph 2. Show two picture cards: a cold wind blowing over a bare field; the ants handing out grain at their nest. Say: "Mark the picture that shows what is the same in both tellings."
+- **Day 122 (s04-X122bv2).** Same parts. Say: "Say what changes in that part."

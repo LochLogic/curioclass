@@ -5,30 +5,39 @@ unit: 3.2
 version: draft, not yet taught
 credit: ours
 ---
-# Exit cards, days 84 to 85
+# Exit pictures, days 84 to 85
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
+Every exit here rereads a named part of the unit's own texts (texts/g1-u3-01); this sheet holds only its pictures. Plain black line drawings on white, thick lines, no shading, no printed words except a label a picture names. Children do not read them; you read the passage aloud.
 
-## Day 84 card (s03-X84a, RI.1.3)
+## Day 84 pictures (s03-X84av2, RI.1.3)
 
-This card is invented for practice. Show the card and read it aloud: "A hen scratches the ground with her feet. This helps her find seeds." Show three pictures: the hen's feet with their toes and claws, the hen's beak, a pile of seeds. Say: "Point to the body part that belongs with this card." Hear the day's rotating six.
+Passage: Feathers Protect, page 2, Fluffing Up (day 84 works Feet That Help, the sparrow and hawk parts).
 
-**Right answer:** The hen's feet (toes and claws).
+Reread aloud the part of Feathers Protect headed Fluffing Up, page 2. Show three pictures: a bird's fluffed-up feathers, the bird's feet, snow alone. Say: "Point to the body part these words tell about." Hear the day's rotating six.
 
-## Day 84 card (s03-X84b, RI.1.3)
+**Right answer:** The bird's feathers, fluffed up.
 
-This card is invented for practice. The same card stays in view. Say: "How does scratching help the hen?" Hear the day's rotating six.
+## Day 84 pictures (s03-X84bv2, RI.1.3)
 
-**Right answer:** It helps her find seeds.
+Passage: Feathers Protect, page 2, Fluffing Up (day 84 works Feet That Help, the sparrow and hawk parts).
 
-## Day 85 card (s03-X85a, RI.1.5)
+The same part stays in view. Say: "How do fluffed feathers help the bird?" Hear the day's rotating six.
 
-This card is invented for practice. Show the card and read it aloud: "Printed screen menu: Eyes, with a small bird icon; Feet, with a small bird icon. The page the Feet icon opens says: A parrot climbs with its toes. Two toes point forward and two point back. The cover shows the whole parrot." Show three pictures: the menu choice Feet with its bird icon, the menu choice Eyes with its bird icon, the cover. Say: "Point to the menu choice and icon that lead you to the foot fact." Hear the day's rotating six.
+**Right answer:** They help it stay warm on a cold day.
+
+## Day 85 pictures (s03-X85av2, RI.1.5)
+
+Passage: the day 85 printed menu choice Feet, leading to Feet That Help, page 2, Feet for Swimming (day 85 routes the hawk, gliding and down facts).
+
+Show today's printed screen. Show three pictures: the menu choice Feet with its bird icon, the menu choice Beaks with its bird icon, the cover of Feet That Help. Say: "Point to the menu choice and icon that lead you to the fact about webbed feet." Hear the day's rotating six.
 
 **Right answer:** The menu choice Feet and its bird icon.
 
-## Day 85 card (s03-X85b, RI.1.5)
+## Day 85 pictures (s03-X85bv2, RI.1.5)
 
-This card is invented for practice. The same card stays in view. Say: "What does the foot page tell you?" Hear the day's rotating six.
+Passage: Feet That Help, page 2, Feet for Swimming (day 85 routes the hawk, gliding and down facts).
 
-**Right answer:** Two toes point forward and two point back, for climbing.
+Reread aloud the part that choice opens, Feet for Swimming. Say: "What does this page tell you about the duck's feet?" Hear the day's rotating six.
+
+**Right answer:** Skin joins the duck's toes; the feet push the water, so the duck swims.
+

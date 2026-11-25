@@ -5,17 +5,15 @@ unit: 3.2
 version: draft, not yet taught
 credit: ours
 ---
-# Check cards: C1 (sapling), T1 and P1
+# Check cards: C1 (the trunk page), T1 and P1
 
-These cards are used as assessment only. Do not teach, show or give away any of them beforehand, and keep the sapling card covered until days 86 and 87. Say aloud each time: "This card is made up for practice." Read it twice. Print "invented for practice" in small letters at the foot of each card.
+These cards are used as assessment only. Do not teach, show or give away any of them beforehand, and keep the C1 pictures covered until days 86 and 87. Card C1 goes with page 3 of A Tree Is a Living Thing (texts/gk-u3-03.md), which the class first hears in full on day 89; it is not made up, so say nothing about practice for it. For P1, say aloud: "This card is made up for practice." Print "invented for practice" in small letters at its foot.
 
-## Card C1: the sapling (days 86 and 87, and day 98)
+## Card C1: the trunk page (days 86 and 87, and day 98)
 
-**Read:** "Wind bends a sapling. A gardener ties it loosely to a stake."
+**Read:** page 3 of A Tree Is a Living Thing, twice, its picture covered: the trunk is strong and carries the water up.
 
-**Picture, large:** a thin young tree bending in the wind, with wind lines.
-
-**Three choice pictures, each in a ring, shown on the day only:** a stake tied to a sapling that stands upright; a stake lying on the ground beside the sapling; an animal eating a leaf.
+**Three choice pictures, each in a ring, shown on the day only:** arrows going up a trunk from the roots to the branches; rain falling beside a trunk with no arrows; an animal eating a leaf.
 
 ## Card T1: the question prompt (day 85)
 

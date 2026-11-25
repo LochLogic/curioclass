@@ -5,9 +5,9 @@ unit: 1.6
 version: draft, not yet taught
 credit: ours
 ---
-# Exit cards, days 25 to 27
+# Exit cards, days 25 and 26
 
-Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. Every child points to or marks a picture; you hear the day's rotating six.
+Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. Every child points to or marks a picture; you hear the day's rotating six. The day 27 exit uses the hoe paragraph of Tools on the Farm, not a card.
 
 ## Day 25 card (s01-X25, W.1.2)
 
@@ -24,11 +24,3 @@ Read aloud: "Our paper bin holds our books. Its sides are tall, so a hand cannot
 **Picture:** a paper bin with tall sides, books inside, and a hand above it.
 
 **Right answer:** A change to the sides that lets a hand reach in: lower the sides, or open the front or top.
-
-## Day 27 card (s01-X27, RI.1.10)
-
-Read aloud: "My paper chute moves counters into a box. Its folded sides keep them on the path." Ask: "What fact explains how the chute helps?"
-
-**Picture:** a folded paper chute with a counter partway down and a box at the bottom.
-
-**Right answer:** Its folded sides keep the counters on the path.

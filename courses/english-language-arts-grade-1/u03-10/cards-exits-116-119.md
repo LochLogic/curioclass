@@ -39,30 +39,10 @@ This card is invented for practice. Show the draft card "A bird eats a grb." and
 
 **Right answer:** grub. A child who points to grb has left the vowel out (error M).
 
-## Day 118 card (s03-X118a, RI.1.7)
+## Reading exits of days 118 and 119
 
-This card is invented for practice. Show the card and read it aloud: "Drawing card: A cuckoo has two toes that point forward and two that point back. A foot with a blank label." Show two pictures: the foot, the beak. Say: "Which picture shows the part the sentence is about?" Hear the day's rotating six.
-
-**Right answer:** The foot.
-
-## Day 118 card (s03-X118b, RI.1.7)
-
-This card is invented for practice. The same card stays in view. Say: "Say the label for the part." Hear the day's rotating six.
-
-**Right answer:** Foot, or toes.
-
-## Day 119 card (s03-X119a, RI.1.2)
-
-This card is invented for practice. Show the card and read it aloud: "Contents: Feathers, 2. Heading: Brown Feathers. Glossary: streak, a thin line of color. A roadrunner has brown feathers. The feathers have dark streaks." Show two pictures: the roadrunner's feathers, a plant alone. Say: "Which picture is the whole card about?" Hear the day's rotating six.
-
-**Right answer:** The roadrunner's feathers.
-
-## Day 119 card (s03-X119b, RI.1.5)
-
-This card is invented for practice. The same card stays in view. Say: "Point to where the glossary says what streak means." Hear the day's rotating six.
-
-**Right answer:** The glossary line: streak, a thin line of color.
+These exits are read from the unit's texts and have no card. Day 118 (s03-X118av2, s03-X118bv2): the Feathers part of Duck at the Pond, page 2; draw the duck's feathers, and the duck's beak.
 
 ## Day 119 retry (the exit)
 
-The roadrunner card is the exit and the fresh retry in one. Each child retries only the missed component; check the answer against the card. Topic and retell: "Which picture is the whole card about?" (the roadrunner's feathers). Features: "Point to where the glossary says what streak means." Writing: "Say a topic sentence." or "Say a closing sentence." Participation: "Say one fact and point to its source." Foundations and conversation retries use the reserved word lists and a partner exchange about the card (restate, then reply). They never rescore earlier records.
+The retry reads the opening of Heron by the Water and Where a Heron Lives (s03-X119av2, s03-X119bv2); draw the heron in shallow water by a marsh, and a fish alone. Each child retries only the missed component; check the answer against the page. Topic and retell: "Which picture is this part about?" (the heron in shallow water). Features: "Point to where the glossary says what marsh means." Writing: "Say a topic sentence." or "Say a closing sentence." Participation: "Say one fact and point to its source." Foundations and conversation retries use the reserved word lists and a partner exchange about the part (restate, then reply). They never rescore earlier records.

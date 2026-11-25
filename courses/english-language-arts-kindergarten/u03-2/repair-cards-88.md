@@ -16,4 +16,4 @@ Picture repair cards, one set for each error letter the checks showed. Each card
 - **F:** two note-role cards (find a fact, draw it).
 - **G, H:** a talking token card; a follow-up question card.
 
-Use cards other than the check cards. No repair card shows the sapling.
+Use cards other than the check cards. No repair card shows the trunk page of card C1.

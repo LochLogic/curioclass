@@ -7,9 +7,9 @@ credit: ours
 ---
 # Exit cards, days 114 to 119
 
-Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading. Every exit is one ask; read each card twice before the children answer. An exit slip is a half slip holding about two items. Answers and wrong answers are in items.csv and wrongs.csv, not here.
+Strips marked From the book print lines from the unit's own books, with the chapter named, and carry no invented label. For a card marked Invented for practice, say aloud "This card is made up for practice" and print "invented for practice" in small letters at its foot. Plain black line drawings on white, thick lines, no shading. Every exit is one ask; read each card twice before the children answer. An exit slip is a half slip holding about two items. Answers and wrong answers are in items.csv and wrongs.csv, not here.
 
-- **Day 114 (s03-X114), Exit.** Invented for practice. Strip: In the first chapter, Wren drops her recorder and it cracks. In the second chapter, Rafe tapes it, and she plays the song. Ask: Write one sentence that tells how the second chapter builds on the first.
+- **Day 114 (s03-X114v2), Exit.** From the panel. The strip points to Book B on the day 114 transfer panel (P114t), chapters 1 and 2; print nothing new. Ask: How does its second chapter build on its first?
 - **Day 115 (s03-X115), Exit.** Invented for practice. Strip: The title of a story is "the cat on the garden wall". Ask: Write the title with the correct capital letters.
 - **Day 116 (s03-X116), Exit.** Invented for practice. Strip: Wren opens the drawer. Orin counts the pencils and stops at the window. Wren moves the last pencil. Ask: Write a retelling in two sentences. Use a time word and end the scene.
 - **Day 117 (s03-X117), Exit.** Invented for practice. Strip: The enormous box was heavy. Ask: Write the word enormous in chunks you could blend. Put a hyphen between chunks.

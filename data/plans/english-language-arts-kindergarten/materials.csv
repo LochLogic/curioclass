@@ -5,7 +5,7 @@ turn card,3,3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 
 name cards,1,1 2 3 6 7 8 9 10 11 12 13 14 15 16 17 18 19 40 46 53 54 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 79,pocket chart,class,"one card for each child, a name printed large; used in the name game"
 sound-spelling map,3,3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 41 47 80 81 82 83 84 85 86 87 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128,classroom wall,class,"an empty frame on day 3; t joins on day 4, a on day 7, h and p on day 14, each with its keyword picture"
 handwriting paper,3,3 4 5 6 7 8 9 10 11 12 13 15 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 80 81 82 83 84 85 86 87 88 101 102 103 104 105 106,notebook,child,"three lines (top, middle, bottom); thick pencils and crayons"
-exit cards,1,1 2 3 4 6 7 9 10 11 12 13 14 15 16 20 21 22 23 24 25 26 27 30 31 32 34 79 160,teacher folder,class,"one invented card for each exit, with its pictures; every card says invented for practice"
+exit cards,1,1 6 7 10 11 12 13 15 16 24 26 27 30 32 34 79 160,teacher folder,class,"one invented card for each exit not asked on a unit text, with its pictures; every card says invented for practice"
 retry cards,8,8 19 34 124 79 160,teacher folder,class,"the day 8, day 19 and day 124 retry cards, unscored"
 author and illustrator labels,2,2 3 9 25 28 29,classroom wall,class,"two label cards, a pencil picture and a brush picture, beside the credit lines of a booklet"
 topic chart,9,9 10 14 15 16 27 29 31 45,classroom wall,class,chart paper with a topic picture above and detail pictures below; details are added on days 9 and 14
@@ -30,8 +30,8 @@ class book Our Classroom Toys,25,25 28 32 33 34,classroom wall,class,"one page f
 "record sheet, unit 2",35,35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76,teacher folder,room,"one row for each child, dated; marks shown, shown with help or not yet seen for the exits and end items, and who was heard in the rotating six"
 three request cards,35,35 37 38 39 43 47 50 51,classroom wall,class,"again, what do you mean, show me; hand-drawn, used by puppets and pairs"
 scene cards,36,36 38 41 45,pair basket,pair,"hand-drawn weather scenes the teacher says are invented for practice, used when the window shows nothing new"
-exit cards C35 P36 C37 S38,35,35 36 37 38,teacher folder,class,"invented for practice, read twice, never used in teaching; not shown to children outside the exit"
-exit cards P39a P39b P40 C41 C42,39,39 40 41 42,teacher folder,class,"invented for practice, read twice, never used in teaching"
+exit cards C35 P36 C37 S38,35,35 36 37 38,teacher folder,class,"days 35 37: sheets of the named pages of the unit texts; days 36 38: invented for practice, read twice, never used in teaching"
+exit cards P39a P39b P40 C41 C42,39,39 40 41 42,teacher folder,class,"day 41: sheets of the named pages of the unit texts; days 39 40 42: invented for practice, read twice, never used in teaching"
 class picture journal page,41,41 42 46 48,classroom wall,class,one page for each weather picture the class makes; pages are the day 46 talk prompts
 six question picture cards,43,43 44 47 48 49 50 51 60 61 62,pair basket,pair,"who, what, where, when, why and how, one picture each"
 exit cards C43 C44 P44 P45,43,43 44 45,teacher folder,class,"invented for practice, read twice, never used in teaching"
@@ -41,49 +41,49 @@ five-place chart,49,49 50 51 52 53 58,classroom wall,class,"chart paper, five pl
 story-map,49,49 50 51 52 54 55 57 84 85,classroom wall,class,"three boxes: who, where and when, what happens"
 retell cards,51,51 52,pair basket,pair,"first, next and last, three cards for a pair"
 un- and re- action cards,53,53,pair basket,pair,"real things to act: pack and unpack a box, fill and refill a cup, tie and retie a bow"
-exit cards C49 to C53,49,49 50 51 52 53,teacher folder,class,"invented for practice, read twice, never used in teaching"
+exit cards C49 to C53,49,49 50 51 52 53,teacher folder,class,"days 49 50 51: sheets of the named pages of the unit texts; days 52 53: invented for practice, read twice, never used in teaching"
 priya map cards,54,54 55,pair basket,pair,"picture cards of Priya, Dev, the kitchen window, the rainy afternoon and the three events of Priya at the Window"
 capital and mark strips,56,56 57,classroom wall,class,"large model strips, three mark cards with gestures and one capital I strip"
 Magic Bow retell cards,57,57 58,pair basket,pair,four picture cards of The Magic Bow to order and retell
 weather report page,58,58,notebook,child,"a drawing box with three short lines: topic, one true fact, what people do or wear in the text"
 sort cards,58,58,pair basket,pair,"nine cards and three heading cards: seen weather, information, story event"
 word-part cards,58,58,pair basket,pair,"eight cards for re-, pre-, -s and -er"
-exit cards C54 to C58,54,54 55 56 57 58,teacher folder,class,"invented for practice, read twice, never used in teaching"
+exit cards C54 to C58,54,54 55 56 57 58,teacher folder,class,"days 54 57: sheets of the named pages of the unit texts; days 55 56 58: invented for practice, read twice, never used in teaching"
 feeling chart,62,62,classroom wall,class,five feeling faces and action cards to place under them
 wall map for Yusuf and the Parcel,59,59 60 61 62 63 64,classroom wall,class,"the three-box map, grown a part a day on days 59 to 62 and turned to the wall on day 63"
 reteach card,64,64,teacher folder,class,a new four-picture story card for the day 64 targeted reteaching
 S1 roster sheet,63,63,teacher folder,room,"roster numbers 1 to 30, three asks by number, marks and the support used"
-exit cards C59 to C62,59,59 60 61 62,teacher folder,class,"invented for practice, read twice, never used in teaching"
+exit cards C59 to C62,59,59 60 61 62,teacher folder,class,page pictures from the unit 2 texts for each exit (cards-exits-59-62.md); read the named page aloud again
 narrative-arc chart,65,65 66 67 68 69 70 71 72 73,classroom wall,class,"three boxes: character and setting, three events, reaction; a small paper copy for each child"
 writing-process poster,69,69 73 75,classroom wall,class,"three pictures: plan, ask, add"
-exit cards C65 to C69,65,65 66 67 68 69,teacher folder,class,"invented for practice, read twice, never used in teaching"
+exit cards C65 to C69,65,65 66 67 68 69,teacher folder,class,"days 66 67 68: sheets of the named pages of the unit texts; days 65 69: invented for practice, read twice, never used in teaching"
 exit cards C70 to C73,70,70 71 72 73,teacher folder,class,"invented for practice, read twice, never used in teaching"
 classroom objects,70,70 71,pair basket,pair,"real things in the room, one and then more than one, for the spoken plural work"
 O1 group list,74,74,teacher folder,room,six boxes of five names with the four look-fors in columns
 E1 strip sets,75,75,teacher folder,class,"thirty unused sentence strips in three sets of ten, ending in a period, a question mark or an exclamation mark"
 retry card C76,76,76,teacher folder,class,the unscored day 76 retry card
-exit cards E80 to E84,80,80 81 82 83 84,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-80-84.md"
+exit cards E80 to E84,80,80 81 82 83 84,teacher folder,class,"days 80 81 82 84: sheets of the named pages of the unit texts; day 83: invented for practice, read twice, never used in teaching; cards-exits-80-84.md"
 research-cycle wall pictures,80,80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103,classroom wall,class,"four pictures: ask, find, note, share; research-cycle-pictures.md"
 picture sort cards,80,80 81 82 83 84,pair basket,pair,"rhyme, onset-rime and sh, th, ch picture words; picture-sort-cards.md"
 labelled note page,83,83 85 87,notebook,child,"a drawing box, a label line and one dictation line; labelled-note-page.md"
 unit 3 record sheet,80,80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118,teacher folder,room,"roster numbers 1 to 30, a heard column and the exit and end look-fors; record.md"
-exit cards E85 and E88,85,85 88,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-85-88.md"
-"check cards C1, T1 and P1",85,85 86 87 88 89 90 91 98 101,teacher folder,class,"the sapling card kept covered until days 86 and 87, the T1 prompt and the P1 two-page print card; check-cards.md"
+exit cards E85 and E88,85,85 88,teacher folder,class,"day 88: sheets of the named pages of the unit texts; day 85: invented for practice, read twice, never used in teaching; cards-exits-85-88.md"
+"check cards C1, T1 and P1",85,85 86 87 88 89 90 91 98 101,teacher folder,class,"the C1 page sheet (page 3 of A Tree Is a Living Thing) kept covered until days 86 and 87, the T1 prompt and the P1 two-page print card; check-cards.md"
 repair cards C1 and E85,88,88,teacher folder,group,picture repair cards by error letter for the day 88 repair groups; repair-cards-88.md
-exit cards E89 to E94,89,89 90 91 92 93 94,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-89-94.md"
+exit cards E89 to E94,89,89 90 91 92 93 94,teacher folder,class,"days 89 90 94: sheets of the named pages of the unit texts; days 91 92 93: invented for practice, read twice, never used in teaching; cards-exits-89-94.md"
 three-box chart,90,90 91 92 93 94 95 96 97 98 99 100,classroom wall,class,"the animal, the need and the tree part in three boxes; three-box-chart.md"
 picture note card with source sticker,92,92 93 94 95 96 100,notebook,child,a note card with a place for a source sticker; picture-note-card.md
-exit cards E95 and E96,95,95 96,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-95-96.md"
+exit cards E95 and E96,95,95 96,teacher folder,class,"day 95: sheets of the named pages of the unit texts; day 96: invented for practice, read twice, never used in teaching; cards-exits-95-96.md"
 "source cards C2a, C2b and C2c",96,96 97 98 99 100 101,teacher folder,room,three unused cards offered on day 96 for the first animal piece; source-cards-c2.md
 feedback slips,96,96 97 98 99,teacher folder,child,a slip for one written next step on the animal piece; feedback-slips.md
 exit cards E100 and E101,100,100 101,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-100-101.md"
 comparison card,100,100 101,pair basket,pair,"two columns, source and draft, with a check and a cross; comparison-card.md"
 T3 prompt card,100,100 101,teacher folder,room,the partner question and the pointing prompt; comparison-card.md
 repair cards C1 and R1,101,101,teacher folder,group,picture repair cards by error letter for the day 101 repair groups; repair-cards-101.md
-exit cards E102 to E106,102,102 103 104 105 106 108,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-102-106.md"
+exit cards E102 to E106,102,102 103 104 105 106 108,teacher folder,class,"day 103: sheets of the named pages of the unit texts; days 102 104 105 106 108: invented for practice, read twice, never used in teaching; cards-exits-102-106.md"
 exit card E108,108,108,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-108.md"
-exit cards E111 to E114,111,111 112 113 114,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-111-114.md"
-exit cards E115 to E118,115,115 116 117 118,teacher folder,class,"invented for practice, read twice, never used in teaching; the E118 card is read on day 118 only; cards-exits-115-118.md"
+exit cards E111 to E114,111,111 112 113 114,teacher folder,class,"day 111: sheets of the named pages of the unit texts; days 112 113 114: invented for practice, read twice, never used in teaching; cards-exits-111-114.md"
+exit cards E115 to E118,115,115 116 117 118,teacher folder,class,"days 115 117: sheets of the named pages of the unit texts; days 116 118: invented for practice, read twice, never used in teaching; cards-exits-115-118.md"
 collage plan sheet,107,107 108 109 110 111,notebook,child,"the tree, one need and one living thing in two columns; collage-plan-sheet.md"
 research talk record sheet (R2),107,107 109 110,teacher folder,room,"roster numbers 1 to 30 and the talk look-fors, filled only where the days 97 to 99 records have no part; research-talk-record-sheet.md"
 collage page and precut shapes,111,111 112 113 114 115 116,notebook,child,"a page for the tree, one need, one dependent, an arrow and a source sticker, with precut shapes; collage-page.md"
@@ -91,43 +91,43 @@ partner question cards,113,113 114,pair basket,pair,"four questions a partner ma
 four-note feedback strip,112,112 113 114 115,notebook,child,"one next step for the collage page, read aloud; feedback-strip.md"
 S1 record sheet,116,116,teacher folder,room,"roster numbers 1 to 30, three asks by number and a need and dependent column; s1-record-sheet.md"
 display caption sheet,117,117,classroom wall,class,"chart paper for the class caption, one sentence in each box; caption-sheet.md"
-exit cards E119 to E124,119,119 120 121 122 123 124,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-119-124.md"
+exit cards E119 to E124,119,119 120 121 122 123 124,teacher folder,class,"days 120 121 122 123 124: sheets of the named pages of the unit texts; day 119: invented for practice, read twice, never used in teaching; cards-exits-119-124.md"
 story map picture cards for Reading Under the Tree,122,123 124,pair basket,pair,"three picture cards (Ben, the school tree, the move to the quiet side); teacher repair on day 123 and retrieval on day 124, not used on day 122 (its exit places cards); story-map-cards-122.md"
 picture and caption pair,121,121,teacher folder,class,"one invented picture and its caption about a tree, for the picture and words question; caption-pair-121.md"
 two-column chart cards,123,123 124 125 128,classroom wall,class,event picture cards for the two columns and the Both but frame; chart-cards-123.md
 turn card and puppet,123,123 124 125 127 128,teacher folder,class,a card passed to mark whose turn it is; no printed piece
 unit 4 record sheet,119,119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157,teacher folder,room,"roster numbers 1 to 30, the exit look-fors and the end columns; record.md"
-exit cards E125 and E128,125,125 128,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-125-128.md"
+exit cards E125 and E128,125,125 128,teacher folder,class,"day 128: sheets of the named pages of the unit texts; day 125: invented for practice, read twice, never used in teaching; cards-exits-125-128.md"
 two invented cards for retrieval,125,125 128,teacher folder,class,four short invented sentences read for the Both but retrieval; practice-cards-125-128.md
-check cards held unseen,132,132,teacher folder,room,"cards A and B for C2, kept unseen until day 132; check-cards-132.md"
-exit cards E129 to E131,129,129 130 131,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-129-131.md"
+"check sheet, day 132",132,132,teacher folder,room,"the check sheet for C2: the two marked pages and their pictures, teacher only; check-cards-132.md"
+exit cards E129 to E131,129,129 130 131,teacher folder,class,"sheets of the named pages of the unit texts, read aloud again for each exit; cards-exits-129-131.md"
 detail and point sort cards,129,129,pair basket,pair,four detail pictures and the point card for sorting; sort-cards-129.md
 box and arrows mat and cards,130,130 131 135 139,pair basket,pair,"a point box, two arrows and three sentence cards for the practice card, with the rug-corner card; box-arrows-cards-130.md"
-exit cards E133 to E136,133,133 134 135 136,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-133-136.md"
+exit cards E133 to E136,133,133 134 135 136,teacher folder,class,"days 135 136: sheets of the named pages of the unit texts; days 133 134: invented for practice, read twice, never used in teaching; cards-exits-133-136.md"
 Kenya map and work scene note,134,134 135 136,classroom wall,class,"a plain original map of Africa with Kenya and Nairobi, and a work scene; map-note-134.md"
 statement cards,136,136,pair basket,pair,"three statement cards, one stated, one reversed, one not in the text; statement-cards-136.md"
 "purpose cards, bench bird and resting child",137,137,teacher folder,group,three purpose cards for the day-137 reread; purpose-cards-137.md
 "plan sheet, topic and preference boxes",137,137 138,student folder,student,"a topic box, a preference box and a drawing space; plan-sheet-137.md"
-exit cards E137 and E139,137,137 139,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-137-139.md"
-"check card held unseen, day 138",138,138,teacher folder,room,"the unseen card for the author reason, kept unseen until day 138; check-cards-138.md"
+exit cards E137 and E139,137,137 139,teacher folder,class,"day 139: sheets of the named pages of the unit texts; day 137: invented for practice, read twice, never used in teaching; cards-exits-137-139.md"
+"check sheet, day 138",138,138,teacher folder,room,"the check sheet for the author reason item on its named page, teacher only; check-cards-138.md"
 "observation sheet, day 138",138,138,teacher folder,room,"roster numbers 1 to 30, the two O1 parts and the prompt used; observation-sheet-138.md"
 "sentence cards, reasons and steps",139,139,pair basket,pair,five sentence cards for the reason pile and the step pile; sentence-cards-139.md
 "model cards, wrong beside right, day 139",139,139,teacher folder,class,the teacher's wrong and right pairs for the response; model-cards-139.md
 exit cards E140 to E145,140,140 141 144 145,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-140-145.md"
 appreciation card sheet,141,141 142 145,student folder,student,"a subject box, a preference box and a drawing space; card-sheet-141.md"
 six planting step pictures,143,143,pair basket,pair,"six plain pictures to put in order, spoken; step-pictures-143.md"
-"check cards held unseen, day 143",143,143,teacher folder,room,"the story card and the information card for T1, kept unseen until day 143; check-cards-143.md"
+"check sheet, day 143",143,143,teacher folder,room,"the check sheet for T1: the named story and information pages, teacher only; check-cards-143.md"
 partner-question strip,144,144 147 148 149,student folder,student,"a draft space, a question space and an answer space; partner-question-strip-144.md"
 "F5 card, twelve spoken words",145,145,teacher folder,class,the teacher's list of twelve spoken words for matching a and i; f5-card-145.md
-exit cards E146 to E149,146,146 147 149,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-146-149.md"
+exit cards E146 to E149,146,146 147 149,teacher folder,class,"day 147: sheets of the named pages of the unit texts; days 146 149: invented for practice, read twice, never used in teaching; cards-exits-146-149.md"
 wash sample card,146,146,teacher folder,class,a sample card with dry words and a thin wash around them; wash-sample-146.md
 "observation sheet, days 148 to 151",148,148 150 151,teacher folder,room,"roster numbers 1 to 30 and the look-fors of R1, C3, T2, F6 and C4; observation-sheet-148-151.md"
 "picture cards and purpose card, day 150",150,150,teacher folder,room,"two pictures and a purpose card for T2, kept unseen until day 150; picture-cards-150.md"
-"check cards held unseen, day 151",151,151,teacher folder,room,"cards A and B and their pictures for C4, kept unseen until day 151; check-cards-151.md"
-"check card held unseen, day 152",152,152,teacher folder,room,"the card, the picture strips and the purpose card for C5 and T3, kept unseen until day 152; check-card-152.md"
+"check sheet, day 151",151,151,teacher folder,room,"the check sheet for C4: the two named pages and their pictures, teacher only; check-cards-151.md"
+"check sheet, day 152",152,152,teacher folder,room,"the check sheet, its two pictures and the purpose card for C5 and T3, on the named page; check-card-152.md"
 "observation sheet, days 152 to 156",152,152 153 154 156,teacher folder,room,"roster numbers 1 to 30 and the look-fors of C5, T3, S1 and P1; observation-sheet-152-156.md"
 audio plan sheet,155,155 156,student folder,student,"a picture of the card detail and a first, middle or last place; audio-plan-sheet-155.md"
-exit cards E155 to E157,155,155 157,teacher folder,class,"invented for practice, read twice, never used in teaching; cards-exits-155-157.md"
+exit cards E155 to E157,155,155 157,teacher folder,class,"day 157: sheets of the named pages of the unit texts; day 155: invented for practice, read twice, never used in teaching; cards-exits-155-157.md"
 "F7 card, twelve spoken words",155,155,teacher folder,class,the teacher's list of twelve spoken words for matching e; f7-card-155.md
 "model cards, wrong beside right, day 157",157,157,teacher folder,class,the teacher's wrong and right pairs for the response; model-cards-157.md
 cycle check card F6,150,150,teacher folder,room,"the cycle 24 check card for F6: three printed words, a pair of words and a short passage, kept unseen until day 150; f6-card-150.md"

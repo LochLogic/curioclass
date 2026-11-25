@@ -16,4 +16,3 @@ Say aloud each time: "This card is made up for practice." Print "invented for pr
 - **Day 66 (s02-X66b).** Printed card: "dear wes" / "The fossil trays came today." / "see you soon" / "Opal" Ask: "Say the closing as it should be written."
 - **Day 67 (s02-X67a).** Printed card: "This is Finns map. We havent used it yet." Ask: "Write Finns so it shows the map belongs to him."
 - **Day 67 (s02-X67b).** Printed card: "This is Finns map. We havent used it yet." Ask: "Say havent the correct way, letter by letter, with the apostrophe."
-- **Day 68 (s02-X68).** Card: "The path had a gap in the fence. Nia found a board and nailed it over the gap. Now the dog could not run out." Ask: "Say how the ending finishes what the beginning started."

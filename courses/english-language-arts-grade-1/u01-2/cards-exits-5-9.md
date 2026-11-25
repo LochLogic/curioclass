@@ -5,7 +5,7 @@ unit: 1.2
 version: draft, not yet taught
 credit: ours
 ---
-# Exit cards, days 5 to 9
+# Exit cards, days 5 to 7
 
 Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud.
 
@@ -27,8 +27,4 @@ This card is invented for practice. Read aloud: "A clip holds our drawings. Its 
 
 **Right answer:** Its jaws grip the paper, or It keeps the drawings together.
 
-## Day 9 card (s01-X9, RI.1.6)
-
-This card is invented for practice. Read aloud: "A hose has a long tube. It carries water to the garden." Show the picture: a green hose across flower beds. Ask: "Tell me one thing the words say about the hose that you cannot see in the picture."
-
-**Right answer:** It carries water to the garden (the words say it; the picture does not).
+The day 9 exit uses the ladle paragraph of Tools in the Kitchen (texts/g1-u1-02.md); it needs no card.

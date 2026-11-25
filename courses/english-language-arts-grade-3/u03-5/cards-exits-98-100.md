@@ -7,8 +7,8 @@ credit: ours
 ---
 # Exit cards, days 98 to 100
 
-Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading. Every exit is one ask; read each card twice before the children answer. Answers and wrong answers are in items.csv and wrongs.csv, not here.
+Strips marked From the book print lines from the unit's own books, with the chapter named, and carry no invented label. For a card marked Invented for practice, say aloud "This card is made up for practice" and print "invented for practice" in small letters at its foot. Plain black line drawings on white, thick lines, no shading. Every exit is one ask; read each card twice before the children answer. Answers and wrong answers are in items.csv and wrongs.csv, not here.
 
 - **Day 98 (s03-X98), Exit.** Invented for practice. A reader says, "I like stories where someone asks for help." Book: "In The Moss Path, Dev loses his trail map. He asks every hiker for one clue and finds the way." Ask: Write one sentence recommending The Moss Path to this reader. Use because and an event.
-- **Day 99 (s03-X99), Exit.** Invented for practice. Card: "Story A: On the porch, Kit builds a bird feeder. Squirrels eat the seed, so he adds a lid. Story B: In the yard, Kit builds a bird bath. Dogs knock it over, so he adds a stand." Ask: Write one sentence that says how the plots are alike and different. Use the word but.
+- **Day 99 (s03-X99v2), Exit.** From the book. Strip: book 1, chapter 12: "all of them had found the corner without a single bump." Book 2, chapter 5: "By ten o'clock, every reader had a spot." Ask: How are the endings alike and different? Use but.
 - **Day 100 (s03-X100), Exit.** Invented for practice. Review: "I recommend the Harbor Street books. First, Lu admits a mistake and starts over. Second, she waits for the last child to finish a puzzle." Ask: Write a closing line that tells who might like these books.

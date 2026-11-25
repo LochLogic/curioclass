@@ -13,7 +13,7 @@ For six days the class reads short true articles about helping pollinators. Chil
 
 ## How the days run
 
-Each day is 120 minutes in two blocks of 60. The topic block holds a short opening repair, the day's reading, a model, talk, pair work and a five-minute exit. The foundations block holds a repair, work on the cycle's spelling pattern, a reader, a rotation of stations with the oral card, and a close. Every exit is one card you read aloud twice and one ask on paper or aloud. A child outside the group heard is "not yet heard", never "missed". A child may pass at any time. Say aloud that every practice card is made up. The articles are true; the exit cards are made up.
+Each day is 120 minutes in two blocks of 60. The topic block holds a short opening repair, the day's reading, a model, talk, pair work and a five-minute exit. The foundations block holds a repair, work on the cycle's spelling pattern, a reader, a rotation of stations with the oral card, and a close. Every exit is one card or passage you read aloud twice and one ask on paper or aloud. A child outside the group heard is "not yet heard", never "missed". A child may pass at any time. Say aloud that every practice card is made up. The articles are true; the exits for days 132 to 134 reread them, and the later exit cards are made up.
 
 ## The ideas at an adult's level
 

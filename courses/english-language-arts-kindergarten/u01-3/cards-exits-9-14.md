@@ -7,13 +7,13 @@ credit: ours
 ---
 # Exit cards, days 9 to 14
 
-Each exit has a card every child marks and a spoken question heard from the day's six. Say aloud each time: "This card is made up for practice." Print "invented for practice" at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line.
+Each exit has a card or strip every child marks and a spoken question heard from the day's six. The cards for days 10 to 13 are made up: say aloud each time "This card is made up for practice" and print "invented for practice" at the foot of each. The strips for days 9 and 14 go with a page of the class book, read aloud again. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line.
 
-## Day 9 card: stacking toys
+## Day 9 strip: Push, Pull, Roll, page 6
 
-**Read:** "Rings stack on a pole. Cones stack in a pile."
+**Read:** page 6 of Push, Pull, Roll, aloud again.
 
-**Picture:** three pictures in a row, each in a ring: rings and cones, both stacked; one ring alone; a pole alone.
+**Picture:** three pictures in a row, each in a ring: a toy car that goes, stops and turns, with a hand at each step; one toy car standing still; a pole alone.
 
 **Mark:** circle the picture that tells what the whole page is about. **Spoken:** "Tell me one detail the page gives."
 
@@ -49,21 +49,21 @@ Each exit has a card every child marks and a spoken question heard from the day'
 
 **Mark:** circle the picture that shows how the cat moves. **Spoken:** "Show me how the band moves."
 
-## Day 14 card: turning toys
+## Day 14 strip: A Toy Can Turn, page 7
 
-**Read:** "This page is about toys that turn. A paper spinner turns when you blow on it. A toy merry-go-round turns when you push it."
+**Read:** page 7 of A Toy Can Turn, aloud again.
 
-**Picture:** three pictures in a row, each in a ring: a spinner and a merry-go-round both turning; a spinner alone; a merry-go-round alone.
+**Picture:** three pictures in a row, each in a ring: a top and a cart side by side, each turning; a top alone; a cart alone.
 
-**Mark:** circle the picture that shows what the whole page is about. **Spoken, with two pictures:** "Point to the picture that shows turns when you blow on it." The two pictures are a child blowing a spinner and a hand pushing a merry-go-round.
+**Mark:** circle the picture that shows what the whole page is about. **Spoken, with two pictures:** "Point to the picture that shows rolls from place to place." The two pictures are a cart rolling across the floor and a top spinning on a table.
 
 ## Key (teacher)
 
-- Day 9: the rings and cones stacked. Spoken: rings stack on a pole, or cones stack in a pile. Not yet: one ring alone, or "Toys" (K); an unrelated idea (A).
+- Day 9: the car that goes, stops and turns. Spoken: a push or a pull can make a toy stop, go faster or slower, or turn. Not yet: the car standing still, or "Toys" (K); an idea not on the page (A).
 - Day 10: tiny white and gigantic black. Spoken: gigantic. Not yet: swapped pair or "black" (V).
 - Day 11: pillow and sock, shell apart. Spoken: soft. Not yet: pillow and shell together, or "They are both red" (T).
 - Day 12: on and off. Spoken: the sandpaper. Not yet: on and on (AE); the smooth paper (V).
 - Day 13: the cat on tiptoe. Spoken: firm, even marching steps. Not yet: the cat marching, or tiptoeing for the band (W).
-- Day 14: both turning. Spoken: the blowing picture. Not yet: the spinner alone (K); the merry-go-round picture (B).
+- Day 14: the top and the cart. Spoken: the rolling cart. Not yet: the top alone (K); the spinning top (B).
 
 Marks: shown, shown with help, not yet seen. A child may point, act or use a home language; say the English back.

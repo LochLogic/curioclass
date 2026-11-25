@@ -7,17 +7,17 @@ credit: ours
 ---
 # Exit cards, days 115 to 118
 
-Say aloud each time: "This card is made up for practice." Read each card twice with its picture. Children do not read the cards; you read the lines aloud.
+Sheets E115 and E117 go with a page of the unit's own texts, read aloud again with its picture covered; they are not made up, so say nothing about practice for them. Each sheet is a strip of three pictures. Cards E116 and E118 are made up: say aloud "This card is made up for practice", read each twice with its picture, and print "invented for practice" in small letters at the foot of those two only.
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any label the key names. None of these cards is shown in teaching.
+The sheets and the cards use plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any label the key names. None of these cards is shown in teaching.
 
-## Day 115 card E115
+## Day 115 sheet E115: page 6 of The Sugar Maple, first part
 
-**Read:** "A eucalyptus tree has long, narrow leaves. Koalas eat the leaves."
+**Read again:** the first part of page 6 of The Sugar Maple (texts/gk-u3-05-b.md), the sap and the syrup.
 
-**Mark (item a):** Which one explains what this picture teaches about the tree? Three spoken explanations, each with a picture: (a) "This is a eucalyptus. Koalas eat its leaves, so it gives them food." (b) "This is a eucalyptus. It has leaves. It has a koala." (c) "Koalas eat the leaves."
+**Mark (item a):** Which one explains what this page teaches about the tree? Three spoken explanations, each with a picture: (a) "This is a sugar maple. People boil its sap, so it gives them syrup." (b) "This is a sugar maple. It has sap. It has people." (c) "People boil the sap."
 
-**Spoken, to the day's six (item b):** "Which words in explanation (a) say how the tree and the koalas go together?"
+**Spoken, to the day's six (item b):** "Which words in explanation (a) say how the tree and the people go together?"
 
 ## Day 116 card E116
 
@@ -27,13 +27,13 @@ Print "invented for practice" in small letters at the foot of every card. Plain 
 
 **Spoken, to the day's six (item b):** "Show me the line."
 
-## Day 117 card E117
+## Day 117 sheet E117: page 6 of The Sugar Maple, last part
 
-**Read:** "A spruce tree takes in sunlight through its needles. Chickadees eat the seeds from its cones."
+**Read again:** page 6 of The Sugar Maple, last part (texts/gk-u3-05-b.md), what the maple needs and who needs it.
 
-**Mark (item a):** Which drawing joins what the tree needs and who uses it? Three drawings: needles with an arrow in from the sun, and a chickadee at a cone with an arrow out from the tree; needles with the sun and no chickadee; a chickadee at a cone with no sun.
+**Mark (item a):** Which drawing joins what the tree needs and who uses it? Three pictures in a row, each in a ring: the maple with water, light and soil coming in, and a squirrel at its seeds with an arrow out; the maple with water and light and no squirrel; a squirrel with seeds and no maple.
 
-**Spoken, to the day's six (item b):** "What does the tree need, and who uses the tree?"
+**Spoken, to the day's six (item b):** "Who depends on the maple on this page?"
 
 ## Day 118 card E118
 
@@ -45,7 +45,7 @@ Print "invented for practice" in small letters at the foot of every card. Plain 
 
 ## Key (teacher)
 
-- Day 115: item a, Explanation (a). Not yet: Explanation (b), facts listed with no link (A, facts named but not joined); Explanation (c), no tree named (C, the topic is not named). Item b, "so it gives them food." Not yet: says "eucalyptus" and "koalas" only (A, facts named but not joined).
+- Day 115: item a, Explanation (a). Not yet: Explanation (b), facts listed with no link (A, facts named but not joined); Explanation (c), no tree named (C, the topic is not named). Item b, "so it gives them syrup." Not yet: says "maple" and "people" only (A, facts named but not joined).
 - Day 116: item a, Strip (a), "Opossums eat the fruit." Not yet: Strip (b), "Persimmons are orange." (E, a fact about the tree, no dependent); Strip (c), "Opossums like to climb." (D, the card does not say it). Item b, Points to the fruit sentence about opossums. Not yet: points to the orange sentence (E, a fact about the tree, no dependent).
-- Day 117: item a, Roots with an arrow in from water, and a person in the shade with an arrow out from the palm. Not yet: Roots with water and no person (A, one half only, not joined); A person in the shade with no water (A, one half only, not joined). Item b, The tree needs water, which it takes in through its roots; the person uses the tree, resting in its shade. Not yet: names only the water or only the person (A, one half only, not joined).
+- Day 117: item a, The maple with water, light and soil coming in, and the squirrel at its seeds with an arrow out. Not yet: The maple with water and light and no squirrel (A, one half only, not joined); A squirrel with seeds and no maple (A, one half only, not joined). Item b, Squirrels need its seeds; birds need its shelter; people get syrup (one is enough). Not yet: names only what the maple needs, not who depends on it (E, a fact about the tree alone).
 - Day 118: item a, Young fish among the roots, with an arrow from the roots to the fish. Not yet: The mangrove with no fish (A, one half only, not joined); A fish far out in open water (D, the card does not say it). Item b, "Young fish hide among its roots." Not yet: points to the salty water sentence (E, a fact that does not fill the question).

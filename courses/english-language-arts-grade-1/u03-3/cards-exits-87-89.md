@@ -7,19 +7,23 @@ credit: ours
 ---
 # Exit cards, days 87 to 89
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
+The "pictures" entries reread a named part of the unit's own texts (texts/g1-u3-01) and need only their three pictures: plain black line drawings on white, thick lines, no shading, no printed words except a label a picture names. The "card" entries are made up for practice: print "invented for practice" in small letters at the foot of each. Children do not read the cards; you read the lines aloud.
 
-## Day 87 card (s03-X87a, RI.1.6)
+## Day 87 pictures (s03-X87av2, RI.1.6)
 
-This card is invented for practice. Show the card and read it aloud: "A goose eats grass with its beak. A drawing beside the card shows a goose with a fish in its beak." Show three pictures to fix the drawing: a goose with grass in its beak, a white goose with a fish, a goose with a bigger fish. Say: "Point to the picture the drawing should be changed to." Hear the day's rotating six.
+Passage: Feet That Help, page 2, Feet for Grasping (day 87 models the duck foot and works the sparrow diagram).
 
-**Right answer:** The goose with grass in its beak.
+Reread aloud the part of Feet That Help headed Feet for Grasping, page 2. Say: "My drawing shows a hawk's foot with round toes and no claws." Show three pictures: a hawk's foot with sharp claws, the round-toed foot colored yellow, a duck's webbed foot. Say: "Point to the picture the drawing should be changed to." Hear the day's rotating six.
 
-## Day 87 card (s03-X87b, RI.1.6)
+**Right answer:** The hawk's foot with sharp claws.
 
-This card is invented for practice. The same card stays in view. Say: "Which words on the card tell you to fix the drawing?" Hear the day's rotating six.
+## Day 87 pictures (s03-X87bv2, RI.1.6)
 
-**Right answer:** Grabs grass.
+Passage: Feet That Help, page 2, Feet for Grasping (day 87 models the duck foot and works the sparrow diagram).
+
+The same part stays in view. Say: "Which words tell you to fix the drawing?" Hear the day's rotating six.
+
+**Right answer:** A hawk has sharp claws (the claws grasp food and hold it).
 
 ## Day 88 card (s03-X88a, SL.1.1c)
 
@@ -33,14 +37,19 @@ This card is invented for practice. The same card stays in view. Say: "A partner
 
 **Right answer:** It took a sip from a puddle and tipped its head up.
 
-## Day 89 card (s03-X89a, RI.1.5)
+## Day 89 pictures (s03-X89av2, RI.1.5)
 
-This card is invented for practice. Show the card and read it aloud: "Page one contents: Eyes, page two. Page two heading: Sharp Eyes. The words under the heading: A kestrel has sharp eyes. They help it spot a mouse in a field. Glossary: spot, to see something. The cover shows the whole kestrel." Show three pictures: the kestrel's eyes, the whole kestrel on the cover, a mouse. Say: "Point to the picture that marks the fact you found." Hear the day's rotating six.
+Passage: Wings in Motion, page 1 contents and page 2, Round Wings Flap (day 89 rereads Feet That Help, page 2).
 
-**Right answer:** The kestrel's eyes.
+Show page 1 of Wings in Motion and read its contents aloud, then the part headed Round Wings Flap, page 2. Show three pictures: a sparrow's round wings flapping, the cover with its flock of birds, a nest. Say: "Point to the picture that marks the fact you found." Hear the day's rotating six.
 
-## Day 89 card (s03-X89b, RI.1.5)
+**Right answer:** The sparrow's round wings flapping.
 
-This card is invented for practice. The same card stays in view. Say: "Which feature helped you find the fact?" Hear the day's rotating six.
+## Day 89 pictures (s03-X89bv2, RI.1.5)
 
-**Right answer:** The contents entry Eyes, page 2, or the heading Sharp Eyes.
+Passage: Wings in Motion, page 1 contents and page 2, Round Wings Flap (day 89 rereads Feet That Help, page 2).
+
+The same pages stay in view. Say: "Which feature helped you find the fact?" Hear the day's rotating six.
+
+**Right answer:** The contents entry Round Wings Flap, page 2, or the heading Round Wings Flap.
+

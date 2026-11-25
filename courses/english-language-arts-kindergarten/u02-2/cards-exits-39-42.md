@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 39 to 42
 
-Say aloud each time: "This card is made up for practice." Read each card twice with its picture. Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. None of these cards is shown in teaching.
+Sheet C41 goes with pages of the day's own text, read aloud again; it is not made up. For the other cards, say aloud each time: "This card is made up for practice." Read each card twice with its picture. Print "invented for practice" in small letters at the foot of every card but C41. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. None of these cards is shown in teaching.
 
 ## Day 39 pictures P39a and P39b: more than one
 
@@ -23,11 +23,11 @@ Say aloud each time: "This card is made up for practice." Read each card twice w
 
 **Spoken, to the day's six:** "The girl waits. Make it longer: tell where she waits."
 
-## Day 41 card C41: ice
+## Day 41 sheet C41: Rain and Snow, pages 1 and 4
 
-**Read:** "Ice forms on a pond on a cold night. The sun melts the ice by noon."
+**Read again:** page 1 of Rain and Snow (texts/gk-u2-01.md, selection c) for item a; the first part of page 4 for item b.
 
-**Picture:** three pictures in a row, each in a ring: ice on a pond; a pond with a duck; the sun. **Mark:** point to the picture that shows what the page is about. **Spoken, item a:** "What is the page about?" **Item b:** "What changed by noon?"
+**Picture strip:** three pictures in a row, each in a ring: gray clouds; a puddle; a mitten. **Mark:** point to the picture that shows what page 1 is about. **Spoken, item a:** "What is this page mostly about?" **Item b:** "What does the wind push sideways?"
 
 ## Day 42 card C42: dew
 
@@ -39,5 +39,5 @@ Say aloud each time: "This card is made up for practice." Read each card twice w
 
 - Day 39: item a, "frogs"; not yet "two frog" (X). Item b, "peaches"; not yet "two peach" (Y). Mark the two apart.
 - Day 40: "The girl waits under the porch roof." Not yet: "The girl waits." again (AF); "Under the porch roof." alone (AE).
-- Day 41: item a, ice; not yet: the pond or the sun (B). Item b, the ice melted, or it was gone; not yet: "It snowed" (A, not on the card).
+- Day 41: item a, clouds (where rain and snow come from); not yet: tiny drops or the window (B). Item b, the snowflakes; not yet: the rain or the flag (A, not what the words say).
 - Day 42: a statement, a question, an answer and a follow-up, taking turns. Not yet: both talk at once (AR); the pair stops after one question and answer (AS).

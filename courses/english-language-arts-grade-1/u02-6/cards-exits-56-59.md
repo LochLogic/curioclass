@@ -7,25 +7,25 @@ credit: ours
 ---
 # Exit cards, days 56 to 59
 
-Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. Where a line says "heard in the day's rotating six", no card is printed. A child outside the six is "not yet heard", never "missed".
+Print "invented for practice" in small letters at the foot of each card still marked "invented for practice" below; the exit pictures read a named passage and carry no foot line. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. Where a line says "heard in the day's rotating six", no card is printed. A child outside the six is "not yet heard", never "missed".
 
-## Day 56 card (s02-X56, RI.1.3)
+## Day 56 exit pictures (s02-X56v2, RI.1.3)
 
-This card is invented for practice. Picture log card, read aloud: "On the first night the moon was a thin curve. Later it was a half. At last it was round." Show two picture strips: three moons that grow from thin to round; three moons of one round shape, low, then higher, then high. Say: "Point to the strip that shows what the log says." Hear the day's rotating six. 
+Passage: Sky Patterns, page 5 (the moon's shape pattern); day 56 works The Changing Moon. Reread page 5 of Sky Patterns aloud: "Some nights it is round and bright. Some nights it is a thin curve. Then it grows round again." Show two strips: a round moon, a thin curve, a round moon; and one round moon low, then higher, then high. Say: "Point to the strip that shows what the page says." Hear the day's rotating six.
 
-**Right answer:** The strip of three moons that grow from a thin curve to a half to a round moon.
+**Right answer:** The strip of a round moon, a thin curve and a round moon again.
 
-## Day 57 card (s02-X57, RL.1.5)
+## Day 57 exit pictures (s02-X57v2, RL.1.5)
 
-This card is invented for practice. Show two cards and read each aloud: "Some nights, clouds hide the moon." (a cloud over a moon) and "The moon put on a hat and danced with the clouds." (a moon in a hat). Say: "Point to the card that tells a fact for our notebook." Hear the day's rotating six. 
+Passage: Sun Across the Sky, page 1, beside The Weaver Girl and the Cowherd, page 7; day 57 works The Changing Moon, pages 2 and 3, and the tale's page 1. Read two parts aloud, showing each picture. Sun Across the Sky, page 1: "The sun is a star. It is a very hot ball of light." The Chinese tale, page 7: the magpies "made a bridge over the river of stars." Say: "Point to the part that tells a fact for our notebook." Hear the day's rotating six.
 
-**Right answer:** The card "Some nights, clouds hide the moon."
+**Right answer:** The sun page: "The sun is a star."
 
-## Day 58 card (s02-X58, RI.1.3)
+## Day 58 exit pictures (s02-X58v2, RI.1.3)
 
-This card is invented for practice. Read aloud the card: "A bright lamp can hide faint stars. In a dark field we can see more stars." Show two log pictures: a dark field with many star dots, and a lit street with two star dots. Say: "Point to the log picture that goes with the card." Hear the day's rotating six. 
+Passage: Stars in Daylight and Darkness, page 2 (stars are far away); day 58 works page 4 and the barn log. Reread page 2 of the star article aloud: "they are very, very far away. That is why they look like tiny dots of light." Show two log pictures: a star as a tiny dot far above a hill, and a star as a small ball near a roof. Say: "Point to the log picture that goes with the page." Hear the day's rotating six.
 
-**Right answer:** The dark field with many star dots.
+**Right answer:** The tiny dot far above the hill.
 
 ## Day 59 card (s02-X59a, SL.1.5)
 

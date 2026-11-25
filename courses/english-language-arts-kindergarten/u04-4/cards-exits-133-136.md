@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 133 to 136
 
-Say aloud each time: "This card is made up for practice." Read each card twice with its picture. Children do not read the cards; you read the lines aloud. Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. None of these cards is shown in teaching.
+Cards E133 and E134 are made up: say aloud "This card is made up for practice", read each twice with its picture, and print "invented for practice" in small letters at the foot of each. Sheets E135 and E136 go with a page of the unit's own texts, read aloud again; they are not made up, so say nothing about practice for them. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read aloud. None of these is shown in teaching.
 
 ## Day 133 card E133
 
@@ -19,13 +19,13 @@ Say aloud each time: "This card is made up for practice." Read each card twice w
 **Read:** "Wen the baker brings warm bread to the market square. A girl counts the loaves."
 **Ask:** "Ask me one question about this card." Right: any question about a detail, for example where Wen brings the bread. Wrong: "I do not know" with no question (W); a statement and no question (X).
 
-## Day 135 card E135
+## Day 135 sheet E135: page 8 of Planting Together
 
-**Read:** "Author A: Keep the tree because it marks our meeting spot. Author B: Keep the tree because its leaves feed the soil."
-**Cards:** three reason cards: It marks our meeting spot; Its leaves feed the soil; I like leaves.
-**Ask:** "Point to the reason Author B gives." Right: its leaves feed the soil. Wrong: I like leaves (C); the meeting spot, which is Author A's (Y).
+**Read again:** page 8 of Planting Together (texts/gk-u4-02-b.md), the watering.
+**Cards:** three reason cards: The roots grow strong; Trees give birds shelter; I like watering cans.
+**Ask:** "Which card is the reason Planting Together gives?" Right: the roots grow strong. Wrong: I like watering cans (C); Trees give birds shelter, which is the other writer's (Y).
 
-## Day 136 card E136
+## Day 136 sheet E136: page 2 of Wangari and the Tree Planters
 
-**Read:** "Children rake leaves into a pile. An adult carries the pile to the compost bin."
-**Ask:** "How are the raking and the carrying connected?" Right: the raking makes the pile that the adult carries. Wrong: the carrying makes the pile (AE); an event the card does not tell, such as burning the pile (V).
+**Read again:** page 2 of Wangari and the Tree Planters (texts/gk-u4-03.md).
+**Ask:** "How are studying science and becoming a scientist connected?" Right: she studied science, so she became a scientist. Wrong: being a scientist made her go to school (AE); an event the page does not tell, such as planting trees at school (V).

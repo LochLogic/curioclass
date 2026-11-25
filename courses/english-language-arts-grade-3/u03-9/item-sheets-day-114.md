@@ -7,7 +7,26 @@ credit: ours
 ---
 # Item sheets, day 114
 
-Print the four panels on one page, then the items on a second page, for each child. Silent. The directions are read silently in the first three minutes of the first item. Read an item aloud on request, never a panel. Item 1 is written on the sheet from the child's own annotations of a chapter, a scene and a stanza. Item 4 uses the child's two-book map as well as the panels.
+Print the five panels on one page, then the items on a second page, for each child. Silent. The directions are read silently in the first three minutes of the first item. Read an item aloud on request, never a panel. Item 1 and the exit read the P114t panel. Item 4 uses the child's two-book map as well as the panels.
+
+## Panel P114t (two books, transfer)
+
+Book A, chapter 1: In the classroom Ada promises Ben his borrowed book by lunch.
+Book A, chapter 2: At lunch she returns it. Ben lends another. Ada calls returning it a relief; the narrator calls it unimportant.
+
+Book B, chapter 1: In the school garden Ben waits for green tomatoes to ripen.
+Book B, chapter 2: The tomatoes turn red. He shares them with Ada.
+
+Scene 1. Ben: "I saved your turn." Ada: "I will wait."
+Scene 2. Ben: "Your turn, Ada." Ada: "You remembered."
+
+Knots
+
+A loose string trails across my shoe.
+I stop; I know just what to do.
+
+I tie two loops and pull them tight.
+My steps are steady, quick and light.
 
 ## Panel P114v (book 2 companion)
 
@@ -27,7 +46,7 @@ On the playground in spring Ben wants one team game for everyone. Ada asks who w
 
 ## Items
 
-1. From your notes, say how a later chapter, scene and stanza build on earlier ones.
+1. Read Book A, the two scenes and the poem Knots on your panel. Say how a later chapter, scene and stanza build on earlier ones.
 
    ____________________________________________
 

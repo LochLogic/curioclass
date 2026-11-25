@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Days 95 to 99 give each child a task: explain how one bird's beak helps it get food. Children name the topic and key details, locate facts with the contents, heading, label and glossary, keep notes labelled by source, compare two pages, write one connection sentence and check one fact in a second source. Written feedback comes on day 98 and the revision on day 99.
+Days 95 to 99 give each child a task: explain how one bird's beak helps it get food. Children name the topic and key details, locate facts with the contents, heading, label and glossary, keep notes labeled by source, compare two pages, write one connection sentence and check one fact in a second source. Written feedback comes on day 98 and the revision on day 99.
 
 ## How the days run
 

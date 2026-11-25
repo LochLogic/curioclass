@@ -7,15 +7,15 @@ credit: ours
 ---
 # Exit cards, days 35 to 38
 
-Say aloud each time: "This card is made up for practice." Read each card twice with its picture. Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. None of these cards is shown in teaching.
+Sheets C35 and C37 go with a page of the day's own text, read aloud again; they are not made up, so say nothing about practice for them. For the made-up cards P36 and S38, say aloud each time: "This card is made up for practice." Read each card twice with its picture. Print "invented for practice" in small letters at the foot of P36 and S38 only. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line. Children do not read the cards; you read the lines aloud. None of these cards is shown in teaching.
 
-## Day 35 card C35: wind
+## Day 35 sheet C35: page 8 of Weather Changes
 
-**Read:** "Wind can push things. Wind spins a pinwheel. Wind lifts a feather. Wind pushes a sailboat."
+**Read again:** page 8 of Weather Changes (texts/gk-u2-01.md, selection a), the windy mountaintop, with its picture.
 
-**Picture:** a pinwheel, a feather and a sailboat on a river, each with a curl of wind lines. Under it, three pictures in a row, each in a ring: curls of wind lines alone, a puddle and a snowman. **Mark (item a):** point to the picture the card is mostly about.
+**Picture row:** three pictures in a row, each in a ring: a windy mountaintop with a tower; a sunny yard; a rainy playground. **Mark (item a):** point to the picture the page is mostly about.
 
-**Spoken, to the day's six (item a):** "What is this card mostly about?" **Item b:** "What can wind move?" A child may point to the pinwheel, feather or sailboat.
+**Spoken, to the day's six (item a):** "What is this page mostly about?" **Item b:** "What do the weather observers wear when they go outside?"
 
 ## Day 36 picture P36: snow in a yard
 
@@ -23,13 +23,11 @@ Say aloud each time: "This card is made up for practice." Read each card twice w
 
 **Mark:** point to the picture that matches. **Spoken, to the day's six:** "Tell me about this picture in one sentence."
 
-## Day 37 card C37: the cloak
+## Day 37 sheet C37: page 4 of Warmer and Cooler
 
-**Read:** "Mina pulls on a cloak. The cloak keeps the wind off."
+**Read again:** page 4 of Warmer and Cooler (texts/gk-u2-01.md, selection b), Utqiagvik, with its picture. Say the word mittens once more.
 
-**Picture:** a girl pulling a long cloak around her, wind lines at the edges. On the wall: the picture card for the word cloak.
-
-**Spoken, to the day's six:** "Ask me a question about the word cloak." **Mark:** touch the word's picture card; a child with no card raises a hand.
+**Spoken, to the day's six:** "Ask me a question about the word mittens." A child with no words may point to a hand in the picture.
 
 ## Day 38 strip S38: two times
 
@@ -39,7 +37,7 @@ Say aloud each time: "This card is made up for practice." Read each card twice w
 
 ## Key (teacher)
 
-- Day 35: item a, wind; not yet: a feather or a boat (B, a detail named as the topic). Item b, any one of the pinwheel, feather or sailboat; not yet: the sun, or a flag (A, not on the card).
+- Day 35: item a, a very windy mountaintop (wind on Mount Washington); not yet: the flag or the coats (B, a detail named as the topic). Item b, thick coats; not yet: sun hats or boots (A, from another page).
 - Day 36: snow falls on the snowman; the spoken sentence names the thing and what it does ("Snow falls." "Snow falls on the snowman."). Not yet: "Snow" or "snowman" alone (AE); "It is cold and white and nice" (F). A voice too quiet is E, written apart.
-- Day 37: a question that names the word: "What is a cloak?" "What does cloak mean?" Not yet: "Why is Mina cold?" or "Where is Mina going?" (AB, not about a word).
+- Day 37: a question that names the word: "What are mittens?" "What does mittens mean?" Not yet: "Why is it cold there?" or "Where is the town?" (AB, not about a word).
 - Day 38: item a, gray sky then sun, or cooler then warmer, with a detail from each picture. Not yet: "The goat" or "a goat on a hill" (I); one picture only (F). Item b, "Which one?" or "Can you say that again?" Not yet: nothing said, or "OK" (AT).

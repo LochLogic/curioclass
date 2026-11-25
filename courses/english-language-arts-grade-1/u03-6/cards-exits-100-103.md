@@ -7,17 +7,13 @@ credit: ours
 ---
 # Exit cards, days 100 to 103
 
+The reading exits of days 100 (s03-X100av2, the Beak part of Duck at the Pond) and 103 (s03-X103bv2, Feathers for Water in Feathers Protect) are read from g1-u3-01 and have no card here. For day 100, draw two pictures: the duck's flat beak, and the mud alone.
+
 Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading, no printed words except the foot line and any word a card says is printed. Children do not read the cards; you read the lines aloud.
-
-## Day 100 card (s03-X100a, RI.1.2)
-
-This card is invented for practice. Show the card and read it aloud: "A crossbill's beak helps it get food. Its beak tips cross over each other. The crossed tips open pine cones. So the beak helps the crossbill eat the seeds inside." Show two pictures: the crossbill's beak, a pine cone alone. Say: "Which picture is the whole paragraph about?" Hear the day's rotating six.
-
-**Right answer:** The crossbill's beak.
 
 ## Day 100 card (s03-X100b, W.1.2)
 
-This card is invented for practice. The same card stays in view. Say: "Which sentence closes the paragraph? Hold up one to four fingers." Hear the day's rotating six.
+This card is invented for practice. Show the card and read it aloud: "A crossbill's beak helps it get food. Its beak tips cross over each other. The crossed tips open pine cones. So the beak helps the crossbill eat the seeds inside." Say: "Which sentence closes the paragraph? Hold up one to four fingers." Hear the day's rotating six.
 
 **Right answer:** Four fingers: the last sentence closes it.
 
@@ -50,9 +46,3 @@ This card is invented for practice. The same card stays in view. Say: "Say a clo
 This card is invented for practice. Show the card and read it aloud: "Contents: Toes, 2. Heading: Swimming Toes. Label: toes. Glossary: lobe, a wide, flat part. A coot's toes have wide lobes. The lobes push water when it swims." Show two pictures: the coot's toes, the coot's beak. Say: "Which picture matches a fact you can check on this page?" Hear the day's rotating six.
 
 **Right answer:** The coot's toes.
-
-## Day 103 card (s03-X103b, RI.1.5)
-
-This card is invented for practice. The same card stays in view. Say: "Show me where you found it." Hear the day's rotating six.
-
-**Right answer:** Points to the heading Swimming Toes, the label toes or the sentence.
