@@ -1,0 +1,714 @@
+  FAIL section 1.1 (social-studies-grade-1-u01-1) is not in data/units.csv
+  FAIL section 1.2 (social-studies-grade-1-u01-2) is not in data/units.csv
+  FAIL section 1.3 (social-studies-grade-1-u01-3) is not in data/units.csv
+  FAIL section 2.1 (social-studies-grade-1-u02-1) is not in data/units.csv
+  FAIL section 2.2 (social-studies-grade-1-u02-2) is not in data/units.csv
+  FAIL section 3.1 (social-studies-grade-1-u03-1) is not in data/units.csv
+  FAIL section 3.2 (social-studies-grade-1-u03-2) is not in data/units.csv
+  FAIL section 3.3 (social-studies-grade-1-u03-3) is not in data/units.csv
+  FAIL section 4.1 (social-studies-grade-1-u04-1) is not in data/units.csv
+  FAIL section 4.2 (social-studies-grade-1-u04-2) is not in data/units.csv
+  FAIL section 4.3 (social-studies-grade-1-u04-3) is not in data/units.csv
+  FAIL section 5.1 (social-studies-grade-1-u05-1) is not in data/units.csv
+  FAIL section 5.2 (social-studies-grade-1-u05-2) is not in data/units.csv
+  FAIL section 5.3 (social-studies-grade-1-u05-3) is not in data/units.csv
+  FAIL section 6.1 (social-studies-grade-1-u06-1) is not in data/units.csv
+  FAIL section 6.2 (social-studies-grade-1-u06-2) is not in data/units.csv
+  FAIL section 6.3 (social-studies-grade-1-u06-3) is not in data/units.csv
+  FAIL section 6.4 (social-studies-grade-1-u06-4) is not in data/units.csv
+  FAIL section 7.1 (social-studies-grade-1-u07-1) is not in data/units.csv
+  FAIL section 7.2 (social-studies-grade-1-u07-2) is not in data/units.csv
+  FAIL section 7.3 (social-studies-grade-1-u07-3) is not in data/units.csv
+  FAIL section 7.4 (social-studies-grade-1-u07-4) is not in data/units.csv
+  FAIL section 8.1 (social-studies-grade-1-u08-1) is not in data/units.csv
+  FAIL section 8.2 (social-studies-grade-1-u08-2) is not in data/units.csv
+  FAIL section 8.3 (social-studies-grade-1-u08-3) is not in data/units.csv
+  FAIL section 8.4 (social-studies-grade-1-u08-4) is not in data/units.csv
+courses/social-studies-grade-1/u01-1/d001.md: teacher 448 words, student 16 words (16 frame, 0 questions), 30 min, 1 side(s), at home 164 words, 30 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u01-1/d001.md: the section plan's day 1 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u01-1/d002.md: teacher 440 words, student 9 words (9 frame, 0 questions), 30 min, 1 side(s), at home 170 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u01-2/d003.md: teacher 448 words, student 17 words (17 frame, 0 questions), 30 min, 1 side(s), at home 146 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u01-2/d004.md: teacher 450 words, student 15 words (15 frame, 0 questions), 30 min, 1 side(s), at home 156 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u01-2/d005.md: teacher 447 words, student 15 words (15 frame, 0 questions), 30 min, 1 side(s), at home 117 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u01-3/d006.md: teacher 450 words, student 19 words (19 frame, 0 questions), 30 min, 1 side(s), at home 128 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u01-3/d007.md: teacher 442 words, student 14 words (14 frame, 0 questions), 30 min, 1 side(s), at home 151 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u01-3/d008.md: teacher 446 words, student 13 words (13 frame, 0 questions), 30 min, 1 side(s), at home 137 words, 30 min, 0 failure(s)
+  FAIL copied-exit: courses/social-studies-grade-1/u01-3/d008.md: exit s01-X8b repeats the day's teaching parts ("coin counter's duty help")
+courses/social-studies-grade-1/u01-3/d009.md: teacher 475 words, student 36 words (36 frame, 0 questions), 30 min, 2 side(s), at home 145 words, 35 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u01-3/d009.md: end items can show error(s) B, C, D, F, G, but the respond part names no group for them
+courses/social-studies-grade-1/u01-3/d010.md: teacher 450 words, student 14 words (14 frame, 0 questions), 30 min, 1 side(s), at home 132 words, 30 min, 0 failure(s)
+  FAIL copied-exit: courses/social-studies-grade-1/u01-3/d010.md: exit s01-X10 repeats the day's teaching parts ("bird watching club work")
+courses/social-studies-grade-1/u02-1/d011.md: teacher 449 words, student 21 words (21 frame, 0 questions), 30 min, 1 side(s), at home 128 words, 30 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u02-1/d011.md: the section plan's day 11 block names 27, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u02-1/d012.md: teacher 426 words, student 36 words (36 frame, 0 questions), 30 min, 1 side(s), at home 101 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u02-1/d013.md: teacher 434 words, student 24 words (24 frame, 0 questions), 30 min, 1 side(s), at home 93 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u02-2/d014.md: teacher 436 words, student 26 words (26 frame, 0 questions), 30 min, 1 side(s), at home 120 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u02-2/d015.md: teacher 448 words, student 29 words (29 frame, 0 questions), 30 min, 1 side(s), at home 128 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u02-2/d016.md: teacher 446 words, student 21 words (21 frame, 0 questions), 30 min, 1 side(s), at home 137 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u02-2/d017.md: teacher 394 words, student 24 words (24 frame, 0 questions), 30 min, 1 side(s), at home 114 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u02-2/d018.md: teacher 481 words, student 17 words (17 frame, 0 questions), 30 min, 1 side(s), at home 105 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u02-2/d018.md: names "Lee" from reserved source 92A (day 92) before its day; keep it out of teaching
+  NOTE courses/social-studies-grade-1/u02-2/d018.md: end items can show error(s) B, F, G, H, I, J, L, but the respond part names no group for them
+courses/social-studies-grade-1/u02-2/d019.md: teacher 448 words, student 21 words (21 frame, 0 questions), 30 min, 1 side(s), at home 115 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u03-1/d020.md: teacher 446 words, student 31 words (31 frame, 0 questions), 30 min, 1 side(s), at home 138 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u03-1/d021.md: teacher 433 words, student 25 words (25 frame, 0 questions), 30 min, 1 side(s), at home 124 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u03-2/d022.md: teacher 423 words, student 20 words (20 frame, 0 questions), 30 min, 1 side(s), at home 124 words, 25 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u03-2/d022.md: the section plan's day 22 block names 1861, 1865, 1962, 1985, 1995, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u03-2/d023.md: teacher 429 words, student 22 words (22 frame, 0 questions), 30 min, 1 side(s), at home 132 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u03-2/d024.md: teacher 439 words, student 18 words (18 frame, 0 questions), 30 min, 1 side(s), at home 117 words, 25 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u03-2/d024.md: the section plan's day 24 block names 28, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u03-2/d025.md: teacher 445 words, student 21 words (21 frame, 0 questions), 30 min, 1 side(s), at home 122 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u03-2/d026.md: teacher 449 words, student 17 words (17 frame, 0 questions), 30 min, 1 side(s), at home 105 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u03-3/d027.md: teacher 450 words, student 15 words (15 frame, 0 questions), 30 min, 1 side(s), at home 144 words, 25 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u03-3/d027.md: the section plan's day 27 block names 3.2, 24, 32, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u03-3/d028.md: teacher 446 words, student 16 words (16 frame, 0 questions), 30 min, 1 side(s), at home 152 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u03-3/d029.md: teacher 444 words, student 25 words (25 frame, 0 questions), 30 min, 1 side(s), at home 151 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u03-3/d030.md: teacher 499 words, student 34 words (34 frame, 0 questions), 30 min, 2 side(s), at home 122 words, 30 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u03-3/d030.md: end items can show error(s) A, B, C, D, E, F, G, H, I, M, Q, but the respond part names no group for them
+  NOTE courses/social-studies-grade-1/u03-3/d030.md: the section plan's day 30 block names 150, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u03-3/d031.md: teacher 448 words, student 28 words (28 frame, 0 questions), 30 min, 1 side(s), at home 168 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u04-1/d032.md: teacher 448 words, student 18 words (18 frame, 0 questions), 30 min, 1 side(s), at home 134 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u04-1/d033.md: teacher 448 words, student 19 words (19 frame, 0 questions), 30 min, 1 side(s), at home 136 words, 25 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u04-1/d033.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u04-1/d034.md: teacher 450 words, student 18 words (18 frame, 0 questions), 30 min, 1 side(s), at home 132 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u04-2/d035.md: teacher 449 words, student 13 words (13 frame, 0 questions), 30 min, 1 side(s), at home 109 words, 25 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u04-2/d035.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+  NOTE courses/social-studies-grade-1/u04-2/d035.md: the section plan's day 35 block names 4.1, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u04-2/d036.md: teacher 450 words, student 20 words (20 frame, 0 questions), 30 min, 1 side(s), at home 107 words, 25 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u04-2/d036.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u04-2/d037.md: teacher 449 words, student 16 words (16 frame, 0 questions), 30 min, 1 side(s), at home 93 words, 25 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u04-2/d037.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u04-3/d038.md: teacher 449 words, student 15 words (15 frame, 0 questions), 30 min, 1 side(s), at home 118 words, 25 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u04-3/d038.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u04-3/d039.md: teacher 445 words, student 16 words (16 frame, 0 questions), 30 min, 1 side(s), at home 94 words, 25 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u04-3/d039.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u04-3/d040.md: teacher 418 words, student 31 words (31 frame, 0 questions), 30 min, 2 side(s), at home 128 words, 35 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u04-3/d040.md: end items can show error(s) A, B, C, D, E, F, H, I, J, K, L, M, N, O, Q, R, S, T, but the respond part names no group for them
+courses/social-studies-grade-1/u04-3/d041.md: teacher 446 words, student 15 words (15 frame, 0 questions), 30 min, 1 side(s), at home 107 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u04-3/d042.md: teacher 420 words, student 24 words (24 frame, 0 questions), 30 min, 2 side(s), at home 165 words, 35 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u04-3/d042.md: end items can show error(s) A, B, C, D, E, F, G, H, I, J, K, L, but the respond part names no group for them
+courses/social-studies-grade-1/u04-3/d043.md: teacher 431 words, student 14 words (14 frame, 0 questions), 30 min, 1 side(s), at home 104 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u05-1/d044.md: teacher 446 words, student 23 words (23 frame, 0 questions), 30 min, 1 side(s), at home 112 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u05-1/d045.md: teacher 444 words, student 19 words (19 frame, 0 questions), 30 min, 1 side(s), at home 103 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u05-1/d046.md: teacher 432 words, student 16 words (16 frame, 0 questions), 30 min, 1 side(s), at home 101 words, 25 min, 0 failure(s)
+  FAIL copied-exit: courses/social-studies-grade-1/u05-1/d046.md: exit s05-X46 repeats the day's teaching parts ("color land area water")
+courses/social-studies-grade-1/u05-1/d047.md: teacher 441 words, student 16 words (16 frame, 0 questions), 30 min, 1 side(s), at home 111 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u05-2/d048.md: teacher 440 words, student 18 words (18 frame, 0 questions), 30 min, 1 side(s), at home 112 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u05-2/d049.md: teacher 441 words, student 26 words (26 frame, 0 questions), 30 min, 1 side(s), at home 132 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u05-2/d050.md: teacher 450 words, student 21 words (21 frame, 0 questions), 30 min, 1 side(s), at home 102 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u05-2/d051.md: teacher 449 words, student 9 words (9 frame, 0 questions), 30 min, 1 side(s), at home 97 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u05-3/d052.md: teacher 450 words, student 21 words (21 frame, 0 questions), 30 min, 1 side(s), at home 122 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u05-3/d053.md: teacher 448 words, student 33 words (33 frame, 0 questions), 30 min, 1 side(s), at home 96 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u05-3/d054.md: teacher 487 words, student 17 words (17 frame, 0 questions), 30 min, 1 side(s), at home 96 words, 35 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u05-3/d054.md: end items can show error(s) E, F, I, K, L, P, Q, R, U, but the respond part names no group for them
+courses/social-studies-grade-1/u05-3/d055.md: teacher 449 words, student 18 words (18 frame, 0 questions), 30 min, 1 side(s), at home 88 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u06-1/d056.md: teacher 427 words, student 7 words (7 frame, 0 questions), 30 min, 1 side(s), at home 80 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u06-1/d057.md: teacher 446 words, student 12 words (12 frame, 0 questions), 30 min, 1 side(s), at home 82 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u06-1/d058.md: teacher 441 words, student 8 words (8 frame, 0 questions), 30 min, 1 side(s), at home 71 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u06-2/d059.md: teacher 449 words, student 9 words (9 frame, 0 questions), 30 min, 1 side(s), at home 82 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u06-2/d060.md: teacher 449 words, student 8 words (8 frame, 0 questions), 30 min, 1 side(s), at home 82 words, 30 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u06-2/d060.md: the section plan's day 60 block names 6.1, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u06-2/d061.md: teacher 444 words, student 10 words (10 frame, 0 questions), 30 min, 1 side(s), at home 82 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u06-3/d062.md: teacher 427 words, student 11 words (11 frame, 0 questions), 30 min, 1 side(s), at home 88 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u06-3/d063.md: teacher 435 words, student 13 words (13 frame, 0 questions), 30 min, 1 side(s), at home 87 words, 30 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u06-3/d063.md: the section plan's day 63 block names 6.1, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u06-3/d064.md: teacher 449 words, student 7 words (7 frame, 0 questions), 30 min, 1 side(s), at home 98 words, 30 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u06-3/d064.md: the section plan's day 64 block names 6.2, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u06-3/d065.md: teacher 435 words, student 8 words (8 frame, 0 questions), 30 min, 1 side(s), at home 96 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u06-3/d065.md: names "Lee" from reserved source 92A (day 92) before its day; keep it out of teaching
+courses/social-studies-grade-1/u06-4/d066.md: teacher 389 words, student 8 words (8 frame, 0 questions), 30 min, 1 side(s), at home 94 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u06-4/d067.md: teacher 492 words, student 12 words (12 frame, 0 questions), 30 min, 1 side(s), at home 101 words, 35 min, 0 failure(s)
+courses/social-studies-grade-1/u06-4/d068.md: teacher 428 words, student 6 words (6 frame, 0 questions), 30 min, 1 side(s), at home 74 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u07-1/d069.md: teacher 443 words, student 13 words (13 frame, 0 questions), 30 min, 1 side(s), at home 89 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u07-1/d069.md: names "Uma" from reserved source 92A (day 92) before its day; keep it out of teaching
+  FAIL copied-exit: courses/social-studies-grade-1/u07-1/d069.md: exit s07-X69 repeats the day's teaching parts ("followed steps law sets")
+  FAIL copied-exit: courses/social-studies-grade-1/u07-1/d069.md: exit s07-X69b repeats the day's teaching parts ("goes public school citizen")
+courses/social-studies-grade-1/u07-1/d070.md: teacher 447 words, student 10 words (10 frame, 0 questions), 30 min, 1 side(s), at home 75 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u07-1/d070.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u07-1/d071.md: teacher 443 words, student 11 words (11 frame, 0 questions), 30 min, 1 side(s), at home 85 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u07-1/d071.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u07-2/d072.md: teacher 441 words, student 8 words (8 frame, 0 questions), 30 min, 1 side(s), at home 72 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u07-2/d073.md: teacher 447 words, student 10 words (10 frame, 0 questions), 30 min, 1 side(s), at home 75 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u07-2/d073.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u07-2/d074.md: teacher 445 words, student 10 words (10 frame, 0 questions), 30 min, 1 side(s), at home 78 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u07-2/d074.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u07-3/d075.md: teacher 438 words, student 8 words (8 frame, 0 questions), 30 min, 1 side(s), at home 98 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u07-3/d075.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u07-3/d076.md: teacher 449 words, student 14 words (14 frame, 0 questions), 30 min, 1 side(s), at home 98 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u07-3/d076.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+  NOTE courses/social-studies-grade-1/u07-3/d076.md: the section plan's day 76 block names 80, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u07-3/d077.md: teacher 434 words, student 10 words (10 frame, 0 questions), 30 min, 1 side(s), at home 93 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u07-3/d077.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u07-4/d078.md: teacher 434 words, student 9 words (9 frame, 0 questions), 30 min, 1 side(s), at home 89 words, 30 min, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u07-4/d078.md: the warm-up names no [[id]]; its questions must be rows (rule 1)
+courses/social-studies-grade-1/u07-4/d079.md: teacher 405 words, student 9 words (9 frame, 0 questions), 30 min, 1 side(s), at home 91 words, 30 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u07-4/d079.md: end items can show error(s) L, but the respond part names no group for them
+courses/social-studies-grade-1/u07-4/d080.md: teacher 420 words, student 6 words (6 frame, 0 questions), 30 min, 1 side(s), at home 78 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u08-1/d081.md: teacher 446 words, student 13 words (13 frame, 0 questions), 30 min, 1 side(s), at home 80 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u08-1/d082.md: teacher 438 words, student 13 words (13 frame, 0 questions), 30 min, 1 side(s), at home 81 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u08-1/d083.md: teacher 428 words, student 16 words (16 frame, 0 questions), 30 min, 1 side(s), at home 69 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u08-1/d084.md: teacher 443 words, student 9 words (9 frame, 0 questions), 30 min, 1 side(s), at home 69 words, 25 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-1/d084.md: the section plan's day 84 block names 14, 19, 20, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-1/u08-2/d085.md: teacher 413 words, student 9 words (9 frame, 0 questions), 30 min, 1 side(s), at home 82 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u08-2/d086.md: teacher 439 words, student 12 words (12 frame, 0 questions), 30 min, 1 side(s), at home 74 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u08-2/d087.md: teacher 442 words, student 12 words (12 frame, 0 questions), 30 min, 1 side(s), at home 73 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u08-3/d088.md: teacher 442 words, student 11 words (11 frame, 0 questions), 30 min, 1 side(s), at home 76 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u08-3/d089.md: teacher 450 words, student 10 words (10 frame, 0 questions), 30 min, 1 side(s), at home 81 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u08-3/d090.md: teacher 424 words, student 10 words (10 frame, 0 questions), 30 min, 1 side(s), at home 68 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u08-4/d091.md: teacher 440 words, student 10 words (10 frame, 0 questions), 30 min, 1 side(s), at home 83 words, 25 min, 0 failure(s)
+courses/social-studies-grade-1/u08-4/d092.md: teacher 444 words, student 19 words (19 frame, 0 questions), 30 min, 2 side(s), at home 102 words, 30 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d092.md: end items can show error(s) B, C, D, E, F, G, H, J, K, L, M, N, O, P, R, but the respond part names no group for them
+courses/social-studies-grade-1/u08-4/d093.md: teacher 413 words, student 7 words (7 frame, 0 questions), 30 min, 1 side(s), at home 79 words, 30 min, 0 failure(s)
+courses/social-studies-grade-1/u08-4/d094.md: teacher 407 words, student 50 words (50 frame, 0 questions), 30 min, 2 side(s), at home 159 words, 35 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d094.md: end items can show error(s) M, N, O, P, Q, R, S, but the respond part names no group for them
+courses/social-studies-grade-1/u08-4/d095.md: teacher 405 words, student 39 words (39 frame, 0 questions), 30 min, 2 side(s), at home 167 words, 35 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d095.md: end items can show error(s) T, U, V, W, Y, Z, but the respond part names no group for them
+courses/social-studies-grade-1/u08-4/d096.md: teacher 447 words, student 7 words (7 frame, 0 questions), 30 min, 1 side(s), at home 98 words, 25 min, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/cards-block-corner.md: story, 318 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/cards-exits-1-2.md: story, 243 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/cards-fact-word.md: story, 221 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/cards-mural-questions.md: story, 262 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/cards-question-board.md: story, 244 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/cards-subjects.md: story, 292 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/family.md: family, 246 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/key-exits-1-2.md: story, 117 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/opener.md: opener, 621 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/pictures-two-mural-panels.md: story, 383 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/readiness.md: check, 52 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-1/record.md: record, 186 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-2/cards-belonging-sort.md: story, 216 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-2/cards-exits-3-5.md: story, 286 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-2/cards-families.md: story, 376 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-2/cards-groups.md: story, 341 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-2/cards-rules-purpose.md: story, 345 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-2/key-exits-3-5.md: story, 80 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-2/opener.md: opener, 513 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-2/strips-class-rules.md: story, 315 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/cards-day10-fresh-tries.md: story, 333 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/cards-day9-check.md: story, 526 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/cards-exits-6-10.md: story, 383 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/cards-roles.md: story, 174 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/cards-tidy-up-roles.md: story, 196 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/cards-who-does-what.md: story, 183 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/chart-tidy-up.md: story, 171 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/key-exits-6-10.md: story, 122 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/opener.md: opener, 511 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/pictures-bean-row.md: story, 350 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/pictures-fire-library.md: story, 289 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/sheet-rule-duty-card.md: story, 161 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u01-3/summary-trashbusters.md: story, 219 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-1/cards-actions-strip.md: story, 301 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-1/cards-exits-11-13.md: story, 331 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-1/cards-room4.md: story, 356 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-1/family.md: family, 254 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-1/opener.md: opener, 789 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-1/pages-month-and-year-strip.md: story, 387 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-1/photo-johnston-dog.md: story, 337 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-1/record.md: record, 281 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/cards-day18-packet.md: story, 534 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/cards-day19-fresh-tries.md: story, 358 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/cards-exits-14-19.md: story, 518 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/cards-kinds.md: story, 459 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/cards-questions-sources.md: story, 331 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/cards-repairs.md: story, 423 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/opener.md: opener, 838 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/sheet-source-claim.md: story, 177 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/sheet-then-now-chart.md: story, 298 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/sheet-washing-pair.md: story, 139 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u02-2/summary-webster-bus.md: story, 148 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-1/cards-exits-20-21.md: story, 279 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-1/cards-leaders-and-actions.md: story, 541 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-1/cards-pair-records.md: story, 282 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-1/cards-repairs.md: story, 417 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-1/family.md: family, 300 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-1/opener.md: opener, 560 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-1/pictures-two-leaders.md: story, 351 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-1/record-muddy-path.md: story, 343 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-1/record.md: record, 313 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-1/story-play-leader.md: story, 334 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/cards-exits-22-26.md: story, 426 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/cards-quality-and-strip.md: story, 266 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/cards-questions-leaders.md: story, 211 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/cards-repairs.md: story, 507 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/cards-said-did-not-say.md: story, 218 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/cards-strip-timeline.md: story, 200 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/chart-action-chart.md: story, 375 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/opener.md: opener, 534 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/page-proclamation-paragraph.md: story, 230 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/readaloud-huerta.md: story, 449 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/readaloud-lincoln.md: story, 394 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/readaloud-mankiller.md: story, 393 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-2/readaloud-tubman.md: story, 402 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-3/cards-exit-31.md: story, 200 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-3/cards-exits-27-29.md: story, 332 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-3/cards-fresh-tries.md: story, 380 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-3/cards-pair-questions.md: story, 182 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-3/cards-repairs.md: story, 355 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-3/frame-claim-reason-closing.md: story, 282 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-3/opener.md: opener, 443 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-3/packet-day30.md: story, 587 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u03-3/story-lost-coats.md: story, 310 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/cards-exits-32-34.md: story, 329 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/cards-repairs.md: story, 392 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/chart-our-decision-record.md: blank, 65 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/family.md: family, 296 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/opener.md: opener, 570 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/record.md: record, 341 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/sheet-ballot-and-tally.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/sheet-draw-a-fair-rule.md: blank, 22 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/story-day32-cases.md: story, 549 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/story-garden-election.md: story, 376 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-1/story-kite-club.md: story, 397 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-2/cards-exits-35-37.md: story, 308 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-2/cards-offices-and-helpers.md: story, 407 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-2/cards-repairs.md: story, 333 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-2/key-cards-offices-and-helpers.md: story, 61 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-2/opener.md: opener, 516 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-2/readaloud-navajo-nation.md: story, 194 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-2/sheet-draw-everyone-uses.md: blank, 21 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-2/story-term-strip-and-citizens.md: story, 313 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-2/story-town-card-and-jar.md: story, 308 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-3/cards-day43-repairs-and-fresh-tries.md: story, 396 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-3/cards-exits-38-41.md: story, 344 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-3/cards-fresh-tries.md: story, 427 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-3/cards-repairs.md: story, 289 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-3/cards-situations-day39.md: story, 246 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-3/opener.md: opener, 457 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-3/packet-day40.md: story, 483 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-3/packet-day42.md: story, 364 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-3/sheet-claim-frame-unit4.md: blank, 42 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u04-3/story-term-records.md: story, 365 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/cards-exits-44-47.md: story, 464 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/cards-repairs.md: story, 563 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/family.md: family, 292 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/key-map-cedar-park-and-signs.md: story, 153 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/key-map-harbor.md: story, 152 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/key-maps-three-with-keys.md: story, 141 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/key-pictures-globes-and-meadow-valley.md: story, 166 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/key-pictures-tray-and-room.md: story, 182 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/key-sheet-mini-map.md: story, 97 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/map-cedar-park-and-signs.md: story, 328 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/map-harbor.md: story, 287 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/maps-three-with-keys.md: story, 360 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/opener.md: opener, 586 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/pictures-globes-and-meadow-valley.md: story, 310 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/pictures-tray-and-room.md: story, 355 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/record.md: record, 375 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-1/sheet-mini-map.md: blank, 133 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/cards-cattail-crossing.md: story, 223 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/cards-exits-48-51.md: story, 480 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/cards-repairs.md: story, 656 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/key-cards-cattail-crossing.md: story, 131 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/key-map-harbor-lenape-layer.md: story, 119 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/key-map-heron-valley.md: story, 122 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/key-maps-globes-and-nested-cards.md: story, 240 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/key-maps-locator-and-state-cards.md: story, 200 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/key-sheet-label-drawing.md: story, 97 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/map-harbor-lenape-layer.md: story, 115 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/map-heron-valley.md: story, 270 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/maps-globes-and-nested-cards.md: story, 228 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/maps-locator-and-state-cards.md: story, 317 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/opener.md: opener, 720 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/readaloud-seaport-and-lenape.md: story, 497 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-2/sheet-label-drawing.md: blank, 91 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/cards-exits-52-55.md: story, 416 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/cards-repairs-and-fresh-tries.md: story, 620 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/key-map-another-place-and-feedback-cards.md: story, 112 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/key-packet-day54.md: story, 482 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/key-pictures-park-set-and-map-page.md: story, 117 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/key-sheet-claim-frame-unit5.md: story, 160 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/map-another-place-and-feedback-cards.md: story, 262 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/opener.md: opener, 647 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/packet-day54.md: story, 934 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/pictures-park-set-and-map-page.md: story, 326 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u05-3/sheet-claim-frame-unit5.md: blank, 106 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/cards-exits-56-58.md: story, 400 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/cards-repairs-section-6-1.md: story, 410 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/chart-three-places.md: blank, 115 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/chart-two-places.md: blank, 143 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/family.md: family, 302 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/key-chart-three-places.md: story, 85 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/key-chart-two-places.md: story, 59 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/key-map-three-cities.md: story, 78 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/map-three-cities.md: story, 196 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/opener.md: opener, 633 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/pictures-street-views-and-cards.md: story, 744 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-1/record.md: record, 321 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/cards-exits-59-61.md: story, 427 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/cards-repairs-section-6-2.md: story, 377 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/cards-rowan-town-and-tansy-town.md: story, 251 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/key-cards-rowan-town-and-tansy-town.md: story, 60 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/key-sheet-claim-frame-unit6.md: story, 68 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/key-sheet-strip-our-town.md: story, 71 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/opener.md: opener, 666 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/pictures-hazel-town-and-timeline.md: story, 406 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/readaloud-cherokee-nation.md: story, 330 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/sheet-claim-frame-unit6.md: blank, 100 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/sheet-strip-our-town.md: blank, 105 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-2/strip-holly-run-and-sort-cards.md: story, 248 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-3/cards-exits-62-65.md: story, 468 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-3/cards-motto-and-pledge-day-64.md: story, 358 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-3/cards-repairs-section-6-3.md: story, 329 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-3/cards-songs-day-65.md: story, 326 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-3/cards-symbols-day-62.md: story, 429 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-3/opener.md: opener, 759 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-3/pictures-statue-of-liberty-day-63.md: story, 400 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-4/cards-day-66-sources.md: story, 184 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-4/cards-exits-66-68.md: story, 259 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-4/cards-repairs-and-fresh-tries-day-68.md: story, 558 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-4/key-cards-repairs-and-fresh-tries-day-68.md: story, 197 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-4/key-packet-day-67.md: story, 392 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-4/opener.md: opener, 505 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u06-4/packet-day-67.md: story, 980 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-1/cards-exits-69-71.md: story, 282 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-1/cards-library-and-three-mats-day-69.md: story, 427 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-1/cards-music-note-and-statements-day-71.md: story, 221 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-1/cards-notice-and-guess-day-70.md: story, 281 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-1/cards-repairs-section-7-1.md: story, 337 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-1/family.md: family, 265 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-1/opener.md: opener, 794 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-1/record.md: record, 342 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-1/sheet-baseline-record-day-70.md: blank, 63 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-1/sheet-helper-web-day-71.md: blank, 68 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-2/cards-exits-72-74.md: story, 325 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-2/cards-idea-filter-and-slip-day-73.md: blank, 176 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-2/cards-pim-and-dov-day-72.md: story, 194 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-2/cards-repairs-section-7-2.md: story, 336 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-2/cards-role-and-possible-view-day-72.md: blank, 87 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-2/cards-steps-and-safe-check-day-74.md: blank, 93 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-2/opener.md: opener, 622 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-2/sheet-action-log-day-74.md: blank, 29 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-2/sheet-two-views-columns-day-72.md: blank, 51 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-3/cards-exits-75-77.md: story, 320 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-3/cards-repairs-section-7-3.md: story, 384 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-3/cards-source-and-judgment-sheet-day-76.md: blank, 175 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-3/opener.md: opener, 798 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-3/readaloud-enoch-pratt-day-76.md: story, 185 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-3/story-mo-and-quality-cards-day-75.md: story, 294 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-3/story-stones-and-smooth-path-day-76.md: story, 202 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-3/strip-near-region-far-day-77.md: blank, 374 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/cards-exits-78-80.md: story, 261 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/cards-fresh-tries-day-80.md: story, 277 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/cards-moves-day-80.md: story, 192 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/key-exits-78-80.md: story, 63 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/key-sheet-claim-frame-day-78.md: story, 75 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/opener.md: opener, 687 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/packet-day-79.md: story, 581 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/sheet-claim-frame-day-78.md: blank, 76 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/sheet-look-back-columns-day-78.md: blank, 56 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/sheet-picture-checklist-day-78.md: blank, 42 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u07-4/story-water-bottle-model-look-back-day-78.md: story, 135 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/cards-bread-and-jam-chains-day-82.md: story, 319 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/cards-class-store-flyers-day-84.md: story, 250 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/cards-exits-81-84.md: story, 363 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/cards-goods-and-services-day-83.md: story, 249 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/cards-pilar-noor-hal-day-81.md: story, 487 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/cards-repairs-section-8-1.md: story, 450 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/family.md: family, 269 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/opener.md: opener, 599 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/record.md: record, 356 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/sheet-my-earning-page-day-81.md: blank, 73 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-1/sheet-my-flyer-page-day-84.md: blank, 59 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-2/cards-ama-and-lena-day-85.md: story, 241 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-2/cards-bookshops-day-87.md: story, 274 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-2/cards-exits-85-87.md: story, 294 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-2/cards-ranked-sets-day-86.md: story, 242 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-2/cards-repairs-section-8-2.md: story, 317 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-2/opener.md: opener, 392 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-2/sheet-my-choice-mat-day-86.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-2/sheet-my-two-shops-page-day-87.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-3/cards-corner-bank-day-89.md: story, 289 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-3/cards-exits-88-90.md: story, 232 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-3/cards-repairs-section-8-3.md: story, 293 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-3/cards-saving-reasons-day-88.md: story, 312 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-3/extract-savings-page-day-89.md: extract, 135 words, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u08-3/extract-savings-page-day-89.md: piece "extract" is not one of opener, record, check, facts, family, sheet, blank, story
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-3/opener.md: opener, 349 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-3/sheet-my-bank-page-day-89.md: blank, 47 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-3/sheet-my-saving-page-day-88.md: blank, 46 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-3/sheet-three-jars-day-90.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-4/cards-day96-repairs-and-fresh-tries.md: story, 423 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-4/cards-exit-day-91.md: story, 120 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-4/cards-fresh-tries-day-93.md: story, 374 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-4/cards-mira-and-teo-day-91.md: story, 224 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-4/cards-repairs-day-93.md: story, 456 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-4/opener.md: opener, 320 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-4/packet-day-92.md: packet, 414 words, 1 failure(s)
+  FAIL courses/social-studies-grade-1/u08-4/packet-day-92.md: piece "packet" is not one of opener, record, check, facts, family, sheet, blank, story
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-4/packet-day94.md: story, 462 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-4/packet-day95.md: story, 301 words, 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+courses/social-studies-grade-1/u08-4/sheet-claim-reason-closing-day-91.md: blank, 44 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-1/u08-4/d096.md: the exit ticket sc2-X96b goes back, but day 97 is not written yet; its writer must hand back sc2-X96b
+lesson_course: 24 failure(s) in 96 day(s)

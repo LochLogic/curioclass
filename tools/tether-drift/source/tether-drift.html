@@ -1,0 +1,3128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tether Drift — Curio Class Curiosities</title>
+<style>
+  :root {
+    --night-deep: #090d1b;
+    --brass-top: #e2c583;
+    --brass-mid: #c39c50;
+    --brass-bot: #9d7732;
+    --brass-ink: #261c0a;
+    --glass-bg: rgba(14, 18, 36, 0.66);
+    --glass-border: rgba(255, 224, 160, 0.22);
+    --cream: #f7eedc;
+    --gold: #ffd470;
+    --lime: #d8ff7a;
+    --amber: #ff9c42;
+    --crimson: #ff5252;
+    --mono: ui-monospace, 'Cascadia Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--night-deep);
+    color: var(--cream);
+    font-family: var(--sans);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+  }
+
+  #stage {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: crosshair;
+  }
+
+  /* Subtle Curio Class Engraved Brass Maker's Plate */
+  .makers-plate {
+    position: fixed;
+    top: 12px;
+    left: 14px;
+    z-index: 20;
+    padding: 5px 12px;
+    background: linear-gradient(160deg, var(--brass-top) 0%, var(--brass-mid) 52%, var(--brass-bot) 100%);
+    border: 1px solid #6e5220;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(255, 248, 224, 0.55), 0 3px 10px rgba(0, 0, 0, 0.42);
+    color: var(--brass-ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: filter 0.15s, transform 0.12s;
+  }
+  .makers-plate:hover { filter: brightness(1.07); transform: translateY(-1px); }
+  .makers-plate:active { transform: translateY(0); }
+
+  body.screen-splash .makers-plate,
+  body.screen-splash .level-pill,
+  body.screen-splash .controls-bar,
+  body.screen-splash .reel-dock,
+  body.screen-splash .sandbox-bar,
+  body.screen-picker .makers-plate,
+  body.screen-picker .level-pill,
+  body.screen-picker .controls-bar,
+  body.screen-picker .reel-dock,
+  body.screen-picker .sandbox-bar {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+  }
+  .level-pill, .controls-bar, .reel-dock, .sandbox-bar {
+    transition: opacity 0.28s ease, transform 0.28s ease;
+  }
+  .makers-plate .rivet {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff0c2, #6f5220);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.35);
+  }
+  .makers-plate .sep { opacity: 0.45; }
+
+  /* Top-Center Level & Star Pill */
+  .level-pill {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .level-nav {
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 15px;
+    line-height: 1;
+    padding: 2px 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.15s, background 0.15s;
+  }
+  .level-nav:hover { opacity: 1; background: rgba(255, 212, 112, 0.14); }
+  .level-nav:disabled { opacity: 0.25; cursor: default; background: none; }
+  .level-title {
+    font-weight: 600;
+    color: var(--cream);
+    white-space: nowrap;
+  }
+  .level-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    opacity: 0.9;
+    margin-right: 4px;
+  }
+  .stars-hud {
+    display: flex;
+    gap: 3px;
+    font-size: 13px;
+  }
+  .stars-hud .star {
+    color: rgba(255, 230, 160, 0.24);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s;
+  }
+  .stars-hud .star.got {
+    color: var(--gold);
+    text-shadow: 0 0 8px rgba(255, 212, 112, 0.85);
+    transform: scale(1.15);
+  }
+
+  /* Top-Right Action Controls */
+  .controls-bar {
+    position: fixed;
+    top: 12px;
+    right: 14px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .hud-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--cream);
+    border-radius: 999px;
+    padding: 6px 11px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--sans);
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  }
+  .hud-btn:hover {
+    background: rgba(34, 42, 74, 0.82);
+    border-color: rgba(255, 212, 112, 0.5);
+  }
+  .hud-btn:active { transform: scale(0.96); }
+  .hud-btn.active {
+    background: rgba(255, 200, 90, 0.22);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* Bottom Reel-In Touch / Indicator Pill (Levels 7+ & Sandbox) */
+  .reel-dock {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+  .reel-dock.visible { display: flex; }
+  .reel-btn {
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(255, 212, 112, 0.55);
+    background: radial-gradient(circle at 30% 25%, rgba(255, 206, 102, 0.28), rgba(22, 24, 48, 0.82));
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45), 0 0 18px rgba(255, 190, 85, 0.18);
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: transform 0.1s, box-shadow 0.15s, border-color 0.15s;
+  }
+  .reel-btn.pressed {
+    transform: scale(0.95);
+    border-color: #fff2b2;
+    background: radial-gradient(circle at 50% 40%, rgba(255, 180, 70, 0.55), rgba(45, 26, 20, 0.88));
+    box-shadow: 0 0 24px rgba(255, 175, 65, 0.65);
+  }
+  .reel-hint {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(247, 238, 220, 0.72);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 6px 10px;
+    border-radius: 999px;
+    pointer-events: none;
+  }
+
+  /* Sandbox Toolbar */
+  .sandbox-bar {
+    position: fixed;
+    bottom: 18px;
+    left: 18px;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    font-size: 12px;
+  }
+  .sandbox-bar.visible { display: flex; }
+  .sandbox-bar .hint {
+    color: rgba(247, 238, 220, 0.72);
+    font-size: 11px;
+    padding: 0 6px;
+  }
+
+  /* Level Clear Banner (brief, joyful, non-intrusive) */
+  .clear-banner {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.92);
+    z-index: 30;
+    padding: 20px 30px;
+    background: rgba(12, 16, 34, 0.84);
+    border: 1px solid rgba(255, 218, 130, 0.45);
+    border-radius: 18px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55), 0 0 40px rgba(255, 200, 90, 0.16);
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .clear-banner.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .clear-banner h2 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+  .clear-banner .clear-stars {
+    font-size: 24px;
+    letter-spacing: 6px;
+    margin: 8px 0 14px;
+  }
+  .clear-banner .clear-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn-primary {
+    background: linear-gradient(180deg, #ffda7b, #e89b32);
+    color: #211507;
+    border: none;
+    border-radius: 999px;
+    padding: 9px 20px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 175, 65, 0.35);
+    transition: transform 0.12s, filter 0.12s;
+  }
+  .btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--cream);
+    border: 1px solid rgba(255, 224, 160, 0.28);
+    border-radius: 999px;
+    padding: 9px 16px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: rgba(255, 255, 255, 0.15); }
+
+  /* ==================== SPLASH SCREEN OVERLAY ==================== */
+  .splash-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: radial-gradient(circle at 50% 45%, rgba(12, 16, 36, 0.22) 0%, rgba(8, 10, 24, 0.68) 100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .splash-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .splash-card {
+    position: relative;
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+    padding: 34px 30px 26px;
+    border-radius: 26px;
+    background: linear-gradient(175deg, rgba(16, 20, 44, 0.78) 0%, rgba(10, 12, 28, 0.88) 100%);
+    border: 1px solid rgba(255, 220, 140, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.58), 0 0 60px rgba(255, 190, 85, 0.14), inset 0 1px 0 rgba(255, 244, 210, 0.16);
+    transform: translateY(14px) scale(0.97);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .splash-overlay.active .splash-card {
+    transform: translateY(0) scale(1);
+  }
+  .splash-crest {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+    background: linear-gradient(160deg, var(--brass-top) 0%, var(--brass-mid) 52%, var(--brass-bot) 100%);
+    border: 1px solid #6e5220;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(255, 248, 224, 0.55), 0 3px 10px rgba(0, 0, 0, 0.35);
+    color: var(--brass-ink);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .splash-crest .rivet {
+    width: 4.5px;
+    height: 4.5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff0c2, #6f5220);
+  }
+  .splash-title {
+    margin: 0;
+    font-family: Georgia, 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: clamp(40px, 7.2vw, 60px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    background: linear-gradient(180deg, #fffbe8 0%, #ffe094 55%, #f5a94c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 22px rgba(255, 198, 92, 0.38));
+  }
+  .splash-sub {
+    margin: 10px 0 24px;
+    font-size: 14.5px;
+    color: rgba(247, 238, 220, 0.8);
+    letter-spacing: 0.03em;
+  }
+  .splash-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 11px;
+  }
+  .splash-btn-play {
+    width: 100%;
+    max-width: 290px;
+    padding: 14px 26px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ffe28a 0%, #f0a43a 100%);
+    color: #231506;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    box-shadow: 0 8px 26px rgba(255, 175, 65, 0.42), inset 0 1px 0 rgba(255, 255, 235, 0.7);
+    transition: transform 0.14s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.14s, box-shadow 0.14s;
+  }
+  .splash-btn-play:hover {
+    filter: brightness(1.07);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(255, 185, 75, 0.56);
+  }
+  .splash-btn-play:active { transform: scale(0.98); }
+  .splash-secondary-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 290px;
+  }
+  .splash-btn-ghost {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 224, 160, 0.28);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--cream);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.12s;
+  }
+  .splash-btn-ghost:hover {
+    background: rgba(255, 212, 112, 0.16);
+    border-color: rgba(255, 212, 112, 0.55);
+    transform: translateY(-1px);
+  }
+  .splash-progress {
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: rgba(255, 220, 145, 0.85);
+    letter-spacing: 0.04em;
+  }
+  .splash-controls-strip {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 224, 160, 0.14);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 11.5px;
+    color: rgba(247, 238, 220, 0.68);
+  }
+  .splash-controls-strip kbd {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    padding: 2px 6px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 224, 160, 0.24);
+    color: var(--gold);
+    margin-right: 4px;
+  }
+
+  /* ==================== FULL-SCREEN LEVEL PICKER ==================== */
+  .picker-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: radial-gradient(circle at 50% 30%, rgba(14, 18, 40, 0.66) 0%, rgba(7, 9, 22, 0.88) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+  }
+  .picker-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .picker-shell {
+    width: 100%;
+    max-width: 820px;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 24px 26px 26px;
+    border-radius: 22px;
+    background: linear-gradient(175deg, rgba(18, 22, 46, 0.9) 0%, rgba(10, 13, 29, 0.94) 100%);
+    border: 1px solid rgba(255, 220, 140, 0.28);
+    box-shadow: 0 24px 68px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 245, 210, 0.14);
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .picker-overlay.active .picker-shell {
+    transform: translateY(0) scale(1);
+  }
+  .picker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 224, 160, 0.15);
+    flex-wrap: wrap;
+  }
+  .picker-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .picker-title {
+    margin: 0;
+    font-family: Georgia, 'Palatino Linotype', serif;
+    font-size: 24px;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+  .picker-total-stars {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(255, 212, 112, 0.12);
+    border: 1px solid rgba(255, 212, 112, 0.32);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+  .picker-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .act-section {
+    margin-bottom: 18px;
+  }
+  .act-section:last-child { margin-bottom: 0; }
+  .act-label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0 0 10px;
+  }
+  .act-label h3 {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .act-label span {
+    font-size: 12px;
+    color: rgba(247, 238, 220, 0.56);
+  }
+  .act-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 10px;
+  }
+  .level-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 13px 14px 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 224, 160, 0.16);
+    color: var(--cream);
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .level-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 212, 112, 0.12);
+    border-color: rgba(255, 212, 112, 0.55);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 195, 85, 0.14);
+  }
+  .level-card.cleared {
+    border-color: rgba(168, 255, 150, 0.32);
+    background: rgba(155, 255, 140, 0.055);
+  }
+  .level-card.recommended {
+    border-color: rgba(255, 214, 112, 0.72);
+    box-shadow: 0 0 22px rgba(255, 195, 85, 0.18);
+  }
+  .level-card-top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .level-card-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(255, 212, 112, 0.14);
+    padding: 2px 7px;
+    border-radius: 6px;
+  }
+  .level-card-tags {
+    font-size: 11px;
+    opacity: 0.8;
+    display: flex;
+    gap: 4px;
+  }
+  .level-card-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-top: 2px;
+  }
+  .level-card-stars {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+  .level-card-stars .empty { color: rgba(255, 230, 160, 0.22); }
+  .level-card-badge {
+    position: absolute;
+    bottom: 11px;
+    right: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #b7ff9e;
+    opacity: 0.85;
+  }
+  .level-card.recommended .level-card-badge {
+    color: var(--gold);
+  }
+
+  @media (max-width: 1020px) {
+    .sandbox-bar .hint { display: none; }
+    .reel-hint { display: none; }
+  }
+
+  @media (max-width: 860px) {
+    .makers-plate .sep,
+    .makers-plate .plate-sub { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .makers-plate { display: none; }
+    .level-pill { left: 12px; transform: none; }
+    .sandbox-bar { bottom: 68px; left: 12px; }
+    .splash-card { padding: 26px 20px 22px; }
+    .picker-shell { padding: 18px 16px 20px; }
+    .act-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body class="screen-splash">
+
+<canvas id="stage"></canvas>
+
+<!-- Subtle Curio Class Brass Maker's Plate (Click to return to Title) -->
+<button class="makers-plate" id="makersPlateBtn" title="Return to Title Screen">
+  <span class="rivet"></span>
+  <span>CURIO CLASS</span>
+  <span class="sep">·</span>
+  <span class="plate-sub">TETHER DRIFT</span>
+  <span class="rivet"></span>
+</button>
+
+<!-- Center Level & Star Pill -->
+<div class="level-pill" role="navigation" aria-label="Level navigation">
+  <button class="level-nav" id="prevBtn" title="Previous level" aria-label="Previous level">‹</button>
+  <button class="level-nav" id="levelMenuBtn" style="color:inherit;font-size:13px;padding:2px 8px;" title="Open Level Picker">
+    <span class="level-num" id="levelNum">01</span>
+    <span class="level-title" id="levelTitle">First Lantern</span>
+  </button>
+  <div class="stars-hud" id="starsHud" aria-label="Stars collected">
+    <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+  </div>
+  <button class="level-nav" id="nextBtn" title="Next level" aria-label="Next level">›</button>
+</div>
+
+<!-- Top-Right Utility Controls -->
+<div class="controls-bar">
+  <button class="hud-btn" id="levelsHudBtn" title="Level Picker (Esc)">☰ Levels</button>
+  <button class="hud-btn" id="resetBtn" title="Restart (R)">↺ Retry</button>
+  <button class="hud-btn" id="sandboxBtn" title="Toggle Free-Play Lantern Sandbox">✦ Sandbox</button>
+  <button class="hud-btn" id="soundBtn" title="Toggle Sound">🔊</button>
+</div>
+
+<!-- Bottom-Right Reel-In Control (Shown on Levels 7+ & Sandbox) -->
+<div class="reel-dock" id="reelDock">
+  <span class="reel-hint">HOLD SPACE / ↑ TO REEL IN</span>
+  <button class="reel-btn" id="reelBtn">▲ REEL IN</button>
+</div>
+
+<!-- Bottom-Left Sandbox Toolbar -->
+<div class="sandbox-bar" id="sandboxBar">
+  <button class="hud-btn" id="placeModeBtn">🏮 Place Lantern</button>
+  <button class="hud-btn" id="vectorsBtn">📐 Vectors</button>
+  <button class="hud-btn" id="clearLanternsBtn">✕ Clear</button>
+  <span class="hint">Click empty sky to add · Click lantern to remove</span>
+</div>
+
+<!-- Splash Screen Overlay (Live Lantern Demo Runs Behind!) -->
+<div class="splash-overlay active" id="splashOverlay" role="dialog" aria-label="Tether Drift Title Screen">
+  <div class="splash-card">
+    <div class="splash-crest">
+      <span class="rivet"></span>
+      <span>CURIO CLASS CURIOSITIES</span>
+      <span class="rivet"></span>
+    </div>
+    <h1 class="splash-title">Tether Drift</h1>
+    <p class="splash-sub">Swing by lantern light · Release along the arrow to glide</p>
+    <div class="splash-actions">
+      <button class="splash-btn-play" id="splashPlayBtn">▶ Play</button>
+      <div class="splash-secondary-row">
+        <button class="splash-btn-ghost" id="splashLevelsBtn">🏮 Levels</button>
+        <button class="splash-btn-ghost" id="splashSandboxBtn">✦ Sandbox</button>
+      </div>
+    </div>
+    <div class="splash-progress" id="splashProgress"></div>
+    <div class="splash-controls-strip">
+      <span><kbd>Hold Click / Tap</kbd>Latch Lantern</span>
+      <span><kbd>Release</kbd>Glide Straight</span>
+      <span><kbd>Space / ↑</kbd>Reel In (Lv 7+)</span>
+    </div>
+  </div>
+</div>
+
+<!-- Full-Screen Constellation Level Picker -->
+<div class="picker-overlay" id="pickerOverlay" role="dialog" aria-label="Level Picker">
+  <div class="picker-shell">
+    <div class="picker-header">
+      <div class="picker-header-left">
+        <button class="hud-btn" id="pickerBackBtn">← Title</button>
+        <h2 class="picker-title">Lantern Path</h2>
+      </div>
+      <div class="picker-header-right">
+        <span class="picker-total-stars" id="pickerTotalStars">★ 0 / 30</span>
+        <button class="hud-btn" id="pickerSandboxBtn">✦ Sandbox</button>
+      </div>
+    </div>
+    <div id="pickerActs"></div>
+  </div>
+</div>
+
+<!-- Level Complete Banner -->
+<div class="clear-banner" id="clearBanner">
+  <h2 id="clearHeading">Lantern Reached!</h2>
+  <div class="clear-stars" id="clearStars">★★★</div>
+  <div class="clear-actions">
+    <button class="btn-secondary" id="clearLevelsBtn">Levels</button>
+    <button class="btn-secondary" id="replayBtn">Replay</button>
+    <button class="btn-primary" id="continueBtn">Next Lantern →</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  // =========================================================================
+  // 1. CONSTANTS & WORLD CONFIGURATION
+  // =========================================================================
+  const W = 1200;
+  const H = 720;
+  const FIXED_DT = 1 / 120;
+
+  const MIN_TETHER_R = 40;
+  const REEL_RATE = 112;          // px/s shortening speed
+  const MAX_TENSION = 5200;       // v^2 / r snap threshold
+  const SNAP_COOLDOWN = 0.28;     // seconds before same lantern can be re-latched
+  const FIREFLY_R = 10;
+
+  const PALETTE = {
+    skyTop: '#080c1c',
+    skyMid: '#151936',
+    skyLow: '#262344',
+    skyHorizon: '#3c2d49',
+    moonCore: '#fff7de',
+    lanternCore: '#fff8dc',
+    lanternMid: '#ffbe55',
+    lanternEdge: '#e6632a',
+    fireflyCore: '#f6ffb8',
+    fireflyGlow: '#b9ff5e',
+    gold: '#ffd670',
+    amber: '#ff9638',
+    crimson: '#ff4242',
+    mint: '#88ffd2',
+    wind: 'rgba(165, 225, 255, 0.34)'
+  };
+
+  // =========================================================================
+  // 2. PROCEDURAL WEB AUDIO SYNTHESIZER (0 KB EXTERNAL ASSETS)
+  // =========================================================================
+  const AudioEngine = (() => {
+    let ctx = null;
+    let muted = false;
+    let orbitOsc = null;
+    let orbitGain = null;
+    let orbitFilter = null;
+    let tensionTimer = 0;
+
+    function ensure() {
+      if (muted) return null;
+      if (!ctx) {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        ctx = new AC();
+      }
+      if (ctx.state === 'suspended') ctx.resume();
+      return ctx;
+    }
+
+    function playLatch(idx = 0) {
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+      const notes = [392.0, 440.0, 493.88, 523.25, 587.33];
+      const freq = notes[idx % notes.length];
+
+      const osc = c.createOscillator();
+      const gain = c.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.015, now + 0.18);
+
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.11, now + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.32);
+
+      osc.connect(gain);
+      gain.connect(c.destination);
+      osc.start(now);
+      osc.stop(now + 0.35);
+
+      // Start gentle orbit hum
+      stopOrbitHum();
+      orbitOsc = c.createOscillator();
+      orbitFilter = c.createBiquadFilter();
+      orbitGain = c.createGain();
+      orbitOsc.type = 'triangle';
+      orbitOsc.frequency.setValueAtTime(160, now);
+      orbitFilter.type = 'lowpass';
+      orbitFilter.frequency.setValueAtTime(420, now);
+      orbitGain.gain.setValueAtTime(0.0001, now);
+      orbitGain.gain.linearRampToValueAtTime(0.045, now + 0.12);
+
+      orbitOsc.connect(orbitFilter);
+      orbitFilter.connect(orbitGain);
+      orbitGain.connect(c.destination);
+      orbitOsc.start(now);
+    }
+
+    function updateOrbitHum(angularSpeed, tensionRatio, dt) {
+      if (muted || !ctx || !orbitOsc || !orbitGain) return;
+      const now = ctx.currentTime;
+      const targetFreq = 120 + Math.min(Math.abs(angularSpeed) * 65, 520);
+      const targetCut = 340 + Math.min(Math.abs(angularSpeed) * 260, 2400);
+      orbitOsc.frequency.setTargetAtTime(targetFreq, now, 0.04);
+      orbitFilter.frequency.setTargetAtTime(targetCut, now, 0.04);
+      orbitGain.gain.setTargetAtTime(0.035 + tensionRatio * 0.045, now, 0.05);
+
+      // Rhythmic silk tension tick above 72%
+      if (tensionRatio > 0.72) {
+        tensionTimer -= dt;
+        if (tensionTimer <= 0) {
+          tensionTimer = Math.max(0.07, 0.22 - (tensionRatio - 0.72) * 0.5);
+          const osc = ctx.createOscillator();
+          const g = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(880 + tensionRatio * 480, now);
+          g.gain.setValueAtTime(0.035, now);
+          g.gain.exponentialRampToValueAtTime(0.0008, now + 0.045);
+          osc.connect(g);
+          g.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.05);
+        }
+      } else {
+        tensionTimer = 0;
+      }
+    }
+
+    function stopOrbitHum() {
+      if (orbitGain && ctx) {
+        const now = ctx.currentTime;
+        try {
+          orbitGain.gain.cancelScheduledValues(now);
+          orbitGain.gain.setTargetAtTime(0.0001, now, 0.03);
+          const o = orbitOsc;
+          setTimeout(() => { try { o && o.stop(); } catch (_) {} }, 120);
+        } catch (_) {}
+      }
+      orbitOsc = null;
+      orbitGain = null;
+      orbitFilter = null;
+    }
+
+    function playRelease(speed) {
+      stopOrbitHum();
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+      // Soft airy breath whoosh
+      const dur = 0.18;
+      const buf = c.createBuffer(1, Math.floor(c.sampleRate * dur), c.sampleRate);
+      const data = buf.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
+      const src = c.createBufferSource();
+      src.buffer = buf;
+
+      const filter = c.createBiquadFilter();
+      filter.type = 'bandpass';
+      const baseF = 550 + Math.min(speed * 1.4, 900);
+      filter.frequency.setValueAtTime(baseF, now);
+      filter.frequency.exponentialRampToValueAtTime(baseF * 1.6, now + dur);
+      filter.Q.value = 2.2;
+
+      const g = c.createGain();
+      const vol = Math.min(0.09, 0.035 + speed / 6000);
+      g.gain.setValueAtTime(vol, now);
+      g.gain.exponentialRampToValueAtTime(0.0008, now + dur);
+
+      src.connect(filter);
+      filter.connect(g);
+      g.connect(c.destination);
+      src.start(now);
+    }
+
+    function playSnap() {
+      stopOrbitHum();
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+
+      // Plucked taut string twang
+      const osc = c.createOscillator();
+      const g = c.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(620, now);
+      osc.frequency.exponentialRampToValueAtTime(110, now + 0.16);
+      g.gain.setValueAtTime(0.14, now);
+      g.gain.exponentialRampToValueAtTime(0.0008, now + 0.18);
+
+      const f = c.createBiquadFilter();
+      f.type = 'lowpass';
+      f.frequency.setValueAtTime(2400, now);
+      f.frequency.exponentialRampToValueAtTime(300, now + 0.18);
+
+      osc.connect(f);
+      f.connect(g);
+      g.connect(c.destination);
+      osc.start(now);
+      osc.stop(now + 0.2);
+    }
+
+    function playStar(count) {
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+      const pent = [587.33, 659.25, 783.99, 880.0, 1046.5];
+      const freq = pent[(count - 1) % pent.length];
+
+      [1, 2].forEach((mult, i) => {
+        const osc = c.createOscillator();
+        const g = c.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq * mult, now);
+        g.gain.setValueAtTime(0.001, now);
+        g.gain.linearRampToValueAtTime(i === 0 ? 0.1 : 0.035, now + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0008, now + 0.45);
+        osc.connect(g);
+        g.connect(c.destination);
+        osc.start(now);
+        osc.stop(now + 0.48);
+      });
+    }
+
+    function playGoal() {
+      stopOrbitHum();
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+      // Warm major-9th lantern chime chord
+      const chord = [523.25, 659.25, 783.99, 987.77, 1174.66];
+      chord.forEach((freq, i) => {
+        const t = now + i * 0.055;
+        const osc = c.createOscillator();
+        const g = c.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, t);
+        g.gain.setValueAtTime(0.001, t);
+        g.gain.linearRampToValueAtTime(0.075, t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0008, t + 1.05);
+        osc.connect(g);
+        g.connect(c.destination);
+        osc.start(t);
+        osc.stop(t + 1.1);
+      });
+    }
+
+    function playBump() {
+      stopOrbitHum();
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+      const osc = c.createOscillator();
+      const g = c.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(190, now);
+      osc.frequency.exponentialRampToValueAtTime(92, now + 0.14);
+      g.gain.setValueAtTime(0.09, now);
+      g.gain.exponentialRampToValueAtTime(0.0008, now + 0.16);
+      osc.connect(g);
+      g.connect(c.destination);
+      osc.start(now);
+      osc.stop(now + 0.18);
+    }
+
+    function setMuted(m) {
+      muted = m;
+      if (muted) stopOrbitHum();
+    }
+
+    return {
+      playLatch,
+      updateOrbitHum,
+      stopOrbitHum,
+      playRelease,
+      playSnap,
+      playStar,
+      playGoal,
+      playBump,
+      setMuted,
+      isMuted: () => muted
+    };
+  })();
+
+  // =========================================================================
+  // 3. HANDCRAFTED LEVELS (10-LEVEL DIFFICULTY CURVE)
+  // =========================================================================
+  const LEVELS = [
+    // --- ACT I: Single-Anchor Swings (Levels 1-3) ---
+    {
+      name: 'First Lantern',
+      reel: false,
+      start: { x: 185, y: 525, vx: 220, vy: 0 },
+      goal: { x: 895, y: 215, r: 46 },
+      anchors: [
+        { x: 555, y: 385, r: 205, hue: 36 }
+      ],
+      stars: [
+        { x: 745, y: 420 },
+        { x: 775, y: 360 },
+        { x: 805, y: 300 }
+      ],
+      obstacles: [],
+      winds: []
+    },
+    {
+      name: 'Midnight Loop',
+      reel: false,
+      start: { x: 210, y: 255, vx: 225, vy: 0 },
+      goal: { x: 240, y: 535, r: 45 },
+      anchors: [
+        { x: 600, y: 385, r: 200, hue: 28 }
+      ],
+      stars: [
+        { x: 530, y: 530 },
+        { x: 452, y: 524 },
+        { x: 374, y: 518 }
+      ],
+      obstacles: [],
+      winds: []
+    },
+    {
+      name: 'Stone Garden',
+      reel: false,
+      start: { x: 155, y: 250, vx: 230, vy: 12 },
+      goal: { x: 975, y: 515, r: 46 },
+      anchors: [
+        { x: 430, y: 395, r: 210, hue: 38 }
+      ],
+      stars: [
+        { x: 586, y: 298 },
+        { x: 713, y: 356 },
+        { x: 839, y: 413 }
+      ],
+      obstacles: [
+        { x: 685, y: 275, r: 52 },
+        { x: 775, y: 195, r: 44 }
+      ],
+      winds: []
+    },
+
+    // --- ACT II: Chaining Multiple Anchors (Levels 4-6) ---
+    {
+      name: 'Twin Lanterns',
+      reel: false,
+      start: { x: 130, y: 535, vx: 230, vy: 0 },
+      goal: { x: 1035, y: 515, r: 45 },
+      anchors: [
+        { x: 365, y: 395, r: 190, hue: 36 },
+        { x: 790, y: 315, r: 195, hue: 24 }
+      ],
+      stars: [
+        { x: 562, y: 403 },
+        { x: 634, y: 290 },
+        { x: 956, y: 371 }
+      ],
+      obstacles: [],
+      winds: []
+    },
+    {
+      name: 'Figure Eight',
+      reel: false,
+      start: { x: 145, y: 205, vx: 225, vy: 22 },
+      goal: { x: 1040, y: 190, r: 45 },
+      anchors: [
+        { x: 395, y: 335, r: 190, hue: 34 },
+        { x: 805, y: 385, r: 190, hue: 20 }
+      ],
+      stars: [
+        { x: 522, y: 150 },
+        { x: 689, y: 154 },
+        { x: 856, y: 158 }
+      ],
+      obstacles: [
+        { x: 600, y: 345, r: 62 }
+      ],
+      winds: []
+    },
+    {
+      name: 'Lantern Festival',
+      reel: false,
+      start: { x: 120, y: 555, vx: 235, vy: -18 },
+      goal: { x: 1070, y: 235, r: 46 },
+      anchors: [
+        { x: 305, y: 425, r: 185, hue: 38 },
+        { x: 600, y: 275, r: 190, hue: 26 },
+        { x: 895, y: 425, r: 190, hue: 18 }
+      ],
+      stars: [
+        { x: 480, y: 449 },
+        { x: 695, y: 368 },
+        { x: 910, y: 252 }
+      ],
+      obstacles: [
+        { x: 465, y: 545, r: 44 },
+        { x: 740, y: 145, r: 44 }
+      ],
+      winds: []
+    },
+
+    // --- ACT III: Reel-In & Conservation of Angular Momentum (Levels 7-10) ---
+    {
+      name: 'Spin & Whip',
+      reel: true,
+      start: { x: 150, y: 490, vx: 185, vy: 0 },
+      goal: { x: 1030, y: 285, r: 48 },
+      anchors: [
+        { x: 365, y: 365, r: 195, hue: 35 }
+      ],
+      stars: [
+        { x: 509, y: 384 },
+        { x: 674, y: 334 },
+        { x: 839, y: 306 }
+      ],
+      obstacles: [],
+      winds: [
+        { x: 545, y: 40, w: 360, h: 640, ax: 0, ay: 95 }
+      ]
+    },
+    {
+      name: 'Gale Crossing',
+      reel: true,
+      start: { x: 130, y: 260, vx: 195, vy: 15 },
+      goal: { x: 1055, y: 560, r: 46 },
+      anchors: [
+        { x: 320, y: 390, r: 185, hue: 32 },
+        { x: 935, y: 365, r: 190, hue: 22 }
+      ],
+      stars: [
+        { x: 467, y: 343 },
+        { x: 632, y: 372 },
+        { x: 796, y: 355 }
+      ],
+      obstacles: [],
+      winds: [
+        { x: 475, y: 40, w: 340, h: 640, ax: 0, ay: -135 }
+      ]
+    },
+    {
+      name: 'Silk Tension',
+      reel: true,
+      start: { x: 130, y: 515, vx: 245, vy: 0 },
+      goal: { x: 1065, y: 495, r: 46 },
+      anchors: [
+        { x: 345, y: 385, r: 190, hue: 36 },
+        { x: 745, y: 345, r: 195, hue: 16 }
+      ],
+      stars: [
+        { x: 509, y: 466 },
+        { x: 631, y: 397 },
+        { x: 908, y: 370 }
+      ],
+      obstacles: [
+        { x: 555, y: 555, r: 48 }
+      ],
+      winds: [
+        { x: 845, y: 40, w: 165, h: 640, ax: 0, ay: 105 }
+      ]
+    },
+    {
+      name: 'Grand Orrery',
+      reel: true,
+      start: { x: 115, y: 555, vx: 205, vy: -18 },
+      goal: { x: 1075, y: 185, r: 46 },
+      anchors: [
+        { x: 290, y: 430, r: 180, hue: 38 },
+        { x: 710, y: 255, r: 190, hue: 28 },
+        { x: 935, y: 435, r: 180, hue: 18 }
+      ],
+      stars: [
+        { x: 293, y: 330 },
+        { x: 560, y: 381 },
+        { x: 830, y: 279 }
+      ],
+      obstacles: [
+        { x: 695, y: 465, r: 48 }
+      ],
+      winds: [
+        { x: 415, y: 40, w: 205, h: 640, ax: 0, ay: 128 }
+      ]
+    }
+  ];
+
+  // =========================================================================
+  // 4. APPLICATION STATE
+  // =========================================================================
+  const canvas = document.getElementById('stage');
+  const ctx = canvas.getContext('2d');
+
+  // Offscreen cached twilight sky + distant mountains + moon
+  let bgCanvas = document.createElement('canvas');
+  let bgCtx = bgCanvas.getContext('2d');
+
+  let viewW = window.innerWidth;
+  let viewH = window.innerHeight;
+  let dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+  let scale = 1;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  const STORAGE_KEY = 'curio_tether_drift_v1';
+
+  const ACTS = [
+    { title: 'Act I · First Orbits', sub: 'Single-lantern swings & tangent aiming', indices: [0, 1, 2] },
+    { title: 'Act II · Constellations', sub: 'Chaining lanterns across the night sky', indices: [3, 4, 5] },
+    { title: 'Act III · Whip & Snap', sub: 'Reel in for speed · Slice through night breezes', indices: [6, 7, 8, 9] }
+  ];
+
+  let screenMode = 'splash'; // 'splash' | 'picker' | 'play'
+  let currentLevelIdx = 0;
+  let sandboxMode = false;
+  let sandboxPlaceMode = false;
+  let showVectors = false;
+  let bestStars = LEVELS.map(() => 0);
+  let clearedLevels = LEVELS.map(() => false);
+
+  function loadProgress() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed.bestStars)) {
+        bestStars = LEVELS.map((_, i) => Math.max(0, Math.min(3, Number(parsed.bestStars[i]) || 0)));
+      }
+      if (Array.isArray(parsed.clearedLevels)) {
+        clearedLevels = LEVELS.map((_, i) => Boolean(parsed.clearedLevels[i]));
+      }
+    } catch (_) {}
+  }
+
+  function saveProgress() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ bestStars, clearedLevels }));
+    } catch (_) {}
+  }
+
+  function getNextRecommendedLevel() {
+    const firstUncleared = clearedLevels.findIndex(c => !c);
+    return firstUncleared === -1 ? 0 : firstUncleared;
+  }
+
+  // Active level runtime entities
+  let anchors = [];
+  let stars = [];
+  let obstacles = [];
+  let winds = [];
+  let goal = { x: 900, y: 220, r: 46 };
+  let startState = { x: 180, y: 520, vx: 220, vy: 0 };
+  let levelAllowsReel = false;
+
+  // Player (Firefly) physics state
+  const player = {
+    x: 0, y: 0, vx: 0, vy: 0,
+    tethered: false,
+    anchorIdx: -1,
+    tetherL: 0,
+    angle: 0,
+    vt: 0,
+    omega: 0,
+    tensionRatio: 0,
+    won: false,
+    resetFade: 0,
+    snapCooldowns: [],
+    latchedOnce: false,
+    reeledOnce: false,
+    latchPluck: 0
+  };
+
+  // Trails, ghosts, particles, shockwave rings, juice state
+  let trail = [];
+  let currentPath = [];
+  let ghostPath = [];
+  let ghostAlpha = 0;
+  let releaseGhost = null;
+  let particles = [];
+  let rings = [];           // Expanding luminous shockwave rings
+  let snappedCords = [];
+  let ambientMotes = [];
+  let windStreaks = [];
+  let bgStars = [];
+  let reeds = [];
+
+  let shakeMag = 0;
+  let goalSlowMoTimer = 0;
+  let clearBannerPending = false;
+  let emberTimer = 0;
+  let demoTimer = 0;
+
+  // Input state
+  let pointerHeld = false;
+  let reelKeyHeld = false;
+  let reelBtnHeld = false;
+  let simTime = 0;
+  let levelElapsed = 0;
+
+  // =========================================================================
+  // 5. DOM REFERENCES & SCREEN NAVIGATION
+  // =========================================================================
+  const makersPlateBtn = document.getElementById('makersPlateBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const levelMenuBtn = document.getElementById('levelMenuBtn');
+  const levelsHudBtn = document.getElementById('levelsHudBtn');
+  const levelNumEl = document.getElementById('levelNum');
+  const levelTitleEl = document.getElementById('levelTitle');
+  const starsHudEl = document.getElementById('starsHud');
+  const resetBtn = document.getElementById('resetBtn');
+  const sandboxBtn = document.getElementById('sandboxBtn');
+  const soundBtn = document.getElementById('soundBtn');
+  const reelDock = document.getElementById('reelDock');
+  const reelBtn = document.getElementById('reelBtn');
+  const sandboxBar = document.getElementById('sandboxBar');
+  const placeModeBtn = document.getElementById('placeModeBtn');
+  const vectorsBtn = document.getElementById('vectorsBtn');
+  const clearLanternsBtn = document.getElementById('clearLanternsBtn');
+  const clearBanner = document.getElementById('clearBanner');
+  const clearHeading = document.getElementById('clearHeading');
+  const clearStars = document.getElementById('clearStars');
+  const clearLevelsBtn = document.getElementById('clearLevelsBtn');
+  const replayBtn = document.getElementById('replayBtn');
+  const continueBtn = document.getElementById('continueBtn');
+
+  const splashOverlay = document.getElementById('splashOverlay');
+  const splashPlayBtn = document.getElementById('splashPlayBtn');
+  const splashLevelsBtn = document.getElementById('splashLevelsBtn');
+  const splashSandboxBtn = document.getElementById('splashSandboxBtn');
+  const splashProgress = document.getElementById('splashProgress');
+
+  const pickerOverlay = document.getElementById('pickerOverlay');
+  const pickerBackBtn = document.getElementById('pickerBackBtn');
+  const pickerSandboxBtn = document.getElementById('pickerSandboxBtn');
+  const pickerTotalStars = document.getElementById('pickerTotalStars');
+  const pickerActs = document.getElementById('pickerActs');
+
+  function setScreenMode(mode) {
+    screenMode = mode;
+    document.body.classList.toggle('screen-splash', mode === 'splash');
+    document.body.classList.toggle('screen-picker', mode === 'picker');
+    splashOverlay.classList.toggle('active', mode === 'splash');
+    pickerOverlay.classList.toggle('active', mode === 'picker');
+    if (mode !== 'play') {
+      pointerHeld = false;
+      reelKeyHeld = false;
+      reelBtnHeld = false;
+      clearBanner.classList.remove('show');
+      clearBannerPending = false;
+      AudioEngine.stopOrbitHum();
+    }
+    if (mode === 'splash') {
+      updateSplashUI();
+      setupAttractDemo();
+    } else if (mode === 'picker') {
+      buildLevelPicker();
+    }
+  }
+
+  function updateSplashUI() {
+    const totalStars = bestStars.reduce((a, b) => a + b, 0);
+    const clearedCount = clearedLevels.filter(Boolean).length;
+    const nextIdx = getNextRecommendedLevel();
+    if (clearedCount > 0 && clearedCount < LEVELS.length) {
+      splashPlayBtn.textContent = `▶ Continue · Lv ${String(nextIdx + 1).padStart(2, '0')}`;
+    } else if (clearedCount === LEVELS.length) {
+      splashPlayBtn.textContent = '▶ Play Again';
+    } else {
+      splashPlayBtn.textContent = '▶ Play';
+    }
+    splashProgress.textContent = clearedCount > 0
+      ? `★ ${totalStars} / ${LEVELS.length * 3} Stars  ·  ${clearedCount} / ${LEVELS.length} Lanterns Cleared`
+      : '';
+  }
+
+  function buildLevelPicker() {
+    const totalStars = bestStars.reduce((a, b) => a + b, 0);
+    pickerTotalStars.textContent = `★ ${totalStars} / ${LEVELS.length * 3}`;
+    const recIdx = getNextRecommendedLevel();
+
+    pickerActs.innerHTML = '';
+    ACTS.forEach(act => {
+      const sec = document.createElement('section');
+      sec.className = 'act-section';
+      sec.innerHTML = `<div class="act-label"><h3>${act.title}</h3><span>${act.sub}</span></div>`;
+      const grid = document.createElement('div');
+      grid.className = 'act-grid';
+
+      act.indices.forEach(i => {
+        const L = LEVELS[i];
+        const got = bestStars[i];
+        const isCleared = clearedLevels[i];
+        const isRec = i === recIdx && !clearedLevels.every(Boolean);
+
+        const tags = [];
+        tags.push(`🏮×${L.anchors.length}`);
+        if (L.winds.length) tags.push('💨');
+        if (L.reel) tags.push('▲');
+
+        const starsHtml = '★'.repeat(got) + `<span class="empty">${'★'.repeat(3 - got)}</span>`;
+        const badgeHtml = isRec ? '<span class="level-card-badge">NEXT</span>'
+          : (isCleared ? '<span class="level-card-badge">✓</span>' : '');
+
+        const card = document.createElement('button');
+        card.className = 'level-card' + (isCleared ? ' cleared' : '') + (isRec ? ' recommended' : '');
+        card.innerHTML = `
+          <div class="level-card-top">
+            <span class="level-card-num">${String(i + 1).padStart(2, '0')}</span>
+            <span class="level-card-tags">${tags.join(' ')}</span>
+          </div>
+          <div class="level-card-name">${L.name}</div>
+          <div class="level-card-stars">${starsHtml}</div>
+          ${badgeHtml}
+        `;
+        card.addEventListener('click', () => startPlayLevel(i));
+        grid.appendChild(card);
+      });
+
+      sec.appendChild(grid);
+      pickerActs.appendChild(sec);
+    });
+  }
+
+  function startPlayLevel(idx) {
+    sandboxMode = false;
+    sandboxBtn.classList.remove('active');
+    sandboxBar.classList.remove('visible');
+    setScreenMode('play');
+    loadLevel(idx);
+  }
+
+  function startSandbox() {
+    setScreenMode('play');
+    enterSandbox();
+  }
+
+  function setupAttractDemo() {
+    sandboxMode = false;
+    levelAllowsReel = false;
+    anchors = [
+      { x: 350, y: 360, r: 190, hue: 36, idx: 0, phase: 0.3, pulse: 0, swayKick: 0 },
+      { x: 850, y: 360, r: 190, hue: 24, idx: 1, phase: 2.1, pulse: 0, swayKick: 0 }
+    ];
+    stars = [];
+    obstacles = [];
+    winds = [];
+    windStreaks = [];
+    goal = { x: -9999, y: -9999, r: 0 };
+    startState = { x: 165, y: 470, vx: 215, vy: 0 };
+    trail = [];
+    ghostPath = [];
+    ghostAlpha = 0;
+    releaseGhost = null;
+    rings = [];
+    demoTimer = 0;
+    player.x = 350;
+    player.y = 490;
+    player.vx = 215;
+    player.vy = 0;
+    player.tethered = true;
+    player.anchorIdx = 0;
+    player.tetherL = 130;
+    player.angle = Math.PI / 2;
+    player.vt = -215;
+    player.omega = -215 / 130;
+    player.tensionRatio = 0.08;
+    player.won = false;
+    player.snapCooldowns = [0, 0];
+  }
+
+  function updateHUD() {
+    if (sandboxMode) {
+      levelNumEl.textContent = '∞';
+      levelTitleEl.textContent = 'Lantern Sandbox';
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      starsHudEl.style.display = 'none';
+    } else {
+      levelNumEl.textContent = String(currentLevelIdx + 1).padStart(2, '0');
+      levelTitleEl.textContent = LEVELS[currentLevelIdx].name;
+      prevBtn.disabled = currentLevelIdx === 0;
+      nextBtn.disabled = currentLevelIdx === LEVELS.length - 1;
+      starsHudEl.style.display = 'flex';
+      const gotCount = stars.filter(s => s.collected).length;
+      [...starsHudEl.children].forEach((el, idx) => {
+        el.classList.toggle('got', idx < gotCount);
+      });
+    }
+    reelDock.classList.toggle('visible', screenMode === 'play' && levelAllowsReel);
+  }
+
+  // =========================================================================
+  // 6. LEVEL LOADING & RESET
+  // =========================================================================
+  function loadLevel(idx, keepGhost = false) {
+    currentLevelIdx = Math.max(0, Math.min(LEVELS.length - 1, idx));
+    const L = LEVELS[currentLevelIdx];
+    levelAllowsReel = L.reel;
+    startState = { ...L.start };
+    goal = { ...L.goal };
+    anchors = L.anchors.map((a, i) => ({ ...a, idx: i, phase: i * 1.7 + 0.4, pulse: 0, swayKick: 0 }));
+    stars = L.stars.map((s, i) => ({ ...s, collected: false, phase: i * 2.1 }));
+    obstacles = L.obstacles.map(o => ({ ...o }));
+    winds = L.winds.map(w => ({ ...w }));
+
+    initWindStreaks();
+    if (!keepGhost) {
+      ghostPath = [];
+      ghostAlpha = 0;
+    }
+    resetPlayer(false);
+    clearBanner.classList.remove('show');
+    updateHUD();
+  }
+
+  function enterSandbox() {
+    sandboxMode = true;
+    sandboxPlaceMode = false;
+    levelAllowsReel = true;
+    startState = { x: 150, y: 470, vx: 225, vy: -25 };
+    goal = { x: -9999, y: -9999, r: 0 };
+    anchors = [
+      { x: 410, y: 340, r: 195, hue: 36, idx: 0, phase: 0.4, pulse: 0, swayKick: 0 },
+      { x: 780, y: 370, r: 195, hue: 24, idx: 1, phase: 2.1, pulse: 0, swayKick: 0 }
+    ];
+    stars = [];
+    obstacles = [];
+    winds = [];
+    windStreaks = [];
+    ghostPath = [];
+    ghostAlpha = 0;
+    clearBanner.classList.remove('show');
+    sandboxBtn.classList.add('active');
+    sandboxBar.classList.add('visible');
+    placeModeBtn.classList.remove('active');
+    resetPlayer(false);
+    updateHUD();
+  }
+
+  function resetPlayer(saveGhost = true) {
+    AudioEngine.stopOrbitHum();
+    if (saveGhost && currentPath.length > 6) {
+      ghostPath = currentPath.slice();
+      ghostAlpha = 0.85;
+    }
+    currentPath = [];
+    trail = [];
+    releaseGhost = null;
+    snappedCords = [];
+
+    player.x = startState.x;
+    player.y = startState.y;
+    player.vx = startState.vx;
+    player.vy = startState.vy;
+    player.tethered = false;
+    player.anchorIdx = -1;
+    player.tetherL = 0;
+    player.vt = 0;
+    player.omega = 0;
+    player.tensionRatio = 0;
+    player.won = false;
+    player.resetFade = 1;
+    player.snapCooldowns = anchors.map(() => 0);
+
+    stars.forEach(s => { s.collected = false; });
+    levelElapsed = 0;
+    clearBanner.classList.remove('show');
+    updateHUD();
+  }
+
+  function initWindStreaks() {
+    windStreaks = [];
+    winds.forEach(w => {
+      const count = Math.max(12, Math.floor((w.w * w.h) / 14000));
+      for (let i = 0; i < count; i++) {
+        windStreaks.push({
+          wind: w,
+          x: w.x + Math.random() * w.w,
+          y: w.y + Math.random() * w.h,
+          len: 28 + Math.random() * 44,
+          speed: 90 + Math.random() * 80,
+          alpha: 0.16 + Math.random() * 0.24,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+    });
+  }
+
+  // =========================================================================
+  // 7. BACKGROUND ART GENERATOR (OFFSCREEN CACHED TWILIGHT & HILLS)
+  // =========================================================================
+  function initScenicElements() {
+    bgStars = [];
+    for (let i = 0; i < 95; i++) {
+      bgStars.push({
+        nx: Math.random(),
+        ny: Math.random() * 0.62,
+        r: 0.6 + Math.random() * 1.4,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.8 + Math.random() * 1.8
+      });
+    }
+
+    ambientMotes = [];
+    for (let i = 0; i < 38; i++) {
+      ambientMotes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 10,
+        vy: -4 - Math.random() * 8,
+        r: 1.1 + Math.random() * 2.1,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+
+    reeds = [];
+    for (let i = 0; i < 42; i++) {
+      reeds.push({
+        nx: i / 41 + (Math.random() - 0.5) * 0.02,
+        h: 26 + Math.random() * 58,
+        lean: (Math.random() - 0.5) * 18,
+        phase: Math.random() * Math.PI * 2,
+        hasCattail: Math.random() < 0.22
+      });
+    }
+  }
+
+  function renderStaticBackground() {
+    bgCanvas.width = Math.max(1, Math.floor(viewW * dpr));
+    bgCanvas.height = Math.max(1, Math.floor(viewH * dpr));
+    bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Rich twilight sky gradient
+    const sky = bgCtx.createLinearGradient(0, 0, 0, viewH);
+    sky.addColorStop(0.0, PALETTE.skyTop);
+    sky.addColorStop(0.45, PALETTE.skyMid);
+    sky.addColorStop(0.78, PALETTE.skyLow);
+    sky.addColorStop(1.0, PALETTE.skyHorizon);
+    bgCtx.fillStyle = sky;
+    bgCtx.fillRect(0, 0, viewW, viewH);
+
+    // Soft harvest moon glow in upper-right
+    const mx = viewW * 0.82;
+    const my = viewH * 0.19;
+    const mr = Math.min(viewW, viewH) * 0.048;
+
+    const moonHalo = bgCtx.createRadialGradient(mx, my, mr * 0.4, mx, my, mr * 6.5);
+    moonHalo.addColorStop(0, 'rgba(255, 240, 195, 0.24)');
+    moonHalo.addColorStop(0.35, 'rgba(255, 210, 145, 0.09)');
+    moonHalo.addColorStop(1, 'rgba(255, 200, 130, 0)');
+    bgCtx.fillStyle = moonHalo;
+    bgCtx.beginPath();
+    bgCtx.arc(mx, my, mr * 6.5, 0, Math.PI * 2);
+    bgCtx.fill();
+
+    // Moon disc
+    const moonDisc = bgCtx.createRadialGradient(mx - mr * 0.25, my - mr * 0.25, mr * 0.1, mx, my, mr);
+    moonDisc.addColorStop(0, '#fffdf2');
+    moonDisc.addColorStop(0.7, '#fbe8b5');
+    moonDisc.addColorStop(1, '#e8c47a');
+    bgCtx.fillStyle = moonDisc;
+    bgCtx.beginPath();
+    bgCtx.arc(mx, my, mr, 0, Math.PI * 2);
+    bgCtx.fill();
+
+    // Warm horizon mist
+    const mist = bgCtx.createLinearGradient(0, viewH * 0.68, 0, viewH);
+    mist.addColorStop(0, 'rgba(255, 175, 110, 0)');
+    mist.addColorStop(0.7, 'rgba(255, 160, 95, 0.08)');
+    mist.addColorStop(1, 'rgba(12, 10, 24, 0.35)');
+    bgCtx.fillStyle = mist;
+    bgCtx.fillRect(0, viewH * 0.68, viewW, viewH * 0.32);
+
+    // Three layered silhouetted hills
+    drawHillLayer(bgCtx, viewH * 0.81, 36, 0.0024, 0.4, '#1b1933');
+    drawHillLayer(bgCtx, viewH * 0.87, 26, 0.0038, 2.2, '#131227');
+    drawHillLayer(bgCtx, viewH * 0.93, 18, 0.0052, 4.1, '#0b0b19');
+  }
+
+  function drawHillLayer(c, baseY, amp, freq, phase, color) {
+    c.fillStyle = color;
+    c.beginPath();
+    c.moveTo(0, viewH);
+    for (let x = 0; x <= viewW + 20; x += 20) {
+      const y = baseY
+        + Math.sin(x * freq + phase) * amp
+        + Math.sin(x * freq * 2.3 + phase * 1.7) * (amp * 0.38);
+      c.lineTo(x, y);
+    }
+    c.lineTo(viewW, viewH);
+    c.closePath();
+    c.fill();
+  }
+
+  function resize() {
+    viewW = window.innerWidth;
+    viewH = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    canvas.width = Math.max(1, Math.floor(viewW * dpr));
+    canvas.height = Math.max(1, Math.floor(viewH * dpr));
+    scale = Math.min(viewW / W, viewH / H);
+    offsetX = (viewW - W * scale) * 0.5;
+    offsetY = (viewH - H * scale) * 0.5;
+    renderStaticBackground();
+  }
+
+  function screenToWorld(sx, sy) {
+    return {
+      x: (sx - offsetX) / scale,
+      y: (sy - offsetY) / scale
+    };
+  }
+
+  // =========================================================================
+  // 8. PARTICLE & EFFECT HELPERS
+  // =========================================================================
+  function spawnRing(x, y, maxR, color, lineWidth = 2.5, duration = 0.55) {
+    rings.push({ x, y, r: 8, maxR, color, lineWidth, life: duration, maxLife: duration });
+  }
+
+  function addShake(amount) {
+    shakeMag = Math.max(shakeMag, amount);
+  }
+
+  function spawnBurst(x, y, count, color, speedMin = 40, speedMax = 180, size = 3) {
+    for (let i = 0; i < count; i++) {
+      const ang = Math.random() * Math.PI * 2;
+      const spd = speedMin + Math.random() * (speedMax - speedMin);
+      particles.push({
+        x, y,
+        vx: Math.cos(ang) * spd,
+        vy: Math.sin(ang) * spd,
+        life: 0.45 + Math.random() * 0.55,
+        maxLife: 1,
+        r: size * (0.55 + Math.random() * 0.75),
+        color
+      });
+      particles[particles.length - 1].maxLife = particles[particles.length - 1].life;
+    }
+  }
+
+  // =========================================================================
+  // 9. PHYSICS ENGINE (FIXED 120 HZ)
+  // =========================================================================
+  function findNearestInRangeAnchor() {
+    let bestIdx = -1;
+    let bestDist = Infinity;
+    for (let i = 0; i < anchors.length; i++) {
+      if ((player.snapCooldowns[i] || 0) > 0) continue;
+      const a = anchors[i];
+      const d = Math.hypot(player.x - a.x, player.y - a.y);
+      if (d <= a.r && d < bestDist) {
+        bestDist = d;
+        bestIdx = i;
+      }
+    }
+    return bestIdx;
+  }
+
+  function tryLatch() {
+    if (player.tethered || player.won) return false;
+    const idx = findNearestInRangeAnchor();
+    if (idx === -1) return false;
+
+    const a = anchors[idx];
+    const rx = player.x - a.x;
+    const ry = player.y - a.y;
+    const r = Math.max(MIN_TETHER_R, Math.hypot(rx, ry));
+    const angle = Math.atan2(ry, rx);
+
+    // Unit counter-clockwise tangent
+    const utx = -Math.sin(angle);
+    const uty = Math.cos(angle);
+    const rawVt = player.vx * utx + player.vy * uty;
+    const speed = Math.hypot(player.vx, player.vy);
+
+    // Keep momentum crisp and joyful while preserving swing direction
+    const sign = rawVt >= 0 ? 1 : -1;
+    const mag = Math.max(Math.abs(rawVt), speed * 0.82, 140);
+    const vt = sign * Math.min(mag, Math.max(speed, 140));
+
+    player.tethered = true;
+    player.anchorIdx = idx;
+    player.tetherL = r;
+    player.angle = angle;
+    player.vt = vt;
+    player.omega = vt / r;
+    player.vx = utx * vt;
+    player.vy = uty * vt;
+    player.latchedOnce = true;
+    player.latchPluck = 1;
+
+    a.pulse = 1;
+    a.swayKick = (vt >= 0 ? 1 : -1) * 7.5;
+    releaseGhost = null;
+    if (screenMode === 'play') AudioEngine.playLatch(idx);
+    spawnBurst(player.x, player.y, 10, '#ffe48a', 30, 110, 2.5);
+    spawnRing(player.x, player.y, 38, 'rgba(255, 232, 150, 0.7)', 2, 0.35);
+    return true;
+  }
+
+  function releaseTether(snapped = false) {
+    if (!player.tethered) return;
+    const speed = Math.hypot(player.vx, player.vy);
+    const a = anchors[player.anchorIdx];
+
+    // Snapshot the exact tangent ray so the player sees themselves fly straight along it!
+    if (speed > 10) {
+      const rayLen = Math.max(110, Math.min(310, speed * 0.56));
+      releaseGhost = {
+        x: player.x,
+        y: player.y,
+        ux: player.vx / speed,
+        uy: player.vy / speed,
+        len: rayLen,
+        alpha: 0.95
+      };
+    }
+
+    if (snapped && a) {
+      player.snapCooldowns[player.anchorIdx] = SNAP_COOLDOWN;
+      a.swayKick = (player.vt >= 0 ? -1 : 1) * 14;
+      addShake(6.5);
+      if (screenMode === 'play') AudioEngine.playSnap();
+      // Whipping silk cord fragments
+      const mx = (a.x + player.x) * 0.5;
+      const my = (a.y + player.y) * 0.5;
+      snappedCords.push({
+        ax: a.x, ay: a.y, bx: mx, by: my,
+        vx: (a.x - player.x) * 1.1, vy: (a.y - player.y) * 1.1,
+        life: 0.45, maxLife: 0.45
+      });
+      snappedCords.push({
+        ax: player.x, ay: player.y, bx: mx, by: my,
+        vx: player.vx * 0.35, vy: player.vy * 0.35,
+        life: 0.45, maxLife: 0.45
+      });
+      spawnBurst(mx, my, 24, '#ffae42', 75, 250, 3.2);
+      spawnBurst(player.x, player.y, 14, '#fff2b2', 50, 190, 2.5);
+      spawnRing(mx, my, 75, 'rgba(255, 165, 68, 0.8)', 2.8, 0.42);
+    } else {
+      if (screenMode === 'play') AudioEngine.playRelease(speed);
+    }
+
+    player.tethered = false;
+    player.anchorIdx = -1;
+    player.tensionRatio = 0;
+  }
+
+  let pathRecordTimer = 0;
+
+  function stepPhysics(dt) {
+    simTime += dt;
+    levelElapsed += dt;
+
+    if (player.resetFade > 0) {
+      player.resetFade = Math.max(0, player.resetFade - dt * 3.2);
+    }
+    if (player.latchPluck > 0) {
+      player.latchPluck = Math.max(0, player.latchPluck - dt * 5.5);
+    }
+    if (shakeMag > 0) {
+      shakeMag = Math.max(0, shakeMag - dt * 22);
+    }
+    if (goalSlowMoTimer > 0) {
+      goalSlowMoTimer = Math.max(0, goalSlowMoTimer - dt);
+      if (goalSlowMoTimer === 0 && clearBannerPending) {
+        clearBannerPending = false;
+        clearBanner.classList.add('show');
+      }
+    }
+    if (ghostAlpha > 0) {
+      ghostAlpha = Math.max(0, ghostAlpha - dt * 0.14);
+    }
+    if (releaseGhost) {
+      releaseGhost.alpha -= dt * 0.72;
+      if (releaseGhost.alpha <= 0) releaseGhost = null;
+    }
+
+    // Update shockwave rings
+    for (let i = rings.length - 1; i >= 0; i--) {
+      const rg = rings[i];
+      rg.life -= dt;
+      const p = 1 - Math.max(0, rg.life / rg.maxLife);
+      rg.r = 10 + (rg.maxR - 10) * (1 - Math.pow(1 - p, 2.5));
+      if (rg.life <= 0) rings.splice(i, 1);
+    }
+
+    // Decrement snap cooldowns, lantern pulses & sway kicks
+    for (let i = 0; i < anchors.length; i++) {
+      if (player.snapCooldowns[i] > 0) {
+        player.snapCooldowns[i] = Math.max(0, player.snapCooldowns[i] - dt);
+      }
+      if (anchors[i].pulse > 0) {
+        anchors[i].pulse = Math.max(0, anchors[i].pulse - dt * 2.4);
+      }
+      if (anchors[i].swayKick) {
+        anchors[i].swayKick *= Math.pow(0.08, dt);
+        if (Math.abs(anchors[i].swayKick) < 0.05) anchors[i].swayKick = 0;
+      }
+    }
+
+    // Update ambient motes
+    for (let i = 0; i < ambientMotes.length; i++) {
+      const m = ambientMotes[i];
+      m.x += (m.vx + Math.sin(simTime * 0.7 + m.phase) * 6) * dt;
+      m.y += m.vy * dt;
+      if (m.y < -10) { m.y = H + 10; m.x = Math.random() * W; }
+      if (m.x < -10) m.x = W + 10;
+      if (m.x > W + 10) m.x = -10;
+    }
+
+    // Update wind streaks
+    for (let i = 0; i < windStreaks.length; i++) {
+      const s = windStreaks[i];
+      const w = s.wind;
+      const mag = Math.hypot(w.ax, w.ay) || 1;
+      s.x += (w.ax / mag) * s.speed * dt;
+      s.y += (w.ay / mag) * s.speed * dt;
+      if (s.y > w.y + w.h) s.y = w.y;
+      if (s.y < w.y) s.y = w.y + w.h;
+      if (s.x > w.x + w.w) s.x = w.x;
+      if (s.x < w.x) s.x = w.x + w.w;
+    }
+
+    // Update particles
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx * dt;
+      p.y += p.vy * dt;
+      p.vx *= 0.985;
+      p.vy *= 0.985;
+      p.life -= dt;
+      if (p.life <= 0) particles.splice(i, 1);
+    }
+
+    // Update snapped cord fragments
+    for (let i = snappedCords.length - 1; i >= 0; i--) {
+      const c = snappedCords[i];
+      c.bx += c.vx * dt;
+      c.by += c.vy * dt;
+      c.vx *= 0.94;
+      c.vy *= 0.94;
+      c.life -= dt;
+      if (c.life <= 0) snappedCords.splice(i, 1);
+    }
+
+    if (player.won) return;
+
+    // Autonomous background demo on Splash & Picker screens
+    if (screenMode !== 'play') {
+      demoTimer += dt;
+      if (player.tethered) {
+        const other = anchors[1 - player.anchorIdx];
+        if (other && demoTimer > 1.7) {
+          const toOtherX = other.x - player.x;
+          const toOtherY = other.y - player.y;
+          const dOther = Math.hypot(toOtherX, toOtherY) || 1;
+          const spd = Math.hypot(player.vx, player.vy) || 1;
+          const align = (player.vx * toOtherX + player.vy * toOtherY) / (spd * dOther);
+          if (align > 0.965) {
+            releaseTether(false);
+            demoTimer = 0;
+          }
+        }
+      } else if (demoTimer > 0.35) {
+        const near = findNearestInRangeAnchor();
+        if (near !== -1) {
+          tryLatch();
+          demoTimer = 0;
+        }
+      }
+    } else if (pointerHeld && !player.tethered && !sandboxPlaceMode) {
+      // Auto-latch if player is holding pointer and drifts into a lantern's halo
+      tryLatch();
+    }
+
+    const reeling = levelAllowsReel && (reelKeyHeld || reelBtnHeld);
+
+    if (player.tethered) {
+      const a = anchors[player.anchorIdx];
+      if (!a) {
+        releaseTether(false);
+      } else {
+        const prevL = player.tetherL;
+        if (reeling && player.tetherL > MIN_TETHER_R) {
+          player.tetherL = Math.max(MIN_TETHER_R, player.tetherL - REEL_RATE * dt);
+          // Conservation of Angular Momentum: L = m * r * v => v2 = v1 * (r1 / r2)
+          player.vt = player.vt * (prevL / player.tetherL);
+          player.reeledOnce = true;
+        }
+
+        player.omega = player.vt / player.tetherL;
+        player.angle += player.omega * dt;
+
+        // Exact circular position & strictly tangential velocity (zero radial drift)
+        player.x = a.x + Math.cos(player.angle) * player.tetherL;
+        player.y = a.y + Math.sin(player.angle) * player.tetherL;
+        player.vx = -Math.sin(player.angle) * player.vt;
+        player.vy = Math.cos(player.angle) * player.vt;
+
+        // Centripetal tension T = v^2 / r
+        const tension = (player.vt * player.vt) / player.tetherL;
+        player.tensionRatio = Math.min(1.15, tension / MAX_TENSION);
+
+        AudioEngine.updateOrbitHum(player.omega, player.tensionRatio, dt);
+
+        if (tension > MAX_TENSION) {
+          releaseTether(true);
+        }
+      }
+    } else {
+      // Free flight: pure Newton's 1st law outside wind corridors
+      for (let i = 0; i < winds.length; i++) {
+        const w = winds[i];
+        if (player.x >= w.x && player.x <= w.x + w.w && player.y >= w.y && player.y <= w.y + w.h) {
+          player.vx += w.ax * dt;
+          player.vy += w.ay * dt;
+        }
+      }
+      player.x += player.vx * dt;
+      player.y += player.vy * dt;
+    }
+
+    // Record ribbon trail, high-speed embers & ghost path
+    const curSpd = Math.hypot(player.vx, player.vy);
+    trail.push({ x: player.x, y: player.y, speed: curSpd });
+    if (trail.length > 56) trail.shift();
+
+    if (curSpd > 330) {
+      emberTimer += dt;
+      if (emberTimer >= 0.025) {
+        emberTimer = 0;
+        particles.push({
+          x: player.x + (Math.random() - 0.5) * 6,
+          y: player.y + (Math.random() - 0.5) * 6,
+          vx: -player.vx * 0.14 + (Math.random() - 0.5) * 35,
+          vy: -player.vy * 0.14 + (Math.random() - 0.5) * 35,
+          life: 0.38 + Math.random() * 0.25,
+          maxLife: 0.6,
+          r: 1.8 + Math.random() * 1.4,
+          color: '#fff0a6'
+        });
+      }
+    }
+
+    pathRecordTimer += dt;
+    if (pathRecordTimer >= 0.04) {
+      pathRecordTimer = 0;
+      currentPath.push({ x: player.x, y: player.y });
+      if (currentPath.length > 260) currentPath.shift();
+    }
+
+    if (screenMode !== 'play') {
+      if (player.x < -75 || player.x > W + 75 || player.y < -75 || player.y > H + 75) {
+        setupAttractDemo();
+      }
+      return;
+    }
+
+    // Check star-dew collectibles
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      if (!s.collected && Math.hypot(player.x - s.x, player.y - s.y) < 26) {
+        s.collected = true;
+        const got = stars.filter(st => st.collected).length;
+        AudioEngine.playStar(got);
+        spawnBurst(s.x, s.y, 18, '#ffe98c', 45, 165, 3);
+        spawnRing(s.x, s.y, 44, 'rgba(255, 240, 160, 0.85)', 2.2, 0.42);
+        updateHUD();
+      }
+    }
+
+    // Check stone garden obstacles
+    for (let i = 0; i < obstacles.length; i++) {
+      const o = obstacles[i];
+      if (Math.hypot(player.x - o.x, player.y - o.y) < o.r + FIREFLY_R - 2) {
+        AudioEngine.playBump();
+        addShake(5);
+        spawnBurst(player.x, player.y, 18, '#c8e69a', 35, 140, 2.8);
+        spawnRing(player.x, player.y, 40, 'rgba(200, 230, 154, 0.7)', 2, 0.35);
+        resetPlayer(true);
+        return;
+      }
+    }
+
+    // Check Goal Moon-Blossom Gate
+    if (!sandboxMode && Math.hypot(player.x - goal.x, player.y - goal.y) < goal.r + FIREFLY_R * 0.6) {
+      player.won = true;
+      addShake(4.5);
+      goalSlowMoTimer = 0.14;
+      clearBannerPending = true;
+      AudioEngine.playGoal();
+      spawnBurst(goal.x, goal.y, 50, '#ffe58a', 60, 270, 3.6);
+      spawnBurst(goal.x, goal.y, 30, '#a8ff8c', 40, 210, 3);
+      spawnRing(goal.x, goal.y, 130, 'rgba(255, 232, 140, 0.9)', 3.2, 0.65);
+      spawnRing(goal.x, goal.y, 88, 'rgba(160, 255, 210, 0.85)', 2.2, 0.5);
+
+      const got = stars.filter(s => s.collected).length;
+      clearedLevels[currentLevelIdx] = true;
+      if (got > bestStars[currentLevelIdx]) bestStars[currentLevelIdx] = got;
+      saveProgress();
+      updateHUD();
+
+      clearHeading.textContent = currentLevelIdx === LEVELS.length - 1
+        ? 'Festival Complete!'
+        : `${LEVELS[currentLevelIdx].name} Cleared!`;
+      clearStars.textContent = '★'.repeat(got) + '☆'.repeat(3 - got);
+      clearStars.style.color = '#ffd670';
+      continueBtn.textContent = currentLevelIdx === LEVELS.length - 1 ? 'Play Again ↺' : 'Next Lantern →';
+      return;
+    }
+
+    // Gentle auto-reset if drifted out of bounds
+    if (player.x < -75 || player.x > W + 75 || player.y < -75 || player.y > H + 75) {
+      resetPlayer(true);
+    }
+  }
+
+  // =========================================================================
+  // 10. CANVAS 2D VECTOR RENDERER
+  // =========================================================================
+  function render() {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // 1. Static twilight backdrop + moon + distant hills
+    ctx.drawImage(bgCanvas, 0, 0, viewW, viewH);
+
+    // 2. Twinkling night stars
+    for (let i = 0; i < bgStars.length; i++) {
+      const s = bgStars[i];
+      const tw = 0.32 + 0.68 * (0.5 + 0.5 * Math.sin(simTime * s.speed + s.phase));
+      ctx.fillStyle = `rgba(255, 246, 224, ${tw * 0.72})`;
+      ctx.beginPath();
+      ctx.arc(s.nx * viewW, s.ny * viewH, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 3. Enter logical 1200x720 world coordinates (with damped micro camera shake)
+    ctx.save();
+    const shX = shakeMag > 0.05 ? (Math.random() * 2 - 1) * shakeMag : 0;
+    const shY = shakeMag > 0.05 ? (Math.random() * 2 - 1) * shakeMag : 0;
+    ctx.translate(offsetX + shX, offsetY + shY);
+    ctx.scale(scale, scale);
+
+    // 4. Night-breeze wind corridors (Levels 7+)
+    drawWindCorridors();
+
+    // 4b. Subtle Spawn Launch Blossom & initial heading cue (in play mode)
+    if (screenMode === 'play') {
+      drawSpawnBlossom();
+    }
+
+    // 5. Ambient floating pollen dust
+    for (let i = 0; i < ambientMotes.length; i++) {
+      const m = ambientMotes[i];
+      const glow = 0.22 + 0.28 * (0.5 + 0.5 * Math.sin(simTime * 2.2 + m.phase));
+      ctx.fillStyle = `rgba(255, 232, 165, ${glow})`;
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 6. Retry ghost trajectory (previous attempt)
+    if (ghostAlpha > 0.01 && ghostPath.length > 2) {
+      ctx.save();
+      ctx.strokeStyle = `rgba(255, 236, 175, ${ghostAlpha * 0.26})`;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([4, 9]);
+      ctx.beginPath();
+      ctx.moveTo(ghostPath[0].x, ghostPath[0].y);
+      for (let i = 1; i < ghostPath.length; i++) ctx.lineTo(ghostPath[i].x, ghostPath[i].y);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // 7. Mossy stone garden obstacles
+    drawObstacles();
+
+    // 8. Goal Moon-Blossom Gate
+    if (!sandboxMode) drawGoalGate();
+
+    // 9. Collectible Star-Dew Motes
+    drawStars();
+
+    // 10. Paper Lantern Anchors & Capture Halos
+    const nearestIdx = (!player.tethered && !player.won) ? findNearestInRangeAnchor() : -1;
+    for (let i = 0; i < anchors.length; i++) {
+      drawPaperLantern(anchors[i], i === player.anchorIdx, i === nearestIdx);
+    }
+
+    // 11. Subtle zero-text visual cue on Level 1 before first latch
+    if (!sandboxMode && currentLevelIdx === 0 && !player.latchedOnce && nearestIdx === 0) {
+      drawTapRipple(anchors[0].x, anchors[0].y);
+    }
+
+    // 12. Frozen Release Tangent Ghost (proves straight-line tangential departure!)
+    if (releaseGhost) {
+      drawTangentArrow(
+        releaseGhost.x, releaseGhost.y,
+        releaseGhost.ux, releaseGhost.uy,
+        releaseGhost.len,
+        releaseGhost.alpha * 0.42,
+        false
+      );
+    }
+
+    // 13. Active Silk Tether + Live Tangent Velocity Radar
+    if (player.tethered && anchors[player.anchorIdx]) {
+      const a = anchors[player.anchorIdx];
+      drawSilkTether(a);
+
+      const spd = Math.hypot(player.vx, player.vy);
+      if (spd > 1) {
+        const ux = player.vx / spd;
+        const uy = player.vy / spd;
+        const rayLen = Math.max(105, Math.min(310, spd * 0.56));
+        drawRightAngleMark(a, ux, uy);
+        drawTangentArrow(player.x, player.y, ux, uy, rayLen, 0.92, true);
+      }
+    }
+
+    // 14. Snapped silk cord whip fragments
+    for (let i = 0; i < snappedCords.length; i++) {
+      const c = snappedCords[i];
+      const t = c.life / c.maxLife;
+      ctx.save();
+      ctx.strokeStyle = `rgba(255, 195, 110, ${t * 0.9})`;
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.moveTo(c.ax, c.ay);
+      ctx.quadraticCurveTo(
+        (c.ax + c.bx) * 0.5 + Math.sin(simTime * 50) * 14 * t,
+        (c.ay + c.by) * 0.5 + Math.cos(simTime * 50) * 14 * t,
+        c.bx, c.by
+      );
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // 15. Firefly Pollen Ribbon Trail & Firefly Craft
+    drawFireflyTrail();
+    if (!player.won) drawFirefly();
+
+    // 16. Spark / Pollen Particles & Expanding Shockwave Rings
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      const a = Math.max(0, p.life / p.maxLife);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = a;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * (0.4 + 0.6 * a), 0, Math.PI * 2);
+      ctx.fill();
+    }
+    for (let i = 0; i < rings.length; i++) {
+      const rg = rings[i];
+      const a = Math.max(0, rg.life / rg.maxLife);
+      ctx.strokeStyle = rg.color;
+      ctx.globalAlpha = a;
+      ctx.lineWidth = rg.lineWidth * a;
+      ctx.beginPath();
+      ctx.arc(rg.x, rg.y, rg.r, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // 17. Optional Sandbox Physics Vector Telemetry
+    if (screenMode === 'play' && sandboxMode && showVectors) {
+      drawPhysicsOverlay();
+    }
+
+    ctx.restore();
+
+    // 18. Foreground swaying silhouette reeds along the bottom of the full viewport
+    drawForegroundReeds();
+  }
+
+  function drawSpawnBlossom() {
+    const { x, y, vx, vy } = startState;
+    const spd = Math.hypot(vx, vy) || 1;
+    const ux = vx / spd;
+    const uy = vy / spd;
+    const pulse = 0.5 + 0.5 * Math.sin(simTime * 2.5);
+    ctx.save();
+    ctx.strokeStyle = `rgba(215, 255, 165, ${0.18 + pulse * 0.12})`;
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.arc(x, y, 13 + pulse * 2, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Faint initial launch direction guide
+    ctx.strokeStyle = 'rgba(215, 255, 165, 0.22)';
+    ctx.setLineDash([4, 6]);
+    ctx.beginPath();
+    ctx.moveTo(x + ux * 16, y + uy * 16);
+    ctx.lineTo(x + ux * 62, y + uy * 62);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+  }
+
+  function drawWindCorridors() {
+    for (let i = 0; i < winds.length; i++) {
+      const w = winds[i];
+      ctx.save();
+      const grad = ctx.createLinearGradient(w.x, w.y, w.x + w.w, w.y);
+      grad.addColorStop(0, 'rgba(130, 200, 255, 0)');
+      grad.addColorStop(0.15, 'rgba(130, 200, 255, 0.065)');
+      grad.addColorStop(0.85, 'rgba(130, 200, 255, 0.065)');
+      grad.addColorStop(1, 'rgba(130, 200, 255, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(w.x, w.y, w.w, w.h);
+
+      // Soft vertical border shimmer
+      ctx.strokeStyle = 'rgba(165, 225, 255, 0.16)';
+      ctx.setLineDash([6, 10]);
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(w.x, w.y); ctx.lineTo(w.x, w.y + w.h);
+      ctx.moveTo(w.x + w.w, w.y); ctx.lineTo(w.x + w.w, w.y + w.h);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Flowing wind ribbons & directional chevrons
+    ctx.save();
+    for (let i = 0; i < windStreaks.length; i++) {
+      const s = windStreaks[i];
+      const w = s.wind;
+      const mag = Math.hypot(w.ax, w.ay) || 1;
+      const dx = w.ax / mag;
+      const dy = w.ay / mag;
+      const sway = Math.sin(simTime * 3 + s.phase) * 4;
+      ctx.strokeStyle = `rgba(175, 230, 255, ${s.alpha})`;
+      ctx.lineWidth = 1.6;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(s.x - dx * s.len * 0.5, s.y - dy * s.len * 0.5);
+      ctx.quadraticCurveTo(s.x + sway, s.y, s.x + dx * s.len * 0.5, s.y + dy * s.len * 0.5);
+      ctx.stroke();
+
+      // Tiny wind arrowhead
+      const hx = s.x + dx * s.len * 0.5;
+      const hy = s.y + dy * s.len * 0.5;
+      ctx.beginPath();
+      ctx.moveTo(hx - dx * 5 - dy * 3.5, hy - dy * 5 + dx * 3.5);
+      ctx.lineTo(hx, hy);
+      ctx.lineTo(hx - dx * 5 + dy * 3.5, hy - dy * 5 - dx * 3.5);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawObstacles() {
+    for (let i = 0; i < obstacles.length; i++) {
+      const o = obstacles[i];
+      ctx.save();
+      // Subtle ambient shadow
+      const g = ctx.createRadialGradient(o.x - o.r * 0.3, o.y - o.r * 0.3, o.r * 0.1, o.x, o.y, o.r);
+      g.addColorStop(0, '#2a2a4a');
+      g.addColorStop(0.65, '#17172d');
+      g.addColorStop(1, '#0d0d1d');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Moonlit mossy rim highlight
+      ctx.strokeStyle = 'rgba(180, 200, 235, 0.25)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(o.x, o.y, o.r - 1, -Math.PI * 0.85, -Math.PI * 0.1);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  function drawGoalGate() {
+    const { x, y, r } = goal;
+    const pulse = 0.5 + 0.5 * Math.sin(simTime * 3.2);
+
+    ctx.save();
+    // Soft outer luminous portal halo
+    ctx.globalCompositeOperation = 'lighter';
+    const halo = ctx.createRadialGradient(x, y, r * 0.2, x, y, r * 2.1);
+    halo.addColorStop(0, 'rgba(160, 255, 215, 0.28)');
+    halo.addColorStop(0.45, 'rgba(255, 224, 130, 0.14)');
+    halo.addColorStop(1, 'rgba(136, 255, 210, 0)');
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(x, y, r * 2.1, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Inner swirling ring
+    ctx.strokeStyle = `rgba(175, 255, 220, ${0.55 + pulse * 0.35})`;
+    ctx.lineWidth = 2.4;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Woven golden dashed outer wreath
+    ctx.strokeStyle = `rgba(255, 222, 135, ${0.48 + pulse * 0.3})`;
+    ctx.lineWidth = 1.8;
+    ctx.setLineDash([8, 7]);
+    ctx.lineDashOffset = -simTime * 18;
+    ctx.beginPath();
+    ctx.arc(x, y, r + 7, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Orbiting blossom sparkles
+    for (let i = 0; i < 4; i++) {
+      const a = simTime * 1.4 + i * (Math.PI / 2);
+      const sx = x + Math.cos(a) * (r + 7);
+      const sy = y + Math.sin(a) * (r + 7);
+      ctx.fillStyle = '#fff5c8';
+      ctx.beginPath();
+      ctx.arc(sx, sy, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawStars() {
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      if (s.collected) continue;
+      const bob = Math.sin(simTime * 3.1 + s.phase) * 3.5;
+      const y = s.y + bob;
+      const glow = 0.75 + 0.25 * Math.sin(simTime * 4.5 + s.phase);
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      const rg = ctx.createRadialGradient(s.x, y, 1, s.x, y, 22);
+      rg.addColorStop(0, `rgba(255, 244, 175, ${0.75 * glow})`);
+      rg.addColorStop(0.5, `rgba(255, 200, 85, ${0.26 * glow})`);
+      rg.addColorStop(1, 'rgba(255, 200, 85, 0)');
+      ctx.fillStyle = rg;
+      ctx.beginPath();
+      ctx.arc(s.x, y, 22, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 4-point star-dew diamond
+      ctx.translate(s.x, y);
+      ctx.rotate(simTime * 0.6 + s.phase);
+      ctx.fillStyle = '#fff9d6';
+      ctx.beginPath();
+      for (let k = 0; k < 8; k++) {
+        const rad = k % 2 === 0 ? 9.5 : 3.2;
+        const ang = (k * Math.PI) / 4;
+        if (k === 0) ctx.moveTo(Math.cos(ang) * rad, Math.sin(ang) * rad);
+        else ctx.lineTo(Math.cos(ang) * rad, Math.sin(ang) * rad);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function drawPaperLantern(a, isActive, isTarget) {
+    const swayX = Math.sin(simTime * 1.45 + a.phase) * 2.2 + Math.sin(simTime * 18) * (a.swayKick || 0);
+    const swayY = Math.cos(simTime * 1.9 + a.phase) * 1.4;
+    const lx = a.x + swayX;
+    const ly = a.y + swayY;
+
+    ctx.save();
+
+    // 1. Capture Radius Halo
+    const haloAlpha = isActive ? 0.34 : (isTarget ? 0.38 : 0.14);
+    ctx.strokeStyle = isTarget
+      ? `rgba(255, 232, 145, ${haloAlpha})`
+      : `rgba(255, 202, 115, ${haloAlpha})`;
+    ctx.lineWidth = isTarget ? 2 : 1.25;
+    ctx.setLineDash(isActive ? [4, 6] : [7, 10]);
+    ctx.lineDashOffset = isTarget ? -simTime * 22 : 0;
+    ctx.beginPath();
+    ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Active spin-up ripple rings (shows angular momentum spin speed!)
+    if (isActive) {
+      const spinRings = 2;
+      const speedFactor = Math.min(3.5, Math.abs(player.omega) * 0.55);
+      for (let k = 0; k < spinRings; k++) {
+        const p = (simTime * (0.55 + speedFactor * 0.35) + k * 0.5) % 1;
+        const rr = 22 + p * 54;
+        ctx.strokeStyle = `rgba(255, 212, 115, ${(1 - p) * 0.35})`;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, rr, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      // Tension arc around lantern when tension > 25%
+      if (player.tensionRatio > 0.25) {
+        const tColor = player.tensionRatio > 0.72
+          ? `rgba(255, 72, 72, ${0.55 + 0.35 * Math.sin(simTime * 26)})`
+          : 'rgba(255, 175, 70, 0.65)';
+        ctx.strokeStyle = tColor;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, 28, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * Math.min(1, player.tensionRatio));
+        ctx.stroke();
+      }
+    }
+
+    // Latch pulse burst
+    if (a.pulse > 0) {
+      const rr = 20 + (1 - a.pulse) * 65;
+      ctx.strokeStyle = `rgba(255, 238, 165, ${a.pulse * 0.65})`;
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, rr, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // 2. Delicate vertical silk hanging string fading into night sky
+    const strGrad = ctx.createLinearGradient(lx, Math.max(-40, ly - 240), lx, ly - 18);
+    strGrad.addColorStop(0, 'rgba(255, 224, 165, 0)');
+    strGrad.addColorStop(1, 'rgba(255, 224, 165, 0.32)');
+    ctx.strokeStyle = strGrad;
+    ctx.lineWidth = 1.1;
+    ctx.beginPath();
+    ctx.moveTo(lx, Math.max(-40, ly - 240));
+    ctx.lineTo(lx, ly - 18);
+    ctx.stroke();
+
+    // 3. Warm Paper Lantern Outer Glow
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    const glowR = isActive ? 92 : (isTarget ? 78 : 62);
+    const lanternGlow = ctx.createRadialGradient(lx, ly, 4, lx, ly, glowR);
+    lanternGlow.addColorStop(0, isActive ? 'rgba(255, 232, 155, 0.55)' : 'rgba(255, 200, 105, 0.38)');
+    lanternGlow.addColorStop(0.45, `hsla(${a.hue}, 95%, 56%, ${isActive ? 0.24 : 0.14})`);
+    lanternGlow.addColorStop(1, 'rgba(255, 140, 40, 0)');
+    ctx.fillStyle = lanternGlow;
+    ctx.beginPath();
+    ctx.arc(lx, ly, glowR, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // 4. Lantern Rice-Paper Body (rounded oval)
+    const lw = 15;
+    const lh = 19;
+    const bodyGrad = ctx.createRadialGradient(lx, ly - 2, 2, lx, ly, lh * 1.15);
+    bodyGrad.addColorStop(0, '#fffbe6');
+    bodyGrad.addColorStop(0.48, `hsl(${a.hue + 6}, 96%, 68%)`);
+    bodyGrad.addColorStop(1, `hsl(${a.hue - 10}, 86%, 48%)`);
+    ctx.fillStyle = bodyGrad;
+    ctx.beginPath();
+    ctx.ellipse(lx, ly, lw, lh, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Subtle horizontal bamboo ribbing
+    ctx.strokeStyle = 'rgba(130, 50, 12, 0.28)';
+    ctx.lineWidth = 0.9;
+    [-8, 0, 8].forEach(dy => {
+      const hw = lw * Math.sqrt(Math.max(0.1, 1 - (dy * dy) / (lh * lh)));
+      ctx.beginPath();
+      ctx.moveTo(lx - hw, ly + dy);
+      ctx.quadraticCurveTo(lx, ly + dy + 2.5, lx + hw, ly + dy);
+      ctx.stroke();
+    });
+
+    // Lacquered top & bottom wooden caps
+    ctx.fillStyle = '#2d1a10';
+    ctx.strokeStyle = '#c89b4a';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.roundRect(lx - 8, ly - lh - 3, 16, 4.5, 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.roundRect(lx - 7, ly + lh - 1.5, 14, 4, 2);
+    ctx.fill();
+    ctx.stroke();
+
+    // Delicate golden tassel beneath lantern
+    ctx.strokeStyle = 'rgba(235, 175, 78, 0.72)';
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.moveTo(lx, ly + lh + 2.5);
+    ctx.quadraticCurveTo(lx + swayX * 1.6, ly + lh + 11, lx + swayX * 2.2, ly + lh + 18);
+    ctx.stroke();
+
+    // Subtle targeting shimmer line when firefly is in range (before clicking)
+    if (isTarget) {
+      ctx.strokeStyle = 'rgba(255, 232, 150, 0.28)';
+      ctx.lineWidth = 1.2;
+      ctx.setLineDash([3, 7]);
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(player.x, player.y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    ctx.restore();
+  }
+
+  function drawTapRipple(x, y) {
+    const p = (simTime * 0.9) % 1;
+    ctx.save();
+    ctx.strokeStyle = `rgba(220, 255, 155, ${(1 - p) * 0.65})`;
+    ctx.lineWidth = 2.2;
+    ctx.beginPath();
+    ctx.arc(x, y, 24 + p * 44, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawSilkTether(a) {
+    const t = player.tensionRatio;
+    // Color shifts smoothly: warm gold -> amber -> crimson near snap
+    let color;
+    if (t < 0.5) {
+      color = `rgba(255, 230, 140, 0.85)`;
+    } else if (t < 0.78) {
+      color = `rgba(255, 164, 68, 0.92)`;
+    } else {
+      const flash = 0.65 + 0.35 * Math.sin(simTime * 32);
+      color = `rgba(255, 72, 72, ${flash})`;
+    }
+
+    const dx = player.x - a.x;
+    const dy = player.y - a.y;
+    const len = Math.hypot(dx, dy) || 1;
+    const nx = -dy / len;
+    const ny = dx / len;
+    const pluckAmp = player.latchPluck > 0 ? player.latchPluck * 12 * Math.sin(simTime * 68) : 0;
+    const vibAmp = (t > 0.35 ? (t - 0.35) * 9.5 * Math.sin(simTime * (45 + t * 55)) : 0) + pluckAmp;
+
+    ctx.save();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.8 + t * 1.4;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 8 + t * 10;
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.quadraticCurveTo(
+      (a.x + player.x) * 0.5 + nx * vibAmp,
+      (a.y + player.y) * 0.5 + ny * vibAmp,
+      player.x, player.y
+    );
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawRightAngleMark(a, ux, uy) {
+    // Unit vector from player back toward anchor
+    const dx = a.x - player.x;
+    const dy = a.y - player.y;
+    const d = Math.hypot(dx, dy) || 1;
+    const rx = dx / d;
+    const ry = dy / d;
+    const s = 12;
+
+    const p1x = player.x + rx * s;
+    const p1y = player.y + ry * s;
+    const p2x = p1x + ux * s;
+    const p2y = p1y + uy * s;
+    const p3x = player.x + ux * s;
+    const p3y = player.y + uy * s;
+
+    ctx.save();
+    ctx.strokeStyle = 'rgba(215, 255, 165, 0.36)';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.moveTo(p1x, p1y);
+    ctx.lineTo(p2x, p2y);
+    ctx.lineTo(p3x, p3y);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // THE KILLER EDUCATIONAL FEATURE: Luminous Dotted Tangent Radar Arrow
+  function drawTangentArrow(ox, oy, ux, uy, len, alpha, animated) {
+    const ex = ox + ux * len;
+    const ey = oy + uy * len;
+
+    ctx.save();
+    const grad = ctx.createLinearGradient(ox, oy, ex, ey);
+    grad.addColorStop(0, `rgba(220, 255, 145, ${alpha})`);
+    grad.addColorStop(0.65, `rgba(175, 255, 210, ${alpha * 0.72})`);
+    grad.addColorStop(1, `rgba(175, 255, 210, ${alpha * 0.18})`);
+
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 2.4;
+    ctx.lineCap = 'round';
+    ctx.setLineDash([5, 9]);
+    if (animated) ctx.lineDashOffset = -simTime * 58;
+    ctx.beginPath();
+    ctx.moveTo(ox + ux * 14, oy + uy * 14);
+    ctx.lineTo(ex, ey);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Crisp radar arrowhead at tip
+    const headLen = 11;
+    const headW = 6.5;
+    const px = -uy;
+    const py = ux;
+    ctx.strokeStyle = `rgba(215, 255, 175, ${alpha * 0.85})`;
+    ctx.lineWidth = 2.2;
+    ctx.beginPath();
+    ctx.moveTo(ex - ux * headLen + px * headW, ey - uy * headLen + py * headW);
+    ctx.lineTo(ex, ey);
+    ctx.lineTo(ex - ux * headLen - px * headW, ey - uy * headLen - py * headW);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawFireflyTrail() {
+    if (trail.length < 2) return;
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.lineCap = 'round';
+    for (let i = 1; i < trail.length; i++) {
+      const p0 = trail[i - 1];
+      const p1 = trail[i];
+      const frac = i / trail.length;
+      const boost = Math.min(1, Math.max(0, (p1.speed - 240) / 260));
+      ctx.strokeStyle = boost > 0.3
+        ? `rgba(255, 240, 155, ${frac * 0.58})`
+        : `rgba(195, 255, 120, ${frac * 0.48})`;
+      ctx.lineWidth = frac * (4.8 + boost * 2.4);
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawFirefly() {
+    const heading = Math.atan2(player.vy, player.vx);
+    const speed = Math.hypot(player.vx, player.vy);
+    const wingFlap = Math.sin(simTime * (42 + Math.min(speed * 0.06, 25))) * 0.55;
+
+    ctx.save();
+    ctx.translate(player.x, player.y);
+    ctx.rotate(heading);
+
+    // Bioluminescent aura
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    const auraR = 26 + Math.min(speed * 0.03, 14);
+    const aura = ctx.createRadialGradient(-3, 0, 2, -3, 0, auraR);
+    aura.addColorStop(0, 'rgba(245, 255, 175, 0.85)');
+    aura.addColorStop(0.35, 'rgba(180, 255, 95, 0.35)');
+    aura.addColorStop(1, 'rgba(150, 255, 80, 0)');
+    ctx.fillStyle = aura;
+    ctx.beginPath();
+    ctx.arc(-3, 0, auraR, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // Translucent fluttering wings
+    ctx.fillStyle = 'rgba(235, 255, 220, 0.48)';
+    ctx.save();
+    ctx.rotate(-0.65 + wingFlap);
+    ctx.beginPath();
+    ctx.ellipse(-2, -6.5, 8, 3.6, -0.25, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    ctx.save();
+    ctx.rotate(0.65 - wingFlap);
+    ctx.beginPath();
+    ctx.ellipse(-2, 6.5, 8, 3.6, 0.25, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // Glowing firefly abdomen
+    ctx.fillStyle = '#f8ffc2';
+    ctx.beginPath();
+    ctx.ellipse(-4.5, 0, 6.2, 4.4, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Warm dark-amber head/thorax
+    ctx.fillStyle = '#3b2614';
+    ctx.beginPath();
+    ctx.ellipse(3.5, 0, 4.2, 3.4, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function drawPhysicsOverlay() {
+    const spd = Math.hypot(player.vx, player.vy);
+    ctx.save();
+    ctx.font = '600 12px ui-monospace, monospace';
+    ctx.fillStyle = 'rgba(247, 238, 220, 0.85)';
+    const lines = [
+      `v  = ${spd.toFixed(0)} px/s`,
+      player.tethered ? `r  = ${player.tetherL.toFixed(0)} px` : `r  = — (free flight)`,
+      player.tethered ? `L  = r·v = ${(player.tetherL * Math.abs(player.vt) / 1000).toFixed(1)}k` : `L  = —`,
+      player.tethered ? `T  = ${(player.tensionRatio * 100).toFixed(0)}% snap` : `T  = 0%`
+    ];
+    ctx.fillStyle = 'rgba(10, 14, 28, 0.65)';
+    ctx.beginPath();
+    ctx.roundRect(16, 68, 178, 86, 10);
+    ctx.fill();
+    ctx.fillStyle = '#f5ebd6';
+    lines.forEach((line, i) => ctx.fillText(line, 28, 90 + i * 18));
+    ctx.restore();
+  }
+
+  function drawForegroundReeds() {
+    ctx.save();
+    ctx.strokeStyle = '#070814';
+    ctx.fillStyle = '#070814';
+    for (let i = 0; i < reeds.length; i++) {
+      const r = reeds[i];
+      const bx = r.nx * viewW;
+      const by = viewH + 4;
+      const sway = Math.sin(simTime * 1.15 + r.phase) * 7;
+      const tx = bx + r.lean + sway;
+      const ty = viewH - r.h;
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      ctx.moveTo(bx, by);
+      ctx.quadraticCurveTo(bx + sway * 0.4, viewH - r.h * 0.55, tx, ty);
+      ctx.stroke();
+
+      if (r.hasCattail) {
+        ctx.beginPath();
+        ctx.ellipse(tx, ty + 8, 3.2, 8.5, (tx - bx) * 0.012, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    ctx.restore();
+  }
+
+  // =========================================================================
+  // 11. UNIFIED INPUT HANDLING (MOUSE, TOUCH, KEYBOARD)
+  // =========================================================================
+  function handleCanvasDown(clientX, clientY) {
+    if (screenMode !== 'play') return;
+
+    if (sandboxMode && sandboxPlaceMode) {
+      const pt = screenToWorld(clientX, clientY);
+      // If clicking near existing lantern, remove it
+      const existing = anchors.findIndex(a => Math.hypot(a.x - pt.x, a.y - pt.y) < 34);
+      if (existing !== -1) {
+        if (player.tethered && player.anchorIdx === existing) releaseTether(false);
+        anchors.splice(existing, 1);
+        anchors.forEach((a, i) => { a.idx = i; });
+        player.snapCooldowns = anchors.map(() => 0);
+      } else {
+        anchors.push({
+          x: pt.x, y: pt.y, r: 190,
+          hue: 20 + Math.floor(Math.random() * 22),
+          idx: anchors.length,
+          phase: Math.random() * 6,
+          pulse: 1,
+          swayKick: 0
+        });
+        player.snapCooldowns.push(0);
+        AudioEngine.playLatch(anchors.length - 1);
+      }
+      return;
+    }
+
+    pointerHeld = true;
+    tryLatch();
+  }
+
+  function handleCanvasUp() {
+    pointerHeld = false;
+    if (screenMode === 'play' && player.tethered) {
+      releaseTether(false);
+    }
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    if (screenMode !== 'play') return;
+    e.preventDefault();
+    canvas.setPointerCapture(e.pointerId);
+    handleCanvasDown(e.clientX, e.clientY);
+  });
+
+  canvas.addEventListener('pointerup', (e) => {
+    if (screenMode !== 'play') return;
+    e.preventDefault();
+    handleCanvasUp();
+  });
+
+  canvas.addEventListener('pointercancel', () => handleCanvasUp());
+
+  // Keyboard controls
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'Escape') {
+      if (screenMode === 'play') {
+        setScreenMode('picker');
+      } else if (screenMode === 'picker') {
+        setScreenMode('splash');
+      }
+      return;
+    }
+    if (screenMode === 'splash' && (e.code === 'Enter' || e.code === 'Space')) {
+      e.preventDefault();
+      startPlayLevel(getNextRecommendedLevel());
+      return;
+    }
+    if (screenMode !== 'play') return;
+
+    if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') {
+      e.preventDefault();
+      reelKeyHeld = true;
+      reelBtn.classList.add('pressed');
+    } else if (e.code === 'KeyR') {
+      resetPlayer(false);
+    } else if (e.code === 'Enter' && player.won) {
+      advanceLevel();
+    } else if (e.code === 'ArrowRight' && !sandboxMode && currentLevelIdx < LEVELS.length - 1) {
+      loadLevel(currentLevelIdx + 1);
+    } else if (e.code === 'ArrowLeft' && !sandboxMode && currentLevelIdx > 0) {
+      loadLevel(currentLevelIdx - 1);
+    }
+  });
+
+  window.addEventListener('keyup', (e) => {
+    if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') {
+      reelKeyHeld = false;
+      reelBtn.classList.remove('pressed');
+    }
+  });
+
+  // On-screen Reel-In Touch/Mouse Button
+  reelBtn.addEventListener('pointerdown', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    reelBtnHeld = true;
+    reelBtn.classList.add('pressed');
+  });
+  const endReelBtn = () => {
+    reelBtnHeld = false;
+    reelBtn.classList.remove('pressed');
+  };
+  reelBtn.addEventListener('pointerup', endReelBtn);
+  reelBtn.addEventListener('pointercancel', endReelBtn);
+  reelBtn.addEventListener('pointerleave', endReelBtn);
+
+  // Splash Screen & Level Picker Button Handlers
+  splashPlayBtn.addEventListener('click', () => startPlayLevel(getNextRecommendedLevel()));
+  splashLevelsBtn.addEventListener('click', () => setScreenMode('picker'));
+  splashSandboxBtn.addEventListener('click', () => startSandbox());
+
+  pickerBackBtn.addEventListener('click', () => setScreenMode('splash'));
+  pickerSandboxBtn.addEventListener('click', () => startSandbox());
+
+  makersPlateBtn.addEventListener('click', () => setScreenMode('splash'));
+  levelsHudBtn.addEventListener('click', () => setScreenMode('picker'));
+  levelMenuBtn.addEventListener('click', () => setScreenMode('picker'));
+  clearLevelsBtn.addEventListener('click', () => setScreenMode('picker'));
+
+  // HUD Button Handlers
+  prevBtn.addEventListener('click', () => { if (currentLevelIdx > 0) loadLevel(currentLevelIdx - 1); });
+  nextBtn.addEventListener('click', () => { if (currentLevelIdx < LEVELS.length - 1) loadLevel(currentLevelIdx + 1); });
+  resetBtn.addEventListener('click', () => resetPlayer(false));
+
+  sandboxBtn.addEventListener('click', () => {
+    if (sandboxMode) {
+      sandboxMode = false;
+      sandboxBtn.classList.remove('active');
+      sandboxBar.classList.remove('visible');
+      loadLevel(currentLevelIdx);
+    } else {
+      enterSandbox();
+    }
+  });
+
+  placeModeBtn.addEventListener('click', () => {
+    sandboxPlaceMode = !sandboxPlaceMode;
+    placeModeBtn.classList.toggle('active', sandboxPlaceMode);
+  });
+
+  vectorsBtn.addEventListener('click', () => {
+    showVectors = !showVectors;
+    vectorsBtn.classList.toggle('active', showVectors);
+  });
+
+  clearLanternsBtn.addEventListener('click', () => {
+    if (player.tethered) releaseTether(false);
+    anchors = [];
+    player.snapCooldowns = [];
+  });
+
+  soundBtn.addEventListener('click', () => {
+    const next = !AudioEngine.isMuted();
+    AudioEngine.setMuted(next);
+    soundBtn.textContent = next ? '🔇' : '🔊';
+  });
+
+  function advanceLevel() {
+    clearBanner.classList.remove('show');
+    clearBannerPending = false;
+    if (currentLevelIdx < LEVELS.length - 1) {
+      loadLevel(currentLevelIdx + 1);
+    } else {
+      setScreenMode('picker');
+    }
+  }
+
+  replayBtn.addEventListener('click', () => resetPlayer(false));
+  continueBtn.addEventListener('click', advanceLevel);
+
+  // =========================================================================
+  // 12. MAIN FIXED-TIMESTEP LOOP
+  // =========================================================================
+  let lastTime = performance.now();
+  let accumulator = 0;
+
+  function frame(now) {
+    const rawElapsed = Math.min(0.05, (now - lastTime) / 1000);
+    lastTime = now;
+    const timeScale = goalSlowMoTimer > 0 ? 0.25 : 1;
+    accumulator += rawElapsed * timeScale;
+
+    while (accumulator >= FIXED_DT) {
+      stepPhysics(FIXED_DT);
+      accumulator -= FIXED_DT;
+    }
+
+    render();
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  loadProgress();
+  initScenicElements();
+  resize();
+  setScreenMode('splash');
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

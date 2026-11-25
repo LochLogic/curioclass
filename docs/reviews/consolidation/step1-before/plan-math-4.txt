@@ -1,0 +1,85 @@
+math-4: 812 items and 1161 wrong answers checked, 1 failure(s)
+  FAIL materials.csv row 26 (unit 4's record sheet): names u04-1/record.md, which does not exist; day 24 is written, so write the piece or fix the name
+  note s01-X1v2: asks why but is keyed; judge it by the teacher with look-fors and samples, or rule that the key holds it
+  note s03-X17v2: asks why but is keyed; judge it by the teacher with look-fors and samples, or rule that the key holds it
+  note s03-X18: asks why but is keyed; judge it by the teacher with look-fors and samples, or rule that the key holds it
+  note s04-X30: asks why but is keyed; judge it by the teacher with look-fors and samples, or rule that the key holds it
+  note s04-X37b: asks why but is keyed; judge it by the teacher with look-fors and samples, or rule that the key holds it
+  note s10-F81-1: a fix on the same numbers as s10-K81-1 of its day; students copy, not find
+  note s10-F81-2: a fix on the same numbers as s10-K81-1 of its day; students copy, not find
+  note unit 1: 32 taught facts recur on more than one day (allowed for practice), e.g. 1 48 48; 10 4 40; 10 6 60; 12 2 6
+  note unit 1: s01-P4-2 shows a product equal to reserved 80; rule on it (day 4 read)
+  note unit 1: d004.md shows a product equal to reserved 80; rule on it (day 4 read)
+  note unit 1 error B rests on memory, not a source
+  note unit 1 error C rests on memory, not a source
+  note unit 1 error D rests on memory, not a source
+  note unit 1 error E rests on memory, not a source
+  note unit 1 error F rests on memory, not a source
+  note unit 1 error G rests on memory, not a source
+  note unit 1: 1631 words of prose outside the generated tables (s01.md)
+  note unit 2: s02-T8-2 shows a product equal to reserved 45; rule on it (day 4 read)
+  note unit 2 error A rests on memory, not a source
+  note unit 2 error C rests on memory, not a source
+  note unit 2 error D rests on memory, not a source
+  note unit 2 error E rests on memory, not a source
+  note unit 2: 2188 words of prose outside the generated tables (s02.md)
+  note unit 3: 13 taught facts recur on more than one day (allowed for practice), e.g. 1 10 10; 1 5 5; 10 2 5; 12 2 6
+  note unit 3: u03-3 register names I, but no comparing end item (s03-E5, s03-E6, s03-E7v2) has a wrong row for it
+  note unit 3: s03-C13-1 shows a product equal to reserved 12; rule on it (day 4 read)
+  note unit 3: s03-C13-2 shows a product equal to reserved 100; rule on it (day 4 read)
+  note unit 3: s03-K15-1 shows a product equal to reserved 100; rule on it (day 4 read)
+  note unit 3: s03-P12-3 shows a product equal to reserved 12; rule on it (day 4 read)
+  note unit 3 error A rests on memory, not a source
+  note unit 3 error B rests on memory, not a source
+  note unit 3 error E rests on memory, not a source
+  note unit 3 error F rests on memory, not a source
+  note unit 3 error G rests on memory, not a source
+  note unit 3 error I rests on memory, not a source
+  note unit 3 error J rests on memory, not a source
+  note unit 3 error K rests on memory, not a source
+  note unit 3: 1959 words of prose outside the generated tables (s03.md)
+  note unit 4 error G rests on memory, not a source
+  note unit 4 error H rests on memory, not a source
+  note unit 4: 1119 words of prose outside the generated tables (s04.md)
+  note s09-F72-1: a fix on the numbers of the worked example s09-K72-1; students copy, not find (day 73 read)
+  note s09-F72-2: a fix on the numbers of the worked example s09-K72-1; students copy, not find (day 73 read)
+  note s09-X74v2: carries or ungroupings in the same places as the worked example s09-K74-1 (day 72 read)
+  note unit 9 error A rests on memory, not a source
+  note unit 9 error C rests on memory, not a source
+  note unit 9 error D rests on memory, not a source
+  note unit 9 error E rests on memory, not a source
+  note unit 9 error I rests on memory, not a source
+  note unit 9: 1523 words of prose outside the generated tables (s09.md)
+  note unit 10: 25 taught facts recur on more than one day (allowed for practice), e.g. 10 5 50; 10 7 70; 12 2 6; 12 3 4
+  note unit 10: s10-P82-10v2 shows a product equal to reserved 18; rule on it (day 4 read)
+  note unit 10: d082.md shows a product equal to reserved 32; rule on it (day 4 read)
+  note unit 10: d083.md shows a product equal to reserved 32; rule on it (day 4 read)
+  note unit 10: error E has no wrong-answer row on any exit or unit assessment item (day 6 read)
+  note unit 10 error D rests on memory, not a source
+  note unit 10 error G rests on memory, not a source
+  note unit 10 error H rests on memory, not a source
+  note unit 10: 1371 words of prose outside the generated tables (s10.md)
+  note unit 11: 8 taught facts recur on more than one day (allowed for practice), e.g. 10 2 20; 10 2 24; 12 2 24; 12 2 6
+  note s11-X90a: its answer 7 is the answer of s11-F90-1 on the same part
+  note s11-X90t3: its answer 8 is the answer of s11-F90-2 on the same part
+  note unit 11 error C rests on memory, not a source
+  note unit 11 error D rests on memory, not a source
+  note unit 11 error E rests on memory, not a source
+  note unit 11 error F rests on memory, not a source
+  note unit 11: 1844 words of prose outside the generated tables (s11.md)
+  note day 84: the goal piece "solve a comparison problem when the bigger" is shown by no exit of the day, only by s10-E3; does the exit check the goal?
+  note day 75: the goal piece "check by adding" is shown by no exit of the day, only by s09-E6; does the exit check the goal?
+  note day 18: shows names no end-of-unit item; the unit assessment does not see this goal
+  FAIL one-ask: s11-E1: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s11-E5: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s11-X92: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s01-R2: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s01-E3: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s03-E5: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s03-X11v2: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s03-X18: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s03-X21v2: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s04-E4: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s04-X25: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s04-X30: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s04-X37b: the stem has 2 question marks, so it asks 2 things (one ask per item)

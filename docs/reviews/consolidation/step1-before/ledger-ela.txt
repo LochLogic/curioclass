@@ -1,0 +1,17 @@
+ela ledger: 9256 rows, 0 problems
+
+== citation check (added 2026-11-21; does not change the exit code) ==
+review notes: 2688, cited targets: 2723
+planned-only findings: 28 (target only at stage planned, note lacks "planned only")
+unmatched citations: 2 (no ledger row matches the cited target)
+  planned-only: english-language-arts-grade-1 u01-2 day 6: digraph th cites english-language-arts-kindergarten (digraphs)
+  planned-only: english-language-arts-kindergarten u02-6 day 57: believe cites english-language-arts-kindergarten u01-1 day 23
+  planned-only: english-language-arts-grade-1 u01-5 day 22: tiny and little: adjectives differing in intensity cites english-language-arts-grade-1 u01-1 day 5
+  planned-only: english-language-arts-grade-2 u03-9 (planned): recount with facts and a detail the listener can picture (da cites english-language-arts-grade-1 (describe-present)
+  planned-only: english-language-arts-grade-1 u02-3 day 43: cycle 6 progress sample: read a word, spell a word, show b a cites english-language-arts-grade-1 u02-2 day 38
+  planned-only: english-language-arts-grade-1 u02-5 day 51: because and so join two facts with a connection arrow cites english-language-arts-grade-1 unit 1 day 34
+  planned-only: english-language-arts-grade-1 u02-8 day 63: first, next, then, last for ordering events cites english-language-arts-grade-1 u02-2 day 51
+  planned-only: english-language-arts-grade-1 u02-8 day 63: feeling word and sense word cites english-language-arts-grade-1 u02-1 day 39
+  ... 20 more planned-only (use --all)
+  unmatched: english-language-arts-grade-1 u01-2 day 5: rhyme cites english-language-arts-kindergarten (rhyming)
+  unmatched: english-language-arts-grade-1 u01-3 day 12: first, next, last with event cards and counters cites english-language-arts-kindergarten (retelling)
