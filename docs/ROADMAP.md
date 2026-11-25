@@ -155,8 +155,9 @@ what it pulls from the closet (docs/ECOSYSTEM.md). In order:
 4. **The topic kit and Sub Day lite.** Waits to see how fast charts arrive.
 5. **Break Box** (docs/BREAK-BOX-PLAN.md): 390 sheets on the shelf since 2026-11-03. Open: Cory's read, Spanish,
    the plan's extras.
-6. **Worksheets** (docs/WORKSHEETS-PLAN.md): 1,008 built of 7,116 planned rows. Open: Cory's read of the lists, the
-   last 100 of wave 2, the thin redrawn social studies courses (later.csv L8), and the thin areas at the end of this
+6. **Worksheets** (docs/WORKSHEETS-PLAN.md): 1,108 built (wave 2 finished 2026-11-24: its last 100 sheets were found on a branch in
+   consolidation step 1, and 19 rows the 2026-11-04 trim had cut under them were restored). Open: Cory's read of the
+   lists, the thin redrawn social studies courses (later.csv L8), and the thin areas at the end of this
    file.
 7. **Teacher Desk** (Desk Dock, Classroom Music, Printables, Research Cards: on the shelf since 2026-11-03). Open: a
    check of the sounds and noise meter on a real classroom laptop, Cory's ear on the music. Next pieces: a game-show

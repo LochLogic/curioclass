@@ -48,6 +48,84 @@ write: (Read aloud.) Make up a two-step direction for a partner. Say it, then wr
   starter: First, {circle} the ... Then ...
   key: Answers vary. Example: "First, circle the bird. Then draw a worm next to it." It names two actions in order.
 
+# 7. Classroom Language Check
+minutes: 20
+materials: pencil, crayons
+ican: I can follow directions, ask for things politely and use question words.
+directions: (Read aloud.) Look at the pictures. Listen and follow two directions. Then finish two requests and write the question word that goes with each picture.
+mistakes: Children often do only the second step of a direction; hold up one finger, then two, as you read. In the request frames, watch for "Give me" instead of "May I have"; practice the polite frame aloud first. "Where" and "When" sound alike to many new speakers: say them slowly and point to a place (the school) and to the clock.
+notes: Name the pictures together first (book, pencil, backpack, trash can). Read each direction twice and wait. For the question words, ask "Where do you go to learn?" (school) and "When is lunch?" (the clock shows a time), then have students write the word. This is a short check across the Classroom Language module: two directions, two requests and two question words.
+
+## Picture page
+picword:
+  - book
+  - pencil
+  - backpack
+  - trash-can
+
+## Part 1: Follow directions
+write: (Read aloud.) Circle the book. Then draw a line under the pencil.
+  lines: 0
+  key: The book is circled, and there is a line under the pencil.
+write: (Read aloud.) Put an X on the trash can. Then draw a star next to the backpack.
+  lines: 0
+  key: The trash can has an X, and a star is drawn beside the backpack.
+
+## Part 2: Ask politely
+text: **Word bank:** have, help, please, May, Can
+write: (Read aloud.) You need a pencil. Ask your teacher.
+  lines: 1
+  starter: {May} I {have} a pencil, {please}?
+  key: May I have a pencil, please?
+write: (Read aloud.) You do not understand. Ask your teacher.
+  lines: 1
+  starter: {Can} you {help} me, please?
+  key: Can you help me, please?
+
+## Part 3: Question words
+text: **Word bank:** Where, When
+picword:
+  - school | {Where}?
+  - clock | {When}?
+write: (Read aloud.) Ask a partner a question with "When."
+  lines: 1
+  starter: When is ...
+  key: Answers vary. Example: "When is lunch?" or "When is recess?"
+
+# 20. Number Line Before and After
+minutes: 20
+materials: pencil
+ican: I can find numbers on a number line and say which number comes before and after.
+directions: (Read aloud.) Write the number for each letter on the number line. Then use the number line to finish each sentence with before or after numbers.
+mistakes: Children count the tick marks from 1 instead of 0, so every answer is one too big. Have them put a finger on 0 and count each jump. "Before" and "after" get swapped; remind them that before is the number to the left (we say it first when we count) and after is to the right.
+notes: Count from 0 to 20 aloud together, touching each tick. Read the frames aloud and have students say each one back in a full sentence. The Stretch has children mark a number themselves: walk by and check that the dot sits on the right tick.
+
+## Warm up: Count on the line
+numberline: 0 20 1
+  show: 0 5 10 15 20
+  mark: A=4 B=9 C=12 D=16 E=19
+
+## Main: Before and after
+text: **Word bank:** before, after
+fill:
+  - {3} comes before 4. {5} comes after 4.
+  - {8} comes before 9. {10} comes after 9.
+  - {11} comes before 12. {13} comes after 12.
+  - {15} comes before 16. {17} comes after 16.
+  - {18} comes before 19. {20} comes after 19.
+write: (Read aloud.) Say it: what number comes after 10 and before 12?
+  lines: 0
+  starter: {11} comes after 10 and before 12.
+  key: 11 comes after 10 and before 12.
+
+## Stretch: Mark it
+numberline: 0 20 1
+  show: 0 5 10 15 20
+write: (Read aloud.) Draw a dot at 7 on this number line. Then finish the sentences.
+  lines: 0
+  starter: {6} comes before 7. {8} comes after 7.
+  key: A dot on 7 (two ticks after 5). 6 comes before 7. 8 comes after 7.
+
 # 21. Math Talk Check
 minutes: 25
 materials: pencil
@@ -95,3 +173,36 @@ write: (Read aloud.) Tom has 10 apples. He gives away 4. How many apples are lef
   lines: 2
   starter: I {took away} because Tom gave some away. 10 - 4 = {6}.
   key: I took away because Tom gave some away. 10 - 4 = 6, so Tom has 6 apples left.
+
+# 33. Questions for a Visitor
+minutes: 20
+materials: pencil
+ican: I can ask a visitor questions about their job.
+directions: (Read aloud.) A builder is visiting our class. Look at pictures 1 to 4. Finish questions 1 to 4 with a word from the word bank. Then practice asking your questions.
+mistakes: Children often drop "do" ("What you use?"). Clap the four words of the frame "What do you ___?" together before writing. Another mix-up: answering the question instead of asking it; show the question mark and raise your voice at the end.
+notes: Use this before a real or pretend visitor (a family member, a school worker or the teacher in a costume). Name the pictures first: builder, hard hat, hammer, house. Model the answers a builder might give ("I build houses." "I wear a hard hat." "I use a hammer."). In the Stretch, students can choose any helper they know; the chef is shown as an idea.
+
+## Main: Ask the builder
+text: **Word bank:** do, wear, use, build
+picword:
+  - helper-builder | 1
+  - hard-hat | 2
+  - hammer | 3
+  - house | 4
+fill:
+  - What do you {do} at your job?
+  - What do you {wear} on your head?
+  - What do you {use} to build?
+  - What do you {build}?
+write: (Read aloud.) The builder answers. Finish what she says.
+  lines: 0
+  starter: I {build} houses. I {wear} a hard hat.
+  key: I build houses. I wear a hard hat.
+
+## Stretch: Your own question
+picword:
+  - helper-chef | chef
+write: (Read aloud.) Write a question for a chef.
+  lines: 1
+  starter: What do you ...
+  key: Answers vary. Example: "What do you cook?" or "What do you use?"

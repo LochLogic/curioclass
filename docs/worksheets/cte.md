@@ -12,6 +12,7 @@ Grade 6, 7 and 8 Career Exploration, then the high school Career Pathways and Pe
 | 4 | Cluster Explorer Field Notes | Log | Career Clusters | While using the Career Cluster Explorer tool, log 6 jobs from 3 clusters with one task and one tool for each. |
 | 5 | Career Clusters Check | Review | Career Clusters | Match jobs to clusters, explain one cluster's purpose in 2 sentences, and name 2 jobs in a cluster you choose. |
 | 6 | That's Me, Not Me: Interest Inventory | Reflection | Interests and Skills | Rate 20 activities from "not me" to "very me," total scores by cluster, and circle your top 3 clusters. |
+| 7 | Interest or Skill? | Practice | Interests and Skills | Sort 12 statements ("I enjoy drawing," "I can fix a bike chain") into interests and skills and match each skill to a job. |
 | 8 | Career Matchmaker | Apply | Interests and Skills | Read 5 invented student profiles and suggest 2 careers for each, naming the interest and skill behind every match. |
 | 9 | Strength Spotlight | Writing frame | Interests and Skills | Write about 3 strengths with a school or club example for each and a career that would use them. |
 | 10 | Interests and Skills Check | Review | Interests and Skills | Sort skills from interests, match 2 profiles to careers, and explain one match with evidence. |

@@ -21,6 +21,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 17 | Calm-Down Choice Board | Organizer | Calm Down Strategies | Cut out 8 calm tool pictures (hug a pillow, count to 5, get a drink) and glue any 4 onto a choice board. |
 | 18 | Stop, Breathe, Choose for Bunny | Timeline | Calm Down Strategies | Cut and glue 3 pictures in order (stop sign, breathing, choosing a tool) for Bunny, whose block tower fell down. |
 | 19 | Calm Choices Color by Code | Puzzle | Calm Down Strategies | Color by code: in a picture of a park, color each space showing a calm choice blue and each not-calm choice (yelling, throwing) gray. |
+| 20 | Count to Five Hand | Practice | Calm Down Strategies | Trace the 5 fingers of a printed hand and the numbers 1 to 5 while counting slowly, then draw a calm face at the end. |
 | 21 | Calm Corner Picture Hunt | Map | Calm Down Strategies | After the Calm Corner tool, circle the calm things in a picture of a class calm corner and draw one more thing it could use. |
 | 23 | Turtle Squeeze and Let Go | Practice | Calm Down Strategies | Follow a 4-picture squeeze-and-relax turtle sequence with the class, then draw Turtle tucked in its shell and stretched out. |
 | 25 | The Calm-Down Rhyme | Read and respond | Calm Down Strategies | The teacher reads a short rhyme about calming down; students circle the 3 calm tools from the rhyme in a picture row. |
@@ -30,6 +31,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 30 | Taking Turns on the Slide | Timeline | Making and Keeping Friends | Cut and glue 4 picture cards in order showing two friends taking turns on a slide. |
 | 31 | Kind Words Garden | Vocabulary | Making and Keeping Friends | Trace 4 kind words (please, thank you, sorry, share) on flower petals and draw two characters using one of them. |
 | 32 | Listening Body | Diagram | Making and Keeping Friends | Circle the parts of a listening body on a character picture: eyes looking, ears listening, quiet mouth, still hands. |
+| 33 | Kind Heart or Unkind Cloud? | Practice | Making and Keeping Friends | Cut 8 picture cards of playground actions and glue each under the kind heart or the unkind cloud. |
 | 34 | Pig Fixes the Tower | Apply | Making and Keeping Friends | After the teacher reads how Pig knocked over Duck's tower, draw one way Pig can say sorry and help fix it. |
 | 35 | Welcome to the Pond | Read and respond | Making and Keeping Friends | The teacher reads a story about a new frog at the pond; students circle 3 ways the others make Frog feel welcome. |
 | 36 | Problem and Fix Puzzle Pieces | Puzzle | Making and Keeping Friends | Cut out 4 problem halves and 4 fix halves of small friend troubles and glue each matching pair together. |
@@ -90,6 +92,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 17 | 5-4-3-2-1 Senses Scan | Practice | Calm Down Strategies | Use a busy classroom picture to list 5 things seen, 4 heard, 3 touched, 2 smelled and 1 tasted in a chart. |
 | 18 | Calm Self-Talk Bubbles | Writing frame | Calm Down Strategies | Rewrite 5 upset thoughts in a character's thought bubbles as calm self-talk, using starters like "I can..." |
 | 19 | Which Tool Where? | Organizer | Calm Down Strategies | Place 8 calm tools in a chart by where they work: classroom, playground, bus line, a big game. |
+| 20 | Three Breathing Patterns | Practice | Calm Down Strategies | Try square, five finger and balloon breathing with the class, count breaths in one minute for each, and circle the slowest. |
 | 21 | Rumble the Volcano Cools Down | Read and respond | Calm Down Strategies | Read a story about Rumble the volcano learning to cool down and answer 5 questions about his steps. |
 | 22 | Calm-Down Plan for Nia | Planner | Calm Down Strategies | Make a 4-step plan for Nia, who gets upset during tests: warning sign, tool, words to say, back to work. |
 | 24 | From Signal to Tool | Diagram | Calm Down Strategies | Label 5 body signals of being upset on a diagram and draw arrows from noticing to choosing a tool. |
@@ -101,6 +104,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 30 | I-Message Makeovers | Writing frame | Making and Keeping Friends | Turn 5 blaming sentences into I-messages: "I feel ___ when ___. Can we ___?" |
 | 31 | Left Out at Recess | Read and respond | Making and Keeping Friends | Read a story about a recess game and answer questions on who was left out and how others could include them. |
 | 32 | The Three Parts of a Real Apology | Practice | Making and Keeping Friends | Find the 3 parts (sorry, why, fix) in 6 sample apologies and repair 2 that are missing a part. |
+| 33 | Group Poster Team Plan | Planner | Making and Keeping Friends | Plan a group poster task by giving out 4 roles and writing how the group will share supplies and decide. |
 | 34 | Friendship Words in Action | Vocabulary | Making and Keeping Friends | Use loyal, fair, honest and patient in sentences about 4 picture scenes, then draw one of them. |
 | 35 | Solve It or Tell an Adult? | Apply | Making and Keeping Friends | Sort 8 situations into "we can solve it" or "tell an adult right away" and explain the difference. |
 | 37 | Friendship Story Map | Organizer | Making and Keeping Friends | Map a read-aloud friendship story: characters, problem, steps they took and how the friendship changed. |
@@ -116,6 +120,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 3 | Field Day, Three Views | Organizer | Perspective Taking | Read one field day story told by 3 characters and fill a chart of what each one saw, thought and felt. |
 | 4 | Walk in Their Shoes Story Notes | Read and respond | Perspective Taking | While using the Walk in Their Shoes tool, record each main character's feeling and one clue for 3 stories. |
 | 5 | Why Did Sam Do That? | Apply | Perspective Taking | For 5 puzzling actions, write two possible reasons a character might have, starting each with "Maybe..." |
+| 6 | Perspective Words at Work | Vocabulary | Perspective Taking | Use empathy, perspective, point of view and clue in sentences about 4 short scenes, then sketch one. |
 | 7 | Comic Strip Choices: Listening to Understand | Practice | Perspective Taking | In 4 comic strips, pick one of 3 printed last-panel replies that shows the listener understood, glue it in, and explain one choice. |
 | 8 | The Lion and the Mouse, Retold by Mouse | Read and respond | Perspective Taking | Read the public domain fable and retell the net scene from the mouse's point of view in 4 sentences. |
 | 9 | Body Language Clues | Diagram | Perspective Taking | Label 4 character drawings with posture and face clues, then name a likely feeling and thought for each. |
@@ -136,6 +141,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 30 | Goal Ladder Planner | Planner | Growth Mindset and Goals | Choose a class learning goal from a list and plan 4 ladder rungs: steps, helpers and a check date. |
 | 31 | Mistakes That Teach | Apply | Growth Mindset and Goals | Find the mistake in 4 sample answers by fictional students, write what can be learned, and fix each one. |
 | 32 | The Wright Brothers Keep Trying | Read and respond | Growth Mindset and Goals | Read a short true account of the Wright brothers' failed glider tests and list 3 things they changed. |
+| 33 | Self-Talk Switch | Practice | Growth Mindset and Goals | Change 6 discouraged thoughts into encouraging ones for a character learning to ride a bike. |
 | 34 | Growth Path Puzzle | Puzzle | Growth Mindset and Goals | Follow a path choosing the growth statement at 8 forks; each right choice reveals a letter of a hidden message. |
 | 35 | Feedback Is a Gift | Apply | Growth Mindset and Goals | Read 4 comments on a character's drawing and decide how she could use each one to improve. |
 | 37 | Strategy Checklist | Reflection | Growth Mindset and Goals | Check how often you use 6 learning strategies (often, sometimes, not yet) and circle one to try more. |
@@ -205,6 +211,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 28 | Thinking Traps | Practice | Growth Mindset and Goals | Label 6 discouraged thoughts by trap (all-or-nothing, comparing, giving up early) and write a balanced thought for each. |
 | 30 | Robotics Team Mindset Words | Vocabulary | Growth Mindset and Goals | Use resilience, persistence, adapt, milestone and reflect in sentences about a fictional robotics team. |
 | 31 | Three-Week Habit Tracker | Log | Growth Mindset and Goals | Track a class practice habit for 3 weeks with daily checks and a weekly note on what helped. |
+| 33 | Test Day Strategy Choices | Apply | Growth Mindset and Goals | Read 4 test-day scenarios and choose a study or calming strategy for each character, with a reason. |
 | 34 | Three Drafts of a Poem | Source analysis | Growth Mindset and Goals | Study a fictional student's 3 poem drafts with comments and identify what feedback changed each time. |
 | 36 | Class Goal Pitch | Writing frame | Growth Mindset and Goals | Write a paragraph pitching a class goal with reasons, steps and a way to measure success. |
 | 37 | Warm and Cool Feedback | Critique | Growth Mindset and Goals | Use a warm and cool feedback form to give kind, specific feedback on a sample science poster. |
@@ -257,6 +264,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 4 | Turn It Up or Cool It Down | Practice | Conflict Resolution | Sort 12 conversation moves (sarcasm, pausing, name-calling, summarizing) into escalating or de-escalating. |
 | 5 | Conflict Coach Assertive Lines | Apply | Conflict Resolution | After the Conflict Coach tool, write assertive lines for 4 new scenarios using moves practiced in the tool. |
 | 6 | How a Rumor Grows | Read and respond | Conflict Resolution | Read a story about a rumor spreading through a class and answer how it grew and how characters stopped it. |
+| 7 | Group Project Rescue | Apply | Conflict Resolution | Solve 4 group project problems (one person doing it all, a missed deadline) with fair, role-based solutions. |
 | 8 | Peer Mediator Script | Writing frame | Conflict Resolution | Complete a peer mediator script with ground rules, turn-taking prompts, summaries and a closing agreement. |
 | 9 | Nonverbal Signals | Diagram | Conflict Resolution | Label 6 character drawings for posture, eye contact and gestures that help or hurt a conversation. |
 | 11 | Conflict Analysis Map | Organizer | Conflict Resolution | Chart 2 conflicts with their causes, triggers, each side's feelings and 2 possible resolutions. |
@@ -346,6 +354,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 30 | Five Common Biases | Organizer | Bias and First Impressions | Fill a chart defining confirmation, halo, in-group, anchoring and stereotyping bias, with an original example of each. |
 | 31 | Generalization, Stereotype or Supported Fact? | Practice | Bias and First Impressions | Sort 10 statements about neutral groups (athletes, gamers, older drivers) into three columns and explain 3 choices. |
 | 32 | The Lazy Teammate? | Read and respond | Bias and First Impressions | Read a story about a student sure a teammate is lazy and find 4 pieces of evidence the character ignored. |
+| 33 | Pause, Question, Reconsider | Writing frame | Bias and First Impressions | Use a pause, question, reconsider frame on 4 scenarios to rewrite a character's assumption. |
 | 35 | Two Headlines, One Event | Source analysis | Bias and First Impressions | Compare 2 headlines about the same event and mark the loaded words that create different first impressions. |
 | 37 | Bias Match | Vocabulary | Bias and First Impressions | Match 10 example scenarios to the bias they show, then write one sentence using 3 bias terms correctly. |
 | 38 | Bias Logic Grid | Puzzle | Bias and First Impressions | Solve a logic grid matching 6 scenario cards to the bias each shows and the fix each needs. |
@@ -362,6 +371,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 4 | Resilience Map Pathways | Apply | Stress and Resilience | After the Resilience Map tool, chart which strategies fit 4 fictional stress scenarios and explain each choice. |
 | 5 | Support Network Diagram | Diagram | Stress and Resilience | Draw a support network for a fictional student with 4 kinds of support: emotional, practical, information and belonging. |
 | 6 | Signs of Burnout | Read and respond | Stress and Resilience | Read a 500-word passage on burnout warning signs and identify the signs in 2 fictional case studies. |
+| 7 | Stress in America Survey Table | Data and graphs | Stress and Resilience | Analyze a table adapted from the APA Stress in America survey and write 3 claims supported by the numbers. |
 | 9 | Class Mindfulness Log | Log | Stress and Resilience | Log 5 short class mindfulness practices with the technique, minutes, and a 1 to 5 focus rating for the room. |
 | 10 | Frederick Douglass Learns to Read | Source analysis | Stress and Resilience | Read an excerpt from Douglass's 1845 Narrative on learning to read and identify the sources of his resilience. |
 | 11 | Three Tests and a Game | Planner | Stress and Resilience | Build a stress plan for a fictional student facing 3 tests and a game: priorities, coping steps and supports. |
@@ -397,6 +407,7 @@ Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Eac
 | 4 | Resilience Map for a Junior | Apply | Stress and Resilience | After the Resilience Map tool, build a strategy plan for a fictional junior balancing a job, classes and tests. |
 | 5 | Protective Factors Research | Source analysis | Stress and Resilience | Read a CDC summary of protective factors for youth and sort 8 factors into individual, school and community levels. |
 | 6 | Teen Sleep and Grades Data | Data and graphs | Stress and Resilience | Graph a fictional data set of sleep hours and quiz scores, describe the trend, and explain why correlation is not cause. |
+| 7 | Breaking Down a Big Project | Planner | Stress and Resilience | Break a fictional 6-week research project into weekly milestones with buffer time and a plan for setbacks. |
 | 8 | Self-Compassion Rewrites | Writing frame | Stress and Resilience | Rewrite 5 harsh self-criticisms by fictional students as kind, honest statements using a three-part frame. |
 | 10 | Viktor Frankl on Choice | Source analysis | Stress and Resilience | Read a short excerpt from Man's Search for Meaning and explain Frankl's idea of choosing one's response. |
 | 12 | Helping a Friend Who Is Struggling | Apply | Stress and Resilience | For 4 fictional scenarios, choose how to listen, what to say and when to bring in a trusted adult or 988. |

@@ -55,6 +55,96 @@ write: **Idea:** Bats are important to plants. Use evidence from page 4 and tell
   starter: On page ___, it says ___, so ___. Also, it says ___, so ___.
   key: On page 4, it says bats "carry pollen, the way bees do," so they help flowers make seeds. Also, it says fruit bats "drop the seeds far away, where new plants can grow," so they help new plants spread.
 
+# 7. Talk Moves Tracker
+minutes: 15
+materials: pencil, a folder to keep the log in
+ican: I can track the talk moves I use in discussions and choose a new frame to try.
+directions: First, match each talk move to its frame. Then, after each class discussion for two weeks, fill in one row of the log: the date and topic, circle the talk moves you used, and write one frame you said. At the end, look back and choose a new frame to try.
+mistakes: Students may circle every move to look good. Ask them to write the exact frame they said in the last column; if they cannot remember the words, they probably did not use the move. Watch for students who log only "agree": the reflection should push them toward a move they never circled.
+notes: The 15 minutes are for the first day; after that, keep the logs in folders and give students two minutes at the end of each discussion (any subject) to fill in a row. Ten rows cover two school weeks; if you hold fewer discussions, two weeks may fill only five or six rows, which is fine. Move codes: Para = paraphrase, Clar = clarify, Add = add on, Evid = use evidence, Agr = agree with a reason, Dis = disagree politely. Only the warm-up match has a fixed key; the log and reflection are the student's own.
+
+## Warm up: Know the moves
+match: Match each talk move to its frame.
+  - Paraphrase (Para) = So you are saying ___.
+  - Clarify (Clar) = What do you mean by ___?
+  - Add on (Add) = I want to add on to ___'s idea.
+  - Use evidence (Evid) = On page ___, it says ___.
+  - Agree with a reason (Agr) = I agree with ___ because ___.
+  - Disagree politely (Dis) = I see it differently because ___.
+
+## Main: My two-week log
+table: # | Date and topic | Circle the moves I used | One frame I said
+  height: 0.5
+  - 1 |  | Para  Clar  Add  Evid  Agr  Dis |  
+  - 2 |  | Para  Clar  Add  Evid  Agr  Dis |  
+  - 3 |  | Para  Clar  Add  Evid  Agr  Dis |  
+  - 4 |  | Para  Clar  Add  Evid  Agr  Dis |  
+  - 5 |  | Para  Clar  Add  Evid  Agr  Dis |  
+  - 6 |  | Para  Clar  Add  Evid  Agr  Dis |  
+  - 7 |  | Para  Clar  Add  Evid  Agr  Dis |  
+  - 8 |  | Para  Clar  Add  Evid  Agr  Dis |  
+  - 9 |  | Para  Clar  Add  Evid  Agr  Dis |  
+  - 10 |  | Para  Clar  Add  Evid  Agr  Dis |  
+
+## Stretch: Look back
+write: Count your circles. Which move did you use the most? Which did you use the least?
+  lines: 2
+  starter: I used ___ the most (___ times). I used ___ the least (___ times).
+  key: Answers vary. Example: I used agree with a reason the most (7 times). I used clarify the least (0 times).
+write: Choose one new frame to try in the next two weeks. Write the frame and when you could use it.
+  lines: 3
+  starter: My new frame is "___." I could use it when ___.
+  key: Answers vary. Example: My new frame is "What do you mean by ___?" I could use it when a classmate uses a word I do not know or says an idea I do not understand.
+
+# 20. Explain the Regrouping
+minutes: 35
+materials: pencil, scratch paper
+ican: I can explain the steps of a multi-digit multiplication and why I regrouped.
+directions: Read Lena's solution and fill in the missing words and numbers in her explanation. Then solve a two-digit by two-digit problem yourself and explain each step with sequence words and "I regrouped because ___."
+mistakes: Students often say "I carried the 4" without saying what the 4 means. Push for place value: "I regrouped 4 tens." The most common math mistake is forgetting to add the regrouped tens after multiplying the tens (the Stretch). In 38 x 24, watch for students who multiply by 2 instead of 20 in the second row.
+notes: Sequence words in the Warm up can vary (Then and Next can swap); accept any order that reads clearly. The regrouped digit is written small above the tens column. In 38 x 24 there are two rounds of regrouping: 8 x 4 = 32 (regroup 3 tens) and 8 x 20 = 160 (regroup 1 hundred).
+
+## Warm up: Lena's solution
+program: Lena's work for 47 x 6
+  |     4
+  |     47
+  |   x  6
+  |   ----
+  |    282
+text: **Word bank:** first, next, then, finally, multiply, ones, tens, hundreds, regroup, product, because
+fill:
+  - {First}, I multiplied the ones: 7 x 6 = {42}.
+  - I wrote {2} in the ones place and regrouped {4} tens, because 42 ones is 4 tens and 2 ones.
+  - {Next}, I multiplied the tens: 4 tens x 6 = {24} tens.
+  - {Then}, I added the regrouped tens: 24 + 4 = {28} tens.
+  - {Finally}, I wrote 28 tens in front of the 2. The product is {282}.
+
+## Main: Your turn, 38 x 24
+draw: Solve 38 x 24 here. Show your regrouping. | 2.0
+write: Explain how you multiplied 38 by the 4 ones.
+  lines: 3
+  starter: First, I multiplied ___. I regrouped because ___. Next, ___.
+  key: First, I multiplied 8 x 4 = 32. I wrote 2 in the ones place and regrouped 3 tens because 32 ones is 3 tens and 2 ones. Next, I multiplied 3 tens x 4 = 12 tens and added the 3 regrouped tens to get 15 tens, so 38 x 4 = 152.
+write: Explain how you multiplied 38 by the 2 tens.
+  lines: 3
+  starter: Then, I wrote a zero in the ones place because ___. I regrouped because ___.
+  key: Then, I wrote a zero in the ones place because I was multiplying by 2 tens (20), not 2. 8 x 2 tens = 16 tens; I wrote 6 tens and regrouped 1 hundred because 16 tens is 1 hundred and 6 tens. 3 tens x 2 tens = 6 hundreds, plus 1 regrouped hundred is 7 hundreds, so 38 x 20 = 760.
+write: Explain how you found the product.
+  lines: 2
+  starter: Finally, I ___. The product is ___.
+  key: Finally, I added the two partial products: 152 + 760 = 912. The product is 912.
+
+## Stretch: Find the mistake
+program: Max's work for 56 x 3
+  |     56
+  |   x  3
+  |   ----
+  |    158
+write: Max's answer is wrong. What did he forget? What is the right product?
+  lines: 3
+  starter: Max forgot to ___. He should have ___. The right product is ___.
+  key: Max forgot to add the regrouped ten. 6 x 3 = 18, so he should have regrouped 1 ten and added it to 5 tens x 3 = 15 tens, making 16 tens. The right product is 168.
+
 # 21. Area or Perimeter?
 minutes: 30
 materials: pencil, ruler
@@ -99,3 +189,57 @@ write: A rectangle has an area of 24 square units and a perimeter of 20 units. W
   lines: 3
   starter: The rectangle is ___ by ___ because the area is ___ x ___ = 24 and the perimeter is ___.
   key: The rectangle is 6 by 4 because the area is 6 x 4 = 24 and the perimeter is 6 + 4 + 6 + 4 = 20.
+
+# 33. Pioneers Were Working
+minutes: 30
+materials: pencil
+ican: I can use was and were with -ing verbs to tell what people were doing in the past.
+directions: The picture cards show a pioneer farm on a summer afternoon long ago. Each card shows who and the action. Write a sentence for each card with "was ___ing" or "were ___ing."
+mistakes: Students mix up was and were: one person or thing takes was, more than one takes were. Watch -ing spelling: drop the silent e (make, making) and double the last letter after a short vowel (swim, swimming; dig, digging).
+notes: The "picture" is a set of icon cards, one per action, since the sheet has no full farm scene. Pioneer families in the 1800s did all of these jobs: fixing fences, milking, carrying water, plowing with horses, planting, cooking over a fire and sweeping. Pa, Ma and Grandma are characters, not real people. Before writing, have partners point to a card and say the sentence aloud.
+
+## Warm up
+example: **One person:** Ma **was** cooking supper.
+  **More than one:** The children **were** carrying water.
+  **Spelling:** fix, fixing / bake, baking (drop the e) / swim, swimming (double the m)
+picword:
+  - pan | Ma: cook
+  - jug | children: carry
+fill:
+  - One person or thing: use {was}.
+  - More than one: use {were}.
+  - plan becomes {planning}; ride becomes {riding}.
+
+## Main: On the farm
+picword:
+  - hammer | Pa: fix
+  - cow | Ma: milk
+  - horse | horse: pull
+  - duck | ducks: swim
+  - sprout | boys: plant
+  - broom | Sarah: sweep
+write: **Pa** (fix the fence)
+  lines: 1
+  key: Pa was fixing the fence.
+write: **Ma** (milk the cow)
+  lines: 1
+  key: Ma was milking the cow.
+write: **The horse** (pull the plow)
+  lines: 1
+  key: The horse was pulling the plow.
+write: **The ducks** (swim in the pond)
+  lines: 1
+  key: The ducks were swimming in the pond.
+write: **The boys** (plant corn)
+  lines: 1
+  key: The boys were planting corn.
+write: **Sarah** (sweep the porch)
+  lines: 1
+  key: Sarah was sweeping the porch.
+
+## Stretch: Add to the farm
+draw: Draw one more thing happening on the farm. | 1.6
+write: Write a sentence about your drawing. Use was or were with an -ing verb.
+  lines: 2
+  starter: While Pa was fixing the fence, ...
+  key: Example: While Pa was fixing the fence, the dog was chasing a rabbit across the field.

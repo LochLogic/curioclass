@@ -29,6 +29,82 @@ write: In scene 4, what if Dev thought, "He's little. It was an accident"? How m
   lines: 3
   key: Dev might feel annoyed or disappointed but calmer, not furious. He might take a breath, tell his brother to be careful, and start rebuilding, maybe with his brother's help.
 
+# 7. Empathy Ladder
+minutes: 25
+materials: pencil, scissors and glue (optional)
+ican: I can rank responses from least to most empathetic and explain what makes a response caring.
+directions: Read about Priya. Then read the six things her friends say. Put them on the ladder from least empathetic (rung 1, at the bottom) to most empathetic (rung 6, at the top) by writing each letter on a rung. Explain your top choice.
+mistakes: Students often rank "Let's go get a snack and forget about it" near the top because it is friendly. Cheering someone up fast can skip over the feeling; it is kind, but less empathetic than naming the feeling. Rungs 2 and 3 are close: brushing off the feeling (E) and turning the talk to yourself (D) both miss Priya; accept either order with a reason.
+notes: The story is original to Curio Class. The ladder idea: responses climb from hurting (mocking), to dismissing, to self-focused, to cheering up, to naming the feeling, to naming it and asking what the person needs. Students may cut the response strips apart and glue them in order instead of writing letters.
+
+## Read
+text: **Priya practiced every day for a month. Today she found out she did not make the travel soccer team. She is standing by her locker, staring at the list.**
+text: **A.** "That's really disappointing after all the practice you put in. Do you want to talk about it, or just hang out?"
+text: **B.** "Ha! I knew you wouldn't make it."
+text: **C.** "Don't be sad! Let's go get a snack and forget about it."
+text: **D.** "Oh well. I made the team, so at least one of us did!"
+text: **E.** "Who cares? It's just a team."
+text: **F.** "You must be really disappointed. You worked so hard."
+
+## Main: Build the ladder
+table: Rung | Response letter | Why it goes here (a few words)
+  height: 0.5
+  - 6 (most empathetic) | {A} | {names the feeling and asks what she needs}
+  - 5 | {F} | {names her feeling and her effort}
+  - 4 | {C} | {kind, but rushes past the feeling}
+  - 3 | {D} | {turns the talk to himself or herself}
+  - 2 | {E} | {brushes off the feeling}
+  - 1 (least empathetic) | {B} | {mocks her}
+
+## Explain
+write: Why is your top choice the most empathetic? Name two things it does.
+  lines: 3
+  key: A names Priya's feeling (disappointing) and her effort (all the practice), and it asks what she needs instead of deciding for her.
+write: Rewrite response C so it climbs higher on the ladder.
+  lines: 2
+  key: Sample: "That's so disappointing. Do you want to get a snack and talk about it, or would you rather not talk right now?"
+
+## Stretch
+write: Response D might be true: the speaker did make the team. How could that friend share the news later in a way that still shows empathy?
+  lines: 3
+  key: Sample: Wait until Priya is ready, then say something like "I know today was hard. I'd love for you to come watch a game, and I'd be glad to practice with you for next year."
+
+# 20. Perspective Taking Review
+minutes: 40
+materials: pencil
+ican: I can analyze a situation for each person's intent, the impact on others, fairness, and each point of view.
+directions: Read both scenes. For each one, fill the chart with what each character meant to do (intent), how it affected others (impact), and how that character sees the situation. Then answer the fairness questions.
+mistakes: Students often decide who is "the bad guy" and stop. Both scenes are built so each character has a fair reason and also causes a real impact. Intent and impact are different: a good intent does not erase a hurtful impact, and a hurtful impact does not prove a bad intent.
+notes: Both scenes are original to Curio Class. Charts will vary in wording; look for an intent and an impact for every character and a point of view written as that character might say it. A good discussion question: what could each character have said before acting?
+
+## Read: Two scenes
+passage: Scene 1: The Group Slides
+  Marcus, Lena and Theo had to present their slides about rain forests on Friday. Lena made the slides about animals. On Thursday night, Marcus opened the shared file and thought Lena's slides looked plain. He wanted the group to get a great grade, so he changed her fonts, added bright pictures and rewrote two of her sentences. He didn't tell anyone before class.
+  On Friday, Lena clicked to her first slide and stopped. "Those aren't my words," she said, and her face went red. Theo looked from Marcus to Lena and didn't know what to say. After class, Lena quietly told Marcus, "You made me look like I didn't know my own slides." Marcus said, "I was just trying to help!"
+passage: Scene 2: The Saved Seat
+  Every day at lunch, Hana saves the seat next to her for her best friend, Jo. Today Jo was at the nurse's office with a bloody nose and was coming late. A new student, Ben, walked up with his tray. "Can I sit here?" he asked. "Sorry, it's saved," said Hana. Ben looked around the crowded, noisy room, then sat by himself at the end of a long table.
+  Ten minutes later, Jo arrived and sat next to Hana. Hana felt good that she had kept her promise to Jo. But when she looked over, Ben was eating alone, staring at his phone. Jo said, "Wait, did he ask to sit here? There's room for three of us if we scoot."
+
+## Main: Analyze each scene
+table: Character | Intent (what they meant to do) | Impact (how it affected others) | Their point of view
+  height: 0.75
+  - Marcus | | |
+  - Lena | | |
+  - Hana | | |
+  - Ben | | |
+note: Samples. Marcus: meant to help the group get a great grade / Lena felt embarrassed and her work was erased / "I made the slides better; why is she mad?" Lena: meant to make good slides and present her own work / her reaction surprised Marcus and Theo / "He changed my work without asking and made me look bad." Hana: meant to keep her promise to Jo / Ben felt unwelcome and ate alone / "I was being a loyal friend." Ben: meant to find a place to sit and make a friend / no harm to others; he went away quietly / "Nobody wants me here."
+
+## Fairness
+write: Was it fair for Marcus to change Lena's slides? Use both intent and impact in your answer.
+  lines: 3
+  key: Sample: Not fair. His intent was good (a better grade), but the impact was that Lena's work was changed without her say and she was embarrassed in front of the class. He should have asked first.
+write: Was it fair for Hana to save the seat? Give one reason it was fair and one reason it was not.
+  lines: 3
+  key: Sample: Fair: she had made a promise to Jo, and saving a seat for a friend who is coming is reasonable. Not fully fair: there was room for three, and Ben, who is new, was left alone.
+write: Choose one scene. What could one character say or do now to repair it?
+  lines: 3
+  key: Samples: Marcus: "I'm sorry I changed your slides without asking. Next time I'll share ideas first." Hana: walk over and say, "Ben, there's room with us now. Want to sit with Jo and me?"
+
 # 21. Coach Comment Makeover
 minutes: 35
 materials: pencil
@@ -88,3 +164,42 @@ write: "That drill is too hard for you. Just skip it."
 write: Pick one makeover you wrote. How might the player feel and act differently after hearing it?
   lines: 3
   key: Answers vary. For example: Jamal might feel hopeful instead of embarrassed, and he might ask for sprint drills and keep trying instead of sitting on the bench.
+
+# 33. Happy Accidents in Science
+minutes: 35
+materials: pencil, highlighter
+ican: I can explain how scientists learned from mistakes and accidents instead of giving up.
+directions: Read the three short accounts. For each one, label the accident or mistake, what the scientist noticed, and what was learned or made. Then answer the questions.
+mistakes: Students often write the discovery as the accident ("the accident was penicillin"). The accident is what went wrong or happened by chance; the discovery came from noticing it and testing it. Others say the scientists were "just lucky." Each one had to notice something strange, stay curious and test it, which is what a growth mindset looks like.
+notes: Facts checked for this sheet: Alexander Fleming found the mold in his London lab in September 1928 after returning from a vacation, and penicillin became a usable medicine in the early 1940s through the work of a team at Oxford led by Howard Florey and Ernst Chain. Percy Spencer noticed the melted candy bar while working with magnetrons, the tubes that make microwaves for radar, in the mid-1940s; the first microwave ovens went on sale in 1947. Edouard Benedictus's dropped flask is usually dated 1903, and he patented laminated safety glass in 1909. Some details of these stories (like the kind of candy bar) differ from telling to telling.
+
+## Read: Three accounts
+passage: Three Happy Accidents
+  **1. Mold in the dish.** In 1928, Alexander Fleming, a scientist in London, came back from a vacation to a messy lab. He had left dishes of bacteria sitting out, and mold had grown in one of them. Fleming could have thrown it away. Instead he looked closely: around the mold, the bacteria had died. The mold was making something that killed germs. He called it penicillin. Years later, other scientists turned it into a medicine that has saved millions of lives.
+  **2. The melted candy bar.** In the 1940s, Percy Spencer worked with machines that make microwaves for radar. One day he found that the candy bar in his pocket had melted. He wondered why. He held popcorn kernels near the machine, and they popped! Microwaves could heat food. This led to the microwave oven.
+  **3. The flask that did not shatter.** In 1903, a French chemist named Edouard Benedictus knocked a glass flask off a shelf. It cracked, but the pieces stayed together. The flask had held a liquid plastic that dried into a thin coat inside. He later used the idea to make safety glass, which is now used in car windshields.
+
+## Main: Label each account
+table: Account | The accident or mistake | What the scientist noticed | What was learned or made
+  height: 0.75
+  - 1. Mold | {mold grew in a dish of bacteria left out} | {the bacteria around the mold had died} | {penicillin, a germ-killing medicine}
+  - 2. Candy bar | {a candy bar melted in his pocket} | {the machine heated the candy; then popcorn popped} | {microwaves can cook food: the microwave oven}
+  - 3. Flask | {he knocked a flask off a shelf} | {it cracked but held together because of a plastic coat} | {safety glass for windshields}
+
+## Questions
+choice: What did all three scientists do that turned an accident into a discovery?
+  - They threw out their mistakes and started over.
+  - They waited for someone else to explain it.
+  * They noticed something strange and got curious about why.
+  - They kept the accident a secret.
+write: Percy Spencer tested his idea with popcorn. Why was testing an important step?
+  lines: 2
+  key: Testing showed that the melted candy bar was not a fluke: microwaves really could heat food. A guess becomes knowledge when you test it.
+write: Write a growth mindset sentence Fleming might have said when he found his messy dish.
+  lines: 2
+  key: Sample: "This dish didn't go as planned, but let's find out what this mold is doing."
+
+## Stretch
+write: Think of a time a character in a book or movie learned something from a mistake. What was the mistake, and what did they learn?
+  lines: 3
+  key: Answers vary. The answer should name the mistake and the lesson, for example a character who burns the first batch of cookies and learns to set a timer.
