@@ -36,3 +36,6 @@ _runner/
 ANTIGRAVITY-PROMPTS.txt
 FLASH-RESEARCH-PROMPT.txt
 .claude/worktrees/
+
+# large raw inputs of tool data pipelines (backed up to X:, never committed)
+tools/*/pipeline/raw/
