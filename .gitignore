@@ -17,10 +17,22 @@ tools/*/*.html
 closet/words/art/_raw/
 __pycache__/
 server.pid
-build/research-voice/
 
 # Messages pulled from the home page message box (scripts/messages.py): private, never committed
 docs/Return/
 
 # pipeline runner logs (scripts/pipeline_runner.py)
 data/pipeline/runner/
+
+# lesson build output (lesson.py build); the site ships dist/, never build/ (consolidation step 0, 2026-11-24)
+build/
+
+# working folders of the run scripts and AI platforms (were in .git/info/exclude until 2026-11-24)
+drafts/
+/_scratch/
+/_queue.txt
+_runner/
+/_draft/
+ANTIGRAVITY-PROMPTS.txt
+FLASH-RESEARCH-PROMPT.txt
+.claude/worktrees/
