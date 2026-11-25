@@ -20,8 +20,25 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 import index  # noqa: E402
 
 
+def stale():
+    """True when any file the index reads is newer than data/index.db (a stat of the tracked and new files under data/,
+    docs/ and courses/, about a second), so a lookup rebuilds only after a change."""
+    if not index.DB.exists():
+        return True
+    built = index.DB.stat().st_mtime
+    out = subprocess.run(['git', 'ls-files', '-co', '--exclude-standard', 'data', 'docs', 'courses'], cwd=ROOT,
+                         capture_output=True, text=True).stdout
+    for f in out.splitlines():
+        try:
+            if (ROOT / f).stat().st_mtime > built:
+                return True
+        except OSError:
+            return True   # a file gone since the build
+    return False
+
+
 def fresh():
-    if index.DB.exists() and '--no-build' in sys.argv:
+    if index.DB.exists() and ('--no-build' in sys.argv or not stale()):
         return
     ix = index.build()
     index.save(ix)

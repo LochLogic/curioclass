@@ -32,6 +32,7 @@ data/plans/frames.csv,generated-committed,scripts/frame.py sync,frame.py check,j
 data/plans/calendar.csv,generated-committed,scripts/frame.py sync,frame.py check,join of frame.md and the course list
 data/modules.csv,frozen,tool catalog,check_tools.py,generated from data/modules/; frozen with the catalog
 data/index-baseline.csv,generated-committed,scripts/index.py --baseline,index.py --reports,known index misses
+data/plans/goal-tests.csv,generated-committed,scripts/goal_tests.py --write,,the 12 end-goal tests as counts by date; gate.py --all --save writes it; SCALE.md and the Desk read it
 docs/COURSE-RUN.pdf,generated-committed,docs/COURSE-RUN.md,,print copy of COURSE-RUN.md
 data/plans/course-list.csv,source,lead,rows.py check,which courses exist
 data/plans/later.csv,source,lead,rows.py check,parked work; the Desk Dashboard reads it

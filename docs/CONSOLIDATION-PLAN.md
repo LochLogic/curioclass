@@ -635,6 +635,12 @@ what got worse; and is there anything major to address now, before step 5 and be
 Findings go to docs/reviews/consolidation/step4-close-review.md and are brought to Cory with a recommendation each;
 step 5 waits for his read.
 
+- Built 2026-11-25. scripts/goal_tests.py prints the 12 tests and `--write` records them in data/plans/goal-tests.csv
+  (gate.py `--all --save` calls it); nine read at target, 9 and 12 hold the baselined backlog (11 and 386). uses.py
+  rebuilds the index only when a source file is newer (22 s to 0.2 s). Full run step4-J: 210 gates, 26 non-zero; 0
+  failing against step4-H; against pre-step4 no old gate regressed (the new gates' lines are the only failing
+  findings). Report: docs/reviews/consolidation/step4-report.md. The close review follows.
+
 ### 4.K Order
 
 A first, because everything after is judged by it. B, then C before the pilot folders change (the plan count cell

@@ -1,0 +1,13 @@
+test,name,count,target,detail,date
+1,one working folder,1,1,git worktrees (the main checkout counts as one),2026-11-25
+2,every course has the same homes,0,0,index layout report lines (data/homes.csv),2026-11-25
+3,one home per fact,0,0,plans holding a stored <!-- skel --> block (the marker guard),2026-11-25
+4,no curriculum list from the tool catalog,0,0,"catalog lint lines (one named exception, course_pages.known_standards, is outside the count)",2026-11-25
+5,any object found by id,0.2,<10,"seconds for uses.py word:runoff, index fresh",2026-11-25
+6,"changes run as scripts, rows through rows.py",0,0,plan CSVs rows.py check cannot split like the csv reader (a hand edit that broke a row),2026-11-25
+7,one gate command,0,0,old filtered gate placeholders left in the kit and briefs,2026-11-25
+8,generated things never stored twice,0,0,tracked files data/homes.csv marks generated-ignored,2026-11-25
+9,every relation resolves,11,0,"11 misses, 0 of them new against data/index-baseline.csv",2026-11-25
+10,one status per object,0,0,status report lines (flow-status rows a file contradicts),2026-11-25
+11,retired ids never reused,0,0,0 retired ids recorded,2026-11-25
+12,nothing orphaned,386,0,orphans report lines,2026-11-25

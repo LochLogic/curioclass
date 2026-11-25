@@ -1,0 +1,18 @@
+== build_site (1 new line(s), 0 failing)
+  note 521 course and unit pages -> S:\CurioClass\build\gates\step4-J\dist\courses (hidden)
+== compare (8 new line(s), 0 failing)
+  note == index-reports (2 new line(s), 0 failing)
+  note == selftest-vocabulary (1 new line(s), 0 failing) [no baseline file]
+  note == vocabulary-check (1 new line(s), 0 failing) [no baseline file]
+  note gate all against its baseline: 0 failing finding(s), 7 new note line(s)
+  note note 521 course and unit pages -> S:\CurioClass\build\gates\step4-J\dist\courses (hidden)
+  note note index: 48639 nodes, 315379 edges (226858 hard) -> data/index.db
+  note note vocabulary self-test: all passed
+  note note vocabulary: 0 row(s) checked, 0 line(s)
+== index-reports (1 new line(s), 0 failing)
+  note index: 48639 nodes, 315379 edges (226858 hard) -> data/index.db
+== selftest-vocabulary (1 new line(s), 0 failing) [no baseline file]
+  note vocabulary self-test: all passed
+== vocabulary-check (1 new line(s), 0 failing) [no baseline file]
+  note vocabulary: 0 row(s) checked, 0 line(s)
+compare step4-H -> step4-J: 0 failing finding(s), 12 new note line(s)
