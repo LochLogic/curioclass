@@ -20,6 +20,7 @@ Counted from the repository on main (`git ls-files`, `git rev-list --count HEAD`
 | Standard-to-tool coverage rows | 2,400 |
 | Python scripts that build and check the work | 115 |
 | AI platforms that had worked on it | 3 (Claude, Codex, Antigravity), across hundreds of sessions |
+| Files the Codex working folder (S:\CurioClass-codex) wrote or changed after 2026-11-01, outside git | 1,188,961 (scratch work, run logs and installed Python packages; `find -newer`, a few locked folders not counted) |
 
 The consolidation (docs/CONSOLIDATION-PLAN.md) brings every platform's work back into one folder, one curriculum
 model and permanent ids, built for the tens of thousands of files the finished curriculum will hold.

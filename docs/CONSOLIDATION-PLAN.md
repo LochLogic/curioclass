@@ -187,7 +187,7 @@ the kit for tool plumbing. These are rebuilt or replaced:
 
 | Today | Problem | Becomes |
 |---|---|---|
-| Two curriculum catalogs side by side: the topic catalog (modules.csv, 815 modules; sequence.csv; coverage.csv, 2,400 rows; data/concepts) from the tool-building phase, and the course model (progressions, frames, scopes, unit and section plans, days) from the course phase | The same subject knowledge is described twice, in two shapes, kept by hand, and drifts; tools hang off modules while days hang off courses | **One curriculum graph** (4.1): standards and skills at the bottom, courses, units, sections and days on one side, topics and tools on the other, all linked to the same skills and standards |
+| A tool-era topic catalog (modules.csv, 815 modules; sequence.csv; coverage.csv, 2,400 rows; data/concepts; the shape files) beside the course model (progressions, frames, scopes, unit and section plans, days) | Cory's intent was always the reverse of what this catalog implies: the curriculum comes first and the tools are reshaped to it after the curriculum is done. No curriculum gate reads the catalog (plan.py, unitplan.py, lesson.py, coursegen.py, ledger.py, progressions and frames do not), but two curriculum-facing scripts lean on it: course_pages.py links a standard only if a tool module lists it, and course_status.py builds part of its course list from module placement | **The course model is the only curriculum model** (4.1). The two leaks are cut now; the catalog is frozen as tool-side data and is retired when the tools are reshaped to the finished curriculum |
 | data/units.csv (60 rows, the math-4 pilot) read by plan.py | A third unit list beside frames.csv and days.csv | retired into frames.csv and days.csv; plan.py reads those |
 | math-4 and ela-6 pilot ids beside math-grade-4 and english-language-arts-grade-6 | Two names for one course, two sets of folders | migrated to the full course ids, the old ids kept as aliases in the registry; turn.py jobs renamed |
 | Unit plans that hold tables also kept in CSVs (the Codex run replaced some with pointers, which caused the carry-overs) | Two homes for the same facts | **CSV holds structured facts, markdown holds prose**; any table in a plan that repeats CSV data is generated from the CSV, never typed |
@@ -198,19 +198,27 @@ the kit for tool plumbing. These are rebuilt or replaced:
 | About 41 top-level plan docs, rules restated across AGENTS.md, briefs and lenses | Agents read the wrong rule | one doc map; each rule stated once, and the mechanical rules become lint (4.6) |
 | 122 scripts, several overlapping (plan.py, unitplan.py, lesson.py, lesson_course.py, coursegen.py) | Hard to know which gate is the gate | one command per job named in the doc map; overlapping scripts merged or retired as each migration touches them, not as a separate rewrite |
 
-### 4.1 One curriculum graph, and the migrations into it
+### 4.1 One curriculum model: the curriculum first, the tools after
 
-Every object is a node with an id; every relation is an edge. Node types: standard, skill (progression node), course,
-unit, section, day, item, text, term, routine, topic, tool, worksheet, Recess game, source. Edges: day teaches skill,
-item checks standard, day reads text, tool practices skill, topic groups skills, term introduced on day, and so on.
+Cory, 2026-11-24: the curriculum is the product, and the tools are reshaped to it after it is done; the tools never
+give shape to the curriculum.
 
-- **Topics become views over the graph.** A topic (today a module) keeps its id and title, so the site's topic pages
-  and links survive, but its standards and skills are edges, and its place in the Map is derived from the order of the
-  skills it groups. coverage.csv is no longer typed: "which standards have a tool, a worksheet, a day" is a query.
-- **Tools attach to skills and standards**, not only to modules, so a tool shows on the days that teach its skill.
-- **Migrations**, one at a time, each with the scripts that read the old file changed first and before and after gates:
-  units.csv; the math-4 and ela-6 ids; the skeletons; modules.csv, sequence.csv and coverage.csv into the graph (the
-  largest, done last, with the site build compared page by page before and after); data/concepts.
+- **The curriculum graph.** Every curriculum object is a node with an id; every relation is an edge. Node types:
+  standard, skill (progression node), course, unit, section, day, item, text, term, routine, source. Edges: day
+  teaches skill, item checks standard, day reads text, term introduced on day, and so on. Its inputs are the
+  standards files (data/standards/), the progressions, frames.csv and each course's plan data, and nothing tool-side.
+- **Cut the two leaks now.** course_pages.py takes its known standards from data/standards/, not modules.csv.
+  course_status.py builds its course list from frames.csv and the course catalog, and reports tools only as a count
+  beside each course, never as what makes a course. Each change is checked by building the course pages and the status
+  page before and after and comparing them.
+- **Curriculum migrations**, one at a time, each with the scripts that read the old file changed first and before and
+  after gates: units.csv into frames.csv and days.csv; the math-4 and ela-6 ids; the skeletons.
+- **The tool catalog is frozen, not migrated.** modules.csv, sequence.csv, coverage.csv, data/concepts and the shape
+  files stay where they are, read only by the tool side and the site's topic pages and Map, and no curriculum script
+  may start reading them (a lint rule, 4.6). Nothing new is added to them.
+- **After the curriculum is done** (a later.csv row): each tool is mapped onto the skills and days it serves, the
+  topic pages become views over the curriculum graph, coverage becomes a query, and the catalog goes to the archive.
+  Tools then show on the days that teach their skill.
 
 ### 4.2 Permanent ids
 
@@ -260,7 +268,7 @@ this plan runs through it, so it is tested on real work before the curriculum gr
 ### 4.6 Writing aids from large datasets
 
 - **House rules as a linter.** No em dashes, "Curio Class" in full, US spelling, reading level by grade, banned
-  phrases, step names from docs/GLOSSARY.md: one style check runs on every file, in the spirit of the Vale linter
+  phrases, step names from docs/GLOSSARY.md, no curriculum script reading the tool catalog: one style check runs on every file, in the spirit of the Vale linter
   documentation teams use. Readers stop spending tokens on what a script can catch. Built in this step.
 - **Structure first, prose second.** Plans and days are written into shapes generated from data (unit plan skeletons
   already are); the generated tables of 4.0 extend this.
@@ -278,7 +286,7 @@ this plan runs through it, so it is tested on real work before the curriculum gr
 ### 4.7 Order
 
 4.4 (the workflow) and 4.3 (the index) first, since everything after runs through them; then 4.2 (ids minted by one
-scripted pass, prose links converted in the same pass); then the 4.1 migrations one at a time, modules last; then 4.6
+scripted pass, prose links converted in the same pass); then the 4.1 leak cuts and migrations one at a time; then 4.6
 (the linter). Each lands with before and after gates and its own commit.
 
 ## Step 5: tools, plumbing standardized and play left free
@@ -295,7 +303,10 @@ connect, and Supercell gives small teams a shared platform and freedom over the 
 | Play (src.html, art, voice) | No, on purpose | the world, the mechanic, the look, the palette, the type, the layout, the menus, the sounds, the jokes, the win moments |
 | Play rules Cory chose | Yes, as rules, not as code | say how to act (every waiting moment names the next action, spoken once, then a hint), the variety rule |
 
-What changes, in this order:
+What changes now and what waits (curriculum first, Cory 2026-11-24): items 1 and 5 are record keeping and land in this
+consolidation, so nothing about a tool gets lost; items 2 to 4 and 6 change tools themselves and wait until tool work
+resumes after the curriculum, alongside reshaping the tools to it.
+
 
 1. **The stage CSV first.** A new `data/tool-stages.csv` (tool id, stage, date, the record that proves it) becomes
    where board.py and desk_stats.py read the stage, instead of guessing from file names. data/tools.csv (2 rows, a
@@ -338,3 +349,5 @@ the memory notes, and write a short record of what moved where (the archive inde
 6. Gemini/Api.txt stays where it is, untouched, for when tool work resumes.
 7. The scale of the project is recorded for later marketing in docs/funding/SCALE.md: the before counts now, the
    after counts at step 6.
+8. Curriculum first: the tools never shape the curriculum; they are reshaped to it once it is done (step 4.1, step 5
+   scope).
