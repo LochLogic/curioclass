@@ -42,7 +42,7 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 
 | Course | Core | Rubric file | Approach | Progression | Scope and sequence | Plans | Topics | Tools: spec / built / live |
 |---|---|---|---|---|---|---|---|---|
-| Math, Kindergarten | yes | yes | draft | yes | yes | 8 | 9 | 7 / 1 / 1 |
+| Math, Kindergarten | yes | yes | draft | yes | yes | 45 | 9 | 7 / 1 / 1 |
 | Math, Grade 1 | yes | yes | draft | yes | yes | 8 | 11 | 11 / 0 / 0 |
 | Math, Grade 2 | yes | yes | draft | yes | yes | 9 | 9 | 6 / 1 / 2 |
 | Math, Grade 3 | yes | yes | draft | yes | yes | 8 | 10 | 9 / 1 / 0 |
@@ -66,7 +66,7 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 | English language arts, Grade 1 | yes | no | draft | yes | yes | 39 | 9 | 8 / 1 / 0 |
 | English language arts, Grade 2 | yes | no | draft | yes | yes | 41 | 8 | 6 / 0 / 4 |
 | English language arts, Grade 3 | yes | yes | draft | yes | yes | 39 | 10 | 10 / 0 / 0 |
-| English language arts, Grade 4 | yes | yes | draft | yes | yes | 4 | 10 | 10 / 0 / 0 |
+| English language arts, Grade 4 | yes | yes | draft | yes | yes | 34 | 10 | 10 / 0 / 0 |
 | English language arts, Grade 5 | yes | yes | draft | yes | yes | 4 | 9 | 9 / 0 / 0 |
 | English language arts, Grade 6 | yes | yes | draft | yes | yes | 6 | 9 | 9 / 0 / 0 |
 | English language arts, Grade 7 | yes | yes | draft | yes | yes | 6 | 9 | 9 / 0 / 0 |
@@ -84,8 +84,8 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 | Science, Grade 1 | yes | yes | lens and rubric | yes | yes | 21 | 5 | 4 / 1 / 0 |
 | Science, Grade 2 | yes | yes | lens and rubric | yes | yes | 23 | 6 | 3 / 0 / 3 |
 | Science, Grade 3 | yes | yes | lens and rubric | yes | yes | 27 | 7 | 7 / 0 / 0 |
-| Science, Grade 4 | yes | yes | lens and rubric | yes | yes | 6 | 8 | 7 / 0 / 1 |
-| Science, Grade 5 | yes | yes | lens and rubric | yes | yes | 8 | 8 | 6 / 2 / 0 |
+| Science, Grade 4 | yes | yes | lens and rubric | yes | yes | 28 | 8 | 7 / 0 / 1 |
+| Science, Grade 5 | yes | yes | lens and rubric | yes | yes | 36 | 8 | 6 / 2 / 0 |
 | Science, Grade 6 | yes | yes | lens and rubric | yes | yes | 6 | 10 | 7 / 2 / 1 |
 | Science, Grade 7 | yes | yes | lens and rubric | yes | yes | 8 | 10 | 9 / 1 / 0 |
 | Science, Grade 8 | yes | yes | lens and rubric | yes | yes | 6 | 13 | 9 / 4 / 0 |
@@ -103,8 +103,8 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 | Social studies, Grade 1 | yes | no | lens and rubric | yes | yes | 34 | 10 | 10 / 0 / 0 |
 | Social studies, Grade 2 | yes | no | lens and rubric | yes | yes | 32 | 8 | 7 / 0 / 1 |
 | Social studies, Grade 3 | yes | no | lens and rubric | yes | yes | 46 | 10 | 10 / 0 / 0 |
-| Social studies, Grade 4 | yes | no | lens and rubric | yes | yes | 7 | 8 | 6 / 0 / 2 |
-| Social studies, Grade 5 | yes | no | lens and rubric | yes | yes | 10 | 10 | 9 / 1 / 0 |
+| Social studies, Grade 4 | yes | no | lens and rubric | yes | yes | 45 | 8 | 6 / 0 / 2 |
+| Social studies, Grade 5 | yes | no | lens and rubric | yes | yes | 53 | 10 | 9 / 1 / 0 |
 | World Geography and Ancient Civilizations I | yes | no | lens and rubric | yes | yes | 11 | 10 | 10 / 0 / 0 |
 | World Geography and Ancient Civilizations II | yes | no | lens and rubric | yes | yes | 12 | 7 | 7 / 0 / 0 |
 | Civics: Government and Civic Life | yes | no | lens and rubric | yes | yes | 10 | 6 | 6 / 0 / 0 |

@@ -76,6 +76,25 @@ so no draft day reaches the public site.
 The six carry-overs of docs/reviews/codex-draft-baseline-2026-11-24.md and the math ledger repeat are open rows in
 data/plans/defects.csv. later.csv L105 now holds the review classes and stays paused at Cory's call.
 
-## 8 and 9
+## 8. Landed on main
 
-See the step close below.
+`git merge --no-ff draft/codex` (0ee81bb7c); its tree is identical to the gated branch merge (3b1a4bbe4). Every gate
+on main (docs/reviews/consolidation/step2-after/), against step2-before: the site build passes (4,733 pages, 83 built
+tools, as before); check_tools, check_safety, board and every non-lane course unchanged; newly failing are only the five
+lane plan gates above (science grade 5 already failed). docs/COURSES-STATUS.md now counts the lanes' section plans; no
+lane course shows a read.
+
+## 9. The draft folder
+
+- Branch tagged `archive/draft-codex` (3b1a4bbe4) and the tag pushed.
+- S:\CurioClass-draft\_draft (251 MB) and _scratch (4.6 GB) moved to
+  S:\CurioClass-archive\draft-folder-2026-11-24\ (327 index rows). texts-out (8 CSVs, 65 rows) checked first: every row
+  is in main's ela-texts.csv; the 3 that differ are measure cells where main holds the draft's count plus its own target.
+- archive_move.py failed twice on the way: a path over 260 characters (now handled with the long-path form) and a
+  file held by an orphaned headless Edge from a Codex job (Cory stopped PID 17936). The first failure came after 32
+  moves whose index rows were only written at the end; those rows were rebuilt from the hash-checked copies (marked
+  "row recovered from the copy") and the script now writes each row as its move finishes.
+- Left in place, waiting for Cory: _scratch/l87/tmp/math-kindergarten-day-7-4/python-modules (5 sandbox package
+  folders, markdown and pypdf, "Permission denied"; rebuildable with pip). With his OK it is skipped, then the worktree
+  is removed, the empty S:\CurioClass-draftpre folder (a temporary gate worktree) is deleted, and the local and remote
+  draft/codex branches are removed (the tag keeps them).

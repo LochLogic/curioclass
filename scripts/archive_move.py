@@ -7,11 +7,13 @@ copied there keeping its path relative to its root (S:\\CurioClass when inside i
 sha256 is checked against the source, a row goes into S:\\CurioClass-archive\\INDEX.csv (archived_path, old_path, size,
 sha256, date, step, reason), and only then is the source removed. --copy keeps the source; --dry prints and writes
 nothing. Tracked files are refused unless --tracked is passed (2026-11-24: a glob once caught 290 committed
-files). A folder is hashed by its sorted file list with each file's hash.
+files). A folder is hashed by its sorted file list with each file's hash. Each row is written as soon as its move
+is done, and Windows long paths (over 260 characters) are handled (2026-11-24: a Codex job's office profile broke both).
 """
 import csv
 import datetime
 import hashlib
+import os
 import shutil
 import subprocess
 import sys
@@ -21,6 +23,13 @@ ARCHIVE = Path(r'S:\CurioClass-archive')
 INDEX = ARCHIVE / 'INDEX.csv'
 REPO = Path(__file__).resolve().parent.parent
 FIELDS = ['archived_path', 'old_path', 'size', 'sha256', 'date', 'step', 'reason']
+
+
+def long(p):
+    """The extended-length form on Windows, so copies and hashes work past 260 characters."""
+    s = str(Path(p).resolve())
+    pre = '\\\\?\\'
+    return Path(s if os.name != 'nt' or s.startswith(pre) else pre + s)
 
 
 def fhash(p):
@@ -66,25 +75,26 @@ def main(a):
         dst = ARCHIVE / bucket / rel(src)
         if dst.exists():
             raise SystemExit('already archived: %s' % dst)
-        size, digest = tree(src)
+        size, digest = tree(long(src))
         print('%s %s -> %s (%d bytes)' % ('would move' if '--dry' in flags else 'move', src, dst, size))
         if '--dry' in flags:
             continue
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        (shutil.copytree if src.is_dir() else shutil.copy2)(src, dst)
-        if tree(dst) != (size, digest):
+        long(dst.parent).mkdir(parents=True, exist_ok=True)
+        (shutil.copytree if src.is_dir() else shutil.copy2)(long(src), long(dst))
+        if tree(long(dst)) != (size, digest):
             raise SystemExit('hash mismatch, source kept: %s' % src)
-        rows.append(dict(archived_path=str(dst), old_path=str(src), size=size, sha256=digest,
-                         date=datetime.date.today().isoformat(), step=step, reason=reason))
-        if '--copy' not in flags:
-            (shutil.rmtree if src.is_dir() else Path.unlink)(src)
-    if rows:
+        row = dict(archived_path=str(dst), old_path=str(src), size=size, sha256=digest,
+                   date=datetime.date.today().isoformat(), step=step, reason=reason)
         new = not INDEX.exists()
-        with open(INDEX, 'a', encoding='utf-8', newline='') as f:
+        with open(INDEX, 'a', encoding='utf-8', newline='') as f:   # one row per move, written before the source goes
             w = csv.DictWriter(f, FIELDS)
             if new:
                 w.writeheader()
-            w.writerows(rows)
+            w.writerow(row)
+        rows.append(row)
+        if '--copy' not in flags:
+            (shutil.rmtree if src.is_dir() else Path.unlink)(long(src))
+    if rows:
         print('%d row(s) added to %s' % (len(rows), INDEX))
 
 

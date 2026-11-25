@@ -1,0 +1,940 @@
+  FAIL section 1.1 (science-grade-5-u01-1) is not in data/units.csv
+  FAIL section 1.2 (science-grade-5-u01-2) is not in data/units.csv
+  FAIL section 1.3 (science-grade-5-u01-3) is not in data/units.csv
+  FAIL section 1.4 (science-grade-5-u01-4) is not in data/units.csv
+  FAIL section 2.1 (science-grade-5-u02-1) is not in data/units.csv
+  FAIL section 2.2 (science-grade-5-u02-2) is not in data/units.csv
+  FAIL section 2.3 (science-grade-5-u02-3) is not in data/units.csv
+  FAIL section 2.4 (science-grade-5-u02-4) is not in data/units.csv
+  FAIL section 2.5 (science-grade-5-u02-5) is not in data/units.csv
+  FAIL section 2.6 (science-grade-5-u02-6) is not in data/units.csv
+  FAIL section 3.1 (science-grade-5-u03-1) is not in data/units.csv
+  FAIL section 3.2 (science-grade-5-u03-2) is not in data/units.csv
+  FAIL section 3.3 (science-grade-5-u03-3) is not in data/units.csv
+  FAIL section 3.4 (science-grade-5-u03-4) is not in data/units.csv
+  FAIL section 3.5 (science-grade-5-u03-5) is not in data/units.csv
+  FAIL section 4.1 (science-grade-5-u04-1) is not in data/units.csv
+  FAIL section 4.2 (science-grade-5-u04-2) is not in data/units.csv
+  FAIL section 4.3 (science-grade-5-u04-3) is not in data/units.csv
+  FAIL section 4.4 (science-grade-5-u04-4) is not in data/units.csv
+  FAIL section 4.5 (science-grade-5-u04-5) is not in data/units.csv
+  FAIL section 5.1 (science-grade-5-u05-1) is not in data/units.csv
+  FAIL section 5.2 (science-grade-5-u05-2) is not in data/units.csv
+  FAIL section 5.3 (science-grade-5-u05-3) is not in data/units.csv
+  FAIL section 5.4 (science-grade-5-u05-4) is not in data/units.csv
+  FAIL s06-X108 reuses the numbers of s06-P111-plot: 0, 1, 2, 5
+  FAIL section 6.1 (science-grade-5-u06-1) is not in data/units.csv
+  FAIL section 6.2 (science-grade-5-u06-2) is not in data/units.csv
+  FAIL section 6.3 (science-grade-5-u06-3) is not in data/units.csv
+  FAIL section 6.4 (science-grade-5-u06-4) is not in data/units.csv
+  FAIL section 6.5 (science-grade-5-u06-5) is not in data/units.csv
+  FAIL section 6.6 (science-grade-5-u06-6) is not in data/units.csv
+courses/science-grade-5/u01-1/d001.md: teacher 502 words, student 135 words (66 frame, 69 questions), 45 min, 2 side(s), at home 80 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-1/d002.md: teacher 546 words, student 177 words (62 frame, 115 questions), 45 min, 2 side(s), at home 90 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-1/d003.md: teacher 580 words, student 162 words (83 frame, 79 questions), 45 min, 2 side(s), at home 90 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-1/d004.md: teacher 586 words, student 215 words (103 frame, 112 questions), 45 min, 2 side(s), at home 81 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-2/d005.md: teacher 608 words, student 190 words (143 frame, 47 questions), 45 min, 2 side(s), at home 94 words, 35 min, 0 failure(s)
+  NOTE courses/science-grade-5/u01-2/d005.md: the section plan's day 5 block names 50, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/science-grade-5/u01-2/d006.md: teacher 648 words, student 143 words (114 frame, 29 questions), 45 min, 2 side(s), at home 101 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-2/d007.md: teacher 620 words, student 82 words (69 frame, 13 questions), 45 min, 1 side(s), at home 104 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-3/d008.md: teacher 563 words, student 135 words (90 frame, 45 questions), 45 min, 2 side(s), at home 99 words, 32 min, 0 failure(s)
+courses/science-grade-5/u01-3/d009.md: teacher 601 words, student 142 words (118 frame, 24 questions), 45 min, 2 side(s), at home 113 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-3/d010.md: teacher 587 words, student 140 words (112 frame, 28 questions), 45 min, 2 side(s), at home 103 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-3/d011.md: teacher 610 words, student 131 words (104 frame, 27 questions), 45 min, 2 side(s), at home 105 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-4/d012.md: teacher 519 words, student 136 words (106 frame, 30 questions), 45 min, 2 side(s), at home 102 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-4/d013.md: teacher 593 words, student 158 words (136 frame, 22 questions), 45 min, 2 side(s), at home 97 words, 35 min, 0 failure(s)
+  NOTE courses/science-grade-5/u01-4/d013.md: the section plan's day 13 block names 142, 143, 145, 146, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/science-grade-5/u01-4/d014.md: teacher 546 words, student 135 words (119 frame, 16 questions), 45 min, 2 side(s), at home 91 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-4/d015.md: teacher 558 words, student 91 words (81 frame, 10 questions), 45 min, 1 side(s), at home 93 words, 35 min, 0 failure(s)
+courses/science-grade-5/u01-4/d016.md: teacher 444 words, student 316 words (63 frame, 253 questions), 45 min, 2 side(s), at home 94 words, 45 min, 0 failure(s)
+  NOTE courses/science-grade-5/u01-4/d016.md: the student page prints s01-E2 before s01-E3, but the day teaches them the other way round
+  NOTE courses/science-grade-5/u01-4/d016.md: end items can show error(s) B, C, D, E, F, G, but the respond part names no group for them
+  NOTE courses/science-grade-5/u01-4/d016.md: the section plan's day 16 block names 103, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/science-grade-5/u01-4/d017.md: teacher 551 words, student 230 words (57 frame, 173 questions), 45 min, 2 side(s), at home 99 words, 40 min, 7 failure(s)
+  FAIL courses/science-grade-5/u01-4/d017.md: exit question s01-R17d is printed on the student page; it belongs on the exit ticket
+  FAIL courses/science-grade-5/u01-4/d017.md: exit question s01-R17a is printed on the student page; it belongs on the exit ticket
+  FAIL courses/science-grade-5/u01-4/d017.md: exit question s01-R17b is printed on the student page; it belongs on the exit ticket
+  FAIL courses/science-grade-5/u01-4/d017.md: exit question s01-R17e is printed on the student page; it belongs on the exit ticket
+  FAIL courses/science-grade-5/u01-4/d017.md: exit question s01-R17c is printed on the student page; it belongs on the exit ticket
+  FAIL courses/science-grade-5/u01-4/d017.md: the last At home part is "Readiness"; on a teaching day it is the exit ticket
+  FAIL courses/science-grade-5/u01-4/d017.md: the exit ticket runs past its quarter page (3 side(s) at 3.50 by 4.75 in), so its foot is cut off; shorten it or give its box less room, or, for a multi-part judged exit, set "exit: half" in the header
+courses/science-grade-5/u01-4/d042.md: teacher 494 words, student 229 words (64 frame, 165 questions), 45 min, 2 side(s), at home 80 words, 45 min, 0 failure(s)
+courses/science-grade-5/u02-1/d018.md: teacher 597 words, student 109 words (87 frame, 22 questions), 45 min, 2 side(s), at home 96 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-1/d019.md: teacher 654 words, student 133 words (66 frame, 67 questions), 45 min, 2 side(s), at home 105 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-1/d020.md: teacher 667 words, student 119 words (102 frame, 17 questions), 45 min, 2 side(s), at home 102 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-1/d021.md: teacher 633 words, student 133 words (98 frame, 35 questions), 45 min, 2 side(s), at home 93 words, 35 min, 0 failure(s)
+  FAIL copied-exit: courses/science-grade-5/u02-1/d021.md: exit s02-X21 repeats the day's teaching parts ("water minerals light temperature")
+courses/science-grade-5/u02-1/d022.md: teacher 628 words, student 87 words (76 frame, 11 questions), 45 min, 2 side(s), at home 97 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-2/d023.md: teacher 574 words, student 89 words (64 frame, 25 questions), 45 min, 1 side(s), at home 100 words, 35 min, 0 failure(s)
+  NOTE courses/science-grade-5/u02-2/d023.md: the section plan's day 23 block names 28, 31, 35, 37, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/science-grade-5/u02-2/d024.md: teacher 544 words, student 91 words (80 frame, 11 questions), 45 min, 1 side(s), at home 107 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-2/d025.md: teacher 575 words, student 83 words (72 frame, 11 questions), 45 min, 1 side(s), at home 105 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-2/d026.md: teacher 593 words, student 94 words (66 frame, 28 questions), 45 min, 2 side(s), at home 96 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-3/d027.md: teacher 495 words, student 72 words (46 frame, 26 questions), 45 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-3/d028.md: teacher 543 words, student 94 words (63 frame, 31 questions), 45 min, 2 side(s), at home 91 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-3/d029.md: teacher 525 words, student 78 words (55 frame, 23 questions), 45 min, 2 side(s), at home 84 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-3/d030.md: teacher 579 words, student 72 words (50 frame, 22 questions), 45 min, 2 side(s), at home 89 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-3/d031.md: teacher 616 words, student 114 words (65 frame, 49 questions), 45 min, 2 side(s), at home 81 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-4/d032.md: teacher 522 words, student 90 words (57 frame, 33 questions), 45 min, 2 side(s), at home 87 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-4/d033.md: teacher 567 words, student 107 words (60 frame, 47 questions), 45 min, 2 side(s), at home 86 words, 35 min, 0 failure(s)
+courses/science-grade-5/u02-5/d034.md: teacher 477 words, student 101 words (59 frame, 42 questions), 45 min, 2 side(s), at home 93 words, 34 min, 0 failure(s)
+courses/science-grade-5/u02-5/d035.md: teacher 561 words, student 127 words (85 frame, 42 questions), 45 min, 2 side(s), at home 91 words, 34 min, 0 failure(s)
+courses/science-grade-5/u02-5/d036.md: teacher 584 words, student 113 words (72 frame, 41 questions), 45 min, 2 side(s), at home 101 words, 34 min, 0 failure(s)
+courses/science-grade-5/u02-5/d037.md: teacher 593 words, student 137 words (74 frame, 63 questions), 45 min, 2 side(s), at home 91 words, 34 min, 0 failure(s)
+courses/science-grade-5/u02-5/d038.md: teacher 561 words, student 123 words (93 frame, 30 questions), 45 min, 2 side(s), at home 99 words, 34 min, 0 failure(s)
+courses/science-grade-5/u02-6/d039.md: teacher 397 words, student 139 words (42 frame, 97 questions), 45 min, 2 side(s), at home 79 words, 45 min, 0 failure(s)
+  NOTE courses/science-grade-5/u02-6/d039.md: end items can show error(s) A, B, C, D, but the respond part names no group for them
+  NOTE courses/science-grade-5/u02-6/d039.md: the section plan's day 39 block names 15, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/science-grade-5/u02-6/d040.md: teacher 426 words, student 153 words (34 frame, 119 questions), 45 min, 2 side(s), at home 78 words, 45 min, 0 failure(s)
+  NOTE courses/science-grade-5/u02-6/d040.md: end items can show error(s) E, F, G, H, J, K, but the respond part names no group for them
+  NOTE courses/science-grade-5/u02-6/d040.md: the section plan's day 40 block names 90, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/science-grade-5/u02-6/d041.md: teacher 546 words, student 217 words (66 frame, 151 questions), 45 min, 2 side(s), at home 97 words, 40 min, 6 failure(s)
+  FAIL courses/science-grade-5/u02-6/d041.md: exit question s02-R41K is printed on the student page; it belongs on the exit ticket
+  FAIL courses/science-grade-5/u02-6/d041.md: exit question s02-R41R is printed on the student page; it belongs on the exit ticket
+  FAIL courses/science-grade-5/u02-6/d041.md: exit question s02-R41E is printed on the student page; it belongs on the exit ticket
+  FAIL courses/science-grade-5/u02-6/d041.md: exit question s02-R41S is printed on the student page; it belongs on the exit ticket
+  FAIL courses/science-grade-5/u02-6/d041.md: the last At home part is "Reflect"; on a teaching day it is the exit ticket
+  FAIL courses/science-grade-5/u02-6/d041.md: the exit ticket runs past its quarter page (3 side(s) at 3.50 by 4.75 in), so its foot is cut off; shorten it or give its box less room, or, for a multi-part judged exit, set "exit: half" in the header
+  NOTE courses/science-grade-5/u02-6/d041.md: the section plan's day 41 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/science-grade-5/u02-6/d043.md: teacher 466 words, student 196 words (114 frame, 82 questions), 45 min, 2 side(s), at home 83 words, 45 min, 0 failure(s)
+courses/science-grade-5/u02-6/d044.md: teacher 591 words, student 187 words (40 frame, 147 questions), 45 min, 2 side(s), at home 84 words, 40 min, 0 failure(s)
+courses/science-grade-5/u03-1/d045.md: teacher 586 words, student 91 words (44 frame, 47 questions), 45 min, 2 side(s), at home 78 words, 33 min, 0 failure(s)
+courses/science-grade-5/u03-1/d046.md: teacher 618 words, student 241 words (97 frame, 144 questions), 45 min, 2 side(s), at home 71 words, 33 min, 0 failure(s)
+courses/science-grade-5/u03-1/d047.md: teacher 644 words, student 131 words (48 frame, 83 questions), 45 min, 2 side(s), at home 90 words, 32 min, 0 failure(s)
+courses/science-grade-5/u03-2/d048.md: teacher 525 words, student 116 words (57 frame, 59 questions), 45 min, 2 side(s), at home 83 words, 32 min, 0 failure(s)
+courses/science-grade-5/u03-2/d049.md: teacher 540 words, student 109 words (56 frame, 53 questions), 45 min, 2 side(s), at home 83 words, 32 min, 0 failure(s)
+courses/science-grade-5/u03-2/d050.md: teacher 562 words, student 135 words (60 frame, 75 questions), 45 min, 2 side(s), at home 75 words, 32 min, 0 failure(s)
+courses/science-grade-5/u03-2/d051.md: teacher 614 words, student 112 words (59 frame, 53 questions), 45 min, 1 side(s), at home 75 words, 32 min, 0 failure(s)
+courses/science-grade-5/u03-3/d052.md: teacher 512 words, student 137 words (36 frame, 101 questions), 45 min, 2 side(s), at home 71 words, 32 min, 0 failure(s)
+  NOTE courses/science-grade-5/u03-3/d052.md: the section plan's day 52 block names 56, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/science-grade-5/u03-3/d053.md: teacher 519 words, student 129 words (71 frame, 58 questions), 45 min, 2 side(s), at home 78 words, 32 min, 0 failure(s)
+courses/science-grade-5/u03-3/d054.md: teacher 525 words, student 103 words (67 frame, 36 questions), 45 min, 2 side(s), at home 82 words, 32 min, 0 failure(s)
+courses/science-grade-5/u03-3/d055.md: teacher 579 words, student 129 words (72 frame, 57 questions), 45 min, 2 side(s), at home 86 words, 32 min, 0 failure(s)
+courses/science-grade-5/u03-4/d056.md: teacher 490 words, student 143 words (72 frame, 71 questions), 45 min, 2 side(s), at home 79 words, 35 min, 0 failure(s)
+  NOTE courses/science-grade-5/u03-4/d056.md: the student page prints s03-P56 before s03-P56m, but the day teaches them the other way round
+courses/science-grade-5/u03-4/d057.md: teacher 516 words, student 161 words (98 frame, 63 questions), 45 min, 2 side(s), at home 79 words, 35 min, 0 failure(s)
+courses/science-grade-5/u03-4/d058.md: teacher 484 words, student 85 words (54 frame, 31 questions), 45 min, 1 side(s), at home 74 words, 35 min, 0 failure(s)
+courses/science-grade-5/u03-5/d059.md: teacher 434 words, student 251 words (42 frame, 209 questions), 45 min, 2 side(s), at home 77 words, 40 min, 0 failure(s)
+  NOTE courses/science-grade-5/u03-5/d059.md: end items can show error(s) A, B, C, D, but the respond part names no group for them
+courses/science-grade-5/u03-5/d060.md: teacher 478 words, student 231 words (42 frame, 189 questions), 45 min, 2 side(s), at home 82 words, 40 min, 0 failure(s)
+  NOTE courses/science-grade-5/u03-5/d060.md: end items can show error(s) E, F, G, H, I, but the respond part names no group for them
+courses/science-grade-5/u03-5/d061.md: teacher 526 words, student 189 words (92 frame, 97 questions), 45 min, 2 side(s), at home 83 words, 40 min, 2 failure(s)
+  FAIL courses/science-grade-5/u03-5/d061.md: the last At home part is "Readiness"; on a teaching day it is the exit ticket
+  FAIL courses/science-grade-5/u03-5/d061.md: the exit ticket runs past its quarter page (6 side(s) at 3.50 by 4.75 in), so its foot is cut off; shorten it or give its box less room, or, for a multi-part judged exit, set "exit: half" in the header
+courses/science-grade-5/u04-1/d062.md: teacher 563 words, student 79 words (46 frame, 33 questions), 45 min, 1 side(s), at home 78 words, 32 min, 0 failure(s)
+courses/science-grade-5/u04-1/d063.md: teacher 525 words, student 151 words (100 frame, 51 questions), 45 min, 2 side(s), at home 75 words, 35 min, 0 failure(s)
+courses/science-grade-5/u04-1/d064.md: teacher 513 words, student 90 words (42 frame, 48 questions), 45 min, 1 side(s), at home 75 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-1/d065.md: teacher 495 words, student 56 words (28 frame, 28 questions), 45 min, 1 side(s), at home 73 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-1/d066.md: teacher 542 words, student 72 words (63 frame, 9 questions), 45 min, 1 side(s), at home 75 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-2/d067.md: teacher 595 words, student 110 words (67 frame, 43 questions), 45 min, 2 side(s), at home 73 words, 32 min, 0 failure(s)
+courses/science-grade-5/u04-2/d068.md: teacher 587 words, student 81 words (50 frame, 31 questions), 45 min, 2 side(s), at home 75 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-2/d069.md: teacher 655 words, student 76 words (54 frame, 22 questions), 45 min, 2 side(s), at home 76 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-2/d070.md: teacher 599 words, student 67 words (44 frame, 23 questions), 45 min, 2 side(s), at home 73 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-3/d071.md: teacher 546 words, student 124 words (97 frame, 27 questions), 45 min, 2 side(s), at home 69 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-3/d072.md: teacher 557 words, student 94 words (71 frame, 23 questions), 45 min, 2 side(s), at home 70 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-3/d073.md: teacher 594 words, student 96 words (57 frame, 39 questions), 45 min, 2 side(s), at home 66 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-3/d074.md: teacher 571 words, student 60 words (52 frame, 8 questions), 45 min, 1 side(s), at home 74 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-4/d075.md: teacher 543 words, student 95 words (57 frame, 38 questions), 45 min, 1 side(s), at home 68 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-4/d076.md: teacher 534 words, student 78 words (54 frame, 24 questions), 45 min, 1 side(s), at home 70 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-4/d077.md: teacher 556 words, student 80 words (50 frame, 30 questions), 45 min, 1 side(s), at home 69 words, 32 min, 0 failure(s)
+courses/science-grade-5/u04-4/d078.md: teacher 550 words, student 61 words (50 frame, 11 questions), 45 min, 1 side(s), at home 71 words, 30 min, 0 failure(s)
+courses/science-grade-5/u04-5/d079.md: teacher 482 words, student 171 words (37 frame, 134 questions), 45 min, 2 side(s), at home 71 words, 45 min, 0 failure(s)
+  NOTE courses/science-grade-5/u04-5/d079.md: end items can show error(s) H, but the respond part names no group for them
+courses/science-grade-5/u04-5/d080.md: teacher 431 words, student 159 words (23 frame, 136 questions), 45 min, 2 side(s), at home 73 words, 45 min, 0 failure(s)
+courses/science-grade-5/u04-5/d081.md: teacher 548 words, student 101 words (69 frame, 32 questions), 45 min, 1 side(s), at home 81 words, 35 min, 2 failure(s)
+  FAIL courses/science-grade-5/u04-5/d081.md: the last At home part is "Earlier Earth"; on a teaching day it is the exit ticket
+  FAIL courses/science-grade-5/u04-5/d081.md: the exit ticket runs past its quarter page (4 side(s) at 3.50 by 4.75 in), so its foot is cut off; shorten it or give its box less room, or, for a multi-part judged exit, set "exit: half" in the header
+courses/science-grade-5/u04-5/d082.md: teacher 431 words, student 201 words (101 frame, 100 questions), 45 min, 2 side(s), at home 77 words, 45 min, 0 failure(s)
+  NOTE courses/science-grade-5/u04-5/d082.md: the student page prints c2-E82-liquid before c2-E82-plan, but the day teaches them the other way round
+  NOTE courses/science-grade-5/u04-5/d082.md: end items can show error(s) U, but the respond part names no group for them
+courses/science-grade-5/u04-5/d083.md: teacher 410 words, student 229 words (131 frame, 98 questions), 45 min, 2 side(s), at home 61 words, 45 min, 0 failure(s)
+  NOTE courses/science-grade-5/u04-5/d083.md: end items can show error(s) AA, AB, AC, but the respond part names no group for them
+courses/science-grade-5/u04-5/d084.md: teacher 519 words, student 173 words (61 frame, 112 questions), 45 min, 2 side(s), at home 82 words, 35 min, 1 failure(s)
+  FAIL courses/science-grade-5/u04-5/d084.md: the last At home part is "Readiness"; on a teaching day it is the exit ticket
+courses/science-grade-5/u05-1/d085.md: teacher 559 words, student 93 words (38 frame, 55 questions), 45 min, 1 side(s), at home 84 words, 35 min, 0 failure(s)
+courses/science-grade-5/u05-1/d086.md: teacher 594 words, student 183 words (71 frame, 112 questions), 45 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+  NOTE courses/science-grade-5/u05-1/d086.md: the student page prints s05-X86-2 before s05-P86-climate, but the day teaches them the other way round
+  FAIL copied-exit: courses/science-grade-5/u05-1/d086.md: exit s05-X86-1 repeats s05-X86-2 ("north slope usually rainy")
+courses/science-grade-5/u05-1/d087.md: teacher 564 words, student 73 words (48 frame, 25 questions), 45 min, 1 side(s), at home 91 words, 35 min, 0 failure(s)
+courses/science-grade-5/u05-1/d088.md: teacher 589 words, student 150 words (63 frame, 87 questions), 45 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+  FAIL copied-exit: courses/science-grade-5/u05-1/d088.md: exit s05-X88-1 repeats s05-X88-2 ("explain interaction between earth")
+courses/science-grade-5/u05-2/d089.md: teacher 591 words, student 143 words (85 frame, 58 questions), 45 min, 2 side(s), at home 90 words, 37 min, 0 failure(s)
+courses/science-grade-5/u05-2/d090.md: teacher 562 words, student 132 words (77 frame, 55 questions), 45 min, 2 side(s), at home 85 words, 35 min, 0 failure(s)
+courses/science-grade-5/u05-2/d091.md: teacher 608 words, student 94 words (81 frame, 13 questions), 45 min, 1 side(s), at home 92 words, 35 min, 0 failure(s)
+courses/science-grade-5/u05-3/d092.md: teacher 640 words, student 96 words (52 frame, 44 questions), 45 min, 1 side(s), at home 77 words, 35 min, 0 failure(s)
+courses/science-grade-5/u05-3/d093.md: teacher 560 words, student 115 words (86 frame, 29 questions), 45 min, 1 side(s), at home 76 words, 35 min, 0 failure(s)
+  NOTE courses/science-grade-5/u05-3/d093.md: the section plan's day 93 block names 96.54, 1993, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/science-grade-5/u05-3/d094.md: teacher 553 words, student 121 words (109 frame, 12 questions), 45 min, 1 side(s), at home 79 words, 35 min, 0 failure(s)
+courses/science-grade-5/u05-3/d095.md: teacher 583 words, student 139 words (95 frame, 44 questions), 45 min, 2 side(s), at home 76 words, 35 min, 0 failure(s)
+courses/science-grade-5/u05-4/d096.md: teacher 531 words, student 100 words (85 frame, 15 questions), 45 min, 1 side(s), at home 79 words, 35 min, 0 failure(s)
+courses/science-grade-5/u05-4/d097.md: teacher 563 words, student 115 words (86 frame, 29 questions), 45 min, 1 side(s), at home 90 words, 35 min, 0 failure(s)
+courses/science-grade-5/u05-4/d098.md: teacher 408 words, student 241 words (34 frame, 207 questions), 45 min, 2 side(s), at home 62 words, 45 min, 0 failure(s)
+  NOTE courses/science-grade-5/u05-4/d098.md: end items can show error(s) A, B, C, D, E, F, G, H, but the respond part names no group for them
+courses/science-grade-5/u05-4/d099.md: teacher 545 words, student 241 words (91 frame, 150 questions), 45 min, 2 side(s), at home 104 words, 35 min, 1 failure(s)
+  FAIL courses/science-grade-5/u05-4/d099.md: the exit ticket runs past its half page (3 side(s) at 7.15 by 4.75 in), so its foot is cut off; shorten it or give its box less room
+courses/science-grade-5/u06-1/d100.md: teacher 619 words, student 108 words (26 frame, 82 questions), 45 min, 2 side(s), at home 76 words, 32 min, 2 failure(s)
+  FAIL courses/science-grade-5/u06-1/d100.md: exit question s06-X100-2 is printed on the student page; it belongs on the exit ticket
+  FAIL courses/science-grade-5/u06-1/d100.md: the exit ticket runs past its half page (2 side(s) at 7.15 by 4.75 in), so its foot is cut off; shorten it or give its box less room
+courses/science-grade-5/u06-1/d101.md: teacher 530 words, student 102 words (27 frame, 75 questions), 45 min, 2 side(s), at home 70 words, 31 min, 0 failure(s)
+  NOTE courses/science-grade-5/u06-1/d101.md: the student page prints s06-P101-locator before s06-P101-link, but the day teaches them the other way round
+courses/science-grade-5/u06-1/d102.md: teacher 546 words, student 90 words (22 frame, 68 questions), 45 min, 2 side(s), at home 70 words, 32 min, 0 failure(s)
+courses/science-grade-5/u06-2/d103.md: teacher 547 words, student 120 words (20 frame, 100 questions), 45 min, 2 side(s), at home 72 words, 32 min, 0 failure(s)
+courses/science-grade-5/u06-2/d104.md: teacher 604 words, student 140 words (83 frame, 57 questions), 45 min, 2 side(s), at home 92 words, 35 min, 0 failure(s)
+  NOTE courses/science-grade-5/u06-2/d104.md: the student page prints s06-P104-contribution before s06-P104-design, but the day teaches them the other way round
+courses/science-grade-5/u06-2/d105.md: teacher 621 words, student 96 words (21 frame, 75 questions), 45 min, 2 side(s), at home 78 words, 34 min, 0 failure(s)
+courses/science-grade-5/u06-3/d106.md: teacher 585 words, student 85 words (36 frame, 49 questions), 45 min, 1 side(s), at home 88 words, 40 min, 1 failure(s)
+  FAIL courses/science-grade-5/u06-3/d106.md: the exit ticket runs past its half page (2 side(s) at 7.15 by 4.75 in), so its foot is cut off; shorten it or give its box less room
+courses/science-grade-5/u06-3/d107.md: teacher 617 words, student 84 words (43 frame, 41 questions), 45 min, 1 side(s), at home 90 words, 40 min, 0 failure(s)
+courses/science-grade-5/u06-3/d108.md: teacher 567 words, student 81 words (19 frame, 62 questions), 45 min, 1 side(s), at home 83 words, 33 min, 0 failure(s)
+courses/science-grade-5/u06-4/d109.md: teacher 562 words, student 76 words (18 frame, 58 questions), 45 min, 1 side(s), at home 79 words, 33 min, 0 failure(s)
+courses/science-grade-5/u06-4/d110.md: teacher 616 words, student 179 words (73 frame, 106 questions), 45 min, 2 side(s), at home 93 words, 39 min, 0 failure(s)
+courses/science-grade-5/u06-4/d111.md: teacher 606 words, student 147 words (47 frame, 100 questions), 45 min, 2 side(s), at home 81 words, 35 min, 0 failure(s)
+courses/science-grade-5/u06-5/d112.md: teacher 535 words, student 107 words (32 frame, 75 questions), 45 min, 2 side(s), at home 78 words, 35 min, 0 failure(s)
+courses/science-grade-5/u06-5/d113.md: teacher 547 words, student 108 words (32 frame, 76 questions), 45 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+courses/science-grade-5/u06-5/d114.md: teacher 566 words, student 163 words (49 frame, 114 questions), 45 min, 2 side(s), at home 78 words, 35 min, 0 failure(s)
+courses/science-grade-5/u06-6/d115.md: teacher 406 words, student 293 words (145 frame, 148 questions), 45 min, 2 side(s), at home 58 words, 45 min, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d115.md: end items can show error(s) A, B, C, D, I, but the respond part names no group for them
+courses/science-grade-5/u06-6/d116.md: teacher 447 words, student 203 words (149 frame, 54 questions), 45 min, 2 side(s), at home 73 words, 40 min, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d116.md: end items can show error(s) E, F, G, H, but the respond part names no group for them
+courses/science-grade-5/u06-6/d117.md: teacher 538 words, student 216 words (83 frame, 133 questions), 45 min, 2 side(s), at home 89 words, 40 min, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d117.md: the student page prints s06-P117-B before s06-P117-C, but the day teaches them the other way round
+courses/science-grade-5/u06-6/d118.md: teacher 406 words, student 240 words (83 frame, 157 questions), 45 min, 4 side(s) FAIL: more than two, at home 51 words, 45 min, 1 failure(s)
+  FAIL courses/science-grade-5/u06-6/d118.md: the student page prints to more than two sides
+  NOTE courses/science-grade-5/u06-6/d118.md: end items can show error(s) AF, AG, AH, AI, AJ, AK, AL, AM, but the respond part names no group for them
+courses/science-grade-5/u06-6/d119.md: teacher 420 words, student 126 words (51 frame, 75 questions), 45 min, 2 side(s), at home 56 words, 45 min, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d119.md: the student page prints c5-E119-status before c5-E119-impacts, but the day teaches them the other way round
+  NOTE courses/science-grade-5/u06-6/d119.md: end items can show error(s) AL, AN, AO, AP, AQ, AR, AS, AT, AU, but the respond part names no group for them
+courses/science-grade-5/u06-6/d120.md: teacher 528 words, student 178 words (67 frame, 111 questions), 45 min, 2 side(s), at home 83 words, 40 min, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-1/dot-panels.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-1/family.md: family, 202 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-1/opener.md: opener, 494 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-1/pot-log.md: blank, 31 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-1/readiness-pieces.md: blank, 94 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-1/readiness.md: check, 89 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-1/record.md: record, 102 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-1/records-n1-n4.md: blank, 161 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-1/shadow-record.md: blank, 28 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/component-graph.md: blank, 57 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/exit-10.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/exit-11.md: blank, 41 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/exit-8.md: blank, 35 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/exit-9.md: blank, 44 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/inventory-strips.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/n10-salt.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/n7-inventory.md: blank, 42 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/n8-melting.md: blank, 47 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/n9-cooling.md: blank, 47 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/opener.md: opener, 540 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-3/record.md: blank, 225 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/anomaly-sheet.md: blank, 43 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/assessment-a.md: blank, 107 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/assessment-b.md: blank, 113 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/assessment-key.md: opener, 565 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/check1-42-teacher.md: opener, 545 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/evidence-locator.md: blank, 46 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/exit-12.md: blank, 54 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/exit-13.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/exit-14.md: blank, 73 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/exit-15.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/n11-apparatus.md: blank, 58 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/n12-trials.md: blank, 72 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/n13-anomalies.md: blank, 85 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/n14-comparison.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/next-readiness.md: blank, 62 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/opener.md: opener, 688 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/practical-card.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/raw-log.md: blank, 75 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/record.md: blank, 357 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/response-repairs.md: blank, 249 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/retries.md: blank, 153 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/teacher-key.md: opener, 854 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u01-4/trial-plan.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/assessment-record.md: record, 93 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/exit-18.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/exit-19.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/exit-20.md: blank, 41 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/exit-21.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/exit-22.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/exits-18-22.md: opener, 40 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/family.md: family, 233 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/historical-card.md: blank, 124 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/input-records.md: blank, 165 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/measurement-log.md: blank, 124 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/opener.md: opener, 437 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/practice-teacher.md: opener, 218 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/prerequisite-pictures.md: blank, 100 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/readiness-teacher.md: opener, 155 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/readiness.md: blank, 60 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/record.md: record, 119 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/source-chart.md: blank, 44 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-1/teacher-keys.md: opener, 572 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/component-locators.md: blank, 68 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/exit-23.md: blank, 62 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/exit-24.md: blank, 46 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/exit-25.md: blank, 34 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/exit-26.md: blank, 63 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/exits-23-26.md: opener, 38 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/jar-log.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/jar-panels.md: blank, 81 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/opener.md: opener, 409 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/practice-teacher.md: opener, 89 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-2/teacher-keys.md: opener, 436 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/bean-location-cards.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/exit-27.md: blank, 36 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/exit-28.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/exit-29.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/exit-30.md: blank, 71 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/exit-31.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/exits-27-31.md: opener, 40 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/leaf-sequence.md: blank, 72 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/meadow-cards.md: blank, 134 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/observation-columns.md: blank, 92 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/opener.md: opener, 418 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/practice-teacher.md: opener, 174 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/prediction-panels.md: blank, 83 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-3/teacher-keys.md: opener, 508 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-4/exit-32.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-4/exit-33.md: blank, 44 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-4/exits-32-33.md: opener, 34 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-4/opener.md: opener, 398 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-4/partial-meadow.md: blank, 64 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-4/practice-teacher.md: opener, 66 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-4/rabbit-strips.md: blank, 124 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-4/teacher-keys.md: opener, 229 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/correct-panels.md: blank, 107 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/energy-components.md: blank, 141 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/exit-34.md: blank, 49 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/exit-35.md: blank, 36 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/exit-36.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/exit-37.md: blank, 36 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/exit-38.md: blank, 92 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/exits-34-38.md: opener, 40 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/harvest-log.md: blank, 86 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/measurement-backups.md: blank, 102 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/opener.md: opener, 443 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/practice-teacher.md: opener, 178 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-5/teacher-keys.md: opener, 595 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/assessment-39.md: blank, 99 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/assessment-40.md: blank, 125 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/check1-43-teacher.md: opener, 501 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/check1-44-teacher.md: opener, 644 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/check1-record.md: blank, 238 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/directions.md: opener, 166 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/opener.md: opener, 418 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/practice-teacher.md: opener, 206 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/reflection.md: blank, 8 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/repair-energy.md: blank, 62 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/repair-interactions.md: blank, 32 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/repair-returns.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/repair-sources.md: blank, 89 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/repair44-cards.md: blank, 228 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/retry-e.md: blank, 32 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/retry-k.md: blank, 36 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/retry-r.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/retry-s.md: blank, 55 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u02-6/teacher-keys.md: opener, 979 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/actual-fallback-log.md: blank, 42 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/exit-45.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/exit-46.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/exit-47.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/exits-45-47.md: blank, 21 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/family.md: blank, 217 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/jar-drawing.md: blank, 27 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/opener.md: opener, 402 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/powder-cards.md: blank, 73 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/property-cards.md: blank, 78 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/property-table.md: blank, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/readiness.md: check, 63 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/record.md: blank, 88 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/source-lined-notes.md: blank, 18 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-1/teacher-only-answer-keys.md: blank, 3967 words, student page 19 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/science-grade-5/u03-1/teacher-only-answer-keys.md: the student page prints to more than two sides
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-2/exit-48.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-2/exit-49.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-2/exit-50.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-2/exit-51.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-2/exits-48-51.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-2/mineral-records.md: blank, 38 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-2/opener.md: opener, 396 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-2/property-records.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-2/temperature-records.md: blank, 54 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/change-model.md: blank, 37 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/change-repair-cards.md: blank, 69 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/changed-appearance-reading.md: blank, 89 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/exit-52.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/exit-53.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/exit-54.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/exit-55.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/exits-52-55.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/fallback-records.md: blank, 134 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/opener.md: opener, 476 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/planning-sheet.md: blank, 34 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/shadow-record.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-3/trial-log.md: blank, 35 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-4/controls-cards.md: blank, 77 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-4/exit-56.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-4/exit-57.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-4/exit-58.md: blank, 5 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-4/exits-56-58.md: blank, 21 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-4/magnetic-separation-diagrams.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-4/opener.md: opener, 398 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-4/rust-records.md: blank, 87 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-4/separation-sequence.md: blank, 38 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/assessment-59.md: blank, 22 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/assessment-60.md: blank, 18 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/assessment-record.md: blank, 101 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/component-locators.md: blank, 130 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/coverage-record.md: blank, 30 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/next-readiness-pictures.md: blank, 47 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/next-readiness.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/opener.md: opener, 515 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/practical-action-checklist.md: blank, 311 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/repair-components.md: blank, 194 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/retry-61-C.md: blank, 11 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/retry-61-E.md: blank, 11 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/retry-61-G.md: blank, 11 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/retry-61-H.md: blank, 11 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/retry-61-I.md: blank, 11 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/retry-61-M.md: blank, 11 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/retry-61-P.md: blank, 11 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u03-5/retry-61-Q.md: blank, 11 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/actual-log.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/argument-fragments.md: blank, 24 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/australia-diagram.md: blank, 35 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/daylight-strips.md: blank, 26 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/drop-cord-records.md: blank, 47 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/earth-disk.md: blank, 13 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/evidence-chart.md: blank, 28 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/exits.md: blank, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/family.md: blank, 234 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/force-arrow-cards.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/opener.md: opener, 404 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/readiness-contrasts.md: blank, 28 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/readiness.md: check, 50 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/record.md: blank, 72 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/shadow-puzzle.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/sun-moon-strips.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-1/teacher-only-answer-keys.md: blank, 990 words, student page 5 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/science-grade-5/u04-1/teacher-only-answer-keys.md: the student page prints to more than two sides
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/D70.md: blank, 35 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/daylight-axes.md: blank, 8 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/exits.md: blank, 34 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/lamp-sequence.md: blank, 42 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/length-axes.md: blank, 16 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/opener.md: opener, 393 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/S67.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/S68.md: blank, 37 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/screen-direction.md: blank, 19 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/shadow-log.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/single-day-strip.md: blank, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-2/teacher-only-answer-keys.md: blank, 539 words, student page 3 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/science-grade-5/u04-2/teacher-only-answer-keys.md: the student page prints to more than two sides
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-3/component-tags.md: blank, 24 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-3/earth-sun-moon-pieces.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-3/exits.md: blank, 24 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-3/N71.md: blank, 74 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-3/opener.md: opener, 349 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-3/orbit-locator.md: blank, 46 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-3/teacher-only-answer-keys.md: opener, 734 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-3/visibility-key.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/equal-disks.md: blank, 24 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/exits.md: blank, 21 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/grain-position-card.md: blank, 60 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/L75.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/L76.md: blank, 45 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/light-log.md: blank, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/light-path-card.md: blank, 36 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/mechanism-locators.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/opener.md: opener, 399 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/teacher-only-answer-keys.md: blank, 561 words, student page 3 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/science-grade-5/u04-4/teacher-only-answer-keys.md: the student page prints to more than two sides
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-4/travel-card.md: blank, 58 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/check2-day83-keys.md: opener, 426 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/check2-day84-keys.md: opener, 499 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/check2-record.md: blank, 191 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/check2-station.md: opener, 869 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/check2-teacher-keys.md: opener, 533 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/earlier-earth.md: blank, 18 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/end-day79.md: check, 51 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/end-day80.md: check, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/fresh-retry.md: blank, 33 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/opener.md: opener, 413 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/repair-components.md: blank, 141 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/score-record.md: blank, 80 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u04-5/teacher-only-answer-keys.md: opener, 1078 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/action-strips.md: blank, 35 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/anchor-records.md: blank, 72 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/climate-support-key.md: blank, 42 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/climate-support.md: blank, 22 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/component-cards.md: blank, 100 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/evidence-notes.md: blank, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/exit-key.md: blank, 316 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/family.md: blank, 265 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/held-exits.md: blank, 46 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/ocean-cards.md: blank, 75 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/opener.md: opener, 501 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/readiness-key.md: blank, 68 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/readiness.md: check, 50 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/record.md: blank, 125 words, student page 3 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/science-grade-5/u05-1/record.md: the student page prints to more than two sides
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-1/score-record.md: blank, 94 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-2/display-rehearsal.md: blank, 41 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-2/exit-key.md: blank, 271 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-2/held-exits.md: blank, 44 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-2/opener.md: opener, 633 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-2/tray-backup.md: blank, 81 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-2/tray-record.md: blank, 65 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-2/watershed-records.md: blank, 94 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-3/exit-key.md: blank, 294 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-3/held-exits.md: blank, 49 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-3/opener.md: opener, 536 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-3/reservoir-cards.md: blank, 80 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-3/water-tables.md: blank, 146 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/access-components.md: blank, 32 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/assessment-key.md: blank, 541 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/assessment.md: blank, 243 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/consensus-stations.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/exit-key.md: blank, 215 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/handoff.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/held-evidence-96.md: blank, 20 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/held-exits.md: blank, 33 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/opener.md: opener, 627 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/repair-key.md: blank, 96 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/repair-packets.md: blank, 34 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/retry-access.md: blank, 15 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/retry-air.md: blank, 15 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/retry-distribution.md: blank, 18 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/retry-key.md: blank, 218 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/retry-salt.md: blank, 15 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u05-4/retry-systems.md: blank, 22 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/anchor-records.md: blank, 91 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/component-notes.md: blank, 91 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/family.md: blank, 241 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/held-exits.md: blank, 169 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/opener.md: opener, 597 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/record.md: blank, 115 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/score-record.md: blank, 119 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/shadow-log.md: blank, 96 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/source-cards.md: blank, 194 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/system-cards.md: blank, 195 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-1/teacher-keys.md: opener, 343 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-2/cloudiness-scale.md: blank, 77 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-2/component-notes.md: blank, 90 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-2/control-strips.md: blank, 101 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-2/cycle-cards.md: blank, 67 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-2/design-sheet.md: blank, 111 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-2/goal-cards.md: blank, 67 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-2/held-exits.md: blank, 154 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-2/instrument-cards.md: blank, 169 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-2/opener.md: opener, 653 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-2/teacher-keys.md: opener, 383 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-3/action-roster.md: blank, 63 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-3/archive-T107.md: blank, 117 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-3/component-notes.md: blank, 83 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-3/construction-records.md: blank, 91 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-3/dot-audit.md: blank, 50 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-3/held-exits.md: blank, 204 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-3/opener.md: opener, 643 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-3/teacher-keys.md: opener, 513 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-3/trial-slip.md: blank, 59 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-4/component-notes.md: blank, 82 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-4/fallback-V110.md: blank, 92 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-4/held-exits.md: blank, 148 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-4/held-hopper-plot.md: blank, 117 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-4/held-V110.md: blank, 144 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-4/opener.md: opener, 610 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-4/proposal-notes.md: blank, 43 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-4/teacher-keys.md: opener, 613 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-5/component-notes.md: blank, 89 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-5/held-exits.md: blank, 197 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-5/opener.md: opener, 445 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-5/plan-strips-114.md: blank, 81 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-5/shadow-backup-S114.md: blank, 67 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-5/teacher-keys.md: opener, 1022 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-5/wetland-practice-W112.md: blank, 68 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/assessment-115.md: blank, 177 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/assessment-116.md: blank, 102 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/catcher-problem.md: blank, 142 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/component-notes.md: blank, 13 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/fallback-Q2.md: blank, 98 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/held-exits.md: blank, 79 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/key-118-120.md: opener, 70 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/key-118.md: opener, 773 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/key-119.md: opener, 641 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/key-120-components.md: opener, 526 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/key-120.md: opener, 605 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/opener.md: opener, 678 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/record-118-120.md: opener, 139 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/repair-limits.md: blank, 54 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/repair-links.md: blank, 90 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/repair-sources.md: blank, 91 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/repair-testing.md: blank, 147 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/source-cards-115.md: blank, 144 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/sources-119.md: blank, 143 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/station-preparation.md: blank, 230 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+courses/science-grade-5/u06-6/teacher-keys.md: opener, 1131 words, 0 failure(s)
+  NOTE courses/science-grade-5/u06-6/d120.md: the exit ticket c5-X120 goes back, but day 121 is not written yet; its writer must hand back c5-X120
+lesson_course: 32 failure(s) in 120 day(s), 26 in day files

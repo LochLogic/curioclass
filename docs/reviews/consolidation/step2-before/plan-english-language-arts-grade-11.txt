@@ -1,0 +1,38 @@
+sequence english-language-arts-grade-11: 0 failure(s)
+english-language-arts-grade-11: 44 items and 49 wrong answers checked, 12 failure(s)
+  FAIL section 1.1 (english-language-arts-grade-11-u01-1) is not in data/units.csv
+  FAIL section 1.2 (english-language-arts-grade-11-u01-2) is not in data/units.csv
+  FAIL section 1.3 (english-language-arts-grade-11-u01-3) is not in data/units.csv
+  FAIL day 6: no exit question in items.csv
+  FAIL day 7: no exit question in items.csv
+  FAIL day 8: no exit question in items.csv
+  FAIL day 9: no exit question in items.csv
+  FAIL day 10: no exit question in items.csv
+  FAIL day 11: no exit question in items.csv
+  FAIL day 12: no exit question in items.csv
+  FAIL day 13: no exit question in items.csv
+  FAIL day 16: no exit question in items.csv
+  note unit 1 error A rests on memory, not a source
+  note unit 1 error B rests on memory, not a source
+  note unit 1 error C rests on memory, not a source
+  note unit 1 error D rests on memory, not a source
+  note unit 1 error E rests on memory, not a source
+  note unit 1 error F rests on memory, not a source
+  note unit 1 error G rests on memory, not a source
+  note unit 1 error H rests on memory, not a source
+  note unit 1 error I rests on memory, not a source
+  note unit 1 error J rests on memory, not a source
+  note unit 1 error K rests on memory, not a source
+  note unit 1 error L rests on memory, not a source
+  note unit 1 error M rests on memory, not a source
+  note unit 1 error N rests on memory, not a source
+  note unit 1 error O rests on memory, not a source
+  note unit 1: 9830 words of prose outside the generated tables (s01.md)
+  note units planned in prose but not yet in data: 2, 3, 4, 5, 6, 7, 8, 9
+  FAIL one-ask: s01-A6: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s01-A7: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL shape-note: u01-1.md day 1: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-1.md day 2: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-1.md day 3: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-1.md day 4: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-1.md day 5: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
