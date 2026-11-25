@@ -49,14 +49,9 @@ HANDS_ON = re.compile(r'\b(lab|investigat\w*|experiment\w*|dissect\w*|build|buil
 
 
 def subject_of(slug):
-    r = frame.frames_csv().get(slug) or {}
-    s = (r.get('subject') or '').strip()
-    if s:
-        return s
-    for k in ('social-studies', 'english-language-arts', 'science', 'math'):
-        if slug.startswith(k) or (k == 'science' and slug in ('biology', 'chemistry', 'physics')):
-            return k
-    return 'math' if slug in ('algebra-i', 'geometry', 'algebra-ii') else ''
+    """The course's subject id (ela, math, science, social-studies), from data/plans/course-list.csv."""
+    r = next((c for c in frame.course_list() if c['id'] == slug), {})
+    return (r.get('subject') or '').strip()
 
 
 def list_cell_fails(lab, col, v):
@@ -393,7 +388,7 @@ def rule2_notes(course, subject):
     skeleton counts it (scripts/unit_skeleton.py earlier_rows, one-hop "used"): a note for every unit whose readiness
     check misses a row it owes, and every row given readiness where retrieval is due. Notes, not failures, while the
     count settles (lead, 2026-11-15); the skeleton prints the same lines in field 4."""
-    skel_subj = {'english-language-arts': 'ela'}.get(subject, subject)
+    skel_subj = subject
     try:
         import unit_skeleton as u
     except Exception as e:   # the gate never fails on the helper itself

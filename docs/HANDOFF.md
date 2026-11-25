@@ -112,10 +112,12 @@ Each rule lives in one doc. Dated reports go in docs/reviews/; retired docs are 
 | docs/BUILD-PLAN.md, docs/TOOL-BINS.md | Tool build waves; the tool bins (generated; the tool catalog is frozen) |
 | docs/agents/*.md | Briefs for each agent role (SPEC, BUILD, REFINE, CODEX-*, DAY-WRITER and others) |
 | docs/CONSOLIDATION-PLAN.md | The consolidation, steps 0 to 6 (reports in docs/reviews/consolidation/) |
+| data/plans/course-list.csv | The 120 courses: id (the frame slug), subject, grade, core, term, status (data/plans/README.md) |
+| data/plans/math-4/, docs/courses/math-4/ | The grade 4 math pilot, kept blind, reconciled under later.csv L13; not a course id |
 
 ## Standing facts
 
-- 120 courses (118 active, 2 world languages shelved); 58 in the four core subjects (52 flagged core plus 6
+- 120 courses (118 active, 2 world languages shelved; the list is data/plans/course-list.csv); 58 in the four core subjects (52 flagged core plus 6
   electives), and 8 health and PE courses flagged core, so 60 flagged core in all. World languages stay in the course counts as a reminder. Every course is finished to the adoption bar;
   never call that unrealistic.
 - The blind rule: writers and first readers never open a subject's earlier planning (each brief lists the paths),

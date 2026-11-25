@@ -50,13 +50,13 @@ p = os.path.join(ROOT, 'data', 'plans', 'frames.csv')
 if os.path.exists(p):
     for r in csv.DictReader(io.open(p, encoding='utf-8')):
         frames[r['course'].strip()] = (int(r['units'] or 0) or None, int(r['days'] or 0) or None)
-# the join is the frame slug: a core course's title in course_status.py slugs to its frame folder name
-# ("Science, Grade 4" -> science-grade-4); a core course of the four subjects with no frame row is reported, not guessed
+# the join is the course id (data/plans/course-list.csv, the frame slug); a core course of the four subjects with no
+# frame row is reported, not guessed
 for _n in ORDER:
     for _c in [c for c in subj[_n]['courses'] if c.get('core')]:
-        if frames and not _c.get('course'):
-            print('plan_flow: no frames.csv row for core course "%s" (slug %s)' % (_c['title'], slug(_c['title'])), file=sys.stderr)
-def fid(c): return c.get('course') or slug(c['title'])   # the frame slug from course_status.py
+        if frames and _c['course'] not in frames:
+            print('plan_flow: no frames.csv row for core course "%s" (slug %s)' % (_c['title'], _c['course']), file=sys.stderr)
+def fid(c): return c['course']   # the course id from data/plans/course-list.csv
 def units_of(c):
     f = frames.get(fid(c), (None, None))[0]
     return (f, False) if f else ((c['units_total'], False) if c.get('units_total') else (EST_UNITS, True))
@@ -119,15 +119,15 @@ stage('prog', '2. Progression', 'Once per subject, all grades: what every grade 
 lanes3 = []
 for n in SUBJ_ORDER:
     cs = core(n)
-    lanes3.append(dict(title=sname(n) + ' frames', nodes=[N(f'frame:{slug(c["title"])}', c['title'], frame_default(c)) for c in cs]))
-    lanes3.append(dict(title=sname(n) + ' scopes and sequences', nodes=[N(f'ss:{slug(c["title"])}', c['title'], 'e' if c.get('days_total') else '.') for c in cs]
+    lanes3.append(dict(title=sname(n) + ' frames', nodes=[N(f'frame:{fid(c)}', c['title'], frame_default(c)) for c in cs]))
+    lanes3.append(dict(title=sname(n) + ' scopes and sequences', nodes=[N(f'ss:{fid(c)}', c['title'], 'e' if c.get('days_total') else '.') for c in cs]
                        + [N(f'ss-review:{slug(n)}', 'Review')]))
 lanes3.append(dict(title='Checks', nodes=[N('b1:review', 'Whole-structure review'), N('b1:site', 'Website design check'), N('b1:codex', 'Codex read'),
                                           N('b1:pages', 'Course pages from the frames'), N('baseline1', 'Baseline 1: frames reviewed')]))
 lanes3.append(dict(title='Gate: owner approves the baseline', nodes=[N(f'gate3:{slug(n)}', sname(n)) for n in SUBJ_ORDER]))
 for i, t, cs, pre in AFTER:
-    lanes3.append(dict(title=t + ' frames', faint=True, nodes=[N(f'frame:{slug(c["title"])}', c['title']) for c in cs]))
-    lanes3.append(dict(title=t + ' scopes and sequences', faint=True, nodes=[N(f'ss:{slug(c["title"])}', c['title']) for c in cs]
+    lanes3.append(dict(title=t + ' frames', faint=True, nodes=[N(f'frame:{fid(c)}', c['title']) for c in cs]))
+    lanes3.append(dict(title=t + ' scopes and sequences', faint=True, nodes=[N(f'ss:{fid(c)}', c['title']) for c in cs]
                        + [N(f'ss-review:{i}', 'Review')]))
     lanes3.append(dict(title=t + ': gate', faint=True, nodes=[N(f'gate3:{i}', 'Owner approves the baseline')]))
 stage('frames', '3. Course frames, then scopes and sequences', 'Per course, grades in order, pilot course first. A frame holds the owned skills, dose, session count, units and source map; the scope and sequence holds every day in order, the checks and the calendar fit.', lanes3)
@@ -148,7 +148,7 @@ lanes4 = []
 for n in SUBJ_ORDER:
     unit_lanes = []
     for c in core(n):
-        k = slug(c['title']); tot, est = units_of(c)
+        k = fid(c); tot, est = units_of(c)
         have = c.get('units') or 0
         cells = ''.join(unit_state(f'unit:{k}:{i + 1}', 'docs/courses/%s/s%02d.md' % (fid(c), i + 1),
                                    'e' if i < have else '.') for i in range(tot))
@@ -172,7 +172,7 @@ for i, t, cs, pre in AFTER:
     urows = []
     for c in cs:
         tot, est = units_of(c)
-        urows.append(dict(title=c['title'], est=est, cells=''.join(st(f'unit:{slug(c["title"])}:{j + 1}') for j in range(tot)), k=slug(c['title'])))
+        urows.append(dict(title=c['title'], est=est, cells=''.join(st(f'unit:{fid(c)}:{j + 1}') for j in range(tot)), k=fid(c)))
     lanes4.append(dict(title=t, group=True, rows=urows, faint=True))
     lanes4.append(dict(title=t + ': reads', faint=True, nodes=[N(f'units-review:{i}', 'Units review')]))
     lanes4.append(dict(title=t + ': gate', faint=True, nodes=[N(f'gate4:{i}', 'Cold read, then owner approval')]))
@@ -184,7 +184,7 @@ stage('units', '4. Unit plans', 'Per course, units in order. Each goal names its
 # the plan is written. A unit not yet split holds one placeholder `N.1` section longer than six days, drawn as an
 # estimate of one section per five days. A flow-status row section:<course>:<u>.<s> overrides the state.
 def section_cells(c):
-    k, p = slug(c['title']), os.path.join(ROOT, 'data', 'plans', fid(c), 'days.csv')
+    k, p = fid(c), os.path.join(ROOT, 'data', 'plans', fid(c), 'days.csv')
     secs, est = {}, False
     if os.path.exists(p):
         for r in csv.DictReader(io.open(p, encoding='utf-8')):
@@ -238,14 +238,14 @@ for n in SUBJ_ORDER:
             if d_ in have: ch = 'd' if closed else 'a'
             elif d_ <= len(old) and old[d_ - 1]: ch = 'e'
             else: ch = '.'
-            cells += led.get(f'day:{slug(c["title"])}:{d_}', ch)
+            cells += led.get(f'day:{fid(c)}:{d_}', ch)
         rows.append(dict(title=c['title'], group=sname(n), est=est, cells=cells))
-        cl.append(N(f'close:{slug(c["title"])}', c['title'], 'd' if closed else ('a' if have else '.')))
+        cl.append(N(f'close:{fid(c)}', c['title'], 'd' if closed else ('a' if have else '.')))
     close_lanes.append(dict(title=sname(n) + ': grade close', nodes=cl))
 for i, t, cs, pre in AFTER:
     for c in cs:
         n_days, est = days_of(c)
-        rows.append(dict(title=c['title'], group=t, est=est, faint=True, cells=''.join(st(f'day:{slug(c["title"])}:{j + 1}') for j in range(n_days))))
+        rows.append(dict(title=c['title'], group=t, est=est, faint=True, cells=''.join(st(f'day:{fid(c)}:{j + 1}') for j in range(n_days))))
 bands.append(dict(type='rows', id='days', title='6. Days',
                   sub='Per grade, in order, 4 to 6 days a job, each job waiting until its ledger rows are written. A written day is under way until its grade closes: a cleanup job, then a sample read of 10 days by two fresh readers. Faint rows are the other subjects, at about %d days a course until each frame sets its count.' % EST_DAYS,
                   lanes=close_lanes, rows=rows))
@@ -253,9 +253,9 @@ bands.append(dict(type='rows', id='days', title='6. Days',
 # 7. Course finish: per course, the checks read as one assessment plan, a coherence pass, English learner supports,
 # art and voice and the tools the sections name; then the cross-grade continuity pass, a whole-course cold read and
 # owner sign-off. Tools are drawn here as dots, one a tool, lit when live.
-lanes7 = [dict(title=sname(n), nodes=[N(f'finish:{slug(c["title"])}', c['title']) for c in core(n)] + [N(f'continuity:{slug(n)}', 'Continuity pass')])
+lanes7 = [dict(title=sname(n), nodes=[N(f'finish:{fid(c)}', c['title']) for c in core(n)] + [N(f'continuity:{slug(n)}', 'Continuity pass')])
           for n in SUBJ_ORDER]
-lanes7 += [dict(title=t, faint=True, nodes=[N(f'finish:{slug(c["title"])}', c['title']) for c in cs]) for i, t, cs, pre in AFTER]
+lanes7 += [dict(title=t, faint=True, nodes=[N(f'finish:{fid(c)}', c['title']) for c in cs]) for i, t, cs, pre in AFTER]
 tool_rows = []
 for n in SUBJ_ORDER:
     r = summ[n]

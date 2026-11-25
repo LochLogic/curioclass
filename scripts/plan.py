@@ -707,8 +707,6 @@ def check(course):
     if cm is None:
         return ['%s: no row in data/plans/frames.csv (run scripts/frame.py sync, or add the frame)' % course], [], 0, 0
     subj, grade, DAY_MIN = cm
-    if subj == 'english-language-arts':
-        subj = 'ela'
     LESSON_MIN = DAY_MIN - 10   # warm-up 5 and exit 5 around the lesson
     lo_min = day_range(course)[0]
     if not days or not (parts or items):   # a course is never called checked on zero records (Codex 1)

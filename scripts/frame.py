@@ -5,9 +5,9 @@
                                                        (data/plans/calendar.csv, the table in docs/courses/CALENDAR.md)
     python -X utf8 scripts/frame.py calendar           print each K to 8 grade's course-level check weeks
 
-The frame's format is set by docs/pipeline/briefs/frame-write.md. Which progression rows a course owns is set in
-COURSE_ROWS below (subject, and the grades or skill_id prefixes); its catalogue id (data/courses.csv course_id) and
-grade in COURSE_META. Add a course to both when its frame is written. The school calendar (school day, week) is
+The frame's format is set by docs/pipeline/briefs/frame-write.md. Which progression rows a course owns, its catalogue id
+(data/courses.csv course_id), grade, term, weeks and pins are columns of data/plans/course-list.csv; fill its `rows`
+cell when its frame is written. The school calendar (school day, week) is
 docs/courses/CALENDAR.md.
 
 FAIL (exit 1):
@@ -19,7 +19,7 @@ FAIL (exit 1):
 - an Owned standards code that the unit's rows do not own, or a code a unit's rows own (not ~) missing from its
   Owned standards;
 - data/plans/frames.csv disagreeing with the frame on units or days (run sync), a frames.csv row with no frame, a
-  COURSE_ROWS course with no frame, or a catalogue id not in data/courses.csv;
+  course-list.csv course with rows and no frame, or a catalogue id not in data/courses.csv;
 - a stale note (scripts/stale.py) in the frame.
 note (exit 0): the days left for course-level checks and respond days, per course; and the frame-write lessons
 that are not failures yet (added 2026-11-14, baseline 1 structure findings 3, 6 and 8, Codex finding 3):
@@ -56,76 +56,38 @@ COLS = ['course', 'catalog_id', 'subject', 'grade', 'title', 'units', 'days', 'm
 YEAR_DAYS, YEAR_WEEKS = 160, 32
 
 
-# slug -> (subject, test on a progression row)
+# The course list is data (consolidation step 4.C): data/plans/course-list.csv owns every course's id (the frame slug),
+# subject, grade, catalogue id, the progression rows it owns (`rows`: grade:K or prefix:bio-), term, weeks, pins and
+# any legacy plan id. The dicts below are views of it, kept under their old names for the readers.
+COURSE_LIST = os.path.join(ROOT, 'data', 'plans', 'course-list.csv')
+
+
 def _grade(g):
     return lambda r: r['grade'].strip() == g
 def _prefix(p):
     return lambda r: r['skill_id'].startswith(p)
-COURSE_ROWS = {
-    'social-studies-kindergarten': ('social-studies', _grade('K')),
-    'world-geography-and-ancient-civilizations-i': ('social-studies', _grade('6')),
-    'world-geography-and-ancient-civilizations-ii': ('social-studies', _grade('7')),
-    'civics-government-and-civic-life': ('social-studies', _grade('8')),
-    'world-history-i': ('social-studies', _grade('9')),
-    'world-history-ii': ('social-studies', _grade('10')),
-    'us-history-i': ('social-studies', _grade('11')),
-    'us-history-ii': ('social-studies', _prefix('us2-')),
-    'us-government-and-politics': ('social-studies', _prefix('gov-')),
-    'economics': ('social-studies', _prefix('econ-')),
-}
-for _g in range(1, 6):
-    COURSE_ROWS['social-studies-grade-%d' % _g] = ('social-studies', _grade(str(_g)))
-# ELA, science and math (added 2026-11-14)
-for _subj, _name, _top in (('ela', 'english-language-arts', 12), ('science', 'science', 8), ('math', 'math', 8)):
-    COURSE_ROWS['%s-kindergarten' % _name] = (_subj, _grade('K'))
-    for _g in range(1, _top + 1):
-        COURSE_ROWS['%s-grade-%d' % (_name, _g)] = (_subj, _grade(str(_g)))
-COURSE_ROWS.update({
-    'biology': ('science', _prefix('bio-')), 'chemistry': ('science', _prefix('chem-')),
-    'physics': ('science', _prefix('phys-')),
-    'algebra-i': ('math', _prefix('alg1-')), 'geometry': ('math', _prefix('geo-')),
-    'algebra-ii': ('math', _prefix('alg2-')),
-    # the six core electives (added 2026-11-16): their rows sit in the core subjects' progressions at grade 12
-    'precalculus': ('math', _prefix('pc-')), 'statistics': ('math', _prefix('stat-')),
-    'calculus': ('math', _prefix('calc-')),
-    'earth-and-space-science': ('science', _prefix('ess-')), 'environmental-science': ('science', _prefix('env-')),
-    'psychology': ('social-studies', _prefix('psy-')),
-})
 
-# slug -> (catalogue id in data/courses.csv, grade on the school calendar). Added 2026-11-14 (baseline 1 structure
-# finding 9, data/plans/later.csv L12): the frame slug is the course id; the catalogue id is the band row it sits in.
-COURSE_META = {
-    'world-geography-and-ancient-civilizations-i': ('world-geo-6', '6'),
-    'world-geography-and-ancient-civilizations-ii': ('world-hist-7', '7'),
-    'civics-government-and-civic-life': ('us-hist-8', '8'),
-    'world-history-i': ('world-hist-hs', '9'), 'world-history-ii': ('world-hist-2', '10'),
-    'us-history-i': ('us-hist-1', '11'), 'us-history-ii': ('us-hist-hs', '12'),
-    'us-government-and-politics': ('government', '12'), 'economics': ('economics', '12'),
-    'biology': ('biology', '9'), 'chemistry': ('chemistry', '10'), 'physics': ('physics', '11'),
-    'algebra-i': ('algebra-1', '9'), 'geometry': ('geometry', '10'), 'algebra-ii': ('algebra-2', '11'),
-    'precalculus': ('precalculus', '12'), 'statistics': ('statistics', '12'), 'calculus': ('calculus', '12'),
-    'earth-and-space-science': ('earth-space', '12'), 'environmental-science': ('environmental', '12'),
-    'psychology': ('psychology', '12'),
-}
-for _slug in COURSE_ROWS:
-    m = re.match(r'(social-studies|english-language-arts|science|math)-(kindergarten|grade-(\d+))$', _slug)
-    if m:
-        g = 'K' if m.group(2) == 'kindergarten' else m.group(3)
-        cat = {'social-studies': 'ss-k5', 'english-language-arts': 'ela-k12', 'math': 'math-k8',
-               'science': 'science-k5' if g in ('K', '1', '2', '3', '4', '5') else 'science-ms'}[m.group(1)]
-        COURSE_META[_slug] = (cat, g)
-# a plan folder kept under its old name until its subject's turn (PRODUCTION-PATH step 5)
-LEGACY = {'math-4': 'math-grade-4'}
-# half-year courses: which half (Cory's grade 12 timetable: Government in the fall, Economics in the spring)
-TERM = {'us-government-and-politics': 'fall', 'economics': 'spring'}
-# weeks a course that meets fewer than five days a week spreads over, where the stagger rule ends its year early
-# (docs/courses/CALENDAR.md, "Course-level checks across a grade"): K to 2 science and social studies
-WEEKS = {'science-kindergarten': 29, 'social-studies-kindergarten': 30, 'science-grade-1': 29,
-         'social-studies-grade-1': 31, 'science-grade-2': 28, 'social-studies-grade-2': 31}
-# tool (a) of the stagger rule for a course that meets fewer than five days a week: course day n pinned to school day s
-# (its lessons are bunched or thinned so a course-level check lands in its target week); days between pins spread
-# evenly. Added 2026-11-14 (baseline 1 cleanup), each pin named in its frame's Days bullet.
-PINS = {'science-grade-2': {58: 98}, 'social-studies-grade-2': {46: 68}, 'science-grade-5': {43: 50}}
+
+def course_list():
+    with open(COURSE_LIST, encoding='utf-8', newline='') as fh:
+        return list(csv.DictReader(fh))
+
+
+COURSE_ROWS, COURSE_META, LEGACY, TERM, WEEKS, PINS = {}, {}, {}, {}, {}, {}
+for _r in course_list():
+    _s, _sel = _r['id'], _r['rows']
+    if _sel:
+        _kind, _, _val = _sel.partition(':')
+        COURSE_ROWS[_s] = (_r['subject'], _grade(_val) if _kind == 'grade' else _prefix(_val))
+        COURSE_META[_s] = (_r['catalog_id'], _r['grade'])
+    if _r['legacy_plan_id']:
+        LEGACY[_r['legacy_plan_id']] = _s       # a plan folder kept under its old name (the math-4 pilot)
+    if _r['term'] and _r['term'] != 'year':
+        TERM[_s] = _r['term']                   # half-year courses: which half
+    if _r['weeks']:
+        WEEKS[_s] = int(_r['weeks'])            # weeks a fewer-than-five-a-week course spreads over (CALENDAR.md stagger rule)
+    if _r['pins']:
+        PINS[_s] = {int(x): int(y) for x, y in (p.split(':') for p in _r['pins'].split())}   # course day: school day
 
 SECTIONS = ['The course in brief', 'Seams', 'Models carried', 'Units', 'Course-level checks', 'Cross-subject']
 SUBJ_WORDS = {'math': 'math', 'science': 'science', 'ela': 'ela', 'english language arts': 'ela',
@@ -511,7 +473,7 @@ def frames_csv():
 def check(slug, cal_rows=None):
     fails, notes = [], []
     if slug not in COURSE_ROWS:
-        return ['%s: not in COURSE_ROWS (scripts/frame.py)' % slug], notes
+        return ['%s: no rows cell in data/plans/course-list.csv' % slug], notes
     subject, test = COURSE_ROWS[slug]
     f = parse(slug)
     t = f['text']
@@ -652,11 +614,11 @@ def check_global():
     for c in sorted(set(frames_csv()) - have):
         fails.append('data/plans/frames.csv: row %s has no frame (run scripts/frame.py sync)' % c)
     for c in sorted(set(COURSE_ROWS) - have):
-        fails.append('%s: in COURSE_ROWS but has no docs/courses/%s/frame.md' % (c, c))
+        fails.append('%s: has rows in data/plans/course-list.csv but no docs/courses/%s/frame.md' % (c, c))
     cat = {r['course_id'] for r in csv.DictReader(open(os.path.join(ROOT, 'data', 'courses.csv'), encoding='utf-8'))}
     for c in sorted(COURSE_ROWS):
         if c not in COURSE_META:
-            fails.append('%s: no catalogue id in COURSE_META (scripts/frame.py)' % c)
+            fails.append('%s: no catalog_id in data/plans/course-list.csv' % c)
         elif COURSE_META[c][0] not in cat:
             fails.append('%s: catalogue id %s is not in data/courses.csv' % (c, COURSE_META[c][0]))
     return fails

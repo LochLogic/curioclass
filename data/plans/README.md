@@ -108,7 +108,27 @@ Before a unit has parts or items, a course's `days.csv` is the scope and sequenc
 runs that gate for a plan folder with a days.csv and no parts or items. The `days.csv` row in the first table
 describes the written-day columns of a planned unit.
 
-Two files hold all courses, and `python -X utf8 scripts/frame.py sync` writes both from the frames; nobody edits them:
+## The course list (`course-list.csv`, consolidation step 4.C, 2026-11-25)
+
+The one hand-kept list of the 120 courses. Every other course list (docs/COURSES-STATUS.md, the Desk, `frames.csv`)
+is built from it. Columns:
+
+| Column | Holds |
+|---|---|
+| `id` | the course id, the frame slug (`science-grade-4`, `algebra-i`, `art-grades-k-to-2`); never renamed once a course has plan files |
+| `title`, `subject` | the title as shown; the subject id from data/subjects.csv (`ela`, never `english-language-arts`) |
+| `grade` | `K` or `1` to `12` for a one-grade course; a band (`k-2`, `3-5`, `6-8`, `9-12`) for a band course; blank for a world language |
+| `core` | `yes` for a core course |
+| `catalog_id`, `catalog_key` | the tool catalog's row (data/courses.csv) and its placement key; used only to attach topic and tool counts |
+| `rows` | which progression rows the course owns, `grade:K` or `prefix:bio-`; filled when its frame is written |
+| `term`, `weeks`, `pins` | `year`, `fall` or `spring`; weeks a short-week course spreads over; pinned days as `course day:school day` (CALENDAR.md stagger rule) |
+| `legacy_plan_id` | an old plan folder name for the course (`math-4`, the pilot, kept blind) |
+| `status` | `active` or `shelved` |
+
+A new course is a new row; its frame fills `rows`. `scripts/frame.py` and `scripts/course_status.py` read it.
+
+The two files below hold every framed course; `python -X utf8 scripts/frame.py sync` writes both from the frames and
+the course list (a join); nobody edits them:
 
 | File | One row is | Columns |
 |---|---|---|

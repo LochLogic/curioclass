@@ -1,0 +1,306 @@
+== board (1 new line(s)) [no before file]
+  concept 7  spec 557  build 7  selfcheck 116  refine 0  fix 20  exit 0  artvoice 10  finish 0  live 92
+== build_site (91 new line(s)) [no before file]
+  521 course and unit pages -> S:\CurioClass\build\gates\step4-C\dist\courses (hidden)
+  6768 pages, 83 built tools, 717 on the bench, 3742 in sitemap -> dist/
+  Map warning: 17 topics have no row in data/sequence.csv (like eld-9-12-telling-stories-and-experiences); they go at the end of their region until they get one
+  bundled animal-moves: 994 KB
+  bundled art-passport: 1752 KB
+  bundled beat-buddies: 486 KB
+  bundled beat-lab: 135 KB
+  bundled calm-corner: 720 KB
+  bundled career-cluster-explorer: 811 KB
+  bundled career-match-quiz: 268 KB
+  bundled checkers: 1186 KB
+  bundled chess: 1396 KB
+  bundled chord-explorer: 110 KB
+  bundled classifier-scenes: 391 KB
+  bundled classroom-phrases-game: 1160 KB
+  bundled code-tracer: 1046 KB
+  bundled collision-lab: 737 KB
+  bundled comeback-club: 1825 KB
+  bundled community-map-words: 1773 KB
+  bundled community-project-planner: 788 KB
+  bundled computer-builder: 1547 KB
+  bundled concert-ticket-market: 178 KB
+  bundled conflict-coach: 1197 KB
+  bundled contraction-crusher: 935 KB
+  bundled corner-store: 1450 KB
+  bundled decision-tree: 772 KB
+  bundled factor-forge: 200 KB
+  bundled farlight: 147 KB
+  bundled feelings-faces: 2373 KB
+  bundled feelings-weather-report: 1779 KB
+  bundled ferris-wheel: 678 KB
+  bundled field-lines: 1002 KB
+  bundled fingerspell-flash: 179 KB
+  bundled first-apartment-budget: 460 KB
+  bundled frame-it: 1640 KB
+  bundled game-remix: 1654 KB
+  bundled germ-spread-sim: 351 KB
+  bundled go: 1362 KB
+  bundled habit-hero: 1457 KB
+  bundled habitat-hunt: 1459 KB
+== check_safety (7 new line(s)) [no before file]
+  note  beat-lab: uses the camera or microphone
+  note  character-voice-booth: uses the camera or microphone
+  note  name-song-practice: uses the camera or microphone
+  note  speech-coach: uses the camera or microphone
+  note  vibration-station: uses the camera or microphone
+  note  voice-lab: uses the camera or microphone
+  safety scan: all tools clean
+== check_site (1 new line(s)) [no before file]
+  6777 pages checked, 10 redirects (1 splat), 0 broken internal links, 0 external loads, 8610 files (limit 20000), 0 over 25 MiB
+== check_tools (925 new line(s)) [no before file]
+  FAIL asl-bingo-night
+  FAIL asl-family-tree
+  FAIL asl-hello-booth
+  FAIL asl-story-theater
+  FAIL deaf-culture-explorer
+  FAIL face-the-grammar
+  FAIL food-web-wobble
+  FAIL molecule-builder
+  FAIL planet-builder
+  FAIL sign-parameters-lab
+  FAIL span-the-gap
+  bundled animal-moves: 994 KB
+  bundled art-passport: 1752 KB
+  bundled beat-buddies: 486 KB
+  bundled beat-lab: 135 KB
+  bundled calm-corner: 720 KB
+  bundled career-cluster-explorer: 811 KB
+  bundled career-match-quiz: 268 KB
+  bundled checkers: 1186 KB
+  bundled chess: 1396 KB
+  bundled chord-explorer: 110 KB
+  bundled classifier-scenes: 391 KB
+  bundled classroom-phrases-game: 1160 KB
+  bundled code-tracer: 1046 KB
+  bundled collision-lab: 737 KB
+  bundled comeback-club: 1825 KB
+  bundled community-map-words: 1773 KB
+  bundled community-project-planner: 788 KB
+  bundled computer-builder: 1547 KB
+  bundled concert-ticket-market: 178 KB
+  bundled conflict-coach: 1197 KB
+  bundled contraction-crusher: 935 KB
+  bundled corner-store: 1450 KB
+  bundled decision-tree: 772 KB
+  bundled factor-forge: 200 KB
+  bundled farlight: 147 KB
+  bundled feelings-faces: 2373 KB
+  bundled feelings-weather-report: 1779 KB
+  bundled ferris-wheel: 678 KB
+  bundled field-lines: 1002 KB
+== course_status (1 new line(s)) [no before file]
+  courses 120 core4 58 shared sets 8
+== desk_stats (1 new line(s)) [no before file]
+  noidea 0  concept 7  spec 557  build 7  selfcheck 116  refine 0  fix 20  exit 0  artvoice 10  finish 0  live 92 total 809
+== frame (129 new line(s)) [no before file]
+  frame algebra-i: 0 failure(s)
+  frame algebra-ii: 0 failure(s)
+  frame biology: 0 failure(s)
+  frame calculus: 0 failure(s)
+  frame chemistry: 0 failure(s)
+  frame civics-government-and-civic-life: 0 failure(s)
+  frame earth-and-space-science: 0 failure(s)
+  frame economics: 0 failure(s)
+  frame english-language-arts-grade-10: 0 failure(s)
+  frame english-language-arts-grade-11: 0 failure(s)
+  frame english-language-arts-grade-12: 0 failure(s)
+  frame english-language-arts-grade-1: 0 failure(s)
+  frame english-language-arts-grade-2: 0 failure(s)
+  frame english-language-arts-grade-3: 0 failure(s)
+  frame english-language-arts-grade-4: 0 failure(s)
+  frame english-language-arts-grade-5: 0 failure(s)
+  frame english-language-arts-grade-6: 0 failure(s)
+  frame english-language-arts-grade-7: 0 failure(s)
+  frame english-language-arts-grade-8: 0 failure(s)
+  frame english-language-arts-grade-9: 0 failure(s)
+  frame english-language-arts-kindergarten: 0 failure(s)
+  frame environmental-science: 0 failure(s)
+  frame geometry: 0 failure(s)
+  frame math-grade-1: 0 failure(s)
+  frame math-grade-2: 0 failure(s)
+  frame math-grade-3: 0 failure(s)
+  frame math-grade-4: 0 failure(s)
+  frame math-grade-5: 0 failure(s)
+  frame math-grade-6: 0 failure(s)
+  frame math-grade-7: 0 failure(s)
+  frame math-grade-8: 0 failure(s)
+  frame math-kindergarten: 0 failure(s)
+  frame physics: 0 failure(s)
+  frame precalculus: 0 failure(s)
+  frame psychology: 0 failure(s)
+  frame science-grade-1: 0 failure(s)
+  frame science-grade-2: 0 failure(s)
+  frame science-grade-3: 0 failure(s)
+  frame science-grade-4: 0 failure(s)
+  frame science-grade-5: 0 failure(s)
+== ledger-ela (16 new line(s)) [no before file]
+  ... 20 more planned-only (use --all)
+  == citation check (added 2026-11-21; does not change the exit code) ==
+  ela ledger: 10482 rows, 0 problems
+  planned-only findings: 28 (target only at stage planned, note lacks "planned only")
+  planned-only: english-language-arts-grade-1 u01-2 day 6: digraph th cites english-language-arts-kindergarten (digraphs)
+  planned-only: english-language-arts-grade-1 u01-5 day 22: tiny and little: adjectives differing in intensity cites english-language-arts-grade-1 u01-1 day 5
+  planned-only: english-language-arts-grade-1 u02-3 day 43: cycle 6 progress sample: read a word, spell a word, show b a cites english-language-arts-grade-1 u02-2 day 38
+  planned-only: english-language-arts-grade-1 u02-5 day 51: because and so join two facts with a connection arrow cites english-language-arts-grade-1 unit 1 day 34
+  planned-only: english-language-arts-kindergarten u02-6 day 57: believe cites english-language-arts-kindergarten u01-1 day 23
+  planned-only: english-language-arts-kindergarten u03-8 day 113: A Tree Is a Living Thing (gk-u3-03), chant reread (review of cites english-language-arts-kindergarten u03-6 day 89
+  planned-only: english-language-arts-kindergarten u03-8 day 114: source sticker: a label naming the reading a fact came from  cites english-language-arts-kindergarten u03-5 day 92
+  planned-only: english-language-arts-kindergarten u04-6 day 140: mapped words they, where, we, all (the part to remember mark cites english-language-arts-kindergarten u04-2 day 124
+  review notes: 3240, cited targets: 3328
+  unmatched citations: 2 (no ledger row matches the cited target)
+  unmatched: english-language-arts-grade-1 u01-2 day 5: rhyme cites english-language-arts-kindergarten (rhyming)
+  unmatched: english-language-arts-grade-1 u01-3 day 12: first, next, last with event cards and counters cites english-language-arts-kindergarten (retelling)
+== ledger-math (5 new line(s)) [no before file]
+  == citation check (added 2026-11-21; does not change the exit code) ==
+  math ledger: 5630 rows, 0 problems
+  planned-only findings: 0 (target only at stage planned, note lacks "planned only")
+  review notes: 3129, cited targets: 3329
+  unmatched citations: 0 (no ledger row matches the cited target)
+== ledger-science (7 new line(s)) [no before file]
+  == citation check (added 2026-11-21; does not change the exit code) ==
+  planned-only findings: 0 (target only at stage planned, note lacks "planned only")
+  review notes: 4054, cited targets: 4281
+  science ledger: 10067 rows, 0 problems
+  unmatched citations: 2 (no ledger row matches the cited target)
+  unmatched: science-grade-2 u01-1 day 2: key (a box that tells what each mark means) cites science-grade-1 (map key)
+  unmatched: science-grade-2 u01-2 day 6: map key (what each dot means; here the filled dot is liquid  cites science-grade-1 (map key)
+== ledger-social-studies (23 new line(s)) [no before file]
+  ... 2 more unmatched (use --all)
+  ... 8 more planned-only (use --all)
+  == citation check (added 2026-11-21; does not change the exit code) ==
+  planned-only findings: 16 (target only at stage planned, note lacks "planned only")
+  planned-only: social-studies-grade-1 u05-3 (planned): a claim, a map detail, an account detail, a reason and a clo cites social-studies-grade-1 u05-2 (claim frame)
+  planned-only: social-studies-grade-1 u06-4 (planned): hearing a rotating six on the record sheet cites social-studies-kindergarten u05-3 (a rotating ten or half)
+  planned-only: social-studies-grade-1 u06-4 day 67: hearing a rotating six on the record sheet, five groups of s cites social-studies-kindergarten u05-3 (a rotating ten or half)
+  planned-only: social-studies-grade-1 u07-1 day 71: who made it, when, what it is good for (kind, maker, date, u cites social-studies-grade-1 u03-2 (source questions: kind, maker, old or new, useful for what)
+  planned-only: social-studies-grade-1 u08-2 (planned): hear why someone chose differently, both fine cites social-studies-kindergarten u06-2 (perspective)
+  planned-only: social-studies-grade-2 u02-2 (planned): region (an area that shares something: a desert region, a ra cites social-studies-grade-1 u07-3 (a big area made of many towns)
+  planned-only: social-studies-grade-2 u02-2 (planned): written cue on a map: a partner's tick or arrow from the wal cites social-studies-grade-2 u01-4 (written cue on a draft, then revise)
+  planned-only: social-studies-grade-2 u02-4 (planned): closing claim: I choose ___ because ___. The ___ shows ___,  cites social-studies-grade-2 u01-4 (closing claim frame)
+  review notes: 3067, cited targets: 3322
+  social-studies ledger: 7994 rows, 0 problems
+  unmatched citations: 10 (no ledger row matches the cited target)
+  unmatched: social-studies-grade-1 u04-1 day 34: who made it, when and how it helps, asked of the class recor cites social-studies-grade-1 unit 3 (sourcing routine)
+  unmatched: social-studies-grade-1 u06-3 (planned): "The Star-Spangled Banner": Key 1814, the 1931 law; phrase l cites social-studies-kindergarten u05-2 (the story)
+  unmatched: social-studies-grade-1 u06-3 (planned): West Virginia State Board of Education v. Barnette, 1943: sa cites social-studies-kindergarten u05-2 (routine)
+  unmatched: social-studies-grade-1 u06-3 day 64: West Virginia State Board of Education v. Barnette, 1943: sa cites social-studies-kindergarten u05-2 day 47 (routine)
+  unmatched: social-studies-grade-1 u06-3 day 65: "The Star-Spangled Banner": Key 1814, the 1931 law; phrase l cites social-studies-kindergarten u05-2 day 47 (the story)
+  unmatched: social-studies-grade-1 u08-3 (planned): the choose-and-give-up mat tied to saving: spend now gives u cites social-studies-grade-1 u08-2 (the mat)
+  unmatched: social-studies-grade-2 u03-4 (planned): end-of-unit sitting: packet read aloud, items marked, spoken cites social-studies-grade-2 u02-4 (day 28 sitting)
+  unmatched: social-studies-kindergarten u04-2 day 37: who made it, when and why (and the record does not say when  cites social-studies-kindergarten unit 3 (u03-2 day 23)
+== selftest-day_skeleton (17 new line(s)) [no before file]
+  all passed
+  ok     a begun (~) code keeps its mark and finds its statement
+  ok     an assessment day gets the Assessment section
+  ok     an end item on a teaching day is a data error
+  ok     an unchecked source on the day is a STOP
+  ok     carried scored work prints its made day and feedback days
+  ok     deterministic
+  ok     earlier-grade skills are review, not the day's own
+  ok     header has the fixed fields
+  ok     incoming hand-backs name the receiving part and its minutes
+  ok     last day names no next day
+  ok     never overwrites without --force
+  ok     outgoing hand-backs are listed on the day that makes them
+  ok     scored work with no feedback day is a STOP
+  ok     teacher page lists all nine parts
+  ok     the day kind is explained
+  ok     the end items print their keys
+== selftest-section_skeleton (10 new line(s)) [no before file]
+  all passed
+  ok     U3 day rows are cut to the section
+  ok     all eleven fields
+  ok     an unknown section is a data error
+  ok     deterministic
+  ok     merged U fields are carried into each section
+  ok     never overwrites without --force
+  ok     no em dash
+  ok     one day block per day
+  ok     sections cover the unit
+== selftest-unit_skeleton (42 new line(s)) [no before file]
+  all passed
+  ok    K row last used in K is readiness in grade 3
+  ok    a grade 2 teaching day makes the K row retrieval
+  ok    a model first used in an earlier unit is not "introduced here"
+  ok    a respond or check day is no one-hop use
+  ok    a retrieval day is not a use
+  ok    a section over 15 days is flagged
+  ok    a task for the next unit is credited to it
+  ok    begun: ~ in days.csv, and "unit N completes" outside the frame owned list
+  ok    checks on different codes are no pair
+  ok    code first taught day 3 is untaught at day 2
+  ok    code taught day 1 counts before day 2
+  ok    compelling question split: Adding within 20
+  ok    compelling question split: Douglass
+  ok    compelling question split: Similarity
+  ok    compelling question split: Smallpox: who gets the credit?
+  ok    coverage: owned code on no assessment day, parts and begun codes handled
+  ok    days.csv missing column stops
+  ok    design sentence ends before the anchor
+  ok    deterministic (biology unit 1)
+  ok    earlier-grade skills-column id is a retrieval row, named
+  ok    engineering expectation with no crosscutting concept says so
+  ok    evidence pair within ten days, reuse read
+  ok    grade 2 row is retrieval, named on day 1
+  ok    grouped safety column
+  ok    kept evidence day found
+  ok    near-duplicate items merge
+  ok    no pair beyond ten days
+  ok    non-number day stops
+  ok    note shorthand names a part
+  ok    old-layout source map stops
+  ok    one-layout source map reads
+  ok    own-grade skills are never earlier rows
+  ok    readiness check naming the row clears the fault
+  ok    retrieval junk dropped, whole task kept
+  ok    reuse note maps a code to its source day
+  ok    row in use this year needs no task by id
+  ok    row missing from the progression is flagged
+  ok    same-day teaching counts with same_day
+  ok    short row stops
+== sequence (109 new line(s)) [no before file]
+  note day 100: Fluency, first day in the course for 3.OA.B.5, 3.MD.C.7c (practice of a taught skill, or first teaching?)
+  note day 100: reads like hands-on work but names no supplies and no safety
+  note day 101: Fluency, first day in the course for A-SSE.A.1b, A-SSE.B.3c, F-IF.C.8, F-IF.C.8b, A-SSE.B.3 (practice of a taught skill, or first teaching?)
+  note day 101: reads like hands-on work but names no supplies and no safety
+  note day 102: Fluency, first day in the course for HS-LS4-3 (practice of a taught skill, or first teaching?)
+  note day 106: Fluency, but the note says "Teach" (Understanding or Application?)
+  note day 111: Fluency, first day in the course for A-SSE.B.3 (practice of a taught skill, or first teaching?)
+  note day 115: reads like hands-on work but names no supplies and no safety
+  note day 117: reads like hands-on work but names no supplies and no safety
+  note day 119: Fluency, first day in the course for MA.6.T4a.2 (practice of a taught skill, or first teaching?)
+  note day 126: Fluency, first day in the course for HS-ETS1-3 (practice of a taught skill, or first teaching?)
+  note day 137: reads like hands-on work but names no supplies and no safety
+  note day 138: Fluency, but the note says "teach" (Understanding or Application?)
+  note day 13: Fluency, but the goal revises a piece of writing (Application?)
+  note day 142: reads like hands-on work but names no supplies and no safety
+  note day 144: Fluency, first day in the course for MA.6.T5b.2 (practice of a taught skill, or first teaching?)
+  note day 157: reads like hands-on work but names no supplies and no safety
+  note day 158: reads like hands-on work but names no supplies and no safety
+  note day 15: Fluency, first day in the course for 3.OA.C.7, 3.OA.D.9 (practice of a taught skill, or first teaching?)
+  note day 19: reads like hands-on work but names no supplies and no safety
+  note day 1: Fluency, first day in the course for 2.OA.B.2 (practice of a taught skill, or first teaching?)
+  note day 1: reads like hands-on work but names no supplies and no safety
+  note day 21: Fluency, first day in the course for A-REI.B.3 (practice of a taught skill, or first teaching?)
+  note day 22: reads like hands-on work but names no supplies and no safety
+  note day 24: reads like hands-on work but names no supplies and no safety
+  note day 25: Fluency, first day in the course for 3.MD.C.6 (practice of a taught skill, or first teaching?)
+  note day 25: Fluency, first day in the course for A-CED.A.4 (practice of a taught skill, or first teaching?)
+  note day 25: reads like hands-on work but names no supplies and no safety
+  note day 27: Fluency, first day in the course for MA.7.T2a.2 (practice of a taught skill, or first teaching?)
+  note day 29: reads like hands-on work but names no supplies and no safety
+  note day 2: Fluency, first day in the course for MA.7.T1a.2 (practice of a taught skill, or first teaching?)
+  note day 30: reads like hands-on work but names no supplies and no safety
+  note day 31: reads like hands-on work but names no supplies and no safety
+  note day 38: reads like hands-on work but names no supplies and no safety
+  note day 3: Fluency, first day in the course for MA.USII.T1.3, MA.USII.T1.3b (practice of a taught skill, or first teaching?)
+  note day 40: Fluency, first day in the course for MA.6.T3b.2 (practice of a taught skill, or first teaching?)
+  note day 41: Fluency, first day in the course for MA.7.T2b.2e (practice of a taught skill, or first teaching?)
+  note day 41: Fluency, first day in the course for ~G-SRT.B.5 (practice of a taught skill, or first teaching?)
+  note day 41: reads like hands-on work but names no supplies and no safety
+  note day 46: Fluency, first day in the course for MA.USII.T3.4 (practice of a taught skill, or first teaching?)
+compare step4-B -> step4-C: 1385 new line(s)

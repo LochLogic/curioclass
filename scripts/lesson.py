@@ -141,7 +141,7 @@ def course_name(course):
         subj, g = cm[0], cm[1]
     else:
         subj, _, g = course.rpartition('-')
-    subj = {'ela': 'English language arts', 'english-language-arts': 'English language arts',
+    subj = {'ela': 'English language arts',
             'social-studies': 'social studies'}.get(subj, subj)
     return ('kindergarten %s' % subj) if g == 'K' else 'grade %s %s' % (g, subj)
 

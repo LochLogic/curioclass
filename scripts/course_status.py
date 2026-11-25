@@ -90,14 +90,27 @@ for c, r in courses.items():   # split rows exist even where no catalog page sit
 for t in tools:
     info[modmap[t['module']]['_key']]['tools'][t['stage']] += 1
 
+# The courses are data/plans/course-list.csv (consolidation step 4.C): its id is the frame slug, and its catalog_key
+# joins the placement above only to attach topic and tool counts. Shared topic sets stay from the placement.
+COURSE_LIST = rows('data/plans/course-list.csv')
+_listed = {r['catalog_key'] for r in COURSE_LIST}
+for key in [k for k, d in info.items() if d['kind'] == 'course']:
+    assert key in _listed, 'course %s is placed from the catalogue but has no row in data/plans/course-list.csv' % key
+    del_ = info.pop(key)
+    info['_cat:' + key] = del_
+for i, r in enumerate(COURSE_LIST):
+    cat = info.pop('_cat:' + r['catalog_key'], None) or dict(mods=0, tools=collections.Counter())
+    info[r['id']] = dict(kind='course', title=r['title'], subject=r['subject'], sort=(i,), mods=cat['mods'],
+                         tools=cat['tools'], core=r['core'] == 'yes', fid='', status=r['status'])
+assert not [k for k in info if k.startswith('_cat:')], 'catalogue courses with no row in course-list.csv'
+
 import re
-# the canonical course id is the frame slug (data/plans/frames.csv, written by scripts/frame.py sync); a course
-# title slugs to it ("Science, Grade 4" -> science-grade-4), and a course with no frame gets ''
+# the course id is the frame slug (data/plans/course-list.csv); fid is '' for a course with no frame yet
 FRAMES = {r['course']: r for r in rows('data/plans/frames.csv')} if has('data/plans/frames.csv') else {}
 FRAME_IDS = set(FRAMES)
-def frame_id(title):
-    k = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
-    return k if k in FRAME_IDS else ''
+for k, d in info.items():
+    if d['kind'] == 'course' and k in FRAME_IDS:
+        d['fid'] = k
 
 # progression rows by subject and grade (data/progressions/<subject>.csv)
 PROG = {}
@@ -105,13 +118,13 @@ for s_ in CORE4:
     if has(f'data/progressions/{s_}.csv'):
         PROG[s_] = {r['grade'].strip().upper() for r in rows(f'data/progressions/{s_}.csv')}
 
-def plan_count(fid, key):
-    """Unit and section plans on file: docs/courses/<frame slug>/ and the older docs/courses/<key>/."""
-    return sum(len(glob.glob(os.path.join(ROOT, 'docs', 'courses', k, '[us][0-9]*.md'))) for k in {fid, key} - {''})
+def plan_count(fid):
+    """Unit and section plans on file in docs/courses/<course>/."""
+    return len(glob.glob(os.path.join(ROOT, 'docs', 'courses', fid, '[us][0-9]*.md'))) if fid else 0
 
 def layer_cells(key, d):
     s = d['subject']
-    fid = frame_id(d['title'])
+    fid = d['fid']
     grade = FRAMES[fid]['grade'].strip().upper() if fid else None
     num = 0 if grade == 'K' else int(grade) if grade and grade.isdigit() else None
     if s == 'math': rubric = 'yes' if num is not None else 'no'                    # docs/RUBRIC-MATH-K8.md, RUBRIC-MATH-HS.md
@@ -124,10 +137,8 @@ def layer_cells(key, d):
     elif s in ('science', 'social-studies') and fid: approach = 'lens and rubric'   # stand-in until days (Cory, 2026-11-14)
     else: approach = 'shared page only'
     prog = 'yes' if (fid and grade in PROG.get(s, set())) else 'no'
-    if fid and has(f'docs/courses/{fid}/scope-and-sequence.md'): spine = 'yes'
-    elif has(f'docs/courses/{key}-spine.md'): spine = 'draft'
-    else: spine = 'no'
-    plans = plan_count(fid, key)
+    spine = 'yes' if fid and has(f'docs/courses/{fid}/scope-and-sequence.md') else 'no'
+    plans = plan_count(fid)
     return rubric, approach, prog, spine, (str(plans) if plans else 'no')
 
 SPINE_ROW = re.compile(r'^\|\s*(\d*)\s*\|\s*(.+?)\s*\|\s*(\d+)\s*\|\s*(\d+)(?:\s*to\s*(\d+))?\s*\|')
@@ -147,23 +158,9 @@ def days_units(fid):
             out.append((n, f'Unit {n}' if n is not None else 'Course-level check', int(day), int(day)))
     return out
 
-def spine_units(key, fid=''):
-    """The scope and sequence table: [(unit number or None for a check, label, first day, last day)]."""
-    got = days_units(fid)
-    if got: return got
-    p = os.path.join(ROOT, 'docs', 'courses', f'{key}-spine.md')
-    if not os.path.exists(p): return []
-    out, inside = [], False
-    for line in io.open(p, encoding='utf-8'):
-        if line.startswith('|') and 'On days' in line: inside = True; continue   # the year's table only
-        if inside and not line.startswith('|'):
-            if out: break
-            continue
-        m = SPINE_ROW.match(line) if inside else None
-        if m:
-            a = int(m.group(4)); b = int(m.group(5) or a)
-            out.append((int(m.group(1)) if m.group(1) else None, re.sub(r'\*|\s*\(.*', '', m.group(2)).strip(), a, b))
-    return out
+def spine_units(fid):
+    """The scope and sequence: [(unit number or None for a check, label, first day, last day)], from days.csv."""
+    return days_units(fid)
 
 # reviews are filed by day number only; they belong to the one course that has written days (grade 4 math today)
 REVIEWED = {'cheap': set(), 'expert': set()}
@@ -178,15 +175,15 @@ TAUGHT = {}   # no course day has been taught yet; filled from taught-run record
 
 def ladder(key, fid=''):
     """Counts down the build order: scope and sequence, unit plans, section plans, days written, read, taught."""
-    units = spine_units(key, fid)
-    dirs = [os.path.join(ROOT, 'docs', 'courses', k) for k in {fid, key} - {''}]
+    units = spine_units(fid)
+    dirs = [os.path.join(ROOT, 'docs', 'courses', fid)] if fid else []
     uplans = {int(re.match(r's(\d+)', os.path.basename(f)).group(1)) for d in dirs for f in glob.glob(os.path.join(d, 's[0-9]*.md'))}
     splans = sum(len(glob.glob(os.path.join(d, 'u[0-9]*-[0-9]*.md'))) for d in dirs)
-    written = WRITTEN.get(key, set())
-    only = len(WRITTEN) == 1 and key in WRITTEN
+    written = WRITTEN.get(fid, set()) if fid else set()
+    only = len(WRITTEN) == 1 and fid in WRITTEN
     cheap = (REVIEWED['cheap'] & written) if only else set()
     expert = (REVIEWED['expert'] & written) if only else set()
-    taught = TAUGHT.get(key, set())
+    taught = TAUGHT.get(fid, set())
     total = max((u[3] for u in units), default=0)
     r = dict(units_total=sum(1 for u in units if u[0] is not None), units=len(uplans), sections=splans,
              days_total=total, written=len(written), cheap=len(cheap), read=len(expert), taught=len(taught))
@@ -227,8 +224,7 @@ A('- **Approach**: the subject page that says how the shared approach is carried
   'studies, the subject lens (docs/agents/lenses/) and the rubric stand in until days are written (Cory, 2026-11-14).')
 A('- **Progression**: what the grade inherits and hands on (rows for the grade in data/progressions/<subject>.csv).')
 A('- **Scope and sequence**: every day of the year in order (docs/courses/<course>/scope-and-sequence.md). "yes" '
-  'means the file is on file; docs/HANDOFF.md says which have been read and fixed. "draft" is an older -spine.md '
-  'file only.')
+  'means the file is on file; docs/HANDOFF.md says which have been read and fixed.')
 A('- **Plans**: unit plans and section plans on file, as a count.')
 A('- **Topics** and **Tools**: what the catalog holds. Tools are counted as spec / built / live. A spec or a '
   'built tool is not yet tied to a section plan anywhere except the trial sections.')
@@ -249,7 +245,7 @@ for s, label in groups:
     tc = collections.Counter()
     for _, d in ds: tc.update(d['tools'])
     lad = collections.Counter()
-    for k, d_ in ds: lad.update(ladder(k, frame_id(d_['title']))[0])
+    for k, d_ in ds: lad.update(ladder(k, d_['fid'])[0])
     r = dict(n=len(ds), core=sum(d['core'] for _, d in ds), spine=sum(c[3] != 'no' for c in cells),
              plans=sum(c[4] != 'no' for c in cells), mods=sum(d['mods'] for _, d in ds),
              spec=tc['spec'] + tc['idea'], built=tc['built'], live=tc['live'],
@@ -277,8 +273,8 @@ for s, label in groups:
     for k, d in ds:
         ru, ap, pr, sp, pl = layer_cells(k, d)
         t = d['tools']
-        lad, strip = ladder(k, frame_id(d['title']))
-        js['courses'].append(dict(title=d['title'], course=frame_id(d['title']), core=d['core'], rubric=ru, approach=ap, prog=pr, spine=sp, plans=pl,
+        lad, strip = ladder(k, d['fid'])
+        js['courses'].append(dict(title=d['title'], course=k, status=d['status'], core=d['core'], rubric=ru, approach=ap, prog=pr, spine=sp, plans=pl,
                                   mods=d['mods'], spec=t['spec'] + t['idea'], built=t['built'], live=t['live'], **lad))
         if strip: J['strips'].append(dict(title=d['title'], **lad, **strip))
         A(f"| {d['title']} | {'yes' if d['core'] else ''} | {ru} | {ap} | {pr} | {sp} | {pl} | {d['mods']} | "

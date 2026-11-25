@@ -19,7 +19,7 @@ Course `social-studies-grade-2` (catalogue id `ss-k5`), grade 2. Draft frame, 20
   1 row opens with a retrieval task inside its first day (frame-write lesson 16). The mid-year course-level check falls in week 14 (school
   days 66 to 70; docs/courses/CALENDAR.md, the stagger rule: ELA's check holds weeks 15 and 16, science's week 17,
   math's weeks 18 and 19): course day 46 is pinned there, so some weeks before it carry a fourth lesson and the weeks
-  after it run at about three (the pin is in scripts/frame.py).
+  after it run at about three (the pin is in data/plans/course-list.csv).
 - **Standard.** Content: Massachusetts 2018 grade 2, MA.2.T1 to MA.2.T5, every standard owned by a row and placed
   below, with one planned split: Massachusetts prints grade 1 T4 and grade 2 T5 as one economics topic, and Curio
   Class teaches it once (data/progressions/social-studies-excluded.csv). Grade 2 teaches resources, people as a
