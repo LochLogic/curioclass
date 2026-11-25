@@ -7,12 +7,94 @@ the new model ("live things" now migrate, step 4.1), earlier decisions that chan
 consolidation is the mass edit (the change workflow moves in, step 4.4), and his six decisions are recorded at the end. Built on a read-only census of 2026-11-24: every sibling folder, the Codex and
 Antigravity homes on C:, the tool pipeline and the curriculum layers.
 
+Draft 4, 2026-11-25: steps 0 to 3 are done (reports in docs/reviews/consolidation/). Step 4 is rewritten after a
+Fable read of it (docs/reviews/consolidation/step4-fable-read.md), and the end goal is defined as tests
+("The end goal" below). Step 4 has not started.
+
 ## Why
 
 Hundreds of sessions across Claude, Codex and Antigravity worked in several folders. Some work exists in only one copy
 outside the repository, stale plans sit beside current ones, and changing one thing (a text, a standard, a routine)
 means searching thousands of files. After the curriculum is written there will be tens of thousands of files. The aim:
 one folder (S:\CurioClass), one home per fact, nothing lost, and an architecture that makes later edits cheap and safe.
+
+## The end goal: a flat, efficient, well-organized curriculum database
+
+Added 2026-11-25 (Cory: "identify how we meet our end goal"). The curriculum is already a database: CSV tables per
+course, markdown records with frontmatter, ids in `[[...]]` links. It is not yet flat, efficient or well organized,
+because facts have more than one home, relations can only be found by searching, and some lists are built from the
+tool catalog. Each word of the goal is defined below as tests that can be run, so "done" is a reading, not a feeling.
+
+### What each word means
+
+**Flat** (one place, one shape, one home per fact):
+
+1. One working folder, S:\CurioClass, one branch line. *Done in steps 0 to 3.*
+2. Every course has the same three homes and nothing else: `data/plans/<course>/` for structured facts (CSV),
+   `docs/courses/<course>/` for plan prose (frame, scope and sequence, unit and section plans), `courses/<course>/`
+   for the days and their texts (`texts/`). Plus four shared homes: data/standards/, data/progressions/, data/plans/ledgers/, and
+   data/plans/ for the cross-course tables (course list, frames, calendar, later, defects); the shared format docs
+   in docs/courses/*.md (LESSON-DAY, UNIT-PLAN, CALENDAR) are templates, not course content. *Test:* a layout check
+   lists any curriculum file outside these homes (built with the 4.10 linter).
+3. One home per fact, written down. The fact map (below) names the owner of every kind of fact; anything else that
+   holds it is either generated from the owner and marked so, or gone. *Test:* the 4.6 drift report and the 4.11
+   list leave no fact with two hand-kept homes.
+4. No curriculum list is built from the tool catalog. *Test:* the 4.10 linter's catalog check passes, and the course
+   list, course pages and status page read curriculum sources only (4.4, 4.5).
+
+**Efficient** (cheap to find, cheap to change, cheap to check):
+
+5. Any object is found by id: `uses.py <id>` answers "what uses this?" in seconds, across all courses (4.7).
+6. Any change runs as a script with a dry run and an impact list, never as hand edits across files (4.9).
+7. One command per job, named in the doc map; mechanical rules are lint, not reader tokens (4.10).
+8. Generated things are never edited by hand and never stored twice (4.11).
+
+**Well organized** (every piece is accounted for and connected):
+
+9. Every relation resolves: each `leans_on`, CSV id column and `[[...]]` link points at something that exists
+   (the 4.7 resolve gate, failing).
+10. Every object has one status, read from one source, visible in the index (4.7).
+11. Every retired id is recorded and never reused (4.8).
+12. Nothing is orphaned: no day without a days.csv row, no plan row without a frame unit, no skeleton left after
+    its plan passes. *Test:* an orphan report from the index, added to the gates after its first clean run.
+
+### The fact map (one owner per fact)
+
+| Fact | Owner (hand-kept) | Generated from it |
+|---|---|---|
+| Which courses exist | data/plans/course-list.csv (4.4) | COURSES-STATUS.md, the Desk course list |
+| A course's units and why | docs/courses/<course>/frame.md | frames.csv, calendar.csv (`frame.py sync`) |
+| Standards and their codes | data/standards/ | index nodes; standards pages after the curriculum (4.5) |
+| Skills and handoffs | data/progressions/ | index nodes and edges |
+| Days, items, wrongs, parts, materials, sources | data/plans/<course>/*.csv | skeletons, `gen:` tables, index |
+| A day's teaching | courses/<course>/<section>/dNNN.md | lesson pages, PDFs |
+| What was taught when | data/plans/ledgers/ | coverage reads |
+| Status of a day | its frontmatter `version:` | index, flow-status reads |
+| Retired and merged ids | data/ids-retired.csv (4.8) | registry |
+| Parked work | data/plans/later.csv | Desk Dashboard |
+| What is in the live bucket | the two R2 manifests (sync_media.py) | none |
+
+### How we get there
+
+| Stage | Meets tests | When |
+|---|---|---|
+| Steps 0 to 3: one folder, rescue, Codex merge, cleanup | 1 | done 2026-11-25 |
+| Step 4 (4.1 to 4.12) | 3 (drift report), 4, 5, 6, 7, 8, 9, 10, 11, and 2 and 12 as reports | next |
+| Step 5: tool records only, plumbing standardized | keeps tools outside the curriculum homes | after step 4 |
+| Step 6: close, counts in SCALE.md, the fact map in HANDOFF | the tests recorded as a baseline | after step 5 |
+| As each course is written or next reviewed | 2 and 12 move from report to failing gate per course; old item suffixes stripped; skel drift fixed by the rule Cory picks | ongoing, by the course run |
+| After the curriculum is done | the tool catalog retired; topic pages, coverage and standards pages become views over the index | later.csv |
+
+The consolidation does not try to make every old file pass every test at once. It builds the tests and the tools,
+makes the shared structure pass, and turns each per-course test from a report into a failing gate as that course
+is written or reviewed, so new work can only land flat.
+
+### What is not part of the goal
+
+- Moving to a real database server. Plain files in git stay the source: they diff, review and back up as they are,
+  and the index is a generated view that can be loaded into SQLite whenever a query needs it.
+- Opaque ids, a general batch-edit framework, interchange exporters, reading-level lint and sampled reads: each
+  waits for its first real need (later.csv rows, step 4.12).
 
 ## Ground rules for every step
 
@@ -40,14 +122,15 @@ one folder (S:\CurioClass), one home per fact, nothing lost, and an architecture
    material is copied out (lesson of 2026-11-09).
 6. **Secrets stay put.** `Gemini/Api.txt` looks like a credential. It is not opened, moved or archived; Cory decides.
 7. **Live things are migrated, never just moved.** These look old but the deploy, the gates or the pipeline read
-   them: `math-4` and `ela-6` (live plan ids), `data/units.csv` (plan.py), `data/modules.csv` (build_site.py and about
-   30 scripts), `data/sequence.csv` (the site Map), `data/coverage.csv` and `data/concepts` (the catalog scripts,
-   board.py, desk_stats.py), `section-skeletons/` and `day-skeletons/` (required by coursegen.py). Steps 1 to 3 leave
-   them alone. Step 4.1 migrates each into the one curriculum model: the scripts that read it change first, the gates
-   pass on the new source, and only then does the old file go to the archive, so nothing old is left standing beside
-   the new. The two R2 manifests (`data/media-manifest.txt`, `data/docs-manifest.txt`) are the exception: they are
-   the record of what is in the live bucket, not a duplicate of anything, so they stay committed and are changed only
-   by sync_media.py.
+   them: `data/units.csv` (plan.py), `data/modules.csv` (build_site.py and about 30 scripts; generated from
+   data/modules/*.txt), `data/sequence.csv` (the site Map), `data/coverage.csv`, `data/tools-concepts.csv` (board.py,
+   desk_stats.py) and `data/concepts/` (the catalog scripts), and the skeleton folders (read by the briefs). The
+   math-4 pilot folders are not live plan ids but old work held blind until its reconcile (later.csv L13); they are
+   never renamed. Step 4 changes each live thing the same way: the scripts that read it change first, the gates pass on
+   the new source, and only then does the old file go to the archive (or, for generated files, is removed), so
+   nothing old is left standing beside the new. The two R2 manifests (`data/media-manifest.txt`,
+   `data/docs-manifest.txt`) are the exception: they are the record of what is in the live bucket, not a duplicate of
+   anything, so they stay committed and are changed only by sync_media.py.
 
 ## The order
 
@@ -164,130 +247,162 @@ One commit each, in this order:
 
 ## Step 4: architecture for scale
 
-The curriculum will grow tenfold. The architecture should make three things cheap: finding everything that uses a
-thing, changing it everywhere by script, and knowing a change broke nothing. This consolidation is the mass edit that
-architecture is built for: it touches every layer once, so the model, the tooling and the migrations land together,
-and later work only follows the model.
+Revised 2026-11-25 after a cold Fable read of draft 3's step 4 against the repository
+(docs/reviews/consolidation/step4-fable-read.md, 12 findings). The direction held: no curriculum gate reads the
+tool catalog, the two leaks are real, and `leans_on` is already a clean edge list. Five claims were wrong about the
+repository and are corrected below (the math-4 pilot is not an alias, day ids in frontmatter would not remove
+position, build_db.py wipes its database, the course_pages cut would make dead links, frames.csv does not hold the
+120 courses). The order is flipped: small cuts first, then the index, then the thin rules. Step 4 is about a third of
+draft 3's size.
 
-The closest models are the open textbook and courseware platforms, not general documentation:
+The curriculum will grow tenfold. Step 4 makes three things cheap: finding everything that uses a thing, changing it
+everywhere by script, and knowing a change broke nothing. The models are the open courseware platforms (OpenStax,
+Kolibri and Khan content trees: stable ids kept apart from position, generated outputs never edited by hand), the
+documentation builds (Sphinx, Antora: links by id, the build fails on a broken one) and Wikidata (ids that carry no
+meaning that can change, redirects on merge). DITA is the cautionary tale: over-reuse, and machinery built before its
+first real use. Step 4 builds only what the curriculum already needs.
 
-- **OpenStax**: modules with permanent ids, collections that order them, generated outputs never edited by hand.
-- **Kolibri Studio and Khan Academy content trees**: every node has a stable content id kept apart from its position
-  in the tree, so reordering or inserting moves nothing that links to it.
-- **Sphinx and Antora** (documentation builds): links are written by id and the build fails on a broken one.
-- **Wikidata**: opaque ids that carry no meaning that can change, and redirects when two items merge.
-- **DITA** (technical publishing): typed topics and key-based links; its cautionary tale is over-reuse, where nobody
-  dares edit a shared piece.
+Every sub-step below is one commit (or one per course where noted), with the before and after gates of ground rule 3,
+and its report says which gate exit codes are expected to change and why.
 
-### 4.0 Earlier decisions that change, and what is rebuilt
+### 4.0 What changes, and what is kept
 
-Some of what exists is sound and is kept as it is: day files as markdown with frontmatter, the CSV plan data per
-course (days, items, wrongs, parts, materials), the progressions, the gate scripts, the ledgers as the term record,
-the kit for tool plumbing. These are rebuilt or replaced:
+Kept as it is: day files as markdown with frontmatter, the CSV plan data per course (days, items, wrongs, parts,
+materials, source-map, errors, sources), the progressions, the gate scripts, the ledgers as the term record, the kit
+for tool plumbing, `course + day` as the day key, `[[...]]` as the house link syntax.
 
-| Today | Problem | Becomes |
+| Today | Problem | Becomes (sub-step) |
 |---|---|---|
-| A tool-era topic catalog (modules.csv, 815 modules; sequence.csv; coverage.csv, 2,400 rows; data/concepts; the shape files) beside the course model (progressions, frames, scopes, unit and section plans, days) | Cory's intent was always the reverse of what this catalog implies: the curriculum comes first and the tools are reshaped to it after the curriculum is done. No curriculum gate reads the catalog (plan.py, unitplan.py, lesson.py, coursegen.py, ledger.py, progressions and frames do not), but two curriculum-facing scripts lean on it: course_pages.py links a standard only if a tool module lists it, and course_status.py builds part of its course list from module placement | **The course model is the only curriculum model** (4.1). The two leaks are cut now; the catalog is frozen as tool-side data and is retired when the tools are reshaped to the finished curriculum |
-| data/units.csv (60 rows, the math-4 pilot) read by plan.py | A third unit list beside frames.csv and days.csv | retired into frames.csv and days.csv; plan.py reads those |
-| math-4 and ela-6 pilot ids beside math-grade-4 and english-language-arts-grade-6 | Two names for one course, two sets of folders | migrated to the full course ids, the old ids kept as aliases in the registry; turn.py jobs renamed |
-| Unit plans that hold tables also kept in CSVs (the Codex run replaced some with pointers, which caused the carry-overs) | Two homes for the same facts | **CSV holds structured facts, markdown holds prose**; any table in a plan that repeats CSV data is generated from the CSV, never typed |
-| section-skeletons/ and day-skeletons/ kept after the real plan or day is written | Two files per section or day, one stale | a skeleton is a working file: once its plan or day passes, it goes to the archive and coursegen.py accepts the written file in its place |
-| Status in many places: day frontmatter `version:`, flow-status.csv, defects.csv, later.csv, Desk items, tool stage guessed from file names | No single answer to "where is this?" | **one status field per object** in its source (frontmatter for days, the stage CSV for tools, a column for plan rows); flow-status.csv, the dashboard and the Desk read it |
-| Positional ids (day number), version-suffixed item ids | Ids change when the curriculum changes | stable ids (4.2) |
-| One worktree per AI platform, a union merge rule in .git/info | Work splits and merges silently go wrong | one working folder, short branches, key-aware merges (steps 0 and 2) |
-| About 41 top-level plan docs, rules restated across AGENTS.md, briefs and lenses | Agents read the wrong rule | one doc map; each rule stated once, and the mechanical rules become lint (4.6) |
-| 122 scripts, several overlapping (plan.py, unitplan.py, lesson.py, lesson_course.py, coursegen.py) | Hard to know which gate is the gate | one command per job named in the doc map; overlapping scripts merged or retired as each migration touches them, not as a separate rewrite |
+| The consolidation gates skip unitplan.py, frame.py check, sequence.py, check_site.py, the `--courses` build and the skeleton self-tests | Step 4 changes exactly what those cover | added to the gate runner first (4.1) |
+| The turn.py queue is 33 math-4 pilot jobs, 5 shown as ready | A worker who asks for a job gets a pilot job with pilot day ranges | queue emptied, jobs archived (4.2) |
+| math-4 (pilot) beside math-grade-4; ela-6 leftovers | Not two names for one course: math-4 is an older design kept blind on purpose until the reconcile (later.csv L13); ela-6 is one rights file and a spine | held apart, named in the doc map; no rename, ever (4.2) |
+| data/units.csv (59 rows, math-4 pilot only) read by plan.py | Every other course fails it: 479 ignored failure lines in 21 courses | deleted, plan.py takes its horizon from frames.csv (4.3) |
+| The 120 courses exist only as the output of course_status.py placing tool modules | The course list is built from the tool catalog | `data/plans/course-list.csv`, 120 rows, owned by hand; course_status.py builds from it (4.4) |
+| course_pages.py links a standard only if a tool module lists it | The link set is really "standards pages that exist", and those are built from modules | build_site.py hands course_pages the set it renders (4.5) |
+| section-skeletons/ and day-skeletons/ kept after the real plan or day is written (2,763 tracked files) | A second file per section or day; rebuildable by one command | classed as generated working files, `git rm` once their plan or day passes (4.6) |
+| `<!-- skel -->` blocks in 917 written plans: CSV data frozen at writing time | A second home no gate compares | a report-only drift check; the fix is decided after the count (4.6) |
+| No way to ask "what uses this?" | Every change means searching thousands of files | the index and `uses.py`, report only, then a resolve gate (4.7) |
+| No record of retired or merged ids | An alias is lost the first time a file moves | `data/ids-retired.csv`, append-only, and a generated registry (4.8) |
+| Version-suffixed item ids (636 of 14,587, three spellings) | Ids change when an item is revised | a rule and a check on new ids; old ones stripped as each course is next reviewed (4.8) |
+| Mass edits done by hand or by one-off scripts | No dry run, no impact list | one page of change workflow (4.9) |
+| House rules restated across AGENTS.md, briefs and lenses | Readers spend tokens on what a script can catch | a four-check linter (4.10) |
+| Generated files committed beside sources with no marking | Hand edits land in generated files | one source and generated list (4.11) |
 
-### 4.1 One curriculum model: the curriculum first, the tools after
+### 4.1 Widen the gates
 
-Cory, 2026-11-24: the curriculum is the product, and the tools are reshaped to it after it is done; the tools never
-give shape to the curriculum.
+scripts/consolidation_gates.py adds `unitplan.py check`, `frame.py check`, `sequence.py`, `check_site.py`, the
+skeleton scripts' `--self-test`, and `build_site.py --courses` into a scratch output folder (a flag is added if the
+build has none) followed by a link check over the course pages. A new baseline is recorded (`step4-before`) before
+4.2 starts.
 
-- **The curriculum graph.** Every curriculum object is a node with an id; every relation is an edge. Node types:
-  standard, skill (progression node), course, unit, section, day, item, text, term, routine, source. Edges: day
-  teaches skill, item checks standard, day reads text, term introduced on day, and so on. Its inputs are the
-  standards files (data/standards/), the progressions, frames.csv and each course's plan data, and nothing tool-side.
-- **Cut the two leaks now.** course_pages.py takes its known standards from data/standards/, not modules.csv.
-  course_status.py builds its course list from frames.csv and the course catalog, and reports tools only as a count
-  beside each course, never as what makes a course. Each change is checked by building the course pages and the status
-  page before and after and comparing them.
-- **Curriculum migrations**, one at a time, each with the scripts that read the old file changed first and before and
-  after gates: units.csv into frames.csv and days.csv; the math-4 and ela-6 ids; the skeletons.
-- **The tool catalog is frozen, not migrated.** modules.csv, sequence.csv, coverage.csv, data/concepts and the shape
-  files stay where they are, read only by the tool side and the site's topic pages and Map, and no curriculum script
-  may start reading them (a lint rule, 4.6). Nothing new is added to them.
-- **After the curriculum is done** (a later.csv row): each tool is mapped onto the skills and days it serves, the
-  topic pages become views over the curriculum graph, coverage becomes a query, and the catalog goes to the archive.
-  Tools then show on the days that teach their skill.
+### 4.2 Empty the pilot queue; hold the pilot apart
 
-### 4.2 Permanent ids
+- The 33 rows of data/pipeline/jobs.csv go to the archive (`pilot-queue-2026-11-25`); the queue is empty and honest.
+- The math-4 folders (data/plans/math-4/, docs/courses/math-4/) stay where they are, named in the HANDOFF doc map as
+  "pilot, kept blind, reconciled under later.csv L13". Cory may instead send them whole to the archive; the reconcile
+  then reads them from there.
+- docs/courses/ela-6/RIGHTS.md and the ela-6 spine files go to the archive (L14 says none of their texts fits a frame
+  unit).
+- The pilot's special cases (plan.py, unitplan.py, section_cuts.py, defaults.py, frame.py LEGACY) stay until math
+  grade 4 is reconciled and go in that commit. No string rename of `math-4`: it is also the prefix of 13 tool module
+  ids, some in never-touch files.
 
-- **Ids carry no position.** A day's id is not its number (inserting a day would renumber every later id and every
-  link). Each day gets a short opaque id minted once and stored in its frontmatter (`id:`); the day number, unit and
-  section are attributes. The same holds for sections and units.
-- **Versions are not ids.** An item's id is its stem without the version suffix (`s02-A6` for `s02-A6v2`); `v2` is
-  its version. A revised item keeps its id.
-- **The registry** (`data/registry.csv`: id, type, path, title, aliases, replaced_by, plus the pointer to the source
-  that holds its status, owner and version) is generated from the files and CSVs by a script and never edited by hand.
-  Legacy ids are aliases from day one. A retired object keeps its row with `replaced_by` set; an id is never reused.
-- **No CSV is rewritten for prefixes.** Type prefixes (`text:`, `tool:`, `std:`) exist only in the registry and in
-  prose links; CSV columns keep their bare ids.
-- **Standards.** The human code stays (RL.1.2, with the publisher in the registry). A `case_guid` column is added when
-  the 1EdTech CASE identifiers are imported, since CASE identifies items by GUID, not by code.
+### 4.3 Retire data/units.csv
 
-### 4.3 The "what uses this?" index
+plan.py drops the section-row check and takes the hand-back horizon from the course's `days` in frames.csv;
+lesson_course.py drops the ignore rule that existed for it; coverage_ledger.py's guarded read goes; the file goes to
+the archive. Expected: about 479 failure lines disappear and several `plan-<course>` gates change exit code from 1
+to 0. The `modules` column (pilot sections to tool modules) is tool-side and is not carried over.
 
-- `scripts/index.py` extends build_db.py's database (one file, `data/curioclass.db`): the graph's nodes and edges.
-  Version 1 edges come from `leans_on:`, the CSV id columns and existing relative markdown links; no new syntax is
-  needed to start.
+### 4.4 The course list as data
+
+- `data/plans/course-list.csv`: one row per course as a school would schedule it (id, title, subject, grade or band,
+  core, catalog_id pointing at data/courses.csv, status active or shelved), 120 rows, generated once from today's
+  course_status.py output, then owned by hand.
+- course_status.py builds its list from it and attaches module and tool counts as attributes only; the placement
+  rules hard-coded in it (BY_GRADE, PER_GRADE, SPLIT, ONE_ROW) and frame.py's COURSE_META read the list.
+- Test: docs/COURSES-STATUS.md before and after is identical apart from the date line; plan_flow.py and the Desk
+  show the same courses.
+
+### 4.5 Cut the course_pages leak
+
+build_site.py passes course_pages.py the set of standards pages it actually renders, so the dependency is "pages
+built", not modules.csv by name. Checked by the `--courses` build and link check of 4.1. The real curriculum-first
+fix, a standards page for every code a course frame owns, is the site work that follows the finished curriculum
+(later.csv row, with the topic pages as views).
+
+### 4.6 Skeletons are generated
+
+The skeleton folders are listed as generated (4.11). When a section or day passes its gate its skeleton is removed
+with `git rm` (no archive row: git history keeps it and the script rebuilds it). coursegen.py's folder test changes
+at most one line; the briefs keep working because each job regenerates what it needs. For the `<!-- skel -->` blocks
+in written plans: a report-only check re-renders them from the CSVs and lists drift; Cory decides the fix from the
+count. No plans are regenerated in step 4.
+
+### 4.7 The "what uses this?" index
+
+- `scripts/index.py` writes its own generated, git-ignored files, `data/index/nodes.csv` and `edges.csv` (plain CSV
+  so they diff and need no database), from curriculum sources only: standards, progressions, frames, the course list,
+  each course's plan CSVs, the day frontmatter (`leans_on:`, `version:`), the ledgers and `[[...]]` links.
+  build_db.py is not used: it deletes its database and rewrites modules.csv on every run, and it is tool-side.
+- Node key: type plus course plus local id (`item:english-language-arts-grade-1:s01-X2`), since bare item ids repeat
+  across courses (1,648 of them). Day nodes are `day:<course>:d042`, derived, not minted.
+- Each node carries its status as read from its one source (frontmatter `version:` for days, flow-status.csv for
+  plans, the stage CSV for tools), so "where is this?" has one answer without moving any status field now.
 - `scripts/uses.py <id>` lists everything that uses an object, by course and day; `uses.py --changed` lists what
   depends on the files changed since the last commit.
-- **Gate.** Every `leans_on` path and every id in a CSV column resolves. It starts as a report and becomes a failing
-  gate after one clean run.
-- **Prose links by id.** `[[text:g1-u2-c47]]` is added where the build needs a rendered title, and lesson.py learns to
-  render it in the same commit. Plain paths in prose are converted by one scripted pass during this step (4.4), since
-  every day is touched anyway when its id is minted.
+- Report only at first; it writes nothing tracked. After one clean run, "every `leans_on` path and every CSV id
+  resolves" becomes a failing gate, with "when it exists:" as the one allowed unresolved form (38 today).
 
-### 4.4 The change workflow, built now and used by this consolidation
+### 4.8 Ids: retired list, registry, item versions
 
-Every change to published material, starting with the migrations of 4.1 and the id pass of 4.2, goes: request (the
-step of this plan, later later.csv or the Desk) to impact list (`uses.py`) to scripted batch edit with a dry run and a
-diff report to gates to an errata entry with the course version (finished-course item 11). A mass edit is a script
-with a dry run, as bots do on Wikipedia, never hundreds of hand edits. Building it first means every later step of
-this plan runs through it, so it is tested on real work before the curriculum grows.
+- `data/ids-retired.csv`: committed, append-only, columns old_id, new_id (blank when retired), date, reason. Every
+  archive move or merge of a curriculum object adds a row. An id is never reused.
+- The registry is generated, not committed: the index's nodes plus that file, so aliases survive any rebuild.
+- Item versions: data/plans/README.md gets the rule "a revised item keeps its id; the version goes in the `version`
+  column", and plan.py fails a new id ending in a version suffix unless it is on a baseline list of today's 636.
+  Old suffixes are stripped when each course is next reviewed, recorded in ids-retired.csv.
+- No opaque day ids now. `course + day` stays the key. When the first real insertion of a day is needed, a scripted
+  `renumber` (dry run first) rewrites days.csv, the day-keyed CSVs, the ledgers, the file names and `leans_on`
+  together, through the 4.9 workflow. Opaque ids, if ever wanted, live in a days.csv column, as a separate step.
 
-### 4.5 Source and generated
+### 4.9 The change workflow (one page)
 
-- Source: markdown, CSV, scripts, art and voice. Generated and not committed: build/ (step 0), tool bundles (already
-  ignored), the registry, the index, any plan table generated from CSV (4.0).
-- Generated but committed: docs/COURSES-STATUS.md and docs/BUILD-BOARD.md, because HANDOFF links them and people read
-  them on GitHub. A gate fails when either is out of date.
-- State, committed, changed only by its script: the two R2 manifests (sync_media.py).
+docs/CHANGES.md: request (a step of this plan, later.csv or the Desk), impact list (`uses.py`), a script with
+`--dry-run` that prints a diff summary, the gates, one log line. No framework code beyond what each migration needs.
+Errata with course versions waits for a course that is taught (ROADMAP finished-course item 11).
+
+### 4.10 The linter (four checks)
+
+`scripts/lint.py`: no em dashes, "Curio Class" in full, a US spelling word list, and no curriculum script opening a
+tool catalog file. It runs on changed files in `turn.py end` and on everything in the consolidation gate. Reading
+level, banned phrases, sampled reads and interchange field choices go to later.csv rows.
+
+Sources as we go (Cory decision 5) stays a writing rule, not lint: every text, day and tool names its sources at the
+level of the piece, and checkable specifics (numbers, dates, names, scientific and historical facts in informational
+texts and in tools) carry a claim-level source. Applied when a file is next written or touched, not as a pass over old
+files.
+
+### 4.11 Source and generated
+
+- **Source:** markdown, CSV, scripts, art and voice.
+- **Generated, not committed:** build/, dist/, tool bundles, data/index/, the registry, data/curioclass.db, any plan
+  table generated from CSV, skeletons once their plan or day passes.
+- **Generated and committed, gated by their own check:** frames.csv and calendar.csv (`frame.py sync`, `frame.py
+  check`), modules.csv (from data/modules/*.txt by build_db.py).
+- **Generated and committed for reading on GitHub:** docs/COURSES-STATUS.md and docs/BUILD-BOARD.md, regenerated by
+  the lead at session end or by `turn.py end`; the date line is left out of any comparison and there is no failing
+  gate (a curriculum job must not have to fix a tool stage).
+- **State, changed only by its script:** the two R2 manifests (sync_media.py).
+- **Frozen tool catalog,** read only by the tool side and the site's topic pages and Map: data/modules/ (source),
+  modules.csv, tools-concepts.csv, sequence.csv, coverage.csv, data/concepts/, docs/agents/catalog/shape/.
 - Large media stays out of git (art/raw, voice/raw, library art), backed up to X: and R2.
 
-### 4.6 Writing aids from large datasets
+### 4.12 Order
 
-- **House rules as a linter.** No em dashes, "Curio Class" in full, US spelling, reading level by grade, banned
-  phrases, step names from docs/GLOSSARY.md, no curriculum script reading the tool catalog: one style check runs on every file, in the spirit of the Vale linter
-  documentation teams use. Readers stop spending tokens on what a script can catch. Built in this step.
-- **Structure first, prose second.** Plans and days are written into shapes generated from data (unit plan skeletons
-  already are); the generated tables of 4.0 extend this.
-- **Sources as we go (Cory decision 5).** Every text, day and tool names its sources at the level of the piece, and
-  checkable specifics carry a claim-level source: numbers, dates, names, scientific and historical facts in
-  informational texts and in tools. Ordinary sentences, stories and teacher moves do not. Applied when a file is next
-  written or touched, not as a pass over old files.
-- **Sampled reads by risk** (new authors, new kinds of day, low gate margins), checked against a gold set, as large
-  labeled datasets are checked. Designed here, first used when the Codex draft review resumes (paused by Cory).
-- **Interchange later, shaped now.** The graph's fields are chosen so exports need no rework: Common Cartridge for
-  schools' learning platforms, QTI for items, LRMI and schema.org alignment metadata for day pages. The Learning
-  Commons Knowledge Graph's standards crosswalks could be imported rather than rebuilt (license terms checked first).
-  The exporters themselves wait for a school that needs them.
-
-### 4.7 Order
-
-4.4 (the workflow) and 4.3 (the index) first, since everything after runs through them; then 4.2 (ids minted by one
-scripted pass, prose links converted in the same pass); then the 4.1 leak cuts and migrations one at a time; then 4.6
-(the linter). Each lands with before and after gates and its own commit.
+4.1, 4.2, 4.3, 4.4, 4.5, 4.6 (the cuts, each small and fully covered by the gates), then 4.7 and 4.8 (built over
+data that is no longer about to move), then 4.9, 4.10 and 4.11. The deferred items get their later.csv rows in the
+4.2 commit.
 
 ## Step 5: tools, plumbing standardized and play left free
 
@@ -344,10 +459,10 @@ the memory notes, and write a short record of what moved where (the archive inde
 2. Tether Drift: a Recess game, not ready; kept as a side project (step 1 table, later.csv row).
 3. The 45 Flash research packets: checked, no later use; archived with SPEC.md's packet line and RESEARCH-PACKET.md.
 4. The visible kit frame becomes optional (step 5.3) once the contract scripts pass.
-5. Sources as we go, at the level of step 4.6: every piece names its sources, checkable specifics carry their own;
+5. Sources as we go, at the level of step 4.10: every piece names its sources, checkable specifics carry their own;
    not every statement.
 6. Gemini/Api.txt stays where it is, untouched, for when tool work resumes.
 7. The scale of the project is recorded for later marketing in docs/funding/SCALE.md: the before counts now, the
    after counts at step 6.
-8. Curriculum first: the tools never shape the curriculum; they are reshaped to it once it is done (step 4.1, step 5
+8. Curriculum first: the tools never shape the curriculum; they are reshaped to it once it is done (steps 4.4 and 4.5, step 5
    scope).
