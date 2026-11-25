@@ -1,12 +1,13 @@
 # Handoff: the current state
 
-Where the work stands and what to do next, as of 2026-11-22. The reasons behind decisions are in the decision log,
+Where the work stands and what to do next, as of 2026-11-24. The reasons behind decisions are in the decision log,
 [agents/decisions/DESK-ANSWERS.md](agents/decisions/DESK-ANSWERS.md). If another page disagrees with this one, find
 which is stale, fix it and say so.
 
 ## State now
 
-- **Running from 2026-11-23: the Codex draft run (later.csv L105).** Codex writes first drafts of section plans, data and days for math K-3, social studies 4, 5 and WG-I, ELA 4-5 and science 4-6 in S:\CurioClass-draft (branch draft/codex, scripts/codex_draft.py); Claude reviews later. Never edit those courses in main while it runs.
+- **In progress from 2026-11-24: the consolidation ([CONSOLIDATION-PLAN.md](CONSOLIDATION-PLAN.md)).** All work from every AI platform comes back into this folder, the Codex draft is merged, then the architecture for scale (curriculum first: the tool catalog is frozen and tools are reshaped after the curriculum is done). Steps run one at a time in order (0 freeze, 1 rescue, 2 Codex merge, 3 cleanup, 4 architecture, 5 tool records, 6 close). No curriculum work runs until step 6 closes. Scale counts for later marketing: [funding/SCALE.md](funding/SCALE.md).
+- **Ended 2026-11-24: the Codex draft run (later.csv L105).** Stopped softly by Cory; main merged into draft/codex and a baseline sheet written (docs/reviews/codex-draft-baseline-2026-11-24.md). The review is PAUSED for Cory; the merge into main is consolidation step 2.
 - **Done 2026-11-23: science K to 3 finished to COURSE-RUN stage 7 and signed off by Cory (later.csv L81).** His calls were applied 2026-11-23 (docs/reviews/signoff-fix-science-<course>-2026-11-23.md; DESK-ANSWERS 2026-11-23). Run record from 2026-11-22: The L102 exit faults fixed, a 10-day re-sample per grade (K 0.9, grade 1 1.2, grade 2 0.8, grade 3 0.8 FIRM a day), a full read and cleanup for grade 1, then the stage 7 reads, one fix pass and a safety page per course, and the K to 3 continuity pass. Gates: lesson.py 0 FAIL; plan.py only the known units.csv lines. Records docs/reviews/finish-fix-science-<course>-2026-11-22.md, continuity-science-2026-11-22.md. Cory's calls are on Desk cards q-sci-finish-k, -g1, -g2, -g3. Art, voice and tools deferred.
 - **Done 2026-11-22: science K to 3 outside-reader fixes.** The Gemini findings were verified and fixed in all four courses (commits 06044df12, a217321fe, cebb837f9; ledgers docs/reviews/gemini-fixes-science-<course>-2026-11-22.md); gates at each course's baseline. Science K to 3 stays PAUSED for Cory (later.csv L81).
 - **Done 2026-11-22: all 65 progression nodes.** SEL, ELD, library, career education and Spanish joined the earlier subjects (data/progressions/, flow-status.csv). World languages is Spanish only; ASL waits on the required review (later.csv L93).
