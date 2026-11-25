@@ -100,5 +100,5 @@ lane course shows a read.
   project content, nothing references it, readable only by CodexSandboxUsers; `pip install Markdown==3.11.3
   pypdf==7.1.1` rebuilds it.
 - The worktree is removed (`git worktree remove`), and the draft/codex branch is deleted locally and on GitHub; the tag
-  `archive/draft-codex` keeps it. Left on disk for an administrator to delete: S:\CurioClass-draft (only that package
-  folder remains) and the empty S:\CurioClass-draftpre (a temporary gate worktree).
+  `archive/draft-codex` keeps it. S:\CurioClass-draft (only that package folder was
+  left) and the empty S:\CurioClass-draftpre (a temporary gate worktree) were deleted by Cory as administrator, 2026-11-25.
