@@ -78,7 +78,8 @@ subject outside the core gets its own small set before its expert reads are trus
   repository.
 - **The reader:** a fresh expert agent with the subject lens and the normal brief for the piece, cold; a second model reads
   the same set: Codex by script (scripts/codex_read.py), or Gemini 4 Neon at medium effort in Antigravity, pasted by
-  Cory from S:\CurioClass-gemini (Cory, 2026-11-20, for the after-core subjects).
+  Cory from a prompt folder (Cory, 2026-11-20, for the after-core subjects). The stage 1 folder, S:\CurioClass-gemini,
+  was archived 2026-11-25 (loose-folders-2026-11-25); the next Gemini batch gets a fresh folder.
 - **The line** (approved by Cory, Desk q-prework-open-2; reworded 2026-11-21, q-calibration-subjects-1): at least 8
   of the 10 majors caught; at most 2 false major alarms; the top finding is a planted major, or a real major the
   lead confirms. A reader under the line is not used alone for that subject: its lens is changed
