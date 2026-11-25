@@ -66,7 +66,7 @@ reference) are taught. Domain words come with the topic.
 - K to 2: the phonics scope and sequence is missing, or runs apart from the decodable texts.
 
 **Unit**
-- Fewer than 80 percent of questions and tasks need the text.
+- Fewer than 80 percent of questions and tasks need the text (in grades K to 3, of reading items, RL and RI).
 - A support replaces the text (a summary read in its place) or has no teacher note.
 - No word list from the texts, or words taught once and never met again.
 - The end task does not join reading with writing or speaking on the unit's topic, or has no scoring guidance.

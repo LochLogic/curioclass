@@ -78,7 +78,7 @@ count toward the word cap.
     so a reader can check the answer and a student can be sent back to reread;
   - `needs_text`: yes when the answer cannot be given without the text, no otherwise.
   `plan.py check` fails an ELA row whose `needs_text` is not yes or no, a yes with no `text_id`, a `text_id` with
-  no row in ela-texts.csv, and a course where under 80 percent of rows need the text (plan-codex-ela.md).
+  no row in ela-texts.csv, and a course where under 80 percent of rows (in K to 3, of RL and RI rows) need the text (plan-codex-ela.md).
 - **Word list: unit plan output, not input data.** The writer draws it per unit from that unit's texts (about 8
   to 10 words a week) and writes it as `data/plans/<course>/wordlist.csv` with `unit`, `word`, `text_id`, `week`
   and `when` (before, during or after reading). The name is not `words.csv`, which `plan.py` already reads as

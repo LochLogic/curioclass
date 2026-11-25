@@ -5,10 +5,10 @@ unit: 2.4
 version: draft, not yet taught
 credit: ours
 ---
-# Day 47 check pictures (Moon's Walk, in sentences, and the Chinese tale)
+# Day 47 check pictures and lesson cards (Mira Waits for the Stars)
 
-The day 47 check reads named passages, not a made-up card: Moon's Walk, in sentences (texts/g1-u2-02), for s02-A6v2 and s02-A7v2, and The Weaver Girl and the Cowherd, pages 5 to 7 (texts/g1-u2-04), for s02-A8v2. Plain black line drawings on white, thick lines, no shading.
+The day 47 check reads the cold passage Mira Waits for the Stars (u02-4/cold-passage-day47), new to the class on day 47, for s02-A6v2, s02-A7v2 and s02-A8v2. Plain black line drawings on white, thick lines, no shading.
 
-Three event pictures, cut apart for each group of five and laid out of order: the moon above the roofs with a dog in a yard; the silver road on the lake with a little boat; the pale moon fading as the morning comes.
+Three event pictures, cut apart for each group of five and laid out of order: a girl in a yard under a bright evening sky with no stars; one star peeking out of a dark blue sky above the girl and her grandmother on the step; the whole sky full of stars, the girl hugging her grandmother.
 
-Three lesson cards, read aloud by you: "Friends and helpers can help you meet." "Magpies." "The stars are cold."
+Three lesson cards, read aloud by you: "Waiting can bring good things." "Grandma." "The sun goes down."

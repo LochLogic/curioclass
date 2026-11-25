@@ -737,10 +737,14 @@ def check(course):
             for t in tid.split():
                 if t not in text_ids:
                     fails.append('%s: text_id %s has no row in data/plans/ela-texts.csv' % (i['item_id'], t))
-        share = sum(i.get('needs_text') == 'yes' for i in items) / len(items)
+        # K to 3 counts reading items only (RL, RI): phonics, conventions, writing and talk items work on decodable
+        # text, the child's own writing or a talk move, and are judged by their own checks (Cory, Desk 2026-11-24)
+        k3 = grade in ('K', '1', '2', '3')
+        pool = [i for i in items if i['code'].split('.')[0] in ('RL', 'RI')] if k3 else items
+        share = sum(i.get('needs_text') == 'yes' for i in pool) / max(len(pool), 1)
         if share < 0.8:   # plan-codex-ela.md: at least 80 percent of questions, tasks and exits need the text
-            fails.append('items.csv: %d percent of questions need the text; at least 80 percent must'
-                         % round(share * 100))
+            fails.append('items.csv: %d percent of %squestions need the text; at least 80 percent must'
+                         % (round(share * 100), 'reading ' if k3 else ''))
     wordrules = [(w['pattern'], w['use'], w['reason']) for w in rows(course, 'words')]   # settled wording, per course
     letters = {(e['stretch'], e['letter']) for e in errors}
     in_data = {p['stretch'] for p in parts} | {i['stretch'] for i in items}   # units with day-level data
