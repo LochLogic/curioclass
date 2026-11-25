@@ -1,0 +1,100 @@
+{
+  "target": 44,
+  "keep": ["#left-col", "#q-dock"],
+  "states": [
+    {
+      "name": "listen-gap",
+      "steps": [
+        {"click": "#answer-btn"},
+        {"wait": 600}
+      ],
+      "keep": ["#left-col", "#pad-wrap", "#q-dock"],
+      "sizes": ["1366x768", "680x425", "375x812"]
+    },
+    {
+      "name": "vocab-card",
+      "steps": [
+        {"click": "#answer-btn"},
+        {"wait": 400},
+        {"click": "#q-What"},
+        {"wait": 400},
+        {"click": "#q-Where"},
+        {"wait": 400},
+        {"click": "#q-mean"},
+        {"wait": 400}
+      ],
+      "keep": ["#left-col", "#pad-wrap", "#q-dock"],
+      "sizes": ["1366x768", "680x425"]
+    },
+    {
+      "name": "tell-me-more",
+      "steps": [
+        {"click": "#answer-btn"},
+        {"wait": 300},
+        {"click": "#q-What"},
+        {"wait": 300},
+        {"click": "#q-Where"},
+        {"wait": 300},
+        {"click": "#q-Who"},
+        {"wait": 400}
+      ],
+      "keep": ["#left-col", "#more-area"],
+      "sizes": ["1366x768", "680x425", "375x812"]
+    },
+    {
+      "name": "quiz-hidden-pad",
+      "steps": [
+        {"click": "#answer-btn"},
+        {"wait": 250},
+        {"click": "#q-What"},
+        {"wait": 250},
+        {"click": "#q-Where"},
+        {"wait": 250},
+        {"click": "#q-Who"},
+        {"wait": 250},
+        {"click": "#more-card-0"},
+        {"wait": 200},
+        {"click": "#ask-more-btn"},
+        {"wait": 400}
+      ],
+      "keep": ["#left-col", "#quiz-area"],
+      "sizes": ["1366x768", "680x425", "375x812"]
+    },
+    {
+      "name": "take-message",
+      "steps": [
+        {"click": "#answer-btn"},
+        {"wait": 200},
+        {"click": "#q-What"},
+        {"wait": 200},
+        {"click": "#q-Where"},
+        {"wait": 200},
+        {"click": "#q-Who"},
+        {"wait": 200},
+        {"click": "#more-card-0"},
+        {"wait": 150},
+        {"click": "#ask-more-btn"},
+        {"wait": 200},
+        {"click": "#quiz-opt-1"},
+        {"wait": 150},
+        {"click": "#quiz-pick-btn"},
+        {"wait": 200},
+        {"click": "#quiz-opt-2"},
+        {"wait": 150},
+        {"click": "#quiz-pick-btn"},
+        {"wait": 400}
+      ],
+      "keep": ["#left-col", "#msg-area"],
+      "sizes": ["1366x768", "680x425", "375x812"]
+    },
+    {
+      "name": "calls-drawer",
+      "steps": [
+        {"click": "#calls-btn"},
+        {"wait": 300}
+      ],
+      "keep": ["#left-col", "#calls-drawer"],
+      "sizes": ["1366x768", "680x425"]
+    }
+  ]
+}

@@ -13,11 +13,9 @@ must stand on its own: anything not in the spec will not be in the tool.
 4. If the tool has a family: `docs/families/<family>.md`. Use its engine; do not invent a second one.
 5. Two approved tools as the quality bar: `tools/calm-corner/src.html` (K-2, teacher-led) and
    `tools/size-of-everything/src.html` (older grades, explore). Skim, don't copy.
-6. If `tools/<tool-id>/research.md` exists (a Gemini Flash research packet, Cory 2026-11-09): read it, then build your
-   Sources from it instead of searching from scratch. Follow "For the spec writer" in `docs/agents/RESEARCH-PACKET.md`
-   (spot-check its sources; say in your report how much of it you used and any claim that failed). Packets are
-   paused since 2026-11-09 (a spot check found half their quotes were not on the cited page), so none are in main:
-   research from scratch. Sara wrote every remaining spec (`docs/agents/claims/sara.txt`, done 2026-11-10); new ideas get specs only when Cory asks.
+6. Research the tool's sources from scratch. (The Gemini Flash research packets of 2026-11-09 were archived
+   2026-11-24: half their quotes were not on the cited page.) Sara wrote every remaining spec
+   (`docs/agents/claims/sara.txt`, done 2026-11-10); new ideas get specs only when Cory asks.
 
 ## Rules
 
