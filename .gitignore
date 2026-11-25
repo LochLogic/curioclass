@@ -39,3 +39,6 @@ FLASH-RESEARCH-PROMPT.txt
 
 # large raw inputs of tool data pipelines (backed up to X:, never committed)
 tools/*/pipeline/raw/
+
+# the Desk snapshot copies its cards and answers; rebuilt on every refresh (desk/README.md)
+desk/snap.json
