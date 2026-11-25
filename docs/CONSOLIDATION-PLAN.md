@@ -594,13 +594,21 @@ See "Words: from the days, not from the tool catalog" in the end goal.
 numbers into data/plans/goal-tests.csv (goal test 3 reads the marker guard count, which prints 0). The step report
 lists every count that moved and why.
 
+Then a full-scope Fable review (Cory, 2026-11-25), before step 5 starts: a cold read of the whole repository and
+the step report, not anchored on the plan's own claims. It answers three questions: did step 4 come out as intended
+(each sub-step's goal and the 12 end-goal tests, read from the data, not from the Built notes); is the project in a
+better place overall than at `pre-step4` (for writers, the lead, the gates, the site and the next 118 courses), and
+what got worse; and is there anything major to address now, before step 5 and before curriculum work runs at scale.
+Findings go to docs/reviews/consolidation/step4-close-review.md and are brought to Cory with a recommendation each;
+step 5 waits for his read.
+
 ### 4.K Order
 
 A first, because everything after is judged by it. B, then C before the pilot folders change (the plan count cell
 moves). D before G, since side-by-side work is only safe once ledgers are per course. E before F, so the index never
 sees 2,763 files that are about to go; E2 before F for the same reason (the index and its baselines would otherwise
 count block copies), and before writing restarts, so no new plan is born with markers. G closes block one.
-Order: A, B, C, D, E, E2, F, G, H, I, J. 4.E2 needs its own go and stops once, at its hand list (step 2); F and G
+Order: A, B, C, D, E, E2, F, G, H, I, J, then the close review. 4.E2 needs its own go and stops once, at its hand list (step 2); F and G
 then run under the block-one go. H, then I (it alone waits on a design answer), then J.
 
 ## Step 5: tools, plumbing standardized and play left free
