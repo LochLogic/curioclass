@@ -94,7 +94,11 @@ lane course shows a read.
   file held by an orphaned headless Edge from a Codex job (Cory stopped PID 17936). The first failure came after 32
   moves whose index rows were only written at the end; those rows were rebuilt from the hash-checked copies (marked
   "row recovered from the copy") and the script now writes each row as its move finishes.
-- Left in place, waiting for Cory: _scratch/l87/tmp/math-kindergarten-day-7-4/python-modules (5 sandbox package
-  folders, markdown and pypdf, "Permission denied"; rebuildable with pip). With his OK it is skipped, then the worktree
-  is removed, the empty S:\CurioClass-draftpre folder (a temporary gate worktree) is deleted, and the local and remote
-  draft/codex branches are removed (the tag keeps them).
+- Skipped, not archived (Cory's OK 2026-11-25, with its reason in the archive index):
+  _scratch/l87/tmp/math-kindergarten-day-7-4/python-modules. Job 056's log shows it is a `pip install --target` of
+  Markdown 3.11.3 and pypdf 7.1.1, made at 6:50 and 6:55 so lesson_course.py could import them in the sandbox; no
+  project content, nothing references it, readable only by CodexSandboxUsers; `pip install Markdown==3.11.3
+  pypdf==7.1.1` rebuilds it.
+- The worktree is removed (`git worktree remove`), and the draft/codex branch is deleted locally and on GitHub; the tag
+  `archive/draft-codex` keeps it. Left on disk for an administrator to delete: S:\CurioClass-draft (only that package
+  folder remains) and the empty S:\CurioClass-draftpre (a temporary gate worktree).
