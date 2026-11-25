@@ -6,8 +6,11 @@ Checks (each line starts with the check's name, so a gate compare shows what is 
 - catalog: no curriculum script (CURRICULUM below) opens a tool catalog file (data/modules.csv, sequence.csv,
   coverage.csv, tools-concepts.csv, data/concepts/). One named exception until the standards pages are rebuilt:
   course_pages.py `known_standards` (docs/CONSOLIDATION-PLAN.md test 4).
-- never-touch: a changed file under data/closet/words, closet/words, data/media-manifest.txt or docs/Return.
-- generated: a hand edit to a generated file, from data/homes.csv once consolidation 4.H lands (until then, silent).
+- never-touch: a changed file whose data/homes.csv kind is never-touch or state (state files change only through
+  their owner script, which the lead runs).
+- generated and layout: scripts/homes.py check over the files in scope (all tracked files under --all): a file with
+  no home, a stray in a course home, or a tracked file that homes.csv says is generated and never committed.
+  Generated and committed files are checked by their own gate (homes.csv `check` column).
 - style: an em dash, "Curio" not followed by " Class", or a UK spelling from the short US list below, in finished
   pages and plans (docs/courses/<course>/, courses/<course>/) and in what the generators print (each unit and section
   plan's rendered facts, scripts/plan_facts.py). Quoted titles keep their spelling: a word inside double quotes is
@@ -30,7 +33,6 @@ CURRICULUM = ['plan.py', 'plan_facts.py', 'plan_flow.py', 'unitplan.py', 'unit_s
 CATALOG = re.compile(r"modules\.csv|sequence\.csv|coverage\.csv|tools-concepts\.csv|data[/\\]concepts\b|"
                      r"'concepts'\)")
 EXCEPTION = ('course_pages.py', 'known_standards')
-NEVER = ['data/closet/words', 'closet/words', 'data/media-manifest.txt', 'docs/Return']
 EMDASH = '—'
 UK = re.compile(r'\b(colour(?:s|ed|ing)?|centre(?:s|d)?|(?:centi|milli|kilo)?metres?|(?:milli)?litres?|'
                 r'practis(?:e|es|ed|ing)|licences?|modelling|modelled|labell(?:ed|ing)|'
@@ -74,8 +76,9 @@ def catalog():
 
 
 def never(files):
-    return ['never-touch %s: changed, and this path is never touched by a job' % f
-            for f in files if any(f == n or f.startswith(n + '/') for n in NEVER)]
+    import homes
+    return ['never-touch %s: changed, and data/homes.csv marks it %s (owner %s)' % (f, r['kind'], r['owner'])
+            for f in files for r in [homes.row_of(f)] if r and r['kind'] in ('never-touch', 'state')]
 
 
 def style_text(where, text):
@@ -130,9 +133,10 @@ def main(a):
         files = changed()
         import gate
         scope = gate.courses()
-    lines = catalog() + never(files)
-    if (ROOT / 'data' / 'homes.csv').exists():
-        lines.append('generated: data/homes.csv exists; the generated-file guard is not wired yet (4.H)')
+    import homes
+    tracked = set(homes.tracked())
+    lines = catalog() + never(files) + homes.check(None if '--all' in a or not ('--course' in a or '--changed' in a)
+                                                   else [f for f in files if f in tracked])
     for c in scope:
         lines += style(c)
     print('\n'.join(lines))

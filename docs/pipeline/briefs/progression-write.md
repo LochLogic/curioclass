@@ -6,7 +6,7 @@ at the same time; a stitcher joins the bands, then a reconciler compares the res
 
 ## Write blind
 You may not open earlier Curio Class planning for this subject: anything under docs/courses/, docs/reviews/ or
-data/progressions/ about {subject}, and data/units.csv, data/sequence.csv and any written days of this subject under courses/. They are
+data/progressions/ about {subject}, and data/sequence.csv and any written days of this subject under courses/. They are
 compared with your rows afterwards by a separate reconcile step (docs/pipeline/briefs/progression-reconcile.md), so
 the progression is decided by the standards and the evidence, not by what happened to be written first (settled
 2026-11-13, see DESK-ANSWERS).

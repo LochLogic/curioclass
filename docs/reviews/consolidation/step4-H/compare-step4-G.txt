@@ -1,0 +1,19 @@
+== build_site (1 new line(s), 0 failing)
+  note 521 course and unit pages -> S:\CurioClass\build\gates\step4-H\dist\courses (hidden)
+== compare (9 new line(s), 0 failing) [no baseline file]
+  note == build_site (1 new line(s), 0 failing)
+  note == ids-check (1 new line(s), 0 failing) [no baseline file]
+  note == index-reports (1 new line(s), 0 failing)
+  note == selftest-homes (1 new line(s), 0 failing) [no baseline file]
+  note gate all against its baseline: 0 failing finding(s), 4 new note line(s)
+  note note 521 course and unit pages -> S:\CurioClass\build\gates\step4-H\dist\courses (hidden)
+  note note homes self-test: all passed
+  note note ids: 0 retired id(s) checked, 0 line(s)
+  note note status: 412 flow-status done rows sit on a written plan; they stay: plan_flow reads them as "done to the stage 4 bar", which the file alone does not show (only "on file")
+== ids-check (1 new line(s), 0 failing) [no baseline file]
+  note ids: 0 retired id(s) checked, 0 line(s)
+== index-reports (1 new line(s), 0 failing)
+  note status: 412 flow-status done rows sit on a written plan; they stay: plan_flow reads them as "done to the stage 4 bar", which the file alone does not show (only "on file")
+== selftest-homes (1 new line(s), 0 failing) [no baseline file]
+  note homes self-test: all passed
+compare step4-G -> step4-H: 0 failing finding(s), 13 new note line(s)

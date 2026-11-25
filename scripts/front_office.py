@@ -31,7 +31,8 @@ import front_office_docs as fod  # noqa: E402
 from pathlib import Path
 ROOT = Path(cp.ROOT)
 BLIND = re.compile(r'math-4|ela-6')
-PROG_FILE = {'ela': 'ela', 'math': 'math', 'science': 'science', 'social-studies': 'social-studies'}
+import subjects  # noqa: E402  one home for subject ids (consolidation 4.H)
+PROG_FILE = {s: s for s in subjects.CORE}   # subject id -> progression file name
 # Words that must never reach these pages: who did the work, and internal machinery.
 FORBIDDEN = re.compile(r'\b(?:AI|A\.I\.|Claude|Codex|GPT|Sonnet|Opus|Haiku|Gemini|agents?|model(?:s)? (?:wrote|read)|'
                        r'LLM|Cory|Sara|Desk|card q-|later\.csv|BASELINE)\b|\.md\b|\.csv\b|—|\bCurio\b(?! Class)')

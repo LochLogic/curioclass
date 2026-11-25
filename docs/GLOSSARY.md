@@ -93,6 +93,7 @@ today's section, "stretch" is today's unit, "spine" is scope and sequence).
 | **common errors** (inside the project: **error register**) | The lettered wrong ways of thinking a unit expects, and what to do about each | misconceptions list | `errors.csv`, `wrongs.csv` |
 | **materials** | What to print and gather, per student and per class | supplies list (fine in prose) | the `materials` header line |
 | **worked example**, **fix-it**, **practice**, **challenge** | The kinds of question inside a lesson | | `items.csv` `check` = `example`, `fix`, `practice`, `challenge` |
+| **word** (a highlighted word; the box is **Words today**) | A word a day introduces, highlighted on the page with its student definition and fun fact, defined once per sense and grade band (Desk q-word-names-1, 2026-11-25). Inside the ledger the same thing is a **term**: what a day introduces, with the teacher-facing meaning | vocabulary word, key term, glossary entry | `data/plans/vocabulary.csv` (the word table; not `words.csv`, which in twelve courses holds banned patterns); mark `[[word:<sense>]]` or `[[word:<sense>|shown]]`; a **sense id** is the word plus a meaning tag, `cell-biology`; ledger `kind` = `term` |
 
 ## The site: four doors
 

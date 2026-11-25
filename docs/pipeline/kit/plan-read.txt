@@ -17,7 +17,7 @@ For every section plan check, and quote file and line for each fault:
 
 {SUBJNOTE}
 
-Write docs/reviews/plan-read-{COURSE}-{PART}-{DATE}.md: one line per section plan read (file, verdict); findings as a table, most serious first: file:line | severity (FIRM = a wrong key, an exit that does not measure the goal, a claim the ledger does not support, a part that cannot run in its minutes, unsafe; SOFT = weaker but teachable) | kind | what is wrong | the exact fix | stage that made it (unit plan, section plan, ledger, brief or template); then counts by severity and kind. For every fault whose stage that made it is NOT the section plan, say so: the lead fixes it there and sweeps.
+Write docs/reviews/{COURSE}/plan-read-{COURSE}-{PART}-{DATE}.md: one line per section plan read (file, verdict); findings as a table, most serious first: file:line | severity (FIRM = a wrong key, an exit that does not measure the goal, a claim the ledger does not support, a part that cannot run in its minutes, unsafe; SOFT = weaker but teachable) | kind | what is wrong | the exact fix | stage that made it (unit plan, section plan, ledger, brief or template); then counts by severity and kind. For every fault whose stage that made it is NOT the section plan, say so: the lead fixes it there and sweeps.
 
 {COMMON}
 

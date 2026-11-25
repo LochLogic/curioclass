@@ -69,7 +69,5 @@ exit table.
 One line per finding, numbered, most serious first:
 `N. [field] what is wrong | why it matters | exact fix`
 Then one line: `Count: N findings (lens {lens}).` If you find nothing, say `Count: 0 findings (lens {lens}).` and why
-the unit holds. No em dashes. Do not open: docs/courses/ela-6/, docs/courses/ela-6-spine.md, docs/courses/math-4/,
-docs/courses/math-4-spine.md, docs/courses/math-3-5-progression*.md, docs/courses/science-4-spine.md,
-docs/courses/NEXT-SPINES.md, data/plans/math-4/, data/units.csv, courses/, im-g4-draft-map.csv,
-docs/reviews/*reconcile*, *math-4*, *ela-6*. No git.
+the unit holds. No em dashes. Never open courses/, nor anything on the next line. No git.
+Never open (data/homes.csv kinds never-touch, state, blind, pilot; scripts/homes.py briefs keeps this line): .claude/, docs/Return/, Gemini/, Gemini.*, data/closet/words/, closet/words/, data/media-manifest.txt, data/docs-manifest.txt, any path containing ela-6, docs/reviews/*reconcile*, any path containing math-4, docs/courses/*-spine.md, docs/courses/NEXT-SPINES.md, docs/courses/math-3-5-progression*.md, docs/reviews/*science-4-spine*.

@@ -26,18 +26,15 @@ import random
 import re
 import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import subjects  # noqa: E402  one home for subject ids (consolidation 4.H)
 
 ROOT = Path(__file__).resolve().parent.parent
 KIT = ROOT / 'docs' / 'pipeline' / 'kit'
 PLANS = ROOT / 'data' / 'plans'
 DOCS = ROOT / 'docs' / 'courses'
 TOKEN = re.compile(r'\{([A-Z][A-Z0-9_]*)\}')
-SUBJECTS = {  # slug: (course prefix, words)
-    'ela': ('english-language-arts', 'English language arts'),
-    'social-studies': ('social-studies', 'social studies'),
-    'math': ('math', 'math'),
-    'science': ('science', 'science'),
-}
+SUBJECTS = {s: (subjects.PREFIX[s], subjects.WORDS[s]) for s in subjects.CORE}  # slug: (course prefix, words)
 SECTION_SPLIT = 5  # a unit with more sections than this is cut in two halves for section and data jobs
 GATE = '`python -X utf8 scripts/gate.py --course COURSE`'   # the one gate command (consolidation 4.G)
 STAGE_GATES = {'unit plan': 'unitplan', 'section plan': 'unitplan', 'data': 'plan', 'days': 'lesson'}

@@ -19,8 +19,8 @@ Read AGENTS.md, docs/courses/UNIT-PLAN.md, docs/courses/{course}/frame.md and th
 
 Edit only data/plans/{course}/days.csv, docs/courses/{course}/scope-and-sequence.md, docs/courses/{course}/s*.md and
 docs/courses/{course}/TOOL-ASKS.md. CSVs stay UTF-8 without BOM with their line endings. No em dashes, "Curio Class" in full, no company names in student,
-teacher or family copy. Blind list: never open docs/courses/ela-6/, math-4 paths, *-spine.md, data/units.csv,
-courses/, docs/reviews/*reconcile*, *math-4*, *ela-6*. No git.
+teacher or family copy. Blind list: never open courses/, nor anything on the next line. No git.
+Never open (data/homes.csv kinds never-touch, state, blind, pilot; scripts/homes.py briefs keeps this line): .claude/, docs/Return/, Gemini/, Gemini.*, data/closet/words/, closet/words/, data/media-manifest.txt, data/docs-manifest.txt, any path containing ela-6, docs/reviews/*reconcile*, any path containing math-4, docs/courses/*-spine.md, docs/courses/NEXT-SPINES.md, docs/courses/math-3-5-progression*.md, docs/reviews/*science-4-spine*.
 
 Last message (under 250 words): each item, fixed (what changed) or left (why), then the two gate lines. One line per
 item left, starting `LEFT:`.

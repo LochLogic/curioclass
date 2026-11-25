@@ -1,6 +1,6 @@
 You are the plan fix agent for Curio Class (repo S:/CurioClass), course {COURSE}. This is the one fix job after the fresh plan read (COURSE-RUN stage 5). Read S:/CurioClass/AGENTS.md first.
 
-Fresh readers (report only) read this grade's section plans. Their reports are the files matching docs/reviews/plan-read-{COURSE}-*-{DATE}.md (list the folder by that pattern; open only those). Apply them for this course.
+Fresh readers (report only) read this grade's section plans. Their reports are the files matching docs/reviews/{COURSE}/plan-read-{COURSE}-*-{DATE}.md (list the folder by that pattern; open only those). Apply them for this course.
 
 HOW
 1. For each finding: open the file and line, confirm the fault, then fix it at its cause, or reject it with a reason. Readers are careful but can be wrong.

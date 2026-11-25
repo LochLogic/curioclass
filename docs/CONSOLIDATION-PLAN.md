@@ -571,6 +571,24 @@ fact then lives in one place, so drift can't come back." The design is the pause
 - `docs/CHANGES.md`, one page: request (a step, later.csv or the Desk), impact (`uses.py`), a script with
   `--dry-run` and a diff summary, `gate.py`, one log line. Errata waits for a course that is taught.
 
+- Built 2026-11-25 (kit version 8). data/homes.csv (pattern, kind, owner, check, note; first match wins) with the
+  kinds source, generated-ignored, generated-committed, state, frozen, never-touch, blind, pilot and stray; every
+  tracked file matches a row (`scripts/homes.py check`: 0 lines). It replaced NEVER_TOUCH in lint.py and turn.py and the
+  never-touch line in AGENTS.md; the 14 briefs and kit common.txt carry a never-open line rendered from it
+  (`homes.py briefs --write`, checked, so the lists cannot drift; the units.csv mentions are gone). The index layout
+  report is homes.check. Three stray grade-fix records moved to docs/reviews/<course>/. scripts/subjects.py holds the
+  subject ids, prefixes, ladders and bands for ledger.py, coursegen.py, plan_flow.py and front_office.py; the other
+  band helpers wait (later L128). scripts/ids.py (`check`, `retire`, `registry`) with data/ids-retired.csv (header
+  only) and the ignored data/ids-registry.csv; gate `ids-check`. plan.py fails a new `-v<n>` item id not on
+  data/plans/item-suffix-baseline.csv (the 636 kept; stripped as each course is next reviewed). data/plans/README.md
+  states ids, versions and permanent day numbers. 1,280 raw gate dumps left git (tags pre-step4 and pause-4e keep
+  them). Per-course reports: plan_flow.py reads docs/reviews/<course>/ first, and six kit templates write there; the
+  Codex scripts still write at the top level (later L127). docs/CHANGES.md is the one page for a change. The board
+  files are generated-committed and no gate compares them, so their date line never fails anything. Correction to
+  the plan's status report: the 412 flow-status done rows stay, because plan_flow reads them as "done to the stage
+  4 bar", which the plan file alone does not show. Full gates step4-H against step4-G: 0 failing findings, 4 new
+  note lines (the two new gates, the build page count, the status message).
+
 ### 4.I Words: the architecture, not the links (M, after the Desk card)
 
 See "Words: from the days, not from the tool catalog" in the end goal.
@@ -587,6 +605,21 @@ See "Words: from the days, not from the tool catalog" in the end goal.
 5. The read-only import of Word Wall definitions as candidate rows, collisions and span-grade topics to a review list.
 6. Print and popup design, and who writes definitions (reading level per band, a fresh-agent sensitivity read of fun
    facts), are later.csv rows.
+
+- Built 2026-11-25 (steps 1 to 4 and 6; step 5 waits, see below). Desk q-word-names-1 answered (Cory took all five
+  picks; DESK-ANSWERS, GLOSSARY row **word**). data/plans/vocabulary.csv (sense, word, band, definition, fun_fact,
+  fun_fact_source, status candidate/written/read/live, from), header only, written through
+  `rows.py upsert shared vocabulary --key sense,band`. scripts/vocabulary.py: the loader, `band(course, day)` (the
+  course grade through data/bands.csv; a course whose grades cross two bands reads a `grade` column in days.csv, and
+  none does today: every span course, k-2, 3-5, 6-8 and 9-12, sits inside one band), `check` (gate
+  `vocabulary-check`), `report` (introduced but undefined: 16,128 ledger term heads today; defined but never used),
+  self-test. lesson.py renders `[[word:<sense>]]` and `[[word:<sense>|shown]]` as a highlight only when a read or live
+  row exists for the page's band, else as plain text, and its day and piece checks fail a marked word no ledger term
+  row of the course introduces. The index adds a word node per ledger term head and soft `introduces` edges from the
+  day (or the section, when the row names no day); `uses.py word:runoff` lists them. Step 6: later L129 (print
+  design of the Words today box) and L130 (who writes definitions and how they are read), beside L116 and L119.
+  Step 5, the read-only Word Wall import, is not run: reading data/closet/words was refused by this session's
+  permission check, since the folder is never-touch. It needs Cory's word that a read-only read is allowed.
 
 ### 4.J Close step 4 (S)
 

@@ -1934,3 +1934,10 @@ course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN
   blanket rule: where the writer's version is better than data, it goes into data (back-port); where data is better,
   data wins; judgment moves to prose; order confirmations and other notes with no use to a teacher are dropped.
   Claude reads the check lines and the wording changes and records each verdict in hand-list.csv.
+- **Word names** (Desk card q-word-names-1, 4.I step 1, answered 2026-11-25): the feature is "word" on the site and
+  in the docs ("term" stays the ledger's inside word for what a day introduces); the table is
+  data/plans/vocabulary.csv (no clash with the twelve words.csv files of banned patterns); the mark is
+  `[[word:<sense>]]` or `[[word:<sense>|shown]]`; a sense id is the word plus a meaning tag (cell-biology); a day in a
+  course that spans bands uses the band of its own grade through data/bands.csv; the six ELA wordlist.csv files stay
+  as planning reading lists, and the ledger stays the record of where each word is taught. Cory: these are opinions,
+  and a better way to the end goal should be raised.

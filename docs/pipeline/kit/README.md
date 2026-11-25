@@ -1,6 +1,6 @@
 # The course-run kit
 
-KIT-VERSION: 7 (2026-11-25)
+KIT-VERSION: 8 (2026-11-25)
 
 The job templates, notes and rules that `scripts/coursegen.py` fills to write a course run's job queue, in the order of
 docs/COURSE-RUN.md (stages 5 and 6, with the retool and sweep rules of its sections 1 and 4). Built from the
@@ -22,6 +22,9 @@ it used.
   common.txt no longer blinds math-4, the math-3-5 progression, `*-spine.md`, NEXT-SPINES.md, im-g4-draft-map.csv or
   data/units.csv. It keeps `.claude/`, docs/Return/, the spec2 folder, closet/words, the media manifest, the
   `*reconcile*` reviews and ela-6. (Logged in RETOOL.md, retool 0.)
+- 2026-11-25 (consolidation 4.H): every never-open list in the kit and the briefs is one line rendered from
+  data/homes.csv by `python -X utf8 scripts/homes.py briefs --write`; `homes.py check` (inside the gate) fails a line
+  that differs. Change the paths in homes.csv, never in a brief.
 
 ## Generating a queue
 

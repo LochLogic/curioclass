@@ -126,3 +126,13 @@ Source: consolidation 4.G (docs/CONSOLIDATION-PLAN.md), one gate command. No gra
 | Briefs gave two filtered gate commands, `{PLANGATE}` (an awk filter over plan.py check) and `{LESSONGATE}` (a grep over lesson.py check), and workers counted FAIL lines by hand, including lines after the course summary (consolidation review) | one placeholder `{GATE}` = `python -X utf8 scripts/gate.py --course <course>` in checks, cleanup, continuity-fix, data, day, key, retool-stop and sample-read; coursegen.py's sweep gates use it too; common.txt's gate rule says store `--baseline` first, exit 1 means a new failure |
 | Briefs carried the known exception "section ... not in data/units.csv" (consolidation 4.B retired the file) | dropped from checks.txt and data.txt |
 | AGENTS.md said one worker at a time, while course runs worked side by side (consolidation review) | common.txt and AGENTS.md: side by side in different courses, never the same course or file at once |
+
+## Retool 7: KIT-VERSION 8 (2026-11-25)
+
+Source: consolidation 4.H (docs/CONSOLIDATION-PLAN.md), homes and ids. No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| The never-open lists in 14 briefs and common.txt were typed by hand, drifted, and still named data/units.csv (consolidation plan 4.H) | one line per brief rendered from data/homes.csv by `scripts/homes.py briefs --write`; `homes.py check` fails a line that differs from the render |
+| Per-course reports landed at the top of docs/reviews/ (consolidation 4.H home rule) | cleanup, key, plan-fix, plan-read, sample-read and sweep write to `docs/reviews/{COURSE}/`; plan_flow.py reads there first |
+| A revised item got a `-v2` id, so ids changed under every link (consolidation 4.H) | data/plans/README.md: a revised item keeps its id, the version goes in `version`; plan.py fails a new suffixed id |

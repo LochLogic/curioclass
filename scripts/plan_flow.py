@@ -12,12 +12,19 @@ Where the states come from:
   row when a step starts (active) or ends (done). A node with no row is still to do.
 - unit plans and tools are counted from the repo through scripts/course_status.py; section plans from the plan
   files, items.csv and the answer-key reads; days from courses/<course>/u*/dNNN.md, done once the grade's sample
-  read (docs/reviews/ladder-sample-<course>-a-*.md) is filed.
+  read (docs/reviews/<course>/ladder-sample-<course>-a-*.md, or at the top of docs/reviews/ before 4.H) is filed.
 States: . to do, a active, d done, e on file from before the 2026-11-13 plan (to be re-read in its turn).
 """
 import csv, glob, io, json, os, re, subprocess, sys, tempfile, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def reviews(pattern, course):
+    """Per-course reports: docs/reviews/<course>/ since consolidation 4.H, the top of docs/reviews/ before it."""
+    return (glob.glob(os.path.join(ROOT, 'docs', 'reviews', course, pattern))
+            + glob.glob(os.path.join(ROOT, 'docs', 'reviews', pattern)))
+
 ORDER = ['Social Studies', 'Science', 'English Language Arts', 'Math']   # build order; math last
 SHORT = {'English Language Arts': 'ELA', 'Social Studies': 'Social studies'}
 GRADES = ['K'] + [str(i) for i in range(1, 13)]
@@ -96,7 +103,7 @@ def day_files(c):
     return out
 def grade_closed(c):
     """A grade closes when its sample read is filed (COURSE-RUN stage 6: two fresh readers, 10 days)."""
-    return bool(glob.glob(os.path.join(ROOT, 'docs', 'reviews', 'ladder-sample-%s-a-*.md' % fid(c))))
+    return bool(reviews('ladder-sample-%s-a-*.md' % fid(c), fid(c)))
 
 # 1. Pre-work
 stage('pre', '1. Pre-work', 'Once per subject: the standard in our own words, the approach, a base text, the expert reader and its bar, the course list and shape, the dose. The expert must catch planted faults before it is trusted.', [
@@ -196,7 +203,7 @@ def section_cells(c):
     if os.path.exists(p):
         for r in csv.DictReader(io.open(p, encoding='utf-8')):
             data.add((r.get('unit') or '').strip())
-    keys = {int(m.group(1)) for f in glob.glob(os.path.join(ROOT, 'docs', 'reviews', 'answer-key-%s-u*.md' % fid(c)))
+    keys = {int(m.group(1)) for f in reviews('answer-key-%s-u*.md' % fid(c), fid(c))
             for m in [re.search(r'-u(\d+)-', os.path.basename(f))] if m}
     cells = ''
     for u, n_d in secs.items():
@@ -335,7 +342,8 @@ p = os.path.join(ROOT, 'data', 'plans', 'flow-results.csv')
 if os.path.exists(p):
     for r in csv.DictReader(io.open(p, encoding='utf-8')):
         found[r['node']] = ['What was found', r['result']]
-PFILE = {'social-studies': 'social-studies', 'science': 'science', 'english-language-arts': 'ela', 'math': 'math'}
+import subjects  # one home for subject ids (consolidation 4.H)
+PFILE = {subjects.PREFIX[s]: s for s in subjects.CORE}   # course prefix -> progression file name
 for s, f in PFILE.items():
     p = os.path.join(ROOT, 'data', 'progressions', f + '.csv')
     if not os.path.exists(p):

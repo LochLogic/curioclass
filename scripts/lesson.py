@@ -16,6 +16,7 @@ import markdown
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import plan  # noqa: E402
+import vocabulary  # noqa: E402
 
 ROOT = plan.ROOT
 COURSES = ROOT / 'courses'
@@ -349,6 +350,7 @@ def check_day(d, items, days):
     row = next((x for x in days if x['day'] == h.get('day')), None)
     if row is None:
         return f + ['%s: day %s has no row in days.csv' % (lab, h.get('day'))]
+    f += vocabulary.lint_marks(h.get('course') or d['path'].parent.name, d['teacher'] + d['student'], lab)
     # a course-level day (unit C) has no section: days.csv leaves unit blank, the header says C (science ladder
     # report, 2026-11-19)
     if row['unit'] != h.get('unit') and not (row.get('stretch') == 'C' and not row['unit'] and h.get('unit') == 'C'):
@@ -1092,6 +1094,9 @@ def frac_blanks(s, i, other=None):
     return re.sub(r'_{2,}', one, s)
 
 
+WORD_AT = [None, None]   # (course, day) of the page being built, for [[word:...]] marks; set by build_day, build_piece
+
+
 def md(text, items, teacher=False):
     """Day-file markdown to HTML. [[id]] prints the question, upright (and on the teacher page its answer; on a
     student page its fractions stacked); [[steps:id]] prints the worked steps from the row, the same cell the
@@ -1130,6 +1135,9 @@ def md(text, items, teacher=False):
             return div.replace('<div class="fig" style="', '<span class="fig" style="display:block;', 1)[:-6] + '</span>'
         return '\n\n%s\n\n' % div
     text = FIG.sub(sub_fig, NOTE.sub(sub_note, STEPS.sub(sub_steps, text)))
+    # [[word:<sense>|shown]]: highlighted when the word table has a printable row for the page's band, else plain (4.I)
+    text = vocabulary.render(text, WORD_AT[0], WORD_AT[1]) if WORD_AT[0] else vocabulary.WORD.sub(
+        lambda m: m[2] or vocabulary.shown_from(m[1]), text)
     text = REF.sub(sub, text).replace('{sketch}', '<div class="sketch"></div>').replace(
         '{work}', '<div class="sketch work"></div>').replace('{small}', '<div class="sketch small"></div>').replace(
         '{tall}', '<div class="sketch tall"></div>')
@@ -2120,6 +2128,7 @@ def home_html(d, row, items, warn, foot):
 
 def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     h = d['head']
+    WORD_AT[:] = [course, h.get('day')]
     row = next(x for x in days if x['day'] == h['day'])
     tt = tool_title(row.get('tool')) if row.get('tool') else ''
     mine = [i for i in items if i['day'] == h['day'] and i['check'] in plan.LESSON_KINDS | {'exit'}]
@@ -2978,6 +2987,7 @@ def check_piece(p, items):
     for k in PIECE_HEAD:
         if not h.get(k):
             f.append('%s: header field "%s" is missing' % (lab, k))
+    f += vocabulary.lint_marks(h.get('course', ''), p['body'], lab)
     kind = h.get('piece')
     if kind not in PIECE_KINDS:
         f.append('%s: piece "%s" is not one of %s' % (lab, kind, ', '.join(PIECE_KINDS)))
@@ -3017,6 +3027,7 @@ def check_piece(p, items):
 
 def build_piece(p, items, wrongs, errors):
     h, course = p['head'], p['head']['course']
+    WORD_AT[:] = [course, None]
     out = OUT / course / p['path'].parent.name
     out.mkdir(parents=True, exist_ok=True)
     name, kind, title = p['path'].stem, h['piece'], p['title']

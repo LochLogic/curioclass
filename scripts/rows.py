@@ -5,7 +5,8 @@
     python -X utf8 scripts/rows.py check [<course> ...]     every plan CSV splits into the same records as Python's csv reader
     python -X utf8 scripts/rows.py --self-test
 
-<table> is a file of data/plans/<course>/ without .csv (items, wrongs, days, materials, handbacks, sources, ...).
+<table> is a file of data/plans/<course>/ without .csv (items, wrongs, days, materials, handbacks, sources, ...);
+the course 'shared' with the table vocabulary writes data/plans/vocabulary.csv (the word table, 4.I).
 upsert: the row whose --key columns equal the given values is updated (only the columns given change); with no such row
 a new row is appended (columns not given are blank). delete: the one row with that key is removed. Every key column
 must be given, every column must already be in the file's header, and a key that matches two rows is refused.
@@ -27,6 +28,7 @@ import safe_write  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 PLANS = Path(os.environ['ROWS_PLANS']) if os.environ.get('ROWS_PLANS') else ROOT / 'data' / 'plans'
 NAME = re.compile(r'[a-z0-9][a-z0-9_-]*')
+SHARED = ('vocabulary',)   # cross-course tables at data/plans/<table>.csv, written as course 'shared'
 
 
 def records(text):
@@ -62,6 +64,8 @@ def line(fields, nl):
 def target(course, table):
     if table == 'ledger':
         raise SystemExit('rows: the ledger is written only through scripts/ledger.py')
+    if course == 'shared' and table in SHARED:   # a cross-course table: data/plans/<table>.csv (4.I)
+        return PLANS / (table + '.csv')
     if not NAME.fullmatch(course) or not NAME.fullmatch(table):
         raise SystemExit('rows: course and table are plain names (no path separators): %r %r' % (course, table))
     p = PLANS / course / (table + '.csv')

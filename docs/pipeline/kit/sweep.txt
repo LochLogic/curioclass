@@ -18,6 +18,6 @@ HOW
 
 {SUBJNOTE}
 
-Report to docs/reviews/sweep-{COURSE}-{TAG}-{DATE}.md: the test, pieces looked at (count), fixed (file:line, one line each), clean (count), other findings, gate counts before and after, and the tool that let it through. Reply in under 150 words.
+Report to docs/reviews/{COURSE}/sweep-{COURSE}-{TAG}-{DATE}.md: the test, pieces looked at (count), fixed (file:line, one line each), clean (count), other findings, gate counts before and after, and the tool that let it through. Reply in under 150 words.
 
 {COMMON}

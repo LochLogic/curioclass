@@ -13,7 +13,7 @@ For each day, cold, one at a time:
 
 {SUBJNOTE}
 
-Write one report, docs/reviews/ladder-sample-{COURSE}-{PART}-{DATE}.md:
+Write one report, docs/reviews/{COURSE}/ladder-sample-{COURSE}-{PART}-{DATE}.md:
 - one line per day read: the file, kind, and a 1-sentence verdict;
 - findings, most serious first, as a table with columns: day | severity (FIRM = wrong content, a wrong key, unsafe, cannot run in the minutes, or the exit does not measure the goal; SOFT = weaker but teachable; TEMPLATE = a gate or template rule that does not fit this grade) | kind (content, key, timing, exit-goal, rule4, ladder, handoff, safety, source, words, key-on-child-page, other) | what is wrong | the exact fix | the stage that made it (unit plan, section plan, data, day, kit) | would a script gate have caught it (yes or no);
 - a short ladder section: what the grade gap caused, and whether this grade used the lower grades well;

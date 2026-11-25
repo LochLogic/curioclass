@@ -18,6 +18,8 @@ Briefs: docs/pipeline/briefs/<kind>.md. Guide: docs/pipeline/README.md.
 """
 import csv, datetime, json, os, subprocess, sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import homes  # noqa: E402  data/homes.csv: never-touch and state paths
 
 ROOT = Path(__file__).resolve().parent.parent
 PIPE = ROOT / 'data' / 'pipeline'
@@ -32,7 +34,6 @@ ROLE = {'plan': 'planner', 'plan-read': 'expert', 'plan-data': 'planner', 'write
 # never committed by a turn: Cory's own untracked files and agent worktrees
 KEEP_OUT = ['docs/Curio-Class-Plan.pdf', 'docs/US Curriculum Design Blueprint.pdf', 'docs/Return',
             'docs/agents/audit/wordwall-movement-cards.jpg', '.claude']
-NEVER_TOUCH = ['data/closet/words', 'closet/words', 'data/media-manifest.txt']
 GATES = [['scripts/plan.py', 'check'], ['scripts/lesson.py', 'check']]   # a job whose course cell is not a course
 CO = 'Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>'
 
@@ -228,7 +229,7 @@ def cmd_end(a):
     h = held()
     if not h or h['worker'] != worker:
         sys.exit('%s does not hold the turn (%s).' % (worker, h and h['worker']))
-    touched = [l for l in dirty() if any(l[3:].strip('"').startswith(n) for n in NEVER_TOUCH)]
+    touched = [l for l in dirty() if homes.kind(l[3:].strip('"')) in ('never-touch', 'state')]   # data/homes.csv
     if touched:
         sys.exit('These files must not be changed by a job; restore them first:\n  ' + '\n  '.join(touched))
     jobs = load()

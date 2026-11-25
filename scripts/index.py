@@ -22,7 +22,8 @@ and the old ones are worked off by course; a miss that is gone is reported once 
 - resolve: every leans_on path, CSV id and `[[...]]` link resolves ("when it exists: <path>" is the one allowed
   unresolved form).
 - orphans: day files with no days.csv row, pieces no day leans on, days.csv rows with no frame unit.
-- layout: against data/homes.csv once 4.H lands (until then it says so and passes).
+- layout: every tracked file has a row in data/homes.csv, nothing generated-and-ignored is tracked, and nothing
+  stray sits in a course home (scripts/homes.py check).
 - status: one answer per object. A plan's own file wins; a flow-status.csv row that contradicts the file fails; a
   row that only restates the file is counted (flow-status keeps only what no file shows).
 - drift: a stored `<!-- skel -->` block in a written plan, and the two allowed in-file copies of a unit plan (the
@@ -225,6 +226,20 @@ def _course(ix, c, frame, std):
                     ix.edge('file:' + rel(f), 'day:%s:d%03d' % (c, n), t, True, rel(f), i, c, n)
             if t == 'sources' and r.get('source_id'):
                 ix.node('source:%s:%s' % (c, r['source_id']), 'source', c, r['source_id'], rel(f), i)
+    # words a day (or a section, when the ledger row names no day) introduces: ledger term rows (4.I)
+    import vocabulary
+    lf = d / 'ledger.csv'
+    for i, r in enumerate(rows_of(lf), 2):
+        if r.get('kind') != 'term':
+            continue
+        ns = day_nums(r.get('day'))
+        m = re.fullmatch(r'u(\d+)-(\d+)', r.get('where', ''))
+        srcs = ['day:%s:d%03d' % (c, n) for n in ns] or (['section:%s:%d.%d' % (c, int(m[1]), int(m[2]))] if m else
+                                                        ['file:' + rel(lf)])
+        for w in vocabulary.heads(r.get('entry', '')):
+            ix.node('word:' + w, 'word', '', w)
+            for src in srcs:
+                ix.edge(src, 'word:' + w, 'introduces', False, rel(lf), i, c, ns[0] if ns else None)
     for i, r in enumerate(rows_of(d / 'parts.csv'), 2):
         _code(ix, std, r.get('code', ''), 'file:data/plans/%s/parts.csv' % c, 'data/plans/%s/parts.csv' % c, i, c, None)
     # days and pieces
@@ -357,9 +372,12 @@ def r_orphans(ix):
 
 
 def r_layout(ix):
-    if not (ROOT / 'data' / 'homes.csv').exists():
-        print('layout: waits for data/homes.csv (consolidation 4.H); nothing to check yet')
-    return []
+    import homes
+    out = []
+    for ln in homes.check():
+        path = ln.split(' ', 1)[1].split(': ', 1)[0]
+        out.append(('home|' + path, ln))
+    return out
 
 
 def plan_state(p):
@@ -390,7 +408,8 @@ def r_status(ix):
                         % (i, node, rel(p) if p.exists() else p.relative_to(ROOT).as_posix(), f)))
         elif state == 'done':
             same += 1
-    print('status: %d flow-status rows only restate a written plan (the file wins; they can go in 4.H)' % same)
+    print('status: %d flow-status done rows sit on a written plan; they stay: plan_flow reads them as "done to the '
+          'stage 4 bar", which the file alone does not show (only "on file")' % same)
     return out
 
 

@@ -27,6 +27,19 @@ CHECKS = {'readiness', 'end', 'exit'} | LESSON_KINDS
 READERS = {'script', 'expert', 'cheap', 'sensitivity', 'answer-key', 'sara', 'teacher', 'student', 'cory', 'writer'}
 
 
+VERSION_SUFFIX = re.compile(r'-?v\d+$')   # s10-E2v2, s03-X42-v2, s06-P107-scale-v2
+
+
+def suffix_baseline():
+    """(course, item_id) of the 636 suffixed ids that existed at consolidation 4.H; stripped as each course is next
+    reviewed (remove the row then)."""
+    p = PLANS / 'item-suffix-baseline.csv'
+    if not p.exists():
+        return set()
+    with io.open(p, encoding='utf-8', newline='') as f:
+        return {(r['course'], r['item_id']) for r in csv.DictReader(f)}
+
+
 def rows(course, name):
     p = PLANS / course / (name + '.csv')
     if not p.exists():
@@ -728,6 +741,11 @@ def check(course):
     ids = {i['item_id'] for i in items}
     if len(ids) != len(items):
         fails.append('items.csv: duplicate item_id')
+    old_suffix = suffix_baseline()   # consolidation 4.H: a revised item keeps its id; the version goes in `version`
+    for i in items:
+        if VERSION_SUFFIX.search(i['item_id']) and (course, i['item_id']) not in old_suffix:
+            fails.append('%s: a new item id with a version suffix; a revised item keeps its id and its version goes in '
+                         'the version column (data/plans/README.md)' % i['item_id'])
     if subj == 'ela' and items:   # ELA questions are items.csv rows with three more columns (UNIT-PLAN.md, ELA data)
         tp = PLANS / 'ela-texts.csv'
         with io.open(tp, encoding='utf-8', newline='') as f:

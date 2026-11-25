@@ -1,8 +1,8 @@
 You are the grade-close cleanup agent for Curio Class (repo S:/CurioClass), course {COURSE} (COURSE-RUN stage 6: faults across days go to one cleanup job at grade close). Read S:/CurioClass/AGENTS.md first.
 
 Two fresh readers sampled 10 days of this course read-only. Their reports:
-  S:/CurioClass/docs/reviews/ladder-sample-{COURSE}-a-{DATE}.md
-  S:/CurioClass/docs/reviews/ladder-sample-{COURSE}-b-{DATE}.md
+  S:/CurioClass/docs/reviews/{COURSE}/ladder-sample-{COURSE}-a-{DATE}.md
+  S:/CurioClass/docs/reviews/{COURSE}/ladder-sample-{COURSE}-b-{DATE}.md
 Your job, in this order:
 A. Every FIRM finding: verify it at the quoted file and line, then fix it at its cause, or reject it with a reason. Readers were careful but can be wrong (word counts, formats, a key that is in fact fair). A finding whose "stage that made it" is earlier than the day (unit plan, section plan, data) is fixed in that stage's file, the day follows it, and it is listed under "For the lead: sweep" with the stage, so the lead can look for the same fault in every unused piece of that stage.
 B. SOFT findings: apply those that are a short, clear fix in a file you are already editing; list the rest as left.

@@ -43,6 +43,6 @@ Rules: read only; do not edit any file except your report. Your report is your f
 in the shape of docs/reviews/prework-sel-read-2026-11-19.md (What I read; Verdict; What I counted; Findings, most
 serious first, each with Where, What is wrong, Cost, Fix written as text the writer can paste, and Confidence: Firm,
 Likely or Judgment call; then Questions for Cory, each with a recommended pick). No em dashes anywhere. Always write
-"Curio Class" in full, never "Curio" alone. Never open: anything under .claude/, docs/Return/, data/closet/, closet/,
-data/media-manifest.txt, any path containing math-4 or ela-6, *-spine.md, data/units.csv, docs/reviews/*reconcile*.
+"Curio Class" in full, never "Curio" alone. Never open anything under data/closet/ or closet/, nor anything on the next line.
+Never open (data/homes.csv kinds never-touch, state, blind, pilot; scripts/homes.py briefs keeps this line): .claude/, docs/Return/, Gemini/, Gemini.*, data/closet/words/, closet/words/, data/media-manifest.txt, data/docs-manifest.txt, any path containing ela-6, docs/reviews/*reconcile*, any path containing math-4, docs/courses/*-spine.md, docs/courses/NEXT-SPINES.md, docs/courses/math-3-5-progression*.md, docs/reviews/*science-4-spine*.
 No broad recursive searches over the repository root. Do not run lesson.py build.

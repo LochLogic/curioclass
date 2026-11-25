@@ -63,22 +63,11 @@ DIR = Path(os.environ['LEDGER_DIR']) if os.environ.get('LEDGER_DIR') else ROOT /
 PLANS = ROOT / 'data' / 'plans'
 COLS = ['course', 'where', 'day', 'kind', 'entry', 'note', 'stage']
 KINDS = ('term', 'notation', 'model', 'case', 'investigation', 'material', 'routine', 'text', 'skill')
-LEDGER_SUBJECTS = ('science', 'social-studies', 'ela', 'math')
+sys.path.insert(0, str(ROOT / 'scripts'))
+import subjects  # noqa: E402  one home for subject ids and ladders (consolidation 4.H)
 
-
-def _ladder():
-    """Each ledger subject's courses in teaching order: the row order of data/plans/course-list.csv (consolidation
-    4.E2; the list is kept in grade order, and within a grade in the order the courses are taken)."""
-    import csv as _csv
-    out = {s: [] for s in LEDGER_SUBJECTS}
-    with open(PLANS / 'course-list.csv', encoding='utf-8', newline='') as f:
-        for r in _csv.DictReader(f):
-            if r['subject'] in out and r['status'] != 'shelved':
-                out[r['subject']].append(r['id'])
-    return out
-
-
-LADDER = _ladder()
+LEDGER_SUBJECTS = subjects.CORE
+LADDER = subjects.ladders(LEDGER_SUBJECTS)   # each subject's courses in teaching order, from course-list.csv
 
 
 def path(course):

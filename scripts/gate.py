@@ -38,11 +38,11 @@ RAW = ROOT / 'build' / 'gates'
 REVIEWS = ROOT / 'docs' / 'reviews' / 'consolidation'
 PY = [sys.executable, '-X', 'utf8']
 NOISE = re.compile(r'\b\d+(\.\d+)?\s*(s|sec|seconds|ms)\b|elapsed|took ', re.I)
-FAILING = re.compile(r'\bFAIL\b|^(catalog|never-touch|generated|style) ')
+FAILING = re.compile(r'\bFAIL\b|^(catalog|never-touch|generated|layout|style) ')
 SITE = ['build_site', 'check_site']
 SERIAL = {'board', 'course_status', 'desk_stats'}
-SELFTESTS = ('day_skeleton', 'section_skeleton', 'unit_skeleton', 'rows', 'safe_write', 'ledger', 'index',
-             'plan_facts')
+SELFTESTS = ('vocabulary', 'day_skeleton', 'section_skeleton', 'unit_skeleton', 'rows', 'safe_write', 'ledger', 'index',
+             'plan_facts', 'homes')
 
 sys.path.insert(0, str(ROOT / 'scripts'))
 
@@ -76,7 +76,8 @@ def course_gates(c):
 
 def shared():
     return [('frame', ['scripts/frame.py', 'check']), ('index-reports', ['scripts/index.py', '--reports']),
-            ('rows-check', ['scripts/rows.py', 'check']), ('skel-guard', ['scripts/skel_strip.py', '--guard'])]
+            ('rows-check', ['scripts/rows.py', 'check']), ('skel-guard', ['scripts/skel_strip.py', '--guard']),
+            ('ids-check', ['scripts/ids.py', 'check']), ('vocabulary-check', ['scripts/vocabulary.py', 'check'])]   # homes.py check runs inside index-reports (the layout report)
 
 
 def selftests():

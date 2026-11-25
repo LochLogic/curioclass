@@ -146,6 +146,20 @@ the course list (a join); nobody edits them:
 `python -X utf8 scripts/frame.py calendar` prints the same placement by grade and lists stagger breaks
 (docs/courses/CALENDAR.md).
 
+## Ids: versions, retirement and day numbers (consolidation 4.H, 2026-11-25)
+
+- **A revised item keeps its id; the version goes in the `version` column** (add the column to the course's
+  items.csv the first time an item there is revised; blank means version 1). `plan.py check` fails a new item id
+  ending in a version suffix (`v2`, `-v2`). The 636 suffixed ids that existed on 2026-11-25 are listed in
+  item-suffix-baseline.csv; when a course is next reviewed its suffixes are stripped (the ids in its days, plans and
+  CSVs, through a script with a dry run) and its rows leave that file.
+- **A retired or merged id is recorded, never reused:** one row in data/ids-retired.csv (old_id, new_id or blank,
+  date, reason), append-only. `python -X utf8 scripts/ids.py check` fails an id that is live again after it was
+  retired; `ids.py registry` writes data/ids-registry.csv (ignored) from the index plus that file.
+- **Day numbers are permanent once a course's scope and sequence is signed off.** A course changes by rewriting a day
+  in place or trading content inside a section; the year has a fixed length, so an insert always removes a day
+  somewhere. A true renumber is a course rewrite, planned as one.
+
 ## What the gates cannot see
 
 Whether a question is a good question, whether a day teaches, whether the wording suits a nine-year-old, and any

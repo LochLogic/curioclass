@@ -44,10 +44,8 @@ plan's shape, voice and word cap. Write UTF-8 with LF endings; no em dashes; "Cu
 in student, teacher or family copy. Run `python -X utf8 scripts/unitplan.py check {course}` until every unit you
 were given passes.
 
-Blind rule: do not open docs/courses/ela-6/, docs/courses/ela-6-spine.md, docs/courses/math-4/,
-docs/courses/math-4-spine.md, docs/courses/math-3-5-progression*.md, docs/courses/science-4-spine.md,
-docs/courses/NEXT-SPINES.md, data/plans/math-4/, data/units.csv, courses/, im-g4-draft-map.csv, or
-docs/reviews/*reconcile*, *math-4*, *ela-6*. No git. Leave no stray files.
+Blind rule: never open courses/, nor anything on the next line. No git. Leave no stray files.
+Never open (data/homes.csv kinds never-touch, state, blind, pilot; scripts/homes.py briefs keeps this line): .claude/, docs/Return/, Gemini/, Gemini.*, data/closet/words/, closet/words/, data/media-manifest.txt, data/docs-manifest.txt, any path containing ela-6, docs/reviews/*reconcile*, any path containing math-4, docs/courses/*-spine.md, docs/courses/NEXT-SPINES.md, docs/courses/math-3-5-progression*.md, docs/reviews/*science-4-spine*.
 
 Last message (under 250 words): per unit, letters rewritten as one claim, letters split (old letter, new letters),
 K2 to K10 fixes made, anything you could not fix and why, and the final gate line.

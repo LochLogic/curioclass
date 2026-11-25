@@ -31,7 +31,7 @@ def targets(con, q, course=None):
     """Node keys and path keys the query names."""
     keys = set()
     if ':' in q and q.split(':', 1)[0] in ('item', 'day', 'unit', 'section', 'piece', 'code', 'prog', 'file', 'path',
-                                            'source', 'course', 'tool'):
+                                            'source', 'course', 'tool', 'word'):
         keys.add(q)
     p = q.replace('\\', '/')
     if (ROOT / p).exists():
@@ -42,7 +42,7 @@ def targets(con, q, course=None):
         keys.add(k)
     keys.add('code:' + q)
     if course:
-        keys = {k for k in keys if (':%s:' % course) in k or k.startswith(('code:', 'path:', 'file:'))}
+        keys = {k for k in keys if (':%s:' % course) in k or k.startswith(('code:', 'path:', 'file:', 'word:'))}
     return keys
 
 
