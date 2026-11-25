@@ -49,26 +49,36 @@ Kinds:
 - skill: a practice students do (measure with a ruler, sort by one property).
 """
 import csv
+import io
 import os
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import safe_write  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DIR = Path(os.environ['LEDGER_DIR']) if os.environ.get('LEDGER_DIR') else ROOT / 'data' / 'plans'
 PLANS = ROOT / 'data' / 'plans'
 COLS = ['course', 'where', 'day', 'kind', 'entry', 'note', 'stage']
 KINDS = ('term', 'notation', 'model', 'case', 'investigation', 'material', 'routine', 'text', 'skill')
-LADDER = {'science': ['science-kindergarten', 'science-grade-1', 'science-grade-2', 'science-grade-3',
-                      'science-grade-4', 'science-grade-5', 'science-grade-6', 'science-grade-7',
-                      'science-grade-8', 'biology', 'chemistry', 'physics'],
-          # Social studies and ELA joined 2026-11-19 for their K to 3 ladder run; later courses join when their run starts.
-          'social-studies': ['social-studies-kindergarten', 'social-studies-grade-1', 'social-studies-grade-2',
-                             'social-studies-grade-3', 'social-studies-grade-4', 'social-studies-grade-5'],
-          'ela': ['english-language-arts-kindergarten'] + ['english-language-arts-grade-%d' % g for g in range(1, 13)],
-          # Math joined 2026-11-21 (L87): K to 8, then the high school sequence; calculus and statistics branch off it.
-          'math': ['math-kindergarten'] + ['math-grade-%d' % g for g in range(1, 9)]
-          + ['algebra-i', 'geometry', 'algebra-ii', 'precalculus']}
+LEDGER_SUBJECTS = ('science', 'social-studies', 'ela', 'math')
+
+
+def _ladder():
+    """Each ledger subject's courses in teaching order: the row order of data/plans/course-list.csv (consolidation
+    4.E2; the list is kept in grade order, and within a grade in the order the courses are taken)."""
+    import csv as _csv
+    out = {s: [] for s in LEDGER_SUBJECTS}
+    with open(PLANS / 'course-list.csv', encoding='utf-8', newline='') as f:
+        for r in _csv.DictReader(f):
+            if r['subject'] in out and r['status'] != 'shelved':
+                out[r['subject']].append(r['id'])
+    return out
+
+
+LADDER = _ladder()
 
 
 def path(course):
@@ -84,8 +94,7 @@ def course_rows(course):
     p = path(course)
     if not p.exists():
         return []
-    with open(p, encoding='utf-8', newline='') as f:
-        return list(csv.DictReader(f))
+    return list(csv.DictReader(io.StringIO(safe_write.read_text(p), newline='')))
 
 
 def rows(subject):
@@ -94,15 +103,13 @@ def rows(subject):
 
 
 def _write(course, rs):
-    """Writes one course's ledger through a temp file and os.replace, so a reader never sees half a file."""
-    p = path(course)
-    p.parent.mkdir(parents=True, exist_ok=True)
-    tmp = p.with_name('ledger.csv.tmp')
-    with open(tmp, 'w', encoding='utf-8', newline='') as f:
-        w = csv.DictWriter(f, fieldnames=COLS, lineterminator='\n')
-        w.writeheader()
-        w.writerows(rs)
-    os.replace(tmp, p)
+    """Writes one course's ledger through a temp file and os.replace, so a reader never sees half a file. Callers hold
+    safe_write.lock(path(course)) around the read, the change and this write (add, renote, settle, seed)."""
+    s = io.StringIO()
+    w = csv.DictWriter(s, fieldnames=COLS, lineterminator='\n')
+    w.writeheader()
+    w.writerows(rs)
+    safe_write.replace(path(course), s.getvalue())
 
 
 def _append(course, new_rows):
@@ -122,6 +129,12 @@ def write_all(subject, rs):
 
 
 def add(subject, course, where, day, kind, entry, note=''):
+    """Holds the course's lock (safe_write) for the whole read, change and write."""
+    with safe_write.lock(path(course)):
+        return _add(subject, course, where, day, kind, entry, note)
+
+
+def _add(subject, course, where, day, kind, entry, note=''):
     if subject not in LADDER or course not in LADDER[subject]:
         sys.exit('ledger: %s is not on the %s ladder' % (course, subject))
     if kind not in KINDS:
@@ -172,6 +185,12 @@ def show(subject, before=None, kind=None, term=None, course=None):
 
 
 def renote(subject, course, day, entry, note):
+    """Holds the course's lock (safe_write) for the whole read, change and write."""
+    with safe_write.lock(path(course)):
+        return _renote(subject, course, day, entry, note)
+
+
+def _renote(subject, course, day, entry, note):
     """Correct one row's note (a row tagged new that a lower grade taught, or review that is new): the only edit."""
     rs = rows(subject)
     hit = [r for r in rs if r['course'] == course and r['day'] == day and r['entry'] == entry.strip()]
@@ -183,6 +202,12 @@ def renote(subject, course, day, entry, note):
 
 
 def settle(subject, course, apply=False):
+    """Holds the course's lock (safe_write) for the whole read, change and write."""
+    with safe_write.lock(path(course)):
+        return _settle(subject, course, apply)
+
+
+def _settle(subject, course, apply=False):
     """Finished course: a planned row whose course, kind and entry also stand as a written row is a leftover (a day
     writer added a new row instead of moving the planned one). --apply DELETES the planned duplicate: marking it written
     would leave two written rows for one entry, and the written row already carries the day and the real note. Planned
@@ -239,7 +264,8 @@ def seed(subject, file):
     for c in LADDER[subject]:
         mine = [r for r in out if r[0] == c]
         if mine:
-            _append(c, mine)
+            with safe_write.lock(path(c)):
+                _append(c, mine)
     print('seeded %d planned rows into the %s ledger' % (len(out), subject))
 
 
@@ -513,7 +539,40 @@ def recheck(subject, show_all=False):
     return 1 if flagged else 0
 
 
+def self_test():
+    """Four processes add ten rows each to one course's ledger at once: all forty must land (4.E2 race test)."""
+    import subprocess
+    import tempfile
+    d = Path(tempfile.mkdtemp())
+    c = LADDER['science'][0]
+    (d / c).mkdir()
+    (d / c / 'ledger.csv').write_text(','.join(COLS) + '\n', encoding='utf-8')
+    env = dict(os.environ, LEDGER_DIR=str(d))
+    script = ('import sys; sys.argv[0] = %r; sys.path.insert(0, %r); import ledger\n'
+              'for i in range(10): ledger.add("science", %r, "u01-1", "", "term", "race-%%s-%%d" %% (sys.argv[1], i))'
+              % (__file__, str(Path(__file__).parent), c))
+    procs = [subprocess.Popen([sys.executable, '-X', 'utf8', '-c', script, str(k)], env=env, stdout=subprocess.DEVNULL)
+             for k in range(4)]
+    codes = [x.wait() for x in procs]
+    with open(d / c / 'ledger.csv', encoding='utf-8', newline='') as f:
+        got = [r for r in csv.DictReader(f) if r['entry'].startswith('race-')]
+    left = sorted(x.name for x in (d / c).iterdir() if x.name != 'ledger.csv')
+    ok = codes == [0] * 4 and len(got) == 40 and not left
+    print('ledger self-test: %s (exit codes %s, %d of 40 rows, leftovers %s)' % (
+        'all passed' if ok else 'FAILED', codes, len(got), left or 'none'))
+    return 0 if ok else 1
+
+
 def main(a):
+    if a == ['--self-test']:
+        return self_test()
+    if a == ['files']:
+        # every ledger file on disk belongs to a ladder course, so none can sit unchecked (4.E2)
+        known = {c for cs in LADDER.values() for c in cs}
+        stray = sorted(p.parent.name for p in DIR.glob('*/ledger.csv') if p.parent.name not in known)
+        print('\n'.join('stray ledger: data/plans/%s/ledger.csv (course not on a ladder)' % c for c in stray))
+        print('ledger files: %d on disk, %d stray' % (len(list(DIR.glob('*/ledger.csv'))), len(stray)))
+        return 1 if stray else 0
     if not a or a[0] not in ('add', 'show', 'check', 'note', 'seed', 'gate', 'recheck', 'settle'):
         print(__doc__)
         return 2

@@ -283,11 +283,8 @@ def gen_course(q, course, rows, secs, opts, probe):
             q.job('checks', course, 'days-%d-%d' % (b[0], b[-1]), 'checks',
                   {'CHECKDAYS': ', '.join(map(str, b)), 'FIRST': str(b[0]), 'LAST': str(b[-1])}, gate=(b[0], b[-1]))
 
-    if not (DOCS / course / 'section-skeletons').is_dir():
-        q.lead('lead', course, 'BUILD section skeletons (stage 5 section cuts) for every unit: docs/courses/%s/section-skeletons/ '
-               'is missing' % course)
-    else:
-        q.lead('lead', course, 'check section skeletons are current (stage 5 section cuts)')
+    q.lead('lead', course, 'BUILD section skeletons (stage 5 section cuts) for every unit: python -X utf8 '
+           'scripts/section_skeleton.py %s all (ignored working files, always rebuilt from data)' % course)
     if opts.texts and ela:
         for u in units:
             q.job('text', course, 'u%d' % u, 'text', {'UNIT': str(u), 'UU': '%02d' % u})

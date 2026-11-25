@@ -8,8 +8,9 @@ Raw output goes to build/gates/<step>/<gate>.txt (ignored); summary.csv and, for
 docs/reviews/consolidation/<step>/ and are the only files committed. Older steps kept their raw files in
 docs/reviews/consolidation/<step>/, and compare reads them there when build/gates has none.
 
-The gates: plan.py check, lesson_course.py and unitplan.py check per course with plan data, ledger.py check per subject,
-frame.py check, sequence.py check, the three skeleton self-tests, check_tools.py, check_safety.py, board.py,
+The gates: plan.py check, lesson_course.py and unitplan.py check per course with plan data, ledger.py check per subject
+and `ledger.py files`, `rows.py check`, frame.py check, sequence.py check, the self-tests of the three skeleton scripts,
+rows.py, safe_write.py and ledger.py, check_tools.py, check_safety.py, board.py,
 desk_stats.py, course_status.py, and the site built with the deploy flags plus courses into build/gates/<step>/dist
 (CURIO_DIST, never dist/), then check_site.py on that folder. board.py and course_status.py rewrite
 docs/BUILD-BOARD.md and docs/COURSES-STATUS.md; commit or restore those before the step's own commit.
@@ -36,7 +37,7 @@ SERIAL = {'board', 'course_status', 'desk_stats'}         # these write shared f
 
 def courses():
     return sorted(p.name for p in (ROOT / 'data' / 'plans').iterdir()
-                  if p.is_dir() and p.name != 'ledgers' and (p / 'days.csv').exists())
+                  if p.is_dir() and (p / 'days.csv').exists())
 
 
 def gates(raw):
@@ -44,10 +45,13 @@ def gates(raw):
     g = [('plan-' + c, ['scripts/plan.py', 'check', c]) for c in cs]
     g += [('lesson-' + c, ['scripts/lesson_course.py', c]) for c in cs]
     g += [('unitplan-' + c, ['scripts/unitplan.py', 'check', c]) for c in cs]
-    g += [('ledger-' + s, ['scripts/ledger.py', 'check', s]) for s in ('ela', 'math', 'science', 'social-studies')]
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import ledger
+    g += [('ledger-' + s, ['scripts/ledger.py', 'check', s]) for s in sorted(ledger.LEDGER_SUBJECTS)]
+    g += [('ledger-files', ['scripts/ledger.py', 'files']), ('rows-check', ['scripts/rows.py', 'check'])]
     g += [('frame', ['scripts/frame.py', 'check']), ('sequence', ['scripts/sequence.py', 'check'])]
     g += [('selftest-' + s, ['scripts/%s.py' % s, '--self-test'])
-          for s in ('day_skeleton', 'section_skeleton', 'unit_skeleton')]
+          for s in ('day_skeleton', 'section_skeleton', 'unit_skeleton', 'rows', 'safe_write', 'ledger')]
     g += [('check_tools', ['scripts/check_tools.py']), ('check_safety', ['scripts/check_safety.py']),
           ('board', ['scripts/board.py']), ('course_status', ['scripts/course_status.py']),
           ('desk_stats', ['scripts/desk_stats.py', str(raw / 'desk_stats.json')]),

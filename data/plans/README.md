@@ -54,8 +54,7 @@ and need not have consecutive numbers. Naming an item is a claim that it asks fo
     python -X utf8 scripts/plan.py defects          the ledger, counted by reader and layer
 
 The gates fail on: a key the script cannot reproduce; a part of a standard with no unit assessment item; an end-of-unit assessment
-item or exit question that reuses the numbers of a taught example or of another item; a written day with no goal-to-item trace; a keyed exit, end item or fix-it with no wrongs row; a wrong answer with no letter and no note; a section whose days do not
-match `data/units.csv`; day numbers with a hole; an opening plus a tool that run past the lesson; assessment-day
+item or exit question that reuses the numbers of a taught example or of another item; a written day with no goal-to-item trace; a keyed exit, end item or fix-it with no wrongs row; a wrong answer with no letter and no note; day numbers with a hole; an opening plus a tool that run past the lesson; assessment-day
 parts that do not add to 60 minutes; a tool with no folder or no mark; an error letter that is not in the
 register; a standard code that is not in the standards file.
 
@@ -115,6 +114,9 @@ subject and read that subject's courses in ladder order. Any other plan CSV row 
 `python -X utf8 scripts/rows.py upsert <course> <table> --key <cols> col=value ... [--dry-run]`.
 
 ## The course list (`course-list.csv`, consolidation step 4.C, 2026-11-25)
+
+Row order within a subject is teaching order (grade, then the order the courses are taken): ledger.py builds each
+subject's ladder from it (consolidation 4.E2), so a new course goes in at its place, not at the end.
 
 The one hand-kept list of the 120 courses. Every other course list (docs/COURSES-STATUS.md, the Desk, `frames.csv`)
 is built from it. Columns:

@@ -1,6 +1,6 @@
 # The course-run kit
 
-KIT-VERSION: 4 (2026-11-25)
+KIT-VERSION: 5 (2026-11-25)
 
 The job templates, notes and rules that `scripts/coursegen.py` fills to write a course run's job queue, in the order of
 docs/COURSE-RUN.md (stages 5 and 6, with the retool and sweep rules of its sections 1 and 4). Built from the

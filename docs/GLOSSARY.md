@@ -35,7 +35,7 @@ Code, ids and dated records still carry older words. Read them this way:
 | lesson (a tool role) | teach |
 
 **Where older names stay on purpose:** ids, item ids, folder and file names keep their old letters and words:
-`s11-...` item ids, plan files `sNN.md`, section folders `uNN-N/` and `data/units.csv`, `math-4-spine.md` and the
+`s11-...` item ids, plan files `sNN.md`, section folders `uNN-N/`, `math-4-spine.md` and the
 other `-spine.md` files, docs/courses/UNIT-PLAN.md (the section and unit plan template) and
 docs/courses/LESSON-DAY.md, `module_id` and `data/modules.csv`, the worksheet lists' "Module" column. Each row
 below names its lag.

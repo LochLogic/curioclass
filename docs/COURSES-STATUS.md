@@ -54,8 +54,8 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 | Algebra I | yes | yes | draft | yes | yes | 7 | 11 | 9 / 2 / 0 |
 | Geometry | yes | yes | draft | yes | yes | 8 | 9 | 6 / 3 / 0 |
 | Algebra II | yes | yes | draft | yes | yes | 9 | 8 | 0 / 1 / 7 |
-| Calculus |  | yes | draft | yes | yes | no | 6 | 6 / 0 / 0 |
 | Precalculus |  | yes | draft | yes | yes | no | 8 | 6 / 2 / 0 |
+| Calculus |  | yes | draft | yes | yes | no | 6 | 6 / 0 / 0 |
 | Statistics |  | yes | draft | yes | yes | no | 6 | 3 / 3 / 0 |
 
 ## English Language Arts (13 courses)

@@ -118,7 +118,6 @@ def status(code):
 # built tools that someone has played against the spec, one tool id per line (hand-kept; empty until step 4)
 vp = os.path.join(CAT, 'verified.txt')
 VERIFIED = {ln.split()[0] for ln in io.open(vp, encoding='utf-8') if ln.strip() and not ln.startswith('#')} if os.path.exists(vp) else set()
-unit_days = collections.Counter()   # live unit days; data/units.csv retired in consolidation step 4.B
 out, measure = [], []
 for (subject, grade), mods in courses.items():
     listed = collections.defaultdict(list)
@@ -174,13 +173,12 @@ P.append('Built by scripts/coverage_ledger.py from the extract rows; the rows be
          'units are not counted yet (their columns in the ledger are filled in path step 4).\n')
 P.append('Three columns answer three different questions (split 2026-11-11). **Full on paper**: the spec, as read, teaches the standard in full. '
          '**Full and live**: the same, and a tool that teaches it is live on the site. **Verified**: the same, and someone has played that live tool '
-         'against its spec (docs/agents/catalog/verified.txt). **Unit days**: days of instruction the course\'s units cover, out of about 180; '
-         'data/units.csv holds the units and only live ones count. Only the last three say what a teacher can use. '
+         'against its spec (docs/agents/catalog/verified.txt). Only the last two say what a teacher can use. '
          'A star marks a course outside math and ELA: its Standards count is only what its modules list, not every standard of the grade, so it is not a share to quote.\n')
-P.append('| Course | Tools read | Standards | Full on paper | Full and live | Verified | Unit days | Nearly | Part | Practice | Shown | None | Not read | No module |')
-P.append('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|')
+P.append('| Course | Tools read | Standards | Full on paper | Full and live | Verified | Nearly | Part | Practice | Shown | None | Not read | No module |')
+P.append('|---|---|---|---|---|---|---|---|---|---|---|---|---|')
 for subject, grade, c, n, read, alltools in measure:
-    P.append('| %s %s | %d of %d | %d | %s | %d | %d | %d | %s |' % (subject, grade + ('' if subject in ('math', 'ela') else ' *'), read, alltools, n, c.get('full', 0) or '', c.get('live', 0), c.get('verified', 0), unit_days.get((subject, grade), 0),
+    P.append('| %s %s | %d of %d | %d | %s | %d | %d | %s |' % (subject, grade + ('' if subject in ('math', 'ela') else ' *'), read, alltools, n, c.get('full', 0) or '', c.get('live', 0), c.get('verified', 0),
              ' | '.join(str(c.get(k, 0) or '') for k in ('nearly', 'part', 'practice', 'shown', 'none', 'not read', 'no module'))))
 P.append('\n## Modules that may hold two topics (math: standards from more than one domain)\n')
 P.append('Candidates only. A module is split when it holds two unrelated topics (BASELINE rule 22); each comes to Cory as an '

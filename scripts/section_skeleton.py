@@ -8,7 +8,7 @@ script, never a model, so the facts are exact, the output is the same every run,
 days.csv change. It sits ahead of the Codex writer, which fills only the marked fields.
 
 Writes a sidecar, docs/courses/<course>/section-skeletons/u<uu>-<s>.md (or DIR/<course>/u<uu>-<s>.md with --out),
-never the section plan itself. Never overwrites without --force. Fields follow the section plan blank copy in
+never the section plan itself. Always rebuilds: the sidecar is an ignored working file (consolidation 4.E2); --force is accepted and changes nothing. Fields follow the section plan blank copy in
 docs/courses/UNIT-PLAN.md; lines between the skel markers are copies of data and do not count toward the cap.
 
 Filled from: days.csv (the section's days, kinds, checks, goals, notes, codes, skills, tools, supplies, safety), the
@@ -508,8 +508,6 @@ def write(course, section, out=None, force=False):
     d.mkdir(parents=True, exist_ok=True)
     a, b = section.split('.')
     p = d / ('u%02d-%s.md' % (int(a), b))
-    if p.exists() and not force:
-        return p, 'kept (exists; --force to rebuild)'
     text = build(course, section)
     p.write_text(text, encoding='utf-8', newline='\n')
     n = text.count('**STOP:**')
@@ -563,9 +561,10 @@ def self_test():
         check('an unknown section is a data error', True)
     with tempfile.TemporaryDirectory() as t:
         p, s1 = write(c, secs[0], out=t)
-        p.write_text('kept', encoding='utf-8')
+        p.write_text('stale', encoding='utf-8')
         _, s2 = write(c, secs[0], out=t)
-        check('never overwrites without --force', s1.startswith('written') and s2.startswith('kept'))
+        check('always rebuilds a stale sidecar', s1.startswith('written') and s2.startswith('written')
+              and p.read_text(encoding='utf-8') != 'stale')
     print('all passed' if not bad else '%d failed' % bad)
     return bad
 
@@ -595,7 +594,7 @@ def main(a):
         print('%s: %s' % (u.shown_path(p), how))
         stopped += 'STOP' in how
     if stopped:
-        print('%d section%s with a STOP: clear it, then rebuild with --force' % (stopped, '' if stopped == 1 else 's'))
+        print('%d section%s with a STOP: clear it, then rebuild' % (stopped, '' if stopped == 1 else 's'))
         raise SystemExit(1)
 
 

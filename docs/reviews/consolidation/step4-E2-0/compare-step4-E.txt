@@ -1,0 +1,25 @@
+== build_site (1 new line(s))
+  521 course and unit pages -> S:\CurioClass\build\gates\step4-E2-0\dist\courses (hidden)
+== ledger-files (1 new line(s)) [no before file]
+  ledger files: 41 on disk, 0 stray
+== rows-check (1 new line(s)) [no before file]
+  rows check: 330 files, 0 problems
+== selftest-day_skeleton (1 new line(s))
+  ok     always rebuilds a stale sidecar
+== selftest-ledger (1 new line(s)) [no before file]
+  ledger self-test: all passed (exit codes [0, 0, 0, 0], 40 of 40 rows, leftovers none)
+== selftest-rows (9 new line(s)) [no before file]
+  a: 'multi\r\nline' -> 'flat'
+  added: c t
+  b: '' -> 'new'
+  deleted: c t
+  dry run, would be updated: c t
+  id=x3, a=q
+  rows.py self-test: all passed (5 processes x 20 upserts: 100 of 100 rows)
+  updated: c t
+  x3,q,
+== selftest-safe_write (1 new line(s)) [no before file]
+  safe_write self-test: all passed (exit codes [0, 0, 0, 0, 0, 0], 240 of 240 rows, leftovers none)
+== selftest-section_skeleton (1 new line(s))
+  ok     always rebuilds a stale sidecar
+compare step4-E -> step4-E2-0: 16 new line(s)

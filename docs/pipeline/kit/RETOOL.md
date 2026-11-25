@@ -96,3 +96,13 @@ Source: consolidation step 4.D (docs/CONSOLIDATION-PLAN.md). No grade running.
 | Ledgers moved from data/plans/ledgers/<subject>.csv to data/plans/<course>/ledger.csv (consolidation / kit) | the CSV safety line of common.txt; scripts/ledger.py commands unchanged |
 | Skeletons were tracked and jobs could edit them, so generated files drifted from their source (consolidation / kit) | day.txt: skeletons are ignored working files, never edited; the edit line no longer lists them (step 4.E) |
 | day.txt still said "section not in data/units.csv" failures are known, after 4.B removed that check (consolidation / kit) | the line is dropped |
+
+## Retool 4: KIT-VERSION 5 (2026-11-25)
+
+Source: the pause-4e Fable review (docs/reviews/consolidation/pause-4e-review.md), consolidation 4.E2 step 0. No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| Skeleton generators kept an existing file, so a job reran them and read a stale skeleton (review / consolidation 4.E) | day_skeleton.py and section_skeleton.py always rebuild; section.txt rebuilds its skeletons at job start; coursegen always emits the build line |
+| Two jobs writing one course's ledger at once could lose rows (review / consolidation 4.D) | scripts/safe_write.py (a lock per file, a temp name per process, retries) under ledger.py and rows.py, with race self-tests; common.txt says jobs in one course may both write through them |
+| draft-fix.txt still said "section not in data/units.csv" failures are known (review / consolidation 4.B) | the line is dropped |

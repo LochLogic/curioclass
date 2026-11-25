@@ -10,7 +10,7 @@ then frozen there as the unit skeleton is. Add what each run teaches to the "Les
 
 Writes a sidecar, docs/courses/<course>/day-skeletons/d<nnn>.md (or DIR/<course>/d<nnn>.md with --out), never the
 day file itself: the day file (docs/courses/LESSON-DAY.md, "Where it lives") is the writer's prose, so the skeleton
-can be regenerated without touching it. Never overwrites without --force. Output is deterministic.
+can be regenerated without touching it. Always rebuilds: the sidecar is an ignored working file (consolidation 4.E2); --force is accepted and changes nothing. Output is deterministic.
 
 Filled from: data/plans/<course>/days.csv (the day, the days before and after), data/plans/frames.csv (minutes),
 data/plans/calendar.csv (the unit's school days and weeks), the frame (unit title and question), the progression
@@ -304,7 +304,7 @@ def build(course, day):
         w(u.CLOSE)
         w('')
         if stops:
-            w('The day is not written until every STOP is cleared in the data and this skeleton is rebuilt (--force).')
+            w('The day is not written until every STOP is cleared in the data and this skeleton is rebuilt.')
             w('')
     # ---- the header block (LESSON-DAY "Where it lives")
     w('## Header')
@@ -543,8 +543,6 @@ def write(course, day, out=None, force=False):
     d = (Path(out) / course) if out else (u.DOCS / course / DAY_DIR)
     d.mkdir(parents=True, exist_ok=True)
     p = d / ('d%03d.md' % day)
-    if p.exists() and not force:
-        return p, 'kept (exists; --force to rebuild)'
     text = build(course, day)
     p.write_text(text, encoding='utf-8', newline='\n')
     n = text.count('**STOP:**')
@@ -571,9 +569,9 @@ def self_test():
     check('an assessment day gets the Assessment section', ad is None or '## Assessment' in build(c, ad))
     with tempfile.TemporaryDirectory() as t:
         p, s1 = write(c, 5, out=t)
-        p.write_text('kept', encoding='utf-8')
+        p.write_text('stale', encoding='utf-8')
         _, s2 = write(c, 5, out=t)
-        check('never overwrites without --force', s1 == 'written' and s2.startswith('kept') and p.read_text(encoding='utf-8') == 'kept')
+        check('always rebuilds a stale sidecar', s1 == 'written' and s2 == 'written' and p.read_text(encoding='utf-8') != 'stale')
     sci = 'science-grade-6'
     t6 = build(sci, 1)
     check('a begun (~) code keeps its mark and finds its statement', '**~MS-PS4-2:** (begun here' in t6 and 'no own-word line' not in t6.split('**~MS-PS4-2:**')[1].split('\n')[0])
@@ -652,7 +650,7 @@ def main(a):
         print('%s: %s' % (u.shown_path(p), how))
         stopped += 'STOP' in how
     if stopped:
-        print('%d day%s with a STOP: clear it in the data, then rebuild with --force' % (stopped, '' if stopped == 1 else 's'))
+        print('%d day%s with a STOP: clear it in the data, then rebuild' % (stopped, '' if stopped == 1 else 's'))
         raise SystemExit(1)
 
 
