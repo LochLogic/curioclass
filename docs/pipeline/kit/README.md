@@ -1,6 +1,6 @@
 # The course-run kit
 
-KIT-VERSION: 6 (2026-11-25)
+KIT-VERSION: 7 (2026-11-25)
 
 The job templates, notes and rules that `scripts/coursegen.py` fills to write a course run's job queue, in the order of
 docs/COURSE-RUN.md (stages 5 and 6, with the retool and sweep rules of its sections 1 and 4). Built from the
@@ -71,7 +71,7 @@ generation date.
 | common, gate-line | shared rules (never-open list, no git, CSV safety, sources, cost, gate counts), ledger gate step | |
 
 Other tokens, set by the generator: COURSE, SUBJ (ledger name), SUBJWORD, DATE (today), KITVERSION, JOB (temp folder
-name), PLANGATE and LESSONGATE (the filtered gate commands for the course), COMMON, GATELINE, GRADENOTE and SUBJNOTE.
+name), GATE (the course gate command, `scripts/gate.py --course <course>`, consolidation 4.G), COMMON, GATELINE, GRADENOTE and SUBJNOTE.
 Tokens are upper-case words in braces and are filled in one pass: no token can sit inside another word (the old
 UNIT-in-UNIT-PLAN.md bug) and an unknown token stops generation. Lower-case braces such as `{course}` in a brief's own
 wording are left alone.

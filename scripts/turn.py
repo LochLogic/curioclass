@@ -33,7 +33,7 @@ ROLE = {'plan': 'planner', 'plan-read': 'expert', 'plan-data': 'planner', 'write
 KEEP_OUT = ['docs/Curio-Class-Plan.pdf', 'docs/US Curriculum Design Blueprint.pdf', 'docs/Return',
             'docs/agents/audit/wordwall-movement-cards.jpg', '.claude']
 NEVER_TOUCH = ['data/closet/words', 'closet/words', 'data/media-manifest.txt']
-GATES = [['scripts/plan.py', 'check'], ['scripts/lesson.py', 'check']]
+GATES = [['scripts/plan.py', 'check'], ['scripts/lesson.py', 'check']]   # a job whose course cell is not a course
 CO = 'Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>'
 
 
@@ -88,7 +88,14 @@ def dirty():
     return out
 
 
-def failures():
+def failures(course=None):
+    """Failing lines now. A course job reads the one gate command (scripts/gate.py --course, consolidation 4.G);
+    a job whose course cell holds a subject (progression reads) keeps the two whole-repo checks."""
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import gate
+    if course in gate.courses():
+        py('scripts/gate.py', '--course', course)
+        return [l for l in gate.current_failures(gate.RAW / ('now-' + course), course)]
     lines = []
     for g in GATES:
         r = py(*g)
@@ -196,7 +203,7 @@ def cmd_start(a):
     j = pick(jobs, role, jid)
     if not j:
         sys.exit('No ready job%s.' % (' for ' + role if role else ''))
-    base = failures()
+    base = failures(j['course'])
     TURN.write_text(json.dumps({'worker': worker, 'job': j['id'], 'since': now(), 'base': base}, indent=1),
                     encoding='utf-8')
     j.update(status='taken', worker=worker, started=now())
@@ -232,7 +239,7 @@ def cmd_end(a):
             r = py('scripts/plan.py', 'tables', j['course'])
             if r.returncode:
                 new.append('plan.py tables %s failed: %s' % (j['course'], (r.stdout + r.stderr).strip()[-300:]))
-        base, now_fail = set(h.get('base', [])), failures()
+        base, now_fail = set(h.get('base', [])), failures(j['course'])
         # the fix pass leaves no failure at all; any other job adds none
         new += now_fail if j['kind'] == 'fix' else [f for f in now_fail if f not in base]
         if new:

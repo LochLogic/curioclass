@@ -39,9 +39,7 @@ SUBJECTS = {  # slug: (course prefix, words)
     'science': ('science', 'science'),
 }
 SECTION_SPLIT = 5  # a unit with more sections than this is cut in two halves for section and data jobs
-PLANGATE = ("python -X utf8 scripts/plan.py check 2>&1 | awk '/^COURSE: [0-9]+ items/{on=1;print;next} "
-            "on && /^[a-z0-9-]+: [0-9]+ items/{on=0} on || /COURSE/'")
-LESSONGATE = 'python -X utf8 scripts/lesson.py check 2>&1 | grep "courses/COURSE/"'
+GATE = '`python -X utf8 scripts/gate.py --course COURSE`'   # the one gate command (consolidation 4.G)
 STAGE_GATES = {'unit plan': 'unitplan', 'section plan': 'unitplan', 'data': 'plan', 'days': 'lesson'}
 
 
@@ -154,8 +152,7 @@ class Queue:
         mp.update(extra)
         mp['COURSE'] = course
         mp['JOB'] = safe('%s-%s' % (kind, detail))
-        mp['PLANGATE'] = PLANGATE.replace('COURSE', course)
-        mp['LESSONGATE'] = LESSONGATE.replace('COURSE', course)
+        mp['GATE'] = GATE.replace('COURSE', course)
         where = '%s %s %s' % (template, course, detail)
         for k, f in (('COMMON', 'common.txt'), ('GATELINE', 'gate-line.txt')):
             mp[k] = fill(read(KIT / f).strip(), mp, where) if k in ('COMMON',) or gate else ''
@@ -388,8 +385,8 @@ def main_sweep(a):
     course = a.courses[0]
     gate_kind = STAGE_GATES.get(a.made_at, 'plan')
     gates = {'unitplan': 'python -X utf8 scripts/unitplan.py check %s' % course,
-             'plan': PLANGATE.replace('COURSE', course),
-             'lesson': LESSONGATE.replace('COURSE', course)}[gate_kind]
+             'plan': GATE.replace('COURSE', course).strip('`'),
+             'lesson': GATE.replace('COURSE', course).strip('`')}[gate_kind]
     scope = a.scope or {'unit plan': 'docs/courses/%s/s*.md' % course,
                         'section plan': 'docs/courses/%s/u*-*.md' % course,
                         'data': 'data/plans/%s/ (items, wrongs, handbacks, sources) and courses/%s/u*-*/ shared pieces' % (course, course),

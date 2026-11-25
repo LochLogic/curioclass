@@ -1,22 +1,36 @@
 # Working in the Curio Class repository
 
 Read this first, whatever model you are. Curio Class is a free K-12 curriculum and tools site. Several workers
-(Codex, Claude on more than one account, people) take turns in this one repository. Never two at once.
+(Codex, Claude on more than one account, people) work in this one repository.
 
-## Taking a turn
+## The gate
 
-1. Every job runs inside a turn. `python -X utf8 scripts/turn.py start <your name> --job <id>` (or `--role <role>`)
-   pulls, checks that nobody holds the turn, takes it, and prints your job brief. If it refuses, stop and say why.
-2. Do the job the brief describes, and only that job.
-3. `python -X utf8 scripts/turn.py end <your name>` runs the gates. If the job added a failure, the turn stays with
-   you: fix it and run `end` again. If you cannot fix it, `end <your name> --fail "why"` hands the turn back and
-   marks the job failed for a person.
-4. You never commit, push, pull, rebase, stash, reset or switch branches yourself: `start` and `end` do all git.
+One command checks a course: `python -X utf8 scripts/gate.py --course <course>`. It runs the plan, lesson, unit
+plan, lint and ledger checks for that course plus the shared checks, prints every failing line, and compares them
+with the baseline. Store the baseline before you change anything (`--course <course> --baseline`); afterwards the
+gate exits 1 only when you added a failure. `--changed` checks the courses your uncommitted files touch, and
+`--all --site` is the whole repository (the lead runs it before and after each larger step). Never run plan.py
+check or lesson.py check unfiltered on your own: the gate does it.
 
-If a runner started you, it has already run `start` and will run `end`; just do the job in the brief you were given.
+## Who commits, and side by side work
 
-The lead session (the Claude session Cory works with directly) and people work outside the queue, commit and push
-their own work, and do so only while nobody holds the turn (`turn.py status` says "Turn: free").
+Two ways to work:
+
+1. **A queued job** runs inside a turn. `python -X utf8 scripts/turn.py start <your name> --job <id>` (or
+   `--role <role>`) pulls, checks that nobody holds the turn, takes it, and prints your job brief. Do only that
+   job. `python -X utf8 scripts/turn.py end <your name>` runs the gate for the job's course. If the job added a
+   failure, the turn stays with you: fix it and run `end` again. If you cannot fix it,
+   `end <your name> --fail "why"` hands the turn back and marks the job failed for a person. You never commit,
+   push, pull, rebase, stash, reset or switch branches yourself: `start` and `end` do all git. If a runner started
+   you, it has already run `start` and will run `end`; just do the job in the brief you were given. The queue
+   (data/jobs.csv) stays in use until the pilot it belongs to retires.
+2. **The lead session** (the Claude session Cory works with directly) and people work outside the queue. The lead
+   commits and pushes its own work and its agents' work, staging only its own paths, and only while nobody holds
+   the turn (`turn.py status` says "Turn: free").
+
+Agents may work side by side when each works in a different course. Two workers never write the same course, or
+the same file, at once. Ledgers are per course and written through locked writes (scripts/rows.py), so separate
+courses do not collide. Shared files (data/plans/later.csv, docs/, scripts/) are the lead's to change.
 `python -X utf8 scripts/turn.py status` shows the queue. The pipeline guide is docs/pipeline/README.md.
 
 ## Rules that bind every job

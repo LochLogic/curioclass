@@ -10,7 +10,7 @@ HOW
 5. A drift whose cause is an earlier stage (a unit plan or section plan that promised what the day dropped) is fixed in the day here and listed under "For the lead: sweep" with the stage.
 
 FINISH
-Run, for this course (filtered, never unfiltered), before and after: {PLANGATE} and {LESSONGATE}. List every FAIL line after, including lines printed after the course summary; no new FAIL.
+Run, for this course, before (add --baseline) and after: {GATE}. List every failing line it prints after; no new FAIL.
 Append a "Fixes applied ({DATE})" section to the report: one line per finding (applied / rejected / partly, what changed).
 
 Touch only this course's files (courses/{COURSE}/, data/plans/{COURSE}/, docs/courses/{COURSE}/ for plan sync), the ledger via ledger.py note, and the report.

@@ -33,9 +33,11 @@ docs/courses (arts, health and the rest) are known, not courses.
 """
 import csv
 import io
+import os
 import re
 import sqlite3
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -289,7 +291,7 @@ def resolved(ix):
 
 def save(ix):
     DB.parent.mkdir(parents=True, exist_ok=True)
-    tmp = DB.with_suffix('.tmp')
+    tmp = DB.with_suffix('.%d.tmp' % os.getpid())   # per process: gates in different courses may build at once
     if tmp.exists():
         tmp.unlink()
     con = sqlite3.connect(tmp)
@@ -303,7 +305,13 @@ def save(ix):
     con.execute('create index e_path on edges (path)')
     con.commit()
     con.close()
-    tmp.replace(DB)
+    for i in range(20):                               # another process may have the db open for a moment
+        try:
+            tmp.replace(DB)
+            return
+        except PermissionError:
+            time.sleep(0.5)
+    tmp.unlink()                                      # the other process's fresh build stands
 
 
 def dump(ix, out):

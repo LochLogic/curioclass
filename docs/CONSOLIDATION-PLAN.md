@@ -99,7 +99,7 @@ HANDOFF links to it rather than copying it.
 | Stage | Meets tests | When |
 |---|---|---|
 | Steps 0 to 3: one folder, rescue, Codex merge, cleanup | 1 | done 2026-11-25 |
-| Step 4, block one (4.A to 4.G) | 4, 5, 6, 7, 9 and 12 as reports, 10 | next; curriculum writing may restart when 4.G closes |
+| Step 4, block one (4.A to 4.G) | 4, 5, 6, 7, 9 and 12 as reports, 10 | done 2026-11-25; curriculum writing may restart |
 | Step 4, block two (4.H to 4.J) | 2, 3, 8, 11; all 12 printed as numbers | after block one; touches no course data |
 | Step 5: tool records only; tools join the index | keeps tools outside the curriculum homes | after step 4, may run beside course work |
 | Step 6: close, counts in SCALE.md from goal-tests.csv | the tests recorded as a baseline | after step 5 |
@@ -161,7 +161,7 @@ data/closet/words keeps its never-touch rule whole:
    each sub-step runs the scope it touches, and its "after" is the next one's "before". Only summary.csv and the
    compare are committed; raw dumps stay in an ignored folder. Gates that rewrite tracked files (COURSES-STATUS.md,
    BUILD-BOARD.md) are committed or restored before the step's own commit, so a step never ends with a dirty tree.
-   Until 4.G lands, `scripts/consolidation_gates.py` is the runner; a full run takes 4 to 5 minutes.
+   Since 4.G the runner is `scripts/gate.py --all --site --save <step>` (consolidation_gates.py wraps it); a full run takes about 5 minutes.
 4. **Rollback.**
    - Inside git: each step is one commit or a short series. Before step 0 ends, main is tagged
      `pre-consolidation-2026-11` and the tag is pushed. The Codex merge lands as `git merge --no-ff`, so
@@ -520,6 +520,20 @@ fact then lives in one place, so drift can't come back." The design is the pause
   queued job's end); side-by-side work is allowed in different courses, never on the same files, which is safe once
   ledgers are per course (4.D) and their writes take a lock (4.E2 step 0); common.txt says the same.
 - **Curriculum writing may restart when 4.G closes.** H to J and step 5 touch no course data.
+- Built 2026-11-25 (kit version 7). scripts/gate.py `--course`, `--changed`, `--all [--site]`, `--baseline`,
+  `--save`, `--only`, `compare`, `list`; a course run takes about 20 seconds. Its compare flags a gate that is gone
+  (it reads an older run's summary.csv from docs/reviews/consolidation when build/gates has none, which caught the
+  pilot math-4 gates dropping out: the gate keeps the pilot course in scope although the index leaves it out), an
+  exit code change, a failing count that rises or falls, and each new line. scripts/lint.py holds the catalog,
+  never-touch, generated (silent until homes.csv) and style checks; style lines carry a count per file, not line
+  numbers, so moved lines are not new. turn.py `end` and `start` run `gate.py --course` for the job's course;
+  consolidation_gates.py is a thin wrapper over `gate.py --all --site --save`. The kit's `{PLANGATE}` and
+  `{LESSONGATE}` became `{GATE}` in eight templates and coursegen's sweep gates; AGENTS.md's first section and
+  common.txt describe the gate, who commits and side by side work in different courses. data/index.db is written
+  through a per-process temp file. jobs.csv and turn.py's queue stay working until the pilot retires. Run step4-G
+  (205 gates) against step4-E2-final: no change in any gate that ran before except a build note; the two new gates,
+  the whole-repo lesson check (5,470 FAIL lines) and lint style (4,210 lines, mostly UK spellings in finished pages),
+  are stored as the `--all` baseline and worked off under later.csv L126.
 
 ### 4.H Homes and ids (M)
 

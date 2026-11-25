@@ -21,7 +21,7 @@ Item rules (the gates check some; a fresh reader checks the rest):
 - Every key is right: a reader will answer every item cold after you. Where a gate rule does not fit this grade, do not bend the data: leave that one failure and list it as a template point.
 - Hinges: where a day hinges on a visitor, a local page, an unopened photo or a not-yet-written text, name a fallback in the data so the days do not stall.
 
-Gates: {PLANGATE} (exactly this filter, never unfiltered; read plan.py never), `python -X utf8 scripts/plan.py tables {COURSE}`, `python -X utf8 scripts/unitplan.py check {COURSE}` must still pass, and {LESSONGATE} (always filtered; failures only because the days are not written are expected). "section ... is not in data/units.csv" is known.
+Gates: {GATE} (it runs plan.py check, unitplan.py check and the lesson check for this course; read plan.py never) and `python -X utf8 scripts/plan.py tables {COURSE}` must still pass; failures only because the days are not written are expected.
 
 {COMMON}
 

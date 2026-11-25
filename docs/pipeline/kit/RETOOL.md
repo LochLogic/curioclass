@@ -116,3 +116,13 @@ Source: consolidation 4.E2 (docs/CONSOLIDATION-PLAN.md), Cory's choice to stop s
 | Written plans stored copies of data inside `<!-- skel -->` blocks, and the copies drifted from data (consolidation 4.E census: 6,250 lines not in a fresh render) | blocks stripped from all 916 plans; facts render from data through scripts/plan_facts.py (skeletons, plan.py packets, Front Office, the writer's read view); `skel-guard` gate and unitplan.py check fail on any marker in a plan |
 | Briefs told writers to keep or fill the marked fields in the plan (consolidation 4.E2) | plan-codex.md, plan-codex-ela.md, plan-codex-math.md, plan-codex-science.md, plan-codex-read.md and section-write.md: the facts are read with `plan_facts.py <course> <file>`, never copied into the plan; the plan holds judgment prose only |
 | Generators wrote UK spellings into rendered lines (consolidation 4.E2) | unit_skeleton.py and section_skeleton.py write "practiced" |
+
+## Retool 6: KIT-VERSION 7 (2026-11-25)
+
+Source: consolidation 4.G (docs/CONSOLIDATION-PLAN.md), one gate command. No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| Briefs gave two filtered gate commands, `{PLANGATE}` (an awk filter over plan.py check) and `{LESSONGATE}` (a grep over lesson.py check), and workers counted FAIL lines by hand, including lines after the course summary (consolidation review) | one placeholder `{GATE}` = `python -X utf8 scripts/gate.py --course <course>` in checks, cleanup, continuity-fix, data, day, key, retool-stop and sample-read; coursegen.py's sweep gates use it too; common.txt's gate rule says store `--baseline` first, exit 1 means a new failure |
+| Briefs carried the known exception "section ... not in data/units.csv" (consolidation 4.B retired the file) | dropped from checks.txt and data.txt |
+| AGENTS.md said one worker at a time, while course runs worked side by side (consolidation review) | common.txt and AGENTS.md: side by side in different courses, never the same course or file at once |

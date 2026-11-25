@@ -19,7 +19,7 @@ Write one report, docs/reviews/ladder-sample-{COURSE}-{PART}-{DATE}.md:
 - a short ladder section: what the grade gap caused, and whether this grade used the lower grades well;
 - counts: FIRM, SOFT and TEMPLATE findings, per day and in all.
 
-Edit no file but your report. If you run the gates, use only {PLANGATE} and {LESSONGATE}, never unfiltered, and never grep gate output for a bare day file name. Helper files only in your own new temp folder under S:/CurioClass/_scratch/l87/tmp/.
+Edit no file but your report. If you run the gates, use only {GATE}, and never grep gate output for a bare day file name. Helper files only in your own new temp folder under S:/CurioClass/_scratch/l87/tmp/.
 
 {COMMON}
 
