@@ -298,8 +298,8 @@ PE 6 to 8 is written; the units and weeks are from its frame (docs/courses/physi
 
 | Row | Lean | Used here | Computer science unit | Bridge |
 |---|---|---|---|---|
-| g6-rel-teamwork | computer-science:g6-inclusive-collab (pair roles and giving credit in a team) | Unit 6, weeks 27 to 31 | Pending(docs/courses/computer-science-grade-6/frame.md): its unit is cited here once that frame sets it | SEL needs nothing from it: the role cards and credit are taught here |
-| g7-rds-who-is-affected | computer-science:g7-impact-history (intended and unintended effects on people) | Unit 12, weeks 27 to 31 | Pending(docs/courses/computer-science-grade-7/frame.md): its unit is cited here once that frame sets it | SEL needs nothing from it: the who-is-affected map is taught here |
+| g6-rel-teamwork | computer-science:g6-inclusive-collab (pair roles and giving credit in a team) | Unit 6, weeks 27 to 31 | Computer science grade 6 teaches it in unit 1, early in the year and before this unit 6 | SEL needs nothing from it: the role cards and credit are taught here |
+| g7-rds-who-is-affected | computer-science:g7-impact-history (intended and unintended effects on people) | Unit 12, weeks 27 to 31 | Computer science grade 7 teaches it in unit 6, the year's last unit, side by side with this unit 12 | SEL needs nothing from it: the who-is-affected map is taught here |
 
 ### Career exploration (grade 8 year)
 

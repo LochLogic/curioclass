@@ -210,7 +210,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 9 | algebra-i | Check 1 (weeks 12 to 13) weeks 12 to 13, Check 2 (week 22) week 22, Check 3 (week 32) week 32 | 32 |
 | 9 | physical-education-grades-9-to-12 | Grade 9 mid-year (week 1 week 16, Grade 9 year-end (week 3 week 32 | 31 |
 | 9 | biology | Course-level check 1 week 9, Course-level check 2, mi week 16, Course-level check 3, ye week 32 | 31 |
-| 9 | social-and-emotional-learning-grades-9-to-12 | none read | 32 |
+| 9 | social-and-emotional-learning-grades-9-to-12 | Grade 9 mid-year check ( week 15, Grade 9 year-end check ( week 32 | 31 |
 | 9 | world-history-i | 1, course-level check (w week 10, 2, mid-year course-level weeks 18 to 19, 3, year-end course-level week 32 | 31 |
 | 10 | computer-science-grade-10 | Course-level check, mid- weeks 15 to 16, Course-level check, year weeks 31 to 32 | 31 |
 | 10 | career-pathways-grades-9-to-12 | Course-level check 1, mi week 14, Course-level check 2, ye week 32 | 32 |
@@ -220,16 +220,18 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 10 | geometry | Check 1 (week 10) week 10, Check 2 (week 21) week 21, Check 3 (week 32) week 32 | 32 |
 | 10 | physical-education-grades-9-to-12 | Grade 10 mid-year (week  week 16, Grade 10 year-end (week  week 32 | 31 |
 | 10 | chemistry | Course-level check 1 week 11, Course-level check 2, mi weeks 20 to 21, Course-level check 3, ye week 32 | 31 |
-| 10 | social-and-emotional-learning-grades-9-to-12 | none read | 32 |
+| 10 | social-and-emotional-learning-grades-9-to-12 | Grade 10 mid-year check  week 15, Grade 10 year-end check  week 32 | 31 |
 | 10 | world-history-ii | 1, course-level check (w weeks 8 to 9, 2, mid-year course-level weeks 18 to 19, 3, year-end course-level week 32 | 32 |
+| 11 | computer-science-grade-11 | Course-level check, mid- week 18, Course-level check, year week 32 | 31 |
 | 11 | english-language-arts-grade-11 | Check 1 week 16, Check 2 week 24, Check 3 week 32 | 31 |
 | 11 | english-language-development-grades-9-to-12 | Grade 11 mid-year (week  week 17, Grade 11 year-end (week  week 32 | 32 |
 | 11 | library-and-research-skills-grades-9-to-12 | 5, grade 11 mid-year week 11, 6, grade 11 year-end week 31 | 29 |
 | 11 | algebra-ii | Check 1 (weeks 14 to 15) weeks 14 to 15, Check 2 (weeks 22 to 23) weeks 22 to 23, Check 3 (week 32) week 32 | 32 |
 | 11 | physical-education-grades-9-to-12 | Grade 11 mid-year (week  week 16, Grade 11 year-end (week  week 32 | 31 |
 | 11 | physics | Course-level check 1 week 13, Course-level check 2, mi week 22, Course-level check 3, ye week 32 | 31 |
-| 11 | social-and-emotional-learning-grades-9-to-12 | none read | 32 |
+| 11 | social-and-emotional-learning-grades-9-to-12 | Grade 11 mid-year check  week 15, Grade 11 year-end check  week 32 | 31 |
 | 11 | us-history-i | 1 (week 10) week 10, 2, mid-year (weeks 19 to week 19, 3, year-end (week 32) week 32 | 31 |
+| 12 | computer-science-grade-12 | Course-level check 1, af week 12, Course-level check 2, ye week 28 | 32 |
 | 12 | english-language-arts-grade-12 | Check 1 week 11, Check 2 week 17, Check 3 week 25 | 32 |
 | 12 | english-language-development-grades-9-to-12 | Grade 12 mid-year (week  week 16, Grade 12 year-end (week  week 32 | 32 |
 | 12 | library-and-research-skills-grades-9-to-12 | 7, grade 12 mid-year week 13, 8, grade 12 year-end week 31 | 29 |
@@ -239,7 +241,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 12 | physical-education-grades-9-to-12 | Grade 12 mid-year (week  week 16, Grade 12 year-end (week  week 28 | 32 |
 | 12 | earth-and-space-science | Course-level check 1 week 11, Course-level check 2, mi week 21, Course-level check 3, ye week 32 | 31 |
 | 12 | environmental-science | Course-level check 1 week 11, Course-level check 2, mi week 21, Course-level check 3, ye week 32 | 31 |
-| 12 | social-and-emotional-learning-grades-9-to-12 | none read | 24 |
+| 12 | social-and-emotional-learning-grades-9-to-12 | Grade 12 mid-year check  week 15, Grade 12 year-end check  week 32 | 31 |
 | 12 | economics | 1, midpoint week 23, 2, final week 32 | 32 |
 | 12 | psychology | 1, mid-year week 17, 2, year-end week 32 | 32 |
 | 12 | us-government-and-politics | 1, midpoint week 8, 2, final week 15 | 16 |
