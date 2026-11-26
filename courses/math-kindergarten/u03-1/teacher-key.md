@@ -3,381 +3,710 @@ piece: story
 course: math-kindergarten
 unit: 3.1
 stretch: 3
-version: draft, not yet taught
+version: draft 2, not yet taught
 credit: All ours.
 ---
-# Section 3.1 answer key
+# Section 3.1 teacher-only answer key
 
-Teacher only. Keep off child pages and displays. One marking scale: shown, shown with help, not yet seen. Missing evidence is pending in the schedule, not a fourth score. Motor/communication access alone is not mathematical help; record separately. A paper mark does not prove an unheard name or reason.
+Read every student prompt aloud. Use shown, shown with help, not yet seen. An unheard name or explanation remains not yet seen, even if paper is correct. Record motor or communication access separately from mathematical help. Never print these answers on a child card.
 
-## s03-X45
+## s03-X45, day 45
 
-Read: Where is the badge?
+Where is the badge?
 
-Look for: Behind the folder, from the viewing arrow.
+Answer: Behind the folder, from the viewing arrow.
 
-Draw location relative to blank folder; hear six. Drawing cannot prove the spoken word. | Shape: Produce new object location with drawing; practice follows movement commands, never static badge/folder scene.
+Look for: Draw location relative to blank folder; hear six. Drawing cannot prove the spoken word. | Shape: Produce new object location with drawing; practice follows movement commands, never static badge/folder scene.
 
-Shown: Behind the folder, from the viewing arrow. | Not yet seen: In front of folder. (A).
+Samples: Shown: Behind the folder, from the viewing arrow. | Not yet seen: In front of folder. (A).
 
-Wrong ideas: In front of folder. (A).
+## s03-X46, day 46
 
-## s03-X46
+What is this shape like?
 
-Read: What is this shape like?
+Answer: Straight parts and corners, with opening at one join; not closed triangle.
 
-Look for: Straight parts and corners, with opening at one join; not closed triangle.
+Look for: Feel concealed three-strip boundary concurrently, sketch before reveal; hear six. No formal name required. | Shape: Describe concealed unfamiliar boundary through feature sketch; practice visible tracing, never concealed feel format.
 
-Feel concealed three-strip boundary concurrently, sketch before reveal; hear six. No formal name required. | Shape: Describe concealed unfamiliar boundary through feature sketch; practice visible tracing, never concealed feel format.
+Samples: Shown: Straight parts and corners, with opening at one join; not closed triangle. | Not yet seen: Closed triangle despite gap. (D).
 
-Shown: Straight parts and corners, with opening at one join; not closed triangle. | Not yet seen: Closed triangle despite gap. (D).
+## s03-X47, day 47
 
-Wrong ideas: Closed triangle despite gap. (D).
+Which shape matches this one?
 
-## s03-X47
+Answer: The larger upright square.
 
-Read: Which shape matches this one?
+Look for: Join target/choice on paper; side/corner marks show correspondence, hear six. Choice alone leaves method unclassified. | Shape: Match turned target among three choices; practice slides one piece onto one outline, no choices.
 
-Look for: The larger upright square.
+Samples: Shown: The larger upright square. | Not yet seen: None, turned target cannot be square. (B).
 
-Join target/choice on paper; side/corner marks show correspondence, hear six. Choice alone leaves method unclassified. | Shape: Match turned target among three choices; practice slides one piece onto one outline, no choices.
+## s03-X48, day 48
 
-Shown: The larger upright square. | Not yet seen: None, turned target cannot be square. (B).
+Show one way these shapes are different.
 
-Wrong ideas: None, turned target cannot be square. (B).
+Answer: The square has four equal sides; the nonsquare rectangle has two longer and two shorter sides.
 
-## s03-X48
+Look for: All mark the contrasting sides on the fresh tilted-square/nonsquare-rectangle pair; hear six descriptions. A side-length contrast is enough. Do not require a second comparison. | Shape: Produce one difference on the reserved pair; practice corrects features on single cards, never a paired alike/different sheet.
 
-Read: How are these shapes alike and different?
+Samples: Shown: marks the square sides as equal and the rectangle long/short sides. | Not yet seen: rejects the tilted square because of its turn (B).
 
-Look for: Both four straight sides and four square corners. Square has four equal sides; nonsquare rectangle two long and two short.
+## s03-X49, day 49
 
-Mark shared/differing features on pair; hear six comparisons. Record names only if heard. | Shape: Produce paired comparison of unseen square/rectangle; practice single-card feature corrections, never alike/different sheet.
+Where does this card belong?
 
-Shown: Both four straight sides and four square corners. Square has four equal sides; nonsquare rectangle two long and two short. | Not yet seen: Turned figure cannot be square. (B).
+Answer: Under three-sided picture heading.
 
-Wrong ideas: Turned figure cannot be square. (B).
+Look for: Draw or trace narrow sideways target under heading, track sides; hear six. No color cue or written heading. | Shape: Place new narrow triangle under fixed picture headings; practice self-chosen grouping, never fixed-heading placement.
 
-## s03-X49
+Samples: Shown: Under three-sided picture heading. | Not yet seen: Not with triangles because too thin. (C).
 
-Read: Where does this card belong?
+## s03-F1-talk-58, day 47
 
-Look for: Under three-sided picture heading.
+Where is this object?
 
-Draw or trace narrow sideways target under heading, track sides; hear six. No color cue or written heading. | Shape: Place new narrow triangle under fixed picture headings; practice self-chosen grouping, never fixed-heading placement.
+Answer: Above the rectangular tray.
 
-Shown: Under three-sided picture heading. | Not yet seen: Not with triangles because too thin. (C).
+Look for: Indicate only the clock relative to the tray on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
 
-Wrong ideas: Not with triangles because too thin. (C).
+Samples: Shown: above the rectangular tray, with target located. | Not yet seen: reverses the indicated relationship (J).
 
-## s03-W45
+## s03-F1-talk-59, day 47
 
-Read: Count these paper squares.
+Where is this object?
 
-Look for: 5 squares.
+Answer: Below the rectangular tray.
 
-Review known counting with fresh 5-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
+Look for: Indicate only the tile relative to the tray on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
 
-Shown: 5 squares. | Not yet seen: No interpretable response.
+Samples: Shown: below the rectangular tray, with target located. | Not yet seen: reverses the indicated relationship (J).
 
-## s03-W46
+## s03-F1-talk-60, day 47
 
-Read: Count these paper squares.
+Where is this object?
 
-Look for: 8 squares.
+Answer: Beside the hexagonal card.
 
-Review known counting with fresh 8-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
+Look for: Indicate only the left triangle relative to the hexagon on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
 
-Shown: 8 squares. | Not yet seen: No interpretable response.
+Samples: Shown: beside the hexagonal card, with target located. | Not yet seen: reverses the indicated relationship; retain the observed description without forcing a letter.
 
-## s03-W47
+## s03-F1-talk-61, day 47
 
-Read: Count these paper squares.
+Where is this object?
 
-Look for: 6 squares.
+Answer: Next to the circular card.
 
-Review known counting with fresh 6-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
+Look for: Indicate only the right triangle relative to the circle on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
 
-Shown: 6 squares. | Not yet seen: No interpretable response.
+Samples: Shown: next to the circular card, with target located. | Not yet seen: reverses the indicated relationship; retain the observed description without forcing a letter.
 
-## s03-W48
+## s03-F1-talk-62, day 47
 
-Read: Count these paper squares.
+Where is this object?
 
-Look for: 5 squares.
+Answer: In front of the box.
 
-Review known counting with fresh 5-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
+Look for: Indicate only the square card relative to the box on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
 
-Shown: 5 squares. | Not yet seen: No interpretable response.
+Samples: Shown: in front of the box, with target located. | Not yet seen: reverses the indicated relationship (A).
 
-## s03-W49
+## s03-W45, day 45
 
-Read: Count these paper squares.
+Touch each square as you count.
 
-Look for: 8 squares.
+Answer: 5 squares.
 
-Review known counting with fresh 8-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
+Look for: Review known counting with fresh 5-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
 
-Shown: 8 squares. | Not yet seen: No interpretable response.
+Samples: Shown: 5 squares. | Not yet seen: No interpretable response.
 
-## s03-R45-count
+## s03-W46, day 46
 
-Read: Count these squares.
+Count the squares after spreading them.
 
-Look for: Nine squares.
+Answer: 8 squares.
 
-Same nine-square unit 2 retrieval, five minutes total, not readiness/final evidence. Known mat/optional frame for one supported try, then withdraw supplied frame.
+Look for: Review known counting with fresh 8-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
 
-Shown: Nine squares. | Not yet seen: No interpretable response.
+Samples: Shown: 8 squares. | Not yet seen: No interpretable response.
 
-## s03-R45-numeral
+## s03-W47, day 47
 
-Read: Write how many.
+Move each square across the line as you count.
 
-Look for: 9
+Answer: 6 squares.
 
-Same nine-square unit 2 retrieval, five minutes total, not readiness/final evidence. Known mat/optional frame for one supported try, then withdraw supplied frame.
+Look for: Review known counting with fresh 6-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
 
-Shown: 9 | Not yet seen: No interpretable response.
+Samples: Shown: 6 squares. | Not yet seen: No interpretable response.
 
-## s03-R45-still
+## s03-W48, day 48
 
-Read: Does this numeral still fit?
+Count the squares before making their dots.
 
-Look for: Yes, 9, none entered or left.
+Answer: 5 squares.
 
-Same nine-square unit 2 retrieval, five minutes total, not readiness/final evidence. Known mat/optional frame for one supported try, then withdraw supplied frame.
+Look for: Review known counting with fresh 5-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
 
-Shown: Yes, 9, none entered or left. | Not yet seen: No interpretable response.
+Samples: Shown: 5 squares. | Not yet seen: No interpretable response.
 
-## s03-P45-positions
+## s03-W49, day 49
 
-Read: Put the card above the cup.
+Count all the squares in this group.
 
-Look for: Card above cup.
+Answer: 8 squares.
 
-Follow movement commands, single fresh cup/card scene, no static folder scene. Unscored practice stays with child unless feedback needed.
+Look for: Review known counting with fresh 8-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
 
-Shown: Card above cup. | Not yet seen: No interpretable response.
+Samples: Shown: 8 squares. | Not yet seen: No interpretable response.
 
-## s03-P45-count
+## s03-R45-count, day 45
 
-Read: Fix this count picture.
+Count these squares.
 
-Look for: Five squares tracked once, total five.
+Answer: Nine squares.
 
-Teacher starts count route, child corrects omission. Unscored practice stays with child unless feedback needed.
+Look for: Same nine-square unit 2 retrieval, five minutes total, not readiness/final evidence. Known mat/optional frame for one supported try, then withdraw supplied frame.
 
-Shown: Five squares tracked once, total five. | Not yet seen: No interpretable response.
+Samples: Shown: Nine squares. | Not yet seen: No interpretable response.
 
-## s03-P46-features
+## s03-R45-numeral, day 45
 
-Read: Trace the straight part.
+Write how many.
 
-Look for: Door side traced.
+Answer: 9
 
-Visible drawn door, never concealed. Unscored practice stays with child unless feedback needed.
+Look for: Same nine-square unit 2 retrieval, five minutes total, not readiness/final evidence. Known mat/optional frame for one supported try, then withdraw supplied frame.
 
-Shown: Door side traced. | Not yet seen: No interpretable response.
+Samples: Shown: 9 | Not yet seen: No interpretable response.
 
-## s03-P46-closure
+## s03-R45-still, day 45
 
-Read: Finish this open frame.
+Does this numeral still fit?
 
-Look for: Missing doorway edge joined.
+Answer: Yes, 9, none entered or left.
 
-Partial four-edge boundary, not tactile triangle. Unscored practice stays with child unless feedback needed.
+Look for: Same nine-square unit 2 retrieval, five minutes total, not readiness/final evidence. Known mat/optional frame for one supported try, then withdraw supplied frame.
 
-Shown: Missing doorway edge joined. | Not yet seen: No interpretable response.
+Samples: Shown: Yes, 9, none entered or left. | Not yet seen: No interpretable response.
 
-## s03-P47-overlay
+## s03-P45-positions, day 45
 
-Read: Slide this piece onto its outline.
+Place the circle card above the cup.
 
-Look for: Single triangle fits matching turned outline.
+Answer: Card above cup.
 
-One piece and one outline, no choices. Unscored practice stays with child unless feedback needed.
+Look for: Follow movement commands, single fresh cup/card scene, no static folder scene. Unscored practice stays with child unless feedback needed.
 
-Shown: Single triangle fits matching turned outline. | Not yet seen: No interpretable response.
+Samples: Shown: Card above cup. | Not yet seen: No interpretable response.
 
-## s03-P47-corners
+## s03-P45-count, day 45
 
-Read: Fix the missing corner mark.
+Fix this count picture.
 
-Look for: Omitted third triangle corner marked.
+Answer: Five squares tracked once, total five.
 
-Two given corner marks on one triangle. Unscored practice stays with child unless feedback needed.
+Look for: Teacher starts count route, child corrects omission. Unscored practice stays with child unless feedback needed.
 
-Shown: Omitted third triangle corner marked. | Not yet seen: No interpretable response.
+Samples: Shown: Five squares tracked once, total five. | Not yet seen: No interpretable response.
 
-## s03-P48-boundary
+## s03-P46-features, day 46
 
-Read: Fix the side marks.
+Trace the straight part.
 
-Look for: Six sides tracked once.
+Answer: Door side traced.
 
-Single practice hexagon, one teacher mark omitted. Unscored practice stays with child unless feedback needed.
+Look for: Visible drawn door, never concealed. Unscored practice stays with child unless feedback needed.
 
-Shown: Six sides tracked once. | Not yet seen: No interpretable response.
+Samples: Shown: Door side traced. | Not yet seen: No interpretable response.
 
-## s03-P48-circle
+## s03-P46-closure, day 46
 
-Read: Trace the curved boundary.
+Finish this open frame.
 
-Look for: Circle boundary traced, no corners.
+Answer: Missing doorway edge joined.
 
-Single card, no naming pair. Unscored practice stays with child unless feedback needed.
+Look for: Partial four-edge boundary, not tactile triangle. Unscored practice stays with child unless feedback needed.
 
-Shown: Circle boundary traced, no corners. | Not yet seen: No interpretable response.
+Samples: Shown: Missing doorway edge joined. | Not yet seen: No interpretable response.
 
-## s03-P49-sort
+## s03-P47-overlay, day 47
 
-Read: Make groups in your own way.
+Slide this piece onto its outline.
 
-Look for: Any consistent geometric grouping.
+Answer: Single triangle fits its matching turned outline after turning and sliding.
 
-Self-chosen rule, no fixed headings; two public volunteers only. Unscored practice stays with child unless feedback needed.
+Look for: Turn the same-size triangle, then slide it onto its single tracing. All sides and corners coincide. A larger outline is only the same kind, never an exact fit. No choices; practice stays in the folder.
 
-Shown: Any consistent geometric grouping. | Not yet seen: No interpretable response.
+Samples: Shown: All edges and corners fit after a turn. | Not yet seen: Rejects the match because the outline is turned (error x).
 
-## s03-P49-repair
+## s03-P47-corners, day 47
 
-Read: Fix this group.
+Fix the missing corner mark.
 
-Look for: Remove curved card from straight-sided group.
+Answer: Omitted third triangle corner marked.
 
-Supplied partial group with one circle intruder. Unscored practice stays with child unless feedback needed.
+Look for: Two given corner marks on one triangle. Unscored practice stays with child unless feedback needed.
 
-Shown: Remove curved card from straight-sided group. | Not yet seen: No interpretable response.
+Samples: Shown: Omitted third triangle corner marked. | Not yet seen: No interpretable response.
 
-## s03-P45-position-below
+## s03-P48-boundary, day 48
 
-Read: Put the card below the cup.
+Fix the side marks.
 
-Look for: Card below cup.
+Answer: Six sides tracked once.
 
-One placement command and fresh movable card, fixed viewer, no folder/badge. Unscored practice stays with child unless feedback needed.
+Look for: Single practice hexagon, one teacher mark omitted. Unscored practice stays with child unless feedback needed.
 
-Shown: Card below cup. | Not yet seen: No interpretable response.
+Samples: Shown: Six sides tracked once. | Not yet seen: No interpretable response.
 
-## s03-P45-position-beside
+## s03-P48-circle, day 48
 
-Read: Put the card beside the cup.
+Trace the curved boundary.
 
-Look for: Card beside cup.
+Answer: Circle boundary traced, no corners.
 
-One placement command and fresh movable card, fixed viewer, no folder/badge. Unscored practice stays with child unless feedback needed.
+Look for: Single card, no naming pair. Unscored practice stays with child unless feedback needed.
 
-Shown: Card beside cup. | Not yet seen: No interpretable response.
+Samples: Shown: Circle boundary traced, no corners. | Not yet seen: No interpretable response.
 
-## s03-P45-position-next-to
+## s03-P49-sort, day 49
 
-Read: Put the card next to the cup.
+Make groups in your own way.
 
-Look for: Card next to cup.
+Answer: Any consistent geometric grouping.
 
-One placement command and fresh movable card, fixed viewer, no folder/badge. Unscored practice stays with child unless feedback needed.
+Look for: Self-chosen rule, no fixed headings; two public volunteers only. Unscored practice stays with child unless feedback needed.
 
-Shown: Card next to cup. | Not yet seen: No interpretable response.
+Samples: Shown: Any consistent geometric grouping. | Not yet seen: No interpretable response.
 
-## s03-P45-position-in-front-of
+## s03-P49-repair, day 49
 
-Read: Put the card in front of the cup.
+Fix this group.
 
-Look for: Card in front of cup.
+Answer: Remove curved card from straight-sided group.
 
-One placement command and fresh movable card, fixed viewer, no folder/badge. Unscored practice stays with child unless feedback needed.
+Look for: Supplied partial group with one circle intruder. Unscored practice stays with child unless feedback needed.
 
-Shown: Card in front of cup. | Not yet seen: No interpretable response.
+Samples: Shown: Remove curved card from straight-sided group. | Not yet seen: No interpretable response.
 
-## s03-P45-position-behind
+## s03-P45-position-below, day 45
 
-Read: Put the card behind the cup.
+Move your circle card below the cup.
 
-Look for: Card behind cup.
+Answer: Card below cup.
 
-One placement command and fresh movable card, fixed viewer, no folder/badge. Unscored practice stays with child unless feedback needed.
+Look for: One placement command and fresh movable card, fixed viewer, no folder/badge. Unscored practice stays with child unless feedback needed.
 
-Shown: Card behind cup. | Not yet seen: No interpretable response.
+Samples: Shown: Card below cup. | Not yet seen: No interpretable response.
 
-## s03-P49-position-beside
+## s03-P45-position-beside, day 45
 
-Read: Put the card beside the cup.
+Place the loose circle beside the cup.
 
-Look for: Card beside cup.
+Answer: Card beside cup.
 
-Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
+Look for: One placement command and fresh movable card, fixed viewer, no folder/badge. Unscored practice stays with child unless feedback needed.
 
-Shown: Card beside cup. | Not yet seen: No interpretable response.
+Samples: Shown: Card beside cup. | Not yet seen: No interpretable response.
 
-## s03-P49-position-above
+## s03-P45-position-next-to, day 45
 
-Read: Put the card above the cup.
+Slide the circle next to the cup.
 
-Look for: Card above cup.
+Answer: Card next to cup.
 
-Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
+Look for: One placement command and fresh movable card, fixed viewer, no folder/badge. Unscored practice stays with child unless feedback needed.
 
-Shown: Card above cup. | Not yet seen: No interpretable response.
+Samples: Shown: Card next to cup. | Not yet seen: No interpretable response.
 
-## s03-F46-A
+## s03-P45-position-in-front-of, day 45
 
-Read: Fix this practice picture.
+Put the card in front of the cup.
 
-Look for: The card is behind the cup from the fixed viewer; replace in front with behind.
+Answer: Card in front of cup.
 
-One five-minute priority action: Card hidden by cup called in front, versus behind. Fix viewer, move fresh card across cup. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: The card is behind the cup from the fixed viewer; replace in front with behind. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+Look for: One placement command and fresh movable card, fixed viewer, no folder/badge. Unscored practice stays with child unless feedback needed.
 
-Shown: The card is behind the cup from the fixed viewer; replace in front with behind. | Not yet seen: Reverses in front of and behind. (A).
+Samples: Shown: Card in front of cup. | Not yet seen: No interpretable response.
 
-Wrong ideas: Reverses in front of and behind. (A).
+## s03-P45-position-behind, day 45
 
-## s03-F47-D
+Put the card behind the cup.
 
-Read: Fix this practice picture.
+Answer: Card behind cup.
 
-Look for: Join the missing edge to close the four-sided frame.
+Look for: One placement command and fresh movable card, fixed viewer, no folder/badge. Unscored practice stays with child unless feedback needed.
 
-One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Join the missing edge to close the four-sided frame. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+Samples: Shown: Card behind cup. | Not yet seen: No interpretable response.
 
-Shown: Join the missing edge to close the four-sided frame. | Not yet seen: Open boundary treated as closed. (D).
+## s03-P49-position-beside, day 49
 
-Wrong ideas: Open boundary treated as closed. (D).
+Move a shape card beside this cup.
 
-## s03-F48-B
+Answer: Card beside cup.
 
-Read: Fix this practice picture.
+Look for: Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
 
-Look for: Both are squares; turning preserves four equal sides and square corners.
+Samples: Shown: Card beside cup. | Not yet seen: No interpretable response.
 
-One five-minute priority action: Turned tile called only diamond, versus square. Rotate square over tracing, track corners. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Both are squares; turning preserves four equal sides and square corners. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+## s03-P49-position-above, day 49
 
-Shown: Both are squares; turning preserves four equal sides and square corners. | Not yet seen: Rejects turned square as square. (B).
+Place your shape card above this cup.
 
-Wrong ideas: Rejects turned square as square. (B).
+Answer: Card above cup.
 
-## s03-F49-B
+Look for: Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
 
-Read: Fix this practice picture.
+Samples: Shown: Card above cup. | Not yet seen: No interpretable response.
 
-Look for: Both are squares; turning preserves four equal sides and square corners.
+## s03-F46-A, day 46
 
-One five-minute priority action: Turned tile called only diamond, versus square. Rotate square over tracing, track corners. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Both are squares; turning preserves four equal sides and square corners. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+Fix the position claim beside the cup.
 
-Shown: Both are squares; turning preserves four equal sides and square corners. | Not yet seen: Rejects turned square as square. (B).
+Answer: The card is behind the cup from the fixed viewer; replace in front with behind.
 
-Wrong ideas: Rejects turned square as square. (B).
+Look for: One five-minute priority action: Card hidden by cup called in front, versus behind. Fix viewer, move fresh card across cup. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: The card is behind the cup from the fixed viewer; replace in front with behind. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-## s03-F46-J
+Samples: Shown: The card is behind the cup from the fixed viewer; replace in front with behind. | Not yet seen: Reverses in front of and behind. (A).
 
-Read: Fix this practice picture.
+## s03-F47-D, day 47
 
-Look for: The disk is above the shelf from the fixed viewer.
+Close this open doorway outline.
 
-Alternative five-minute queued repair, not additional minutes. Disk above shelf called below, versus above. Trace up/down from reference. Correct response: The disk is above the shelf from the fixed viewer. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+Answer: Join the missing edge to close the four-sided frame.
 
-Shown: The disk is above the shelf from the fixed viewer. | Not yet seen: Reverses above and below. (J).
+Look for: One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Join the missing edge to close the four-sided frame. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Wrong ideas: Reverses above and below. (J).
+Samples: Shown: Join the missing edge to close the four-sided frame. | Not yet seen: Open boundary treated as closed. (D).
 
+## s03-F48-B, day 48
+
+Fix the claim about the tilted tile.
+
+Answer: Both are squares; turning preserves four equal sides and square corners.
+
+Look for: One five-minute priority action: Turned tile called only diamond, versus square. Rotate square over tracing, track corners. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Both are squares; turning preserves four equal sides and square corners. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+
+Samples: Shown: Both are squares; turning preserves four equal sides and square corners. | Not yet seen: Rejects turned square as square. (B).
+
+## s03-F49-B, day 49
+
+Correct the label on this turned card.
+
+Answer: Both are squares; turning preserves four equal sides and square corners.
+
+Look for: One five-minute priority action: Turned tile called only diamond, versus square. Rotate square over tracing, track corners. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Both are squares; turning preserves four equal sides and square corners. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+
+Samples: Shown: Both are squares; turning preserves four equal sides and square corners. | Not yet seen: Rejects turned square as square. (B).
+
+## s03-F46-J, day 46
+
+Fix the word beside the shelf.
+
+Answer: The disk is above the shelf from the fixed viewer.
+
+Look for: Alternative five-minute queued repair, not additional minutes. Disk above shelf called below, versus above. Trace up/down from reference. Correct response: The disk is above the shelf from the fixed viewer. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+
+Samples: Shown: The disk is above the shelf from the fixed viewer. | Not yet seen: Reverses above and below. (J).
+
+## s03-K45-hook, day 45
+
+What can we notice about these shapes and things?
+
+Answer: A shape or position observation about the circle card and box.
+
+Look for: Accept pointing at the round boundary or indicating a placement; opening question only. Practice stays in the folder, unscored.
+
+Samples: Shown: The card looks round. | Not yet seen: No interpretable observation. (error x).
+
+## s03-R45-retry-count, day 45
+
+Count the squares on the clear mat.
+
+Answer: Four paper squares.
+
+Look for: Four fresh large squares on a blank Counting mat; touch or move each exactly once. Practice stays in the folder, unscored.
+
+Samples: Shown: Four, with four touches. | Not yet seen: Skips one square and says three. (error x).
+
+## s03-R45-retry-numeral, day 45
+
+Write a numeral for this mat's group.
+
+Answer: 4
+
+Look for: Same four squares after counting; match numeral to that quantity. Practice stays in the folder, unscored.
+
+Samples: Shown: 4 beside the four-square group. | Not yet seen: 5 beside the four-square group. (error x).
+
+## s03-K46-curve, day 46
+
+Trace the round part.
+
+Answer: The circular lid outline is traced.
+
+Look for: Visible circle alone; trace curve without straight corners. Practice stays in the folder, unscored.
+
+Samples: Shown: Continuous curved trace. | Not yet seen: Treats curve as a straight segment. (error x).
+
+## s03-K46-point, day 46
+
+Mark where two straight parts meet.
+
+Answer: Any corner of the visible open doorway frame.
+
+Look for: Same visible frame; mark join where direction changes, not mid-segment. Practice stays in the folder, unscored.
+
+Samples: Shown: A dot at a corner. | Not yet seen: Dot midway along a straight segment. (error x).
+
+## s03-R46-retry-count, day 46
+
+Count the squares moved across the mat.
+
+Answer: Six paper squares.
+
+Look for: Six fresh squares on Counting mat; move each across counted-uncounted boundary once. Practice stays in the folder, unscored.
+
+Samples: Shown: Six, with one move per square. | Not yet seen: Counts one square twice and says seven. (error x).
+
+## s03-R46-retry-numeral, day 46
+
+Label this counted group with its numeral.
+
+Answer: 6
+
+Look for: Same six squares after counting; retain numeral beside group. Practice stays in the folder, unscored.
+
+Samples: Shown: 6 beside the six-square group. | Not yet seen: 5 beside the six-square group. (error x).
+
+## s03-K47-circle, day 47
+
+Trace the larger circle.
+
+Answer: The larger single circle outline is traced.
+
+Look for: One small circle piece and one larger circle outline, no choices. Small piece cannot cover larger boundary. Same round shape, different size. Practice stays in the folder, unscored.
+
+Samples: Shown: Traces larger circle without claiming exact coverage. | Not yet seen: Says small piece covers whole larger outline. (error x).
+
+## s03-K47-square, day 47
+
+Turn this piece to fit its outline.
+
+Answer: Square piece fits its single same-size turned tracing.
+
+Look for: One square piece and one same-size tracing, no choices. Turn without bending; sides/corners coincide. Practice stays in the folder, unscored.
+
+Samples: Shown: All edges fit after turning. | Not yet seen: Rejects it because it is turned. (error B).
+
+## s03-K48-sides, day 48
+
+Mark each straight side once.
+
+Answer: Three separate sides marked on the single practice triangle.
+
+Look for: Use broad triangle from shape-cards.md alone; start corner, one stroke midway on each side. Practice stays in the folder, unscored.
+
+Samples: Shown: Three side marks. | Not yet seen: Counts first side again and makes four marks. (error x).
+
+## s03-K48-corners, day 48
+
+Mark each corner once.
+
+Answer: Six corners marked on the single regular hexagon.
+
+Look for: Regular hexagon from shape-cards.md alone; start mark prevents another lap. Practice stays in the folder, unscored.
+
+Samples: Shown: Six distinct corner dots. | Not yet seen: Marks five corners and omits one. (error x).
+
+## s03-K48-equal, day 48
+
+Mark sides that fit the same strip.
+
+Answer: All six sides of the regular hexagon match the side-length strip.
+
+Look for: Adult-cut strip fits one side; move to each other side without stretching. Equal describes compared side lengths. Practice stays in the folder, unscored.
+
+Samples: Shown: All six side lengths match. | Not yet seen: Calls two sides unequal because they point different ways. (error x).
+
+## s03-K48-rectangle, day 48
+
+Mark sides that fit this strip.
+
+Answer: The two long sides of the single nonsquare rectangle.
+
+Look for: Use wide rectangle from shape-cards.md alone. Strip fits long side, exceeds short sides. Folded corner fits each corner. Practice stays in the folder, unscored.
+
+Samples: Shown: Marks two long sides; short sides do not fit. | Not yet seen: Marks all four as the same length. (error x).
+
+## s03-P49-rule, day 49
+
+Tell your grouping rule.
+
+Answer: Any stated boundary feature matching the child-chosen groups.
+
+Look for: Four familiar practice cards; child-chosen groups, no supplied headings. Accept straight/curved, corners/no corners or another consistent geometric feature. Practice stays in the folder, unscored.
+
+Samples: Shown: These have straight sides; this one is round. | Not yet seen: These go here because I like them, with no shape feature. (error x).
+
+## s03-P49-count, day 49
+
+Count the cards in this group.
+
+Answer: Three straight-sided cards.
+
+Look for: After repairing the supplied straight-side group, count triangle, square and hexagon once each. Circle is outside. Practice stays in the folder, unscored.
+
+Samples: Shown: Three, with a touch to each member. | Not yet seen: Counts the removed circle too and says four. (error x).
+
+## s03-F47-J, day 47
+
+Correct the word next to the disk.
+
+Answer: The disk is above the shelf.
+
+Look for: Alternative priority repair only, not extra minutes. Draw fresh disk above shelf with wrong claim below; child corrects using upward trace from shelf. Practice stays in the folder.
+
+Samples: Shown: Traces upward and corrects to above. | Not yet seen: Calls upper disk below (error J).
+
+## s03-C48, day 48
+
+Show one way these are alike.
+
+Answer: Both the small circle and large oval have closed curved boundaries and no corners.
+
+Look for: Exit box on student page. First five Connected feature correction minutes: 0.5 launch/collect, six 45-second descriptions, simultaneous paper marks for all. One shared-feature response, not a difference. | Shape: One common feature on a reserved circle/oval pair; practice corrects a single boundary.
+
+Samples: Shown: marks both curved closed boundaries. | Not yet seen: marks a corner on the circle; record the observed feature without inventing an error letter.
+
+## s03-F1-behind, day 47
+
+Where is this object?
+
+Answer: Behind the box.
+
+Look for: Indicate only the circle card relative to the box on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: behind the box, with target located. | Not yet seen: reverses the indicated relationship (A).
+
+## s03-F1-48-1, day 48
+
+Where is this object?
+
+Answer: Above the rectangular tray.
+
+Look for: Collection day 48; use only this day's assigned roster cells, never repeat a secure response. Indicate only the clock relative to the tray on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: above the rectangular tray, with target located. | Not yet seen: reverses the indicated relationship (J).
+
+## s03-F1-48-2, day 48
+
+Where is this object?
+
+Answer: Below the rectangular tray.
+
+Look for: Collection day 48; use only this day's assigned roster cells, never repeat a secure response. Indicate only the tile relative to the tray on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: below the rectangular tray, with target located. | Not yet seen: reverses the indicated relationship (J).
+
+## s03-F1-48-3, day 48
+
+Where is this object?
+
+Answer: Beside the hexagonal card.
+
+Look for: Collection day 48; use only this day's assigned roster cells, never repeat a secure response. Indicate only the left triangle relative to the hexagon on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: beside the hexagonal card, with target located. | Not yet seen: reverses the indicated relationship; retain the observed description without forcing a letter.
+
+## s03-F1-48-4, day 48
+
+Where is this object?
+
+Answer: Next to the circular card.
+
+Look for: Collection day 48; use only this day's assigned roster cells, never repeat a secure response. Indicate only the right triangle relative to the circle on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: next to the circular card, with target located. | Not yet seen: reverses the indicated relationship; retain the observed description without forcing a letter.
+
+## s03-F1-48-5, day 48
+
+Where is this object?
+
+Answer: In front of the box.
+
+Look for: Collection day 48; use only this day's assigned roster cells, never repeat a secure response. Indicate only the square card relative to the box on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: in front of the box, with target located. | Not yet seen: reverses the indicated relationship (A).
+
+## s03-F1-48-6, day 48
+
+Where is this object?
+
+Answer: Behind the box.
+
+Look for: Collection day 48; use only this day's assigned roster cells, never repeat a secure response. Indicate only the circle card relative to the box on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: behind the box, with target located. | Not yet seen: reverses the indicated relationship (A).
+
+## s03-F1-49-1, day 49
+
+Where is this object?
+
+Answer: Above the rectangular tray.
+
+Look for: Collection day 49; use only this day's assigned roster cells, never repeat a secure response. Indicate only the clock relative to the tray on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: above the rectangular tray, with target located. | Not yet seen: reverses the indicated relationship (J).
+
+## s03-F1-49-2, day 49
+
+Where is this object?
+
+Answer: Below the rectangular tray.
+
+Look for: Collection day 49; use only this day's assigned roster cells, never repeat a secure response. Indicate only the tile relative to the tray on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: below the rectangular tray, with target located. | Not yet seen: reverses the indicated relationship (J).
+
+## s03-F1-49-3, day 49
+
+Where is this object?
+
+Answer: Beside the hexagonal card.
+
+Look for: Collection day 49; use only this day's assigned roster cells, never repeat a secure response. Indicate only the left triangle relative to the hexagon on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: beside the hexagonal card, with target located. | Not yet seen: reverses the indicated relationship; retain the observed description without forcing a letter.
+
+## s03-F1-49-4, day 49
+
+Where is this object?
+
+Answer: Next to the circular card.
+
+Look for: Collection day 49; use only this day's assigned roster cells, never repeat a secure response. Indicate only the right triangle relative to the circle on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: next to the circular card, with target located. | Not yet seen: reverses the indicated relationship; retain the observed description without forcing a letter.
+
+## s03-F1-49-5, day 49
+
+Where is this object?
+
+Answer: In front of the box.
+
+Look for: Collection day 49; use only this day's assigned roster cells, never repeat a secure response. Indicate only the square card relative to the box on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: in front of the box, with target located. | Not yet seen: reverses the indicated relationship (A).
+
+## s03-F1-49-6, day 49
+
+Where is this object?
+
+Answer: Behind the box.
+
+Look for: Collection day 49; use only this day's assigned roster cells, never repeat a secure response. Indicate only the circle card relative to the box on the covered assessment display. Child marks that target and gives one response; no extra question. F1 cell order: above, below, beside, next to, in front of, behind. Collect once per child in cells 1 to 180 across days 47 to 56, eighteen cells a day: 13.5 heard minutes plus 1.5 setup. Keep each component separately. | Shape: Describe one indicated relationship on the reserved classroom display; teaching follows movement commands with different objects.
+
+Samples: Shown: behind the box, with target located. | Not yet seen: reverses the indicated relationship (A).
 

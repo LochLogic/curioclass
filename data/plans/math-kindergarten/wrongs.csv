@@ -516,12 +516,12 @@ s02-P44-familiar,Leaves the blue double-border square on the red mat.,,,F,"Assig
 s03-X45,In front of folder.,,,A,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X46,Closed triangle despite gap.,,,D,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X47,"None, turned target cannot be square.",,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-X48,Turned figure cannot be square.,,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-X48,Turned figure cannot be square.,,,B,"Rejects the reserved turned square; assign B only from the observed response, not from a missing comparison."
 s03-X49,Not with triangles because too thin.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X50,Thin closed three-sided figure not triangle.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X52,Open join called complete.,,,D,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-X53,Only big.,,,F,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-X53,Only color.,,,L,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-X53,Only big.,,,F,One attribute is enough; only big fails to identify an attribute.
+s03-X53,Only color.,,,L,"One attribute is enough; color alone is not a length, height, weight or capacity attribute."
 s03-X54,Straight-edged longer from unaligned endpoint.,,,G,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X54,Turning made longer.,,,M,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X55,Large ring envelope must be heavier because bigger.,,,H,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
@@ -537,46 +537,26 @@ s03-F1-paper,Hidden circle marked in front.,,,A,"Assign only from observed actio
 s03-F1-paper,Lower tile marked above tray.,,,J,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F5-paper,Only big.,,,F,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F5-paper,Only color.,,,L,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F1-talk-58,Hidden circle called in front.,,,A,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F1-talk-58,Lower tile called above.,,,J,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F2-talk-58,Turned square rejected.,,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F2-talk-58,Thin triangle rejected.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F5-talk-58,Only big.,,,F,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F5-talk-58,Only color.,,,L,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F6-weight-58,Larger tub must be heavier.,,,H,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F6-capacity-58,Tall cup holds more because taller.,,,I,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F1-talk-59,Hidden circle called in front.,,,A,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F1-talk-59,Lower tile called above.,,,J,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F2-talk-59,Turned square rejected.,,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F2-talk-59,Thin triangle rejected.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-F6-capacity-58,Tall cup holds more because taller.,,,I,Chooses tallest from height without choosing and directing a fair real transfer; I. Either valid source direction is accepted.
 s03-F5-talk-59,Only big.,,,F,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F5-talk-59,Only color.,,,L,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F6-weight-59,Larger tub must be heavier.,,,H,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F6-capacity-59,Tall cup holds more because taller.,,,I,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F1-talk-60,Hidden circle called in front.,,,A,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F1-talk-60,Lower tile called above.,,,J,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F2-talk-60,Turned square rejected.,,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F2-talk-60,Thin triangle rejected.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-F6-capacity-59,Tall cup holds more because taller.,,,I,Chooses tallest from height without choosing and directing a fair real transfer; I. Either valid source direction is accepted.
 s03-F5-talk-60,Only big.,,,F,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F5-talk-60,Only color.,,,L,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F6-weight-60,Larger tub must be heavier.,,,H,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F6-capacity-60,Tall cup holds more because taller.,,,I,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F1-talk-61,Hidden circle called in front.,,,A,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F1-talk-61,Lower tile called above.,,,J,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F2-talk-61,Turned square rejected.,,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F2-talk-61,Thin triangle rejected.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-F6-capacity-60,Tall cup holds more because taller.,,,I,Chooses tallest from height without choosing and directing a fair real transfer; I. Either valid source direction is accepted.
 s03-F5-talk-61,Only big.,,,F,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F5-talk-61,Only color.,,,L,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F6-weight-61,Larger tub must be heavier.,,,H,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F6-capacity-61,Tall cup holds more because taller.,,,I,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F1-talk-62,Hidden circle called in front.,,,A,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F1-talk-62,Lower tile called above.,,,J,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F2-talk-62,Turned square rejected.,,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F2-talk-62,Thin triangle rejected.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-F6-capacity-61,Tall cup holds more because taller.,,,I,Chooses tallest from height without choosing and directing a fair real transfer; I. Either valid source direction is accepted.
 s03-F5-talk-62,Only big.,,,F,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F5-talk-62,Only color.,,,L,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F6-weight-62,Larger tub must be heavier.,,,H,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-F6-capacity-62,Tall cup holds more because taller.,,,I,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-F6-capacity-62,Tall cup holds more because taller.,,,I,Chooses tallest from height without choosing and directing a fair real transfer; I. Either valid source direction is accepted.
 s03-F2-paper,Turned square rejected.,,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F2-paper,Thin triangle rejected.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F3-build,Open model called complete.,,,D,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
@@ -1915,3 +1895,79 @@ s02-K36-1,Says eight after one square joins eight.,,,H,Assign a letter only from
 s02-K36-2,Chooses 8 because its printed mark is larger.,,,J,Assign a letter only from an observed action or explanation; record help separately.
 s02-P36-1,Counts nine correctly but writes 6.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P36-3,Says same despite the extra square.,,,H,Assign a letter only from an observed action or explanation; record help separately.
+s03-F1-behind,In front of the box.,,,A,Observed reversal from the fixed viewing point.
+s03-F1-talk-58,Clock below the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-talk-59,Tile above the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-talk-62,Square card behind the box.,,,A,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-talk-59,Too thin to be a triangle.,,,C,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-talk-60,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F5-talk-58-2,Only big.,,,F,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-58-2,Only color.,,,L,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-58-3,Only big.,,,F,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-58-3,Only color.,,,L,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-59-2,Only big.,,,F,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-59-2,Only color.,,,L,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-59-3,Only big.,,,F,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-59-3,Only color.,,,L,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-60-2,Only big.,,,F,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-60-2,Only color.,,,L,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-60-3,Only big.,,,F,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-60-3,Only color.,,,L,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-61-2,Only big.,,,F,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-61-2,Only color.,,,L,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-61-3,Only big.,,,F,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-61-3,Only color.,,,L,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-62-2,Only big.,,,F,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-62-2,Only color.,,,L,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-62-3,Only big.,,,F,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F5-talk-62-3,Only color.,,,L,"Fails to identify a new measurable attribute on this separate ask; record repeated valid attributes descriptively, with no invented letter."
+s03-F1-48-1,Clock below the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-48-2,Tile above the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-48-5,Square card behind the box.,,,A,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-48-6,In front of the box.,,,A,Observed reversal from the fixed viewing point.
+s03-F1-49-1,Clock below the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-49-2,Tile above the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-49-5,Square card behind the box.,,,A,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-49-6,In front of the box.,,,A,Observed reversal from the fixed viewing point.
+s03-F1-50-1,Clock below the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-50-2,Tile above the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-50-5,Square card behind the box.,,,A,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-50-6,In front of the box.,,,A,Observed reversal from the fixed viewing point.
+s03-F1-51-1,Clock below the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-51-2,Tile above the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-51-5,Square card behind the box.,,,A,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-51-6,In front of the box.,,,A,Observed reversal from the fixed viewing point.
+s03-F1-52-1,Clock below the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-52-2,Tile above the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-52-5,Square card behind the box.,,,A,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-52-6,In front of the box.,,,A,Observed reversal from the fixed viewing point.
+s03-F1-53-1,Clock below the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-53-2,Tile above the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-53-5,Square card behind the box.,,,A,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-53-6,In front of the box.,,,A,Observed reversal from the fixed viewing point.
+s03-F1-54-1,Clock below the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-54-2,Tile above the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-54-5,Square card behind the box.,,,A,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-54-6,In front of the box.,,,A,Observed reversal from the fixed viewing point.
+s03-F1-55-1,Clock below the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-55-2,Tile above the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-55-5,Square card behind the box.,,,A,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-55-6,In front of the box.,,,A,Observed reversal from the fixed viewing point.
+s03-F1-56-1,Clock below the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-56-2,Tile above the tray.,,,J,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-56-5,Square card behind the box.,,,A,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F1-56-6,In front of the box.,,,A,Observed reversal from the fixed viewing point.
+s03-F2-51-2,Too thin to be a triangle.,,,C,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-51-3,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-52-2,Too thin to be a triangle.,,,C,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-52-3,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-53-2,Too thin to be a triangle.,,,C,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-53-3,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-54-2,Too thin to be a triangle.,,,C,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-54-3,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-55-2,Too thin to be a triangle.,,,C,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-55-3,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-56-2,Too thin to be a triangle.,,,C,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-56-3,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-57-2,Too thin to be a triangle.,,,C,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-F2-57-3,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.

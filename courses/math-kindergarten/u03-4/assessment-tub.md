@@ -3,20 +3,17 @@ piece: blank
 course: math-kindergarten
 unit: 3.4
 stretch: 3
-version: draft, not yet taught
+version: draft 2, not yet taught
 credit: All ours.
+teacher_note: Actual reserved tub visible. Day 58 four paper minutes; three independent attribute asks occur in the assigned conference on days 58 to 62, using this retained paper. Do not supply attribute labels.
 ---
 # One tub
 
 <div style="font-size:18pt">
 
-<div style="font-size:18pt">
+Mark things about this tub we could measure.
 
-Mark things about this tub we could compare.
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 270" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><path d="M250,85 L262,175 L388,175 L400,85 Z" /><path d="M250,85 Q325.0,63 400,85" /><rect x="20" y="20" width="185" height="215" stroke-dasharray="7 6" stroke="#777"/><rect x="440" y="20" width="180" height="215" stroke-dasharray="7 6" stroke="#777"/></g></svg>
-
-</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 285" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><path d="M220,45 L235,130 L405,130 L420,45 Z"/><path d="M220,45 Q320,20 420,45"/><rect x="30" y="170" width="170" height="90" stroke="#777" stroke-dasharray="6 5"/><rect x="235" y="170" width="170" height="90" stroke="#777" stroke-dasharray="6 5"/><rect x="440" y="170" width="170" height="90" stroke="#777" stroke-dasharray="6 5"/></g></svg>
 
 Invented for practice.
 

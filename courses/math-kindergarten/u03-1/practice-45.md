@@ -12,7 +12,7 @@ credit: All ours.
 
 <div style="font-size:18pt">
 
-Put the card above the cup.
+Place the circle card above the cup.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><path d="M350,65 L358,145 L427,145 L435,65 Z" /><circle cx="105" cy="100" r="28" /><line x1="520" y1="215" x2="520" y2="170" /><polygon points="520,170 513,181 527,181" fill="black"/></g></svg>
 

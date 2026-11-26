@@ -12,7 +12,7 @@ credit: All ours.
 
 <div style="font-size:18pt">
 
-Fix this practice picture.
+Correct the tall-cup claim using this adult pour.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 270" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><path d="M110,35 L118,175 L157,175 L165,35 Z" /><path d="M350,105 L358,175 L522,175 L530,105 Z" /><text x="75" y="225" font-size="28" fill="black" stroke="none">taller holds more</text></g></svg>
 

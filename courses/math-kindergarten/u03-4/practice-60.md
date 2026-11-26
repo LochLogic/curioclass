@@ -14,7 +14,7 @@ credit: All ours.
 
 Turn this piece to fit the space.
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><g transform="rotate(0 122.5 97.5)"><polygon points="75,140 170,140 107.30000000000001,55" /></g><g transform="rotate(65 397.5 97.5)"><polygon points="350,140 445,140 382.3,55" /></g><circle cx="75" cy="140" r="6" /><circle cx="170" cy="140" r="6" /></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><path d="M90,160 L90,55 L270,160 Z" stroke-dasharray="8 6"/><polygon points="90,55 90,160 170,160" fill="#ddd"/><g transform="translate(380 25) rotate(-20 90 52.5)"><polygon points="0,0 80,105 180,105"/></g></g></svg>
 
 Show the matching outside edges.
 

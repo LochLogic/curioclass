@@ -3,547 +3,530 @@ piece: story
 course: math-kindergarten
 unit: 3.4
 stretch: 3
-version: draft, not yet taught
+version: draft 2, not yet taught
 credit: All ours.
 ---
-# Section 3.4 answer key
+# Section 3.4 teacher-only answer key
 
-Teacher only. Keep off child pages and displays. One marking scale: shown, shown with help, not yet seen. Missing evidence is pending in the schedule, not a fourth score. Motor/communication access alone is not mathematical help; record separately. A paper mark does not prove an unheard name or reason.
+Read every student prompt aloud. Use shown, shown with help, not yet seen. An unheard name or explanation remains not yet seen, even if paper is correct. Record motor or communication access separately from mathematical help. Never print these answers on a child card.
 
-## s03-X57
+## s03-X57, day 57
 
-Read: Draw the shape I built.
+Draw the shape I built.
 
-Look for: Recognizable closed six-sided outline with two long/four shorter edges matching built irregular frame.
+Answer: Recognizable closed six-sided outline with two long/four shorter edges matching built irregular frame.
 
-Display reserved frame; freehand on blank paper. Approximate lengths accepted, six corners/closure retained. First drawing unscored; hear six. | Shape: Copy complete unfamiliar built boundary onto blank paper; practice finishes partial dotted drawings, never whole-shape copying.
+Look for: Display reserved frame; freehand on blank paper. Approximate lengths accepted, six corners/closure retained. First drawing unscored; hear six. | Shape: Copy complete unfamiliar built boundary onto blank paper; practice finishes partial dotted drawings, never whole-shape copying.
 
-Shown: Recognizable closed six-sided outline with two long/four shorter edges matching built irregular frame. | Not yet seen: Calls open drawing complete. (D).
+Samples: Shown: Recognizable closed six-sided outline with two long/four shorter edges matching built irregular frame. | Not yet seen: Calls open drawing complete. (D).
 
-Wrong ideas: Calls open drawing complete. (D).
+## s03-X58, day 58
 
-## s03-X58
+Tell about the shape you found here.
 
-Read: Tell about the shape you found here.
+Answer: Triangle, three straight joined sides/three corners, beside doorway.
 
-Look for: Triangle, three straight joined sides/three corners, beside doorway.
+Look for: Original hallway drawing default. Mark pennant boundary, hear six names/features/location. Optional school visit uses fresh pennant. | Shape: Transfer naming/location to reserved hallway boundary; practice room sketches from seats, never this hallway pennant.
 
-Original hallway drawing default. Mark pennant boundary, hear six names/features/location. Optional school visit uses fresh pennant. | Shape: Transfer naming/location to reserved hallway boundary; practice room sketches from seats, never this hallway pennant.
+Samples: Shown: Triangle, three straight joined sides/three corners, beside doorway. | Not yet seen: Too narrow to be triangle. (C).
 
-Shown: Triangle, three straight joined sides/three corners, beside doorway. | Not yet seen: Too narrow to be triangle. (C).
+## s03-X59, day 59
 
-Wrong ideas: Too narrow to be triangle. (C).
+Make one larger shape with full sides touching.
 
-## s03-X59
+Answer: Longer rectangle, unequal rectangles meet at entire matching short edges, no gap/overlap.
 
-Read: Make one larger shape with full sides touching.
+Look for: Same width, different lengths; trace outside/join on paper; rotations accepted; hear six whole names. | Shape: Compose two fresh rectangles without outline; practice partial multi-piece puzzle correction, never independent two-rectangle join.
 
-Look for: Longer rectangle, unequal rectangles meet at entire matching short edges, no gap/overlap.
+Samples: Shown: Longer rectangle, unequal rectangles meet at entire matching short edges, no gap/overlap. | Not yet seen: Gap at claimed join. (E).
 
-Same width, different lengths; trace outside/join on paper; rotations accepted; hear six whole names. | Shape: Compose two fresh rectangles without outline; practice partial multi-piece puzzle correction, never independent two-rectangle join.
-
-Shown: Longer rectangle, unequal rectangles meet at entire matching short edges, no gap/overlap. | Not yet seen: Gap at claimed join. (E).
-
-Wrong ideas: Gap at claimed join. (E); Overlap instead of edge contact. (K).
-
-## s03-X60
+## s03-X60, day 60
 
 Which shape is the same kind as this one?
 
-Look for: The larger differently turned irregular hexagon, with six joined straight sides and six corners.
+Answer: The larger differently turned irregular hexagon, with six joined straight sides and six corners.
 
-Join the small irregular hexagon to its rotated enlarged copy; trace six sides and mark six corresponding corners. Pentagon and quadrilateral distractors do not match. | Shape: Independently match an irregular six-sided boundary by its features. Practice rotates a single piece in an incomplete mat, never this target or choice array.
+Look for: Join the small irregular hexagon to its rotated enlarged copy; trace six sides and mark six corresponding corners. Pentagon and quadrilateral distractors do not match. | Shape: Independently match an irregular six-sided boundary by its features. Practice rotates a single piece in an incomplete mat, never this target or choice array.
 
-Shown: Links the two six-sided outlines and marks corresponding sides/corners. | Not yet seen: Selects the five-sided outline; reason unobserved, error x.
+Samples: Shown: Links the two six-sided outlines and marks corresponding sides/corners. | Not yet seen: Selects the five-sided outline; reason unobserved, error x.
 
-Wrong ideas: Selects the five-sided outline, error x.
+## s03-F1-paper, day 58
 
-## s03-F1-paper
+Mark the shapes you will describe.
 
-Read: Mark the shapes you will describe.
+Answer: Circle clock above rectangular tray; square tile below tray; triangle beside hexagon; another triangle next to circle; square in front of box; circle behind box, from viewing arrow.
 
-Look for: Circle clock above rectangular tray; square tile below tray; triangle beside hexagon; another triangle next to circle; square in front of box; circle behind box, from viewing arrow.
+Look for: Day 58 six independent minutes finish the retained F1 marks. Use earlier assigned cells from days 47 to 56; no repeat interview, no supplied names. Paper alone never proves an unheard position word. | Shape: Complete marks for six already observed reserved display relationships; no new evidence case.
 
-Six paper minutes; marks locate objects for separately heard description, not proof of words. | Shape: Describe six relationships on original reserved display; practice single placement commands, never multi-object display description.
+Samples: Shown: Circle clock above rectangular tray; square tile below tray; triangle beside hexagon; another triangle next to circle; square in front of box; circle behind box, from viewing arrow. | Not yet seen: Hidden circle marked in front. (A).
 
-Shown: Circle clock above rectangular tray; square tile below tray; triangle beside hexagon; another triangle next to circle; square in front of box; circle behind box, from viewing arrow. | Not yet seen: Hidden circle marked in front. (A).
+## s03-F5-paper, day 58
 
-Wrong ideas: Hidden circle marked in front. (A); Lower tile marked above tray. (J).
+Mark things about this tub we could measure.
 
-## s03-F5-paper
+Answer: At least three measurable attributes of same tub: length, height, weight, how much it holds, with corresponding marks or gestures.
 
-Read: Mark things about this tub we could compare.
+Look for: Four independent paper minutes on day 58 prepare a blank three-panel tub record. Retain gestures/marks and clarify each with its separate F5 prompt at the assigned turn, days 58 to 62. No fourth attribute requested. | Shape: Paper record of three distinct attributes of one tub; practice specifies one attribute of a different carton.
 
-Look for: At least three measurable attributes of same tub: length, height, weight, how much it holds, with corresponding marks or gestures.
+Samples: Shown: At least three measurable attributes of same tub: length, height, weight, how much it holds, with corresponding marks or gestures. | Not yet seen: Only big. (F).
 
-Four paper minutes, actual tub available. Sketch attribute gestures; oral clarification on assigned turn. | Shape: Propose several attributes of reserved tub; practice one given attribute at a time on different carton.
+## s03-F5-talk-58, day 58
 
-Shown: At least three measurable attributes of same tub: length, height, weight, how much it holds, with corresponding marks or gestures. | Not yet seen: Only big. (F).
+Show one thing about this tub we could measure.
 
-Wrong ideas: Only big. (F); Only color. (L).
+Answer: One measurable attribute of this same tub, different from earlier responses in this turn.
 
-## s03-F1-talk-58
+Look for: Children 1 to 6, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. F5 ask 1 of three, 45 seconds; record its mark/gesture before next prompt. Across the three asks accept length, height, weight or how much it holds, with three distinct attributes. | Shape: Independently propose several attributes of one reserved tub; practice supplies one attribute at a time on another carton.
 
-Read: Describe where these shapes are.
+Samples: Shown: indicates length; the three example responses in this turn are length, then height, then weight. Accept any other three distinct measurable attributes. | Not yet seen: only big (F); color alone is L, recorded separately.
 
-Look for: Circle clock above rectangular tray; square tile below tray; triangle beside hexagon; another triangle next to circle; square in front of box; circle behind box, from viewing arrow.
+## s03-F6-weight-58, day 58
 
-Children 1 to 6. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Describe six relationships on original reserved display; practice single placement commands, never multi-object display description.
+How do these tubs compare in weight?
 
-Shown: Circle clock above rectangular tray; square tile below tray; triangle beside hexagon; another triangle next to circle; square in front of box; circle behind box, from viewing arrow. | Not yet seen: Hidden circle called in front. (A).
+Answer: About same weight after hefting and swapping hands; no exact measured equality claimed.
 
-Wrong ideas: Hidden circle called in front. (A); Lower tile called above. (J).
+Look for: Children 1 to 6, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. Heft both sealed unequal-size tubs and swap hands, then mark the observed relationship on the paper record. 45 seconds. Apparatus is pretested to feel about the same, no claim of measured equality. | Shape: Direct about-same weight comparison on reserved tubs; practice corrects claims on different cartons.
 
-## s03-F2-talk-58
+Samples: Shown: About the same after swapping hands, with both tubs linked on paper. | Not yet seen: larger must be heavier (H).
 
-Read: Name these shapes.
+## s03-F6-capacity-58, day 58
 
-Look for: Five matched/named pairs: circles, triangles, squares, nonsquare rectangles, irregular hexagons, across size and turn.
+Show how to find which holds more.
 
-Children 1 to 6. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Independently match/name ten unseen labels in five pairs; practice one piece/outline or supplied labels, never ten-label pairing.
+Answer: Chooses a source and directs an adult to fill and pour into the empty other vessel, stopping at its rim; correctly marks the short wide vessel as holding more from space or remaining water.
 
-Shown: Five matched/named pairs: circles, triangles, squares, nonsquare rectangles, irregular hexagons, across size and turn. | Not yet seen: Turned square rejected. (B).
+Look for: Children 1 to 6, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. Capacity turn 75 seconds. Use two fresh unmarked pretested vessels. Let the child choose the source and direct the adult. Narrow to wide leaves space in wide; wide to narrow leaves water in wide after narrow fills. Child marks the real observed result on paper. Adult controls small room-temperature water amounts over tray, stops at rim, dries spills/floor. Replace failing pairs before use; missing apparatus leaves component not yet seen. | Shape: Independently choose and direct a real capacity-comparison procedure, unlike practice supplied demonstrations or E56 fixed-direction interpretation.
 
-Wrong ideas: Turned square rejected. (B); Thin triangle rejected. (C).
+Samples: Shown: chooses either valid pour direction and marks wide as holding more from real evidence. | Not yet seen: selects tall solely because taller (I).
 
-## s03-F5-talk-58
+## s03-F5-talk-59, day 59
 
-Read: What things about this tub could we measure?
+Show one thing about this tub we could measure.
 
-Look for: At least three measurable attributes of same tub: length, height, weight, how much it holds, with corresponding marks or gestures.
+Answer: One measurable attribute of this same tub, different from earlier responses in this turn.
 
-Children 1 to 6. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Propose several attributes of reserved tub; practice one given attribute at a time on different carton.
+Look for: Children 7 to 12, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. F5 ask 1 of three, 45 seconds; record its mark/gesture before next prompt. Across the three asks accept length, height, weight or how much it holds, with three distinct attributes. | Shape: Independently propose several attributes of one reserved tub; practice supplies one attribute at a time on another carton.
 
-Shown: At least three measurable attributes of same tub: length, height, weight, how much it holds, with corresponding marks or gestures. | Not yet seen: Only big. (F).
+Samples: Shown: indicates length; the three example responses in this turn are length, then height, then weight. Accept any other three distinct measurable attributes. | Not yet seen: only big (F); color alone is L, recorded separately.
 
-Wrong ideas: Only big. (F); Only color. (L).
+## s03-F6-weight-59, day 59
 
-## s03-F6-weight-58
+How do these tubs compare in weight?
 
-Read: How do these tubs compare in weight?
+Answer: About same weight after hefting and swapping hands; no exact measured equality claimed.
 
-Look for: About same weight after hefting and swapping hands; no exact measured equality claimed.
+Look for: Children 7 to 12, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. Heft both sealed unequal-size tubs and swap hands, then mark the observed relationship on the paper record. 45 seconds. Apparatus is pretested to feel about the same, no claim of measured equality. | Shape: Direct about-same weight comparison on reserved tubs; practice corrects claims on different cartons.
 
-Children 1 to 6. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
+Samples: Shown: About the same after swapping hands, with both tubs linked on paper. | Not yet seen: larger must be heavier (H).
 
-Shown: About same weight after hefting and swapping hands; no exact measured equality claimed. | Not yet seen: Larger tub must be heavier. (H).
+## s03-F6-capacity-59, day 59
 
-Wrong ideas: Larger tub must be heavier. (H).
+Show how to find which holds more.
 
-## s03-F6-capacity-58
+Answer: Chooses a source and directs an adult to fill and pour into the empty other vessel, stopping at its rim; correctly marks the short wide vessel as holding more from space or remaining water.
 
-Read: Which cup holds more?
+Look for: Children 7 to 12, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. Capacity turn 75 seconds. Use two fresh unmarked pretested vessels. Let the child choose the source and direct the adult. Narrow to wide leaves space in wide; wide to narrow leaves water in wide after narrow fills. Child marks the real observed result on paper. Adult controls small room-temperature water amounts over tray, stops at rim, dries spills/floor. Replace failing pairs before use; missing apparatus leaves component not yet seen. | Shape: Independently choose and direct a real capacity-comparison procedure, unlike practice supplied demonstrations or E56 fixed-direction interpretation.
 
-Look for: Short wide cup holds more; full tall narrow cup emptied into it leaves unfilled space.
+Samples: Shown: chooses either valid pour direction and marks wide as holding more from real evidence. | Not yet seen: selects tall solely because taller (I).
 
-Children 1 to 6. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
+## s03-F5-talk-60, day 60
 
-Shown: Short wide cup holds more; full tall narrow cup emptied into it leaves unfilled space. | Not yet seen: Tall cup holds more because taller. (I).
+Show one thing about this tub we could measure.
 
-Wrong ideas: Tall cup holds more because taller. (I).
+Answer: One measurable attribute of this same tub, different from earlier responses in this turn.
 
-## s03-F1-talk-59
+Look for: Children 13 to 18, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. F5 ask 1 of three, 45 seconds; record its mark/gesture before next prompt. Across the three asks accept length, height, weight or how much it holds, with three distinct attributes. | Shape: Independently propose several attributes of one reserved tub; practice supplies one attribute at a time on another carton.
 
-Read: Describe where these shapes are.
+Samples: Shown: indicates length; the three example responses in this turn are length, then height, then weight. Accept any other three distinct measurable attributes. | Not yet seen: only big (F); color alone is L, recorded separately.
 
-Look for: Circle clock above rectangular tray; square tile below tray; triangle beside hexagon; another triangle next to circle; square in front of box; circle behind box, from viewing arrow.
+## s03-F6-weight-60, day 60
 
-Children 7 to 12. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Describe six relationships on original reserved display; practice single placement commands, never multi-object display description.
+How do these tubs compare in weight?
 
-Shown: Circle clock above rectangular tray; square tile below tray; triangle beside hexagon; another triangle next to circle; square in front of box; circle behind box, from viewing arrow. | Not yet seen: Hidden circle called in front. (A).
+Answer: About same weight after hefting and swapping hands; no exact measured equality claimed.
 
-Wrong ideas: Hidden circle called in front. (A); Lower tile called above. (J).
+Look for: Children 13 to 18, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. Heft both sealed unequal-size tubs and swap hands, then mark the observed relationship on the paper record. 45 seconds. Apparatus is pretested to feel about the same, no claim of measured equality. | Shape: Direct about-same weight comparison on reserved tubs; practice corrects claims on different cartons.
 
-## s03-F2-talk-59
+Samples: Shown: About the same after swapping hands, with both tubs linked on paper. | Not yet seen: larger must be heavier (H).
 
-Read: Name these shapes.
+## s03-F6-capacity-60, day 60
 
-Look for: Five matched/named pairs: circles, triangles, squares, nonsquare rectangles, irregular hexagons, across size and turn.
+Show how to find which holds more.
 
-Children 7 to 12. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Independently match/name ten unseen labels in five pairs; practice one piece/outline or supplied labels, never ten-label pairing.
+Answer: Chooses a source and directs an adult to fill and pour into the empty other vessel, stopping at its rim; correctly marks the short wide vessel as holding more from space or remaining water.
 
-Shown: Five matched/named pairs: circles, triangles, squares, nonsquare rectangles, irregular hexagons, across size and turn. | Not yet seen: Turned square rejected. (B).
+Look for: Children 13 to 18, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. Capacity turn 75 seconds. Use two fresh unmarked pretested vessels. Let the child choose the source and direct the adult. Narrow to wide leaves space in wide; wide to narrow leaves water in wide after narrow fills. Child marks the real observed result on paper. Adult controls small room-temperature water amounts over tray, stops at rim, dries spills/floor. Replace failing pairs before use; missing apparatus leaves component not yet seen. | Shape: Independently choose and direct a real capacity-comparison procedure, unlike practice supplied demonstrations or E56 fixed-direction interpretation.
 
-Wrong ideas: Turned square rejected. (B); Thin triangle rejected. (C).
+Samples: Shown: chooses either valid pour direction and marks wide as holding more from real evidence. | Not yet seen: selects tall solely because taller (I).
 
-## s03-F5-talk-59
+## s03-F2-paper, day 60
 
-Read: What things about this tub could we measure?
+Join labels with the same shape.
 
-Look for: At least three measurable attributes of same tub: length, height, weight, how much it holds, with corresponding marks or gestures.
+Answer: Five pairs joined: circles, triangles, squares, nonsquare rectangles and hexagons. This paper does not establish unheard names.
 
-Children 7 to 12. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Propose several attributes of reserved tub; practice one given attribute at a time on different carton.
+Look for: Four independent paper minutes on day 60, after all five naming components were heard across days 50 to 57. Retain sheet, no naming interview. | Shape: Independently join ten reserved labels into same-class pairs; practice only single pieces or supplied labels.
 
-Shown: At least three measurable attributes of same tub: length, height, weight, how much it holds, with corresponding marks or gestures. | Not yet seen: Only big. (F).
+Samples: Shown: Five matched/named pairs: circles, triangles, squares, nonsquare rectangles, irregular hexagons, across size and turn. | Not yet seen: Turned square rejected. (B).
 
-Wrong ideas: Only big. (F); Only color. (L).
+## s03-F3-build, day 59
 
-## s03-F6-weight-59
+Build this coaster's flat shape.
 
-Read: How do these tubs compare in weight?
+Answer: Four joined equal sides/square corners match square coaster boundary.
 
-Look for: About same weight after hefting and swapping hands; no exact measured equality claimed.
+Look for: Three independent minutes; trace build on blank paper. Real paper coaster available for overlay, no prebuilt model. | Shape: Independent reserved coaster model from loose strips; practice partial frames, never object model.
 
-Children 7 to 12. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
+Samples: Shown: Four joined equal sides/square corners match square coaster boundary. | Not yet seen: Open model called complete. (D).
 
-Shown: About same weight after hefting and swapping hands; no exact measured equality claimed. | Not yet seen: Larger tub must be heavier. (H).
+## s03-F3-draw, day 59
 
-Wrong ideas: Larger tub must be heavier. (H).
+Draw this tent face.
 
-## s03-F6-capacity-59
+Answer: Recognizable closed three-straight-sided drawing matching tent face.
 
-Read: Which cup holds more?
+Look for: Three paper minutes, separate prompt after coaster. Approximate lengths accepted, no neatness score. | Shape: Independent reserved triangular object-face drawing; practice supplied partial drawing, never blank object-to-triangle.
 
-Look for: Short wide cup holds more; full tall narrow cup emptied into it leaves unfilled space.
+Samples: Shown: Recognizable closed three-straight-sided drawing matching tent face. | Not yet seen: Open drawing called complete. (D).
 
-Children 7 to 12. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
+## s03-F6-length, day 59
 
-Shown: Short wide cup holds more; full tall narrow cup emptied into it leaves unfilled space. | Not yet seen: Tall cup holds more because taller. (I).
+Show the length comparison.
 
-Wrong ideas: Tall cup holds more because taller. (I).
+Answer: Wave strip longer than dotted after common-end alignment; exposed wave end marked.
 
-## s03-F1-talk-60
+Look for: Two independent minutes per component, six total. Physically align before drawing starts/endpoints; general supervision flags ambiguous methods for reserve follow-up. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
 
-Read: Describe where these shapes are.
+Samples: Shown: Wave strip longer than dotted after common-end alignment; exposed wave end marked. | Not yet seen: Uses unaligned far ends. (G).
 
-Look for: Circle clock above rectangular tray; square tile below tray; triangle beside hexagon; another triangle next to circle; square in front of box; circle behind box, from viewing arrow.
+## s03-F6-height, day 59
 
-Children 13 to 18. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Describe six relationships on original reserved display; practice single placement commands, never multi-object display description.
+Show the height comparison.
 
-Shown: Circle clock above rectangular tray; square tile below tray; triangle beside hexagon; another triangle next to circle; square in front of box; circle behind box, from viewing arrow. | Not yet seen: Hidden circle called in front. (A).
+Answer: Ring tower taller than striped on common baseline; exposed ring top marked.
 
-Wrong ideas: Hidden circle called in front. (A); Lower tile called above. (J).
+Look for: Two independent minutes per component, six total. Physically align before drawing starts/endpoints; general supervision flags ambiguous methods for reserve follow-up. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
 
-## s03-F2-talk-60
+Samples: Shown: Ring tower taller than striped on common baseline; exposed ring top marked. | Not yet seen: Uses different baselines. (G).
 
-Read: Name these shapes.
+## s03-F6-equal, day 59
 
-Look for: Five matched/named pairs: circles, triangles, squares, nonsquare rectangles, irregular hexagons, across size and turn.
+Show whether these strips have the same length.
 
-Children 13 to 18. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Independently match/name ten unseen labels in five pairs; practice one piece/outline or supplied labels, never ten-label pairing.
+Answer: Same length after turning/alignment; both far ends coincide.
 
-Shown: Five matched/named pairs: circles, triangles, squares, nonsquare rectangles, irregular hexagons, across size and turn. | Not yet seen: Turned square rejected. (B).
+Look for: Two independent minutes per component, six total. Physically align before drawing starts/endpoints; general supervision flags ambiguous methods for reserve follow-up. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
 
-Wrong ideas: Turned square rejected. (B); Thin triangle rejected. (C).
+Samples: Shown: Same length after turning/alignment; both far ends coincide. | Not yet seen: Turning made longer. (M).
 
-## s03-F5-talk-60
+## s03-W57, day 57
 
-Read: What things about this tub could we measure?
+Count the squares before sliding them into the tray.
 
-Look for: At least three measurable attributes of same tub: length, height, weight, how much it holds, with corresponding marks or gestures.
+Answer: 5 squares.
 
-Children 13 to 18. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Propose several attributes of reserved tub; practice one given attribute at a time on different carton.
+Look for: Review known counting with fresh 5-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
 
-Shown: At least three measurable attributes of same tub: length, height, weight, how much it holds, with corresponding marks or gestures. | Not yet seen: Only big. (F).
+Samples: Shown: 5 squares. | Not yet seen: No interpretable response.
 
-Wrong ideas: Only big. (F); Only color. (L).
+## s03-W58, day 58
 
-## s03-F6-weight-60
+Touch each square in this spread-out group once.
 
-Read: How do these tubs compare in weight?
+Answer: 8 squares.
 
-Look for: About same weight after hefting and swapping hands; no exact measured equality claimed.
+Look for: Review known counting with fresh 8-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
 
-Children 13 to 18. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
+Samples: Shown: 8 squares. | Not yet seen: No interpretable response.
 
-Shown: About same weight after hefting and swapping hands; no exact measured equality claimed. | Not yet seen: Larger tub must be heavier. (H).
+## s03-W59, day 59
 
-Wrong ideas: Larger tub must be heavier. (H).
+Count these paper squares as a partner watches.
 
-## s03-F6-capacity-60
+Answer: 6 squares.
 
-Read: Which cup holds more?
+Look for: Review known counting with fresh 6-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
 
-Look for: Short wide cup holds more; full tall narrow cup emptied into it leaves unfilled space.
+Samples: Shown: 6 squares. | Not yet seen: No interpretable response.
 
-Children 13 to 18. Five 45-second asks plus 30 seconds setup/reset per child, 25.5 minutes in Final conferences and centers 28; 2.5 reserve. Record subcomponents separately, unfinished pending. No paper writing in spoken prompt. Use actual apparatus. Adult pretests equal-feeling sealed tubs and child-directed real cup pour over tray, no loss/spill. Names/relations only credited if heard. If 45 seconds insufficient use reserve/missing-evidence time. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
+## s03-W60, day 60
 
-Shown: Short wide cup holds more; full tall narrow cup emptied into it leaves unfilled space. | Not yet seen: Tall cup holds more because taller. (I).
+Move the squares into the counted side one at a time.
 
-Wrong ideas: Tall cup holds more because taller. (I).
+Answer: 5 squares.
 
-## s03-F2-paper
+Look for: Review known counting with fresh 5-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
 
-Read: Join labels with the same shape.
+Samples: Shown: 5 squares. | Not yet seen: No interpretable response.
 
-Look for: Five matched/named pairs: circles, triangles, squares, nonsquare rectangles, irregular hexagons, across size and turn.
+## s03-P57-dots, day 57
 
-Four paper minutes; retain sheet. Names heard once in assigned day 58 to 62 turn, not recollected. | Shape: Independently match/name ten unseen labels in five pairs; practice one piece/outline or supplied labels, never ten-label pairing.
+Finish the missing edge.
 
-Shown: Five matched/named pairs: circles, triangles, squares, nonsquare rectangles, irregular hexagons, across size and turn. | Not yet seen: Turned square rejected. (B).
+Answer: One missing rectangle edge closes boundary.
 
-Wrong ideas: Turned square rejected. (B); Thin triangle rejected. (C).
+Look for: Three supplied edges/dots, never blank whole-shape copying. Unscored practice stays with child unless feedback needed.
 
-## s03-F3-build
+Samples: Shown: One missing rectangle edge closes boundary. | Not yet seen: No interpretable response.
 
-Read: Build this coaster's flat shape.
+## s03-P57-join, day 57
 
-Look for: Four joined equal sides/square corners match square coaster boundary.
+Fix the joining line.
 
-Three independent minutes; trace build on blank paper. Real paper coaster available for overlay, no prebuilt model. | Shape: Independent reserved coaster model from loose strips; practice partial frames, never object model.
+Answer: Given adjacent squares share full edge.
 
-Shown: Four joined equal sides/square corners match square coaster boundary. | Not yet seen: Open model called complete. (D).
+Look for: Known partial composition, no triangle window/final rectangle. Unscored practice stays with child unless feedback needed.
 
-Wrong ideas: Open model called complete. (D); Nonsquare rhombus substituted. (N).
+Samples: Shown: Given adjacent squares share full edge. | Not yet seen: No interpretable response.
 
-## s03-F3-draw
+## s03-P58-room, day 58
 
-Read: Draw this tent face.
+Fix the room-shape sketch.
 
-Look for: Recognizable closed three-straight-sided drawing matching tent face.
+Answer: Missing writing-board edge restored.
 
-Three paper minutes, separate prompt after coaster. Approximate lengths accepted, no neatness score. | Shape: Independent reserved triangular object-face drawing; practice supplied partial drawing, never blank object-to-triangle.
+Look for: One supplied room boundary from seats, no hallway pennant or multi-object display. Unscored practice stays with child unless feedback needed.
 
-Shown: Recognizable closed three-straight-sided drawing matching tent face. | Not yet seen: Open drawing called complete. (D).
+Samples: Shown: Missing writing-board edge restored. | Not yet seen: No interpretable response.
 
-Wrong ideas: Open drawing called complete. (D).
+## s03-P58-features, day 58
 
-## s03-F6-length
+Fix the missing side mark.
 
-Read: Show the length comparison.
+Answer: Six sides on single practice hexagon tracked.
 
-Look for: Wave strip longer than dotted after common-end alignment; exposed wave end marked.
+Look for: Single card different from reserved labels/frame. Unscored practice stays with child unless feedback needed.
 
-Two independent minutes per component, six total. Physically align before drawing starts/endpoints; general supervision flags ambiguous methods for reserve follow-up. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
+Samples: Shown: Six sides on single practice hexagon tracked. | Not yet seen: No interpretable response.
 
-Shown: Wave strip longer than dotted after common-end alignment; exposed wave end marked. | Not yet seen: Uses unaligned far ends. (G).
+## s03-P59-puzzle, day 59
 
-Wrong ideas: Uses unaligned far ends. (G).
+Fix this partial puzzle.
 
-## s03-F6-height
+Answer: Moved triangle meets full edges in supplied multi-piece trapezoid.
 
-Read: Show the height comparison.
+Look for: Known partial fit, not two rectangles. Unscored practice stays with child unless feedback needed.
 
-Look for: Ring tower taller than striped on common baseline; exposed ring top marked.
+Samples: Shown: Moved triangle meets full edges in supplied multi-piece trapezoid. | Not yet seen: No interpretable response.
 
-Two independent minutes per component, six total. Physically align before drawing starts/endpoints; general supervision flags ambiguous methods for reserve follow-up. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
+## s03-P59-count, day 59
 
-Shown: Ring tower taller than striped on common baseline; exposed ring top marked. | Not yet seen: Uses different baselines. (G).
+Count the pieces in this design.
 
-Wrong ideas: Uses different baselines. (G).
+Answer: Three pieces.
 
-## s03-F6-equal
+Look for: Known supplied three-triangle design, counting only. Unscored practice stays with child unless feedback needed.
 
-Read: Show whether these strips have the same length.
+Samples: Shown: Three pieces. | Not yet seen: No interpretable response.
 
-Look for: Same length after turning/alignment; both far ends coincide.
+## s03-P60-mat, day 60
 
-Two independent minutes per component, six total. Physically align before drawing starts/endpoints; general supervision flags ambiguous methods for reserve follow-up. | Shape: Reserved five-component comparisons: wave/dot lengths, ring/stripe towers, turned equal strips, unequal-size about-same-weight tubs, tall-to-wide transfer. Never practice cases.
+Turn this piece to fit the space.
 
-Shown: Same length after turning/alignment; both far ends coincide. | Not yet seen: Turning made longer. (M).
+Answer: Single triangle rotates into missing triangular part.
 
-Wrong ideas: Turning made longer. (M); Uses unaligned far ends. (G).
+Look for: One missing part in supplied mat, not choice array. Unscored practice stays with child unless feedback needed.
 
-## s03-W57
+Samples: Shown: Single triangle rotates into missing triangular part. | Not yet seen: No interpretable response.
 
-Read: Count these paper squares.
+## s03-P60-fills, day 60
 
-Look for: 5 squares.
+Show the matching outside edges.
 
-Review known counting with fresh 5-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
+Answer: Both completed regular-hexagon fills have same outside.
 
-Shown: 5 squares. | Not yet seen: No interpretable response.
+Look for: Teacher-completed six-triangle/three-rhombus fills; compare only, never independent two-way fill. Unscored practice stays with child unless feedback needed.
 
-## s03-W58
+Samples: Shown: Both completed regular-hexagon fills have same outside. | Not yet seen: No interpretable response.
 
-Read: Count these paper squares.
+## s03-P57-position-below, day 57
 
-Look for: 8 squares.
+Put the card below the cup.
 
-Review known counting with fresh 8-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
+Answer: Card below cup.
 
-Shown: 8 squares. | Not yet seen: No interpretable response.
+Look for: Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
 
-## s03-W59
+Samples: Shown: Card below cup. | Not yet seen: No interpretable response.
 
-Read: Count these paper squares.
+## s03-P57-position-beside, day 57
 
-Look for: 6 squares.
+Put the card beside the cup.
 
-Review known counting with fresh 6-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
+Answer: Card beside cup.
 
-Shown: 6 squares. | Not yet seen: No interpretable response.
+Look for: Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
 
-## s03-W60
+Samples: Shown: Card beside cup. | Not yet seen: No interpretable response.
 
-Read: Count these paper squares.
+## s03-F57-I, day 57
 
-Look for: 5 squares.
+Correct the tall-cup claim using this adult pour.
 
-Review known counting with fresh 5-square group within ten, optional oral continuation toward twenty. Re-establish earlier-unit review if needed. Unscored, not final evidence.
+Answer: The short wide practice cup holds more, established by the actual adult transfer; height alone cannot decide.
 
-Shown: 5 squares. | Not yet seen: No interpretable response.
+Look for: One five-minute priority action: Tall narrow practice vessel versus short wider holding more. Adult transfer, mark space or liquid. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: The short wide practice cup holds more, established by the actual adult transfer; height alone cannot decide. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-## s03-P57-dots
+Samples: Shown: The short wide practice cup holds more, established by the actual adult transfer; height alone cannot decide. | Not yet seen: Tallest must hold most. (I).
 
-Read: Finish the missing edge.
+## s03-F58-D, day 58
 
-Look for: One missing rectangle edge closes boundary.
+Join the opening in this five-edge drawing.
 
-Three supplied edges/dots, never blank whole-shape copying. Unscored practice stays with child unless feedback needed.
+Answer: Join the missing edge to close the four-sided frame.
 
-Shown: One missing rectangle edge closes boundary. | Not yet seen: No interpretable response.
+Look for: One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Join the missing edge to close the four-sided frame. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-## s03-P57-join
+Samples: Shown: Join the missing edge to close the four-sided frame. | Not yet seen: Open boundary treated as closed. (D).
 
-Read: Fix the joining line.
+## s03-F59-C, day 59
 
-Look for: Given adjacent squares share full edge.
+Correct this narrow flag label with boundary marks.
 
-Known partial composition, no triangle window/final rectangle. Unscored practice stays with child unless feedback needed.
+Answer: It is a triangle: three straight sides are joined.
 
-Shown: Given adjacent squares share full edge. | Not yet seen: No interpretable response.
+Look for: One five-minute priority action: Thin flag rejected, versus traced triangle. Trace varied closed three-sided boundaries. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: It is a triangle: three straight sides are joined. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-## s03-P58-room
+Samples: Shown: It is a triangle: three straight sides are joined. | Not yet seen: Rejects narrow triangle as triangle. (C).
 
-Read: Fix the room-shape sketch.
+## s03-F60-E, day 60
 
-Look for: Missing writing-board edge restored.
+Move the loose puzzle piece to close the gap.
 
-One supplied room boundary from seats, no hallway pennant or multi-object display. Unscored practice stays with child unless feedback needed.
+Answer: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap.
 
-Shown: Missing writing-board edge restored. | Not yet seen: No interpretable response.
+Look for: One five-minute priority action: Spaced puzzle versus full-edge fit. Move piece until full sides touch. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-## s03-P58-features
+Samples: Shown: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap. | Not yet seen: Gap at claimed join. (E).
 
-Read: Fix the missing side mark.
+## s03-F60-K, day 60
 
-Look for: Six sides on single practice hexagon tracked.
+Fix this overlap between the supplied pieces.
 
-Single card different from reserved labels/frame. Unscored practice stays with child unless feedback needed.
+Answer: Separate the overlapping pieces and fit full sides without overlap.
 
-Shown: Six sides on single practice hexagon tracked. | Not yet seen: No interpretable response.
+Look for: Alternative five-minute queued repair, not additional minutes. Overlap versus full-edge contact. Lift, separate, fit without overlap. Correct response: Separate the overlapping pieces and fit full sides without overlap. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-## s03-P59-puzzle
+Samples: Shown: Separate the overlapping pieces and fit full sides without overlap. | Not yet seen: Overlaps edge-joining pieces. (K).
 
-Read: Fix this partial puzzle.
+## s03-F60-N, day 60
 
-Look for: Moved triangle meets full edges in supplied multi-piece trapezoid.
+Check the corners of this slanted tile against the square.
 
-Known partial fit, not two rectangles. Unscored practice stays with child unless feedback needed.
+Answer: Only the right figure is square; the left equal-sided slanted figure does not match its square corners.
 
-Shown: Moved triangle meets full edges in supplied multi-piece trapezoid. | Not yet seen: No interpretable response.
+Look for: Alternative five-minute queued repair, not additional minutes. Slanted equal-sided tile versus square corners. Overlay corners on square tile. Correct response: Only the right figure is square; the left equal-sided slanted figure does not match its square corners. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-## s03-P59-count
+Samples: Shown: Only the right figure is square; the left equal-sided slanted figure does not match its square corners. | Not yet seen: Nonsquare rhombus called square from equal sides. (N).
 
-Read: Count the pieces in this design.
+## s03-F5-talk-58-2, day 58
 
-Look for: Three pieces.
+Show a different thing we could measure.
 
-Known supplied three-triangle design, counting only. Unscored practice stays with child unless feedback needed.
+Answer: One measurable attribute of this same tub, different from earlier responses in this turn.
 
-Shown: Three pieces. | Not yet seen: No interpretable response.
+Look for: Children 1 to 6, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. F5 ask 2 of three, 45 seconds; record its mark/gesture before next prompt. Across the three asks accept length, height, weight or how much it holds, with three distinct attributes. | Shape: Independently propose several attributes of one reserved tub; practice supplies one attribute at a time on another carton.
 
-## s03-P60-mat
+Samples: Shown: indicates height; the three example responses in this turn are length, then height, then weight. Accept any other three distinct measurable attributes. | Not yet seen: only big (F); color alone is L, recorded separately.
 
-Read: Turn this piece to fit the space.
+## s03-F5-talk-58-3, day 58
 
-Look for: Single triangle rotates into missing triangular part.
+Show one more different thing we could measure.
 
-One missing part in supplied mat, not choice array. Unscored practice stays with child unless feedback needed.
+Answer: One measurable attribute of this same tub, different from earlier responses in this turn.
 
-Shown: Single triangle rotates into missing triangular part. | Not yet seen: No interpretable response.
+Look for: Children 1 to 6, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. F5 ask 3 of three, 45 seconds; record its mark/gesture before next prompt. Across the three asks accept length, height, weight or how much it holds, with three distinct attributes. | Shape: Independently propose several attributes of one reserved tub; practice supplies one attribute at a time on another carton.
 
-## s03-P60-fills
+Samples: Shown: indicates weight; the three example responses in this turn are length, then height, then weight. Accept any other three distinct measurable attributes. | Not yet seen: only big (F); color alone is L, recorded separately.
 
-Read: Show the matching outside edges.
+## s03-F5-talk-59-2, day 59
 
-Look for: Both completed regular-hexagon fills have same outside.
+Show a different thing we could measure.
 
-Teacher-completed six-triangle/three-rhombus fills; compare only, never independent two-way fill. Unscored practice stays with child unless feedback needed.
+Answer: One measurable attribute of this same tub, different from earlier responses in this turn.
 
-Shown: Both completed regular-hexagon fills have same outside. | Not yet seen: No interpretable response.
+Look for: Children 7 to 12, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. F5 ask 2 of three, 45 seconds; record its mark/gesture before next prompt. Across the three asks accept length, height, weight or how much it holds, with three distinct attributes. | Shape: Independently propose several attributes of one reserved tub; practice supplies one attribute at a time on another carton.
 
-## s03-P57-position-below
+Samples: Shown: indicates height; the three example responses in this turn are length, then height, then weight. Accept any other three distinct measurable attributes. | Not yet seen: only big (F); color alone is L, recorded separately.
 
-Read: Put the card below the cup.
+## s03-F5-talk-59-3, day 59
 
-Look for: Card below cup.
+Show one more different thing we could measure.
 
-Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
+Answer: One measurable attribute of this same tub, different from earlier responses in this turn.
 
-Shown: Card below cup. | Not yet seen: No interpretable response.
+Look for: Children 7 to 12, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. F5 ask 3 of three, 45 seconds; record its mark/gesture before next prompt. Across the three asks accept length, height, weight or how much it holds, with three distinct attributes. | Shape: Independently propose several attributes of one reserved tub; practice supplies one attribute at a time on another carton.
 
-## s03-P57-position-beside
+Samples: Shown: indicates weight; the three example responses in this turn are length, then height, then weight. Accept any other three distinct measurable attributes. | Not yet seen: only big (F); color alone is L, recorded separately.
 
-Read: Put the card beside the cup.
+## s03-F5-talk-60-2, day 60
 
-Look for: Card beside cup.
+Show a different thing we could measure.
 
-Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
+Answer: One measurable attribute of this same tub, different from earlier responses in this turn.
 
-Shown: Card beside cup. | Not yet seen: No interpretable response.
+Look for: Children 13 to 18, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. F5 ask 2 of three, 45 seconds; record its mark/gesture before next prompt. Across the three asks accept length, height, weight or how much it holds, with three distinct attributes. | Shape: Independently propose several attributes of one reserved tub; practice supplies one attribute at a time on another carton.
 
-## s03-F57-I
+Samples: Shown: indicates height; the three example responses in this turn are length, then height, then weight. Accept any other three distinct measurable attributes. | Not yet seen: only big (F); color alone is L, recorded separately.
 
-Read: Fix this practice picture.
+## s03-F5-talk-60-3, day 60
 
-Look for: The short wide practice cup holds more, established by the actual adult transfer; height alone cannot decide.
+Show one more different thing we could measure.
 
-One five-minute priority action: Tall narrow practice vessel versus short wider holding more. Adult transfer, mark space or liquid. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: The short wide practice cup holds more, established by the actual adult transfer; height alone cannot decide. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+Answer: One measurable attribute of this same tub, different from earlier responses in this turn.
 
-Shown: The short wide practice cup holds more, established by the actual adult transfer; height alone cannot decide. | Not yet seen: Tallest must hold most. (I).
+Look for: Children 13 to 18, Final conferences and centers. Five independent asks total 4.25 minutes plus 0.25 reset/record per child; six children take 27 minutes. No simultaneous teacher-led task. F5 ask 3 of three, 45 seconds; record its mark/gesture before next prompt. Across the three asks accept length, height, weight or how much it holds, with three distinct attributes. | Shape: Independently propose several attributes of one reserved tub; practice supplies one attribute at a time on another carton.
 
-Wrong ideas: Tallest must hold most. (I).
+Samples: Shown: indicates weight; the three example responses in this turn are length, then height, then weight. Accept any other three distinct measurable attributes. | Not yet seen: only big (F); color alone is L, recorded separately.
 
-## s03-F58-D
+## s03-F2-57-1, day 57
 
-Read: Fix this practice picture.
+What kind of shape is this pair?
 
-Look for: Join the missing edge to close the four-sided frame.
+Answer: Circle.
 
-One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Join the missing edge to close the four-sided frame. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+Look for: Collection day 57; use only this day's assigned roster cells, never repeat a secure response. Show only the reserved circle size/turn pair. One class-name ask; child marks features on both pictures. Collect F2 cells 1 to 150 child first, class second. Days 50 to 56 hear twenty cells in sixteen minutes; day 57 hears last ten in eight minutes. No paper-only inference of an unheard name. Keep unseen pairs covered. | Shape: One class name for two unfamiliar size/turn variants, not supplied-label correction.
 
-Shown: Join the missing edge to close the four-sided frame. | Not yet seen: Open boundary treated as closed. (D).
+Samples: Shown: circle, with corresponding boundaries marked. | Not yet seen: gives another shape name; retain words without a forced letter.
 
-Wrong ideas: Open boundary treated as closed. (D).
+## s03-F2-57-2, day 57
 
-## s03-F59-C
+What kind of shape is this pair?
 
-Read: Fix this practice picture.
+Answer: Triangle.
 
-Look for: It is a triangle: three straight sides are joined.
+Look for: Collection day 57; use only this day's assigned roster cells, never repeat a secure response. Show only the reserved triangle size/turn pair. One class-name ask; child marks features on both pictures. Collect F2 cells 1 to 150 child first, class second. Days 50 to 56 hear twenty cells in sixteen minutes; day 57 hears last ten in eight minutes. No paper-only inference of an unheard name. Keep unseen pairs covered. | Shape: One class name for two unfamiliar size/turn variants, not supplied-label correction.
 
-One five-minute priority action: Thin flag rejected, versus traced triangle. Trace varied closed three-sided boundaries. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: It is a triangle: three straight sides are joined. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+Samples: Shown: triangle, with corresponding boundaries marked. | Not yet seen: rejects the thin triangle (C).
 
-Shown: It is a triangle: three straight sides are joined. | Not yet seen: Rejects narrow triangle as triangle. (C).
+## s03-F2-57-3, day 57
 
-Wrong ideas: Rejects narrow triangle as triangle. (C).
+What kind of shape is this pair?
 
-## s03-F60-E
+Answer: Square.
 
-Read: Fix this practice picture.
+Look for: Collection day 57; use only this day's assigned roster cells, never repeat a secure response. Show only the reserved square size/turn pair. One class-name ask; child marks features on both pictures. Collect F2 cells 1 to 150 child first, class second. Days 50 to 56 hear twenty cells in sixteen minutes; day 57 hears last ten in eight minutes. No paper-only inference of an unheard name. Keep unseen pairs covered. | Shape: One class name for two unfamiliar size/turn variants, not supplied-label correction.
 
-Look for: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap.
+Samples: Shown: square, with corresponding boundaries marked. | Not yet seen: rejects the turned square (B).
 
-One five-minute priority action: Spaced puzzle versus full-edge fit. Move piece until full sides touch. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+## s03-F2-57-4, day 57
 
-Shown: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap. | Not yet seen: Gap at claimed join. (E).
+What kind of shape is this pair?
 
-Wrong ideas: Gap at claimed join. (E).
+Answer: Rectangle.
 
-## s03-F60-K
+Look for: Collection day 57; use only this day's assigned roster cells, never repeat a secure response. Show only the reserved rectangle size/turn pair. One class-name ask; child marks features on both pictures. Collect F2 cells 1 to 150 child first, class second. Days 50 to 56 hear twenty cells in sixteen minutes; day 57 hears last ten in eight minutes. No paper-only inference of an unheard name. Keep unseen pairs covered. | Shape: One class name for two unfamiliar size/turn variants, not supplied-label correction.
 
-Read: Fix this practice picture.
+Samples: Shown: rectangle, with corresponding boundaries marked. | Not yet seen: gives another shape name; retain words without a forced letter.
 
-Look for: Separate the overlapping pieces and fit full sides without overlap.
+## s03-F2-57-5, day 57
 
-Alternative five-minute queued repair, not additional minutes. Overlap versus full-edge contact. Lift, separate, fit without overlap. Correct response: Separate the overlapping pieces and fit full sides without overlap. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+What kind of shape is this pair?
 
-Shown: Separate the overlapping pieces and fit full sides without overlap. | Not yet seen: Overlaps edge-joining pieces. (K).
+Answer: Hexagon.
 
-Wrong ideas: Overlaps edge-joining pieces. (K).
+Look for: Collection day 57; use only this day's assigned roster cells, never repeat a secure response. Show only the reserved hexagon size/turn pair. One class-name ask; child marks features on both pictures. Collect F2 cells 1 to 150 child first, class second. Days 50 to 56 hear twenty cells in sixteen minutes; day 57 hears last ten in eight minutes. No paper-only inference of an unheard name. Keep unseen pairs covered. | Shape: One class name for two unfamiliar size/turn variants, not supplied-label correction.
 
-## s03-F60-N
-
-Read: Fix this practice picture.
-
-Look for: Only the right figure is square; the left equal-sided slanted figure does not match its square corners.
-
-Alternative five-minute queued repair, not additional minutes. Slanted equal-sided tile versus square corners. Overlay corners on square tile. Correct response: Only the right figure is square; the left equal-sided slanted figure does not match its square corners. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
-
-Shown: Only the right figure is square; the left equal-sided slanted figure does not match its square corners. | Not yet seen: Nonsquare rhombus called square from equal sides. (N).
-
-Wrong ideas: Nonsquare rhombus called square from equal sides. (N).
-
+Samples: Shown: hexagon, with corresponding boundaries marked. | Not yet seen: gives another shape name; retain words without a forced letter.
 
