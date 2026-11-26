@@ -205,7 +205,7 @@ take library grade 5 gets each ten-minute reteach from grade 5's show-me case on
 | g8-diverse-team: change from a teammate's view and from another class's findings | 9 | g9-group-shapes-solution | A decision memo whose choice follows from the group's findings |
 
 Every grade 8 row hands on to a grade 9 row, and each grade 9 row's assumes names it back. Grade 9 rows open as
-retrieval tasks (one year back). Pending(docs/courses/library-and-research-skills-grades-9-to-12/frame.md): built from the progression rows; once the 9 to 12 frame is written, its unit numbers are cited here.
+retrieval tasks (one year back). The 9 to 12 frame opens grade 9 units 1 and 2 with retrieval tasks on this frame's grade 8 units 7 to 9, naming the same row pairs.
 
 ## Models carried
 
