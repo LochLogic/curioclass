@@ -134,6 +134,11 @@ def split(cell):
     return [x.strip() for x in re.split(r';|,', cell or '') if x.strip()]
 
 
+def split_codes(cell):
+    # standard codes split at semicolons only: career cluster codes hold commas (career pathways read, 2026-11-25)
+    return [x.strip() for x in (cell or '').split(';') if x.strip()]
+
+
 def path_of(slug):
     return os.path.join(ROOT, 'docs', 'courses', slug, 'frame.md')
 
@@ -567,10 +572,10 @@ def check(slug, cal_rows=None):
             if i in seen:
                 fails.append('%s: skill %s in units %s and %s' % (slug, i, seen[i], n))
             seen[i] = n
-            owned_codes |= {c for c in split(own[i]['standard']) if not c.startswith('~')}
-            contrib |= {c[1:] for c in split(own[i]['standard']) if c.startswith('~')}
+            owned_codes |= {c for c in split_codes(own[i]['standard']) if not c.startswith('~')}
+            contrib |= {c[1:] for c in split_codes(own[i]['standard']) if c.startswith('~')}
         cell = u.get('Owned standards', '').replace('`', '')
-        listed = {c for c in split(cell) if not c.startswith('~') and c.lower() not in ('none', 'none owned')}
+        listed = {c for c in split_codes(cell) if not c.startswith('~') and c.lower() not in ('none', 'none owned')}
         for c in sorted(listed - owned_codes):
             fails.append('%s unit %s: owned standard %s is not owned by the unit\'s rows' % (slug, n, c))
         for c in sorted(owned_codes - listed):
