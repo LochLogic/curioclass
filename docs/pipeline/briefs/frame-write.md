@@ -190,3 +190,33 @@ lead. Say these things in the frame so nobody below it has to guess:
 
 Final message, short: per course the units and days, the check result, the "For the lead" items, what you were
 unsure of.
+
+## After-core courses (added 2026-11-25)
+The after-core subjects (arts, health, physical education, computer science, career education, SEL, ELD, library)
+use this brief with these changes. Their own pages outrank the core lessons above where they differ.
+
+- **Read first, in place of items 2, 6 and 7:** the subject's docs/courses/<subject>/STANDARD.md and APPROACH.md in
+  full, docs/agents/lenses/<subject>.md, the subject's row in docs/ADOPTION-BAR-SUBJECTS.md ("Before a scope and
+  sequence in this subject") and its bar part, every DESK-ANSWERS.md entry that names the subject, and the
+  subject's stage 1 and progression reviews (docs/reviews/prework-<subject>-*, progression-<subject>-*). The core
+  frames the course leans on are read at their Units tables only (docs/courses/<core course>/frame.md).
+- **The rows:** the course's `rows` cell in data/plans/course-list.csv selects them (`file:` the progression file,
+  `grade:` the grades, `strand:` the strand, `|` between values). `python -X utf8 scripts/frame.py check <slug>`
+  checks every one is placed once.
+- **Band courses** (one course for several grade years, or the high school arts levels): one frame file for the
+  band. The Units table gains a `Year` column right after `#` (`K`, `1`, `2`, or `Level 1` and so on), units are
+  numbered through the band (unit 1 of year 2 follows the last unit of year 1), and each year is whole on its own:
+  its own units, its own end-of-unit assessments and its own mid-year and year-end course-level checks. The
+  **Days.** bullet gives the band's total first, then the days a year ("192: 64 a year for three years").
+  `frame.py` spreads the band's days over that many school years and notes the unit days by year. A subject page
+  that says "one frame per grade year" is met by this shape: each year's part of the file is that year's frame, and
+  the scope and sequence later writes one year at a time.
+- **Doses:** use the minutes, sessions a week and days a year the subject's STANDARD.md and APPROACH.md settle; never
+  the core 160-day yardstick unless the subject sets it. A smaller course means fewer minutes a week, never fewer
+  units (Cory 2026-11-15).
+- **Course-level checks:** grades K to 8 after-core checks do not take the core subjects' target weeks; place them
+  so they do not fall in a week (K to 5) where docs/courses/CALENDAR.md shows a core check for that grade, and say
+  which weeks.
+- **Gates the subject sets:** a subject page that holds building until a condition is met (ELD: C11 proven in the
+  core courses) still gets its frame now (Cory 2026-11-25: "please see if you can get them all completed"); the
+  frame says in **For the lead** which later stage the condition holds.

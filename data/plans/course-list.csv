@@ -57,65 +57,65 @@ economics,Economics,social-studies,12,yes,economics,economics,prefix:econ-,sprin
 us-government-and-politics,US Government and Politics,social-studies,12,yes,government,government,prefix:gov-,fall,,,,active
 psychology,Psychology,social-studies,12,,psychology,psychology,prefix:psy-,year,,,,active
 us-history-ii,US History II,social-studies,12,yes,us-hist-hs,us-hist-hs,prefix:us2-,year,,,,active
-dance-grades-k-to-2,"Dance, grades K to 2",arts,k-2,,dance-k-2,dance-k-2,,year,,,,active
-media-arts-grades-k-to-2,"Media Arts, grades K to 2",arts,k-2,,media-arts-k-2,media-arts-k-2,,year,,,,active
-music-grades-k-to-2,"Music, grades K to 2",arts,k-2,,music-k-2,music-k-2,,year,,,,active
-theater-grades-k-to-2,"Theater, grades K to 2",arts,k-2,,theater-k-2,theater-k-2,,year,,,,active
-visual-arts-grades-k-to-2,"Visual Arts, grades K to 2",arts,k-2,,visual-arts-k-2,visual-arts-k-2,,year,,,,active
-dance-grades-3-to-5,"Dance, grades 3 to 5",arts,3-5,,dance-3-5,dance-3-5,,year,,,,active
-media-arts-grades-3-to-5,"Media Arts, grades 3 to 5",arts,3-5,,media-arts-3-5,media-arts-3-5,,year,,,,active
-music-grades-3-to-5,"Music, grades 3 to 5",arts,3-5,,music-3-5,music-3-5,,year,,,,active
-theater-grades-3-to-5,"Theater, grades 3 to 5",arts,3-5,,theater-3-5,theater-3-5,,year,,,,active
-visual-arts-grades-3-to-5,"Visual Arts, grades 3 to 5",arts,3-5,,visual-arts-3-5,visual-arts-3-5,,year,,,,active
-dance-grades-6-to-8,"Dance, grades 6 to 8",arts,6-8,,dance-6-8,dance-6-8,,year,,,,active
-media-arts-grades-6-to-8,"Media Arts, grades 6 to 8",arts,6-8,,media-arts-6-8,media-arts-6-8,,year,,,,active
-music-grades-6-to-8,"Music, grades 6 to 8",arts,6-8,,music-6-8,music-6-8,,year,,,,active
-theater-grades-6-to-8,"Theater, grades 6 to 8",arts,6-8,,theater-6-8,theater-6-8,,year,,,,active
-visual-arts-grades-6-to-8,"Visual Arts, grades 6 to 8",arts,6-8,,visual-arts-6-8,visual-arts-6-8,,year,,,,active
-dance-grades-9-to-12,"Dance, grades 9 to 12",arts,9-12,,dance-9-12,dance-9-12,,year,,,,active
-media-arts-grades-9-to-12,"Media Arts, grades 9 to 12",arts,9-12,,media-arts-9-12,media-arts-9-12,,year,,,,active
-music-grades-9-to-12,"Music, grades 9 to 12",arts,9-12,,music-9-12,music-9-12,,year,,,,active
-theater-grades-9-to-12,"Theater, grades 9 to 12",arts,9-12,,theater-9-12,theater-9-12,,year,,,,active
-visual-arts-grades-9-to-12,"Visual Arts, grades 9 to 12",arts,9-12,,visual-arts-9-12,visual-arts-9-12,,year,,,,active
-health-grades-k-to-2,"Health, grades K to 2",health-pe,k-2,yes,health-k-2,health-k-2,,year,,,,active
-physical-education-grades-k-to-2,"Physical Education, grades K to 2",health-pe,k-2,yes,pe-k-2,pe-k-2,,year,,,,active
-health-grades-3-to-5,"Health, grades 3 to 5",health-pe,3-5,yes,health-3-5,health-3-5,,year,,,,active
-physical-education-grades-3-to-5,"Physical Education, grades 3 to 5",health-pe,3-5,yes,pe-3-5,pe-3-5,,year,,,,active
-health-grades-6-to-8,"Health, grades 6 to 8",health-pe,6-8,yes,health-6-8,health-6-8,,year,,,,active
-physical-education-grades-6-to-8,"Physical Education, grades 6 to 8",health-pe,6-8,yes,pe-6-8,pe-6-8,,year,,,,active
-health-grades-9-to-12,"Health, grades 9 to 12",health-pe,9-12,yes,health-9-12,health-9-12,,year,,,,active
-physical-education-grades-9-to-12,"Physical Education, grades 9 to 12",health-pe,9-12,yes,pe-9-12,pe-9-12,,year,,,,active
-computer-science-kindergarten,"Computer Science, Kindergarten",computer-science,K,,cs-k12,cs-k12-k,,year,,,,active
-computer-science-grade-1,"Computer Science, Grade 1",computer-science,1,,cs-k12,cs-k12-1,,year,,,,active
-computer-science-grade-2,"Computer Science, Grade 2",computer-science,2,,cs-k12,cs-k12-2,,year,,,,active
-computer-science-grade-3,"Computer Science, Grade 3",computer-science,3,,cs-k12,cs-k12-3,,year,,,,active
-computer-science-grade-4,"Computer Science, Grade 4",computer-science,4,,cs-k12,cs-k12-4,,year,,,,active
-computer-science-grade-5,"Computer Science, Grade 5",computer-science,5,,cs-k12,cs-k12-5,,year,,,,active
-computer-science-grade-6,"Computer Science, Grade 6",computer-science,6,,cs-k12,cs-k12-6,,year,,,,active
-computer-science-grade-7,"Computer Science, Grade 7",computer-science,7,,cs-k12,cs-k12-7,,year,,,,active
-computer-science-grade-8,"Computer Science, Grade 8",computer-science,8,,cs-k12,cs-k12-8,,year,,,,active
-computer-science-grade-9,"Computer Science, Grade 9",computer-science,9,,cs-k12,cs-k12-9,,year,,,,active
-computer-science-grade-10,"Computer Science, Grade 10",computer-science,10,,cs-k12,cs-k12-10,,year,,,,active
-computer-science-grade-11,"Computer Science, Grade 11",computer-science,11,,cs-k12,cs-k12-11,,year,,,,active
-computer-science-grade-12,"Computer Science, Grade 12",computer-science,12,,cs-k12,cs-k12-12,,year,,,,active
+dance-grades-k-to-2,"Dance, grades K to 2",arts,k-2,,dance-k-2,dance-k-2,grade:K|1|2&strand:da,year,,,,active
+media-arts-grades-k-to-2,"Media Arts, grades K to 2",arts,k-2,,media-arts-k-2,media-arts-k-2,grade:K|1|2&strand:ma,year,,,,active
+music-grades-k-to-2,"Music, grades K to 2",arts,k-2,,music-k-2,music-k-2,grade:K|1|2&strand:mu,year,,,,active
+theater-grades-k-to-2,"Theater, grades K to 2",arts,k-2,,theater-k-2,theater-k-2,grade:K|1|2&strand:th,year,,,,active
+visual-arts-grades-k-to-2,"Visual Arts, grades K to 2",arts,k-2,,visual-arts-k-2,visual-arts-k-2,grade:K|1|2&strand:va,year,,,,active
+dance-grades-3-to-5,"Dance, grades 3 to 5",arts,3-5,,dance-3-5,dance-3-5,grade:3|4|5&strand:da,year,,,,active
+media-arts-grades-3-to-5,"Media Arts, grades 3 to 5",arts,3-5,,media-arts-3-5,media-arts-3-5,grade:3|4|5&strand:ma,year,,,,active
+music-grades-3-to-5,"Music, grades 3 to 5",arts,3-5,,music-3-5,music-3-5,grade:3|4|5&strand:mu,year,,,,active
+theater-grades-3-to-5,"Theater, grades 3 to 5",arts,3-5,,theater-3-5,theater-3-5,grade:3|4|5&strand:th,year,,,,active
+visual-arts-grades-3-to-5,"Visual Arts, grades 3 to 5",arts,3-5,,visual-arts-3-5,visual-arts-3-5,grade:3|4|5&strand:va,year,,,,active
+dance-grades-6-to-8,"Dance, grades 6 to 8",arts,6-8,,dance-6-8,dance-6-8,grade:6|7|8&strand:da,year,,,,active
+media-arts-grades-6-to-8,"Media Arts, grades 6 to 8",arts,6-8,,media-arts-6-8,media-arts-6-8,grade:6|7|8&strand:ma,year,,,,active
+music-grades-6-to-8,"Music, grades 6 to 8",arts,6-8,,music-6-8,music-6-8,grade:6|7|8&strand:mu,year,,,,active
+theater-grades-6-to-8,"Theater, grades 6 to 8",arts,6-8,,theater-6-8,theater-6-8,grade:6|7|8&strand:th,year,,,,active
+visual-arts-grades-6-to-8,"Visual Arts, grades 6 to 8",arts,6-8,,visual-arts-6-8,visual-arts-6-8,grade:6|7|8&strand:va,year,,,,active
+dance-grades-9-to-12,"Dance, grades 9 to 12",arts,9-12,,dance-9-12,dance-9-12,grade:9|10|11|12&strand:da,year,,,,active
+media-arts-grades-9-to-12,"Media Arts, grades 9 to 12",arts,9-12,,media-arts-9-12,media-arts-9-12,grade:9|10|11|12&strand:ma,year,,,,active
+music-grades-9-to-12,"Music, grades 9 to 12",arts,9-12,,music-9-12,music-9-12,grade:9|10|11|12&strand:mu,year,,,,active
+theater-grades-9-to-12,"Theater, grades 9 to 12",arts,9-12,,theater-9-12,theater-9-12,grade:9|10|11|12&strand:th,year,,,,active
+visual-arts-grades-9-to-12,"Visual Arts, grades 9 to 12",arts,9-12,,visual-arts-9-12,visual-arts-9-12,grade:9|10|11|12&strand:va,year,,,,active
+health-grades-k-to-2,"Health, grades K to 2",health-pe,k-2,yes,health-k-2,health-k-2,file:health&grade:K|1|2,year,,,,active
+physical-education-grades-k-to-2,"Physical Education, grades K to 2",health-pe,k-2,yes,pe-k-2,pe-k-2,file:physical-education&grade:K|1|2,year,,,,active
+health-grades-3-to-5,"Health, grades 3 to 5",health-pe,3-5,yes,health-3-5,health-3-5,file:health&grade:3|4|5,year,,,,active
+physical-education-grades-3-to-5,"Physical Education, grades 3 to 5",health-pe,3-5,yes,pe-3-5,pe-3-5,file:physical-education&grade:3|4|5,year,,,,active
+health-grades-6-to-8,"Health, grades 6 to 8",health-pe,6-8,yes,health-6-8,health-6-8,file:health&grade:6|7|8,year,,,,active
+physical-education-grades-6-to-8,"Physical Education, grades 6 to 8",health-pe,6-8,yes,pe-6-8,pe-6-8,file:physical-education&grade:6|7|8,year,,,,active
+health-grades-9-to-12,"Health, grades 9 to 12",health-pe,9-12,yes,health-9-12,health-9-12,file:health&grade:9,year,,,,active
+physical-education-grades-9-to-12,"Physical Education, grades 9 to 12",health-pe,9-12,yes,pe-9-12,pe-9-12,file:physical-education&grade:9|10|11|12,year,,,,active
+computer-science-kindergarten,"Computer Science, Kindergarten",computer-science,K,,cs-k12,cs-k12-k,grade:K,year,,,,active
+computer-science-grade-1,"Computer Science, Grade 1",computer-science,1,,cs-k12,cs-k12-1,grade:1,year,,,,active
+computer-science-grade-2,"Computer Science, Grade 2",computer-science,2,,cs-k12,cs-k12-2,grade:2,year,,,,active
+computer-science-grade-3,"Computer Science, Grade 3",computer-science,3,,cs-k12,cs-k12-3,grade:3,year,,,,active
+computer-science-grade-4,"Computer Science, Grade 4",computer-science,4,,cs-k12,cs-k12-4,grade:4,year,,,,active
+computer-science-grade-5,"Computer Science, Grade 5",computer-science,5,,cs-k12,cs-k12-5,grade:5,year,,,,active
+computer-science-grade-6,"Computer Science, Grade 6",computer-science,6,,cs-k12,cs-k12-6,grade:6,year,,,,active
+computer-science-grade-7,"Computer Science, Grade 7",computer-science,7,,cs-k12,cs-k12-7,grade:7,year,,,,active
+computer-science-grade-8,"Computer Science, Grade 8",computer-science,8,,cs-k12,cs-k12-8,grade:8,year,,,,active
+computer-science-grade-9,"Computer Science, Grade 9",computer-science,9,,cs-k12,cs-k12-9,grade:9,year,,,,active
+computer-science-grade-10,"Computer Science, Grade 10",computer-science,10,,cs-k12,cs-k12-10,grade:10,year,,,,active
+computer-science-grade-11,"Computer Science, Grade 11",computer-science,11,,cs-k12,cs-k12-11,grade:11,year,,,,active
+computer-science-grade-12,"Computer Science, Grade 12",computer-science,12,,cs-k12,cs-k12-12,grade:12,year,,,,active
 american-sign-language-all-levels,"American Sign Language, all levels",world-languages,,,asl,asl,,year,,,,shelved
 spanish-all-levels,"Spanish, all levels",world-languages,,,spanish,spanish,,year,,,,shelved
-career-exploration-grades-6-to-8,"Career Exploration, grades 6 to 8",cte,6-8,,cte-explore,cte-explore-6-8,,year,,,,active
-career-pathways-grades-9-to-12,"Career Pathways, grades 9 to 12",cte,9-12,,cte-pathways,cte-pathways-9-12,,year,,,,active
+career-exploration-grades-6-to-8,"Career Exploration, grades 6 to 8",cte,6-8,,cte-explore,cte-explore-6-8,grade:8,year,,,,active
+career-pathways-grades-9-to-12,"Career Pathways, grades 9 to 12",cte,9-12,,cte-pathways,cte-pathways-9-12,grade:10,year,,,,active
 personal-finance-grades-9-to-12,"Personal Finance, grades 9 to 12",cte,9-12,,personal-finance,personal-finance-9-12,,year,,,,active
-social-and-emotional-learning-grades-k-to-2,"Social and Emotional Learning, grades K to 2",sel,k-2,,sel-k-2,sel-k-2,,year,,,,active
-social-and-emotional-learning-grades-3-to-5,"Social and Emotional Learning, grades 3 to 5",sel,3-5,,sel-3-5,sel-3-5,,year,,,,active
-social-and-emotional-learning-grades-6-to-8,"Social and Emotional Learning, grades 6 to 8",sel,6-8,,sel-6-8,sel-6-8,,year,,,,active
-social-and-emotional-learning-grades-9-to-12,"Social and Emotional Learning, grades 9 to 12",sel,9-12,,sel-9-12,sel-9-12,,year,,,,active
-english-language-development-grades-k-to-2,"English Language Development, grades K to 2",eld,k-2,,eld-k-2,eld-k-2,,year,,,,active
-english-language-development-grades-3-to-5,"English Language Development, grades 3 to 5",eld,3-5,,eld-3-5,eld-3-5,,year,,,,active
-english-language-development-grades-6-to-8,"English Language Development, grades 6 to 8",eld,6-8,,eld-6-8,eld-6-8,,year,,,,active
-english-language-development-grades-9-to-12,"English Language Development, grades 9 to 12",eld,9-12,,eld-9-12,eld-9-12,,year,,,,active
-library-and-research-skills-kindergarten,"Library and Research Skills, kindergarten",library,K,,library-k,library-k,,year,,,,active
-library-and-research-skills-grade-1,"Library and Research Skills, grade 1",library,1,,library-1,library-1,,year,,,,active
-library-and-research-skills-grade-2,"Library and Research Skills, grade 2",library,2,,library-2,library-2,,year,,,,active
-library-and-research-skills-grade-3,"Library and Research Skills, grade 3",library,3,,library-3,library-3,,year,,,,active
-library-and-research-skills-grade-4,"Library and Research Skills, grade 4",library,4,,library-4,library-4,,year,,,,active
-library-and-research-skills-grade-5,"Library and Research Skills, grade 5",library,5,,library-5,library-5,,year,,,,active
-library-and-research-skills-grades-6-to-8,"Library and Research Skills, grades 6 to 8",library,6-8,,library-6-8,library-6-8,,year,,,,active
-library-and-research-skills-grades-9-to-12,"Library and Research Skills, grades 9 to 12",library,9-12,,library-9-12,library-9-12,,year,,,,active
+social-and-emotional-learning-grades-k-to-2,"Social and Emotional Learning, grades K to 2",sel,k-2,,sel-k-2,sel-k-2,grade:K|1|2,year,,,,active
+social-and-emotional-learning-grades-3-to-5,"Social and Emotional Learning, grades 3 to 5",sel,3-5,,sel-3-5,sel-3-5,grade:3|4|5,year,,,,active
+social-and-emotional-learning-grades-6-to-8,"Social and Emotional Learning, grades 6 to 8",sel,6-8,,sel-6-8,sel-6-8,grade:6|7|8,year,,,,active
+social-and-emotional-learning-grades-9-to-12,"Social and Emotional Learning, grades 9 to 12",sel,9-12,,sel-9-12,sel-9-12,grade:9|10|11|12,year,,,,active
+english-language-development-grades-k-to-2,"English Language Development, grades K to 2",eld,k-2,,eld-k-2,eld-k-2,grade:K|1|2,year,,,,active
+english-language-development-grades-3-to-5,"English Language Development, grades 3 to 5",eld,3-5,,eld-3-5,eld-3-5,grade:3|4|5,year,,,,active
+english-language-development-grades-6-to-8,"English Language Development, grades 6 to 8",eld,6-8,,eld-6-8,eld-6-8,grade:6|7|8,year,,,,active
+english-language-development-grades-9-to-12,"English Language Development, grades 9 to 12",eld,9-12,,eld-9-12,eld-9-12,grade:9|10|11|12,year,,,,active
+library-and-research-skills-kindergarten,"Library and Research Skills, kindergarten",library,K,,library-k,library-k,grade:K,year,,,,active
+library-and-research-skills-grade-1,"Library and Research Skills, grade 1",library,1,,library-1,library-1,grade:1,year,,,,active
+library-and-research-skills-grade-2,"Library and Research Skills, grade 2",library,2,,library-2,library-2,grade:2,year,,,,active
+library-and-research-skills-grade-3,"Library and Research Skills, grade 3",library,3,,library-3,library-3,grade:3,year,,,,active
+library-and-research-skills-grade-4,"Library and Research Skills, grade 4",library,4,,library-4,library-4,grade:4,year,,,,active
+library-and-research-skills-grade-5,"Library and Research Skills, grade 5",library,5,,library-5,library-5,grade:5,year,,,,active
+library-and-research-skills-grades-6-to-8,"Library and Research Skills, grades 6 to 8",library,6-8,,library-6-8,library-6-8,grade:6|7|8,year,,,,active
+library-and-research-skills-grades-9-to-12,"Library and Research Skills, grades 9 to 12",library,9-12,,library-9-12,library-9-12,grade:9|10|11|12,year,,,,active

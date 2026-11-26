@@ -73,12 +73,33 @@ def course_list():
         return list(csv.DictReader(fh))
 
 
+def selector(sel, subject):
+    """(progression file, row test) for a course-list `rows` cell: `grade:K` or `prefix:bio-` (the core courses), or
+    parts joined by `&` (the later subjects' band courses, 2026-11-25): `file:<data/progressions name>` when the
+    course's subject cell is not the file's name, `grade:K|1|2` (any of these grades), `prefix:da-|va-` (any of these
+    skill id prefixes) and `strand:mu` (any of these strands). `|` keeps the cell free of commas."""
+    preds = []
+    for part in sel.split('&'):
+        kind, _, val = part.strip().partition(':')
+        vals = tuple(v.strip() for v in re.split(r'[|,]', val) if v.strip())
+        if kind == 'file':
+            subject = val.strip()
+        elif kind == 'grade':
+            preds.append(lambda r, vs=vals: r['grade'].strip() in vs)
+        elif kind == 'prefix':
+            preds.append(lambda r, vs=vals: r['skill_id'].startswith(vs))
+        elif kind == 'strand':
+            preds.append(lambda r, vs=vals: r['strand'].strip() in vs)
+        else:
+            raise SystemExit('course-list.csv rows cell %r: unknown part %r' % (sel, kind))
+    return subject, (lambda r: all(p(r) for p in preds))
+
+
 COURSE_ROWS, COURSE_META, LEGACY, TERM, WEEKS, PINS = {}, {}, {}, {}, {}, {}
 for _r in course_list():
     _s, _sel = _r['id'], _r['rows']
     if _sel:
-        _kind, _, _val = _sel.partition(':')
-        COURSE_ROWS[_s] = (_r['subject'], _grade(_val) if _kind == 'grade' else _prefix(_val))
+        COURSE_ROWS[_s] = selector(_sel, _r['subject'])
         COURSE_META[_s] = (_r['catalog_id'], _r['grade'])
     if _r['legacy_plan_id']:
         LEGACY[_r['legacy_plan_id']] = _s       # a plan folder kept under its old name (the math-4 pilot)
@@ -223,6 +244,14 @@ def parse(slug):
     out['per_week'] = _num(pw.group(1)) if pw else (5 if re.search(r'every school day|each school day|\bdaily\b', timing) else None)
     out['half'] = bool(re.search(r'half[- ]year|a half year', timing, re.I))
     out['checks'] = parse_checks(section(t, 'Course-level checks'))
+    # band courses (2026-11-25): a Year column in the Units table names the grade year or level each unit is taught in
+    # (K, 1, 2 or Level 1 and so on); the course's days then spread over that many school years, one after another
+    ycol = next((h for h in out['head'] if h.lower() in ('year', 'level')), None)
+    out['years'] = []
+    for u in out['table'] if ycol else []:
+        y = u.get(ycol, '').strip()
+        if y and y not in out['years']:
+            out['years'].append(y)
     _parsed[slug] = out
     return out
 
@@ -233,10 +262,12 @@ def meeting(slug, f):
     days = f['days'] or YEAR_DAYS
     if slug in TERM:
         return YEAR_WEEKS // 2, (0 if TERM[slug] == 'fall' else YEAR_DAYS // 2), 5
+    years = max(1, len(f.get('years') or []))                   # a band course runs its years one after another
+    days = math.ceil(days / years)
     weeks = YEAR_WEEKS
     if f['per_week'] and f['per_week'] < 5 and days > f['per_week'] * (YEAR_WEEKS - 4):
         weeks = min(YEAR_WEEKS, math.ceil(days / f['per_week']))   # science 3 to 5: four a week for 30 weeks
-    return WEEKS.get(slug, weeks), 0, f['per_week'] or round(days / YEAR_WEEKS)
+    return WEEKS.get(slug, weeks) * years, 0, f['per_week'] or round(days / YEAR_WEEKS)
 
 
 def school_day(slug, f, n):
@@ -538,6 +569,15 @@ def check(slug, cal_rows=None):
     for i in own:
         if i not in seen:
             fails.append('%s: course row %s is in no unit' % (slug, i))
+    if f['years']:
+        ycol = next(h for h in f['head'] if h.lower() in ('year', 'level'))
+        per = {}
+        for u in tab:
+            d = re.match(r'\s*(\d+)', u.get('Days', ''))
+            if not u.get(ycol, '').strip():
+                fails.append('%s unit %s: the %s cell is empty' % (slug, u.get('#', '?'), ycol))
+            per[u.get(ycol, '').strip()] = per.get(u.get(ycol, '').strip(), 0) + (int(d.group(1)) if d else 0)
+        notes.append('%s: unit days by %s: %s' % (slug, ycol.lower(), ', '.join('%s %d' % kv for kv in per.items())))
     if f['days'] is not None:
         if day_sum > f['days']:
             fails.append('%s: unit days add to %d, more than the course\'s %d' % (slug, day_sum, f['days']))
