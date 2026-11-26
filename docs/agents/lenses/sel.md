@@ -34,7 +34,7 @@ tells you something"): the school's reporting route and counselor, named in ever
 **The values rule, in order** (DESK-ANSWERS 2026-11-12, as social studies applies it). (a) Where a court has
 ruled, side with the higher court. (b) Facts and backed sources decide claims. (c) Dignity, respect, kindness and
 openness; families of every kind appear where families appear. (d) Grade level and life experience set how and
-when. In SEL this means: fairness and bias taught as noticing and checking one's own snap judgements on invented
+when. In SEL this means: fairness and bias taught as noticing and checking one's own snap judgments on invented
 cases, never as guilt or innocence assigned to a group; unfair norms of the past taught from settled facts; student
 voice in class and school life, with no cause picked by the course.
 

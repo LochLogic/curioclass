@@ -97,7 +97,7 @@ unit better comes back there in practice, not as a first teaching.
 teacher; the skill is named. Grades 3 to 5: a named strategy with three or four steps and a reason, used on an
 invented case and then in a planned class moment. Grades 6 to 8: the strategy chosen among options and weighed
 against real pressures (friends, online, time), with the reason written down. Grades 9 to 12: a plan the student
-designs for an invented or chosen situation, with its trade-offs and a judgement of how well it worked. Within a
+designs for an invented or chosen situation, with its trade-offs and a judgment of how well it worked. Within a
 band the first year uses cases from the school day, the second adds a second person's point of view, and the third
 adds a cost or a pressure; grade 12, the fourth year of 9 to 12, adds a setting past school (work, community, life
 after school). The progression row for each sub-skill says which step a year is.
@@ -129,7 +129,7 @@ choice weighed in writing).
 | Grade 4 | Working together | 1. Team rules we make: RS1, RS4, SO6, SO7, SA4<br>2. Plans and steps: SM3, SM4, SM5, SM6, SA7, RD5<br>3. Many ways to be: SA1, SA2, RS3, SO1, SO2, SA6<br>4. Feelings at work: SA3, SA5, SM1, SM2, SO3, SO4, SO5, SO8<br>5. Leading and following: RS7, RS2, RS5, RS8, RS6, RS9, SM7<br>6. Thinking it through: RD1, RD2, RD3, RD4, RD6, RD7, SA8, SA9 |
 | Grade 5 | Ready for change | 1. Changes ahead: SA3, SA5, SM1, SM2, SO7<br>2. What drives me: SA7, SA8, SA9, SM3, SM4, SM5<br>3. Who shapes what we do: SO6, SO8, RD2, RD5, SA6<br>4. Friends through change: RS1, RS2, RS5, RS6, RS8, SO1, SO3, SO4<br>5. My voice, our group: SM6, SM7, RS4, RS7, RS9, SO5, SO2, RS3<br>6. Choices with reach: RD1, RD3, RD4, RD6, RD7, SA1, SA2, SA4 |
 | Grade 6 | New school, new me | 1. Finding my way: SM5, SM3, SO7, RS8, SA7<br>2. Who am I now?: SA1, SA2, SA4, SA9, SA3, SA5<br>3. Stress and strong feelings: SM1, SM2, SA8, RD5, RD6<br>4. Friendships that change: RS1, RS2, RS5, RS6, SO1, SO4, SO3, SO5<br>5. Online and offline norms: SO6, SO8, RD1, RD2, RD4, SA6, SO2, RD7<br>6. Goals and our team: SM4, SM6, SM7, RS3, RS4, RS7, RS9, RD3 |
-| Grade 7 | Pressure and belonging | 1. Belonging and our groups: SA1, SA2, SA9, RS2, RS3, SO2, RS4<br>2. Under pressure: RS6, SO7, SO8, RD4, SM3<br>3. Snap judgements: SA6, SO1, SO6, RD1, RD2<br>4. Big feelings, steady choices: SA3, SA5, SM1, SM2, SA4, SA7, SA8<br>5. Repair and conflict: RS1, RS5, RS8, SO3, SO4, SO5, RS9, RS7<br>6. Taking the lead: SM4, SM5, SM6, SM7, RD3, RD5, RD6, RD7 |
+| Grade 7 | Pressure and belonging | 1. Belonging and our groups: SA1, SA2, SA9, RS2, RS3, SO2, RS4<br>2. Under pressure: RS6, SO7, SO8, RD4, SM3<br>3. Snap judgments: SA6, SO1, SO6, RD1, RD2<br>4. Big feelings, steady choices: SA3, SA5, SM1, SM2, SA4, SA7, SA8<br>5. Repair and conflict: RS1, RS5, RS8, SO3, SO4, SO5, RS9, RS7<br>6. Taking the lead: SM4, SM5, SM6, SM7, RD3, RD5, RD6, RD7 |
 | Grade 8 | Choices that count | 1. How I decide: RD1, RD2, RD4, RD5, SA5, RD7<br>2. Values and integrity: SA4, SA1, SA2, SA6, RS6, SO7, SA9, SA7<br>3. Stress, focus and rest: SA3, SA8, SM1, SM2, SM3, SM5<br>4. Understanding others: SO1, SO3, SO4, SO6, RS3, SO2, SO8<br>5. Communication and conflict: RS1, RS2, RS5, RS8, SO5<br>6. Making a difference: SM4, SM6, SM7, RS4, RS7, RS9, RD3, RD6 |
 | Grade 9 | Finding my footing | 1. A new start: SM5, SM3, SO7, RS8, SA7, SA9<br>2. Stress and coping: SA3, SM1, SM2, SA5, SA8, RD3<br>3. Identity and assets: SA1, SA2, SA4, SA6, RS3<br>4. Relationships that are good for me: RS1, RS2, RS5, RS6, SO3, SO4, SO5<br>5. Norms, media and influence: SO6, SO8, RD1, RD2, RD4, RD5, RD7, RD6<br>6. Goals with others: SM4, SM6, SM7, RS4, RS7, RS9, SO1, SO2 |
 | Grade 10 | Respect and relationships | 1. Listening to understand: RS1, SO1, SO4, SA5, SO8<br>2. Hard conversations: RS5, RS8, SM1, SM2, SA3, SM7<br>3. Culture and respect: RS3, SO6, SA1, SA2, SA6, SO2, SA9<br>4. Saying no, setting limits: RS2, RS6, SA4, SO7, RD4, RS9<br>5. Teams that work: RS4, RS7, SM3, SM4, SM5, SM6, SO3, SO5<br>6. Fair to everyone: SA7, SA8, RD1, RD2, RD3, RD5, RD6, RD7 |
@@ -151,10 +151,10 @@ Unit rules:
 Placement notes, by sub-skill, where the grade matters most:
 
 
-- **SA6 (own snap judgements) and SO6 (norms that have been unfair)** start in K to 2 as fairness
+- **SA6 (own snap judgments) and SO6 (norms that have been unfair)** start in K to 2 as fairness
   at play ("everyone can join"), and reach unfair rules of the past in grade 5 and later, taught from settled facts
   (see section 5). In grades 3 and 4 SO6 is a rule in a class, club or game that leaves someone out, on invented
-  cases; SO8 is how a school's or a town's rules and signs shape what people do. Grade 7 ("Snap judgements") and grade 10 ("Culture and respect") are their main years.
+  cases; SO8 is how a school's or a town's rules and signs shape what people do. Grade 7 ("Snap judgments") and grade 10 ("Culture and respect") are their main years.
 - **SA8 (ability grows)** is taught as "practice and help make you better", never as a promise that belief alone
   raises grades: the evidence for short mindset lessons is mixed (lens, sources; from memory).
 - **SO8 (systems shape behaviour)** starts as "why our class has rules" and grows to media and online norms in grade
@@ -213,7 +213,7 @@ ADOPTION-BAR-SUBJECTS part 9 (items 9 to 13).
   (section 2). Students as agents of change: under the values rule, SEL
   gives student voice in class and school life (class norms, a school improvement the class proposes and carries
   out), and leaves the analysis of causes of inequity to social studies, where it is taught from sources and
-  evidence. Working with bias: SA6 is taught as noticing and checking one's own snap judgements on invented cases,
+  evidence. Working with bias: SA6 is taught as noticing and checking one's own snap judgments on invented cases,
   never as assigning guilt or innocence to a group. This is the "middle line" ADOPTION-BAR-SUBJECTS sets for C12.
 - **E. Adult SEL.** Professional learning is none for now (decided 2026-11-11). Addition: each unit's teacher page
   opens with a short "before you teach" note: the skill as an adult uses it, and one thing to model. Not training,
