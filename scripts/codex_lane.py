@@ -478,6 +478,10 @@ def codex_exe():
     npm = Path(os.environ.get('APPDATA', str(Path.home() / 'AppData' / 'Roaming'))) / 'npm' / 'codex.cmd'
     if not exe and npm.exists():
         exe = str(npm)
+    if not exe:   # installed from a Claude session, npm's folder is under the Claude package (2026-11-04)
+        local = Path(os.environ.get('LOCALAPPDATA', str(Path.home() / 'AppData' / 'Local')))
+        hits = sorted(local.glob('Packages/Claude_*/LocalCache/Roaming/npm/codex.cmd'))
+        exe = str(hits[0]) if hits else None
     if not exe:
         sys.exit('codex is not on PATH')
     return exe
