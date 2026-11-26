@@ -83,7 +83,7 @@ health-grades-3-to-5,"Health, grades 3 to 5",health-pe,3-5,yes,health-3-5,health
 physical-education-grades-3-to-5,"Physical Education, grades 3 to 5",health-pe,3-5,yes,pe-3-5,pe-3-5,file:physical-education&grade:3|4|5,year,,,,active
 health-grades-6-to-8,"Health, grades 6 to 8",health-pe,6-8,yes,health-6-8,health-6-8,file:health&grade:6|7|8,year,,,,active
 physical-education-grades-6-to-8,"Physical Education, grades 6 to 8",health-pe,6-8,yes,pe-6-8,pe-6-8,file:physical-education&grade:6|7|8,year,,,,active
-health-grades-9-to-12,"Health, grades 9 to 12",health-pe,9-12,yes,health-9-12,health-9-12,file:health&grade:9,year,,,,active
+health-grades-9-to-12,"Health, grades 9 to 12",health-pe,9-12,yes,health-9-12,health-9-12,file:health&grade:9,fall,,,,active
 physical-education-grades-9-to-12,"Physical Education, grades 9 to 12",health-pe,9-12,yes,pe-9-12,pe-9-12,file:physical-education&grade:9|10|11|12,year,,,,active
 computer-science-kindergarten,"Computer Science, Kindergarten",computer-science,K,,cs-k12,cs-k12-k,grade:K,year,,,,active
 computer-science-grade-1,"Computer Science, Grade 1",computer-science,1,,cs-k12,cs-k12-1,grade:1,year,,,,active
