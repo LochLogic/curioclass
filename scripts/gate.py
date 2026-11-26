@@ -344,7 +344,10 @@ def record_debt(course, n, by):
     the cleanup job, on the committed course, so each grade's count can be read against the one before."""
     import datetime
     import rows
-    top = '; '.join('%s %d' % (r, k) for (g, r), k in sorted(by.items(), key=lambda x: -x[1])[:5])
+    rule = {}
+    for (g, r), k in by.items():        # one rule can fail in two gates (a day check and a lesson check)
+        rule[r] = rule.get(r, 0) + k
+    top = '; '.join('%s %d' % (r, k) for r, k in sorted(rule.items(), key=lambda x: (-x[1], x[0]))[:5])
     rows.target = lambda c, t: DEBT
     rows.change('', 'debt', ['course', 'date'], {'course': course, 'date': datetime.date.today().isoformat(),
                                                 'commit': head()[:9], 'failing': str(n), 'top_rules': top})
