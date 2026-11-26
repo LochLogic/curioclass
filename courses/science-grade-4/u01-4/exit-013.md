@@ -10,7 +10,7 @@ credit: ours
 
 Name: __________________  Date: _______________
 
-Invented for practice. The same orange hits the same bottle under matching conditions. Three faster contacts each move it farther and sound louder than three slower contacts. Now a second bottle stands in the first bottle's path. Predict the two-bottle chain if contact occurs, using the record to support your model.
+Invented for practice. The same orange hits the same bottle under matching conditions. Three faster contacts each move it farther and sound louder than three slower contacts. Use the scientific account for possible warming; no temperature was measured. Now a second bottle stands in the first bottle's path. Predict the two-bottle chain if contact occurs, using the record to support your model.
 
 <pre>ORANGE --> BOTTLE 1     BOTTLE 2
            Both bottles are in the same straight path.</pre>

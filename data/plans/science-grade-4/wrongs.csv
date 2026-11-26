@@ -11,7 +11,7 @@ s01-P3,Keep changing cups.,,,G,Error G: Keep changing cups.
 s01-K3,The pencil travels 7 centimeters.,,,H,Error H: The pencil travels 7 centimeters.
 s01-Pp3,The axis measures energy in centimeters.,,,B,Error B: The axis measures energy in centimeters.
 s01-Pr3,Erase the awkward result and invent a matching one.,,,x,Error x: Erase the awkward result and invent a matching one.
-s01-X3,First travel is 15 centimeters.,,,H,Error H: First travel is 15 centimeters.
+s01-X3,First travel is 28 centimeters.,,,H,Error H: The stop mark is not travel from a nonzero start.
 s01-P4,The endpoint 7 is the travel.,,,H,Error H: The endpoint 7 is the travel.
 s01-P4,Centimeters measure energy.,,,B,Error B: distance is not an energy quantity.
 s01-Pr4,The cup moved centimeters of energy.,,,B,Error B: The cup moved centimeters of energy.
@@ -32,8 +32,8 @@ s01-K7,The push arrow leaves the crate and carries energy into air.,,,J,Error J:
 s01-Ke7,The force arrow carries energy away into the air.,,,J,Error J: force arrow confused with energy path.
 s01-Pq7,A is ready because best tells us what to measure.,,,F,Error F: no observable outcome.
 s01-Po7,My prediction counts as something already observed.,,,I,Error I: prediction confused with observation.
-s01-X7,The slowing ball loses energy because it disappears.,,,C,Error C: Name a receiving destination.
-s01-X7,The contact push arrow leaves the carton for the air.,,,J,Error J: Put force arrow on receiver.
+s01-X7,The tile slows because its energy disappears.,,,C,Error C: Name the screen motion as a receiving destination.
+s01-X7,The contact push arrow leaves the screen for the air.,,,J,Error J: Put the rightward contact push on the screen.
 s01-Pr8,Which speed is best needs no further detail.,,,F,Error F: no observable outcome.
 s01-Pr8,The car slows because energy disappears.,,,C,Error C: Motion change supports transfer.
 s01-Pr8,The push on the block starts in the air.,,,J,Error J: Start force arrow on receiver.
@@ -732,4 +732,4 @@ s01-A2b,All energy vanishes when the spool slows,,,C,Does not meet the look-fors
 s01-A2b,All energy becomes sound,,,D,Omits motion and warming destinations.
 s01-A2b,Warming must be felt to exist,,,E,Confuses lack of detection with no warming.
 s01-A2b,The force arrow carries energy into air,,,J,Confuses object force with energy destinations.
-s01-X3,The washer has 9 centimeters of energy.,,,B,"Error B: travel units describe a motion effect, not an energy quantity."
+s01-X3,The washer has 11 centimeters of energy.,,,B,"Error B: Travel units describe a motion effect, not an energy quantity."

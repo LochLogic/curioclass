@@ -10,7 +10,7 @@ credit: ours
 
 Name: __________________  Date: _______________
 
-Invented for practice. A bead rolls right into a still card. The bead slows but keeps moving; the card moves right. The model says energy vanished. Its push arrow points from the card into air. Correct this model, showing what each arrow means.
+Invented for practice. A bead rolls right into a still card. The bead slows but keeps moving; the card moves right. A faint tap sounds. Use the scientific account for possible warming; no temperature was measured. The model says energy vanished. Its push arrow points from the card into air. Correct this model, showing what each arrow means.
 
 <pre>Supplied energy model: bead motion --> ENERGY VANISHED
 Supplied push arrow: CARD --> AIR</pre>

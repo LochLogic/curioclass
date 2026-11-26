@@ -10,7 +10,7 @@ credit: ours
 
 Name: __________________  Date: _______________
 
-Invented for practice. The same wheel hits the same box under matching conditions. Listeners stay in the same place. Event order: slower quiet; faster loud; slower quiet; faster loud; slower quiet; faster loud. Record sound tallies for each speed.
+Invented for practice. The same wheel hits the same box under matching conditions. Listeners stay in the same place. Event order: faster loud; slower quiet; faster quiet; slower quiet; faster loud; slower quiet. Record sound tallies for each speed.
 
 | Speed | Quiet tally | Loud tally |
 |---|---|---|

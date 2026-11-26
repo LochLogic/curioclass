@@ -64,13 +64,13 @@ Expected wrong responses: My prediction counts as something already observed. (I
 
 ## s01-X7
 
-Prompt: Invented for practice. A ball rolls right toward a still carton. A previous slower contact moved that carton slightly. This approach is faster; other conditions match. Draw a prediction model for this faster collision, supported by the slower-contact record.
+Prompt: Invented for practice. A tile slides right toward a still paper screen. A previous slower contact moved that screen slightly. This approach is faster; other conditions match. Draw an energy prediction model for this faster collision, using the slower-contact evidence. Include a labeled contact push on the screen.
 
-Expected response: Predict ball slowing and carton gaining motion, plausibly more than before. Show energy passing into carton motion. A rightward contact-force arrow starts on the carton.
+Expected response: Predict the tile losing some motion energy and the screen gaining motion, plausibly more than before. Show transfer into screen motion. The tile may slow, stop or rebound; retain its motion energy if it keeps moving. A rightward contact-force arrow starts on the screen.
 
-Look for: Use the slower-contact record to support a defensible two-object prediction.; Show transfer from ball motion into carton motion, retaining remaining ball motion if it continues.; Place the contact push on the carton, pointing right.
+Look for: Use the slower-contact record to support a defensible two-object energy prediction.; Show transfer from tile motion into screen motion; accept slowing, stopping or rebound. Retain remaining tile motion energy if it continues.; Place the contact push on the screen, pointing right, and label it as a push.
 
-Expected wrong responses: The slowing ball loses energy because it disappears. (C); The contact push arrow leaves the carton for the air. (J).
+Expected wrong responses: The tile slows because its energy disappears. (C); The contact push arrow leaves the screen for the air. (J).
 
 ## s01-Pr8
 

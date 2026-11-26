@@ -12,11 +12,11 @@ Teacher-only answer key, continued.
 
 ## s01-X9
 
-Prompt: Invented for practice. The same wheel hits the same box under matching conditions. Listeners stay in the same place. Event order: slower quiet; faster loud; slower quiet; faster loud; slower quiet; faster loud. Record sound tallies for each speed.
+Prompt: Invented for practice. The same wheel hits the same box under matching conditions. Listeners stay in the same place. Event order: faster loud; slower quiet; faster quiet; slower quiet; faster loud; slower quiet. Record sound tallies for each speed.
 
-Expected response: Slower: three quiet, zero loud. Faster: zero quiet, three loud.
+Expected response: Slower: three quiet, zero loud. Faster: one quiet, two loud.
 
-Look for: Slower row: three quiet, zero loud.; Faster row: zero quiet, three loud.; A merged or incomplete tally is a recording gap, without an energy misconception letter.
+Look for: Slower row: three quiet, zero loud.; Faster row: one quiet, two loud.; Record the quiet faster event honestly. A merged or incomplete tally is a recording gap, without an energy misconception letter.
 
 A merged or incomplete tally is a recording gap; give descriptive feedback.
 

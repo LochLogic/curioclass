@@ -134,13 +134,13 @@ Expected wrong responses: Erase the awkward result and invent a matching one. (x
 
 ## s01-X3
 
-Prompt: The washer starts at 6 centimeters and stops at 15 centimeters. Another trial moves it 9 centimeters. Record both travel distances with units.
+Prompt: Invented for practice. The washer starts at 17 centimeters and stops at 28 centimeters. A repeat starts at 3 centimeters and stops at 16 centimeters. Record both travel distances with units.
 
-Expected response: 9 centimeters; 9 centimeters.
+Expected response: 11 centimeters; 13 centimeters.
 
-Look for: First travel: 15 minus 6 equals 9 centimeters.; Second travel: the supplied 9 centimeters.
+Look for: First travel: 28 minus 17 equals 11 centimeters.; Repeat travel: 16 minus 3 equals 13 centimeters.
 
-Expected wrong responses: First travel is 15 centimeters. (H); The washer has 9 centimeters of energy. (B).
+Expected wrong responses: First travel is 28 centimeters. (H); The washer has 11 centimeters of energy. (B).
 
 ## s01-P4
 

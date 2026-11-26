@@ -84,11 +84,11 @@ Expected wrong responses: Sound receives all energy (D).
 
 ## s01-X12
 
-Prompt: Invented for practice. A bead rolls right into a still card. The bead slows but keeps moving; the card moves right. The model says energy vanished. Its push arrow points from the card into air. Correct this model, showing what each arrow means.
+Prompt: Invented for practice. A bead rolls right into a still card. The bead slows but keeps moving; the card moves right. A faint tap sounds. Use the scientific account for possible warming; no temperature was measured. The model says energy vanished. Its push arrow points from the card into air. Correct this model, showing what each arrow means.
 
-Expected response: Retain remaining bead motion energy. Show transfer to card motion, sound and slight warming. A contact-force arrow starts on the card, pointing right. Energy arrows connect initial motion energy to destinations.
+Expected response: Retain remaining bead motion energy. Show transfer to card motion, the reported sound and possible slight warming from the scientific account. A contact-force arrow starts on the card, pointing right. Energy arrows connect initial motion energy to destinations. Motion and sound are supplied observations; warming is account-based, not measured.
 
-Look for: Replace vanished energy with remaining bead motion and transfer destinations.; Put the contact push on the card, pointing right.; Label force arrows as pushes and energy arrows as transfers to destinations.
+Look for: Replace vanished energy with remaining bead motion and transfer destinations.; Put the contact push on the card, pointing right.; Label force arrows as pushes and energy arrows as transfers to destinations.; Identify sound as reported and possible slight warming as account-based; no temperature was measured.
 
 Expected wrong responses: Energy vanished as the bead slowed (C); The force arrow carries energy from the card into air (J).
 
@@ -124,10 +124,10 @@ Expected wrong responses: The ball slows because energy vanishes (C).
 
 ## s01-X13
 
-Prompt: Invented for practice. The same orange hits the same bottle under matching conditions. Three faster contacts each move it farther and sound louder than three slower contacts. Now a second bottle stands in the first bottle's path. Predict the two-bottle chain if contact occurs, using the record to support your model.
+Prompt: Invented for practice. The same orange hits the same bottle under matching conditions. Three faster contacts each move it farther and sound louder than three slower contacts. Use the scientific account for possible warming; no temperature was measured. Now a second bottle stands in the first bottle's path. Predict the two-bottle chain if contact occurs, using the record to support your model.
 
-Expected response: The first bottle can transfer energy to second-bottle motion if it reaches it. The first may slow, stop or rebound. Faster recorded effects support more starting motion energy, without guaranteeing second contact. Retain remaining motion, sound and slight warming.
+Expected response: The first bottle can transfer energy to second-bottle motion if it reaches it. The first may slow, stop or rebound. Faster recorded effects support more starting motion energy, without guaranteeing second contact. Retain energy in continuing motion and reported sound. Include possible slight warming from the scientific account, without claiming a measured temperature change.
 
-Look for: Use the controlled single-contact record to support the conditional prediction.; Show a possible first-to-second bottle energy transfer if contact occurs.; Retain energy in continuing motion and sound and warming destinations; reaching the second bottle is uncertain.
+Look for: Use the controlled single-contact record to support the conditional prediction.; Show a possible first-to-second bottle energy transfer if contact occurs.; Retain energy in continuing motion and reported sound; reaching the second bottle is uncertain.; Include possible slight warming from the scientific account, clearly separate from the supplied motion and sound observations.
 
 Expected wrong responses: The same orange has equal initial motion energy at both speeds (A); The energy vanishes after contact (C); All energy becomes sound (D).
