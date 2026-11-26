@@ -2,54 +2,37 @@
 piece: blank
 course: social-studies-grade-4
 unit: 2.5
-version: draft, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
-# Unseen sources
+# Sources
 
-## A
-![Atlas](end-atlas.svg)
-Facts: regional department; provincial place-name office. Original.
+## A: atlas, 2026
+![City locators](end-atlas.svg)
+Origins: regional department; provincial place-name office.
 
-## B
-Transport Canada, 2026. Digital cargo summary.
+## B: Transport Canada, digital summary
+Port list, 2020; cargo-policy example, undated.
+Halifax: Nova Scotia; cargo unloading. Prince Rupert: British Columbia.
 
-| Port | Province | Activity |
-|---|---|---|
-| Halifax | Nova Scotia | Cargo handling |
-| Prince Rupert | British Columbia | Cargo handling |
-
-Marine-port facts paraphrased.
-
-## C
-Classroom article, 2026. Made up.
+## C: article, 2026
 Prince Rupert is in British Columbia. Prince Rupert is the nicest city.
-Original.
 
-## D
-Workshop, Canada, 2026. Made-up order table for production.
+## D: Canadian workshop, 2026
+Order table for production.
+Mexican tubes + United States wheels → Canadian bicycles.
+United States orders: 4 → 7 weekly.
+Canadian workshop: more shifts; rival assemblers: fewer orders.
+Mexican suppliers: more orders; rival tube makers: fewer sales.
 
-| Source | Part |
-|---|---|
-| Mexico | Tubes |
-| United States | Wheels |
-| Canada | Bicycle assembly |
-
-United States orders: 4, then 7 bicycles weekly.
-Canadian workshop: more worker shifts; rival assemblers: fewer orders.
-Mexican supplier workers: more orders; rival tube makers: fewer sales.
-Original.
-
-## E
-United States buyers, 2026. Made-up comparison.
+## E: United States buyers, 2026
+Purchase comparison.
 Buyers pay less; rival bicycle assemblers lose orders.
-Original.
 
-## F
-Seller, undated. Made-up promotion.
-More bicycle trade helps everybody. Buy more bicycles!
-Original.
+## F: Seller, undated
+Promotion: More bicycle trade helps everybody. Buy more bicycles!
 
 ## Peer explanation
 Everyone in Halifax works on ships. Halifax is beside the Pacific. Cargo moves there.
-Original.
+
+C to F and the peer explanation are made up.

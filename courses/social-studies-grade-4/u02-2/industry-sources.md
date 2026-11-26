@@ -7,13 +7,13 @@ credit: ours
 ---
 # Industry research cards
 
-## Canada, 2024 survey description
-Canada's statistical agency studies lumber produced and shipped by Canadian manufacturers.
+## Canada, 2023 sawmill study
+Canada's statistical agency studies lumber produced by Canadian sawmills.
 Sawmills are part of the wood industry.
 Wood supplies material for lumber production.
 This source describes an industry, not every resident's work.
 
-Original summary: [Sawmills survey](https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&Id=1530858), Statistics Canada.
+Original summary: [Sawmill study](https://www150.statcan.gc.ca/n1/pub/11-621-m/11-621-m2022023-eng.htm), Statistics Canada.
 
 ## Mexico, 2021 report
 Mexico's water agency records water allocated to agriculture.

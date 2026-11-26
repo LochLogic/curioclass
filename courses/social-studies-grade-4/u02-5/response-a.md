@@ -2,17 +2,22 @@
 piece: blank
 course: social-studies-grade-4
 unit: 2.5
-version: draft, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
-# Choosing sources fresh component
+# Fresh attempt
 
-Made-up playground sound log, 2026: several noisy periods. A separate neighbor account describes interrupted rest.
+Made-up records, 2026. A timed sound log records several noisy periods.
+An independently written neighbor account describes interrupted rest.
 
 **s02-P38a**
 
-Choose sources for noise counts and neighbors' experiences.
+Explain why both records help investigate the playground noise.
 
-______________________________________________________________________
+_________________________________________________________________
 
-______________________________________________________________________
+_________________________________________________________________
+
+_________________________________________________________________
+
+_________________________________________________________________

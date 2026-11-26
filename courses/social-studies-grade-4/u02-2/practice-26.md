@@ -8,7 +8,7 @@ credit: ours
 # Day 26 component work
 
 Use only your chosen Industry research cards card.
-Keep six-topic notes and logs open. No port or all-residents example is used.
+Keep six-topic notes and logs open.
 
 **s02-P26**
 

@@ -2,17 +2,21 @@
 piece: blank
 course: social-studies-grade-4
 unit: 2.2
-version: draft, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
 # Day 26 exit ticket
 
-Original factual summary from the federal marine dashboard description.
+Federal policy scenario: cargo is loaded at Montreal for transport to another port.
+Maker: Transport Canada. Purpose: explain cargo rules. Date: undated.
+Original factual summary of its [cargo policy](https://tc.canada.ca/en/corporate-services/policies/domestic-international-cargo-canada-s-coasting-trade).
 
 **s02-X26**
 
-A federal marine page lists Montreal among ports handling cargo. Cargo handling is a service moving goods. Explain this place-service connection, including what the card shows about residents' jobs.
+Explain how the recorded work connects Montreal to other places.
 
-______________________________________________________________________
+_________________________________________________________________
 
-______________________________________________________________________
+_________________________________________________________________
+
+_________________________________________________________________

@@ -2,17 +2,23 @@
 piece: blank
 course: social-studies-grade-4
 unit: 2.5
-version: draft, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
-# Trade fresh component
+# Fresh attempt
 
-Made-up seed-envelope producer imports paper and sells envelopes abroad. Paper deliveries are late. Some rival envelope sellers compete for buyers.
+Made-up envelope makers import paper and sell seed envelopes abroad.
+Foreign seed-envelope orders rise.
+A competing local envelope shop loses those orders.
 
 **s02-P38c**
 
-Explain how delayed imported paper affects the seed-envelope producer.
+Explain how the order change affects the two producer groups differently.
 
-______________________________________________________________________
+_________________________________________________________________
 
-______________________________________________________________________
+_________________________________________________________________
+
+_________________________________________________________________
+
+_________________________________________________________________

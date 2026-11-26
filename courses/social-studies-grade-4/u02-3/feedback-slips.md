@@ -4,10 +4,9 @@ course: social-studies-grade-4
 unit: 2.3
 version: draft, not yet taught
 credit: ours
+teacher_note: Write one private priority before day 29. Keep teacher cues separate from peer slips.
 ---
 # Report feedback slips
-
-Teacher writes one priority before day 29.
 
 Name: ____________________ Date: __________
 Evidence I noticed: ___________________________________________________
@@ -33,4 +32,4 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-Keep the two slips. Accuracy is checked on the separate exit, not modeled here.
+Keep the two slips. Accuracy uses the separate independent paper.

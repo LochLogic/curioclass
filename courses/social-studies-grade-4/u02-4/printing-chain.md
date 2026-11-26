@@ -22,4 +22,4 @@ Mexican rival paper seller: an order goes elsewhere.
 United States rival seller: buyers choose a different supplier.
 
 Each card describes only its stated group and changed purchase.
-Work on one supplied link at a time, not a full country effects matrix.
+Read the assigned card.

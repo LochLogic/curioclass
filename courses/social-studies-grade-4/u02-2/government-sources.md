@@ -9,7 +9,7 @@ credit: ours
 
 ## Canada
 Form: parliamentary democracy within a constitutional monarchy.
-Head of government: prime minister; the government needs the elected House's confidence.
+Head of government: prime minister.
 Lawmakers: Parliament makes laws.
 Courts: interpret laws and resolve disputes.
 
@@ -30,6 +30,7 @@ Lawmakers: Congress makes laws.
 Courts: interpret and apply laws.
 
 Original factual summary: [government branches](https://www.usa.gov/branches-of-government).
+Form reference: [Our American Government, question 2](https://www.govinfo.gov/content/pkg/CDOC-106hdoc216/pdf/CDOC-106hdoc216.pdf).
 
-Confidence means support to continue governing. Executive means carrying out laws.
+Executive means carrying out laws.
 Read each office separately. No current leaders or judge-selection details are needed.

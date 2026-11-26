@@ -11,9 +11,9 @@ credit: ours
 Ottawa is in Ontario, Canada. Find its dot in the Country Atlas.
 The Rideau Canal runs between Ottawa and Kingston in Ontario.
 This historic waterway is a landmark.
-Wood is a natural resource. Canadian sawmills produce and ship lumber.
+Wood is a natural resource. Canadian sawmills produce lumber.
 
-Original summaries: [canal visit page](https://parks.canada.ca/lhn-nhs/on/rideau/visit); [sawmills survey, 2024](https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&Id=1530858).
+Original summaries: [canal visit page](https://parks.canada.ca/lhn-nhs/on/rideau/visit); [sawmill study, 2023](https://www150.statcan.gc.ca/n1/pub/11-621-m/11-621-m2022023-eng.htm).
 
 ## Mexico path
 Mexico City is in Mexico. Find its dot in the Country Atlas.
@@ -31,4 +31,4 @@ Draw your selected city marker and label its country.
 Resource: ____________________  Work it supports: ____________________
 Source: _______________________________________________________________
 
-Original locator drawings replace photographs. No photograph or cultural image is required.
+

@@ -2,18 +2,19 @@
 piece: blank
 course: social-studies-grade-4
 unit: 2.5
-version: draft, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
 # Day 35 component work
 
-Use your established notes and the blank Claim and evidence organizer headings.
-Write about shared reliance; keep the unequal-effects exit unseen.
+Use established country and trade notes.
+Given paragraph: Countries have supply connections. The article shows every country makes everything alone.
+Keep the claim. Replace the weak evidence link using an actual detail from your notes.
 
 **s02-P35**
 
-Write a shared-reliance paragraph from established country and trade notes.
+Use the supplied paragraph and established notes. Replace its weak evidence link.
 
-______________________________________________________________________
+_________________________________________________________________
 
-______________________________________________________________________
+_________________________________________________________________

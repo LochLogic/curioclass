@@ -8,7 +8,7 @@ credit: ours
 # Day 34 component work
 
 Use Claim and evidence organizer with existing country and trade sources.
-Sort details under the given headings; do not model a complete new claim.
+Sort details under the given headings.
 
 **s02-P34**
 

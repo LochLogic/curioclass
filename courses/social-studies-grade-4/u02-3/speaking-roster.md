@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: story
 course: social-studies-grade-4
 unit: 2.3
 version: draft, not yet taught
@@ -8,7 +8,7 @@ credit: ours
 # Teacher finding roster
 
 Teacher only. Thirty students times 45 seconds is 22.5 minutes.
-Use the 23-minute finding block on both days; 30 seconds remains for transitions.
+Use 25 minutes on both days; 2.5 minutes remains for transitions.
 Listen at desks. A public pass uses a private response in the same roster.
 The paired reply is retained on the listener slip, not added to each teacher slot.
 

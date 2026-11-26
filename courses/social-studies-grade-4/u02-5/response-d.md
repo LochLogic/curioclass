@@ -2,17 +2,23 @@
 piece: blank
 course: social-studies-grade-4
 unit: 2.5
-version: draft, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
-# Claim and explanation fresh component
+# Fresh attempt
 
-Made-up maintenance log: canal repairs finish. Separately made freight record: deliveries resume afterward. Other possible causes were not recorded.
+Made-up canal repair log: the canal reopens.
+Independent freight record: deliveries resume afterward.
+Given claim: reopening allowed freight again.
 
 **s02-P38d**
 
-Make a supported claim from the canal-repair and freight records.
+Complete the claim's support using both records.
 
-______________________________________________________________________
+_________________________________________________________________
 
-______________________________________________________________________
+_________________________________________________________________
+
+_________________________________________________________________
+
+_________________________________________________________________

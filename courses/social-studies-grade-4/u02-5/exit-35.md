@@ -2,7 +2,7 @@
 piece: blank
 course: social-studies-grade-4
 unit: 2.5
-version: draft, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
 # Day 35 exit ticket
@@ -13,6 +13,8 @@ credit: ours
 
 Made-up Map S sends foreign cloth to a tailor. Buyer Record T shows lower clothing prices and fewer rival-shop orders. Write a claim explaining uneven trade effects using both records.
 
-______________________________________________________________________
+_________________________________________________________________
 
-______________________________________________________________________
+_________________________________________________________________
+
+_________________________________________________________________

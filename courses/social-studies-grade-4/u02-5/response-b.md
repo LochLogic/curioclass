@@ -2,17 +2,23 @@
 piece: blank
 course: social-studies-grade-4
 unit: 2.5
-version: draft, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
-# Checking facts fresh component
+# Fresh attempt
 
-Made-up theater opening register: Tuesday. A separate theater announcement also says Tuesday. Neither records seat comfort.
+Made-up theater register: opening May 6.
+An independent opening notice also records May 6.
+An advertisement calls the seats best.
 
 **s02-P38b**
 
-Judge what two theater records establish about opening day and seat comfort.
+Explain what these records can verify about the theater.
 
-______________________________________________________________________
+_________________________________________________________________
 
-______________________________________________________________________
+_________________________________________________________________
+
+_________________________________________________________________
+
+_________________________________________________________________

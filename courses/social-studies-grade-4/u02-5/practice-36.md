@@ -9,7 +9,7 @@ credit: ours
 
 Recall only these made-up labels: equipment notice, 2010, caretakers, posted notice.
 Checkable: six chairs. Opinion: nicest color.
-Trade labels: input, producer, buyer. Do not draft or revise prose.
+Trade labels: input, producer, buyer.
 
 **s02-P36**
 

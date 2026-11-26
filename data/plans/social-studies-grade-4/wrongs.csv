@@ -302,40 +302,40 @@ s02-P21-2,Checkable means true.,,,L,Distinct component misconception; relevant v
 s02-P19-2,The seller proves every user benefits.,,,Q,Distinct component misconception; relevant verification is needed.
 s02-P22-R,A liking proves eight tubs.,,,C,Distinct component misconception; relevant verification is needed.
 s02-P22-R,One liking makes every count false.,,,K,Distinct component misconception; relevant verification is needed.
-s02-P23-R,On a bench.,,,D,Cold-solved component error; content separate from grammar.
-s02-P23-1,This counts everybody in the country.,,,I,Cold-solved component error; content separate from grammar.
-s02-P23,All Indigenous peoples are one people.,,,I,Cold-solved component error; content separate from grammar.
-s02-P23,The Haida Nation exists only in the past.,,,M,Cold-solved component error; content separate from grammar.
+s02-P23-R,On a bench.,,,D,Anticipated component error; content separate from grammar.
+s02-P23-1,This counts everybody in the country.,,,I,Anticipated component error; content separate from grammar.
+s02-P23,All Indigenous peoples are one people.,,,I,Anticipated component error; content separate from grammar.
+s02-P23,The Haida Nation exists only in the past.,,,M,Anticipated component error; content separate from grammar.
 s02-P23,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-X23,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-P23-R,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-P23-1,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
-s02-P24-R,Long ago only.,,,M,Cold-solved component error; content separate from grammar.
-s02-P24,The prime minister is a president.,,,D,Cold-solved component error; content separate from grammar.
+s02-P24-R,Long ago only.,,,M,Anticipated component error; content separate from grammar.
+s02-P24,The prime minister is a president.,,,D,Anticipated component error; content separate from grammar.
 s02-P24,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-X24,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-P24-R,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
-s02-P25-R,The permit office.,,,D,Cold-solved component error; content separate from grammar.
-s02-P25-1,The city is labeled with the other country.,,,D,Cold-solved component error; content separate from grammar.
-s02-P25,The Rideau Canal was made by nature.,,,D,Cold-solved component error; content separate from grammar.
-s02-P25,This map proves warmth.,,,D,Cold-solved component error; content separate from grammar.
+s02-P25-R,The permit office.,,,D,Anticipated component error; content separate from grammar.
+s02-P25-1,The city is labeled with the other country.,,,D,Anticipated component error; content separate from grammar.
+s02-P25,The Rideau Canal was made by nature.,,,D,Anticipated component error; content separate from grammar.
+s02-P25,This map proves warmth.,,,D,Anticipated component error; content separate from grammar.
 s02-P25,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-X25,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-P25-R,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-P25-1,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
-s02-P26-R,Warm all year.,,,D,Cold-solved component error; content separate from grammar.
-s02-P26-1,Glue.,,,D,Cold-solved component error; content separate from grammar.
-s02-P26-2,Accuracy.,,,H,Cold-solved component error; content separate from grammar.
-s02-P26,Everyone works in one industry.,,,I,Cold-solved component error; content separate from grammar.
-s02-X26,Everyone in Montreal loads ships.,,,I,Cold-solved component error; content separate from grammar.
+s02-P26-R,Warm all year.,,,D,Anticipated component error; content separate from grammar.
+s02-P26-1,Glue.,,,D,Anticipated component error; content separate from grammar.
+s02-P26-2,Accuracy.,,,H,Anticipated component error; content separate from grammar.
+s02-P26,Everyone works in one industry.,,,I,Anticipated component error; content separate from grammar.
+s02-X26,Everyone in Montreal loads ships.,,,I,Anticipated component error; content separate from grammar.
 s02-P26,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-X26,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-P26-R,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-P26-1,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
 s02-P26-2,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
-s02-X23,Every Métis person speaks Michif.,,,I,Cold-solved sample: unsupported generalization or mismatch with printed evidence.
-s02-P23-1,This counts everybody in Canada.,,,I,Cold-solved sample: unsupported generalization or mismatch with printed evidence.
-s02-P25-1,Ottawa labeled Mexico.,,,D,Cold-solved sample: unsupported generalization or mismatch with printed evidence.
+s02-X23,Every Métis person speaks Michif.,,,I,Anticipated sample: unsupported generalization or mismatch with printed evidence.
+s02-P23-1,This counts everybody in Canada.,,,I,Anticipated sample: unsupported generalization or mismatch with printed evidence.
+s02-P25-1,Ottawa labeled Mexico.,,,D,Anticipated sample: unsupported generalization or mismatch with printed evidence.
 s02-P27-R,All school stools.,,,I,Use the supplied record only; return one criterion cue.
 s02-P27-S,Any source proves the sentence.,,,D,Use the supplied record only; return one criterion cue.
 s02-P27,A list without sources.,,,D,Missing named criterion or relevant source detail; give one private cue.
@@ -1488,3 +1488,14 @@ s01-A4c-interpretation,Every reader must use the maps for the same question.,,,J
 s01-A2c,"K marked at 50 degrees north, 90 degrees west.",,,x,K is at the wrong crossing. A misplaced mark alone does not establish reversed coordinate order or a wrong zero line.
 s01-X1,Both readers always need identical map details.,,,J,Ignores how the stated walking and country-comparison purposes need different details.
 s01-P1-E,"Only the student needs an answer, to find paths.",,,J,Gives one defensible use but omits the other reader. Score reader components separately.
+s02-P38a-B,The decorated poster answers every question.,,,B,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P38a-J,Choose the decorated poster because it is pretty.,,,J,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P38a-Q,"The club says quietest, so no neighbor is disturbed.",,,Q,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P38b-I,Every theater opened May 6.,,,I,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P38b-K,One opinion makes every statement false.,,,K,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P38b-L,A checkable statement must already be true.,,,L,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P38b-M,The Haida Nation exists only in the past.,,,M,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P38c-E,Paper and envelopes.,,,E,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P38c-O,The makers produce every input themselves.,,,O,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P38d-H,It is good because it is short.,,,H,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P38d-P,Only our teacher needs these records.,,,P,Anticipated error in the assigned fresh component; use the single named look-for.

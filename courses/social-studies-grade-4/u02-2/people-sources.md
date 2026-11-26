@@ -4,15 +4,18 @@ course: social-studies-grade-4
 unit: 2.2
 version: draft, not yet taught
 credit: ours
+teacher_note: Print the shared introduction and one chosen census card only. Legal-history metadata and source links are in the opener. Withhold the Michif project until the exit.
 ---
 # People and languages: short source cards
 
-## Shared introduction, teacher reads
+## Shared introduction
 First Nations, Inuit and Métis are living, distinct Indigenous peoples in Canada.
 The Haida Nation's council describes its work protecting its culture today.
-An Inuit organization describes its work for Inuit rights and interests.
+Inuit Tapiriit Kanatami describes its work for Inuit rights and interests.
+The Gabriel Dumont Institute provides Métis cultural learning resources.
 Mexico has many Indigenous peoples and languages.
-A binational Indigenous organization describes rights and language work in Mexico and the United States.
+The Frente Indígena de Organizaciones Binacionales works in Mexico and the United States.
+It describes rights and language work.
 Mexico's constitution recognizes Afro-Mexican peoples and communities.
 
 Credits: original summaries of the named peoples' organizations and Mexico's constitution, Article 2.
@@ -33,8 +36,3 @@ These examples do not describe everyone in Mexico.
 
 Credits: [2020 census](https://www.inegi.org.mx/contenidos/programas/ccpv/2020/doc/censo2020_principales_resultados_ejecutiva_eum.pdf); [language institute](https://www.inali.gob.mx/detalle/lengua-zapoteco). Facts paraphrased.
 
-## Teacher metadata, do not add to student packet
-Own accounts: [First Nations organization](https://afn.ca/about-us/), [Haida Nation](https://www.haidanation.ca/about/chn), [Inuit organization](https://itk.ca/), [Métis organization](https://www.metisnation.ca/what-we-do/culture-heritage-and-language/language/), [binational Indigenous organization](https://www.fiob.online/acerca-de).
-Withhold the Métis language association until X23; print no unabridged source table.
-Article 2 section C was added August 9, 2019 and reformed September 30, 2024.
-Use the printed summaries if a live page is unavailable. No local visitor or page is required.

@@ -2,15 +2,17 @@
 piece: blank
 course: social-studies-grade-4
 unit: 2.5
-version: draft, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
 # Day 36 exit ticket
 
 **s02-X36**
 
-Made-up article: Canadian books reached Mexico in April. They are the best books. Identify a checkable claim and a source kind that could verify it.
+Made-up article: Canadian books reached Mexico in April. They are the best books. Could a dated shipping record verify the April shipment? Explain using its needed details.
 
-______________________________________________________________________
+_________________________________________________________________
 
-______________________________________________________________________
+_________________________________________________________________
+
+_________________________________________________________________

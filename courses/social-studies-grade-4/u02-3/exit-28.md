@@ -2,7 +2,7 @@
 piece: blank
 course: social-studies-grade-4
 unit: 2.3
-version: draft, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
 # Day 28 exit ticket
@@ -13,6 +13,8 @@ credit: ours
 
 The made-up Moss Town map places its marker inland. A report calls it coastal. Write a speaker note correcting the report with map evidence.
 
-______________________________________________________________________
+_________________________________________________________________
 
-______________________________________________________________________
+_________________________________________________________________
+
+_________________________________________________________________
