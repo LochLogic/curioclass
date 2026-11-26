@@ -188,7 +188,7 @@ science-grade-4,u01-2,6,case,"toy tire striking an index card, repeated farther 
 science-grade-4,u01-2,5,case,E5 cylinder and folded target repeated speed effects,"Current items.csv exit: matching fresh spring compression, slower 2,3,2 and faster 6,7,6 centimeters. Exit only, invented for practice.",written,
 science-grade-4,u01-2,6,case,"E6 hoop and cardboard tube, circular speed-energy explanation","invented for practice; exit only, not teaching; Invented for practice; exit only, not teaching.",written,
 science-grade-4,u01-3,7,term,"balanced, unbalanced, cancel",review of science-grade-3 u01-1 day 3,written,
-science-grade-4,u01-3,,term,force: a push or a pull on one object,review of science-grade-3 u01-1 day 1,planned,
+science-grade-4,u01-3,7,term,force: a push or a pull on one object,review of science-grade-3 u01-1 day 1,written,
 science-grade-4,u01-3,7,notation,"force arrow: starts on the thing acted on, not its path",review of science-grade-3 u01-1 day 1,written,
 science-grade-4,u01-3,10,term,"observation, inference",review of science-grade-3 u05-3 day 94,written,
 science-grade-4,u01-3,8,routine,"revise the record in a second color, keeping the original observations and initials",review of science-grade-3 u01-2 day 8,written,
@@ -203,10 +203,10 @@ science-grade-4,u01-3,,case,new drawn crate with equal opposing pushes or one la
 science-grade-4,u01-3,7,case,car and smooth block in contained floor lane,"days 7 to 9 live observation, not exit; Gentle observation with room-wide protection or records.",written,
 science-grade-4,u01-3,7,case,Car record C: three slower little/quiet and three faster farther/louder block outcomes,"invented for practice fallback; car slows in both sets, provenance separate; Invented fallback separate from live records.",written,
 science-grade-4,u01-3,7,investigation,compare car-block motion and same-place listening at two observed approach speeds,"days 7 to 9; one station, two protected handlers, four observers; all thirty keep records; Begins with one motion trial; listening comparison day 9.",written,
-science-grade-4,u01-3,10,text,short scientific warming card beside motion and sound records,day 10; energy source in unit field 10 opened 2026-11-23; source row to check in data job; Source U1-collision opened 2026-11-23; no measured temperatures.,written,
-science-grade-4,u01-3,7,case,E7 rubber ball and empty carton question/prediction/contact push,Plan-fix 2026-11-25: Exit only: one ball/carton evidence-supported prediction model with contact-force arrow. Collect test questions in Question clinic.,written,
+science-grade-4,u01-3,10,text,short scientific warming card beside motion and sound records,"Scientific account from Source U1-collision, opened 2026-11-26; checked row already current. No measured temperatures or deliberate heating.",written,
+science-grade-4,u01-3,7,case,E7 rubber ball and empty carton question/prediction/contact push,"Older draft case, absent from the current day 7. Current s01-X7 uses a sliding tile and paper screen with slower-contact evidence. See the written tile/screen row; do not treat this older entry as the current exit.",written,
 science-grade-4,u01-3,8,case,E8 rolling can and cork observed changes against old prediction,"invented for practice; exit only, not teaching; Invented for practice; exit only.",written,
-science-grade-4,u01-3,9,case,E9 wheel and box listening tallies with greater faster box motion,"Plan-fix 2026-11-25: Exit only: grouped sound tallies. Energy account is separate day 9 work evidence; A/D repair uses that work, not an added exit ask.",written,
+science-grade-4,u01-3,9,case,E9 wheel and box listening tallies with greater faster box motion,"Exit only. Current s01-X9 supplies chronological sound reports, including one quiet faster event, and asks grouped tallies only. No box-motion evidence is supplied on this exit. Energy evidence and A/D repairs come from classroom work.",written,
 science-grade-4,u01-3,10,case,E10 sphere and paper cone with click and scientific warming account,"invented for practice; exit only, not teaching; Invented for practice; exit only.",written,
 science-grade-4,u01-4,15,routine,"revise the record in a second color, keeping the original observations and initials",review of science-grade-3 u01-2 day 8,written,
 science-grade-4,u01-4,13,notation,"claim, evidence and reason: I think ___, because I saw ___, so ___",review of science-grade-3 u06-4 day 113,written,
@@ -1643,3 +1643,14 @@ science-grade-4,u01-2,5,skill,match observation labels to specific retained marb
 science-grade-4,u01-2,6,skill,sort tire motion observations from an energy-transfer explanation,Uses complete statements; circular drafts remain unseen until the hoop exit.,written,
 science-grade-4,u01-2,6,routine,"partners match evidence to complete statements, then explain orally",Two 45-second turns each; reject the equal-energy statement using the repeated tire effects.,written,
 science-grade-4,u01-1,2,term,observed: seen; expected: a result you think will happen,Children read and use these labels to separate observations from predictions.,written,yes
+science-grade-4,u01-3,7,term,contact,"Objects touch during a collision. Children read, say and use the word with the arrow diagrams.",written,yes
+science-grade-4,u01-3,7,term,destination,"Where transferred energy goes. Children read, say and use the word with motion-energy arrows.",written,yes
+science-grade-4,u01-3,7,case,E7 tile sliding toward a still paper screen with a slower-contact record,Exit only; current items.csv case replaces the older ball/carton wording. No practice uses this case.,written,
+science-grade-4,u01-3,7,skill,oral block-motion prediction supported by earlier collision observations,Separate from question sorting and the observation record; energy prediction drawing reserved for the exit.,written,
+science-grade-4,u01-3,8,skill,compare spoken expectations with retained observations in a second color,review of science-grade-3 u01-2 day 8,written,
+science-grade-4,u01-3,8,term,contact,review of science-grade-4 u01-3 day 7,written,no
+science-grade-4,u01-3,8,term,destination,review of science-grade-4 u01-3 day 7,written,no
+science-grade-4,u01-3,9,notation,tally: one mark for one event,review of science-grade-3 u03-2 day 44,written,
+science-grade-4,u01-3,9,skill,use motion evidence beside a sound report without treating loudness as total energy,Work evidence from the chronological car log; sound and motion are simultaneous energy destinations.,written,
+science-grade-4,u01-3,10,term,"observation, inference",review of science-grade-3 u05-3 day 94,written,no
+science-grade-4,u01-3,10,skill,distinguish an unmeasured warming destination from observed motion and reported sound,"Scientific account, Source U1-collision, opened 2026-11-26; no temperature instrument, heating or touching test.",written,
