@@ -2014,3 +2014,7 @@ because the reviews say a log line is owed. Cory's open questions from the same 
   repeats within a band (Brown v. Board left 6 to 8; it stays in 3 to 5 and returns in 9 to 12 at new depth), and
   each case carries its community's own account beside an archive page; a partner never plays an unkind, pushing or
   abusive part (the teacher or a scene card supplies the words and the partner coaches).
+
+## 2026-11-26: Personal Finance folds into Economics with its own units (chat)
+
+- Cory in chat 2026-11-26: Personal Finance 9 to 12 folds into Economics but still gets a unit. Economics already teaches it in two units (unit 8, earning, spending and protecting; unit 9, saving, credit and investing; docs/courses/economics/frame.md), so no new frame is written and the Personal Finance course row stays inactive. The Dashboard marks frame:personal-finance done as folded. The catalogue retag of its modules (later.csv L90 part 2) is unchanged and still waits for the retool with kept ids.
