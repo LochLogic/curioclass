@@ -14,4 +14,4 @@ Four boxes to tick, one for each look at the draft:
 - Spelling checked in the dictionary where a word looks wrong.
 - The one convention the teacher flagged, corrected.
 
-The checklist asks for a second pass with a different colour of pencil.
+The checklist asks for a second pass with a different color of pencil.

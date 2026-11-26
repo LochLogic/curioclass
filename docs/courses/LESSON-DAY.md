@@ -21,7 +21,7 @@ the rest.
 | **Student page** | Each student | Written frame; every question pulled from data | One sheet, both sides of US Letter at most. Words a student reads counts everything printed for the student, questions included; the cap is set per course in DEFAULTS.md (grade 4 math: 350, ours, untested), and the gate reports frame and questions apart. No sentence over 15 words in grades 3 to 5. 18 point type in kindergarten to grade 2, with a line telling the teacher what to read aloud; 14 point in grades 3 to 5; 12 point from grade 6 |
 | **Exit ticket** | Each student, then the teacher | Generated from data: the paper path's exit rows | A quarter page, four to a sheet. A multi-part judged exit that cannot fit sets `exit: half` in the header: half a sheet, two to a sheet. A teaching day that holds unit assessment items itself (a product judged that day) has no exit ticket |
 | **Answer key** | The teacher | Generated from data: every answer on both exit paths, its equation or working, and what each wrong answer means | Usually one side |
-| **Display page** | The class, on the projector | Generated from data, in the order the teacher page runs, part by part. For each worked example, the question with its labelled figure, then the steps one screen at a time; for each wrong answer to fix, their working beside the right working; one screen per **Ask.**; a challenge screen; the answers to a plain sum; a "check your answers" screen only where a part names a partner or self check (a `Check: ...` line in the part gives its sentence); on an assessment day, the answers screen and one screen per group in the respond part; the sentence frames last | No words of its own |
+| **Display page** | The class, on the projector | Generated from data, in the order the teacher page runs, part by part. For each worked example, the question with its labeled figure, then the steps one screen at a time; for each wrong answer to fix, their working beside the right working; one screen per **Ask.**; a challenge screen; the answers to a plain sum; a "check your answers" screen only where a part names a partner or self check (a `Check: ...` line in the part gives its sentence); on an assessment day, the answers screen and one screen per group in the respond part; the sentence frames last | No words of its own |
 | **Slides** | Nobody | **None.** The display page and the tool's own screen do this job; a slide deck would be a second copy of the teacher page to write and keep right | 0 |
 | **Materials** | The teacher | A line in the header: per student, per class, what to print and how many, and the stand-in for a room without it ("no document camera: draw it on the board") | Part of the header |
 
@@ -56,7 +56,7 @@ example's steps from the row's `steps` cell, the same cell the display reveals, 
 display cannot drift; `[[note:id]]` prints a short form (who, and the numbers given) from the row's `figure` cell
 for a table; `[[fig:id]]` draws the row's figure in place (on the student page, the key and the display). `python -X utf8 scripts/lesson.py build` makes the print pages in `build/lessons/`.
 
-A row may carry, beside its key: `figure` (a labelled shape, `rect w=7 l=? A=63 u=ft`; a mixed number joins
+A row may carry, beside its key: `figure` (a labeled shape, `rect w=7 l=? A=63 u=ft`; a mixed number joins
 with `_`, as `l=6_3/4`; flags `grid` draw the unit squares and `marks` tick and number each unit side; `around=`
 names what goes round; small whole sides are drawn to scale; every number in the figure must be in the stem),
 or a strip (tape) picture, `strip Ada:6 Eli:6*2=?`: one bar per `Name:pieces`, `_` for a space in the name;
@@ -168,7 +168,7 @@ later day's to pick up. **A writing day's student page gives the revision note i
 - Tables print at the page's own type size (14 point); a day that will not fit two sides trims, not the type.
 - Strip pictures that are compared side by side share one scale (`scale=N` on each strip figure).
 - An exit ticket that asks for a strip picture prints a box for it; a teacher-judged ticket item gets a tall box.
-- No answers printed. No score or rank; no timer without a grounded purpose (BASELINE rule 30). Black and white, readable with no colour.
+- No answers printed. No score or rank; no timer without a grounded purpose (BASELINE rule 30). Black and white, readable with no color.
 - A large-print version (18 point) is generated from the same file. It may run longer than two sides; the
   two-side rule is for the standard page only.
 - Instructions a student reads are short sentences in plain words; numbers are written as numerals.
@@ -232,9 +232,9 @@ the check is the evidence.
 4. **Credit on the lesson.** Only CC BY (any version), CC0 or public domain material may be adapted, because
    Curio Class content is CC BY 4.0. Anything with NonCommercial, ShareAlike or NoDerivatives terms may be read to
    learn, never adapted, and "informed by" means no wording, task sequence or problem context taken over. An
-   adapted item carries its credit in its row's `source` cell (title, author, licence with link, what we changed,
+   adapted item carries its credit in its row's `source` cell (title, author, license with link, what we changed,
    in the form the licensor asks for), and every built piece that prints the item prints the credit at its foot.
-   A name or logo the licence excludes appears only in the credit line. A day adapted as a whole says so in its
+   A name or logo the license excludes appears only in the credit line. A day adapted as a whole says so in its
    `credit` header.
    **A day adapted from a base text (docs/sources/BASE-TEXTS.md) carries one short credit and no more** (settled
    2026-11-13, see DESK-ANSWERS). The `credit` header, printed once in the foot, reads:
@@ -277,7 +277,7 @@ the same part); `Check:` written mid-line; "after each set" with fewer `Check:` 
 no `Check:` line or peer key; a part that says the display shows the answers ("answers on the display", "the
 answers on the screen") with no check named; a warm-up with no row; grid paper used in a part and on neither the
 materials nor the print line, or the column sheet used and not printed; a section whose opener sends the family note
-home on a day that does not print it; an adapted credit or `source` with no licence or link, or with
+home on a day that does not print it; an adapted credit or `source` with no license or link, or with
 NonCommercial, ShareAlike or NoDerivatives terms. Notes: "under the camera" on a day with no document camera; a
 strip, card or sheet handled and not listed; a "from day N" material day N never names; an opener sheet listed for
 the day that the day never names; the student page running in another order than the day (unless the part says to

@@ -15,7 +15,7 @@ New Globe View Card and a new flat world card, each showing Asia, Africa and the
 
 ## Day 4
 
-A new World Outline Card with the equator and the prime meridian already drawn, and a dot on the west coast of Africa labelled with a letter. Say aloud that the dot marks Dakar, Senegal. Ask: Write its continent. Is Dakar in the northern or southern hemisphere? Is Dakar in the eastern or western hemisphere?
+A new World Outline Card with the equator and the prime meridian already drawn, and a dot on the west coast of Africa labeled with a letter. Say aloud that the dot marks Dakar, Senegal. Ask: Write its continent. Is Dakar in the northern or southern hemisphere? Is Dakar in the eastern or western hemisphere?
 
 ## Day 5
 

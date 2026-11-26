@@ -48,7 +48,7 @@ Grid paper and tiles on day 89 make both counts visible: the squares inside, a f
 the squares go away. Community Plot Planner gives each student a lot and five family notes ("we need 48 square
 feet; our plot is 6 feet wide"), so the student has to write the equation before the plot can be built; the
 squares fade as the student works. Where the tool is not built or there are no devices, the same notes are
-done on paper with grid paper and sketches. From day 91 a rectangle is a sketch with labelled sides, which is
+done on paper with grid paper and sketches. From day 91 a rectangle is a sketch with labeled sides, which is
 what students will meet on every later page.
 
 ## The errors to expect, in plain words
@@ -94,7 +94,7 @@ For item 3 (8 × ? = 48) gaps: fact help goes into the warm-ups only, not into t
 ## Words
 
 Area, perimeter, length, width, square unit (square foot, square meter), formula, equation. Teach each on a
-labelled rectangle. "Covers" and "goes around" help at first; by day 92 problems use neither.
+labeled rectangle. "Covers" and "goes around" help at first; by day 92 problems use neither.
 
 ## How the section is checked
 

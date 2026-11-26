@@ -11,7 +11,7 @@ Real parts are summaries in our words with credit lines. The Kai strip is invent
 
 ## Two islands map
 
-A plain outline of the United States with a coast. A star at New York Harbor labelled "Ellis Island" and a star at San Francisco Bay labelled "Angel Island".
+A plain outline of the United States with a coast. A star at New York Harbor labeled "Ellis Island" and a star at San Francisco Bay labeled "Angel Island".
 
 ## Angel Island, told plainly (9 minutes)
 

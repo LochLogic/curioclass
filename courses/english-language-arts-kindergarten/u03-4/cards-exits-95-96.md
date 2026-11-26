@@ -23,11 +23,11 @@ The sheet and the card use plain black line drawings on white, thick lines, no s
 
 **Read:** "Source A: A sloth hangs from a branch of a tree. Source B: A sloth eats leaves from the tree."
 
-**Mark (item a):** Which two-source picture plan explains how the sloth depends on the tree? Three pictures in a row, each in a ring: a sloth on a branch with a leaf, labelled A and B; a sloth asleep on the ground, labelled A; a branch of leaves with no sloth, labelled B.
+**Mark (item a):** Which two-source picture plan explains how the sloth depends on the tree? Three pictures in a row, each in a ring: a sloth on a branch with a leaf, labeled A and B; a sloth asleep on the ground, labeled A; a branch of leaves with no sloth, labeled B.
 
 **Spoken, to the day's six (item b):** "What will you take from each source?"
 
 ## Key (teacher)
 
 - Day 95: item a, The oak planks with an arrow to the chair, the table and the people. Not yet: marks the table alone or the oak alone (B, a picture that leaves out the link). Item b, People make chairs and tables from the oak's hard, strong wood. Not yet: says People. Chairs. Oak. (A, three things named, none linked); says The people eat the acorns (D, not stated for people).
-- Day 96: item a, The sloth on a branch with a leaf, labelled A and B. Not yet: marks the sloth on the ground or the branch of leaves with no sloth (B, a plan that uses only one source). Item b, From A, it hangs from the branch; from B, it eats the tree's leaves. Not yet: says Sloths are slow (E, not about the question); swaps the two sources (AI, facts given the wrong source).
+- Day 96: item a, The sloth on a branch with a leaf, labeled A and B. Not yet: marks the sloth on the ground or the branch of leaves with no sloth (B, a plan that uses only one source). Item b, From A, it hangs from the branch; from B, it eats the tree's leaves. Not yet: says Sloths are slow (E, not about the question); swaps the two sources (AI, facts given the wrong source).

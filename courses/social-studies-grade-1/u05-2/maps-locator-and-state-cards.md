@@ -11,11 +11,11 @@ The locator and the state outlines show real places. Say aloud: "This is a real 
 
 ## United States locator
 
-**Picture:** an outline of the United States. A large star on Washington, D.C., labelled Washington, D.C. A key box: a star is the nation's capital. A small inset beside the outline shows the star on a building: a building drawn inside a city shape, with the building circled, labelled "a building in the city". A direction indicator labelled N pointing up the page.
+**Picture:** an outline of the United States. A large star on Washington, D.C., labeled Washington, D.C. A key box: a star is the nation's capital. A small inset beside the outline shows the star on a building: a building drawn inside a city shape, with the building circled, labeled "a building in the city". A direction indicator labeled N pointing up the page.
 
 ## Our state outline card
 
-**Picture:** an outline of the class's own state with a star on its capital and a dot on one other city, each labelled, a key (a star is the state capital, a dot is another city), a direction indicator, and a caption under the outline: "The state government meets in the starred city." Fill it in from the state's government page before the lesson: the capital is checked on that page, and the second city is chosen and checked there too. If the class lives in a state whose card is used as an exit (Oregon, with Texas as the substitute), take a third state for teaching; see below.
+**Picture:** an outline of the class's own state with a star on its capital and a dot on one other city, each labeled, a key (a star is the state capital, a dot is another city), a direction indicator, and a caption under the outline: "The state government meets in the starred city." Fill it in from the state's government page before the lesson: the capital is checked on that page, and the second city is chosen and checked there too. If the class lives in a state whose card is used as an exit (Oregon, with Texas as the substitute), take a third state for teaching; see below.
 
 ## Two example state cards
 

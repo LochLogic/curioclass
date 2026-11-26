@@ -9,7 +9,7 @@ credit: ours; ocean count from NOAA
 
 Invented for practice. Print the continent and ocean names in 1-to-3-word labels. Two printed cards for each pair.
 
-- Globe View Card: a circle with the continents and oceans as they look on a globe from above the Atlantic, labelled South America, Africa, Europe, North America, Atlantic Ocean.
+- Globe View Card: a circle with the continents and oceans as they look on a globe from above the Atlantic, labeled South America, Africa, Europe, North America, Atlantic Ocean.
 - Flat world card: the same names flattened, with Greenland drawn too large and Africa too small, so the pair shows that a flat card changes sizes.
 
 Ask pairs to circle the Pacific Ocean on both cards, then say one thing that looks different on the flat card.

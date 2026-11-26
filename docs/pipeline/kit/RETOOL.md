@@ -136,3 +136,13 @@ Source: consolidation 4.H (docs/CONSOLIDATION-PLAN.md), homes and ids. No grade 
 | The never-open lists in 14 briefs and common.txt were typed by hand, drifted, and still named data/units.csv (consolidation plan 4.H) | one line per brief rendered from data/homes.csv by `scripts/homes.py briefs --write`; `homes.py check` fails a line that differs from the render |
 | Per-course reports landed at the top of docs/reviews/ (consolidation 4.H home rule) | cleanup, key, plan-fix, plan-read, sample-read and sweep write to `docs/reviews/{COURSE}/`; plan_flow.py reads there first |
 | A revised item got a `-v2` id, so ids changed under every link (consolidation 4.H) | data/plans/README.md: a revised item keeps its id, the version goes in `version`; plan.py fails a new suffixed id |
+
+## Retool 8: KIT-VERSION 9 (2026-11-25)
+
+Source: the step 4 close review (docs/reviews/consolidation/step4-close-review.md), findings 1, 2 and 7. No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| A course gate with no stored baseline passed, and a job could store a broken course as its own baseline (step 4 close review, finding 1) | gate.py --course stores the baseline itself on an unchanged course, refuses --baseline on a changed one and exits 2 with no baseline; common.txt, day.txt, cleanup.txt and continuity-fix.txt no longer tell jobs to store one |
+| The course gate printed every known line (math K 8,721 lines) and plan.py printed same-stem pairs one by one (finding 2) | the gate prints counts by rule and only new lines (`--verbose` for all); plan.py groups same-stem files per unit (math K plan lines 4,292 to 82) |
+| common.txt said both "two jobs never write the same course" and "jobs in one course may both write" (finding 7) | one sentence: never two jobs in the same course at once |

@@ -9,7 +9,7 @@ credit: ours
 
 ## English
 
-This unit our class reads true short articles about how bees, butterflies, bats and hummingbirds carry pollen from flower to flower, and a story and two poems told from a bee's side. We practise saying how one step leads to the next, writing short notes that say where each fact came from, and giving a short talk about what we found.
+This unit our class reads true short articles about how bees, butterflies, bats and hummingbirds carry pollen from flower to flower, and a story and two poems told from a bee's side. We practice saying how one step leads to the next, writing short notes that say where each fact came from, and giving a short talk about what we found.
 
 At home, if you like, ask your child to explain one step of how pollen travels. Any language is fine for talking. There is nothing to send back, and any night can be skipped.
 

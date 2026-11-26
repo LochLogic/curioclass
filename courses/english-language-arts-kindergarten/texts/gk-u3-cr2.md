@@ -63,7 +63,7 @@ Picture: The pig out of the pit, children cheering, the pig looking pleased.
 
 ---
 
-New words and the pattern each one practises:
+New words and the pattern each one practices:
 
 - pig, pit, dig, did, Tim, Kim: short i, one consonant each side
 - sad, ran, can: short a, review

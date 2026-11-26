@@ -34,7 +34,7 @@ Fen Barrel Works makes barrels. Seth packs salted cod in them. Dora sells the ba
 
 AD: a fresh made-up card: a net maker, a trawler and a market seller. I: trace one fresh swap, goods for goods.
 
-## A simplified network, labelled so
+## A simplified network, labeled so
 
 A map with three dots: New England, the Caribbean and West Africa. Goods arrows: fish to the Caribbean; sugar and molasses back; rum to West Africa. Say separately: people were taken from their homes and forced onto ships. (U5AB.) Tail at the start dot. Say each leg's compass direction. Ask what the picture leaves out.
 
@@ -60,7 +60,7 @@ Salem merchants sent fish, livestock and lumber to the Caribbean, and ships came
 
 ## New Amsterdam
 
-In 1609 Henry Hudson reached New York Bay. In 1624 the Dutch set up a fur trading station on Governor's Island. In 1625 they founded New Amsterdam in Lower Manhattan. (National Park Service, U5T.) On the day 94 map it is labelled New Netherland. The same chain.
+In 1609 Henry Hudson reached New York Bay. In 1624 the Dutch set up a fur trading station on Governor's Island. In 1625 they founded New Amsterdam in Lower Manhattan. (National Park Service, U5T.) On the day 94 map it is labeled New Netherland. The same chain.
 
 ## Pairs: Tern Landing, made up
 

@@ -11,7 +11,7 @@ Say aloud first: "Cedar Park is made up." Print "invented for practice" on the m
 
 ## Cedar Park map (invented)
 
-**Picture:** a park drawn from above. Its direction indicator is a large arrow labelled N pointing to the right edge of the page. A boxed key: a diamond is a swing set, a blue oval is a pond, a rectangle is a bench, a triangle is a slide, a thick short line is the gate. On the map, working in page terms: the pond at the center; the swing set to the left of the pond; the bench to the right of the pond; the slide above the pond; the gate below the pond.
+**Picture:** a park drawn from above. Its direction indicator is a large arrow labeled N pointing to the right edge of the page. A boxed key: a diamond is a swing set, a blue oval is a pond, a rectangle is a bench, a triangle is a slide, a thick short line is the gate. On the map, working in page terms: the pond at the center; the swing set to the left of the pond; the bench to the right of the pond; the slide above the pond; the gate below the pond.
 
 For pairs: copy the map on paper with tokens; put a token on the place east of the pond (the gate) and say the direction of the swing set from the bench.
 

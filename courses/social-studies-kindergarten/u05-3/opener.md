@@ -17,7 +17,7 @@ Day 48: you read two pages of "Two Celebrations" (Hanukkah latkes from the Refor
 
 ## The ideas, at an adult's level
 
-A tradition is something people do again, often with others, for a special day. Alike and different are the two halves of a comparison; one difference alone is not a comparison (error O). Real traditions are shown only from their own community's pages, with the maker named, and never stand for all families (error F). No tradition is strange, wrong or better (error M). Say a reason only where the page states one; otherwise say "the page does not say". People greet in many ways and no one greeting is universal. Nobody tastes, lights, plays, dances, sings along or prays; religious traditions are described, never practised.
+A tradition is something people do again, often with others, for a special day. Alike and different are the two halves of a comparison; one difference alone is not a comparison (error O). Real traditions are shown only from their own community's pages, with the maker named, and never stand for all families (error F). No tradition is strange, wrong or better (error M). Say a reason only where the page states one; otherwise say "the page does not say". People greet in many ways and no one greeting is universal. Nobody tastes, lights, plays, dances, sings along or prays; religious traditions are described, never practiced.
 
 ## Care
 

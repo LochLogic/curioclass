@@ -22,7 +22,7 @@ Day 6: a repair for day 5, the three questions, pairs sorting six credit cards, 
 - **"The record does not say" is a full answer.** The Boulder margin does not print where the map was made. Nothing is guessed.
 - **An old map is evidence of what its maker knew and chose,** not a photograph of the place.
 - **A fact is checkable;** it may be checked on this source or by looking somewhere else. **An opinion** tells what someone thinks. A source with an opinion in it can still be used for what can be checked.
-- The bridge question, asked of maps and photographs with the teacher modelling, is "What is this map for?"
+- The bridge question, asked of maps and photographs with the teacher modeling, is "What is this map for?"
 
 ## The errors, in plain words
 

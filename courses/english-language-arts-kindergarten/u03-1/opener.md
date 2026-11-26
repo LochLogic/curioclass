@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Days 80 to 84 open the unit question: what do trees need, and who needs trees? The class hears short information pages about living and nonliving things, learns that a fact and another fact can be joined by an arrow and a joining word, makes a first labelled note, and hears a story of one tree across years. Foundations hold the new sounds sh, th and ch, spoken rhyme and onset-rime work, letter names, and the words to and do.
+Days 80 to 84 open the unit question: what do trees need, and who needs trees? The class hears short information pages about living and nonliving things, learns that a fact and another fact can be joined by an arrow and a joining word, makes a first labeled note, and hears a story of one tree across years. Foundations hold the new sounds sh, th and ch, spoken rhyme and onset-rime work, letter names, and the words to and do.
 
 ## How the days run
 
@@ -35,7 +35,7 @@ Wrong examples are said by a puppet or as "someone might say", never by a child.
 
 ## Supplies
 
-The unit 3 text set, the exit cards, four research-cycle wall pictures, picture sort cards, the labelled note page, a toy truck, a leaf or a drawn tree, chart paper, a talking token, crayons, glue sticks, the sound-spelling map and the unit record sheet.
+The unit 3 text set, the exit cards, four research-cycle wall pictures, picture sort cards, the labeled note page, a toy truck, a leaf or a drawn tree, chart paper, a talking token, crayons, glue sticks, the sound-spelling map and the unit record sheet.
 
 ## A room with nothing
 

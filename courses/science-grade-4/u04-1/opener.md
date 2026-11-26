@@ -37,7 +37,7 @@ Only two active handlers touch wet apparatus; others observe and record from dry
 
 ## Reserved item shapes for the day writer
 
-Shape: s04-X57-model: Produce a tentative blockage model labelled with two observations.
+Shape: s04-X57-model: Produce a tentative blockage model labeled with two observations.
 
 Shape: s04-X57-question: Pose one testable question about the blockage explanation.
 

@@ -10,7 +10,7 @@ credit: ours
 For the groups not with the teacher. One card for each of the error letters. Each says what a wrong idea is and what to do.
 
 - A: continent, ocean and hemisphere are three kinds of words. Check which kind the question asks for.
-- B: a colour gives a symbol no meaning. Read the legend.
+- B: a color gives a symbol no meaning. Read the legend.
 - C: north is where the arrow points. Find the arrow first.
 - D: a bar is a length, not a step. Lay a strip along it.
 - E: warm does not mean wet. Look at rain separately.

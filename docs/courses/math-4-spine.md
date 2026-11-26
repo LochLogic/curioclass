@@ -70,7 +70,7 @@ goes to major work. They are not copied from any program.
   moved off major work should come back.
 - **The same count read other ways.** By sections, 29 of the 42 sections in the 17 teaching units are major work
   (69 percent). The course has 43 sections; the 43rd, section 18.1, pulls the year together and is not in this count. By
-  units, 10 of 17 (59 percent), which is why the three supporting units that practise major work (line
+  units, 10 of 17 (59 percent), which is why the three supporting units that practice major work (line
   plots, area and perimeter, measurement conversions; 16 days) must show that link on the page of every section. With
   those 16 days counted beside major work, the figure is 116 of 150 (77 percent).
 - **18 units, 43 sections.** A unit is one block of standards and usually one topic. A section is a package of 1 to 5 days (section 3.4 has 6: its last day is the unit's assessment day).
@@ -173,7 +173,7 @@ check draws its items from these codes.
 | 2 | Number Patterns | 3.OA.D.9 (Patterns and Two-Step Problems), 3.OA.C.7 | Short, and it sets the habit of saying what you notice and why, which the fraction work leans on | Grade 5 patterns and relationships |
 | 3 | Equivalent Fractions and Comparing | 3.NF.A.1, 3.NF.A.2, 3.NF.A.3 (Fractions as Numbers) | The base of all fraction work this year. It comes early so it can be used again four more times | Units 4 to 7; grade 5 unlike denominators |
 | 4 | Adding and Subtracting Fractions | 3.NF.A.1, 3.NF.A.2, 3.NF.A.3c (Fractions as Numbers); unit 3 | A fraction as a sum of unit fractions follows straight from unit 3, while the pictures are fresh | Units 5 and 6; grade 5 adding unlike fractions |
-| 5 | Line Plots | 3.MD.B.4 (Scaled Graphs); unit 4 | Placed here on purpose: it is supporting work whose whole job is to practise adding and subtracting fractions with real measurements | Grade 5 units and line plots |
+| 5 | Line Plots | 3.MD.B.4 (Scaled Graphs); unit 4 | Placed here on purpose: it is supporting work whose whole job is to practice adding and subtracting fractions with real measurements | Grade 5 units and line plots |
 | 6 | Multiplying a Fraction by a Whole Number | 3.OA.A.1 (Meaning of Multiplication and Division), 3.NF.A.1; unit 4 | Repeated adding of one fraction, so it follows unit 4. It needs only grade 3 equal groups, not multi-digit multiplication | Grade 5 multiplying fractions |
 | 7 | Decimals | 3.NF.A.2, 3.NF.A.3 (Fractions as Numbers); units 3 and 4. Grade 3 gives no tenths or hundredths | Tenths and hundredths are fractions first. Coming straight after fraction work, a decimal is a new way to write a number the student already knows | Unit 15 (money, metric); grade 5 decimals |
 | 8 | Place Value to a Million | 3.NBT.A.1, 3.NBT.A.3 (Rounding and Multi-Digit Operations); reading, writing and comparing numbers are grade 2 (2.NBT.A.1 to 2.NBT.A.4) | Students have just written tenths and hundredths, so "ten times the place to its right" has something to stand on. The standard itself is about whole numbers; place value in decimals is grade 5 and is not taught or assessed here | Units 9, 12, 13; grade 5 powers of ten |
@@ -190,7 +190,7 @@ check draws its items from these codes.
 
 **Where this differs from data/sequence.csv.** Five places, all marked **changed** in the scope and sequence. (1) The topic
 Angles and Line Plots is one topic with two halves. The scope and sequence uses its two halves in two places: line plots at
-unit 5, where they practise fraction addition, and angles at unit 16. The topic stays one topic (Cory's
+unit 5, where they practice fraction addition, and angles at unit 16. The topic stays one topic (Cory's
 call on the Desk); only the sections point at different parts of it. (2) sequence.csv puts Multi-Digit Multiplication
 and Division as one stop; the scope and sequence gives each half its own unit, matching the two tools. (3) Measurement
 Conversions moves from before Area and Perimeter to after division, so it can use the computing it needs. (4) The
@@ -204,7 +204,7 @@ warm-up from the worksheet generator:
 - **Adding and subtracting, from day 1.** Within 1,000 (3.NBT.A.2) until unit 9. Multi-digit adding with the
   standard algorithm enters the warm-up the day after it is taught, and subtracting from day 78, to the end of the
   year (corrected 2026-11-11: the warm-up had used the algorithm from day 72, the day it is first taught).
-- **Times tables, from day 1.** Labelled on every page as grade 3 maintenance (3.OA.C.7), not grade 4 teaching.
+- **Times tables, from day 1.** Labeled on every page as grade 3 maintenance (3.OA.C.7), not grade 4 teaching.
   Every unit after the first leans on them. Days 1 to 6 include a facts check (decided 2026-11-11): 36
   products in the day 3 warm-up and 36 quotients in the day 4 warm-up, untimed; the mark is 32 of 36. Students
   below the mark keep a 9 by 9 multiplication table through unit 3 (to day 24), and get the grade 3 fact tools

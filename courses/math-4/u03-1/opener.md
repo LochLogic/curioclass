@@ -43,7 +43,7 @@ these cuts on printed lines by hand, and decide whether two fractions are the sa
 - **Day 11.** A strip laid on a printed line from 0: its end is the point. The object is tied to the drawing.
 - **Day 12.** Strips only to check a claim; cuts into 3, 5 and 10 marked on printed lines. The exit has no strips.
 
-The fraction strips sheet (strip-sheet.md): nine labelled strips, one whole to twelfths, all one length, on page
+The fraction strips sheet (strip-sheet.md): nine labeled strips, one whole to twelfths, all one length, on page
 1; ten blank strips to fold on page 2. Print both pages one-sided, one set a student, for day 10; the cut strips
 stay in an envelope all unit. The number lines sheet (number-lines.md), lines 1 to 12: on side 1, lines 1 to 3 blank from 0 to 1
 and lines 4 to 6 from 0 to 2 in halves, fifths and fourths. Print it both sides, one a student, for day 11 only.
@@ -95,7 +95,7 @@ One more readiness question, half of a small pizza against half of a large one, 
 
 ## Words
 
-Equivalent, numerator, denominator, whole, cut, each on a labelled strip on the wall. Read fractions "three
+Equivalent, numerator, denominator, whole, cut, each on a labeled strip on the wall. Read fractions "three
 fourths", not "three over four". Frame, to take or leave: "Each part was cut into __, so there are __ times as
 many parts and each part is smaller. The length is the same, so __ = __."
 

@@ -7,7 +7,7 @@ credit: ours
 ---
 # Repair cards, day 101
 
-Picture repair cards for the response groups, one set for each error letter the check days showed. Five minutes of modelling, five of repair, five of retry.
+Picture repair cards for the response groups, one set for each error letter the check days showed. Five minutes of modeling, five of repair, five of retry.
 
 - **C:** an animal picture with an empty label line and one with the animal named.
 - **D:** a sentence the card does not say crossed out; the card sentence pointed to.

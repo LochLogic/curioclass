@@ -9,7 +9,7 @@ docs/courses/eld/STANDARD.md. Web facts below were read on 2026-11-20 unless mar
 | Owed (ADOPTION-BAR-SUBJECTS, world languages) | State | Where |
 |---|---|---|
 | Split each language into levels, with a target each | Option D chosen (Cory, 2026-11-21); catalogue rows drawn when the pass opens | Section 5 |
-| Load the 2026 can-do statements after a licence check | Licence read; nothing loaded; paraphrase-only plan | Section 3 |
+| Load the 2026 can-do statements after a license check | License read; nothing loaded; paraphrase-only plan | Section 3 |
 | Load American Sign Language standards | Sources found; nothing loaded | Section 4 |
 | Decide the video source for American Sign Language | Already decided: graphics only, no video, no photos of people (Cory 2026-10-27) | APPROACH.md |
 | Course count above 105 | Counted for each option | Section 5 |
@@ -41,7 +41,7 @@ docs/courses/eld/STANDARD.md. Web facts below were read on 2026-11-20 unless mar
   names a standard by its title, not by "Standard 1.2". The numbered 2015 sub-parts used by states (the "sample
   progress indicators") were not read (not checked).
 - **Reuse terms, checked at the source.**
-  - ACTFL standards and guidelines pages carry "Copyright 2026 ACTFL" and no reuse licence on the standards summary
+  - ACTFL standards and guidelines pages carry "Copyright 2026 ACTFL" and no reuse license on the standards summary
     page. So: titles, ids and our own words only. No standard statement or level description is copied. Public pages
     say "world language standards" and give the id; internal docs may name the source.
   - The standards themselves are for sale on ACTFL's site (the summary page links a purchase page).
@@ -67,11 +67,11 @@ docs/courses/eld/STANDARD.md. Web facts below were read on 2026-11-20 unless mar
   self-assessment use. ACTFL's page names the 2026 edition; a 2026 ACTFL document describes the Superior and
   Distinguished statements as updated revisions of the 2017 set (search summary of the ACTFL Can-Do overview PDFs,
   not opened in full).
-- **Licence, as stated on the ACTFL page (read 2026-11-20).** "Provided for educational and non-profit use only";
+- **License, as stated on the ACTFL page (read 2026-11-20).** "Provided for educational and non-profit use only";
   "commercial use or sale is prohibited"; attribution to both NCSSFL and ACTFL requested. It is not a Creative Commons
-  licence. The page does not name American Sign Language in the terms, though it counts signed conversation within
+  license. The page does not name American Sign Language in the terms, though it counts signed conversation within
   the interpersonal mode.
-- **What that allows us.** Curio Class is free and non-profit, but "non-profit use" is not a licence to republish
+- **What that allows us.** Curio Class is free and non-profit, but "non-profit use" is not a license to republish
   or adapt text, and a planned donation catalog (from memory, docs/funding/) is a money question. So the standing
   call holds (DESK-ANSWERS, "Can-do and ACTFL statements ship as paraphrases with the note"): **our own paraphrases
   only, never the statements' text, each page carrying a note that they are our paraphrase of the NCSSFL-ACTFL
@@ -87,10 +87,10 @@ Search only; nothing downloaded; links in section 7.
 - **K-12 ASL Content Standards** (Clerc Center, Gallaudet University; developed 2014 to 2017 with a consortium and
   the California School for the Deaf at Fremont, per the search summary). Written for **students learning ASL as a
   first language** (academic ASL); the search summary describes five anchor standards with grade-level benchmarks.
-  The Clerc Center page returned a 403 when fetched, so the licence and the structure are **not checked**. It is the right fit for Deaf children
+  The Clerc Center page returned a 403 when fetched, so the license and the structure are **not checked**. It is the right fit for Deaf children
   who sign from home, not for a hearing child learning ASL as a second language.
 - **Standards for Learning American Sign Language** (ASLTA, 2014), cited in the Massachusetts ASL framework guidance.
-  Structure and licence not seen (not checked).
+  Structure and license not seen (not checked).
 - **State ASL second-language standards built on the World-Readiness Standards.** Indiana's 2026 Academic Standards
   for World Languages: ASL (K-12 and secondary versions), Massachusetts's ASL framework quick-reference (both found by
   search; not opened in full). They organise by the five goal areas and grade bands (Indiana K-2, 3-5, 6-8, 9-10, 11-12).
@@ -249,8 +249,8 @@ answer differs from the recommendation below (questions 1 and 8: Option D), the 
    language, with our own parameters strand, and the Clerc first-language standards noted only (not loaded).
 4. **Who checks ASL pages.** Recommended: no public ASL page before a Deaf ASL teacher has read it; until one is found,
    the work stays in the pre-work stage. The self-built agent read alone is not enough for ASL.
-5. **Can-do licence.** Recommended: paraphrase only, with the note (the standing call), and one short written request to
-   NCSSFL and ACTFL asking whether paraphrase in a free tool set is acceptable, sent by Cory, since the licence is
+5. **Can-do license.** Recommended: paraphrase only, with the note (the standing call), and one short written request to
+   NCSSFL and ACTFL asking whether paraphrase in a free tool set is acceptable, sent by Cory, since the license is
    non-commercial and the donation catalog is a money matter.
 6. **Heritage speakers.** Recommended: a path inside each Spanish level (more reading and writing, less first-word work),
    not a separate course.
@@ -260,6 +260,6 @@ answer differs from the recommendation below (questions 1 and 8: Option D), the 
    (Option D)? Recommended: the same course with an age note, and an early-years form later.
 9. **Approach page yes.** Recommended: yes to the draft in APPROACH.md, after Questions 4 and 6.
 10. **Base text.** Recommended: use the open college-level Spanish books for reference and sequence, adapt item by item
-    only where licence and age fit (open-material scout), and for ASL write our own, because no CC BY ASL course was found.
+    only where license and age fit (open-material scout), and for ASL write our own, because no CC BY ASL course was found.
 11. **Ownership form.** Recommended: each language its own progression, Level 1 owns the 11 WRS ids, the level
     names excluded as a scale (section 6). Or one shared progression with two owners per id?

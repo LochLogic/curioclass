@@ -9,7 +9,7 @@ credit: ours
 
 ## English
 
-This unit our class reads two tellings of an old fable, tales told in many places, poems and a song with a steady beat, and short true articles about helping bees, butterflies and other pollinators. We practise saying what a story teaches, telling how two versions are alike and different, giving reasons for an opinion, and writing a short opinion piece.
+This unit our class reads two tellings of an old fable, tales told in many places, poems and a song with a steady beat, and short true articles about helping bees, butterflies and other pollinators. We practice saying what a story teaches, telling how two versions are alike and different, giving reasons for an opinion, and writing a short opinion piece.
 
 At home, if you like, ask your child to tell you a story or a song in any language you use. Any language is fine for talking. There is nothing to send back, and any night can be skipped.
 

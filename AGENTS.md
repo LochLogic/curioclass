@@ -6,27 +6,29 @@ Read this first, whatever model you are. Curio Class is a free K-12 curriculum a
 ## The gate
 
 One command checks a course: `python -X utf8 scripts/gate.py --course <course>`. It runs the plan, lesson, unit
-plan, lint and ledger checks for that course plus the shared checks, prints every failing line, and compares them
-with the baseline. Store the baseline before you change anything (`--course <course> --baseline`); afterwards the
-gate exits 1 only when you added a failure. `--changed` checks the courses your uncommitted files touch, and
+plan, lint and ledger checks for that course plus the shared checks, prints the failing count per rule and every line
+that is new against the baseline (`--verbose` prints all of them). Run it once before you change anything: on an
+unchanged course it stores the baseline itself. Afterwards it exits 1 only when you added a failure, and exits 2 when
+the course has changes but no baseline (it refuses `--baseline` then, so a broken course can never become the
+baseline). `--changed` checks the courses your uncommitted files touch, and
 `--all --site` is the whole repository (the lead runs it before and after each larger step). Never run plan.py
 check or lesson.py check unfiltered on your own: the gate does it.
 
 ## Who commits, and side by side work
 
-Two ways to work:
+How work runs now:
 
-1. **A queued job** runs inside a turn. `python -X utf8 scripts/turn.py start <your name> --job <id>` (or
-   `--role <role>`) pulls, checks that nobody holds the turn, takes it, and prints your job brief. Do only that
-   job. `python -X utf8 scripts/turn.py end <your name>` runs the gate for the job's course. If the job added a
-   failure, the turn stays with you: fix it and run `end` again. If you cannot fix it,
-   `end <your name> --fail "why"` hands the turn back and marks the job failed for a person. You never commit,
-   push, pull, rebase, stash, reset or switch branches yourself: `start` and `end` do all git. If a runner started
-   you, it has already run `start` and will run `end`; just do the job in the brief you were given. The queue
-   (data/jobs.csv) stays in use until the pilot it belongs to retires.
-2. **The lead session** (the Claude session Cory works with directly) and people work outside the queue. The lead
-   commits and pushes its own work and its agents' work, staging only its own paths, and only while nobody holds
-   the turn (`turn.py status` says "Turn: free").
+1. **Course-run jobs** (the current cadence, docs/COURSE-RUN.md stages 5 and 6). `scripts/coursegen.py` writes a
+   run's job files from the kit (docs/pipeline/kit/). The lead launches each job (a Codex run, a Claude agent or a
+   paste into a new chat) and the job does only what its file says. A job never runs git: no commit, push, pull,
+   rebase, stash, reset or branch switch. It runs the gate for its course and reports. The lead re-runs the gate,
+   then commits and pushes the job's files.
+2. **The lead session** (the Claude session Cory works with directly) and people. The lead commits and pushes its
+   own work and its agents' work, staging only its own paths, and only while nobody holds the turn
+   (`turn.py status` says "Turn: free").
+3. **The older turn queue** (`scripts/turn.py`, data/pipeline/jobs.csv) is a record kept for the pilot it belongs
+   to. A job taken through it runs `turn.py start <name> --job <id>` and `turn.py end <name>`, which do its git and
+   run the same gate; `end <name> --fail "why"` hands a job it cannot finish back to a person.
 
 Agents may work side by side when each works in a different course. Two workers never write the same course, or
 the same file, at once. Ledgers are per course and written through locked writes (scripts/rows.py), so separate
@@ -36,8 +38,8 @@ courses do not collide. Shared files (data/plans/later.csv, docs/, scripts/) are
 ## Rules that bind every job
 
 - Never use em dashes (use a comma, a colon, a period or "to"). Write "Curio Class" in full, never "Curio" alone.
-- Use US spelling (behavior, color, practice as verb and noun, analyze). Fix UK spellings in a page when it is next
-  edited; no separate pass (Cory, 2026-11-21, Desk q-fix-health-2).
+- Use US spelling (behavior, color, practice as verb and noun, analyze). The nine most common UK words were swept by
+  scripts/us_spelling.py (Cory, 2026-11-25); fix any other UK spelling in a page when it is next edited.
 - A student 18 or over (some grade 12 students) gets the family note themselves and makes their own leave-out or
   consent choice, in every subject; the school's own rules still apply (Cory, 2026-11-22, Desk q-prog-sel-1).
 - No company or product names in anything a student, teacher or family reads. No claim that anything was reviewed,

@@ -15,7 +15,7 @@ A town seen from above. Key box: a triangle is the station, a square is the scho
 
 ## Map 2: Dunmore (items 3 and 4)
 
-A state outline, made up. Key box: a star is the capital, a big dot is a major city, a small dot is a town. A star labelled Marlow near the middle; a big dot labelled Quay City on the coast, with a small harbor drawing; a small dot labelled Pell. Read the record: "Quay City is the biggest city in Dunmore. Ships stop at the harbor in Quay City and bring goods from far away, and many shops opened there." The labels are read aloud.
+A state outline, made up. Key box: a star is the capital, a big dot is a major city, a small dot is a town. A star labeled Marlow near the middle; a big dot labeled Quay City on the coast, with a small harbor drawing; a small dot labeled Pell. Read the record: "Quay City is the biggest city in Dunmore. Ships stop at the harbor in Quay City and bring goods from far away, and many shops opened there." The labels are read aloud.
 
 ## Map 3: a fresh world view (item 5)
 

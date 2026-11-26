@@ -30,7 +30,7 @@ docs/agents/lenses/world-languages.md. Nothing here starts a frame, scope and se
 | Kind | What it is in this subject |
 |---|---|
 | Understanding | First teaching of anything new: a chunk, a structure, a handshape, a sound, a cultural practice. Heard or seen in a short text or scene, then named. |
-| Fluency | Practise what earlier days taught until it comes easily: partner rounds, chant, song, sign sets, matching, a quick information-gap game. It teaches nothing new and writes no new piece. |
+| Fluency | Practice what earlier days taught until it comes easily: partner rounds, chant, song, sign sets, matching, a quick information-gap game. It teaches nothing new and writes no new piece. |
 | Application | Use taught language on a new task: an interpersonal exchange with a gap, a presentation, a reply to a text. Any day that drafts, revises or edits a written or signed piece is Application. |
 | Check | The end-of-unit assessment: an understand task, an exchange task and a presentation task at the level, scored against look-fors. |
 | Respond | Reteach the structures and words the checks showed were not yet secure; rehearse again. |
@@ -57,7 +57,7 @@ Proposed, to be tried on the first unit plans after the pass opens:
 - Unit field 3: builds on (the same mode one unit earlier, strong or weak); leads to; comes back; one cross-subject link
   by row id (for Spanish, the leans in data/progressions/spanish-edges.md; STANDARD section 6).
 - Unit field 4: the first line and the timing as UNIT-PLAN.md field 4 sets them; a short understand-and-reply task on
-  the words and structures the unit builds on; the reteach is the earlier structure modelled again.
+  the words and structures the unit builds on; the reteach is the earlier structure modeled again.
 - Unit field 5: an understand task, a two-way task with a real information gap, a presentation task, with look-fors and
   two sample answers each (one meets, one does not), and the linked end task across the three modes.
 - Unit field 6: the error register (see below).
@@ -130,12 +130,12 @@ Peninsular forms appear as a noted variety in cultural units. Accent marks, soun
 ## American Sign Language specifics, inside the graphics-only rule
 
 **No video and no photos of people (Cory, 2026-10-27; do not re-pitch video).** So signs, handshape, location, movement,
-palm orientation, non-manual markers, use of space and classifiers are shown as drawings and labelled parameter charts,
+palm orientation, non-manual markers, use of space and classifiers are shown as drawings and labeled parameter charts,
 storyboard panels showing movement with arrows and numbered frames, and rendered figures (not photographs of a person).
 A drawing can mislead about movement or face, so every drawing is checked for correct form (who checks: see
 "Sensitive ground", Reads). Paper path: a printable sign chart. Each sign set is taught with its parameters named.
 
-- **Parameters taught directly** in every unit and practised (bar part 6, item 9).
+- **Parameters taught directly** in every unit and practiced (bar part 6, item 9).
 - **No spoken English during signing practice.** Voice-off is the Deaf community norm for the class (Massachusetts ASL
   guidance recommends it, per search summary); the printed page uses English glosses only as labels, marked as glosses.
 - **Interpersonal practice is between people.** A signed exchange needs two signers; a tool can show the model and a
@@ -152,7 +152,7 @@ A drawing can mislead about movement or face, so every drawing is checked for co
 ## What a tool may and may not do
 
 A tool may show a model sentence in text and audio (Spanish), let a learner hear and replay a phrase (Spanish), give
-picture-backed word and structure practice, show a sign as a labelled drawing or storyboard (ASL), and give a private
+picture-backed word and structure practice, show a sign as a labeled drawing or storyboard (ASL), and give a private
 self-check. It may not record or store a learner's voice, signing or writing; score pronunciation or sign form; place a
 learner at a proficiency level; provide the two-way exchange itself (that is people); translate for a family; or hold an
 account. Spanish audio uses a stated variety and is checked by a fresh agent read and a person listening to a short sample

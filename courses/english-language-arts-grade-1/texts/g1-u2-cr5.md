@@ -35,7 +35,7 @@
 
 ## Words checked
 
-Every word of the body was checked against the letters, patterns and high-frequency words taught by the first day (cycle 5, day 35), and against the words the plans reserve for probes, checks, cycle samples and exits. Each word and the pattern it practises:
+Every word of the body was checked against the letters, patterns and high-frequency words taught by the first day (cycle 5, day 35), and against the words the plans reserve for probes, checks, cycle samples and exits. Each word and the pattern it practices:
 
 - a: high-frequency (mapped)
 - and: high-frequency (mapped)

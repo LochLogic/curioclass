@@ -11,7 +11,7 @@ Say aloud first: "Meadow Valley is made up." Print "invented for practice" on th
 
 ## Paired globe views (retrieval and supported work)
 
-**Picture:** two round views of the Earth side by side, labelled View 1 and View 2. View 1 shows a large area of land in tan with the ocean to its left and right in blue. View 2 is the opposite side of the Earth and is mostly blue water with a few small tan land areas. A small dot labelled Denver sits on the land in View 1. A key box: tan is land, blue is water, a dot is a city. No continent or ocean names are printed; those are met on day 50.
+**Picture:** two round views of the Earth side by side, labeled View 1 and View 2. View 1 shows a large area of land in tan with the ocean to its left and right in blue. View 2 is the opposite side of the Earth and is mostly blue water with a few small tan land areas. A small dot labeled Denver sits on the land in View 1. A key box: tan is land, blue is water, a dot is a city. No continent or ocean names are printed; those are met on day 50.
 
 ## Meadow Valley map (invented)
 

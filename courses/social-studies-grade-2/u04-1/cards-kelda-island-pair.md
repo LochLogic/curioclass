@@ -17,8 +17,8 @@ Used as the repair for B and as pairs work. The island and both countries are in
 
 **Picture:** The same island. Kelda is shaded with stripes, Orrin with dots, and a thick black line divides them. Key: a thick black line is a border, stripes are Kelda, dots are Orrin.
 
-**Say:** "Point to the key line for a border. Now point to the border." The child points on each map; the shading is different in each, so colour is not the clue.
+**Say:** "Point to the key line for a border. Now point to the border." The child points on each map; the shading is different in each, so color is not the clue.
 
 ## Key (teacher)
 
-Map 1: the dashed line. Map 2: the thick black line. The border is the same line on the island. A child who points to the map with more shading has read colour and not the key (B).
+Map 1: the dashed line. Map 2: the thick black line. The border is the same line on the island. A child who points to the map with more shading has read color and not the key (B).

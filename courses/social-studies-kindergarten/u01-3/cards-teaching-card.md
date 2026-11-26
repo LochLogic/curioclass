@@ -7,7 +7,7 @@ credit: ours
 ---
 # Teaching card (day 8)
 
-One separate card for modelling the claim and the why-question, kept apart from every exit and assessment picture. Say first: "We made this card to practise on. It is not about anyone in our class." Plain black line drawing on white, no printed words, no brand names.
+One separate card for modeling the claim and the why-question, kept apart from every exit and assessment picture. Say first: "We made this card to practise on. It is not about anyone in our class." Plain black line drawing on white, no printed words, no brand names.
 
 ## The card
 

@@ -68,7 +68,7 @@ Picture: Nat asleep next to him, the empty crumbs between them.
 
 ---
 
-New words and the pattern each one practises:
+New words and the pattern each one practices:
 
 - Nat, mat, sat, had, nap, ham, jam, can: short a, one consonant each side
 - Zac: short a; c says /k/ (letter c, cycle 3), a name

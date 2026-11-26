@@ -7,4 +7,4 @@ credit: ours
 ---
 # Recount strip (day 13)
 
-A strip of paper folded into three boxes labelled **First**, **Then** and **Last**. The child draws or writes one key idea of the article in each box with the text covered. A small detail does not need a box. Partners keep the strip on days 13 and 14 to tell the article to each other.
+A strip of paper folded into three boxes labeled **First**, **Then** and **Last**. The child draws or writes one key idea of the article in each box with the text covered. A small detail does not need a box. Partners keep the strip on days 13 and 14 to tell the article to each other.

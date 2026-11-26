@@ -17,7 +17,7 @@ Every card prints "invented for practice" and "model" in small letters. Where a 
 
 ## Day 53 exit card: two model labels
 
-**Picture:** A basket with hands weaving, labelled "Made in Vietnam", sold in the United States. A bowl labelled "Made in the United States", sold in Italy. A world map card with the three countries marked.
+**Picture:** A basket with hands weaving, labeled "Made in Vietnam", sold in the United States. A bowl labeled "Made in the United States", sold in Italy. A world map card with the three countries marked.
 **Mark 1:** Draw an arrow for the basket from where it was made to where it is sold. **Spoken, the six one at a time:** "Point with your finger from where the bowl was made to where it is sold."
 **Spoken, three of the six:** "Say why a buyer in the United States wants a basket made in Vietnam." **Spoken, the other three:** "Say how the person who uses the basket is linked to a person far away."
 

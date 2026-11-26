@@ -46,6 +46,6 @@ Each card or strip is marked by every child and goes with a spoken question hear
 - Day 31: the top that spins, leans and falls. Spoken: "o-ver" with two claps. Not yet: the drum or the top in a toy box (B); one clap for each letter or sound (R).
 - Day 32: strip 1. Spoken: "night". Not yet: strip 2, two steaming bowls with one called cold (V); strip 3, both movements the same (W).
 - Day 33: "I like the globe best." Not yet: "The globe is blue" or "Mo drew a toy globe" (L).
-- Day 34: a drawing of the puppet with a soft hat, labelled puppet. Spoken: "The puppet has a soft hat." Not yet: the label "I like it" (X); "puppet" and no fact (M). The retry is not scored.
+- Day 34: a drawing of the puppet with a soft hat, labeled puppet. Spoken: "The puppet has a soft hat." Not yet: the label "I like it" (X); "puppet" and no fact (M). The retry is not scored.
 
 Marks: shown, shown with help, not yet seen. A child may point, act or use a home language; say the English back.

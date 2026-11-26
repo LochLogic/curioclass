@@ -32,7 +32,7 @@ standard does not ask for two steps.
 ## The tape
 
 - **Day 36.** The tape diagram, drawn by the student, with a box for the unknown, before any equation. Recipe
-  Scaler's kitchen stories (light, practise with feedback, 15 min); paper stories carry other settings. The exit
+  Scaler's kitchen stories (light, practice with feedback, 15 min); paper stories carry other settings. The exit
   takes 7 minutes: a tape, an equation and a solve. The written task: a story for 2 5/8 − 1 6/8 = □.
 - **Day 37.** Tapes drawn roughly now. The short strip and a whole strip are folded once more, into eighths
   (1 min), for E's second wrong example. Recipe Scaler's "on your own" (light, check unaided, 10 min), read beside

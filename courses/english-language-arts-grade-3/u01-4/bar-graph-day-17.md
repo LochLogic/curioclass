@@ -7,7 +7,7 @@ credit: ours
 ---
 # Bar graph for the media response (day 17)
 
-A printed bar graph with a title, a labelled horizontal axis, a labelled vertical axis and a scale of one. Bars are read from grade 2 mathematics and not taught here.
+A printed bar graph with a title, a labeled horizontal axis, a labeled vertical axis and a scale of one. Bars are read from grade 2 mathematics and not taught here.
 
 Title: Books returned to the class basket, week one.
 

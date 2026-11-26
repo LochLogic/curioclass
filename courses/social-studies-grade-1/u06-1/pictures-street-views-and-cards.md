@@ -7,7 +7,7 @@ credit: ours
 ---
 # Street views and cards, days 56 to 58
 
-Say aloud first: "These are drawings made for our class from what the places say about themselves. They show one street at one time. The towns on the cards are made up." Print "invented for practice" on every invented card. Plain black line drawing on white, thick lines, no shading, large print. Photographs are not used; no photograph licence is needed. A caption says only what the drawing shows.
+Say aloud first: "These are drawings made for our class from what the places say about themselves. They show one street at one time. The towns on the cards are made up." Print "invented for practice" on every invented card. Plain black line drawing on white, thick lines, no shading, large print. Photographs are not used; no photograph license is needed. A caption says only what the drawing shows.
 
 ## Three street views (day 56, kept up days 57 and 58)
 

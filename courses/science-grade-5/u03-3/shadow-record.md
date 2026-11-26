@@ -19,7 +19,7 @@ Name: ____________________
 
 H53, invented for practice: shadow length 31 cm.
 
-Copy this only into a separately labelled supplied row.
+Copy this only into a separately labeled supplied row.
 
 A cloudy or unsafe reading stays missing in the actual row.
 

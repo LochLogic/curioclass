@@ -185,7 +185,7 @@ For a year about ten days short, fold these unassessed days into named neighbors
 | 22 | Use a small justified pattern as day 23's construction argument example. | 50 |
 | 42 | Compare paragraph and flow-diagram forms within day 41. | 50 |
 | 50 | Put the scale-choice explanation into day 49; omit the enlarged physical display. | 50 |
-| 58 | Practise the required AA route within day 57; optional additional similarity criteria drop. | 50 |
+| 58 | Practice the required AA route within day 57; optional additional similarity criteria drop. | 50 |
 | 60 | Put the indirect-measurement comparison into day 61's triangle reasoning. | 50 |
 | 96 | Include the five-minute sphere reminder and a brief composite-solid/sphere calculation within day 95, replacing redundant cone practice. | 50 |
 | 140 | Use its circle-design critique as the opening of day 141's viewing model. | 50 |

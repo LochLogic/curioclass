@@ -53,7 +53,7 @@ Club: the members; the members.
 
 Self-government means the people of a group make the rules for the group.
 
-## The Compact, a labelled summary
+## The Compact, a labeled summary
 
 Made by Curio Class from the Avalon text (U5P). Signed at Cape Cod on 11 November 1620, in the calendar of that time, the day the ship anchored. The people who signed agreed to form a body to make just and equal laws for the colony.
 

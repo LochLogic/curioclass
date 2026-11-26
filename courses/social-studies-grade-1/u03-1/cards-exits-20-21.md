@@ -17,6 +17,6 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 ## Day 21 exit card: the town clock
 
-**Picture:** Three pictures in a row, labelled 1, 2 and 3. 1: a leader stands in front of a town clock with a broken hand hanging down. 2: the leader hands out job cards to three neighbors. 3: two neighbors lift the clock hand up while a third holds the ladder. Under the row, two question cards with a circle each: "How did the leader organize the repairs?" and "Was the clock pretty?" The teacher reads both aloud.
+**Picture:** Three pictures in a row, labeled 1, 2 and 3. 1: a leader stands in front of a town clock with a broken hand hanging down. 2: the leader hands out job cards to three neighbors. 3: two neighbors lift the clock hand up while a third holds the ladder. Under the row, two question cards with a circle each: "How did the leader organize the repairs?" and "Was the clock pretty?" The teacher reads both aloud.
 
 **Mark:** Circle the question that asks about the leader's actions. **Spoken:** "Ask one question about what the leader did."

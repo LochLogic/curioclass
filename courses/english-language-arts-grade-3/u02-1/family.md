@@ -9,7 +9,7 @@ credit: ours
 
 ## English
 
-This unit our class reads frog poems and tales, then a book about how a frog's body fits its home. We practise explaining what a word means in a poem, writing a short tale in order, and finding facts with a page, a heading and an index. We also practise reading aloud and spelling long words.
+This unit our class reads frog poems and tales, then a book about how a frog's body fits its home. We practice explaining what a word means in a poem, writing a short tale in order, and finding facts with a page, a heading and an index. We also practice reading aloud and spelling long words.
 
 Reading together is welcome, in any language and with any book you have or borrow. There is nothing to send back and nothing to report, and any night can be skipped. Thank you for sharing this with us.
 

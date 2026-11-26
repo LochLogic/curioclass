@@ -29,4 +29,4 @@ A local town physical map, the nearest nation's card (the teacher prints it from
 
 ## A room with nothing
 
-Draw the map and the strip by hand. Read each card aloud. Hold up the four day 74 cards one at a time. Children answer by speech, a labelled drawing or pointing. No child is asked about home, family or what a family believes.
+Draw the map and the strip by hand. Read each card aloud. Hold up the four day 74 cards one at a time. Children answer by speech, a labeled drawing or pointing. No child is asked about home, family or what a family believes.

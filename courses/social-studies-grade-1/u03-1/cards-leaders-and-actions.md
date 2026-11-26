@@ -41,7 +41,7 @@ The teacher's key is on the back of each card in words, not shown to children un
 
 ## The team ring
 
-A large circle drawn on paper or on the floor with chalk or tape, labelled "the team." Pairs lay the leader card inside the ring. Day 26 uses the ring again for the chart.
+A large circle drawn on paper or on the floor with chalk or tape, labeled "the team." Pairs lay the leader card inside the ring. Day 26 uses the ring again for the chart.
 
 ## For the teacher
 

@@ -9,7 +9,7 @@ credit: ours
 
 ## English
 
-This month our class reads stories and short articles about how books reach readers, such as a boat library and a book bus. We practise asking questions about what we read, explaining what a story teaches, and listening to each other in small groups. We also practise reading aloud and spelling long words.
+This month our class reads stories and short articles about how books reach readers, such as a boat library and a book bus. We practice asking questions about what we read, explaining what a story teaches, and listening to each other in small groups. We also practice reading aloud and spelling long words.
 
 Reading together is welcome, in any language and with any book you have or borrow. There is nothing to send back and nothing to report, and any night can be skipped. Thank you for sharing this with us.
 

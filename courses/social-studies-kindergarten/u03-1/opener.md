@@ -17,7 +17,7 @@ Day 20 opens with a puppet who asks where the crayons are. You first point and s
 
 ## The ideas, at an adult's level
 
-Left and right depend on whose side you stand on. A toy that is left of a box for a child on this side is right of it for a child on the other side, and neither child is wrong, so the class says the viewpoint every time ("from here", or "with the page this way up"). Between always needs two things. Near and far compare two places and are not measured. Many five-year-olds swap left and right; the words are practised in use, never tested for speed, and a slip is noted and not marked down. Nobody is asked where anything is at home, and nobody is the example of a mistake: a puppet or a teacher card says every wrong idea.
+Left and right depend on whose side you stand on. A toy that is left of a box for a child on this side is right of it for a child on the other side, and neither child is wrong, so the class says the viewpoint every time ("from here", or "with the page this way up"). Between always needs two things. Near and far compare two places and are not measured. Many five-year-olds swap left and right; the words are practiced in use, never tested for speed, and a slip is noted and not marked down. Nobody is asked where anything is at home, and nobody is the example of a mistake: a puppet or a teacher card says every wrong idea.
 
 ## The errors, in plain words
 

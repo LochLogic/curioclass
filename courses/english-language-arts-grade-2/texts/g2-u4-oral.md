@@ -7,7 +7,7 @@
 - kind: literary
 - form: seven whole short passages (one per cycle), about 30 to 40 words each
 - word count: 253
-- use: the oral reading record of each cycle (RF.2.3c-f, RF.2.4a-c): read the isolated words, identify the irregular spelling in the common word, read the passage twice, answer the question. Read without picture clues. Reserved for checks: never use in modelling or exits.
+- use: the oral reading record of each cycle (RF.2.3c-f, RF.2.4a-c): read the isolated words, identify the irregular spelling in the common word, read the passage twice, answer the question. Read without picture clues. Reserved for checks: never use in modeling or exits.
 - days: 20: 120 to 123; 21: 124 to 128; 22: 129 to 133; 23: 134 to 138; 24: 139 to 143; 25: 144 to 148; 26: 149 to 153
 - Verbatim from the unit plan (s04, oral passages table); one file and one row for the set because the same record sheet and the same look-fors serve all seven; the question and key stay in the unit plan and in items.
 - Parts: cycle 20, cycle 21, cycle 22, cycle 23, cycle 24, cycle 25, cycle 26.

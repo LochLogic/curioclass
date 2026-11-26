@@ -29,7 +29,7 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 ## Day 17 exit card: Cedar School
 
-**Picture:** Two cards side by side. Left: a drawing of a school gate with a post on each side and a date in the corner. Right: a recording icon beside a drawing of a made-up person with a speech mark, labelled "a former Cedar pupil." Under both: "Cedar School."
+**Picture:** Two cards side by side. Left: a drawing of a school gate with a post on each side and a date in the corner. Right: a recording icon beside a drawing of a made-up person with a speech mark, labeled "a former Cedar pupil." Under both: "Cedar School."
 
 **Mark:** Circle the source for the question "What did Cedar's gate look like?" **Spoken:** "Which source could help us find out what lessons at Cedar were like long ago, and why?"
 

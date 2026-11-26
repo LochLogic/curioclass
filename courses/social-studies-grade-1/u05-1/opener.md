@@ -28,7 +28,7 @@ Day 44: hook and retrieval (6), teaching (9), supported work (10), share (3), ex
 
 - **A and N:** the map is the place; a side drawing is a map. Hold a tray of objects beside its drawing from above and say "stands for".
 - **B:** a shape means the same on every map. Trace symbol to key and back on two maps.
-- **S, R and I:** the globe is only water; fields are natural; a globe has no cities. Find land, water and a labelled city on the views; sort made by people and was already there.
+- **S, R and I:** the globe is only water; fields are natural; a globe has no cities. Find land, water and a labeled city on the views; sort made by people and was already there.
 - **C:** north is the top of the paper. Turn the map and the indicator turns with it.
 
 A wrong answer is voiced by Pip the puppet or shown on a teacher card, never by a named child.

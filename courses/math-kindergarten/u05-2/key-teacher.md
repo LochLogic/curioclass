@@ -34,11 +34,11 @@ Shown: Nine marks tied to all nine bookmarks. | Not yet seen: Eight with one boo
 
 Show two different possible sets of parts for Rin's eight kites.
 
-Key: Any two distinct labelled pairs totaling eight; for example 3 striped/5 plain then 2 striped/6 plain.
+Key: Any two distinct labeled pairs totaling eight; for example 3 striped/5 plain then 2 striped/6 plain.
 
 Look-fors: All eight once per solution; label categories by pattern; empty category allowed. | Stimulus in exit-93.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Independently allocate a known kite total twice.
 
-Shown: Three/five then two/six. | Not yet seen: Same labelled three/five redrawn as new.
+Shown: Three/five then two/six. | Not yet seen: Same labeled three/five redrawn as new.
 
 ## s05-X94
 
@@ -54,11 +54,11 @@ Shown: Four star/three spot. | Not yet seen: Six assigned hats and one omitted.
 
 Record two different possible solutions for Rin's nine pieces.
 
-Key: Any two distinct labelled pairs totaling nine; for example 4 round/5 square then 2 round/7 square.
+Key: Any two distinct labeled pairs totaling nine; for example 4 round/5 square then 2 round/7 square.
 
-Look-fors: Round-tab/square-tab labels meaningful; all nine once per solution. | Stimulus in exit-95.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Generate two complete labelled puzzle-piece records without starter counts.
+Look-fors: Round-tab/square-tab labels meaningful; all nine once per solution. | Stimulus in exit-95.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Generate two complete labeled puzzle-piece records without starter counts.
 
-Shown: Four/five then two/seven. | Not yet seen: Same labelled counts redrawn as new.
+Shown: Four/five then two/seven. | Not yet seen: Same labeled counts redrawn as new.
 
 ## s05-X96
 
@@ -74,9 +74,9 @@ Shown: A marked. | Not yet seen: Rejects A solely for total-left order.
 
 Show one way Rin could put them.
 
-Key: Any labelled album allocation totaling four.
+Key: Any labeled album allocation totaling four.
 
-Look-fors: Rin alone; four stamps, red striped-spine and blue dotted-spine album. One assignment per stamp, all four used. Swapping labelled counts counts as different. Eight minutes total for two single asks. Feedback after day 100, revision day 101, eligible judgment day 103. | Shape: Independently generate one labelled album allocation on fresh pictures.
+Look-fors: Rin alone; four stamps, red striped-spine and blue dotted-spine album. One assignment per stamp, all four used. Swapping labeled counts counts as different. Eight minutes total for two single asks. Feedback after day 100, revision day 101, eligible judgment day 103. | Shape: Independently generate one labeled album allocation on fresh pictures.
 
 Shown: Three red/one blue. | Not yet seen: One stamp assigned to both albums.
 
@@ -84,11 +84,11 @@ Shown: Three red/one blue. | Not yet seen: One stamp assigned to both albums.
 
 Show a different way Rin could put these four stamps.
 
-Key: Any labelled album allocation totaling four; different from the first.
+Key: Any labeled album allocation totaling four; different from the first.
 
-Look-fors: Rin alone; four stamps, red striped-spine and blue dotted-spine album. One assignment per stamp, all four used. Swapping labelled counts counts as different. Eight minutes total for two single asks. Feedback after day 100, revision day 101, eligible judgment day 103. | Shape: Independently generate one labelled album allocation on fresh pictures.
+Look-fors: Rin alone; four stamps, red striped-spine and blue dotted-spine album. One assignment per stamp, all four used. Swapping labeled counts counts as different. Eight minutes total for two single asks. Feedback after day 100, revision day 101, eligible judgment day 103. | Shape: Independently generate one labeled album allocation on fresh pictures.
 
-Shown: Two red/two blue, after three red/one blue. | Not yet seen: Same labelled allocation repeated.
+Shown: Two red/two blue, after three red/one blue. | Not yet seen: Same labeled allocation repeated.
 
 ## s05-P91
 

@@ -21,7 +21,7 @@
 
 | Kind | What it is in SEL |
 |---|---|
-| Understanding | Name the skill, see it modelled on an invented case, say why it helps and when to use it. |
+| Understanding | Name the skill, see it modeled on an invented case, say why it helps and when to use it. |
 | Fluency | Rehearse the skill until the steps come easily: partner rehearsal, a body routine, sentence frames for an I-statement. |
 | Application | Use the skill in a new invented case, a scene card or a planned class moment (a group task where the skill is needed). Student voice sits here: class norms, or a school improvement the class proposes and carries out. |
 | Check | The end-of-unit assessment: a rehearsal against a look-for list and scenario items (what would a good next step be, and why). |
@@ -40,7 +40,7 @@ rating of the child; it is the teacher's own working paper, is not shared outsid
 of the unit. It is never a rating of a child's feelings, character or home life, never a survey, and never kept as
 student data (promise 2). A private journal page may close a
 session; it stays with the student. Once a unit, a self-check page (C8): the student marks which steps of the
-unit's skill they can do alone and names the one they will practise next. It checks steps only, never a feeling or
+unit's skill they can do alone and names the one they will practice next. It checks steps only, never a feeling or
 a trait, stays with the student and is not collected.
 
 ## What SEL adds to the unit and section plan fields
@@ -58,7 +58,7 @@ as UNIT-PLAN.md writes it; the lines below add only what SEL fills, under UNIT-P
   civics row), named by its row id.
 - Unit field 4 (readiness): every unit's sub-skills were used the year before or earlier the same year, so the
   field is `Retrieval only:` (UNIT-PLAN field 4): one scenario item on the same sub-skill at its earlier depth,
-  inside the session's five-minute opening, and on a miss the earlier skill modelled again. A `Given:` readiness
+  inside the session's five-minute opening, and on a miss the earlier skill modeled again. A `Given:` readiness
   check only where a left-out unit puts the last use two or more grades back (STANDARD section 5, item 6).
   Kindergarten unit 1: `Start-of-year check:` on what a child arrives with (STANDARD section 3).
 - Unit field 5 (end-of-unit assessment): a rehearsal with look-fors and scenario items, each teacher-judged item with

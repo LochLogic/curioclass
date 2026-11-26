@@ -28,7 +28,7 @@ G: five unlabelled boundaries below. Name prompt first, then square alone. Puppe
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 230" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2.5" stroke-linejoin="round"><circle cx="65" cy="110" r="24"/><path d="M135 135L235 105L216 127Z"/><rect x="270" y="80" width="58" height="58" transform="rotate(45 299 109)"/><rect x="375" y="80" width="110" height="40" transform="rotate(-30 430 100)"/><path d="M555 55L605 80L615 125L580 160L535 145L520 95Z"/></g></svg>
 ## Day 85 teacher counting cards
 
-These are independent cards, not the labelled trays on the student page. Cover other cards. H1: seven disks in a line. H2: six disks in two rows of three. H3: nine disks on a ring with a start arrow beside the top disk. H4: ten disks scattered. J: ten loose paper tiles beside an empty outlined delivery box, requested eight spoken. No labels, numeral models or prepared grouping.
+These are independent cards, not the labeled trays on the student page. Cover other cards. H1: seven disks in a line. H2: six disks in two rows of three. H3: nine disks on a ring with a start arrow beside the top disk. H4: ten disks scattered. J: ten loose paper tiles beside an empty outlined delivery box, requested eight spoken. No labels, numeral models or prepared grouping.
 
 ### H1
 

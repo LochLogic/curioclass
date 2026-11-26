@@ -38,13 +38,13 @@ right sum, not yet written as a mixed number: it gets a tick, and the student jo
   strips and pieces from the envelope, pairs pooling pieces. A fraction past 1 is written as a whole number and
   parts more than one way, until no whole is left in the parts, and then named a mixed number.
 - **Day 33.** Both ways in two columns; hops past a whole tied to the new whole written down (error G). Recipe
-  Scaler's double batch and test bake (light, practise with feedback, 10 min): it shows one way at a time, so the
+  Scaler's double batch and test bake (light, practice with feedback, 10 min): it shows one way at a time, so the
   side by side stays on paper.
 - **Day 34.** A whole number minus a fraction first (5 − 3/8), then a whole strip broken into its parts on the
   table, tied to the renaming written in one line, 5 1/4 = 4 + 1 + 1/4 = 4 + 4/4 + 1/4 = 4 + 5/4 (error F): the 1 = 4/4 step is
   the reason, day 27's b/b.
 - **Day 35.** Eight cards, six differences and two sums, sorted before they are worked: is a whole broken or
-  made? Withdrawn: a sketch only; for E34's hand-back the teacher breaks one strip under the camera. Recipe Scaler's pantry rounds (key, practise with feedback, 20 min),
+  made? Withdrawn: a sketch only; for E34's hand-back the teacher breaks one strip under the camera. Recipe Scaler's pantry rounds (key, practice with feedback, 20 min),
   every take-away checked by adding back; where the tool cannot run, the day page's paper path covers the same
   rounds.
 

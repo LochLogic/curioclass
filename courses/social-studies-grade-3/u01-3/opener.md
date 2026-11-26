@@ -20,12 +20,12 @@ Short repair, worked example on an invented map or the town map, pairs work with
 - **A map has four parts, each with one job.** The title says what the map shows. The legend says what each symbol stands for on this map only. The north arrow says which way is north on this page. The scale bar says how far a length on the map is on the ground.
 - **North is where the arrow points, not the top of the page.**
 - **A scale bar is a length counted in bars.** Lay a paper strip the length of one bar end to end. Never read it as footsteps.
-- **A symbol is not the place.** A colour does not give a symbol its meaning; the legend does.
+- **A symbol is not the place.** A color does not give a symbol its meaning; the legend does.
 - **A caption and a photograph show what was there; they might suggest more.** They cannot tell what no one wrote.
 
 ## The errors in plain words
 
-- **B:** colour alone gives a symbol its meaning.
+- **B:** color alone gives a symbol its meaning.
 - **C:** the top of the page is always north.
 - **D:** a scale bar means footsteps.
 - **G:** a visible feature does not prove a conclusion the source does not support.

@@ -114,7 +114,7 @@ Days 127 to 142, weeks 26 to 29. Codes: MA.5.T5.6a, MA.5.T5.6b, MA.5.T5.7, MA.5.
 
 Jim Crow and the communities that pushed back (128 to 130), women's suffrage (131 to 132), then the African American civil rights movement (133 to 135) before the movements it became a model for (136 to 139), so "model" means something when students reach it. The unit runs in time order through its core (128 to 135), then is movement-based (136 to 139): each movement goes on a parallel timeline, so students see the movements overlap rather than one ending before the next began.
 
-- End-of-unit assessment: day 141, every owned code and lettered part: life under Jim Crow and the communities that pushed back, women's rights work around the 14th and 15th Amendments, the 19th Amendment and who it left out, one movement modelled on another, and a claim on what changed and what stayed. Respond: day 142.
+- End-of-unit assessment: day 141, every owned code and lettered part: life under Jim Crow and the communities that pushed back, women's rights work around the 14th and 15th Amendments, the 19th Amendment and who it left out, one movement modeled on another, and a claim on what changed and what stayed. Respond: day 142.
 - Candidate (Tennessee, the Great Migration): kept, inside day 130.
 
 ## Unit 10. Researching civil rights, then acting. "What does it take to win a right?"

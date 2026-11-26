@@ -10,8 +10,8 @@ s01-E2,I like bikes.,,,O,a liking and no other person
 s01-E2b,Because bikes are fun.,,,O,a liking in place of a use
 s01-E2c,North.,,,J,treats a map direction as an opinion
 s01-E2c,Rack.,,,,names a thing and not a word with two readings
-s01-E3,The Indian Ocean is circled as Asia.,,,A,an ocean labelled as a continent
-s01-E3b,Asia is circled as the Indian Ocean.,,,A,a continent labelled as an ocean
+s01-E3,The Indian Ocean is circled as Asia.,,,A,an ocean labeled as a continent
+s01-E3b,Asia is circled as the Indian Ocean.,,,A,a continent labeled as an ocean
 s01-E3c,The globe is bigger.,,,,a size claim that does not name what a flat map must do
 s01-E4,Atlantic.,,,A,an ocean given as the continent
 s01-E4,Northern.,,,A,a hemisphere given as the continent
@@ -22,29 +22,29 @@ s01-E5,C2.,,,L,the row counted from the north edge
 s01-E5b,Longitude.,,,,the two kinds of line swapped
 s01-E6,M.,,,,the pole and the equator swapped
 s01-E6b,"Yes, the equator is always wet.",,,E,latitude alone decides rain
-s01-E7,The blue square is circled.,,,B,picks the symbol by colour and not by the legend
+s01-E7,The blue square is circled.,,,B,picks the symbol by color and not by the legend
 s01-E7b,North.,,,C,the top of the page taken as north
 s01-E7c,Two steps.,,,D,a count of bars read as footsteps
 s01-E8,Six steps.,,,D,bars read as footsteps
 s01-E8b,The gate.,,,,names something people made
-s01-E8c,It is the blue one.,,,B,colour taken as the meaning
+s01-E8c,It is the blue one.,,,B,color taken as the meaning
 s01-E8c,The title.,,,,the title given the legend's job
 s01-E9,The town was founded for the trains.,,,G,a reason the caption does not give
 s01-E9,A railroad boss built it.,,,G,a builder the caption does not name
 s01-E10,"Well on the left, gate on the right.",,,L,positions swapped on the grid
-s01-E10b,Blue and red are the only legend.,,,B,colour alone as the meaning
+s01-E10b,Blue and red are the only legend.,,,B,color alone as the meaning
 s01-E10c,No arrow is drawn.,,,C,direction left to the top of the page
 s01-E10d,A bar marked 5 steps.,,,D,a ground distance read as footsteps
 s01-E11,Missouri.,,,F,the state's own name given as the region
 s01-E11,The Plains.,,,F,a landform given as the region
-s01-E11b,The list with the same colour as our state is circled.,,,B,political-map colour taken as the region
+s01-E11b,The list with the same color as our state is circled.,,,B,political-map color taken as the region
 s01-E12,The Great Lakes.,,,F,a landform given in place of a state
 s01-E12,One touching state and stops.,,,S,one state named when more touch
 s01-E13,Southwest is written on a state.,,,F,a region name used as a state
 s01-E13,Rocky Mountains is written on a state.,,,F,a landform used as a state
-s01-E13,Only Texas and Arizona are labelled.,,,S,some of the four states and then stops
+s01-E13,Only Texas and Arizona are labeled.,,,S,some of the four states and then stops
 s01-E14,A bay.,,,F,a cape called a bay
-s01-E14,It is the green one.,,,B,colour in place of the key
+s01-E14,It is the green one.,,,B,color in place of the key
 s01-E14b,A cape.,,,F,a bay called a cape
 s01-E14c,Fenmark.,,,F,a state or place name given as a landform
 s01-E14d,A lake.,,,F,a river called a lake
@@ -61,17 +61,17 @@ s01-E18,Everything is new.,,,R,one change taken to end everything before
 s01-E18b,The pond is gone.,,,R,a new feature taken to erase the old one
 s01-E19,The ramp was built for wheelchairs and everyone uses it.,,,G,a reason and a use the sources cannot tell
 s01-E19b,The map and the photograph say it.,,,K,sources named with no detail from either
-s01-E20,My favourite colour.,,,O,an unrelated preference given as a needed fact
+s01-E20,My favourite color.,,,O,an unrelated preference given as a needed fact
 s01-E20b,North.,,,J,a map direction taken as an opinion
 s01-E21,The map proves the town began for the market.,,,G,a map taken to prove the reason
 s01-E21b,A and B prove it.,,,K,sources named with no detail
 s01-E22,Five steps.,,,D,bars read as footsteps
 s01-E24,South.,,,C,the bottom of the page taken as south
-s01-Q1,The red mark is circled.,,,B,a mark picked by colour and not by the legend
+s01-Q1,The red mark is circled.,,,B,a mark picked by color and not by the legend
 s01-Q1b,Up is north.,,,C,the top of the page taken as north
 s01-Q1c,About 9 steps.,,,D,bars read as footsteps
 s01-Q2,"Entrance A3, pond A1, pavilion C1.",,,L,rows or positions reversed
-s01-Q2b,A key of three colours with no words.,,,B,colour alone as the meaning
+s01-Q2b,A key of three colours with no words.,,,B,color alone as the meaning
 s01-Q2c,No arrow is drawn.,,,C,direction left to chance
 s01-Q2d,A bar marked 15 steps.,,,D,a ground distance read as footsteps
 s01-Q2e,Map.,,,,a title that does not name the place
@@ -92,7 +92,7 @@ s01-Q4d,A state line is traced.,,,F,a border taken for a shoreline
 s01-Q4e,Vermont.,,,F,a state named as a mountain range
 s01-Q4f,Cape Cod is a bay.,,,F,a cape called a bay
 s01-Q5,A region name or landform is written on a state.,,,F,a region or landform used as a state
-s01-Q5,Five states are labelled and the rest are left.,,,S,some states named and then stops
+s01-Q5,Five states are labeled and the rest are left.,,,S,some states named and then stops
 s01-Q6,A different place is circled in each.,,,,the views not matched to one feature
 s01-Q6b,"There is a river, a bridge and a hill.",,,P,a list of features with no link
 s01-Q6b,Everyone came because of the water.,,,G,the map taken to prove why every resident came
@@ -114,9 +114,9 @@ s01-Q9d,P2 says it.,,,K,a title with no detail
 s01-Q10,I do.,,,O,no other person named
 s01-Q10b,I like it.,,,O,a liking and no use
 s01-Q11,North could be south if I want.,,,J,a map direction taken as an opinion
-s01-Q12,What is my favourite colour?,,,O,an unrelated question
+s01-Q12,What is my favourite color?,,,O,an unrelated question
 s01-Q12b,We need crayons.,,,O,an unrelated need
-s01-Q12c,Favourite colour.,,,O,an unrelated preference
+s01-Q12c,Favourite color.,,,O,an unrelated preference
 s01-Q13,It helps because it helps.,,,O,a question named as a question with no link
 s01-R16,The stream made it; people did not change anything.,,,Q,the land taken as unchanged by people
 s01-R16,"Bridge, stream, people.",,,P,a list with no action
@@ -133,7 +133,7 @@ s01-P18,Everything is new now.,,,R,one change taken to end everything before
 s01-P18b,Nothing was here.,,,I,a blank place taken as empty land
 s01-P19,I think people arrive by bus because the map and the photograph say so.,,,K,sources named with no detail from either
 s01-P19,"I think the bus is always late, because people are waiting.",,,G,a claim past what the pair shows
-s01-P20,What is my favourite colour?,,,O,an unrelated question given as a supporting question
+s01-P20,What is my favourite color?,,,O,an unrelated question given as a supporting question
 s01-P20b,My favourite food and a pencil.,,,O,unrelated things given as needed facts
 s01-P20c,North.,,,J,a map direction taken as a word with two readings
 s01-P20d,Help could mean whatever I like.,,,J,a reading with nothing to check it against
@@ -196,7 +196,7 @@ s02-P32a,The mayor makes every rule.,,,B,one model taken for every town
 s02-P32b,The council runs it.,,,A,the two jobs not told apart
 s02-P32c,Only voters can take part.,,,D,voters taken as the only people who take part
 s02-P32d,Both towns do it the same way.,,,B,one model taken for every town
-s02-T32,The red mark.,,,x,"a symbol picked by colour, not the legend"
+s02-T32,The red mark.,,,x,"a symbol picked by color, not the legend"
 s02-E33,Nobody made it; rules were always there.,,,S,a rule taken to have no maker or reason
 s02-E33,The teacher made it because people were bad.,,,S,a rule taken to come from a maker with no problem to answer
 s02-E33b,It protects the music.,,,x,the rule taken to protect the thing it limits

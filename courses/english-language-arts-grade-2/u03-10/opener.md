@@ -28,7 +28,7 @@ Each day is 120 minutes in two blocks of 60. The talk work sits in the topic blo
 - A question about something else, or a remark where a question is wanted (M, L).
 - A word for the action put on the thing (R), or no new word at all (Z).
 - One way of talking ranked as bad English (X).
-- A drawing chosen for colour, not for what the story says (V).
+- A drawing chosen for color, not for what the story says (V).
 
 ## Marking
 

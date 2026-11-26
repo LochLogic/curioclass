@@ -30,7 +30,7 @@ Paper, pencils, the 1787 order strip (three cards), the job baskets from unit 2,
 
 ## A room with nothing
 
-Copy the three crops large on paper. Use three paper baskets labelled makes laws, carries out laws, decides cases.
+Copy the three crops large on paper. Use three paper baskets labeled makes laws, carries out laws, decides cases.
 
 ## Unsettled facts for the day writers
 

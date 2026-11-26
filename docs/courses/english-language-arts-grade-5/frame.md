@@ -44,7 +44,7 @@ Course `english-language-arts-grade-5` (catalogue id `ela-k12`), grade 5, draft 
   which is where the kept base lessons first teach and assess it. Where a row's lettered parts come in later units,
   the owning unit says which part waits and the later unit names it as continued. Before a row's unit, a unit uses
   the grade 4 form of the skill, and the first unit that leans on a grade 4 skill retrieves it inside
-  its lesson. Later units practise every placed row again on new texts; the table names those returns as review.
+  its lesson. Later units practice every placed row again on new texts; the table names those returns as review.
 - **Reading level.** Anchors climb through the grades 4 to 5 band (a quantitative reading measure of about 740 to
   1010) to its high end read alone by year end (e5-reading-range); poems and the play scripts are placed by what
   makes them hard and by reader and task, not by the number. Informational anchors make up 45 to 65 percent by the shared anchor-only rule. The two unit 4 survival stories count as one paired anchor; the unit 1 declaration set is also an informational anchor. The resulting five anchors are three informational and two literary (60 percent informational). The measures named in the units are targets the commissioned texts must meet; each anchor gets a
@@ -192,7 +192,7 @@ Same-year leans (the availability calendar):
 
 | Other subject, grade | Need | ELA grade 5 unit (about which days) | The other course should teach it by | If later |
 |---|---|---|---|---|
-| Science grade 5 | 5-LS2-1, matter moving in an ecosystem (e5-relationships, e5-academic-words; e5-several-main-ideas practised on it) | Unit 2 (about days 42 to 80) | Before or during unit 2 | Unit 2's texts teach the food-web relationships they need as content |
+| Science grade 5 | 5-LS2-1, matter moving in an ecosystem (e5-relationships, e5-academic-words; e5-several-main-ideas practiced on it) | Unit 2 (about days 42 to 80) | Before or during unit 2 | Unit 2's texts teach the food-web relationships they need as content |
 | Science grade 5 | 5-PS2-1 and 5-LS1-1, an argument supported by evidence (e5-reasons-to-points, e5-opinion) | Unit 3 (about days 84 to 123) | Any time; the lean is the shared argument form | Unit 3 teaches point, reason and evidence on its own texts |
 | Science grade 5 | 5-ESS2-2, how much of Earth's water is fresh and where; 5-ESS3-1, how communities protect resources; science rows s5-water-distribution and s5-protect-resources (e5-research and unit 4's topic) | Unit 4 (about days 124 to 156) | Before or during unit 4 | Unit 4's federal pages teach the water budget as hundredths and the river case as content; science adds the measurement later |
 | Social studies grade 5 | ss5-sourcing-corroboration, checking accounts against each other (e5-multiple-accounts) | Unit 3 (about days 84 to 123) | Before unit 3 (it does) | Unit 3 teaches who made each account, when and why as part of RI.5.6 |

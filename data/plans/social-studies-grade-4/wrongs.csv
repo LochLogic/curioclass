@@ -173,7 +173,7 @@ s01-A1d,Any other unsupported response,,,x,Record the missing component; do not 
 s01-A1d,800 kilometers.,,,C,Counts one bar without the half bar.
 s01-A2a,Manitoba is an independent country.,,,E,Accept equivalent supported wording. Records each location and category separately; uses the map key and index.
 s01-A2a,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
-s01-A2b,Dane is the country containing Wisconsin.,,,E,Accept equivalent supported wording. Scores all four place terms and the two definitions separately; accepts labelled arrows.
+s01-A2b,Dane is the country containing Wisconsin.,,,E,Accept equivalent supported wording. Scores all four place terms and the two definitions separately; accepts labeled arrows.
 s01-A2b,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
 s01-A2c,"L: 110 degrees west, 30 degrees north.",,,G,Accept equivalent supported wording. Locates K at the intersection.
 s01-A2c,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
@@ -1061,7 +1061,7 @@ C2-E106-kinds,Both are eyewitness accounts of the celebration.,,,S,Diagnose this
 C2-E106-cause,The waiting potters caused the earlier gate closure.,,,U,Diagnose this component separately against the supplied record.
 s06-X107a,Which picture is prettiest?,,,X,Predicted response; one error only. Shape: Produce a decision-relevant question for an unseen worker-choice record.
 s06-X107b,I like blue.,,,X,Predicted response; one error only. Shape: Explain another person's practical need for the answer.
-s06-X108a,Rhode Island labelled Connecticut.,,,L,Predicted response; one error only. Shape: Produce one state and its capital from a new outline.
+s06-X108a,Rhode Island labeled Connecticut.,,,L,Predicted response; one error only. Shape: Produce one state and its capital from a new outline.
 s06-X108b,The largest coastal dot must be the capital.,,,K,Predicted response; one error only. Shape: Infer a capital's position from a separate river strip.
 s06-X109a,Delaware in the Northeast.,,,L,Predicted response; one error only. Shape: Recognize one complete state/capital/region combination on a fresh numbered outline.
 s06-X109b,Lansing in the Upper Peninsula.,,,L,Predicted response; one error only. Shape: Recognize the second state/capital/region combination without a completed reference response.
@@ -1130,7 +1130,7 @@ s06-M5t,Equal event boxes still replace equal-year positions.,,,C,Predicted resp
 s06-F3a,Capital and river share an unexplained symbol.,,,E,Predicted response; one error only. Shape: Complete missing capital/water/mountain key entries on a new partly drawn map.
 s06-F3b,Scale changes while the map does not.,,,Q,Predicted response; one error only. Shape: Supply missing conventions on an unfamiliar partly drawn map.
 s06-F3c,Milk processing is a natural resource.,,,T,Predicted response; one error only. Shape: Complete three resource/production categories from an unseen Wisconsin source.
-s06-F3d,Forced removal is labelled free migration.,,,S,"Predicted response; one error only. Shape: Independently synthesize physical, climate, dated land, forced movement, exploration and settlement information."
+s06-F3d,Forced removal is labeled free migration.,,,S,"Predicted response; one error only. Shape: Independently synthesize physical, climate, dated land, forced movement, exploration and settlement information."
 s06-F3e,One unexplained symbol stands for every category.,,,E,Predicted response; one error only. Shape: Complete three cultural/site categories on a fresh partly drawn map.
 s06-F3u,Only list the places.,,,R,Predicted response; one error only. Shape: Observe construction conventions in the F3d product; no additional paper question.
 s06-F4q,Which picture is prettiest?,,,X,Predicted response; one error only. Shape: Generate an unseen locality question from independently credited records.

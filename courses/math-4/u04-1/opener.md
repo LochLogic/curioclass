@@ -93,7 +93,7 @@ and 4 always, go to the students named. Item 2 waits for day 27.
 
 ## Words
 
-Unit fraction, sum, equation, whole, each on a labelled piece on the wall. Read "six fifths", never "six over
+Unit fraction, sum, equation, whole, each on a labeled piece on the wall. Read "six fifths", never "six over
 five". Frame, to take or leave: "__ is __ pieces of size __, so __ = __ + __."
 
 ## How the unit is checked

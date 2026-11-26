@@ -13,7 +13,7 @@ For four days each child revises their tale: the problem and response with speec
 
 ## How the days run
 
-Each day is 90 minutes. Days 48 to 50 teach a comparison with -er, -est, more and most, joining clauses with and, but, so, because and when, and choosing a verb to match an effect, and children apply each to the draft. Day 50 ends the recording windows, so every child has been recorded once. Day 51 is silent except the saved clip: three item sheets, a drawn labelled leaf as the display, and a reading note.
+Each day is 90 minutes. Days 48 to 50 teach a comparison with -er, -est, more and most, joining clauses with and, but, so, because and when, and choosing a verb to match an effect, and children apply each to the draft. Day 50 ends the recording windows, so every child has been recorded once. Day 51 is silent except the saved clip: three item sheets, a drawn labeled leaf as the display, and a reading note.
 
 ## The ideas, at an adult's level
 

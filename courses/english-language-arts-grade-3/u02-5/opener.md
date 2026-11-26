@@ -13,7 +13,7 @@ For three days the class uses the frog book as a tool. Day 54 finds facts with t
 
 ## How the days run
 
-Each day is 90 minutes. Day 54 practises a question, the index entry, the page and the words. Day 55 reads pages 3 to 4, names the main idea and a detail, and writes a short paragraph. Day 56 joins facts with linking words and writes the Product I05 paragraph in one sitting from a panel and its diagram.
+Each day is 90 minutes. Day 54 practices a question, the index entry, the page and the words. Day 55 reads pages 3 to 4, names the main idea and a detail, and writes a short paragraph. Day 56 joins facts with linking words and writes the Product I05 paragraph in one sitting from a panel and its diagram.
 
 ## The ideas, at an adult's level
 

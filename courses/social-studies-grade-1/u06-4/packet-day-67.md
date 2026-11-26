@@ -15,7 +15,7 @@ Keep this packet closed and out of sight until day 67. None of it is taught befo
 
 **Source B, Singapore (drawing):** a street with apartments, a roof over a walkway, rain falling, people in light clothes, and a street sign with two lines of lettering, one in English and one in Tamil. Caption, read aloud: "Singapore is warm and rainy. A roof covers a walkway beside apartments. The sign uses English and Tamil. Singapore's government says people keep their own mother languages and use English together. This picture does not tell us what school lunches are like there." Sources 56C (the weather account) and 56D (the multicultural account), in our words.
 
-**A globe view** with a key (a dot with a name is a city), a direction indicator labelled N pointing to the top of the page, and the dots Sapporo, Singapore and Nairobi. Tokens.
+**A globe view** with a key (a dot with a name is a city), a direction indicator labeled N pointing to the top of the page, and the dots Sapporo, Singapore and Nairobi. Tokens.
 
 **Item 1 (E1 to E3):** circle what shows the weather on each picture (snow on A, rain on B); point to the lunch words in the caption of A; circle yes or no for "Could everyone in this place live exactly like this picture?" Spoken (one, chosen by the record sheet): see items.csv.
 

@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Days 85 to 88 move from joining two facts to a first science talk. Day 85 revises the labelled note and prepares a talk from two texts. Days 86 and 87 are check days: the class hears one new covered card, groups of five give connection talks, and the teacher records. Day 88 returns what the checks showed and repairs it. Foundations start short a: blending, changing one letter, and the words at and has.
+Days 85 to 88 move from joining two facts to a first science talk. Day 85 revises the labeled note and prepares a talk from two texts. Days 86 and 87 are check days: the class hears one new covered card, groups of five give connection talks, and the teacher records. Day 88 returns what the checks showed and repairs it. Foundations start short a: blending, changing one letter, and the words at and has.
 
 ## How the days run
 

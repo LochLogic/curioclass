@@ -9,7 +9,7 @@ credit: ours
 
 ## English
 
-This month our class reads a story about a girl who joins a new class, and then short articles about schools in Japan, Finland and Brazil. We practise asking questions about what we read, telling what a character does, and listening to each other. We also learn the sounds and spellings of long and short vowels.
+This month our class reads a story about a girl who joins a new class, and then short articles about schools in Japan, Finland and Brazil. We practice asking questions about what we read, telling what a character does, and listening to each other. We also learn the sounds and spellings of long and short vowels.
 
 At home, if you like, ask your child to tell you one thing they read or heard at school and to show you the line or picture that tells it. Any language is fine for talking. There is nothing to send back, and any night can be skipped.
 

@@ -4,14 +4,14 @@ from_day,to_day,what,where,minutes,error,note
 2,3,s01-E2c,continents,5,J,sort one mapped fact and two supported priorities on cards
 3,4,s01-E3 s01-E3b,Warm,5,A,"sort continent, ocean and hemisphere labels on a fresh globe view"
 4,5,s01-E4 s01-E4c,Warm,5,A,sort the labels again
-5,6,s01-E5,Warm,5,L,"rebuild labelled columns and rows, then place a new cell"
+5,6,s01-E5,Warm,5,L,"rebuild labeled columns and rows, then place a new cell"
 6,7,s01-E6b,Return,5,E,compare two rain cards at the same latitude; a small group takes it if the whole class does not
 7,8,s01-E7,Return,5,B,match three new symbols to a legend
 7,8,s01-E7b,Distances,5,C,turn paper and compass rose together
 7,8,s01-E7c,Distances,5,D,lay a paper strip along a fresh route
 8,9,s01-E8,Return,5,D,lay the strip along a fresh route and count again
 9,10,s01-E9,Return,8,G,"sort three claim cards into shows, suggests and cannot tell"
-10,11,s01-E10,Return,5,L,"rebuild labelled columns and rows, then place a new cell"
+10,11,s01-E10,Return,5,L,"rebuild labeled columns and rows, then place a new cell"
 11,12,s01-E11,Return,5,F,"lay the maps together and sort four new labels into state, region and landform"
 11,12,s01-E11b,Every,5,B,match three new symbols to a key
 12,13,s01-E12,Return,5,S,check each state on the key and place the missing labels
@@ -133,10 +133,10 @@ from_day,to_day,what,where,minutes,error,note
 92,93,s05-E92 s05-P92a s05-P92b s05-P92c s05-P92d s05-P92e s05-P92f,Return,5,AA,a fresh row of year cards from the 1700s to 1900s; say the century aloud
 93,94,s05-E93 s05-P93a s05-P93b s05-P93c s05-P93d,Return,10,Z,two accounts of one coast; find a farm or town in each
 94,95,s05-E94 s05-P94a s05-P94b s05-P94c s05-P94d s05-P94e s05-P94f,Return,5,B,a fresh made-up voyage; draw it and say the start and the end
-95,96,s05-E95 s05-P95a s05-P95b s05-P95c s05-P95d s05-P95e s05-P95f,Return,10,C,a fresh pair labelled by maker and purpose; say what each leaves out
+95,96,s05-E95 s05-P95a s05-P95b s05-P95c s05-P95d s05-P95e s05-P95f,Return,10,C,a fresh pair labeled by maker and purpose; say what each leaves out
 96,97,s05-E96 s05-E96b s05-P96a s05-P96b s05-P96c s05-P96d s05-P96e,Return,10,Z,two accounts of one coast; find a farm or town in each
 97,98,s05-E97 s05-P97a s05-P97b s05-P97c s05-P97d s05-P97e s05-P97f s05-P97g,Return,5,AC,fresh invented leader cards; sort whom each leader answered to
-98,99,s05-E98 s05-P98a s05-P98b s05-P98c s05-P98d s05-P98e s05-P98f s05-P98g s05-P98h,Return,10,C,a fresh pair of papers on one beach rule labelled by maker and purpose
+98,99,s05-E98 s05-P98a s05-P98b s05-P98c s05-P98d s05-P98e s05-P98f s05-P98g s05-P98h,Return,10,C,a fresh pair of papers on one beach rule labeled by maker and purpose
 99,100,s05-E99 s05-E99b s05-P99a s05-P99b s05-P99c s05-P99d s05-P99e s05-P99f s05-P99g,Return,5,C,the C group: one more pair of maker and purpose labels
 100,101,s05-E100 s05-E100b s05-P100a,Return,5,AF,a fresh pair of invented passengers; sort Pilgrim and not Pilgrim (M)
 101,102,s05-E101,Return,5,E,sort a fresh set of authority claims
@@ -160,23 +160,23 @@ from_day,to_day,what,where,minutes,error,note
 119,121,s05-E119 s05-E119b s05-P119a,Groups,0,K,the K group: build a fresh overlap of two invented bands
 120,121,s05-Q1 s05-Q1b s05-Q2 s05-Q2b s05-Q3 s05-Q4 s05-Q5 s05-Q5b s05-Q6 s05-Q6b s05-Q7 s05-Q8 s05-Q8b s05-Q8c s05-Q8d s05-R1 s05-R1b s05-R2 s05-R3 s05-R4 s05-R5 s05-R6 s05-R7 s05-R8 s05-R9,Feedback,5,,the day 120 answer sheets and scored records; each child reads the note and the letter if there is one
 120,121,s05-Q1 s05-Q1b s05-Q2 s05-Q2b s05-Q3 s05-Q4 s05-Q5 s05-Q5b s05-Q6 s05-Q6b s05-Q7 s05-Q8 s05-Q8b s05-Q8c s05-Q8d s05-R1 s05-R1b s05-R2 s05-R3 s05-R4 s05-R5 s05-R6 s05-R7 s05-R8 s05-R9,Groups,20,,at most four groups by the largest gaps; one letter each; others work in pairs from the written move
-93,104,s05-E93 s05-P93a s05-P93b s05-P93c s05-P93d,Feedback,0,,the day 93 record is returned with the written criterion note; revised in a new colour in the revision part
-95,104,s05-E95 s05-P95a s05-P95b s05-P95c s05-P95d s05-P95e s05-P95f,Feedback,0,,the day 95 record is returned with the written criterion note; revised in a new colour in the revision part
-96,104,s05-E96 s05-E96b s05-P96a s05-P96b s05-P96c s05-P96d s05-P96e,Feedback,0,,the day 96 record is returned with the written criterion note; revised in a new colour in the revision part
-100,104,s05-E100 s05-E100b s05-P100a,Feedback,0,,the day 100 record is returned with the written criterion note; revised in a new colour in the revision part
-101,104,s05-E101,Feedback,0,,the day 101 record is returned with the written criterion note; revised in a new colour in the revision part
-102,104,s05-E102,Feedback,0,,the day 102 record is returned with the written criterion note; revised in a new colour in the revision part
+93,104,s05-E93 s05-P93a s05-P93b s05-P93c s05-P93d,Feedback,0,,the day 93 record is returned with the written criterion note; revised in a new color in the revision part
+95,104,s05-E95 s05-P95a s05-P95b s05-P95c s05-P95d s05-P95e s05-P95f,Feedback,0,,the day 95 record is returned with the written criterion note; revised in a new color in the revision part
+96,104,s05-E96 s05-E96b s05-P96a s05-P96b s05-P96c s05-P96d s05-P96e,Feedback,0,,the day 96 record is returned with the written criterion note; revised in a new color in the revision part
+100,104,s05-E100 s05-E100b s05-P100a,Feedback,0,,the day 100 record is returned with the written criterion note; revised in a new color in the revision part
+101,104,s05-E101,Feedback,0,,the day 101 record is returned with the written criterion note; revised in a new color in the revision part
+102,104,s05-E102,Feedback,0,,the day 102 record is returned with the written criterion note; revised in a new color in the revision part
 103,104,s05-P103a,Revision,0,D,the day 103 ordering record is returned with its note and revised
-90,119,s05-E90 s05-E90b s05-P90a s05-P90b s05-P90c s05-P90d,Feedback,0,,the day 90 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
-106,119,s05-E106 s05-P106a,Feedback,0,,the day 106 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
-107,119,s05-E107 s05-P107a,Feedback,0,,the day 107 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
-108,119,s05-E108 s05-P108a,Feedback,0,,the day 108 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
-110,119,s05-E110 s05-P110a,Feedback,0,,the day 110 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
-113,119,s05-E113 s05-E113b,Feedback,0,,the day 113 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
-116,119,s05-E116 s05-P116a,Feedback,0,,the day 116 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
-117,119,s05-E117 s05-P117a s05-P117b,Feedback,0,,the day 117 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+90,119,s05-E90 s05-E90b s05-P90a s05-P90b s05-P90c s05-P90d,Feedback,0,,the day 90 record is returned with the written criterion note and revised in a new color on day 119; score only the revision
+106,119,s05-E106 s05-P106a,Feedback,0,,the day 106 record is returned with the written criterion note and revised in a new color on day 119; score only the revision
+107,119,s05-E107 s05-P107a,Feedback,0,,the day 107 record is returned with the written criterion note and revised in a new color on day 119; score only the revision
+108,119,s05-E108 s05-P108a,Feedback,0,,the day 108 record is returned with the written criterion note and revised in a new color on day 119; score only the revision
+110,119,s05-E110 s05-P110a,Feedback,0,,the day 110 record is returned with the written criterion note and revised in a new color on day 119; score only the revision
+113,119,s05-E113 s05-E113b,Feedback,0,,the day 113 record is returned with the written criterion note and revised in a new color on day 119; score only the revision
+116,119,s05-E116 s05-P116a,Feedback,0,,the day 116 record is returned with the written criterion note and revised in a new color on day 119; score only the revision
+117,119,s05-E117 s05-P117a s05-P117b,Feedback,0,,the day 117 record is returned with the written criterion note and revised in a new color on day 119; score only the revision
 104,119,s05-E104 s05-E104b,Feedback,5,,the written feedback on the records is read in the first five minutes of day 119
-102,104,s05-P102e,Feedback,0,,the day 102 record sentence is returned with the written criterion note; revised in a new colour in the revision part
+102,104,s05-P102e,Feedback,0,,the day 102 record sentence is returned with the written criterion note; revised in a new color in the revision part
 106,107,s05-W106a s05-W106b s05-P106b s05-P106c s05-P106d,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
 107,108,s05-W107a s05-P107b s05-P107c,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
 108,109,s05-W108a s05-P108b s05-P108c s05-P108d,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
@@ -185,7 +185,7 @@ from_day,to_day,what,where,minutes,error,note
 111,112,s05-W111a s05-P111a s05-P111b s05-P111c,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
 112,113,s05-W112a s05-W112b s05-P112a s05-P112b s05-P112c,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
 113,114,s05-W113a s05-W113b s05-W113c s05-P113a s05-P113b s05-P113c,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
-113,119,s05-P113d,Feedback,0,,the day 113 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+113,119,s05-P113d,Feedback,0,,the day 113 record is returned with the written criterion note and revised in a new color on day 119; score only the revision
 114,115,s05-W114a s05-W114b s05-P114a s05-P114b s05-P114c s05-P114d s05-P114e,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
 115,116,s05-W115a s05-W115b s05-P115a s05-P115b s05-P115c s05-P115d,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
 117,118,s05-P117c s05-P117d,Return,0,AG,"pairs not heard on day 117: one spoken ask, cards 1 and 2, while the others write"
@@ -205,9 +205,9 @@ from_day,to_day,what,where,minutes,error,note
 125,134,s06-P125a,Feedback,5,,the day 125 record comes back with the written criterion note; each child reads it
 128,134,s06-P128a,Feedback,0,,"the day 128 record comes back with the written note, read in the same five minutes"
 131,134,s06-P131a,Feedback,0,,"the day 131 sort comes back with the written note, read in the same five minutes"
-125,134,s06-P125a,Revise,5,N,"revised in a new colour; a new line, not a copy of the note; scored on day 135 from the revision"
-128,134,s06-P128a,Revise,5,P,"revised in a new colour; a new line, not a copy of the note; scored on day 135 from the revision"
-131,134,s06-P131a,Revise,5,D,"revised in a new colour; a new line, not a copy of the note; scored on day 135 from the revision"
+125,134,s06-P125a,Revise,5,N,"revised in a new color; a new line, not a copy of the note; scored on day 135 from the revision"
+128,134,s06-P128a,Revise,5,P,"revised in a new color; a new line, not a copy of the note; scored on day 135 from the revision"
+131,134,s06-P131a,Revise,5,D,"revised in a new color; a new line, not a copy of the note; scored on day 135 from the revision"
 133,134,s06-E133 s06-E133b s06-P133a s06-P133b,Revise,0,G,"the G and Q children take a fresh pair of details at the small-group table during the revision part, five minutes, frame withdrawn"
 135,136,s06-Q1 s06-Q1b s06-Q1c s06-Q2 s06-Q2b s06-Q2c s06-Q2d s06-Q2e s06-Q3 s06-Q3b s06-Q4 s06-Q4b s06-Q5 s06-Q5b s06-Q5c s06-Q5d s06-Q5e s06-R1 s06-R2 s06-R2b s06-R3 s06-R4 s06-R4b,Feedback,5,,"each child reads the teacher note on the day 135 sheet: one missed idea circled, one sentence"
 135,136,s06-Q1 s06-Q1b s06-Q1c s06-Q2 s06-Q2b s06-Q2c s06-Q2d s06-Q2e s06-Q3 s06-Q3b s06-Q4 s06-Q4b s06-Q5 s06-Q5b s06-Q5c s06-Q5d s06-Q5e s06-R1 s06-R2 s06-R2b s06-R3 s06-R4 s06-R4b,Groups,20,,"at most four groups by the largest gaps, one letter each, fresh cards; the others work in pairs from the written move"

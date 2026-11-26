@@ -30,4 +30,4 @@ Three cards of things that can be named instead of a want: a big ramp, a long pi
 
 ## Strip
 
-A strip of three boxes labelled want, idea, test, large enough for a card in each. One strip for each pair of children.
+A strip of three boxes labeled want, idea, test, large enough for a card in each. One strip for each pair of children.

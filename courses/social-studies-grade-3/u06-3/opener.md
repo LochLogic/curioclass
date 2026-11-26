@@ -31,7 +31,7 @@ Paper, pencils, the strip with the New Jersey band, three-question pockets, capt
 
 ## A room with nothing
 
-Copy the cards large by hand. Use three paper pockets labelled citizenship, voting and equal rights, and a fourth for "none of the three".
+Copy the cards large by hand. Use three paper pockets labeled citizenship, voting and equal rights, and a fourth for "none of the three".
 
 ## Unsettled facts for the day writers
 

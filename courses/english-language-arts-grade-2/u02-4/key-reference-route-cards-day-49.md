@@ -9,4 +9,4 @@ credit: ours
 
 Teacher only. Never print this page; it answers the printed piece reference-route-cards-day-49.
 
-Key for the teacher: 1 glossary, then the bold word on page 3. 2 index, page 2. 3 the magnifying glass icon labelled Scientists, page 3. The day's model uses the Shapes icon, the index entry cast and the glossary entry specimen, so no card repeats them. Use none of the words notebook or location as a question, and never trace the Tracks icon.
+Key for the teacher: 1 glossary, then the bold word on page 3. 2 index, page 2. 3 the magnifying glass icon labeled Scientists, page 3. The day's model uses the Shapes icon, the index entry cast and the glossary entry specimen, so no card repeats them. Use none of the words notebook or location as a question, and never trace the Tracks icon.

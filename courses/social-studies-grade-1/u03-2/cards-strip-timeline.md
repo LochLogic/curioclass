@@ -16,7 +16,7 @@ An unscaled strip on a string with clothes pins, started with unit 2's year stri
 3. **1962** (day 24). A woman at a table with a sign-up sheet. Words: "Huerta begins to organize farm workers, 1962."
 4. **1985 to 1995** (day 25). A woman at a long table. Words: "Mankiller is Principal Chief, 1985 to 1995."
 
-Two end cards: one labelled "long ago" at the left and one labelled "today" at the right.
+Two end cards: one labeled "long ago" at the left and one labeled "today" at the right.
 
 ## For the teacher
 

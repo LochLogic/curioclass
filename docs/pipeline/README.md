@@ -20,7 +20,10 @@ a plan read and fix, plan data and keys, ledger-gated day jobs of 4 to 6 days, a
 retool. The job templates are the versioned kit in docs/pipeline/kit/ and `scripts/coursegen.py` writes a run's
 queue. The unit-jobs table below is the older day pipeline, kept as a record; it is not the current cadence.
 
-## The pieces
+## The pieces of the older turn queue (a record, not the current cadence)
+
+The current cadence runs job files from `scripts/coursegen.py`; the lead launches each and commits (AGENTS.md, "Who
+commits"). The pieces below belong to the turn queue, kept for the pilot that used it.
 
 | Piece | What it is |
 |---|---|
@@ -51,8 +54,8 @@ Who does which role is a setting, not a rule: any worker can take any role with 
 
 ## The gates at `end`
 
-`end` runs `plan.py check` and `lesson.py check`, compares the failures with those at `start`, and keeps the turn
-with the worker while the job added one. A fix job must leave none at all. A job that cannot clear them ends with
+`end` runs the one gate for the job's course (`scripts/gate.py --course`), compares the failures with those at
+`start`, and keeps the turn with the worker while the job added one. A fix job must leave none at all. A job that cannot clear them ends with
 `--fail "why"`, which hands the turn back and leaves the job for a person.
 
 ## Taking a job by hand (paste mode)

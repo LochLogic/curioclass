@@ -24,11 +24,11 @@ Shown: Three marks. | Not yet seen: Repeats the visible seven as partner.
 
 Tell a fruit story for ten with a different pair from this one.
 
-Key: Any labelled peach/plum allocation totaling ten except 2 peaches/8 plums, communicated by a complete Rin picture story or usual communication; 8 peaches/2 plums counts.
+Key: Any labeled peach/plum allocation totaling ten except 2 peaches/8 plums, communicated by a complete Rin picture story or usual communication; 8 peaches/2 plums counts.
 
-Look-fors: All mark a complete labelled picture story with Rin as the sole actor: two fruit counts, fixed total ten, changed labelled pair. Directed adult marking and usual communication accepted. The picture communicates the mathematical story; do not infer exact unheard words. Six may tell their same response; the other twenty-four are reached through their complete paper scene and next-day written feedback. | Stimulus in exit-102.md; read category labels neutrally. Eight minutes: launch 1, concurrent paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Independently create a whole fruit story with a changed labelled pair.
+Look-fors: All mark a complete labeled picture story with Rin as the sole actor: two fruit counts, fixed total ten, changed labeled pair. Directed adult marking and usual communication accepted. The picture communicates the mathematical story; do not infer exact unheard words. Six may tell their same response; the other twenty-four are reached through their complete paper scene and next-day written feedback. | Stimulus in exit-102.md; read category labels neutrally. Eight minutes: launch 1, concurrent paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Independently create a whole fruit story with a changed labeled pair.
 
-Shown: Picture scene has Rin with three peach pictures and seven plum pictures, ten altogether; six may communicate the same story aloud. | Not yet seen: Repositions the same two peaches/eight plums and calls the labelled pair different.
+Shown: Picture scene has Rin with three peach pictures and seven plum pictures, ten altogether; six may communicate the same story aloud. | Not yet seen: Repositions the same two peaches/eight plums and calls the labeled pair different.
 
 ## s05-F1-0-1
 
@@ -244,9 +244,9 @@ Shown: 8 = 3 + 5 matches the retained split. | Not yet seen: Rejects a matching 
 
 Show one way Rin could put them.
 
-Key: Any labelled album allocation totaling four.
+Key: Any labeled album allocation totaling four.
 
-Look-fors: Rin alone; four stamps, red striped-spine and blue dotted-spine album. One assignment per stamp, all four used. Swapping labelled counts counts as different. Eight minutes total for two single asks. Feedback after day 100, revision day 101, eligible judgment day 103. | Shape: Independently generate one labelled album allocation on fresh pictures.
+Look-fors: Rin alone; four stamps, red striped-spine and blue dotted-spine album. One assignment per stamp, all four used. Swapping labeled counts counts as different. Eight minutes total for two single asks. Feedback after day 100, revision day 101, eligible judgment day 103. | Shape: Independently generate one labeled album allocation on fresh pictures.
 
 Shown: Three red/one blue. | Not yet seen: One stamp assigned to both albums.
 
@@ -254,11 +254,11 @@ Shown: Three red/one blue. | Not yet seen: One stamp assigned to both albums.
 
 Show a different way Rin could put these four stamps.
 
-Key: Any labelled album allocation totaling four; different from the first.
+Key: Any labeled album allocation totaling four; different from the first.
 
-Look-fors: Rin alone; four stamps, red striped-spine and blue dotted-spine album. One assignment per stamp, all four used. Swapping labelled counts counts as different. Eight minutes total for two single asks. Feedback after day 100, revision day 101, eligible judgment day 103. | Shape: Independently generate one labelled album allocation on fresh pictures.
+Look-fors: Rin alone; four stamps, red striped-spine and blue dotted-spine album. One assignment per stamp, all four used. Swapping labeled counts counts as different. Eight minutes total for two single asks. Feedback after day 100, revision day 101, eligible judgment day 103. | Shape: Independently generate one labeled album allocation on fresh pictures.
 
-Shown: Two red/two blue, after three red/one blue. | Not yet seen: Same labelled allocation repeated.
+Shown: Two red/two blue, after three red/one blue. | Not yet seen: Same labeled allocation repeated.
 
 ## s05-F2-1
 
@@ -374,7 +374,7 @@ Shown: Seven were there, five and two; three places empty. | Not yet seen: Repea
 
 Tell how your two solutions fit Rin's stamps.
 
-Key: Both distinct labelled allocations use four stamps, each assigned once.
+Key: Both distinct labeled allocations use four stamps, each assigned once.
 
 Look-fors: Assigned roster 1 to 5 only, 45 seconds per ask, three separate asks total 2.25 minutes per child. Use only independently made retained products, never repeat a secure conference. Record initial words/help; written feedback after class, later paper-arrow revision before judgment. First-heard day 103 stays pending through days 104/105. | Shape: Explain one independently made retained product; never rehearse evidence-product explanation.
 
@@ -404,7 +404,7 @@ Shown: Seven were there, five and two; three places empty. | Not yet seen: Repea
 
 Tell how your two solutions fit Rin's stamps.
 
-Key: Both distinct labelled allocations use four stamps, each assigned once.
+Key: Both distinct labeled allocations use four stamps, each assigned once.
 
 Look-fors: Assigned roster 6 to 15 only, 45 seconds per ask, three separate asks total 2.25 minutes per child. Use only independently made retained products, never repeat a secure conference. Record initial words/help; written feedback after class, later paper-arrow revision before judgment. First-heard day 103 stays pending through days 104/105. | Shape: Explain one independently made retained product; never rehearse evidence-product explanation.
 
@@ -434,7 +434,7 @@ Shown: Seven were there, five and two; three places empty. | Not yet seen: Repea
 
 Tell how your two solutions fit Rin's stamps.
 
-Key: Both distinct labelled allocations use four stamps, each assigned once.
+Key: Both distinct labeled allocations use four stamps, each assigned once.
 
 Look-fors: Assigned roster 16 to 30 only, 45 seconds per ask, three separate asks total 2.25 minutes per child. Use only independently made retained products, never repeat a secure conference. Record initial words/help; written feedback after class, later paper-arrow revision before judgment. First-heard day 103 stays pending through days 104/105. | Shape: Explain one independently made retained product; never rehearse evidence-product explanation.
 
@@ -464,7 +464,7 @@ Shown: Seven were there, five and two; three places empty. | Not yet seen: Repea
 
 F3 record. Scored from the work you handed in. Write nothing here.
 
-Key: Both distinct labelled allocations use four stamps, each assigned once.
+Key: Both distinct labeled allocations use four stamps, each assigned once.
 
 Look-fors: Teacher-only interpretation, no child task. F1 four/F2 three/F3 three minutes within Interpret existing products. Earlier components judged only after written feedback and later revision. First-heard day 103 evidence stays pending; days 104/105 response. Carry s04-A83-F1 and s04-A83-F2 joining/removal/symbol records, no recollection. | Shape: Close retained component records without a repeated complete task or interview.
 

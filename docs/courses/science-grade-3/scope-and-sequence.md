@@ -181,7 +181,7 @@ There is no base text for this course. The work is original. source-map.csv hold
 
 ## Shorter path
 
-For a shorter period, retain the question, firsthand evidence or clearly labelled substitute, model revision and exit ticket. Use one shared apparatus and prearranged records, read short texts aloud with diagrams and move copying/decoration out of the core time. Reserve care and weather minutes inside the day, shorten duplicate reports rather than inquiry, and split a two-day assessment's work across its existing two meetings. Do not shorten safety controls or silently substitute a fact quiz for a performance. The following folds give a 110-meeting year without changing any assessment, readiness, response or owned-part coverage in the 120-day master CSV.
+For a shorter period, retain the question, firsthand evidence or clearly labeled substitute, model revision and exit ticket. Use one shared apparatus and prearranged records, read short texts aloud with diagrams and move copying/decoration out of the core time. Reserve care and weather minutes inside the day, shorten duplicate reports rather than inquiry, and split a two-day assessment's work across its existing two meetings. Do not shorten safety controls or silently substitute a fact quiz for a performance. The following folds give a 110-meeting year without changing any assessment, readiness, response or owned-part coverage in the 120-day master CSV.
 
 | Fold this unassessed day | Into | Work retained in the neighbour | Minutes inside neighbour | Minutes saved |
 |---|---|---|---|---|

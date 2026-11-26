@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-The class hears One Bee, Two Flowers, a made-up story told by a bumblebee, and checks which parts match the articles. Children then build a labelled poster from two articles, plan three spoken sentences, practise them in pairs, and improve the poster with a fact from each of two provided sources.
+The class hears One Bee, Two Flowers, a made-up story told by a bumblebee, and checks which parts match the articles. Children then build a labeled poster from two articles, plan three spoken sentences, practice them in pairs, and improve the poster with a fact from each of two provided sources.
 
 ## How the days run
 

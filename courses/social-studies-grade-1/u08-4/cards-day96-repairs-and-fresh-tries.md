@@ -15,7 +15,7 @@ At most four teacher groups, most-missed letter first, about two minutes each at
 
 ## Places group (errors O, P)
 
-**Repair card:** "A capital is where the government is centered. A city grows for a reason in the record." **New case:** a made-up state of Orrin, a star labelled Vale, a big dot labelled Port Orrin; the record: a railway meets the river at Port Orrin and many workers came. Children circle the capital and say why the big city grew.
+**Repair card:** "A capital is where the government is centered. A city grows for a reason in the record." **New case:** a made-up state of Orrin, a star labeled Vale, a big dot labeled Port Orrin; the record: a railway meets the river at Port Orrin and many workers came. Children circle the capital and say why the big city grew.
 
 ## Land and water group (errors Q, R)
 

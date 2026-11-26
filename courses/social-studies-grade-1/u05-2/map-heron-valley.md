@@ -11,9 +11,9 @@ Say aloud first: "Heron Valley is made up." Print "invented for practice" on the
 
 ## Heron Valley map (invented)
 
-**Picture:** a valley from above. A key box: a blue band with small arrows is a river, a blue oval is a lake, brown rings are a mountain, a square is a house, a gray stripe is a road, a black bar across the river is a road bridge. A direction indicator labelled N pointing up.
+**Picture:** a valley from above. A key box: a blue band with small arrows is a river, a blue oval is a lake, brown rings are a mountain, a square is a house, a gray stripe is a road, a black bar across the river is a road bridge. A direction indicator labeled N pointing up.
 
-On the map: brown rings at the top for a mountain. A river drawn as a blue band that begins below the mountain, with small arrows along it pointing down the page, and runs to the bottom edge, where the edge of the page is labelled "sea". A separate small blue oval for a lake off to the right, with no river touching it. A gray road crossing the river at a black bar for the road bridge. Four squares for houses near the road, on one side of the bridge.
+On the map: brown rings at the top for a mountain. A river drawn as a blue band that begins below the mountain, with small arrows along it pointing down the page, and runs to the bottom edge, where the edge of the page is labeled "sea". A separate small blue oval for a lake off to the right, with no river touching it. A gray road crossing the river at a black bar for the road bridge. Four squares for houses near the road, on one side of the bridge.
 
 ## The paper relief (a different one from Meadow Valley)
 

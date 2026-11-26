@@ -124,7 +124,7 @@ course, all from memory until that read checks them. Dance: a floor with room to
 feet on a clean floor, no lifts, no jumping from heights, partner contact only by agreement and never required.
 Theater: no real weapons, no contact stage fights, props checked, falls not rehearsed. Visual arts: blades only by
 an adult, no heat sources for children below grade 6, powdered clay and dyes with ventilation, wash hands,
-materials labelled non-toxic, no sharing of face-contact items. Music: volume limits for headphones and drums, no
+materials labeled non-toxic, no sharing of face-contact items. Music: volume limits for headphones and drums, no
 loud sound in a student's ear, hearing and voice rest, no forced singing alone. Media arts: no filming a student
 without the family's yes, no flashing lights, screen breaks. A safety statement without a source is marked "from
 memory".
@@ -243,7 +243,7 @@ time figures and the ordinary room.
 The levels, entry, placement and the music strand's rules are in STANDARD.md 3.2 and 3.3. What the plans fill:
 Choice grows by level (Level 1 sets the problems, Level 2 lets the student pick among them and research, Level 3
 has the student set the problem). Level 4 is one sustained project with checkpoints as check days and critique as
-respond days. High school music is composing and theory, practised by voice, body percussion and a free keyboard or
+respond days. High school music is composing and theory, practiced by voice, body percussion and a free keyboard or
 Curio Class tool; a day may offer "use your own instrument" as one way in, and listening and score study carry the
 responding standards.
 

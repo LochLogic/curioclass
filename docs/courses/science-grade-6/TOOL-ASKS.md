@@ -8,7 +8,7 @@ Show a source, a material boundary and an observer. Students predict paths befor
 
 A later boundary view can support day 14: oblique entry from air into water turns toward a supplied perpendicular reference line, perpendicular entry has no directional turn, and paths in uniform materials remain straight. Do not require angles, trigonometry, wave calculations or eye anatomy. A flashlight beam is not normally visible in clean air or clear water. For the teacher demonstration, follow the light spot on a white card rather than claim to see a floating ray. Rehearse with the actual cup; use recorded paths if curvature prevents a clear flat-boundary comparison. Do not add scattering agents or lasers.
 
-Students must be able to construct, revise and save or print a model, rather than watch a completed animation. Use keyboard controls, large labelled arrows, descriptions that give direction and position, spoken sensor values and matching tactile arrow cards. A blind student chooses conditions and constructs the explanation, rather than only recording a partner's observations. No student account or independent device is needed. One shared display has a complete printed route.
+Students must be able to construct, revise and save or print a model, rather than watch a completed animation. Use keyboard controls, large labeled arrows, descriptions that give direction and position, spoken sensor values and matching tactile arrow cards. A blind student chooses conditions and constructs the explanation, rather than only recording a partner's observations. No student account or independent device is needed. One shared display has a complete printed route.
 
 ## Unit 1: evidence sheets and no-kit routes
 
@@ -18,7 +18,7 @@ Prepare these before instruction. Real measurements are not on file and must not
 - Days 6 to 7: preserve three repeated readings for each illumination condition, sensor position, units, device and collection date. Students select a middle reading with guidance and compare highest with lowest. Give already organized displays; do not assume formal statistics.
 - Days 8 to 10: provide real reflection and transmission records for transparent film, mirror film, a plastic mirror and opaque card. Record sensor geometry and ambient baseline. Compare each route with its own matching baseline; do not compare unlike detector positions as percentages of total light.
 - Day 11: an original short account of a thin partially reflective coating. Students connect its structure to the measured two-path behavior. Avoid claiming ordinary clear surfaces reflect only because of dust or that real mirrors reflect every incident ray.
-- Day 13: relative-input records plus an original receptor-to-brain reading checked against LS1.D. Use two labelled arrow types, light to receptor and signal to brain. Explain that a strong reflected image can obscure a weaker transmitted image, without claiming the brain processes only its strongest signal.
+- Day 13: relative-input records plus an original receptor-to-brain reading checked against LS1.D. Use two labeled arrow types, light to receptor and signal to brain. Explain that a strong reflected image can obscure a weaker transmitted image, without claiming the brain processes only its strongest signal.
 - Day 14: paired recorded ray paths at a flat air-water boundary, with oblique and perpendicular incidence. Include a printed perpendicular reference and descriptions of the paths.
 - Day 16: withhold this comparison until then. Supply a different transparent panel with recorded views under changed lighting. Do not use the viewing-tube display or clear plastic block reserved for the assessment products begun on day 16.
 
@@ -39,10 +39,10 @@ The safety read studies the published middle-school safety form linked in s01.md
 
 From [unit 4](s04.md), field 8. Mark: light tool, spec only. Days 106 and 107, ten minutes each. Job: show why seafloor forms at ridges and moves toward trenches, then revise linked rock, plate and energy models. Verdict: does not exist. No tool spec was available to inspect.
 
-1. Let students predict boundary motion before revealing results. Show labelled positions, time intervals and a scale, with apart, together and past cases. Day 106 compares ridge and trench records; day 107 adds student-controlled rock-process and energy arrows. Limit each day to those two parts.
+1. Let students predict boundary motion before revealing results. Show labeled positions, time intervals and a scale, with apart, together and past cases. Day 106 compares ridge and trench records; day 107 adds student-controlled rock-process and energy arrows. Limit each day to those two parts.
 2. Allow branching rock histories. Include melting, crystallization, weathering, erosion, deposition, compaction and solid deformation. Keep solar energy, interior energy and gravity distinct. The mantle is mainly solid; no global magma ocean. Descending seafloor is recycled into the interior, not instantly melted wholesale at the trench. Avoid presenting every process as a required turn around one fixed loop.
 3. Distinguish an illustrative model from measured data. Show that some processes are too slow, deep or large to reproduce in class. Preserve relative-age patterns without magnetic stripes. A simulation is not new observational evidence.
-4. Provide keyboard controls, text descriptions, labelled high-contrast maps, removable tactile arrows and printable before-and-after maps. A student can construct and revise a model on paper while a single shared screen displays records. Save or print each revision without accounts.
+4. Provide keyboard controls, text descriptions, labeled high-contrast maps, removable tactile arrows and printable before-and-after maps. A student can construct and revise a model on paper while a single shared screen displays records. Save or print each revision without accounts.
 
 ## Unit 4: evidence and investigation paths
 
@@ -67,7 +67,7 @@ From [unit 2](s02.md), field 8. Mark: light tool, spec only. Days 37 to 40 and 4
 
 ## Unit 3: rising air parcel and ocean circulation
 
-From [unit 3](s03.md), field 8. Rising air parcel: light tool, spec only; day 60 shows why expansion cools, day 68 practises condensation with feedback. Ocean circulation: light tool, spec only; day 86 shows why currents transport heat. Verdict for both: partly fits pending accessible printed models. Keep heated water at 40 degrees Celsius or less in any paired records.
+From [unit 3](s03.md), field 8. Rising air parcel: light tool, spec only; day 60 shows why expansion cools, day 68 practices condensation with feedback. Ocean circulation: light tool, spec only; day 86 shows why currents transport heat. Verdict for both: partly fits pending accessible printed models. Keep heated water at 40 degrees Celsius or less in any paired records.
 
 ## Unit 5: tsunami wave tank
 

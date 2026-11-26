@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Four days of 40 minutes. Day 86 closes the unit question: each child chooses one detail from the Local Homeland Record and one from the Local Contribution Record, hears another supported emphasis (knowledge, settlement or governing) and writes a claim. Day 87 returns the written note on the day 72 card, revises it in a new colour, and reviews the nations, the sort, the map and what we gave and how we govern. Day 88 is the unit assessment, from records the class has not seen. Day 89 is the response: a note, a grouped reteach and a fresh redo item.
+Four days of 40 minutes. Day 86 closes the unit question: each child chooses one detail from the Local Homeland Record and one from the Local Contribution Record, hears another supported emphasis (knowledge, settlement or governing) and writes a claim. Day 87 returns the written note on the day 72 card, revises it in a new color, and reviews the nations, the sort, the map and what we gave and how we govern. Day 88 is the unit assessment, from records the class has not seen. Day 89 is the response: a note, a grouped reteach and a fresh redo item.
 
 ## The ideas, at an adult's level
 

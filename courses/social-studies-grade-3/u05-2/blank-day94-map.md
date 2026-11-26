@@ -13,14 +13,14 @@ Draw the Atlantic Ocean in the middle. North America is the left edge, with a bu
 
 Mark these on the map:
 
-- A dot at France, labelled France.
-- A dot at the coast of Florida, labelled Florida.
-- A dot at the coast of New Brunswick, labelled New Brunswick.
-- A dot at Europe, labelled Europe (for the pairs part).
-- A dot at New York Bay, labelled New York Bay.
-- Plymouth, labelled with a dot, near Cape Cod.
-- A dot near the top of the coast, north of Plymouth, labelled New France (Quebec).
-- A dot at New York Bay, labelled New Netherland (New Amsterdam), south of Plymouth.
+- A dot at France, labeled France.
+- A dot at the coast of Florida, labeled Florida.
+- A dot at the coast of New Brunswick, labeled New Brunswick.
+- A dot at Europe, labeled Europe (for the pairs part).
+- A dot at New York Bay, labeled New York Bay.
+- Plymouth, labeled with a dot, near Cape Cod.
+- A dot near the top of the coast, north of Plymouth, labeled New France (Quebec).
+- A dot at New York Bay, labeled New Netherland (New Amsterdam), south of Plymouth.
 
 No route line is drawn. A loop of tracing paper goes over the map; the child draws the arrow on the tracing paper.
 

@@ -68,7 +68,7 @@ Picture: Ned and Zip playing in the yard of the new home.
 
 ---
 
-New words and the pattern each one practises:
+New words and the pattern each one practices:
 
 - Ned, Zip, pet, hop, hug, van, big, sad, fun, nod: all five short vowels, one consonant each side
 - with, will, are: mapped words (are from unit 2; with and will taught day 112)

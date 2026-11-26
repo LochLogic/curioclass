@@ -13,7 +13,7 @@
 - **decodable:** not as an independent text. A shared print specimen.
 - **high-frequency words taught by day 28:** I, my, me, the, a (mapped words; "in" is mapped from day 28 and is not in this text).
 - **letters taught by day 28:** a, t, h, p, n, c (cycles 1 to 3); m and r are cycle 4 (first taught day 28).
-- **pattern practised:** pat, hat, cat, mat, at: short a, with rhyme on -at.
+- **pattern practiced:** pat, hat, cat, mat, at: short a, with rhyme on -at.
 - **adult-read words (outside the mapped inventory):** is, pal, sits, with. Say them without cueing the five mapped words.
 - **rhymes:** pat, hat, cat, mat. "pal" does not rhyme with pat (the item's wrong choice Q).
 

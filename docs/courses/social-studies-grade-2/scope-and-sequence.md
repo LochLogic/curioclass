@@ -206,7 +206,7 @@ supporting question (85 to 87), the claim (88), drafting, finishing and presenti
 | Check | Course days | Week | What it covers |
 |---|---|---|---|
 | 1, mid-year | 46, respond 47 | 14 | On a map not seen before: the four parts and what the map shows about people and the land, the continents and oceans from a word bank with two features and why oceans matter, its maker and date; a claim about where to live in a unit 2 region and how to live with its land, naming its source |
-| 2, year-end | 94 and 95, respond 96 | 31 | Day one: two accounts not seen before of one event. Day two: from a source set about a place from units 2 to 6, a cause-effect chain for a move and a claim with two facts from named sources; why a country trades for a labelled product (unit 4); what a newcomer brought (unit 6) |
+| 2, year-end | 94 and 95, respond 96 | 31 | Day one: two accounts not seen before of one event. Day two: from a source set about a place from units 2 to 6, a cause-effect chain for a move and a claim with two facts from named sources; why a country trades for a labeled product (unit 4); what a newcomer brought (unit 6) |
 
 Each check falls right after a unit's assessment (units 3 and 7), so its items for that unit's skills draw content
 from earlier units: check 1's living-with-the-land claim uses a unit 2 region, check 2's source-and-claim items a

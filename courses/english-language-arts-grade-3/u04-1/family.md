@@ -9,7 +9,7 @@ credit: ours
 
 ## English
 
-This unit our class reads about water: where it is found, how people reach it, and how a town cleans it. We practise asking a question the words can answer, finding the main idea, comparing two texts, telling whose view a sentence gives, and writing an opinion with reasons from what we read. We also research, write a letter and a short announcement, and talk in small groups.
+This unit our class reads about water: where it is found, how people reach it, and how a town cleans it. We practice asking a question the words can answer, finding the main idea, comparing two texts, telling whose view a sentence gives, and writing an opinion with reasons from what we read. We also research, write a letter and a short announcement, and talk in small groups.
 
 Reading together is welcome, in any language and with any book you have or borrow. If your child wants to tell you one thing they learned, listen and enjoy it. There is nothing to send back and nothing to report, and any night can be skipped. Thank you for sharing this with us.
 

@@ -13,7 +13,7 @@ Days 15 to 19 teach the class to name a classroom toy and say a preference: "My 
 
 ## How the days run
 
-Each day is 120 minutes in two blocks of 60. The topic block holds a short reread, the modelling, the drawing and the exit (days 15 and 16). The foundations block holds a chant, the letters h and p, the word I, and five 8-minute rotations of six children. On the check days (17 and 18) nothing new is taught and nothing is reteached; children revise their drawings or draw while you work with small groups.
+Each day is 120 minutes in two blocks of 60. The topic block holds a short reread, the modeling, the drawing and the exit (days 15 and 16). The foundations block holds a chant, the letters h and p, the word I, and five 8-minute rotations of six children. On the check days (17 and 18) nothing new is taught and nothing is reteached; children revise their drawings or draw while you work with small groups.
 
 ## The ideas, at an adult's level
 

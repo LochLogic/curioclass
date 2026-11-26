@@ -15,11 +15,11 @@ where one is needed this page recommends and says so.
 | Owed | State | Where |
 |---|---|---|
 | A header for the ids file | Done 2026-11-11 | data/standards/csta-2026-ids.txt |
-| The standards' wording, under its own licence line | Done 2026-11-16: all 331 statements, CC BY-NC-SA 4.0 line in the file header | data/standards/csta-2026-statements.txt |
+| The standards' wording, under its own license line | Done 2026-11-16: all 331 statements, CC BY-NC-SA 4.0 line in the file header | data/standards/csta-2026-statements.txt |
 | Load the 135 Specialty standards | Done 2026-11-11 (ids); wording 2026-11-16 | data/standards/csta-2026-specialty-ids.txt; statements file |
 | High school teaches the Foundational set, claims a Specialty id only where a topic already goes that far | Decided (Cory, 2026-11-11); restated in section 3 | This page |
 | Approach page | Approved 2026-11-20 (Cory, Desk q-prework-cs-1); fields placed 2026-11-21 | docs/courses/computer-science/APPROACH.md |
-| From the PDF: the sub-concept key, the practices table, every owner row checked against its boundary statement | Done 2026-11-21 (PDF read once, Desk q-fix-downloads-1). The boundary statements' text is not stored: the depth lives in our own words in each owner row's notes (Cory, 2026-11-21, Desk q-fix-cs-2; the PDF's CC BY-NC-SA licence does not mix with a public CC BY repository) | Section 1 "Depth" and "Sub-concept codes"; section 3; data/progressions/computer-science.csv |
+| From the PDF: the sub-concept key, the practices table, every owner row checked against its boundary statement | Done 2026-11-21 (PDF read once, Desk q-fix-downloads-1). The boundary statements' text is not stored: the depth lives in our own words in each owner row's notes (Cory, 2026-11-21, Desk q-fix-cs-2; the PDF's CC BY-NC-SA license does not mix with a public CC BY repository) | Section 1 "Depth" and "Sub-concept codes"; section 3; data/progressions/computer-science.csv |
 
 ## 1. The standard and its terms
 
@@ -37,10 +37,10 @@ where one is needed this page recommends and says so.
   PRO 45, DAT 35, SYS 38, SOC 38). 135 Specialty ids in two tiers (S1 73, S2 62) over six areas (AI, cybersecurity,
   data science, game development, physical computing, software development) plus five X + CS standards (computer
   science inside another subject).
-- **Terms:** CC BY-NC-SA 4.0, printed on the PDF's licence page and every page footer: free to share and adapt with
-  credit, non-commercial, adaptations under the same licence. Curio Class is free and sells nothing, which is the non-commercial test as we read it (not legal advice); if a paid tier
+- **Terms:** CC BY-NC-SA 4.0, printed on the PDF's license page and every page footer: free to share and adapt with
+  credit, non-commercial, adaptations under the same license. Curio Class is free and sells nothing, which is the non-commercial test as we read it (not legal advice); if a paid tier
   ever appears, this is rechecked. Its own pages are CC BY. So: the statement text lives only in data/standards/csta-2026-statements.txt under CSTA's
-  licence; every Curio Class page, plan and tool cites ids and says things in our own words, and never copies a
+  license; every Curio Class page, plan and tool cites ids and says things in our own words, and never copies a
   statement or boundary statement. A page states what a standard asks in a new sentence built from the plan's own task,
   never reworded line by line from the statement. Credit line where a day leans on a statement: "Standards: 2026 CSTA PK-12
   Computer Science Standards (CC BY-NC-SA 4.0)". Never say a course is aligned to, reviewed by or endorsed by CSTA.
@@ -127,7 +127,7 @@ weak in the progression, not re-taught.
 
 **Partial base for K to 8.** Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the UK's open computing
 curriculum (scout: docs/reviews/computer-science-open-material-2026-11-16.md) is a partial base for grades K to 8.
-Each unit taken from it is checked unit by unit for third-party material (anything not under the base's own licence
+Each unit taken from it is checked unit by unit for third-party material (anything not under the base's own license
 is left out), and is rephrased for an American audience when needed (spelling, money, place names, school years).
 Its source goes in the day's credit; no company name appears in student, teacher or family copy.
 
@@ -152,7 +152,7 @@ alone.
 - Specialty II in the Foundational course (see above), and Specialty courses as courses (not on the list).
 - The X + CS standards (XCS) as computer science days: they describe computer science inside other subjects, so
   they are leans for those subjects' units, not this course's.
-- Boundary statements as text: never copied (licence and our own voice). Plans restate the depth in our own words.
+- Boundary statements as text: never copied (license and our own voice). Plans restate the depth in our own words.
 - Practices and dispositions have no ids in data/standards; units name the practice by its code and our own words,
   and every unit names at least one practice it teaches, with its day and task (bar criterion 2). The PDF pairs each
   standard with one or two practices and one or two dispositions; that pairing is not stored. The twelve practices,

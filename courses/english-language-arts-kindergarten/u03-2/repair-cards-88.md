@@ -7,7 +7,7 @@ credit: ours
 ---
 # Repair cards, day 88
 
-Picture repair cards, one set for each error letter the checks showed. Each card shows a wrong example beside the right one, drawn, with the wrong one marked by a puppet. Five minutes of modelling, five of repair and five of retry.
+Picture repair cards, one set for each error letter the checks showed. Each card shows a wrong example beside the right one, drawn, with the wrong one marked by a puppet. Five minutes of modeling, five of repair and five of retry.
 
 - **A:** two fact pictures with an empty arrow between them; the right card has the joining word on the arrow.
 - **B:** a picture the words do not support beside the one they do; a finger traces the sentence to the picture.

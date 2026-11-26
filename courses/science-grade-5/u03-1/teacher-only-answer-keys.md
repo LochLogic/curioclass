@@ -54,11 +54,11 @@ Expected wrong answers: White proves A (A): A: One shared visible property ident
 
 ## s03-X46
 
-Answer: M from the bending record; accept a safe fair further test, such as matched scratch observations, with labelled results/source location. Multiple valid test proposals.
+Answer: M from the bending record; accept a safe fair further test, such as matched scratch observations, with labeled results/source location. Multiple valid test proposals.
 
-Look-fors: M from bending evidence | safe fair further property test with labelled results/source
+Look-fors: M from bending evidence | safe fair further property test with labeled results/source
 
-Samples: Meets: M stays stiff. Compare gentle scratches with equal force, recording each labelled result and source. | Not yet: L, because shine proves stiffness
+Samples: Meets: M stays stiff. Compare gentle scratches with equal force, recording each labeled result and source. | Not yet: L, because shine proves stiffness
 
 Expected wrong answers: L, because shine proves stiffness (A): A: One shared visible property identifies a substance.
 
@@ -188,7 +188,7 @@ Answer: Four points: personally obtained valid gram reading; personally obtained
 
 Look-fors: personal weight reading /1 | personal length reading /1 | accurate property observation /1 | units and labels /1
 
-Samples: Meets: Teacher initials personal tare/weigh, ruler reading and magnet action, with actual labelled results. | Not yet: Copied supplied values with no personal actions leave practical components unobserved.
+Samples: Meets: Teacher initials personal tare/weigh, ruler reading and magnet action, with actual labeled results. | Not yet: Copied supplied values with no personal actions leave practical components unobserved.
 
 Expected wrong answers: Units are unnecessary. (B): B: A measurement needs no unit.; White alone identifies the powder. (A): A: One shared visible property identifies a substance.
 
@@ -296,7 +296,7 @@ Expected wrong answers: All match because blue. (A): A: One shared visible prope
 
 Answer: Bead sample 31 g; 7 cm describes container length, not hardness.
 
-Look-fors: labelled 31 g | length is not hardness
+Look-fors: labeled 31 g | length is not hardness
 
 Samples: Meets: Bead sample 31 g; the container is 7 cm long. | Not yet: 31 needs no unit.
 
@@ -388,9 +388,9 @@ Samples: Meets: Winter has eight, fewer than thirteen or sixteen. | Not yet: Sum
 
 ## s03-P45
 
-Answer: Accept an actual labelled visible property, not inferred identity.
+Answer: Accept an actual labeled visible property, not inferred identity.
 
-Look-fors: actual labelled property
+Look-fors: actual labeled property
 
 Samples: Meets: V45 has fine visible white grains. | Not yet: White alone proves salt. (A)
 
@@ -414,9 +414,9 @@ Samples: Meets: For an actual 20 mL reading: V47 water, 20 mL. | Not yet: V47 wa
 
 Answer: Observed pull/no pull/unclear; supplied evidence separate.
 
-Look-fors: labelled magnet result
+Look-fors: labeled magnet result
 
-Samples: Meets: The labelled steel record shows pull. | Not yet: All metals must pull. (C)
+Samples: Meets: The labeled steel record shows pull. | Not yet: All metals must pull. (C)
 
 ## s03-P49
 
@@ -460,7 +460,7 @@ Samples: Meets: Vary added liquid only; match quantities, temperature and times.
 
 ## s03-P54
 
-Answer: Both labelled treatment/control records at stated times, including absent fizz.
+Answer: Both labeled treatment/control records at stated times, including absent fizz.
 
 Look-fors: honest observations
 
@@ -484,7 +484,7 @@ Samples: Meets: Dark grains stay on the filter in the supplied successful route.
 
 ## s03-P57
 
-Answer: Actual known steel-wool damp/dry result; labelled supplied alternative separate.
+Answer: Actual known steel-wool damp/dry result; labeled supplied alternative separate.
 
 Look-fors: date and observation
 
@@ -492,7 +492,7 @@ Samples: Meets: For the invented R57 record: damp pair 1 has a later brown coati
 
 ## s03-P58
 
-Answer: One actual or labelled supplied observation; no written claim revision.
+Answer: One actual or labeled supplied observation; no written claim revision.
 
 Look-fors: one located component
 

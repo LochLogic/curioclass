@@ -18,7 +18,7 @@ Each day opens with a repair or a retrieval, then a short teaching part, a part 
 ## The ideas, at an adult's level
 
 - **A continent is a very large land area. A country is a governed place with people and borders.** One continent holds many countries. Africa is a continent, not a country.
-- **A physical map shows land and water. A political map shows countries and their borders.** Each map has its own key. Colour alone tells nothing; read the key.
+- **A physical map shows land and water. A political map shows countries and their borders.** Each map has its own key. Color alone tells nothing; read the key.
 - **A flag does not make a country.** A club can have a flag, members and rules and still have no land with borders and no government for everyone. A flag and a capital are usual, not enough.
 - **A government is for something.** It keeps people safe and provides things everyone uses, such as schools and roads. A purpose is said with "so people can".
 - **Leaders are chosen in more than one way.** Voting is one way. In some countries the job passes in a family. Both are met as facts, with no judgment of either. Japan today: elected representatives choose the prime minister, who leads the government; the emperor has a role set by the constitution and does not govern. Saudi Arabia: the leader's job passes within the ruling family and is not decided by a popular vote. Neither country stands for a faith or a people.

@@ -102,7 +102,7 @@ Item 1 (facts) has no reteach slot: it is the first reading for the facts checks
 
 ## Words
 
-Factor, factor pair, row, column, product, rectangle, turn, each taught on a labelled rectangle. Frame: "__ and __
+Factor, factor pair, row, column, product, rectangle, turn, each taught on a labeled rectangle. Frame: "__ and __
 are a factor pair of __, because __ × __ = __." A student may say a pair in a home language first, then in the
 frame.
 

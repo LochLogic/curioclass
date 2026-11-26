@@ -57,7 +57,7 @@ Name: __________________  Item: __________________
 
 ## End-of-unit component inventory
 
-F1: disjoint/exhaustive parts for each 0-10, distinct unordered second pair for 2-10, matching total-left equation, one-up/one-down explanation. F2: preserve each starting 1-9, missing partner, drawing record, structure explanation. F3: two distinct labelled four-stamp allocations, each stamp assigned once, explanation of both. Carry s04-A83-F1 and s04-A83-F2 for joining, removal, arithmetic and symbols without recollection.
+F1: disjoint/exhaustive parts for each 0-10, distinct unordered second pair for 2-10, matching total-left equation, one-up/one-down explanation. F2: preserve each starting 1-9, missing partner, drawing record, structure explanation. F3: two distinct labeled four-stamp allocations, each stamp assigned once, explanation of both. Carry s04-A83-F1 and s04-A83-F2 for joining, removal, arithmetic and symbols without recollection.
 
 Paper: F1 days 99/100, equation/F3 day 100, F2 day 101. Teacher feedback: thirty minutes after day 100, thirty after day 101, one minute per conference child. Revisions days 101/102 and independently day 103. Interpret earlier products day 103: F1 four, F2 three, F3 three teacher minutes. Day-103-first evidence receives after-class feedback, day 104 revision, eligible after-class day 105 judgment. First unmet component selects one group; six groups do not fit ten teacher minutes. Missing evidence stays pending.
 

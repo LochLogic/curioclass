@@ -12,7 +12,7 @@ Cards E133 and E134 are made up: say aloud "This card is made up for practice", 
 ## Day 133 card E133
 
 **Read:** "The writer says a tree can shade the class bench. Two possible places are beside that bench and beside a storage shed."
-**Ask:** "Say your plan: I would plant it ___, and I prefer it there." Right: a named place with a preference; a reason the writer gave is labelled "the writer says"; a child may choose the shed and give an own reason said as their own. Wrong: "The bench" with no preference (F); "The writer says I like the shed" (C).
+**Ask:** "Say your plan: I would plant it ___, and I prefer it there." Right: a named place with a preference; a reason the writer gave is labeled "the writer says"; a child may choose the shed and give an own reason said as their own. Wrong: "The bench" with no preference (F); "The writer says I like the shed" (C).
 
 ## Day 134 card E134
 

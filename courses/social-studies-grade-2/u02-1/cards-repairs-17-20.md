@@ -16,7 +16,7 @@ Every card prints "invented for practice" in small letters. Plain black line dra
 
 ## Day 18: land and water outline sort (retrieval)
 
-**Picture:** Eight small cards, four showing land shapes (hill, island, plain, mountain) and four showing water (river, lake, ocean, pond), and two bins labelled land and water.
+**Picture:** Eight small cards, four showing land shapes (hill, island, plain, mountain) and four showing water (river, lake, ocean, pond), and two bins labeled land and water.
 **Say:** "How is a river different from an ocean?" A river is retraced from its start to where it meets a larger water.
 
 ## Day 19 and 20: trace the feature (error J)

@@ -37,7 +37,7 @@ Course `math-grade-1` (catalogue id `math-k8`), grade 1. Draft frame, 2026-11-13
 - **Fluency without a timer.** 1.OA.C.6 asks for fluency within 10. It is built with short spaced practice in
   warm-ups and center games all year and checked by watching and listening (a game, a one-to-one card check): the
   teacher records whether a child just knows, uses a quick strategy or counts all. No timer is ever shown and no
-  sheet is timed. Within 20 is practised with strategies; fluency within 20 is grade 2's.
+  sheet is timed. Within 20 is practiced with strategies; fluency within 20 is grade 2's.
 - **Concrete to written.** Ten-frames, connecting-cube towers and quick drawings come first and are tied to the
   written equation in the same lesson; "fluently" never means with objects. No number line in grade 1 (it comes in
   grade 2, after rulers), and no standard algorithm (grade 4).
@@ -110,7 +110,7 @@ Every grade 1 row hands on to a grade 2 row, and every hand-on is answered by th
 |---|---|---|---|
 | ten-frame | Kindergarten (mk-how-many introduced it; the full 10-frame in kindergarten unit 5) | Unit 1 (m1-count-on: counting on from a full or partly full frame) | Unit 2 (every problem-type row, counters on frames to act out stories); unit 3 (m1-fluency-within-10, m1-add-sub-within-20, m1-properties-strategies, m1-three-addends: two 10-frames show make-ten; m1-ten-as-unit: a full frame is the bridge to one ten); unit 5 (m1-add-within-100: a frame shows the new ten made from ones) |
 | base-ten-blocks | New in grade 1 (m1-ten-as-unit, model_out). Kindergarten built towers of 10 cubes as ten ones; here a tower becomes one unit called a ten | Unit 3: towers of 10 connecting cubes and quick drawings (a ten drawn as one stick), tied to the numeral | Unit 4 (all four rows: tens and ones, comparing, ten more and less, subtracting tens); unit 5 (m1-add-no-new-ten, m1-add-within-100) |
-| tape-diagram | New in grade 1 (m1-all-problem-types, model_out). The base text never names one in grade 1 (its lesson 8.6 calls its Compare drawing a precursor) | Unit 6, late in the year: the base text's cube and matching drawings (6.12 to 6.15) redrawn as a tape diagram for Compare and part-whole problems, a labelled bar for each quantity and a question mark for the unknown, and named | Unit 8 (base lesson 8.6, story problems, as review) |
+| tape-diagram | New in grade 1 (m1-all-problem-types, model_out). The base text never names one in grade 1 (its lesson 8.6 calls its Compare drawing a precursor) | Unit 6, late in the year: the base text's cube and matching drawings (6.12 to 6.15) redrawn as a tape diagram for Compare and part-whole problems, a labeled bar for each quantity and a question mark for the unknown, and named | Unit 8 (base lesson 8.6, story problems, as review) |
 
 All three models go on to grade 2 (ten-frame for fluency within 20, base-ten blocks with hundreds, the tape diagram
 for one- and two-step problems).
@@ -185,12 +185,12 @@ every exit ticket is Curio Class's own. The day-level source map comes with the 
 
 | Base unit | Base lessons | Curio Class unit | Decision | Reason |
 |---|---|---|---|---|
-| 1.1 Adding, Subtracting, and Working with Data | 1 to 15 (15 optional) | 1 | Keep all | The unit as written; the optional lesson 15 is a data story that practises the questions of 1.MD.C.4 |
+| 1.1 Adding, Subtracting, and Working with Data | 1 to 15 (15 optional) | 1 | Keep all | The unit as written; the optional lesson 15 is a data story that practices the questions of 1.MD.C.4 |
 | 1.2 Addition and Subtraction Story Problems | 1 to 22 (22 optional) | 2 | Keep all | Lesson 22 is more practice with situation equations, which unit 2 owns |
-| 1.3 Adding and Subtracting Within 20 | 1 to 28 (28 optional) | 3 | Keep all | Lesson 28 practises strategies within 20 around the room |
+| 1.3 Adding and Subtracting Within 20 | 1 to 28 (28 optional) | 3 | Keep all | Lesson 28 practices strategies within 20 around the room |
 | 1.4 Numbers to 99 | 1 to 23 (12 and 23 optional) | 4 | Keep all | Lesson 12 (mentally add and subtract tens) serves 1.NBT.C.5 and C.6; lesson 23 finds two-digit numbers in the world |
-| 1.5 Adding Within 100 | 1 to 14 (14 optional) | 5 | Keep all | Lesson 14 (food drive) practises adding within 100; a book drive context is offered |
-| 1.6 Length Measurements Within 120 Units | 1 to 17 (17 optional) | 6 | Keep all; adapt 12 to 15: the base text's cube and matching drawings for Compare and part-whole problems are redrawn as a tape diagram (a bar for each quantity, labelled, a question mark for the unknown) and named; 8.6 reviews it | The base text names no tape diagram in grade 1, and m1-all-problem-types introduces it here. Lesson 17 is more story-problem practice for 1.OA.A.1 |
+| 1.5 Adding Within 100 | 1 to 14 (14 optional) | 5 | Keep all | Lesson 14 (food drive) practices adding within 100; a book drive context is offered |
+| 1.6 Length Measurements Within 120 Units | 1 to 17 (17 optional) | 6 | Keep all; adapt 12 to 15: the base text's cube and matching drawings for Compare and part-whole problems are redrawn as a tape diagram (a bar for each quantity, labeled, a question mark for the unknown) and named; 8.6 reviews it | The base text names no tape diagram in grade 1, and m1-all-problem-types introduces it here. Lesson 17 is more story-problem practice for 1.OA.A.1 |
 | 1.7 Geometry and Time | 1 to 17 | 7 | Keep all | The unit as written |
 | 1.8 Putting It All Together | 1 to 10 | 8 | Keep all; adapt 6 to show its Compare drawing as the tape diagram of unit 6 | The unit as written, with the tape diagram reviewed |
 

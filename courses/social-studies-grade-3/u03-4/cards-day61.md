@@ -15,7 +15,7 @@ Teacher reads each card aloud. Print "made up, for practice" on each card. A car
 - Vanilla. Grown in Madagascar.
 - Olive oil. Made in Spain.
 
-## A made-up town (labelled made up)
+## A made-up town (labeled made up)
 
 A made-up town buys rice grown in another country. Why might people trade?
 

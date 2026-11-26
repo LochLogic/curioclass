@@ -10,7 +10,7 @@ spanish: later
 
 ## English
 
-For the next few weeks our class is learning how words, maps and models help people find places. We use words like near, far, left, right, behind, in front of, between and next to. We look at a globe and at maps of the world, make a picture map and a block model of our room and playground, and practise the parts of an address using the school's address.
+For the next few weeks our class is learning how words, maps and models help people find places. We use words like near, far, left, right, behind, in front of, between and next to. We look at a globe and at maps of the world, make a picture map and a block model of our room and playground, and practice the parts of an address using the school's address.
 
 You do not need to report anything about home, and we never ask for a home address. Your child may bring a picture or tell something from class, and that is plenty.
 

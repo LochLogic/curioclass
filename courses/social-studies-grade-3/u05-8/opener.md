@@ -17,7 +17,7 @@ Five days of 40 minutes. Day 117: gather evidence from two sources by two makers
 - **A claim stays inside its evidence.** The frame is claim, evidence, because, and a limit: "this does not prove ___" (J). The big question is "Could the colonists and the Native nations have shared the land?" A good claim says sharing was possible in some ways and under pressure in others, and names what the evidence cannot show.
 - **A supporting question helps only if it connects** (AH). Reread the day 90 record, the path.
 - **Timelines.** Overlap is the years two developments share (K).
-- **The end check.** Two dossiers, each read aloud once, the card a task names just before the task. Dossier A is a made-up colonial town record with one real card, the law card. Dossier B is a made-up neighbors' record with one real card, the Atkins record. Everything marked made up is labelled. No Native nation or person is made up: Captain U leads a made-up fishing town.
+- **The end check.** Two dossiers, each read aloud once, the card a task names just before the task. Dossier A is a made-up colonial town record with one real card, the law card. Dossier B is a made-up neighbors' record with one real card, the Atkins record. Everything marked made up is labeled. No Native nation or person is made up: Captain U leads a made-up fishing town.
 - **Day 121.** Each child gets a note on the day 120 sheet, then work from the written move for their group, then a fresh task. Copying an answer does not fix a missed idea.
 
 ## The errors in plain words

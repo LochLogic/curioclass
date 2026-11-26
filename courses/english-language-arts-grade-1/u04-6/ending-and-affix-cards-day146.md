@@ -15,4 +15,4 @@ Two reason strips and a point card for *Birds Help Animals*, and two small card 
 - Affix word cards, words only, no picture on the back: joyful, thankful, colorful, cloudless, windless. A "full of" place and a "without" place to sort them under.
 - Root and ending cards: play, plays, played, playing; and the ending cards -s, -ed, -ing to lay on the root.
 
-The labelled chain drawing (grasshopper, crow, hawk) is a plain line drawing, nothing graphic. Words not used today: useful, harmful, harmless.
+The labeled chain drawing (grasshopper, crow, hawk) is a plain line drawing, nothing graphic. Words not used today: useful, harmful, harmless.

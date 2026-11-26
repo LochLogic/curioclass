@@ -11,7 +11,7 @@ Pre-cut picture cards, one set for each table. Plain black line drawings on whit
 
 ## The water records
 
-- **Card W1. The squirrel drinking.** A photograph. A squirrel drinks water from a bowl on a balcony. Credit printed on the back and said aloud: photograph by Bärbel Miemietz, 11 June 2023, licence CC BY-SA 4.0 (Creative Commons Attribution-ShareAlike 4.0). The licence link is on the back of the master and the card is not changed from the original.
+- **Card W1. The squirrel drinking.** A photograph. A squirrel drinks water from a bowl on a balcony. Credit printed on the back and said aloud: photograph by Bärbel Miemietz, 11 June 2023, license CC BY-SA 4.0 (Creative Commons Attribution-ShareAlike 4.0). The license link is on the back of the master and the card is not changed from the original.
 - **Card W2. The robin at a birdbath.** Our own drawing. A round bird with a pointed beak stands at the rim of a shallow stone dish of water, one drop falling from its beak.
 - **Card W3. Pip's mint pot.** Picture three of the sequence, a cup of water tipped over the soil.
 - **Card W4. A plant in the rain.** Our drawing. A small flowering plant under a cloud, drops falling on the leaves.

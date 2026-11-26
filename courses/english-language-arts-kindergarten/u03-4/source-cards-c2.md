@@ -7,7 +7,7 @@ credit: ours
 ---
 # Source cards C2a, C2b and C2c
 
-Three unused cards offered on day 96 for the first animal piece. They are not modelled and their answers are not shown. Say aloud each time: "This card is made up for practice." Read each card twice with its picture. Print "invented for practice" in small letters at the foot of each card.
+Three unused cards offered on day 96 for the first animal piece. They are not modeled and their answers are not shown. Say aloud each time: "This card is made up for practice." Read each card twice with its picture. Print "invented for practice" in small letters at the foot of each card.
 
 ## Card C2a
 

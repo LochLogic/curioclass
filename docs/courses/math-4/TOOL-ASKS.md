@@ -8,7 +8,7 @@ How to read it:
 
 - **Mark.** Key or light, as UNIT-PLAN.md rule 9 defines them. Where Cory decided the mark, the date is given.
   Otherwise the mark is the plan's own.
-- **Days.** Which day uses which part of the tool, for which job (show why, practise with feedback, check
+- **Days.** Which day uses which part of the tool, for which job (show why, practice with feedback, check
   unaided). Minutes are ours, untested.
 - **Asks.** Numbered once for each tool, most pressing first where the plan ranked them. Each ask names the
   unit plan or section plan it came from. The numbers do not change once given: plans point at them. A new ask takes the
@@ -29,9 +29,9 @@ Units planned so far: 1, 2, 3, 4, 9, 10 and 11. Each new unit adds its asks here
 | Day | Part | Job | Plan |
 |---|---|---|---|
 | 2 | Pack Station | Show why | [u01-1](u01-1.md) |
-| 3 | Rush cards 4a and 4b (Every shape) | Practise with feedback | [u01-1](u01-1.md) |
+| 3 | Rush cards 4a and 4b (Every shape) | Practice with feedback | [u01-1](u01-1.md) |
 | 4 | Fill Line | Show why | [u01-2](u01-2.md) |
-| 5 | Rush shift 2 (cards 2a and 2b only) and card 4c | Practise with feedback | [u01-2](u01-2.md) |
+| 5 | Rush shift 2 (cards 2a and 2b only) and card 4c | Practice with feedback | [u01-2](u01-2.md) |
 
 Not placed: Rush shift 1 (its cards repeat the numbers of days 1 and 2), Rush shift 3 (day 4 could not hold
 two tool parts), Rush shift 5 (spec only) and the six items on your own (the paper end-of-unit assessment does that job).
@@ -72,8 +72,8 @@ field 5).
 
 | Day | Part | Job | Plan |
 |---|---|---|---|
-| 7 | Number tapes 1 and 5 | Practise with feedback, 10 min | [s02](s02.md) U6 |
-| 8 | The shape tapes | Practise with feedback, 12 min | [s02](s02.md) U6 |
+| 7 | Number tapes 1 and 5 | Practice with feedback, 10 min | [s02](s02.md) U6 |
+| 8 | The shape tapes | Practice with feedback, 12 min | [s02](s02.md) U6 |
 
 Asks, from [s02](s02.md) field 8 as first written, most pressing first:
 
@@ -95,8 +95,8 @@ Also: no tape may use unit 2's reserved rules (s02 field 5).
 
 | Day | Part | Job | Plan |
 |---|---|---|---|
-| 23 | One deck with trap cards | Practise with feedback, 25 min; the day runs on its paper path while the tool is light | [s03](s03.md) field 8; [u03-4](u03-4.md) |
-| 20 | Deck 1, compare rounds only, if ask 1 is met | Practise with feedback; not used as the spec stands | [u03-3](u03-3.md) |
+| 23 | One deck with trap cards | Practice with feedback, 25 min; the day runs on its paper path while the tool is light | [s03](s03.md) field 8; [u03-4](u03-4.md) |
+| 20 | Deck 1, compare rounds only, if ask 1 is met | Practice with feedback; not used as the spec stands | [u03-3](u03-3.md) |
 
 Why it does not fit elsewhere, as the plans say: it has a wall and no number line; the wall stops at 1 (day
 17 compares 5/4 with 9/8); its equivalence work is six blank-card rounds and three steals inside a 36-round
@@ -144,8 +144,8 @@ What the spec must hold, so far:
 
 | Day | Part | Job | Plan |
 |---|---|---|---|
-| 15 and 16 | Missing numbers in equivalent fractions | Practise with feedback | [u03-2](u03-2.md) |
-| 20 | Comparing, choosing between the two ways | Practise with feedback | [u03-3](u03-3.md) |
+| 15 and 16 | Missing numbers in equivalent fractions | Practice with feedback | [u03-2](u03-2.md) |
+| 20 | Comparing, choosing between the two ways | Practice with feedback | [u03-3](u03-3.md) |
 
 What the spec must hold:
 
@@ -166,7 +166,7 @@ What the spec must hold:
 
 | Day | Part | Job | Plan |
 |---|---|---|---|
-| 77 | Trip ledger (twelve mixed sums and differences to six digits, no clock, a right-first-try count) | Practise with feedback, 10 min; or paper with a key | [s09](s09.md) field 8; [u09-2](u09-2.md) |
+| 77 | Trip ledger (twelve mixed sums and differences to six digits, no clock, a right-first-try count) | Practice with feedback, 10 min; or paper with a key | [s09](s09.md) field 8; [u09-2](u09-2.md) |
 
 Asks, from [u09-2](u09-2.md) field 5:
 
@@ -182,10 +182,10 @@ Asks, from [u09-2](u09-2.md) field 5:
 
 | Day | Part | Job | Plan |
 |---|---|---|---|
-| 73 | Set to add | Practise with feedback | [u09-1](u09-1.md) |
-| 75 | Set to subtract | Practise with feedback | [u09-2](u09-2.md) |
-| 77 | Set to both | Practise with feedback | [u09-2](u09-2.md) |
-| To day 150 | The daily warm-up | Practise with feedback | [s09](s09.md) |
+| 73 | Set to add | Practice with feedback | [u09-1](u09-1.md) |
+| 75 | Set to subtract | Practice with feedback | [u09-2](u09-2.md) |
+| 77 | Set to both | Practice with feedback | [u09-2](u09-2.md) |
+| To day 150 | The daily warm-up | Practice with feedback | [s09](s09.md) |
 
 What the spec must hold (u09-1 field 5):
 
@@ -204,9 +204,9 @@ What the spec must hold (u09-1 field 5):
 
 | Day | Part | Job | Plan |
 |---|---|---|---|
-| 81 | Read it both ways | Practise with feedback, 8 min | [u10-1](u10-1.md) |
+| 81 | Read it both ways | Practice with feedback, 8 min | [u10-1](u10-1.md) |
 | 83 | Growing, with the comparison switch | Show why, 15 min | [u10-2](u10-2.md) |
-| 86 | Which one? | Practise with feedback, 20 min; or sort cards on paper | [u10-2](u10-2.md) |
+| 86 | Which one? | Practice with feedback, 20 min; or sort cards on paper | [u10-2](u10-2.md) |
 
 Day 82 runs on paper (three cards are too few). Day 87 runs on print (Orders does not fit).
 
@@ -276,9 +276,9 @@ Not a gap: the 30 by 20 lot. The tool states 600 and never asks for it; keep it 
 |---|---|---|---|
 | 26 | Building rounds, with second ways | Show why, 20 min | [u04-1](u04-1.md) |
 | 30 | The mug and pan rounds | Show why, 5 min | [u04-2](u04-2.md) |
-| 33 | The double batch and the test bake | Practise with feedback, 15 min | [u04-3](u04-3.md) |
-| 35 | The pantry rounds | Practise with feedback, 20 min | [u04-3](u04-3.md) |
-| 36 | Kitchen stories | Practise with feedback, 15 min | [u04-4](u04-4.md) |
+| 33 | The double batch and the test bake | Practice with feedback, 15 min | [u04-3](u04-3.md) |
+| 35 | The pantry rounds | Practice with feedback, 20 min | [u04-3](u04-3.md) |
+| 36 | Kitchen stories | Practice with feedback, 15 min | [u04-4](u04-4.md) |
 | 37 | On your own | Check unaided, 10 min | [u04-4](u04-4.md) |
 
 Days 25, 27 to 29, 31, 32 and 34 run on paper.

@@ -117,7 +117,7 @@
 ### Unit 11. Area and Perimeter Formulas, pilot (days 89 to 93; 4.MD.A.3)
 
 - **Grade 3 hands it (Strong):** area as rows times columns, rectilinear figures (3.MD.C.7a to d); perimeter with an unknown side (3.MD.D.8); unknown-factor equations (3.OA.A.4). From grade 2: rows and columns of squares in a rectangle (2.G.A.2).
-- **Readiness.** (1) W: finds the area of a 6 by 7 rectangle and writes the multiplication (3.MD.C.7a). (2) W: finds the perimeter of a rectangle with two sides labelled (3.MD.D.8). (3) W: solves 8 × ? = 48 (3.OA.A.4). (4) W: draws two rectangles with perimeter 12 and different areas (3.MD.D.8).
+- **Readiness.** (1) W: finds the area of a 6 by 7 rectangle and writes the multiplication (3.MD.C.7a). (2) W: finds the perimeter of a rectangle with two sides labeled (3.MD.D.8). (3) W: solves 8 × ? = 48 (3.OA.A.4). (4) W: draws two rectangles with perimeter 12 and different areas (3.MD.D.8).
 - **Grade 5 needs from it:** area of the base, for V = b × h (5.MD.C.5); fractional side lengths (5.NF.B.4b).
 - **Limits:** rectangles. To "apply the formula" does not mean to plug into a memorized one (Prog. p. 112 (106)).
 - **Numbers on these days. Decided, Cory, 2026-11-11.** Keep day 89, before multi-digit multiplication and division. Days 89 to 93: areas are products within 100, or a one-digit number times a multiple of 10. Unknown-side area problems are factor-pair problems (4.OA.B.4). Perimeter may use multi-digit addition (4.NBT.B.4) and like-denominator fractions (4.NF.B.3d). Area with larger sides returns in units 12 and 13 as the context for partial products and for division, and in unit 14 problems. Without that return 4.MD.A.3 is half taught.
@@ -265,10 +265,10 @@ Each carries the expert's judgment and a status.
 
 Nothing on this page rests on memory. Three lines are teaching notes and are marked as such (units 6, 16 and 17, "Hard here"); they are classroom advice, not claims about the Progressions. No source is paywalled.
 
-| Source | Where | Licence | How much was read |
+| Source | Where | License | How much was read |
 |---|---|---|---|
-| Common Core State Standards for Mathematics | `data/standards/ccss-math-standards.txt` | Public licence (see the file header) | Grades 3, 4, 5 in full; other codes singly. No footnotes in the file. |
-| The same, official PDF | https://corestandards.org/wp-content/uploads/2023/09/Math_Standards1.pdf | Common Core public licence | Grade openings, pp. 21, 27, 33; footnotes, pp. 23 to 25, 29 to 31, 36. Glossary Table 2 not read; check unit 10 against it when it is planned. |
+| Common Core State Standards for Mathematics | `data/standards/ccss-math-standards.txt` | Public license (see the file header) | Grades 3, 4, 5 in full; other codes singly. No footnotes in the file. |
+| The same, official PDF | https://corestandards.org/wp-content/uploads/2023/09/Math_Standards1.pdf | Common Core public license | Grade openings, pp. 21, 27, 33; footnotes, pp. 23 to 25, 29 to 31, 36. Glossary Table 2 not read; check unit 10 against it when it is planned. |
 | *Progressions for the Common Core State Standards for Mathematics*, 2023 | https://mathematicalmusings.org/wp-content/uploads/2023/05/Progressions.pdf | CC BY 4.0 | First draft: the grades 3 to 5 pages of each progression used. Margins, overviews and grade 1 and 2 pages were opened by the expert; those pointers are taken from the review and were not opened again. |
 | Curriculum expert's review | `docs/reviews/math-3-5-progression-2026-11-11.md` | project | In full. It checked the first draft's codes, quotes and pointers. |
 | Scope and sequence, `data/sequence.csv`, `data/modules.csv`, `data/units.csv`, `docs/APPROACH.md` | repo | project | As needed for the findings and the section plan fields. |

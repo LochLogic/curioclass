@@ -22,7 +22,7 @@ A job is doing your part for people who count on it. At five, a job is finished 
 ## The errors, in plain words
 
 - A: "I watered it, so I am done." The jug in the walkway is the lesson. Put an unfinished picture beside a finished one.
-- H: "I was helping, so I took it." Practise asking first with puppets, then with partners.
+- H: "I was helping, so I took it." Practice asking first with puppets, then with partners.
 
 ## Supplies
 

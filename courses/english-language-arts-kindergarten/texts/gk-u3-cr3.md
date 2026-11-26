@@ -68,7 +68,7 @@ Picture: A close picture of the hug.
 
 ---
 
-New words and the pattern each one practises:
+New words and the pattern each one practices:
 
 - pup, tub, Gus, run, ran, fun, hug: short u, one consonant each side
 - sat, can, Jan: short a, review

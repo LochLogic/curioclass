@@ -88,12 +88,12 @@ now.**
       reserved: link and summarise briefly, never copy, and keep it to structure.
 - [x] docs/APPROACH-ELA.md. From docs/reviews/approach-2026-11-11.md, finding F1: the text is the unit; text
       complexity; text sets that build knowledge; volume of reading; the writing process and calendar; vocabulary
-      from the texts; foundational skills in the lower grades; the daily question is about the text; modelled
+      from the texts; foundational skills in the lower grades; the daily question is about the text; modeled
       reading and writing; "fluency" means reading fluency. Sources: the ELA standards and appendices, the
       publishers' criteria, the federal practice guides on comprehension, foundational skills and writing.
 - [x] The rights list for grade 6, unit 2 only (docs/courses/ela-6-spine.md): for each text, does it exist,
-      where a free legal copy lives, its licence in the publisher's own words with the address, its level. Put
-      it in docs/courses/ela-6/RIGHTS.md. **You gather; you do not rule.** A second reader checks every licence
+      where a free legal copy lives, its license in the publisher's own words with the address, its level. Put
+      it in docs/courses/ela-6/RIGHTS.md. **You gather; you do not rule.** A second reader checks every license
       line before a text is taught (FOUNDATION section 7). Mark each row "found, not yet second-read".
 - Changes to which texts are taught go to Cory as a card.
 - 2026-11-11: all three drafted, read cold by the expert, revised once. Reports:
@@ -165,7 +165,7 @@ the first three pilots waits on it, which is why it is fifth.**
 - [ ] Three description notes in data/modules.csv (docs/HANDOFF.md, "Owed, smaller").
 - [ ] Footnoted limits in data/standards/ccss-math-standards.txt.
 - [ ] The errors in the science sequence.csv.
-- [ ] A header (source, version, date, licence) for data/standards/ccss-math-focus.csv.
+- [ ] A header (source, version, date, license) for data/standards/ccss-math-focus.csv.
 
 ## On hold until the pilot unit has been read
 
@@ -187,7 +187,7 @@ Do not start these. They will be written to a template the pilot is expected to 
   standard has an owner in a course. Do not split a band topic into one per grade.
 - No rows go into data/units.csv, and no tool is specced, built or changed from these drafts. A scope and sequence becomes real
   only with Cory's yes.
-- No licence or rights judgment is final on your word or one agent's. Gather it, quote it, and mark it for the
+- No license or rights judgment is final on your word or one agent's. Gather it, quote it, and mark it for the
   second reader.
 - Nothing is sent to an outside person and no money is spent without Cory's yes.
 - Do not edit the grade 4 math scope and sequence or the approach pages. If a draft shows one of them is wrong, write the finding

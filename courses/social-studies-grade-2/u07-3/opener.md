@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Three days, 88 to 90, of 35 minutes. Day 88 teaches the step from a list of facts to a claim: one answer to the big question, two facts from named sources, and a "because" that links them. The model is Japan, using only the three facts taught on day 82 and one reason said aloud as thinking. Day 89 drafts the report (the map with its key, a fact and sticker in each of three boxes, and the claim card) and the first fifteen children take a one-minute turn at the shared device. Day 90 finishes the report, practises presenting it in pairs, and the other fifteen take their turn. Completed claim examples come off the wall on day 89; only the blank frame stays.
+Three days, 88 to 90, of 35 minutes. Day 88 teaches the step from a list of facts to a claim: one answer to the big question, two facts from named sources, and a "because" that links them. The model is Japan, using only the three facts taught on day 82 and one reason said aloud as thinking. Day 89 drafts the report (the map with its key, a fact and sticker in each of three boxes, and the claim card) and the first fifteen children take a one-minute turn at the shared device. Day 90 finishes the report, practices presenting it in pairs, and the other fifteen take their turn. Completed claim examples come off the wall on day 89; only the blank frame stays.
 
 ## How the days run
 

@@ -7,7 +7,7 @@ credit: ours
 ---
 # Day 63 narrative-arc chart and time-word cards
 
-**Chart.** A wall strip with four picture slots labelled First, Next, Then, At last, and one wider slot for the ending. It stays up through day 71.
+**Chart.** A wall strip with four picture slots labeled First, Next, Then, At last, and one wider slot for the ending. It stays up through day 71.
 
 **Cards for each pair (fifteen sets).** Four event pictures from Sun's Day (wake, climb, slide, sink) and four time-word cards: First, Next, Then, At last. The ending slot is filled by the teacher with "Good night" and the feeling.
 

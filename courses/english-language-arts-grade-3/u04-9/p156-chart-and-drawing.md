@@ -11,7 +11,7 @@ Print one display for each group on one sheet, printed only on 156. The teacher 
 
 ## Leaking garden taps
 
-A bar chart. The vertical axis is labelled "Number of leaking taps", with the marks 0, 1, 2, 3, 4. Two bars stand on the horizontal axis, each labelled underneath.
+A bar chart. The vertical axis is labeled "Number of leaking taps", with the marks 0, 1, 2, 3, 4. Two bars stand on the horizontal axis, each labeled underneath.
 
 | Bar | Height |
 |---|---|

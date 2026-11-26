@@ -319,7 +319,7 @@ Shown: Writes 6 for shown quantity. | Not yet seen: Counts 6 correctly but write
 
 ## sC-E85-C1
 
-**Show.** Card H1: 7 disks in line; assigned six only. New layout, not labelled tray. Circle has start arrow, no number.
+**Show.** Card H1: 7 disks in line; assigned six only. New layout, not labeled tray. Circle has start arrow, no number.
 
 **Say.** Count the disks on this line card aloud.
 
@@ -333,7 +333,7 @@ Shown: Indicates each once, ordered words ending at 7. | Not yet seen: Leaves on
 
 ## sC-E85-C2
 
-**Show.** Card H2: 6 disks in rectangular array; assigned six only. New layout, not labelled tray. Circle has start arrow, no number.
+**Show.** Card H2: 6 disks in rectangular array; assigned six only. New layout, not labeled tray. Circle has start arrow, no number.
 
 **Say.** Count the disks on this rectangular array card aloud.
 
@@ -347,7 +347,7 @@ Shown: Indicates each once, ordered words ending at 6. | Not yet seen: Leaves on
 
 ## sC-E85-C3
 
-**Show.** Card H3: 9 disks in marked circle; assigned six only. New layout, not labelled tray. Circle has start arrow, no number.
+**Show.** Card H3: 9 disks in marked circle; assigned six only. New layout, not labeled tray. Circle has start arrow, no number.
 
 **Say.** Count the disks on this marked circle card aloud.
 
@@ -361,7 +361,7 @@ Shown: Indicates each once, ordered words ending at 9. | Not yet seen: Leaves on
 
 ## sC-E85-C4
 
-**Show.** Card H4: 10 disks in scatter; assigned six only. New layout, not labelled tray. Circle has start arrow, no number.
+**Show.** Card H4: 10 disks in scatter; assigned six only. New layout, not labeled tray. Circle has start arrow, no number.
 
 **Say.** Count the disks on this scatter card aloud.
 

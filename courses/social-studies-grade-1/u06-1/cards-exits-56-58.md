@@ -11,7 +11,7 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 ## Day 56 exit card: three school pictures
 
-**Picture:** three drawings, one labelled Sapporo, one Singapore, one Nairobi. Sapporo: children at desks with a teacher at the front. Singapore: children on mats in a circle with a teacher holding a book. Nairobi: children at tables with a teacher beside a board. Each captioned only with what it shows. Under them three small picture choices with a circle each: children learning together; children wearing the same clothes; children eating the same lunch.
+**Picture:** three drawings, one labeled Sapporo, one Singapore, one Nairobi. Sapporo: children at desks with a teacher at the front. Singapore: children on mats in a circle with a teacher holding a book. Nairobi: children at tables with a teacher beside a board. Each captioned only with what it shows. Under them three small picture choices with a circle each: children learning together; children wearing the same clothes; children eating the same lunch.
 
 **Mark:** Circle what you can see children doing in all three pictures. **Spoken (one, chosen by the record sheet):** "Tell me one thing that looks different between two of the pictures." Or: "What can you not tell from one picture?"
 
@@ -23,6 +23,6 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 ## Day 58 exit card: two views and the map
 
-**Picture:** two drawings. Sapporo: children in coats, hats and boots at a school gate with snow on the ground. Nairobi: people in raincoats holding umbrellas on a street in a rainy season. Beside them a new map of Asia and Africa redrawn from Natural Earth outlines (source 50E): gray land, blue water, a key (a dot with a name is a city), a direction indicator labelled N pointing to the top, the dots Sapporo, Singapore and Nairobi. Two tokens.
+**Picture:** two drawings. Sapporo: children in coats, hats and boots at a school gate with snow on the ground. Nairobi: people in raincoats holding umbrellas on a street in a rainy season. Beside them a new map of Asia and Africa redrawn from Natural Earth outlines (source 50E): gray land, blue water, a key (a dot with a name is a city), a direction indicator labeled N pointing to the top, the dots Sapporo, Singapore and Nairobi. Two tokens.
 
 **Mark:** Place one token on Sapporo and one on Nairobi. **Spoken:** "What are people wearing in each picture?" Or: "What does the weather change for children there?"

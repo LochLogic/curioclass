@@ -17,7 +17,7 @@ Items 1 to 8 are about your own essay and folder; item 8 uses the one device for
 
 ## Then answer
 
-1. In your essay, show the topic and keep the body facts together beside a labelled drawing.
+1. In your essay, show the topic and keep the body facts together beside a labeled drawing.
 
    ____________________________________________
 

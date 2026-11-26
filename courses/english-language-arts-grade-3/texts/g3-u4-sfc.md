@@ -22,6 +22,6 @@ A farm needs water for its fields and for drinking. Farmers fill the troughs eac
 
 ## Sources
 
-No outside facts; invented for practice, labelled as such.
+No outside facts; invented for practice, labeled as such.
 
 Curio Class, 2026. Original text, ours.

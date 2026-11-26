@@ -19,7 +19,7 @@ Day 59: return and repair (5), retrieval (3), teaching (7), supported work (10),
 
 - **United means joined together as one.** Americans share a national history (the Declaration of Independence, dated July 4, 1776, and the Constitution, signed in September 1787), a Constitution that says how the government is set up, and laws, which are rules for everyone in a place. Sources 59A and 59B.
 - **Neighbors need not celebrate alike.** A shared holiday remembers one event; each neighbor keeps it in their own way.
-- **Diverse means different from one another** in languages, birthplaces, beliefs and traditions. Beliefs are described and never practised.
+- **Diverse means different from one another** in languages, birthplaces, beliefs and traditions. Beliefs are described and never practiced.
 - **A count shows some things and not others.** A ten-square strip shows how many neighbors have a mark, "some" or "many" (many is more than three squares of ten). It cannot show what any one neighbor believes, and it is never used to guess a person's belief or citizenship.
 - **Native nations were here first and live here now.** The Cherokee Nation is a nation with its own government, constitution and laws, and a language department that works to keep the Cherokee language (sources 60A and 60C). In 1838 the United States sent soldiers to force the Cherokee people from their homelands; it was not a choice (source 60B). The teacher says this plainly in two sentences and adds nothing graphic. Kindergarten's Wampanoag in Massachusetts is a review.
 - **Not everyone came by choice.** Enslaved Africans were brought here by force and kept from the freedoms the country promised. Say it plainly in one sentence if a child asks how neighbors came; never ask a child to guess.

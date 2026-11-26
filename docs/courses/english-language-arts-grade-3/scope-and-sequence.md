@@ -64,7 +64,7 @@ The pattern order below is explicit instruction, followed by reading and spellin
 | 15 to 16 | Transfer taught prefixes and suffixes to frog texts; winter word check and response |
 | 17 to 18 | Apply syllable division in three-syllable words; check each chunk, then blend |
 | 19 to 20 | Three- and four-syllable words with a familiar prefix or suffix; check meaning after decoding |
-| 21 to 22 | Mix syllable types and affixes in the chapter book; practise accurate rereading |
+| 21 to 22 | Mix syllable types and affixes in the chapter book; practice accurate rereading |
 | 23 to 24 | Transfer mixed multisyllable decoding and suffix spelling to reviews and scripts |
 | 25 to 26 | Longer water words using already taught syllable and affix knowledge |
 | 27 to 28 | Mixed word families and irregular words; distinguish a word's meaning from its spelling |
@@ -95,8 +95,8 @@ Every reading day ends with a text-dependent response. This complete planned-pro
 | N03 | narrative | 87 | g3-u3-01 | one sitting | Chapter-world episode |
 | N04 | narrative | 95 | g3-u3-02 | one sitting | Series-world episode |
 | N05 | narrative | 108-113 | g3-u3-01; g3-u3-03 | process | Revised scene |
-| N06 | narrative | 128 | g3-u4-01 | one sitting | Labelled imagined water episode |
-| N07 | narrative | 130 | g3-u4-01; g3-u4-03 | one sitting | Labelled imagined solution episode |
+| N06 | narrative | 128 | g3-u4-01 | one sitting | Labeled imagined water episode |
+| N07 | narrative | 130 | g3-u4-01; g3-u4-03 | one sitting | Labeled imagined solution episode |
 | N08 | narrative | 96 | g3-u3-02 | one sitting | Episode in the series world |
 | N09 | narrative | 107 | g3-u3-03 | one sitting | New scene exchange |
 | N10 | narrative | 116 | g3-u3-03 | one sitting | Scene retelling for rehearsal |
@@ -120,7 +120,7 @@ Catch-up after the grade 2 screen: use the existing Monday, Wednesday and Friday
 
 There is no older-row readiness check. Retrieval days are listed above. Source assessment slots remain: mid-unit assessments on days 9 and 13 for prepared discussion and literary reading; 19 and 24 for informational reading and an informative paragraph; and 28 for an explanatory paragraph and oral samples. Day 16 is an unmarked first writing sample used to plan instruction, not a readiness check. Respond lessons and immediate feedback follow these source assessments, with the next draft or reading using the result.
 
-The end-of-unit assessment is spread across day 35, individual fluent story audio and a clarifying illustration; day 37, the revised contract, writing process and conventions; and day 36, listening and prepared-discussion evidence in six groups of five; and day 38, brief literary/informational/image/word-meaning transfers with the bookmark. Each code listed on these days has its own short prompt or individual product/performance evidence, including each lettered part. Day 38 uses short stations and existing process evidence, not another essay. The day 36 listening task uses words, images and a labelled bar graph in an original classroom library presentation. Day 30 supplies the unit word record. Day 35 closes the story-reading collection across days 31 to 35, 30 children at 3 minutes each, 18 teacher minutes daily. Day 28 oral groups practise. Day 38 reuses these records without new oral collection. Response time is counted once on day 39: returned evidence, one applied repair and regrouping. The unit's band reading samples show current performance; independent reading at the band's top remains a year-end requirement.
+The end-of-unit assessment is spread across day 35, individual fluent story audio and a clarifying illustration; day 37, the revised contract, writing process and conventions; and day 36, listening and prepared-discussion evidence in six groups of five; and day 38, brief literary/informational/image/word-meaning transfers with the bookmark. Each code listed on these days has its own short prompt or individual product/performance evidence, including each lettered part. Day 38 uses short stations and existing process evidence, not another essay. The day 36 listening task uses words, images and a labeled bar graph in an original classroom library presentation. Day 30 supplies the unit word record. Day 35 closes the story-reading collection across days 31 to 35, 30 children at 3 minutes each, 18 teacher minutes daily. Day 28 oral groups practice. Day 38 reuses these records without new oral collection. Response time is counted once on day 39: returned evidence, one applied repair and regrouping. The unit's band reading samples show current performance; independent reading at the band's top remains a year-end requirement.
 
 Same-year leans: social studies map skills are in its unit 1, school days 1 to 24, with no day-level completion assumed before the ELA hook. Day 1 teaches the frame's title-and-key map bridge in eight minutes within reading. Washington's historical context is supplied in the first eight minutes of day 26 because social studies unit 5 is school days 90 to 121. The teacher previews the short selection, names slavery and emancipation plainly, and asks about the selection. No child is asked to disclose family reading struggles. Children and places are named concretely and shown through effort, with no graphic danger or reenactment.
 

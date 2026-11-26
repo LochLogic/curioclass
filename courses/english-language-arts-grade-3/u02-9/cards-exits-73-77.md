@@ -18,7 +18,7 @@ Say aloud each time: "This card is made up for practice." Print "invented for pr
 - **Day 75 (s02-X75).** This card is invented for practice. Editor request: "Make it clear that the frog has more than one tooth." Sentence: "The frog has sharp tooth." Ask: Write the corrected sentence.
 - **Day 75 (s02-X75b).** This card is invented for practice. Editor request: "Make it clear that the frog has more than one tooth." Sentence: "The frog has sharp tooth." Ask: Point to the dictionary entry you used.
 - **Day 76 (s02-X76).** This card is invented for practice. Card: "1. The wind wanted to carry the pond away. 2. Tadpoles breathe with gills (book page shown)." Ask: Write imagined or sourced after each part.
-- **Day 76 (s02-X76b).** This card is invented for practice. Recording line: "The frog waits under the leaf." Picture: a frog under a leaf, labelled leaf. Ask: Say which detail of the picture matches the recording.
+- **Day 76 (s02-X76b).** This card is invented for practice. Recording line: "The frog waits under the leaf." Picture: a frog under a leaf, labeled leaf. Ask: Say which detail of the picture matches the recording.
 - **Day 77 (s02-X77).** This card is invented for practice. Reader request: "Explain what your partner helped you clarify about the frog's home." Ask: Write one sentence with a detail from a source.
 - **Day 77 (s02-X77b).** This card is invented for practice. Reader request: "Explain what your partner helped you clarify about the frog's home." Ask: Write the one repair you made today.
 - **Day 77 (s02-X77c).** This card is invented for practice. Reader request: "Explain what your partner helped you clarify about the frog's home." Ask: Say how the repair improved the page.

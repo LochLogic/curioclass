@@ -11,7 +11,7 @@ The world pictures show real places. Say aloud: "This is the real Earth." The ou
 
 ## Nested outline cards: town in state in country
 
-**Picture:** three cards that stack. The largest is an outline of the United States, labelled United States. The middle card is an outline of the class's own state, labelled with its name, sized to sit on the country card where the state is. The smallest is a small shape for the class's town, a dot with the town's name, sized to sit on the state card. A key: a dot is a town. Make the three from real outlines before use.
+**Picture:** three cards that stack. The largest is an outline of the United States, labeled United States. The middle card is an outline of the class's own state, labeled with its name, sized to sit on the country card where the state is. The smallest is a small shape for the class's town, a dot with the town's name, sized to sit on the state card. A key: a dot is a town. Make the three from real outlines before use.
 
 ## The world view (continents and oceans named once)
 

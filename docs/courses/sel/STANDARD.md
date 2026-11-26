@@ -77,7 +77,7 @@ review).
   is 3 + 1 + 1 = 5; a two-group unit keeps a second rehearsal per group, 2 x 2 + 1 + 1 = 6. So the short path cuts
   Fluency and Application sessions and joins the Check with the Respond; it drops no sub-skill, group or unit.
 - **Units.** Six units per grade year (section 3), each with its own readiness check and end-of-unit assessment,
-  sized to the minutes chosen. "Never fewer units" is met: every sub-skill is taught, practised spaced out and
+  sized to the minutes chosen. "Never fewer units" is met: every sub-skill is taught, practiced spaced out and
   checked every year.
 - **Spanish.** Family notes in English and Spanish per unit (decided 2026-11-11); student pages stay English only
   for now (settled 2026-11-16, Cory, Desk card q-later-sel-eld). Growing Spanish across the site is a later roadmap
@@ -114,7 +114,7 @@ every year still teaches all 40 once. Other subjects' leans name the SEL row of 
 scripts/progression.py checks this form (MULTI_OWNER: one owner per id in each of grades 2, 5, 8 and 12); it has
 supported SEL since 2026-11-21, and data/progressions/sel.csv passes it.
 
-How each competency is practised (bar item 5): self-management and relationship skills by doing (rehearsing a
+How each competency is practiced (bar item 5): self-management and relationship skills by doing (rehearsing a
 calming routine, acting out an invented hard moment, practising an I-statement with a partner); self-awareness,
 social awareness and decision-making by reflection and talk (a private journal, partner talk about a scenario, a
 choice weighed in writing).
@@ -191,7 +191,7 @@ Durlak and others 2011 and Cipriano and others 2023 (abstracts only), Oregon's t
 | 25 | Settings rated (classroom, school, family, community) as minimal, adequate or extensive | 7 (in part) | Gap B |
 | 25 | Number of sessions a year reported; tools to monitor implementation and student behaviour | none | Gap C |
 | 26 to 30 | Equity strategies: translation beyond English; students as agents of change; understanding context and working with bias (adult side) | none | Gap D |
-| 27 to 29, 31 to 34 | Adult SEL and training: active, modelled, with feedback, building adults' own competencies | none | Gap E |
+| 27 to 29, 31 to 34 | Adult SEL and training: active, modeled, with feedback, building adults' own competencies | none | Gap E |
 | 35 | Final rating is the lower of evidence and design | 8, "Unsupported" | Stated; the evidence half is unmet by design |
 
 **Gaps and additions.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): all five are added to
@@ -262,7 +262,7 @@ Applied to SEL:
    ruled on (school segregation struck down in 1954 is the model case) and facts, not opinion; current political
    disputes are not SEL content. Grade sets the case: playground fairness in K to 2, unfair rules of the past from
    grade 5.
-6. **Families.** Every family note says what the unit teaches, the words it uses and how to practise at home, in
+6. **Families.** Every family note says what the unit teaches, the words it uses and how to practice at home, in
    English and Spanish. Settled (Cory, 2026-11-21): a school may leave out an SEL unit (as with health's sensitive units),
    the school is told which sub-skills that year then does not teach, a later unit never assumes the left-out one (its readiness item rests on the previous year's row for that sub-skill, or, if that unit was left out too,
    the nearest earlier year that was taught, and checks only the one-step form), and the course page and the unit's

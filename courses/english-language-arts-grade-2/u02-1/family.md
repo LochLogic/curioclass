@@ -9,7 +9,7 @@ credit: ours
 
 ## English
 
-This month our class reads a story about a girl who finds a mark in a stone, a true account of a girl who hunted fossils by the sea, and short articles about how fossils form. We practise asking questions about what we read, telling how a story begins and ends, and writing a short discovery story of our own.
+This month our class reads a story about a girl who finds a mark in a stone, a true account of a girl who hunted fossils by the sea, and short articles about how fossils form. We practice asking questions about what we read, telling how a story begins and ends, and writing a short discovery story of our own.
 
 At home, if you like, ask your child which parts of the reading told something true and which parts a reader could only imagine. Any language is fine for talking. There is nothing to send back, and any night can be skipped.
 

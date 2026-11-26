@@ -61,7 +61,7 @@ flush; look; stunt. For stunt, say "Spell it the way it sounds."
 
 ## Day 77 topic cards (whole class)
 
-**Information read aloud once, "Pliers".** "Pliers are a tool. Pliers have two long handles and two short jaws. You squeeze the handles, and the jaws grip. Pliers can hold a nail still. Pliers can pull a bent wire straight. A person uses pliers to hold small things that fingers cannot hold well." Picture: pliers pulling a bent wire straight, handles and jaws labelled with one-word labels. The picture also shows a small red dot on one handle that the words never mention.
+**Information read aloud once, "Pliers".** "Pliers are a tool. Pliers have two long handles and two short jaws. You squeeze the handles, and the jaws grip. Pliers can hold a nail still. Pliers can pull a bent wire straight. A person uses pliers to hold small things that fingers cannot hold well." Picture: pliers pulling a bent wire straight, handles and jaws labeled with one-word labels. The picture also shows a small red dot on one handle that the words never mention.
 
 **Story read aloud once, "Tavi's Pedal", told by Tavi.** Page 1: "I am Tavi. My bicycle has a squeaky pedal. Squeak, squeak, squeak! I feel cross. It is a sunny morning in my yard." Page 2: "My uncle Anan walks over. He has a small tin of grease. "A squeaky part needs grease," says Uncle Anan. I dab grease on the pedal. I spin it. The squeak is gone." Page 3: "I smile. "Now I know," I say. "A squeaky part needs grease."" Pictures: page 1 Tavi frowning, hands over ears, bicycle on its side; page 2 Uncle Anan holding a small tin; page 3 Tavi smiling on the bicycle.
 

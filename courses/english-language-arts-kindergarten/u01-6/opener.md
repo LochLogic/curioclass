@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Days 26 to 30 teach children to interview a partner about a classroom toy and to draw a labelled portrait of that partner's pick with one true fact. The class hears the information books again, asks for help, for facts and for what a word means, and answers in return. Days 28 and 29 are check days: you hear small groups of five interview one another, and you hear each child for about four minutes on a battery of early reading and sound tasks. Day 30 scores the portrait after class.
+Days 26 to 30 teach children to interview a partner about a classroom toy and to draw a labeled portrait of that partner's pick with one true fact. The class hears the information books again, asks for help, for facts and for what a word means, and answers in return. Days 28 and 29 are check days: you hear small groups of five interview one another, and you hear each child for about four minutes on a battery of early reading and sound tasks. Day 30 scores the portrait after class.
 
 ## How the days run
 

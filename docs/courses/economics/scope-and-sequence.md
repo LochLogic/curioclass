@@ -18,7 +18,7 @@ Personal finance is taught inside units 4, 8 and 9 and adds no days. The six per
 | ss7-roman-economy | grade 7 | Readiness check, last ten minutes of day 44 (before unit 6; short items; day 45 teaches money from its functions, so no reteach lesson) |
 | wh2-globalization | grade 10 | Readiness check, last ten minutes of day 51 (before unit 7); reteach station day 54 |
 
-**The writing thread.** Writing from sources grows across the half: a short sourced explanation modelled on day 5; a two-source argument with a counterclaim on day 16 (claim-evidence-reasoning retrieved, taught from kindergarten); an extended policy explanation on day 30; the course's longest argument, about a page, on day 49 (Congress or the Federal Reserve), scored on the course rubric; a synthesis of at least two public sources in the information piece (days 62 and 63); short sourced reports on days 69 and 71; and claim-evidence-reasoning on an agency's record on day 75.
+**The writing thread.** Writing from sources grows across the half: a short sourced explanation modeled on day 5; a two-source argument with a counterclaim on day 16 (claim-evidence-reasoning retrieved, taught from kindergarten); an extended policy explanation on day 30; the course's longest argument, about a page, on day 49 (Congress or the Federal Reserve), scored on the course rubric; a synthesis of at least two public sources in the information piece (days 62 and 63); short sourced reports on days 69 and 71; and claim-evidence-reasoning on an agency's record on day 75.
 
 ## Unit 1. Scarcity, choice and economic systems (days 1 to 8, school days 81 to 88, weeks 17 to 18)
 

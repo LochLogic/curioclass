@@ -19,4 +19,4 @@ A language (two speech bubbles); a birthplace (a pin on a small map); a belief (
 
 ## Pairs' strip
 
-A second new strip for "Dell Run", invented: five squares shaded, five not, labelled "neighbors born in another town". Pairs count aloud and say "some" or "many". Five is more than three, so "many".
+A second new strip for "Dell Run", invented: five squares shaded, five not, labeled "neighbors born in another town". Pairs count aloud and say "some" or "many". Five is more than three, so "many".

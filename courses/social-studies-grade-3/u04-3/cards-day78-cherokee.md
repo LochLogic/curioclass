@@ -15,7 +15,7 @@ Read aloud twice. Say the removal plainly, with no detail. A child may look away
 
 Pairs fill: who, where, when, for both cards.
 
-## Two maps, period-labelled
+## Two maps, period-labeled
 
 ```
    MAP 1.  The Southeast homeland, in earlier times  MAP 2.  Lands held today

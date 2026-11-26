@@ -11,7 +11,7 @@ Say aloud first: "Cattail Crossing is made up." Print "invented for practice" on
 
 ## Cattail Crossing card (invented)
 
-**Picture:** a wide river from above, drawn as a blue band across the page. A rope ferry, a flat boat on a rope, in the middle of the river. A landing on each bank, drawn as a short line sticking out. A footpath leading from each landing to a small group of six squares (houses) on the near bank and three squares on the far bank. A key: a flat boat is a ferry, a short line is a landing, a square is a house. A direction indicator labelled N pointing up.
+**Picture:** a wide river from above, drawn as a blue band across the page. A rope ferry, a flat boat on a rope, in the middle of the river. A landing on each bank, drawn as a short line sticking out. A footpath leading from each landing to a small group of six squares (houses) on the near bank and three squares on the far bank. A key: a flat boat is a ferry, a short line is a landing, a square is a house. A direction indicator labeled N pointing up.
 
 ## Claim cards for pairs
 

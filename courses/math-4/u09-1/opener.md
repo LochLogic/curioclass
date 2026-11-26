@@ -43,7 +43,7 @@ The model the section carries, under place names over the columns.
 
 - **Day 72.** The teacher shows both, side by side, for 3,746 + 2,538 and 1,895 + 4,368, saying each carry by
   its value. Pairs do two sums both ways, then four- and five-digit sums with the algorithm alone, each small 1
-  labelled with its worth.
+  labeled with its worth.
 - **Day 73.** Expanded form is gone. Place names stay up for the first set, then come down before E73. An
   estimate is written before every sum.
 

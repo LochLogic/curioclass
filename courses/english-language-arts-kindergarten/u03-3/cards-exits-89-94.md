@@ -39,7 +39,7 @@ The sheets and the cards use plain black line drawings on white, thick lines, no
 
 **Read:** "Our question is what a rabbit gets from a tree. Text A: A rabbit can eat tree leaves. Text B: A rabbit has soft fur and long ears."
 
-**Mark (item a):** Which picture note answers our question? Three pictures in a row, each in a ring: a rabbit eating a leaf, labelled A; a rabbit with long ears, labelled B; a rabbit hopping, with no label.
+**Mark (item a):** Which picture note answers our question? Three pictures in a row, each in a ring: a rabbit eating a leaf, labeled A; a rabbit with long ears, labeled B; a rabbit hopping, with no label.
 
 **Spoken, to the day's six (item b):** "Which text did your note come from?"
 
@@ -47,7 +47,7 @@ The sheets and the cards use plain black line drawings on white, thick lines, no
 
 **Read:** "This text is about a birch tree. Its bark peels in thin, papery pieces."
 
-**Mark (item a):** Which labelled drawing would teach this to a friend? Three pictures in a row, each in a ring: a birch tree with peeling bark, labelled birch; the same drawing with no label; a stack of paper, labelled paper.
+**Mark (item a):** Which labeled drawing would teach this to a friend? Three pictures in a row, each in a ring: a birch tree with peeling bark, labeled birch; the same drawing with no label; a stack of paper, labeled paper.
 
 **Spoken, to the day's six (item b):** "What fact will you dictate?"
 
@@ -64,6 +64,6 @@ The sheets and the cards use plain black line drawings on white, thick lines, no
 - Day 89: item a, The tree with an arrow to the family picking its apples. Not yet: marks the family with the basket as the topic (X, a minor detail chosen as the topic); marks the sun with no tree (B, a picture that does not show the page). Item b, The family needs fruit; the tree gives apples. Not yet: says The tree gives a nest (D, a fact the page does not give).
 - Day 90: item a, The squirrel holding an acorn on the oak branch. Not yet: marks the squirrel running alone or the oak with no animal (B, a picture that leaves out the animal or what it gets). Item b, Acorns, its food (the words: A squirrel eats acorns; acorns are food for animals). Not yet: says A squirrel. A tree. with no link (A, two things named, none linked); says The squirrel gets a nest (D, a need the page does not give).
 - Day 91: item a, The owl inside a hollow in a tree trunk. Not yet: marks the owl on the bare branch or the flying owl (B, a drawing the reading does not support). Item b, sleeps in a hollow tree (or: the hollow tree is the owl's resting place). Not yet: says It hunts mice (D, a fact the reading does not give).
-- Day 92: item a, The rabbit eating a leaf, labelled A. Not yet: marks the long-ears rabbit (E, true, but it does not answer the question); marks the hopping rabbit (D, supported by neither text). Item b, Text A. Not yet: names Text B for the leaf note (AI, a right fact given the wrong source).
-- Day 93: item a, The birch tree with peeling bark, labelled birch. Not yet: marks the drawing with no label (C, a topic left unnamed); marks the stack of paper (B, a drawing of the wrong thing). Item b, Birch bark peels in thin pieces like paper. Not yet: says Birch bark is warm (D, a fact the text does not give).
+- Day 92: item a, The rabbit eating a leaf, labeled A. Not yet: marks the long-ears rabbit (E, true, but it does not answer the question); marks the hopping rabbit (D, supported by neither text). Item b, Text A. Not yet: names Text B for the leaf note (AI, a right fact given the wrong source).
+- Day 93: item a, The birch tree with peeling bark, labeled birch. Not yet: marks the drawing with no label (C, a topic left unnamed); marks the stack of paper (B, a drawing of the wrong thing). Item b, Birch bark peels in thin pieces like paper. Not yet: says Birch bark is warm (D, a fact the text does not give).
 - Day 94: item a, The squirrel holding a winged seed under the maple. Not yet: marks the seed alone or the squirrel on bare ground (B, a picture that shows only one note). Item b, The squirrel eats the seed that falls from the maple, so it depends on the maple for food. Not yet: says A seed. A squirrel. with no link (A, two notes left unjoined); says It eats the leaves (D, a fact the page does not give).

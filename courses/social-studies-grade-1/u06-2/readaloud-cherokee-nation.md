@@ -23,4 +23,4 @@ Pip: "Native people lived long ago and are gone." Correct with part 1: "The Cher
 
 ## Teacher key
 
-The ten-square strip and this page serve different asks: the strip counts neighbors; the page tells what a living nation does and where it has been. Never say a number of Cherokee people, never describe anyone's belief. Beliefs are described as "what some people think is true about important things", and never practised.
+The ten-square strip and this page serve different asks: the strip counts neighbors; the page tells what a living nation does and where it has been. Never say a number of Cherokee people, never describe anyone's belief. Beliefs are described as "what some people think is true about important things", and never practiced.

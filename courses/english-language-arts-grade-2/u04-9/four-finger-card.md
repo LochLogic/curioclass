@@ -7,4 +7,4 @@ credit: ours
 ---
 # Four-finger card (days 150 and 152)
 
-A hand drawn on card with four fingers labelled: beat, rhyme, repeated sound, repeated line. The group touches one finger for each device it hears and says what that device does. The card names the devices and never shows a poem.
+A hand drawn on card with four fingers labeled: beat, rhyme, repeated sound, repeated line. The group touches one finger for each device it hears and says what that device does. The card names the devices and never shows a poem.

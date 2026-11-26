@@ -13,7 +13,7 @@ Three days, 3 to 5. Day 3: a picture story (Sharing the Glue) shows what happens
 
 ## How the days run
 
-Twenty minutes a day (30 on the longer route): reopen two minutes, six minutes of modelling, ten minutes of supported work in pairs, exit two minutes. A rotating group of six is heard on the spoken "why" each day. One ten-minute bridge from the start-of-year check may run in supported work, never two on a day.
+Twenty minutes a day (30 on the longer route): reopen two minutes, six minutes of modeling, ten minutes of supported work in pairs, exit two minutes. A rotating group of six is heard on the spoken "why" each day. One ten-minute bridge from the start-of-year check may run in supported work, never two on a day.
 
 ## The ideas, at an adult's level
 

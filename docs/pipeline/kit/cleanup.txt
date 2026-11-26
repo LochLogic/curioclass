@@ -25,7 +25,7 @@ HOW TO FIX
 {SUBJNOTE}
 
 FINISH
-Run the gates for your course only, before (add --baseline) and after: {GATE}. Count the failing lines it prints for the course. Fix any new failure you caused. Known template points stay.
+Run the gate for your course only, before and after: {GATE} (the first run on an unchanged course stores the baseline itself). Count the failing lines it prints for the course. Fix any new failure you caused. Known template points stay.
 Append a "Fixes applied ({DATE})" section to each of the two sample reports: one line per finding (day, applied / rejected / partly / left, what changed), then the key-line results, then before and after gate counts.
 
 Touch only courses/{COURSE}/, data/plans/{COURSE}/, docs/courses/{COURSE}/ (plan sync, plan to match the day, never the other way) and the two sample reports.

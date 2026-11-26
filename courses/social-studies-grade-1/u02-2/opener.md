@@ -20,7 +20,7 @@ Day 14: calendar corner (3), return and repair (4), retrieval (4), teaching (7),
 - **A source is something from the past that survives and helps us find out.** It is a clue, not the whole story.
 - **Look first, name only what we see, then read the caption.** The caption tells the place, the date and the maker. A photograph shows what was in front of the camera.
 - **One source answers some questions, not all.** A photograph of another school shows another school. A person's story tells about things a photograph cannot, such as how children got to school.
-- **A labelled invention is not a record.** A card that says invented for practice helps us practise; it does not show a real past event.
+- **A labeled invention is not a record.** A card that says invented for practice helps us practice; it does not show a real past event.
 - **Then and now: some things changed and some stayed.** The chart has a column for what we do not know, so we do not claim more than our sources show. One school is not every school.
 - **A reason names a detail.** "Because I like it" tells a feeling. "Because it shows the desks" ties the source to the question.
 

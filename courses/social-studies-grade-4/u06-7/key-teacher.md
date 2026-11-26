@@ -208,7 +208,7 @@ Key: Santa Fe early Spanish settlement; Roswell nineteenth-century settler town;
 
 Look for: Santa Fe early Spanish settlement; Roswell nineteenth-century settler town; Rio Grande; northwest dry plateau; Mescalero Apache homeland locator before 1863, 1863 forced arrow to Bosque Redondo, present reservation locator, 1776 exploration northwest from Santa Fe. Distinct dated symbols, title/north/key/scale. Native presence precedes settler sites.
 
-Samples: Santa Fe early Spanish settlement; Roswell nineteenth-century settler town; Rio Grande; northwest dry plateau; Mescalero Apache homeland locator before 1863, 1863 forced arrow to Bosque Redondo, present reservation locator, 1776 exploration northwest from Santa Fe. Distinct dated symbols, title/north/key/scale. Native presence precedes settler sites. | Forced removal is labelled free migration.
+Samples: Santa Fe early Spanish settlement; Roswell nineteenth-century settler town; Rio Grande; northwest dry plateau; Mescalero Apache homeland locator before 1863, 1863 forced arrow to Bosque Redondo, present reservation locator, 1776 exploration northwest from Santa Fe. Distinct dated symbols, title/north/key/scale. Native presence precedes settler sites. | Forced removal is labeled free migration.
 
 ## s06-F3e
 

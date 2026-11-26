@@ -19,7 +19,7 @@ Each day is 90 minutes: reading and research, writing, a skills block and a five
 
 - A question links to the note it follows.
 - Revision changes something; copying does not.
-- Imagined and sourced parts are labelled.
+- Imagined and sourced parts are labeled.
 
 ## The errors, in plain words
 

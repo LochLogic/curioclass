@@ -16,7 +16,7 @@ Days 20 to 25 return to one picture story, Mira Makes a Road, and to the informa
 Each day is 120 minutes in two blocks of 60. The topic block opens with a five-minute repair of the day before (days 21 to 25), then a few words first, a hearing or a return, a partner turn, a drawing and the exit. The foundations block holds oral rhyme and syllables, the letters h and p (day 20) and then n and c (days 21 to 25), printing, mapped words and five 5-minute rotations of six children.
 
 - Days 20 to 23 teach. Day 23 hears a second story; see the note on that text below.
-- Days 24 and 25 practise. Nothing new is taught; children reread, ask for help and sort book kinds.
+- Days 24 and 25 practice. Nothing new is taught; children reread, ask for help and sort book kinds.
 - Day 20 and day 26 hold the cycle checks inside the rotation. The response comes in the first ten minutes of the next foundations block.
 
 ## The ideas, at an adult's level

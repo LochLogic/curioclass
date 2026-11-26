@@ -5,7 +5,7 @@ unit: 3.1
 version: draft, not yet taught
 credit: ours
 ---
-# Labelled note page
+# Labeled note page
 
 A notebook page used from day 83 and again on days 85 and 87.
 

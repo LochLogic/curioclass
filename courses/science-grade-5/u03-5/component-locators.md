@@ -15,7 +15,7 @@ Teacher only. Reveal after the attempt; never show all routes before a retry.
 - A: Locate a distinguishing property of familiar lookalikes.
 - B: Locate the standard unit beside one complete reading.
 - C: Locate contrasting known steel and copper magnet observations.
-- D: Locate scratch results separately from a labelled length.
+- D: Locate scratch results separately from a labeled length.
 - E: Locate one starting/resulting property comparison.
 - F: Locate retained unseen material in a familiar diagram.
 - G: Locate a recorded source of introduced air.

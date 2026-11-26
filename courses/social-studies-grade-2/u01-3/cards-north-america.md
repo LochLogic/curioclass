@@ -5,7 +5,7 @@ unit: 1.3
 version: draft, not yet taught
 credit: ours
 ---
-# North America, labelled from a word bank (day 12)
+# North America, labeled from a word bank (day 12)
 
 Say first: "We drew this outline for our class from the real shape of the land." Plain black line drawing on white.
 
@@ -15,7 +15,7 @@ Say first: "We drew this outline for our class from the real shape of the land."
 
 **Word bank (fourteen words):** Canada, United States, Mexico, Pacific Ocean, Atlantic Ocean, Arctic Ocean, Great Lakes, Mississippi River, St. Lawrence River, Rocky Mountains, Appalachian Mountains, North America, Amazon River, Brazil.
 
-## Pip's labelled outline (day 12 pairs work)
+## Pip's labeled outline (day 12 pairs work)
 
 **Picture:** The same outline, key and rose, with five labels written by Pip. One country arrow carries "North America" (the whole continent, not a country). A river label, "Mississippi River", is written on the triangles (the mountain range) and the wavy line carries no label. Say first: "This is made up for practice." Pairs say what the key says, then write the right bank word for one wrong label.
 

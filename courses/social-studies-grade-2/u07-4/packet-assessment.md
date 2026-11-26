@@ -12,7 +12,7 @@ Read the whole sheet aloud once, neutrally, a source strip first and then each s
 ## Page I
 
 **Title:** Work with fish in Iceland
-**Illustration (labelled "illustration, not a photograph"):** a small drawing of a fish and a boat.
+**Illustration (labeled "illustration, not a photograph"):** a small drawing of a fish and a boat.
 **Heading:** Catching, preparing and selling
 **Text:** "People in Iceland catch fish. Other people prepare fish for sale. Iceland sells fish products to other countries."
 **Second heading:** People today

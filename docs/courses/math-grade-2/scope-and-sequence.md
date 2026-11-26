@@ -96,7 +96,7 @@ Build whole-number points from lengths measured from zero before interpreting ar
 
 Retrieve grade 1 measurement and unit 3 ruler work; no readiness or mid-unit assessment. Day 73 covers whole numbers at equally spaced points from zero and both sums and differences within 100. Reuse day 72's represented story where it shows a part; prompt remaining parts separately. Response is ten minutes on days 74 and 75, counted once.
 
-**Candidate settled:** keep the measurement-model order check as planning work, zero days. Keep an open number line with jumps of ten as a comparison to labelled unit intervals in day 68, about ten minutes within that lesson, no added day. Students explain the size of each jump, so open spacing does not undo the equally spaced number-line definition.
+**Candidate settled:** keep the measurement-model order check as planning work, zero days. Keep an open number line with jumps of ten as a comparison to labeled unit intervals in day 68, about ten minutes within that lesson, no added day. Students explain the size of each jump, so open spacing does not undo the equally spaced number-line definition.
 
 ## Unit 5. Numbers to 1,000
 

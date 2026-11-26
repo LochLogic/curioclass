@@ -13,7 +13,7 @@ Day 82 teaches three ways to work out a new word: the sentence around it, the pa
 
 ## How the days run
 
-Each day is 120 minutes in two blocks of 60. Day 83 is a check day: nothing new is taught, and the child's independent reading and supported reading are kept as two records, pencil for alone and a second colour for with help. Days 82 and 84 follow the usual shape of opening repair, words, reading, model, pair work and a five-minute exit. In the foundations block the cycle 13 written check is on day 82 and the reader for cycle 14 begins on day 83.
+Each day is 120 minutes in two blocks of 60. Day 83 is a check day: nothing new is taught, and the child's independent reading and supported reading are kept as two records, pencil for alone and a second color for with help. Days 82 and 84 follow the usual shape of opening repair, words, reading, model, pair work and a five-minute exit. In the foundations block the cycle 13 written check is on day 82 and the reader for cycle 14 begins on day 83.
 
 ## The ideas, at an adult's level
 

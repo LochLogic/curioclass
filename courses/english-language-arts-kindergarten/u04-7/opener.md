@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Days 146 to 151 finish the appreciation card and compare. On day 146 each child adds a thin watercolor wash to the pencil sketch and keeps the words readable. Day 147 rereads the planting text against the reasons text, and each child revises the card after a partner's question. Day 148 hears each child on the added detail (R1), day 149 practises feedback and choosing words for a shared audio version, day 150 compares the two familiar stories (C3, with T2) and day 151 compares two unseen information cards (C4). Foundations teach long o and u by ear (cycle 24), start long e and r-controlled sounds heard only (cycle 25) and map you, said and were, then she, her and like.
+Days 146 to 151 finish the appreciation card and compare. On day 146 each child adds a thin watercolor wash to the pencil sketch and keeps the words readable. Day 147 rereads the planting text against the reasons text, and each child revises the card after a partner's question. Day 148 hears each child on the added detail (R1), day 149 practices feedback and choosing words for a shared audio version, day 150 compares the two familiar stories (C3, with T2) and day 151 compares two unseen information cards (C4). Foundations teach long o and u by ear (cycle 24), start long e and r-controlled sounds heard only (cycle 25) and map you, said and were, then she, her and like.
 
 ## How the days run
 

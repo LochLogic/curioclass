@@ -28,7 +28,7 @@ Three large mark cards, one mark each, with a gesture:
 
 ## The capital I
 
-One strip with the word I large and in a different colour wherever it stands alone: "Then I see the sun."
+One strip with the word I large and in a different color wherever it stands alone: "Then I see the sun."
 
 ## How to use them
 

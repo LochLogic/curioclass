@@ -117,7 +117,7 @@ Arc: four Republic days, four days on the turn to empire (day 125 names the land
 Arc: five economy days, two engineering days, two language days, then assessment (which also answers the compelling question) and respond. The economy leads because unit 12's internal causes need it.
 
 - Readiness: none. Day 134 opens with a retrieval task and short reteach on a public budget (grade 3's row was used in grade 6 unit 6, so it is not idle two grades).
-- End-of-unit assessment, day 143: taxes (3b), currency, roads and the Pax Romana (3c), a trade policy's benefits and costs, inflation, deflation and unemployment each with its own prompt, engineering, and Latin and word roots. Day 138's 33 CE case is a credit crisis with falling land prices, not a general fall in prices; a general deflation case is labelled illustrative. Respond day 144.
+- End-of-unit assessment, day 143: taxes (3b), currency, roads and the Pax Romana (3c), a trade policy's benefits and costs, inflation, deflation and unemployment each with its own prompt, engineering, and Latin and word roots. Day 138's 33 CE case is a credit crisis with falling land prices, not a general fall in prices; a general deflation case is labeled illustrative. Respond day 144.
 - Candidate cells: none in the frame.
 - Leans: math 7's percent unit (days 47 to 68) and ELA 7's roots (days 61 to 86) come before. Met.
 

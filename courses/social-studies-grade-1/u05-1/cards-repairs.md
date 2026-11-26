@@ -55,7 +55,7 @@ Each card puts a wrong idea beside a right one so the class can see the differen
 
 **Right:** a globe view can have a city named on it.
 
-**Repair:** find the labelled city dot on View 1, say it is a city, and say what the dot stands for.
+**Repair:** find the labeled city dot on View 1, say it is a city, and say what the dot stands for.
 
 ## C: north is the top of the paper
 

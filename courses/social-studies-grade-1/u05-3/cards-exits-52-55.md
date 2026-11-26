@@ -23,6 +23,6 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 ## Day 55 exit card: Larch village
 
-**Picture:** a map of Larch village from above. A large direction indicator labelled N with its arrow pointing down the page. An oval is a well. A triangle is a clinic; one clinic is on the left of the well and one on the right. A key: a triangle is a clinic, an oval is a well, a thin strip across a stream is a footbridge. A stream runs along the left side of the page with the footbridge across it. A record card read aloud: "People crossed the footbridge to reach the new clinic." Three tokens are set beside the map.
+**Picture:** a map of Larch village from above. A large direction indicator labeled N with its arrow pointing down the page. An oval is a well. A triangle is a clinic; one clinic is on the left of the well and one on the right. A key: a triangle is a clinic, an oval is a well, a thin strip across a stream is a footbridge. A stream runs along the left side of the page with the footbridge across it. A record card read aloud: "People crossed the footbridge to reach the new clinic." Three tokens are set beside the map.
 
 **Mark:** Place a token on the clinic that is east of the well. **Spoken:** "Why does the footbridge matter?"

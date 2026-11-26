@@ -13,7 +13,7 @@ Teacher only. Keep apart from pictures-globes-and-meadow-valley.md; never hand t
 
 ### Paired globe views (retrieval and supported work)
 
-**Teacher key.** Children color one land area and circle one water area on each view and find the labelled city. A globe view can have a city named on it, and it shows land and water. The two views are two sides of one round Earth; View 2 has more water than land, and it still has some land. Compare with a flat map: it also shows land and water, but flat.
+**Teacher key.** Children color one land area and circle one water area on each view and find the labeled city. A globe view can have a city named on it, and it shows land and water. The two views are two sides of one round Earth; View 2 has more water than land, and it still has some land. Compare with a flat map: it also shows land and water, but flat.
 
 ### The paper relief
 

@@ -9,7 +9,7 @@ the lens (docs/agents/lenses/career-education.md) and the standard (STANDARD.md)
 | Shared kind | In career education | What it looks like |
 |---|---|---|
 | Understanding | Explore day | A field, a job or a part of the self studied from a source: a job profile with dated data, a worker's account, an inventory used as reflection |
-| Fluency | Skill day | A career task taught with a model and practised with feedback: a resume section, an interview answer, an email to an employer, reading a pay table |
+| Fluency | Skill day | A career task taught with a model and practiced with feedback: a resume section, an interview answer, an email to an employer, reading a pay table |
 | Application | Field task day or plan day | A task a field does, decided and defended with data; or the personal plan revised with what the unit found |
 | Check | Assessment day | The end-of-unit assessment: a demonstration or plan piece scored on a rubric, plus a few short items on reading data |
 | Respond | Respond day | Revision of the piece from rubric feedback |
@@ -25,7 +25,7 @@ equipment follows STANDARD.md section 6 ("Hands-on tasks").
 ## The form of daily evidence
 
 - **Explore days:** a short job or field card filled from the source, with the figure's source and year.
-- **Skill days:** the practised piece (one resume line, one answer), marked against two or three look-fors.
+- **Skill days:** the practiced piece (one resume line, one answer), marked against two or three look-fors.
 - **Field task and plan days:** the decision and one line of data that supports it; the plan's changed line.
 - The portfolio holds the unit's best piece; students choose and say why (self-judging, bar C8).
 

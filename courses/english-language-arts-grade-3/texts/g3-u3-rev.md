@@ -7,7 +7,7 @@ kind: informational
 form: printed book-review model (about 150 words) and a printed weak review
 word count: 179
 use: printed model and revision case for the recommendation (O01)
-days: 100 (read aloud and labelled with four colours; model revision on the weak review); returned to on 101 to 104
+days: 100 (read aloud and labeled with four colours; model revision on the weak review); returned to on 101 to 104
 ---
 
 Teacher note. The model is about an invented series, not the unit books, so children cannot copy facts. It has an opinion, two reasons from changes in the books, link words (First, Second, As a result, Also, For these reasons) and a closing line, in the order of O01. Weak review: the reason repeats the opinion (I) and the last line is unrelated (K). Title capitals follow the rule taught on 102.

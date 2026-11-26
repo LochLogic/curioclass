@@ -27,7 +27,7 @@ A blank year strip. Three cards, read in this order: a drawing of music notes, "
 
 ## Item 4: the photograph and a letter
 
-The Johnston photograph above, and one practice card in a letter's shape: "Dear Teacher, our class used a bell to begin lessons. From Lee." Two rows of circles for the paper part: for each source, a camera picture and an envelope picture, and a pair of circles for the letter, labelled "pretend" and "real."
+The Johnston photograph above, and one practice card in a letter's shape: "Dear Teacher, our class used a bell to begin lessons. From Lee." Two rows of circles for the paper part: for each source, a camera picture and an envelope picture, and a pair of circles for the letter, labeled "pretend" and "real."
 
 ## Item 5: the front sign and the lunch recording
 

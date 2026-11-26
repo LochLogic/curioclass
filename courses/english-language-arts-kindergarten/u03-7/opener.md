@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Days 107 to 110 are the research talks. Each child says a question, points to a labelled note and a line, and joins a need to a living thing that depends on the tree with "so". The teacher watches and fills only a part missing from the earlier records; nothing is collected twice. Day 108 is a teaching day: children fill one gap on a collage plan. Foundations bring in short e and the words be and by.
+Days 107 to 110 are the research talks. Each child says a question, points to a labeled note and a line, and joins a need to a living thing that depends on the tree with "so". The teacher watches and fills only a part missing from the earlier records; nothing is collected twice. Day 108 is a teaching day: children fill one gap on a collage plan. Foundations bring in short e and the words be and by.
 
 ## How the days run
 

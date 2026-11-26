@@ -26,7 +26,7 @@ Every student may pass in public talk. Hear rotating six and mark who; individua
 
 ## Safety and fallback
 
-Day 56 needs goggles, checked clean sand, labelled portions, trays and twelve-minute staggered washing. Ask food/sand allergies privately. No heating or loose metal filings. Teacher supplies dried matching filtrate. Day 57 children inspect closed displays only; teacher stores them. One unclear reading is retained, retried once within the block, then replaced for practice by a separately labelled invented record.
+Day 56 needs goggles, checked clean sand, labeled portions, trays and twelve-minute staggered washing. Ask food/sand allergies privately. No heating or loose metal filings. Teacher supplies dried matching filtrate. Day 57 children inspect closed displays only; teacher stores them. One unclear reading is retained, retried once within the block, then replaced for practice by a separately labeled invented record.
 
 ## Common errors and response
 

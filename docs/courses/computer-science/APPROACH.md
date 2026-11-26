@@ -111,7 +111,7 @@ debug a student's program on the fly.
   predict ___ because line ___ says ___". Words with an everyday meaning (run, loop, bug, sort, cloud, mouse) are taught
   as two meanings. A student may answer a trace in numbers, arrows or the home language. Each key says which wrong
   answers can come from reading the words rather than from the idea, so a language gap is not marked as a content gap.
-- **Access.** Every tool works by keyboard alone, needs no colour to tell things apart (shape or label as well),
+- **Access.** Every tool works by keyboard alone, needs no color to tell things apart (shape or label as well),
   enlarges text without breaking, has no flashing, and offers a typed or list choice wherever it offers drag and drop;
   every block program has a text view. For a student who cannot see the screen, the unplugged version uses cards and
   objects they can feel, and code is read aloud one line at a time. No tool task is timed.

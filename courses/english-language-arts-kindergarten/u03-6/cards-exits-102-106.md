@@ -31,7 +31,7 @@ The sheet and the cards use plain black line drawings on white, thick lines, no 
 
 **Read:** "This page is about a magnolia. Its flowers are big and white."
 
-**Mark (item a):** Which picture group would start our page about this tree? Three picture groups: a magnolia tree with a label strip the teacher reads, "magnolia", and a big white flower; a big white flower with no label strip; the labelled magnolia with bare winter branches.
+**Mark (item a):** Which picture group would start our page about this tree? Three picture groups: a magnolia tree with a label strip the teacher reads, "magnolia", and a big white flower; a big white flower with no label strip; the labeled magnolia with bare winter branches.
 
 **Spoken, to the day's six (item b):** "Say the opening for the page."
 
@@ -55,6 +55,6 @@ The sheet and the cards use plain black line drawings on white, thick lines, no 
 
 - Day 102: item a, The giraffe reaching up to the acacia leaves: "What do giraffes eat from the acacia tree?" Not yet: The giraffe lying down asleep: "Where does a giraffe sleep?" (E, a question the card cannot answer); The acacia tree in the dark: "What does the acacia look like at night?" (E, a question the card cannot answer). Item b, Reread the card and point to the leaves line, or draw a note with a source label. Not yet: says to ask a friend or guess, without the card (D, not from the source).
 - Day 103: item a, The branch holding the nest, with an arrow to the songbird. Not yet: The same branch and bird with no arrow (A, facts named but not joined); The squirrel at the nest instead of the songbird (B, the picture does not show the stated detail). Item b, The branches hold the songbird's nest up high, so the maple gives it shelter. Not yet: names the branches and the bird but not how they go together (A, facts named but not joined).
-- Day 104: item a, The magnolia with a label strip "magnolia" and a big white flower. Not yet: The big white flower with no label strip (C, the topic is not named); The labelled magnolia with bare winter branches (D, the card does not say it). Item b, "My tree is a magnolia. Its flowers are big and white." Not yet: says only "big and white flowers" with no tree name (C, the topic is not named).
+- Day 104: item a, The magnolia with a label strip "magnolia" and a big white flower. Not yet: The big white flower with no label strip (C, the topic is not named); The labeled magnolia with bare winter branches (D, the card does not say it). Item b, "My tree is a magnolia. Its flowers are big and white." Not yet: says only "big and white flowers" with no tree name (C, the topic is not named).
 - Day 105: item a, Card B, the willow roots in the bank. Not yet: Card A, the willow by the pond (AI, a fact credited to the wrong source); Card C, the frog on the lily pad (AI, a fact credited to the wrong source). Item b, Points to the roots sentence on card B. Not yet: points to a line on another card (AI, a fact credited to the wrong source).
 - Day 106: item a, The bat at the big white flower, with the baobab sticker. Not yet: The bat eating a fruit (D, the card does not say it); The bat flying far from the tree (B, the picture does not show the stated detail). Item b, Points to the flowers and bats line. Not yet: points to the first sentence only, which names no bat (B, the picture does not show the stated detail).

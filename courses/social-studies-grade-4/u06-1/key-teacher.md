@@ -114,7 +114,7 @@ Key: Connecticut in southern New England; Hartford inland near 41.8 N, 72.7 W.
 
 Look for: Connecticut in southern New England; Hartford inland near 41.8 N, 72.7 W.
 
-Samples: Connecticut in southern New England; Hartford inland near 41.8 N, 72.7 W. | Rhode Island labelled Connecticut.
+Samples: Connecticut in southern New England; Hartford inland near 41.8 N, 72.7 W. | Rhode Island labeled Connecticut.
 
 ### s06-X108b
 

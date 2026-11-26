@@ -29,6 +29,6 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 ## Day 47 exit card: Quince Orchard
 
-**Picture:** a map of Quince Orchard from above. A large direction indicator labelled N with its arrow pointing to the left edge of the page. A round well in the middle. One shed is above the well and one shed is to the right of the well; the gate is farther to the right of the well. A key: a square is a shed, a circle is a well, a short thick line is the gate. Three tokens are set beside the map.
+**Picture:** a map of Quince Orchard from above. A large direction indicator labeled N with its arrow pointing to the left edge of the page. A round well in the middle. One shed is above the well and one shed is to the right of the well; the gate is farther to the right of the well. A key: a square is a shed, a circle is a well, a short thick line is the gate. Three tokens are set beside the map.
 
 **Mark:** Place a token on the shed that is east of the well. **Spoken:** "Which direction is the gate from the well?"

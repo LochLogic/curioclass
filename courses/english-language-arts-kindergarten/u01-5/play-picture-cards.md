@@ -20,4 +20,4 @@ Six picture cards of play for each child, and a rule card for the wall. Plain bl
 
 ## How the cards are used
 
-Each child sorts six cards into fast play and slow play, then says the rule: "fast" or "slow". Then show fast and slow as opposites with two fingers. Ask where in the room we move slowly; children point. If a child sorts by colour or by who is in the picture, keep the rule card above the groups and sort again (T). Never ask for a stronger word for slow; fast is the opposite of slow.
+Each child sorts six cards into fast play and slow play, then says the rule: "fast" or "slow". Then show fast and slow as opposites with two fingers. Ask where in the room we move slowly; children point. If a child sorts by color or by who is in the picture, keep the rule card above the groups and sort again (T). Never ask for a stronger word for slow; fast is the opposite of slow.

@@ -42,7 +42,7 @@ Thinking). Day 83 talks about it once and it is never asked. If a student says i
 ## The strip picture
 
 One strip for the smaller amount. Under it, lined up at the left, a row of equal copies of that strip for the
-larger amount. Each row is labelled with whose it is; each copy has its amount written inside; a brace at the
+larger amount. Each row is labeled with whose it is; each copy has its amount written inside; a brace at the
 right gives the total. "More than" looks different: one strip with a short extra piece on its end.
 
 - **Day 80.** Cubes snapped into strips, then drawn. The cubes are put away at the end of the day.

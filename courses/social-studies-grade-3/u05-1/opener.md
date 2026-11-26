@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Three days of 40 minutes. Day 90 opens "Could the colonists and the Native nations have shared the land?" The class writes five supporting questions with their answer days, and says who besides the class needs the answers. Day 91 builds a timeline with equal spaces for equal years. Day 92 practises placing events, saying which came first and how far apart, and counting centuries.
+Three days of 40 minutes. Day 90 opens "Could the colonists and the Native nations have shared the land?" The class writes five supporting questions with their answer days, and says who besides the class needs the answers. Day 91 builds a timeline with equal spaces for equal years. Day 92 practices placing events, saying which came first and how far apart, and counting centuries.
 
 ## The ideas, at an adult's level
 

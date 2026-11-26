@@ -35,4 +35,4 @@ Teacher checks every surface and every sample before a child touches it, with th
 
 ## Supplies
 
-Cardboard, construction paper, masking tape, two blunt scissors per group, matched rocks, the large toy animal, shallow water trays, sixty sample containers (a target and an open match for each child), the cover choice cards, the unfamiliar dated cards, the response mats, the sun caption strips A to H, the set-out record, crayons. A room with nothing builds from reused cardboard and uses dated photograph sets, labelled as media.
+Cardboard, construction paper, masking tape, two blunt scissors per group, matched rocks, the large toy animal, shallow water trays, sixty sample containers (a target and an open match for each child), the cover choice cards, the unfamiliar dated cards, the response mats, the sun caption strips A to H, the set-out record, crayons. A room with nothing builds from reused cardboard and uses dated photograph sets, labeled as media.

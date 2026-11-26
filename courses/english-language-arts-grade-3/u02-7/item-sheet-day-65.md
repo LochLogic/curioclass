@@ -23,7 +23,7 @@ Items 2 to 5 are about your own day 65 paragraph; write them on your paragraph p
 
    ____________________________________________
 
-2. In your paragraph, introduce the horned frog and keep the feeding facts together and the dry-season facts together. Add a labelled sketch.
+2. In your paragraph, introduce the horned frog and keep the feeding facts together and the dry-season facts together. Add a labeled sketch.
 
    ____________________________________________
 

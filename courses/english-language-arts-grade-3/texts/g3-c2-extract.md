@@ -10,7 +10,7 @@ use: check 2 literary packet, day 157; read cold
 days: 157
 ---
 
-Teacher note. Cold. Scene 1 and Scene 2 are labelled. The narrator tells what Rob will not say.
+Teacher note. Cold. Scene 1 and Scene 2 are labeled. The narrator tells what Rob will not say.
 
 # The Club Table (two scenes)
 

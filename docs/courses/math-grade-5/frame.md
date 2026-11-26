@@ -21,7 +21,7 @@ Course `math-grade-5` (catalogue id `math-k8`), grade 5, draft frame, written 20
   Math has no check set: the standard is used as written. The C3 column names the unit's practices; the "Check set
   adds" column names, the settled Progressions guidance for the unit (the rows cite the Progressions documents by
   page) and one extension for students ready for more. Other reference texts are used for sequence and models only, never copied.
-- **Major work.** The scope and sequence states the instructional-minute budget, excluding assessment and respond time and counting each minute once. Expressions accompany volume, conversion accompanies powers of ten, and measurement plots practise fractions. The scope and sequence is the single focus calculation.
+- **Major work.** The scope and sequence states the instructional-minute budget, excluding assessment and respond time and counting each minute once. Expressions accompany volume, conversion accompanies powers of ten, and measurement plots practice fractions. The scope and sequence is the single focus calculation.
 - **Base text.** Illustrative Mathematics K-12, 1st edition, grade 5 (CC BY 4.0), adapted into our days with a
   credit line on each (docs/sources/BASE-TEXTS.md; the store is S:\CurioClass-sources\illustrative-math\grade-5). Its
   order is kept; the source map at the end places every lesson. Only the free public pages are used: cool-downs,

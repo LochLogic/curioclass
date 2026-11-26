@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-For six days the class reads a short informational book about water on Earth, one section a day, and begins to compare it with a second account about how far people walk to reach water. Children practise asking a question the words can answer, finding the main idea, reading a diagram with its labels, and using a chart to join important points to key details. On days 120 and 125 the exit is a short opinion paragraph. Day 124 is a check on a new passage that stays unscored; day 125 returns it with one comment and a chance to redo one item.
+For six days the class reads a short informational book about water on Earth, one section a day, and begins to compare it with a second account about how far people walk to reach water. Children practice asking a question the words can answer, finding the main idea, reading a diagram with its labels, and using a chart to join important points to key details. On days 120 and 125 the exit is a short opinion paragraph. Day 124 is a check on a new passage that stays unscored; day 125 returns it with one comment and a chance to redo one item.
 
 ## How the days run
 

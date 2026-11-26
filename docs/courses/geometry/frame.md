@@ -47,7 +47,7 @@ Algebra I (grade 9) has no geometry unit. The grade 8 plane-geometry rows theref
 | m8-volume-curved (grade 8): IM 8.5, lessons 12 to 21 | Unit 5, geo-volume-formulas | retrieve day 43 cylinders; day 81 readiness on older cone/sphere components |
 | m8-volume-curved (grade 8): IM 8.5, lessons 12 to 21 | Unit 5, geo-modeling-objects-density | retrieve day 43 cylinders; day 81 readiness on older cone/sphere components |
 | alg1-function-notation (Algebra I): Understand a function as a rule that assigns each input exactly one output, use function notation f(x), evaluate it | Unit 6, geo-transformations-coordinates | next grade, direct |
-| alg1-completing-square (Algebra I): Recognise perfect square trinomials, complete the square | Unit 6, geo-circle-parabola-equations | next grade, direct |
+| alg1-completing-square (Algebra I): Recognize perfect square trinomials, complete the square | Unit 6, geo-circle-parabola-equations | next grade, direct |
 | alg1-vertex-form (Algebra I): Write and graph quadratics in vertex form a(x - h) squared + k, read the vertex and the direction and width of opening | Unit 6, geo-circle-parabola-equations | next grade, direct |
 | alg1-rearrange-formulas (Algebra I): Rearrange a formula or a two-variable linear equation to highlight a chosen quantity | Unit 6, geo-slope-criteria-lines | next grade, direct |
 | alg1-linear-systems (Algebra I): Solve pairs of linear equations in two variables by graphing, substitution and elimination | Unit 6, geo-slope-criteria-lines | next grade, direct |

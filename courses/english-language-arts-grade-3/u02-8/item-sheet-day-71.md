@@ -59,6 +59,6 @@ Items 1 to 4 are about your own day 71 paragraph; write them on your paragraph p
 
    ____________________________________________
 
-11. Add a labelled sketch of the cocoon beside your paragraph.
+11. Add a labeled sketch of the cocoon beside your paragraph.
 
    ____________________________________________

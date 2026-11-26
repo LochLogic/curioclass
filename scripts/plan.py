@@ -980,10 +980,18 @@ def check(course):
                     notes.append('%s: its answer %s is the answer of %s on the same part' % (i['item_id'], i['value'], same[0]))
         # 3b. no two rows of a unit share a stem, and no two challenges share their numbers under new ids
         sr = [i for i in items if i['stretch'] == s]
+        stems = {}
+        for i in sr:
+            stems.setdefault(i['stem'].strip(), []).append(i['item_id'])
+        for ids_ in stems.values():   # one line per group, not per pair (close review finding 2: 4,292 pair lines)
+            if len(ids_) == 2:
+                fails.append('%s and %s have the same stem' % tuple(ids_))
+            elif len(ids_) > 2:
+                fails.append('%s and %d more have the same stem: %s' % (ids_[0], len(ids_) - 1, ', '.join(ids_[1:])))
         for k, a in enumerate(sr):
             for b in sr[k + 1:]:
                 if a['stem'].strip() == b['stem'].strip():
-                    fails.append('%s and %s have the same stem' % (a['item_id'], b['item_id']))
+                    continue
                 elif (a['check'] == b['check'] == 'challenge'   # one fraction is enough to compare (day 16 read)
                       and (len(numbers(a['stem'])) >= 2 or any('/' in x for x in numbers(a['stem'])))
                       and numbers(a['stem']) == numbers(b['stem'])):

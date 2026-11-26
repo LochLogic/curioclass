@@ -149,7 +149,7 @@ Earlier grades this course assumes from other subjects: W.7.1 (unit 1).
    fall about days 101 to 114, after science's unit 4 begins. IM's dependency chart allows the move (8.6 rests on 8.3
    and 7.8). The moved lessons are adapted to unit 3's language (source map).
 3. **IM 8.9 left out.** IM's ninth unit is optional (0 to 10 days): tessellations (lessons 1 to 3) and weather
-   modelling (lessons 4 to 6) are extension candidates for units 1 and 4.
+   modeling (lessons 4 to 6) are extension candidates for units 1 and 4.
 4. **The accelerated path.** This frame is the standard path. An accelerated path (Algebra I in grade 8) skips this
    course, so the grade 8 rows that Algebra I and Geometry assume need a compression plan before that path opens
    (Algebra I frame, For the lead item 4). Settled 2026-11-14 (Cory: not now): parked in data/plans/later.csv L15;

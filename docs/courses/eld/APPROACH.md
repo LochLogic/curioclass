@@ -24,7 +24,7 @@
 | Kind | What it is in ELD |
 |---|---|
 | Understanding | Meet the content and the language goal: the text or task, the form shown in it, named and explained. |
-| Fluency | Practise the form and the words until they come easily: oral rehearsal, sentence building, word work. |
+| Fluency | Practice the form and the words until they come easily: oral rehearsal, sentence building, word work. |
 | Application | Use the form in talk and then in writing on the content, at the student's level. |
 | Check | The end-of-unit assessment: a listening or reading part, a talk task and a short writing task on new content of the same kind, scored against look-fors for the language goal. |
 | Respond | Reteach the forms the checks showed were not yet secure; rehearse again. |
@@ -54,7 +54,7 @@ Proposed, to be tried on the first ELD unit plans (after the gate):
   two-line note the ELD teacher can share with the host teacher: the content used and the language taught (bar item
   14).
 - Unit field 4 (readiness): a short talk or writing task on the forms the unit builds on; the reteach is the form
-  modelled again.
+  modeled again.
 - Unit field 5 (end-of-unit assessment): an interpretive part (listening to or reading a new grade-level text of
   the same kind), then a talk task and a writing task at each entry point, with look-fors and two sample answers per
   level, and the accommodations line (UNIT-PLAN field 5). Says how a student moves to the next entry point. Prompts

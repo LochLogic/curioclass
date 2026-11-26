@@ -7,7 +7,7 @@ credit: ours
 ---
 # Cycle 11 oral card (days 58 to 62)
 
-The day's rotating six read the card to you, two minutes each. Children read the words and say each vowel sound; you mark shown, shown with help, or not yet seen. Each day uses only patterns taught by then; a pattern that is new that day is modelled before any child's turn.
+The day's rotating six read the card to you, two minutes each. Children read the words and say each vowel sound; you mark shown, shown with help, or not yet seen. Each day uses only patterns taught by then; a pattern that is new that day is modeled before any child's turn.
 
 - **Day 58 (first two lines only).** Grade 1 words: shelf, class, cloth, lunch, thank, chest. Cycle 10 patterns: asked, played, lifted, planted, he'd, we'd.
 - **Day 59.** asked, we'd, zoo, food, suit, bruise. Sentence: Sue has a clue at the zoo.

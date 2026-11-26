@@ -161,10 +161,10 @@ class chooses its problem afresh and builds on grade 2's work only if it chooses
 
 | Row | Lean | Used here | Needed by | Bridge if ELA teaches it later |
 |---|---|---|---|---|
-| ss2-source-maker | RI.2.6 (the main purpose of a text) | Unit 1 | About week 3 | Asked of maps and captioned photographs first ("What is this map for?"), with the teacher modelling |
+| ss2-source-maker | RI.2.6 (the main purpose of a text) | Unit 1 | About week 3 | Asked of maps and captioned photographs first ("What is this map for?"), with the teacher modeling |
 | ss2-claim-sources | W.2.1 (opinion with reasons and linking words) | Unit 2 | About week 7 | Shared writing with a frame (claim, because, the map shows); independent writing once ELA has taught it |
 | ss2-two-accounts | RI.2.9 (compare two texts on the same topic) | Unit 5 | About week 19 | A two-column "both say, only one says" chart read together |
-| ss2-family-interviews | SL.2.3 (ask and answer questions about what a speaker says) | Unit 6 | About week 24 | The class practises on a staff member's visit before the take-home interview |
+| ss2-family-interviews | SL.2.3 (ask and answer questions about what a speaker says) | Unit 6 | About week 24 | The class practices on a staff member's visit before the take-home interview |
 | ss2-country-report | W.2.7 (shared research and writing projects) | Unit 7 | About week 28 | Late in the year; the report can run as shared research in small groups if ELA has not yet done one |
 
 ### Mathematics, grade 1 (the year before)
@@ -179,7 +179,7 @@ Mathematics, grade 2: no grade 2 row leans on same-year math.
 
 | Row | Lean | Used here | Needed by | Bridge if science teaches it later |
 |---|---|---|---|---|
-| ss2-continents-features | 2-ESS2-2 (model shapes and kinds of land and water) | Unit 2 | About week 6 | Social studies names and places the features; science's modelling deepens them when it comes |
+| ss2-continents-features | 2-ESS2-2 (model shapes and kinds of land and water) | Unit 2 | About week 6 | Social studies names and places the features; science's modeling deepens them when it comes |
 
 ### Science, kindergarten (earlier years)
 

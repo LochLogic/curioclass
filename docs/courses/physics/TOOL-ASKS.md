@@ -28,9 +28,9 @@ Unit 5 requests a light tool, spec only. Nothing is built or presumed available.
 
 Provide two separate configurations: a current-limited battery circuit beside a compass, and a closed coil with a moving magnet and sensitive current meter. Keep the battery out of the induction circuit. Never connect the sensitive induction meter across a cell; the compass detects the powered circuit's magnetic effect. Students choose one changed variable, hold others fixed, predict, select measurements and repeat before revising a plan. Record their decisions and individual actions. Include disconnected, stationary, reversed-connection, reversed-motion and different-speed comparisons with fixed geometry when appropriate. Show signed current with units, instrument resolution and a zero check. Do not imply that a zero current means no magnetic field. Use a current meter rather than assuming a single coil lights a lamp.
 
-Distinguish model-generated values, labelled "invented for practice", from measured selectable records carrying apparatus, method, date, units, resolution and provenance. Real records must be collected and checked before use. Keep the unseen assessment and exit cases separate from practice. Do not display automatic prose judgments; open causal explanations belong to the teacher.
+Distinguish model-generated values, labeled "invented for practice", from measured selectable records carrying apparatus, method, date, units, resolution and provenance. Real records must be collected and checked before use. Keep the unseen assessment and exit cases separate from practice. Do not display automatic prose judgments; open causal explanations belong to the teacher.
 
-Run offline without accounts. All controls must work by keyboard and show their state in text without relying on colour. Printed branching records and a shared display must preserve the same student decisions, repetitions and plan revisions. This is partial coverage of HS-PS2-5: neither the simulation nor the recorded-data path establishes physical conduct. Retain the dated individual physical investigation record when suitable equipment is available.
+Run offline without accounts. All controls must work by keyboard and show their state in text without relying on color. Printed branching records and a shared display must preserve the same student decisions, repetitions and plan revisions. This is partial coverage of HS-PS2-5: neither the simulation nor the recorded-data path establishes physical conduct. Retain the dated individual physical investigation record when suitable equipment is available.
 
 ## Orbit step model tool
 
@@ -45,7 +45,7 @@ Unit 3 (s03.md field 8). Light, spec only, does not exist. The supplied orbit sp
 Unit 7 (s07.md field 8). Light, spec only, does not exist. Days 96 and 99: five-minute demonstrations that show why aperture patterns and frequency-dependent absorption differ. The drawn wave-and-photon model does the job on paper.
 
 1. Offline keyboard controls and paper outputs identical to the screen (s07.md field 8).
-2. Programmed results are labelled as model output, never as experimental proof.
+2. Programmed results are labeled as model output, never as experimental proof.
 3. No exposure thresholds, photon-energy calculations or diagnosis (s07.md field 2).
 
 ## Star life tool

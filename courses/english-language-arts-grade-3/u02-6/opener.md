@@ -17,7 +17,7 @@ Each day is 90 minutes: reading and research, writing, a skills block and a five
 
 ## The ideas, at an adult's level
 
-- A note is brief and labelled: a short phrase and its source, not a copied sentence.
+- A note is brief and labeled: a short phrase and its source, not a copied sentence.
 - A heading or index word is chosen from the question.
 - A word meaning comes from the clue in its own sentence.
 

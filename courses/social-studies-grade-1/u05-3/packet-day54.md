@@ -11,21 +11,21 @@ Keep this packet closed and out of sight until day 54. None of it is taught befo
 
 ## Map A: the world and two globe views
 
-**Picture:** a flat world map with the seven continents in gray and the five oceans in blue, each with its name printed: Asia, Africa, North America, South America, Antarctica, Europe, Australia; Pacific, Atlantic, Indian, Southern, Arctic. Beside it, two round globe views of the Earth. One globe view shows the land with a dot labelled Washington, D.C. A key box: gray is land, blue is water, a dot is a city. Drawn fresh for this packet.
+**Picture:** a flat world map with the seven continents in gray and the five oceans in blue, each with its name printed: Asia, Africa, North America, South America, Antarctica, Europe, Australia; Pacific, Atlantic, Indian, Southern, Arctic. Beside it, two round globe views of the Earth. One globe view shows the land with a dot labeled Washington, D.C. A key box: gray is land, blue is water, a dot is a city. Drawn fresh for this packet.
 
-**Items on map A:** item 2 (circle a continent and an ocean; say what each is; circle the labelled city on the globe views; say that a globe can show places where people live).
+**Items on map A:** item 2 (circle a continent and an ocean; say what each is; circle the labeled city on the globe views; say that a globe can show places where people live).
 
 ## Map B: the United States (real)
 
-**Picture:** an outline of the United States, a real map. A star on Washington, D.C., labelled. A star on the class's own state capital, labelled and checked on the state's government page. A dot on Los Angeles, labelled (if the class lives in California, use Chicago instead). The reader says aloud: "Los Angeles is one of the biggest cities in the country." A dot on one other city in the class's state, labelled and checked. A key: a star is a capital, a dot is another city. A direction indicator. The labels are read aloud; no child reads them.
+**Picture:** an outline of the United States, a real map. A star on Washington, D.C., labeled. A star on the class's own state capital, labeled and checked on the state's government page. A dot on Los Angeles, labeled (if the class lives in California, use Chicago instead). The reader says aloud: "Los Angeles is one of the biggest cities in the country." A dot on one other city in the class's state, labeled and checked. A key: a star is a capital, a dot is another city. A direction indicator. The labels are read aloud; no child reads them.
 
 **Items on map B:** item 3 (circle Los Angeles, Washington, D.C. and our state capital; say how the capital was told from the other places); item 4 (circle the stars that are capitals; say why the starred places are capitals; say what government is centered in Washington, D.C.; say what government is centered in our state capital; say whether the biggest city is always the capital).
 
 ## Map C: the Reed region (invented)
 
-**Picture:** a region from above. A key box: a blue band with small arrows is a river, a blue oval is a lake, brown rings are a mountain, grouped squares are a town, stripes are fields, a single line is a road, a double line is a bridge. A direction indicator labelled N with its arrow pointing to the right edge of the page.
+**Picture:** a region from above. A key box: a blue band with small arrows is a river, a blue oval is a lake, brown rings are a mountain, grouped squares are a town, stripes are fields, a single line is a road, a double line is a bridge. A direction indicator labeled N with its arrow pointing to the right edge of the page.
 
-On the map, in page terms: brown rings for a mountain at the top left. A river from the foot of the mountain runs right, then turns down the page along the middle, and at the bottom turns left into a blue oval lake in the lower left. The town of Reed, grouped squares labelled Reed, sits in the left half level with the middle of the river, directly below the mountain and directly above the lake. A single line, the road, leaves Reed to the right and crosses the river on a double line, the bridge, and ends in a block of stripes, the fields, on the right side of the page. The only printed name on the map is Reed.
+On the map, in page terms: brown rings for a mountain at the top left. A river from the foot of the mountain runs right, then turns down the page along the middle, and at the bottom turns left into a blue oval lake in the lower left. The town of Reed, grouped squares labeled Reed, sits in the left half level with the middle of the river, directly below the mountain and directly above the lake. A single line, the road, leaves Reed to the right and crosses the river on a double line, the bridge, and ends in a block of stripes, the fields, on the right side of the page. The only printed name on the map is Reed.
 
 **Record for map C (invented, read aloud):** "People brought food along the road and across this bridge to Reed's market. More shops opened there."
 

@@ -26,7 +26,7 @@ No print. The teacher says the parts aloud and the child answers.
 - Blend: "s ... un". Key: sun. Not yet: leaves s and un apart (AF).
 - Split: "fish". Key: f and ish. Not yet: f, i and sh (AG).
 
-These words are fresh and never taught or practised. Keep them out of the other days.
+These words are fresh and never taught or practiced. Keep them out of the other days.
 
 ## Day 34 retry (unscored)
 

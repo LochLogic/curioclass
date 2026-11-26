@@ -26,7 +26,7 @@ Every student may pass in public talk. Hear rotating six and mark who; individua
 
 ## Safety and fallback
 
-Powders stay in labelled cups. Ask about food/powder allergies privately before use. Goggles stay on through cleanup; no tasting, sniffing or cooking. Provide trays, soap, towels, approved wipes and two sinks. Thirty 40-second washes across two sinks need ten minutes; collection/goggle care needs two more. Without this provision, teacher handles samples and children use invented records, without firsthand credit.
+Powders stay in labeled cups. Ask about food/powder allergies privately before use. Goggles stay on through cleanup; no tasting, sniffing or cooking. Provide trays, soap, towels, approved wipes and two sinks. Thirty 40-second washes across two sinks need ten minutes; collection/goggle care needs two more. Without this provision, teacher handles samples and children use invented records, without firsthand credit.
 
 ## Common errors and response
 

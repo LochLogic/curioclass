@@ -37,4 +37,4 @@ Balls are large and soft, too big to mouth. The teacher alone cuts card and tape
 
 ## Supplies
 
-Room problem cards, target cards, the lane layout, lane cards, mats, caption strips, exit cards, balls, card ramps on low books and card bumpers. A room with nothing uses labelled pictures; children mark them, which cannot show children rolling, so say so.
+Room problem cards, target cards, the lane layout, lane cards, mats, caption strips, exit cards, balls, card ramps on low books and card bumpers. A room with nothing uses labeled pictures; children mark them, which cannot show children rolling, so say so.

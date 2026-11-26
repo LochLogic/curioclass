@@ -35,4 +35,4 @@ Draw the coast on the board and use chalk arrows. Hold two pages to a window for
 - The plan names Smith's 1616 map and Smith's 1614 voyage. Neither was read (the map has no image page found; the voyage is not on a page read). Day 94 teaches Verrazzano and Hudson instead, and day 96 uses invented map pairs until a map page is read.
 - Spell it Verrazzano on the cards (the plan spells it Verrazano). Cabot is only on the day 94 exit, and Cabot's exact landfall is cut (disputed).
 - Smith's teaching lines are exact in sources.csv U5N. Do not use the "thirtie habitations" line, which is the exit line.
-- No Native nation is made up anywhere. Invented towns are labelled made up.
+- No Native nation is made up anywhere. Invented towns are labeled made up.

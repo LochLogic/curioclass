@@ -12,7 +12,7 @@ Teacher only. Print in Before class. Never project this piece or put it on stude
 
 ## s04-X57-model (day 57)
 
-Shape: Produce a tentative blockage model labelled with two observations.
+Shape: Produce a tentative blockage model labeled with two observations.
 
 Answer: The stream ends at rubble; rubble spreads outward. Maybe fallen material blocked it.
 

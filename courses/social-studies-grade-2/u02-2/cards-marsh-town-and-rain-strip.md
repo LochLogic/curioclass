@@ -16,7 +16,7 @@ Every Marsh Town and sorting card prints "invented for practice" in small letter
 **Report 2:** Thursday. Bright sun and a warm breeze.
 **Many-year card:** Marsh Town. Over many years, most springs have many rainy days and winters are mild.
 
-## Six labelled cards (day 21 teaching; new wrong labels on day 22's warm-up)
+## Six labeled cards (day 21 teaching; new wrong labels on day 22's warm-up)
 
 Each card carries Pip's label, W for today's weather or C for what usually happens over many years. Children say agree or fix, with a reason.
 1. Thick snow fell this morning. Pip: C. (right: W, one day)

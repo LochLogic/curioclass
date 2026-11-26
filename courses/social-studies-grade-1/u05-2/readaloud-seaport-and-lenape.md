@@ -25,7 +25,7 @@ Read these aloud; no child reads them. Before each, say what the source is, who 
 
 *Say the name:* Manahatta, Man-uh-HAT-uh. After the sentence "Many were forced to leave," say: "That was not fair." Stop for a breath, then ask the question.
 
-*Picture cards to match:* the word "Manahatta" on a card; a map of arrows leading west labelled "forced to move"; three name cards, one for each nation, each labelled with the nation's own name.
+*Picture cards to match:* the word "Manahatta" on a card; a map of arrows leading west labeled "forced to move"; three name cards, one for each nation, each labeled with the nation's own name.
 
 ## If a child asks, "Are the Lenape gone?"
 

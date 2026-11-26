@@ -63,7 +63,7 @@ Picture: Dot on the log, tail wagging; Tom smiling on the bank.
 
 ---
 
-New words and the pattern each one practises:
+New words and the pattern each one practices:
 
 - log, dog, hop, top, got, Tom, Dot, bob, nod: short o, one consonant each side
 - on: short o, a vowel-consonant word

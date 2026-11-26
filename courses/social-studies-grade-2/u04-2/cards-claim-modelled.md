@@ -9,7 +9,7 @@ credit: ours
 
 Invented for practice and model. Plain black line drawing on white. The frame: "I think ___ because ___. The ___ shows ___, made by ___ or unknown."
 
-## Modelled by the teacher: seed purchase
+## Modeled by the teacher: seed purchase
 
 **Picture:** A Kelda farm and a Tarn seed seller across a border, a bag of seed, a coin purse. **Card:** "Seed Card. Made by Curio Class, 2026, invented for practice. The farm's own seed did not grow last year."
 **Teacher says and writes:** "I think the farm buys seed from Tarn because its own seed did not grow. The Seed Card shows the seed that did not grow, made by Curio Class."

@@ -7,7 +7,7 @@ credit: ours; coordinates from city pages
 ---
 # Location chart (day 4)
 
-A table for pairs with four columns: place, continent, north or south of the equator, east or west of the prime meridian. Teacher key, from the coordinates on each city's page (sources 4A to 4G, read 2026-11-21). The four modelled cities come first.
+A table for pairs with four columns: place, continent, north or south of the equator, east or west of the prime meridian. Teacher key, from the coordinates on each city's page (sources 4A to 4G, read 2026-11-21). The four modeled cities come first.
 
 | Place | Continent | North or south | East or west |
 |---|---|---|---|

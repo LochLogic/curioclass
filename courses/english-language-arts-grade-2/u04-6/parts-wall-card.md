@@ -7,7 +7,7 @@ credit: ours
 ---
 # Parts wall card (five parts of an opinion)
 
-One large card for the wall, five boxes in a row, each with a colour and a small word:
+One large card for the wall, five boxes in a row, each with a color and a small word:
 
 1. Topic (blue): what the piece is about.
 2. Opinion (red): what we think should happen.

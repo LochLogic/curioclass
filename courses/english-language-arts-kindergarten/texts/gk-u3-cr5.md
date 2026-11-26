@@ -58,7 +58,7 @@ Picture: Meg smiling, the hen in her arms.
 
 ---
 
-New words and the pattern each one practises:
+New words and the pattern each one practices:
 
 - Meg, hen, met, set, fed, wet, pet, yes: short e, one consonant each side
 - be, by: mapped words taught this cycle (day 107)

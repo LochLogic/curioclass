@@ -39,4 +39,4 @@ Ball, hand pump and one needle, tray, gram-reading kitchen scale, eyewear, large
 
 ## A room with nothing
 
-Use the constructed records N1 to N4 (records-n1-n4). They are invented for practice, not observations, and are labelled so every time.
+Use the constructed records N1 to N4 (records-n1-n4). They are invented for practice, not observations, and are labeled so every time.

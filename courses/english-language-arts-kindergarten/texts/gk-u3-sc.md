@@ -6,7 +6,7 @@
 - kind: literary (invented practice sentences)
 - form: six small sets of decodable sentence cards, one sentence a card, no pictures needed; cycles 13 to 16 each end with one cold check card
 - word count: see the count under each set
-- use: partner reading in the foundations rotation (RF.K.3b, RF.K.3d, RF.K.4); the check card is read once, cold, by one child at the teacher table on the cycle check day (days 90, 95, 100, 106); never practised before
+- use: partner reading in the foundations rotation (RF.K.3b, RF.K.3d, RF.K.4); the check card is read once, cold, by one child at the teacher table on the cycle check day (days 90, 95, 100, 106); never practiced before
 - read on: cycle 13 days 85 to 90; cycle 14 days 91 to 95; cycle 15 days 96 to 100; cycle 16 days 102 to 106; cycle 17 days 107 to 111; cycle 18 days 112 to 118 (not on an F1 date)
 - decodable through: each set is decodable through its own cycle only (a card of cycle 14 uses short a and i only)
 - kept out on purpose: pen, pin, bed, sun and the F1 passage words (Ben, hut, pot, mud, red, cup, hid); also the exit and card nouns net, bug, Jed, Sam, bag; and the oral probe words cat, hat, map, rabbit
@@ -67,4 +67,4 @@ Check card (cold, keep covered until the check day): Is that box for Ron or Josh
 
 Total: 178 words.
 
-Teacher notes: the digraph words (chat, that, chap, bash-type words, Josh, Beth, Chad) practise sh, th and ch from cycle 12. Names are decodable on purpose. High-frequency words are the mapped words listed under the reader of the same cycle. A card is a sentence to read for meaning: after reading, the child says who did what.
+Teacher notes: the digraph words (chat, that, chap, bash-type words, Josh, Beth, Chad) practice sh, th and ch from cycle 12. Names are decodable on purpose. High-frequency words are the mapped words listed under the reader of the same cycle. A card is a sentence to read for meaning: after reading, the child says who did what.

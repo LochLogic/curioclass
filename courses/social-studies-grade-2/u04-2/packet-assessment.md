@@ -13,7 +13,7 @@ Read the whole packet aloud once, neutrally, and no more. One copy of each card 
 
 Maps are redrawn by Curio Class in 2026 from Natural Earth map data (public domain). Production draws no border that anyone disputes as settled. The art is described here and has not been drawn or looked at yet (planned only, not yet written).
 **Map A, physical:** Part of southern Africa. The Atlantic Ocean in blue. A large area of dots and tan is the Kalahari Desert. Key: dots on tan stand for desert, blue for water, green for grassland. No country lines.
-**Map B, political:** The same part of southern Africa. Botswana, Namibia and South Africa are labelled. A thick black line is a border. The shades differ from map A's. Key: a thick line is a border, a shade is one country.
+**Map B, political:** The same part of southern Africa. Botswana, Namibia and South Africa are labeled. A thick black line is a border. The shades differ from map A's. Key: a thick line is a border, a shade is one country.
 
 ## Card 2: Country Cards C
 

@@ -150,7 +150,7 @@ Focus is counted once as minutes on major-cluster codes divided by instructional
 |---|---:|---:|---|
 | Units 1 to 7 | 5,450 | 5,365 | 91 teaching days, less day 1's ten-minute readiness task; reserve 70 minutes for expressions, five for the brace return and ten for the square-unit reminder |
 | Unit 8 | 420 | 240 | Days 110 and 111: 120 powers minutes; days 112 to 115: 30 powers minutes each, their remaining time and day 116 to conversion |
-| Unit 9 | 840 | 800 | Reserve 40 minutes across days 125 and 126 for plot construction; the remaining minutes practise fractions and scaling |
+| Unit 9 | 840 | 800 | Reserve 40 minutes across days 125 and 126 for plot construction; the remaining minutes practice fractions and scaling |
 | Unit 10 | 780 | 0 | Conservatively credit no major minutes, including multiplication warm-ups |
 | Course-level review | 420 | 420 | Seven taught-content review days on whole-number operations, volume and fractions |
 | Total | 7,910 | 6,825 | 86.3 percent; preserve these allocations in unit plans |

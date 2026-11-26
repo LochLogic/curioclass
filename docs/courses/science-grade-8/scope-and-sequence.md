@@ -236,7 +236,7 @@ This matrix checks the [middle-school practice elements](https://www.nextgenscie
 | G4a | Nested systems | 7 d63 | 112; 113 | Cell parts interact within cells within an organism |
 | G4b | Flows | 7 d93 | 57 | Mark input, process, output and energy path across speaker boundary |
 | G4c | Model limits | 6 d50 | 115; 145 | State limits of gene and paper-feeding representations |
-| G5a | Atoms conserved | 7 d15 to 21 | 114 | Tally labelled atoms in a molecule-card rearrangement, no protein-synthesis mechanism |
+| G5a | Atoms conserved | 7 d15 to 21 | 114 | Tally labeled atoms in a molecule-card rearrangement, no protein-synthesis mechanism |
 | G5b | Energy drives matter | 6 d73 | 61 | Trace energy transfer to coil motion |
 | G5c | Energy forms | 7 d28 | 65; 72 | Compare field, motion and warming accounts |
 | G5d | Energy tracking | 7 d28 | 15; 73 | Before/after system account with no missing kinetic-energy change |

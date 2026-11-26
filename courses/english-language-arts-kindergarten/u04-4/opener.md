@@ -17,7 +17,7 @@ Each day is 120 minutes in two blocks of 60. The topic block holds the reading, 
 
 ## The ideas, at an adult's level
 
-- **An opinion names a choice and a preference.** A reason the writer gave is labelled "the writer says"; a child's own reason is said as their own.
+- **An opinion names a choice and a preference.** A reason the writer gave is labeled "the writer says"; a child's own reason is said as their own.
 - **A real person and a real place are named plainly.** The account says what women did together: they grew seedlings in nurseries and planted them side by side.
 - **A question asks about a detail or what a word means.**
 - **An action and its result are joined in the right order.** The seedlings are grown, then planted.

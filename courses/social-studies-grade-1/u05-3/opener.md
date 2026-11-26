@@ -35,7 +35,7 @@ A wrong answer is voiced by Pip the puppet or shown on a teacher card, never by 
 
 ## Care
 
-The park photographs show a documented park; no child's home, street or neighborhood is mapped. If the local place has no water, use the supplied set of another small park with a pond, labelled as another place. A child may point instead of write; an adult scribes. Distinguish limited English from a wrong location.
+The park photographs show a documented park; no child's home, street or neighborhood is mapped. If the local place has no water, use the supplied set of another small park with a pond, labeled as another place. A child may point instead of write; an adult scribes. Distinguish limited English from a wrong location.
 
 ## Supplies for the section
 

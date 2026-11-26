@@ -106,7 +106,7 @@ def audit(course):
     for p in plans(course):
         text = open(p, encoding='utf-8').read()
         unit = int(os.path.basename(p)[1:3])
-        rows = {int(m.group(1)): m.group(0) for m in re.finditer(r'^\| (\d+) \| [^|]+ \| (?:produce|recognise) \|.*$', text, re.M)}
+        rows = {int(m.group(1)): m.group(0) for m in re.finditer(r'^\| (\d+) \| [^|]+ \| (?:produce|recogni[sz]e) \|.*$', text, re.M)}
         out.append('## plan s%02d' % unit)
         for r in teach_days(course, unit):
             d = int(r['day'])

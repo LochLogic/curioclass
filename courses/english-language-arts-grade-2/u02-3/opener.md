@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Day 43 sets facts beside imagination. Children read the true account of Mary Anning, chart what it says and what a reader can imagine, and meet an invented reader whose thoughts are labelled as made up. They learn that no source says what Mary felt. Day 44 is a fluency day: children read a short passage and a four-line poem, *Look Again*, with pauses at full stops and a rising voice for a question. Day 45 turns to writing: the teacher models one event and its closing from a picture card, and each child writes a time word and an action, a thought, a feeling and a closing, and checks them against a five-box card.
+Day 43 sets facts beside imagination. Children read the true account of Mary Anning, chart what it says and what a reader can imagine, and meet an invented reader whose thoughts are labeled as made up. They learn that no source says what Mary felt. Day 44 is a fluency day: children read a short passage and a four-line poem, *Look Again*, with pauses at full stops and a rising voice for a question. Day 45 turns to writing: the teacher models one event and its closing from a picture card, and each child writes a time word and an action, a thought, a feeling and a closing, and checks them against a five-box card.
 
 ## How the days run
 

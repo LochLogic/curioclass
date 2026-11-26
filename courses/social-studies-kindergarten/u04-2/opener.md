@@ -37,4 +37,4 @@ Hand-drawn then and now pairs, a drawn two-column chart, and the teacher's own s
 
 ## Exit tickets
 
-Every exit is a new case, labelled invented for practice or credited to its record, and never used in teaching. Every child marks a picture; the spoken part is heard from a rotating group of six each day.
+Every exit is a new case, labeled invented for practice or credited to its record, and never used in teaching. Every child marks a picture; the spoken part is heard from a rotating group of six each day.

@@ -11,7 +11,7 @@ One printed pair for each pair of children and one for the wall. Plain line draw
 
 ## Map A: physical
 
-**Picture:** The continent of Africa. Title: "Africa, land and water". The Atlantic Ocean and the Indian Ocean in blue. A wide tan area across the north, a green area in the middle and the south, small triangles for mountain ranges, a wavy blue line for the longest river. No country lines. Key: tan stands for desert, green for grassland and forest, a triangle for a mountain, a wavy line for a river, blue for water. The Sahara is labelled across the tan area. Compass rose in a corner.
+**Picture:** The continent of Africa. Title: "Africa, land and water". The Atlantic Ocean and the Indian Ocean in blue. A wide tan area across the north, a green area in the middle and the south, small triangles for mountain ranges, a wavy blue line for the longest river. No country lines. Key: tan stands for desert, green for grassland and forest, a triangle for a mountain, a wavy line for a river, blue for water. The Sahara is labeled across the tan area. Compass rose in a corner.
 **Caption, read aloud:** Africa is a continent. This map shows its land and water.
 
 ## Map B: political

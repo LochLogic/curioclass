@@ -30,4 +30,4 @@ Wants cards (made-up people), a fresh trade card, the savings ledger blank, cost
 
 Paper strips for the wants cards, a hand-drawn ledger on the board, coins from a jar, and the teacher reading each card aloud.
 
-No child reports on home, family money or a parent's job. Every amount is made up and is labelled so. No child is asked what they have or what they save.
+No child reports on home, family money or a parent's job. Every amount is made up and is labeled so. No child is asked what they have or what they save.

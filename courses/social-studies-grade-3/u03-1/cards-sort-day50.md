@@ -9,7 +9,7 @@ credit: ours
 
 Invented for practice. Print "invented for practice" on every card. Twelve picture cards of kinds of local business, one picture and one name on each. The teacher models four first with two hoops (goods, services) and marks who makes it and who uses it.
 
-## Modelled by the teacher
+## Modeled by the teacher
 
 A shoe shop. A window washer. A bus company. A bakery.
 

@@ -9,7 +9,7 @@ credit: ours
 
 Print one two-sided sheet for each child. Silent. Print "invented for practice" in small letters at the foot.
 
-Side 1, sheet 52A. Tale prompt: Write a tale of your own, in your own words, that explains why a frog has a bumpy back. Plan first, then write. Your tale needs a narrator, a situation, events in order with time words, one line of speech, a closing that follows the events, and one word chosen for its effect. Below the prompt, item 1 (s02-P52-1): a frog on a log, labelled "a hill", with room to write yes or no and why.
+Side 1, sheet 52A. Tale prompt: Write a tale of your own, in your own words, that explains why a frog has a bumpy back. Plan first, then write. Your tale needs a narrator, a situation, events in order with time words, one line of speech, a closing that follows the events, and one word chosen for its effect. Below the prompt, item 1 (s02-P52-1): a frog on a log, labeled "a hill", with room to write yes or no and why.
 
 Side 2, sheet 52B, in the folder:
 

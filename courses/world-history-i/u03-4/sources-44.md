@@ -33,7 +33,7 @@ option d sheet: read it beside this.
 
 Gloss: *abhorrence*, hatred; *assiduous*, careful and steady; *congregations*, gatherings for prayer. In the same
 chapter Ibn Battuta also condemns customs he thought wrong. His praise and his blame both measure Mali by his own
-training; Mali's Muslims, scholars among them, practised Islam in their own way beside Mande customs.
+training; Mali's Muslims, scholars among them, practiced Islam in their own way beside Mande customs.
 
 **Card: from Chinggis to Khubilai, and the Silk Roads (ours).** Chinggis Khan, proclaimed in 1206, united the
 steppe peoples and conquered by the sword; his heirs took north China (the Jin fell in 1234) and Baghdad (1258).

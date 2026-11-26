@@ -13,7 +13,7 @@ library.
 
 | Shared kind | In library | What it looks like |
 |---|---|---|
-| Understanding | Show-me day | A skill modelled on the host task: the teacher thinks aloud through a search, a lateral check or a citation |
+| Understanding | Show-me day | A skill modeled on the host task: the teacher thinks aloud through a search, a lateral check or a citation |
 | Fluency | Practice day | Short, varied tries of the skill with feedback: three claims checked laterally, five sources cited |
 | Application | Inquiry day | Students run part of the cycle on the host task themselves: question, search, judge, note, make, share |
 | Check | Assessment day | A search, judgement or citation actually done on a new case, scored on a short rubric, plus a few items |
@@ -124,7 +124,7 @@ Each read is a fresh-agent read (docs/pipeline/briefs/sensitivity-read.md, kind 
    class. Read: part of the read of every unit that teaches honest use, in every band.
 5. **Whose voices a source set shows** (C12): each unit records whose work and voices appear. Read: the same reads.
 6. **Copyright and fair use** as general guidance, never legal advice; no claim that a use is lawful. Read: kind
-   `rights`, on the 6 to 12 copyright, licence and fair use days.
+   `rights`, on the 6 to 12 copyright, license and fair use days.
 7. **Machine-made text and images as a source:** no claim that any tool is reliable or unreliable; the check is the
    same as for any source (who made it, what it cites). Read: the 6 to 12 plans.
 8. **Asking people: interviews and surveys.** Questions stay on a neutral class topic and are checked by the teacher

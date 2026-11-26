@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Children read a model reading contract, then write their own: a topic sentence, two grouped explanations with facts, a closing sentence and a question. They choose a strategy for their own reading, practise a passage from one of the three stories, and record it on days 34 and 35. They learn the -ed and -ing endings with silent e and with doubled letters, and the day 30 word record is completed here.
+Children read a model reading contract, then write their own: a topic sentence, two grouped explanations with facts, a closing sentence and a question. They choose a strategy for their own reading, practice a passage from one of the three stories, and record it on days 34 and 35. They learn the -ed and -ing endings with silent e and with doubled letters, and the day 30 word record is completed here.
 
 ## How the days run
 

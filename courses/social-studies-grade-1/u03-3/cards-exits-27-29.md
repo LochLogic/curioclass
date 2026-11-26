@@ -11,7 +11,7 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 ## Day 27 exit card: the broken bench
 
-**Picture:** Three pictures out of order, labelled with circles instead of numbers. One: a repair group stands around a bench with a broken leg, one member pointing. Two: the group looks at a drawn plan on a paper. Three: the same bench, whole, and a child sitting on it.
+**Picture:** Three pictures out of order, labeled with circles instead of numbers. One: a repair group stands around a bench with a broken leg, one member pointing. Two: the group looks at a drawn plan on a paper. Three: the same bench, whole, and a child sitting on it.
 
 **Mark:** Place the three pictures in order. **Spoken:** "Tell it in order: what did they do first, then, and so what happened?"
 
