@@ -694,7 +694,7 @@ science-grade-4,u02-2,21,investigation,sunlight retry using retained matched-pat
 science-grade-4,u02-2,22,investigation,individual single-gap folded-foil switch tests,Correct installation only; complete remaining wiring turns.,written,
 science-grade-4,u02-2,22,model,handle motion to generator to current to light,"First teaching during final five minutes of Compare states, retained during retries.",written,
 science-grade-4,u02-2,22,routine,return and repair,review of science-grade-4 u02-1 day 17,written,
-science-grade-4,u02-2,22,investigation,sunlight retry using retained matched-patch temperature records,review of science-grade-4 u02-1 day 18; conditional.,written,
+science-grade-4,u02-2,22,investigation,sunlight retry using retained matched-patch temperature records,"Inactive earlier-draft entry. Day 22 teaches no sunlight retry; final retry is day 23, preserving generator teaching.",written,
 science-grade-4,u02-2,23,term,generator: a device converting motion energy to electrical energy,review of science-grade-4 u02-2 day 22,written,
 science-grade-4,u02-2,23,model,familiar crank model with motion input and a closed current path,review of science-grade-4 u02-1 day 19; extends with science-grade-4 u02-2 day 22 conversion.,written,
 science-grade-4,u02-2,23,routine,"rotating six heard, record sheet names who",review of science-grade-3 u01-1 day 1,written,
@@ -1394,11 +1394,11 @@ science-grade-4,u02-1,,case,"E17 speaker and sound recorder, joining rod versus 
 science-grade-4,u02-1,,case,"E18 pale sunlit patch 21 to 26, dark shaded patch 21 to 22, screen without temperature","Plan-fix 2026-11-25: Corrected controlled exit: identical pale patches both start 21 degrees Celsius; sunlit finishes 26, shaded finishes 22. Screen has observed transmission but unknown temperature. Invented for practice; reserve three-path evidence model.",planned,
 science-grade-4,u02-1,,case,E19 warmer clip and cooler lid with reversed arrow and untouched comparison,"Invented for practice; exit only, revise supplied arrow.",planned,
 science-grade-4,u02-2,,term,"switch on, switch off","review of science-grade-3 u02-2 day 24; section-plan revision, day left blank; written source row verified.",planned,no
-science-grade-4,u02-2,,term,circuit: a complete conducting loop,"Explicit teaching day 20; generator first taught day 22, reviewed day 23.",planned,yes
-science-grade-4,u02-2,,term,current: electric charge moving along a path,"Explicit teaching day 20; generator first taught day 22, reviewed day 23.",planned,yes
-science-grade-4,u02-2,,term,terminal: a connection point,"Explicit teaching day 20; generator first taught day 22, reviewed day 23.",planned,yes
-science-grade-4,u02-2,,term,stored energy: energy kept for later transfer,"Explicit teaching day 20; generator first taught day 22, reviewed day 23.",planned,yes
-science-grade-4,u02-2,,term,generator: a device converting motion energy to electrical energy,"Explicit teaching day 20; generator first taught day 22, reviewed day 23.",planned,yes
+science-grade-4,u02-2,20,term,circuit: a complete conducting loop,"Explicit teaching day 20; generator first taught day 22, reviewed day 23.; Day 20: definition read and used during safe cell-lamp demonstration.",written,yes
+science-grade-4,u02-2,20,term,current: electric charge moving along a path,"Explicit teaching day 20; generator first taught day 22, reviewed day 23.; Day 20: definition read and used during safe cell-lamp demonstration.",written,yes
+science-grade-4,u02-2,20,term,terminal: a connection point,"Explicit teaching day 20; generator first taught day 22, reviewed day 23.; Day 20: definition read and used during safe cell-lamp demonstration.",written,yes
+science-grade-4,u02-2,20,term,stored energy: energy kept for later transfer,"Explicit teaching day 20; generator first taught day 22, reviewed day 23.; Day 20: definition read and used during safe cell-lamp demonstration.",written,yes
+science-grade-4,u02-2,22,term,generator: a device converting motion energy to electrical energy,"Explicit teaching day 20; generator first taught day 22, reviewed day 23.; Children read and use the definition before the handle-input worked case.",written,yes
 science-grade-4,u02-2,,model,circuit lines show the loop; energy arrows run from the battery to useful outputs,Section-plan revision; introduced within this section.,planned,
 science-grade-4,u02-2,,investigation,"individual compatible cell/load wiring, buzzer interruption and single-gap foil-switch tests",Six parallel sets or ten 90-second personal turns daily on one set; initialed turn log; apparatus failures retained.,planned,
 science-grade-4,u02-2,,routine,"initialed personal wiring log distinguishes unaided, assisted and missing turns",Section-plan revision; introduced within this section.,planned,
@@ -1697,3 +1697,8 @@ science-grade-4,u02-1,18,term,opaque: blocks light,"Children read, say and use t
 science-grade-4,u02-1,18,investigation,"separate card, translucent sheet and mirror flashlight comparisons",Table records for separate materials; no three-path practice drawing or combined warming diagram.,written,
 science-grade-4,u02-1,18,case,E18 reflected sunlight onto a tile with blocked and partly transmitted paths,"Invented paper exit only; matched warming record, screened temperature unknown. Do not reproduce with sunlight.",written,
 science-grade-4,u02-1,19,investigation,palm-warm one spoon and compare an untouched spoon,Adult uses stable whole-degree contact readings; six thirty-second observers. Keep unclear and invented H distinct.,written,
+science-grade-4,u02-2,20,routine,staggered thirty-second individual wiring checks during existing turns,Thirty checks total fifteen minutes; absent turns stay not yet seen.,written,
+science-grade-4,u02-2,21,routine,later individual lamp-wiring performance within one-set buzzer turns,review of science-grade-4 u02-2 day 20; ten ninety-second turns plus five setup/reset minutes fit twenty minutes; notes returned day 22.,written,
+science-grade-4,u02-2,22,routine,later individual lamp-wiring performance within one-set switch turns,review of science-grade-4 u02-2 day 20; ten ninety-second turns plus five setup/reset minutes fit twenty minutes; notes returned day 23.,written,
+science-grade-4,u02-2,23,text,Separate transfer cards,Four earlier observations printed with neutral card letters; reviewed separately before familiar-model evidence labeling.,written,
+science-grade-4,u02-2,23,text,Complete circuit comparison cards,"review of science-grade-4 u02-2 day 21; four minutes tracing correct layouts, with unjudged partner comparison.",written,

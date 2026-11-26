@@ -144,7 +144,6 @@ s02-P21-repair,One terminal connection completes the path.,,,B,Cold-solved diagn
 s02-P21-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
 s02-P21-1,One connection powers the buzzer.,,,B,Cold-solved diagnostic; unrelated work gets a conference.
 s02-P22-repair,One connection powers the buzzer.,,,B,Cold-solved diagnostic; blank or unrelated work gets a conference.
-s02-P22-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
 s02-K22-1,The generator creates energy without input.,,,A,Cold-solved diagnostic; blank or unrelated work gets a conference.
 s02-P22-1,The open switch completes this single-gap loop.,,,x,Cold-solved diagnostic; unrelated work gets a conference.
 s02-P23-repair,An open gap completes this loop.,,,x,Cold-solved diagnostic; blank or unrelated work gets a conference.
@@ -741,3 +740,4 @@ s02-E2b,My preferred change needs no retest.,,,D,Preference does not replace fai
 s02-X18,"The screen makes the tile warmer for certain, without a temperature record.",,,H,Some transmitted light does not supply a missing warming observation; retain unknown warming.
 s02-X34-graph,Wind has four shares.,,,x,The invented record gives wind two shares. Confer on matching each bar to its label and count; do not diagnose a science misconception from this graph error.
 s02-P16-report,The report is true because someone said so.,,,x,An unsupported report is not an observation or a testable question.
+s02-P22-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
