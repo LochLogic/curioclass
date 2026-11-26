@@ -108,3 +108,96 @@ The requested gate was attempted before any report write. The literal command cr
 That gate completed with exit 1: 12 gates ran, 32 failing lines, all classified `lint-science-grade-4: style UK spelling`. Two gates crashed: `lesson-science-grade-4` and `plan-science-grade-4`, both with `ModuleNotFoundError: No module named 'markdown'`. It printed `FAIL baseline not stored: these gates crashed (lesson-science-grade-4.txt, plan-science-grade-4.txt)`. No baseline was stored and no new-against-baseline lines could be reported. This is an incomplete gate, not a passed gate and not exit 2. No dependency installation or source repair was attempted. The report does not alter a course plan, so repeating the known-crashing gate after the report would not resolve this limitation. The lead must rerun with the project environment before accepting the job.
 
 Only this report was authored. Gate outputs are the command's own local output. No helper scripts were created and no stray empty folder was observed. All exact content fixes above are recommendations for the lead, not edits made by this report-only job. No scope, purchase or audience decision was made.
+
+
+## Fixes applied (2026-11-25)
+
+Fix job 010, executed 2026-11-26. Original findings above are retained as the read record. Counts are by original finding, not by changed item. "Partly" means the section is corrected or its sound existing correction is retained, while an earlier-stage owner still must correct the source. No unit plan, kit, day file or plan-data table was edited. Ledger note corrections used the locked supported command; row stages were not promoted.
+
+1. **partly.** E18 now uses identical pale patches, equal 21-degree starts and 26/22 finishes; screen temperature remains unknown. Ledger notes corrected. Unit-plan source s02:211 remains for lead.
+2. **applied.** Day 68 now runs six precut stacks in parallel: five minutes bend, five restore/offset, five record. Adult cuts before class; washing route retained.
+3. **applied.** Trial is review of science-grade-4 u01-1 day 2, retrieved before repeats. Corrected its planned ledger note through ledger.py note.
+4. **applied.** E49 reserves a receiver who distinguishes shapes but cannot count displays. Two complete visual alternatives must satisfy this new constraint; taught three-message generation remains.
+5. **applied.** E73 now orders two disruptions around an intact intervening cap. Prior notch repair stays separate. Historical and planned ledger notes identify the replacement.
+6. **partly.** E4 now infers relative energy from controlled repeated clay dents, an unfamiliar effect. Travel displays remain teaching. Unit-plan E4 and Goal map remain for lead.
+7. **partly.** E5 now explains repeated spring compression under controlled conditions; full oral teaching uses an invalid listening comparison. Unit-plan E5/Goal map remain for lead.
+8. **partly.** E20-wire, E25-build and E28-retest record actual independent operations in existing turns on fresh safe layouts. Paper tasks are separate diagnostics; equipment gaps remain explicit. Unit-plan practical evidence map remains for lead.
+9. **partly.** E1 is only a tentative explanation drawing; questions are board work. E3 records two distances; plotting remains work. Unit-plan shapes remain for lead.
+10. **partly.** E7 is one supported prediction model; questions stay in clinic. E9 is grouped sound tallies; energy evidence stays in work. Unit-plan shapes remain for lead.
+11. **partly.** E11 is one supported slower-repeat prediction; E12 one corrected model with arrow meanings; E13 one conditional chain prediction. Assessment 2a/2b are separate five/ten-minute asks inside fifteen. Unit-plan source remains for lead.
+12. **partly.** E16 keeps only the initial badge model. The familiar crank persistence question is collected separately in Question board. Unit-plan source remains for lead.
+13. **partly.** E23 is one integrated pedal-device model; a different input comparison is retrieved in Generator bridge. Unit-plan source remains for lead.
+14. **partly.** E24 asks only for the missing criterion test; costs are supplied. E29 asks only for a comparable blank retest table; energy/failure reasoning stays in work. Unit-plan source remains for lead.
+15. **partly.** E34 judges a claim using a supplied graph; graphing remains teaching. E35 models improvement using trials; mining consequence is Resource branches work. Unit-plan source remains for lead.
+16. **partly.** Generator assessment 2a explains conversion, four points; 2b recommends failure-based refinement, two points including matched retest prediction. Same minutes/six points. Unit-plan source remains for lead.
+17. **partly.** E42 is only a two-moment model; questions are collected in Energy and questions. Unit-plan source remains for lead.
+18. **partly.** Section 3.2 replaces the inherited bundled command with one two-moment comparative-model revision; labels carry feature/local-motion/energy look-fors. Unit-plan source remains for lead.
+19. **partly.** E48 asks necessary research only. E50 encodes the square only; a distinct tap-boundary diagnostic occurs during Assemble. Unit-plan source remains for lead.
+20. **partly.** E51 is a supported pass judgment; E52 missing-evidence diagnosis; E53 pause-change evaluation; E54 grid repair only. Pond modeling is separate anchor work. Unit-plan source remains for lead.
+21. **partly.** Dock components now have seven separately printed asks and explicit 2/2/1/1/2/2/2 points, total twelve. Courier proposals and picture decoding are separate twelve/eight-minute diagnostics. Unit-plan source remains for lead.
+22. **partly.** E57 is an annotated model, E59 tray-plan repair only, E60 qualified conclusion from a supplied conflicting table. Questions/baselines remain work. Unit-plan source remains for lead.
+23. **partly.** E62 uses a supplied graph for a carrying claim; E64 is one matched rain-test plan; E65 uses supplied computed distances for a control judgment; E66 is one coast model. Removed asks remain work. Unit-plan source remains for lead.
+24. **partly.** E69 asks one bounded relative-history claim; key supports later cutting without numerical duration. Unit-plan source remains for lead.
+25. **partly.** Assessment 2e asks one evidence-linked judgment of simultaneity; no separate limit command. Existing component total retained. Unit-plan source remains for lead.
+26. **partly.** Section 3.2 model command and section 3.4 alternative-generation command now have short punctuated sentences. Actual unit-plan printed commands remain for lead.
+27. **applied.** Day 5 guides a complete oral mismatched-listening argument; day 46 guides a water-tag model with movable pieces and feedback. Both use existing teaching minutes, different from reserved written products.
+28. **applied.** Trials use sender-only cards, private permuted orders and matched five-message lengths/frequencies. Receiver commits before sent-record reveal; positions/rules/timing remain fixed.
+29. **partly.** Day 53 dock work now has twenty-five minutes; five filing minutes are removed and collection is included. Same forty-five-minute day and five-minute exit. Unit-plan allocation remains for lead.
+30. **partly.** Kept categorical unit-1 section record, room-wide protection-or-records route and opened warming-source handoff. Added supported synthesis on different evidence. Competing unit-plan scoring/supply/day/source directions remain for lead.
+31. **partly.** Kept four sequential demonstrations and one final twenty-eight-point score after day 38, including the already revised portfolio. Sections 2.3 to 2.5 agree; upstream unit-plan schedule/scoring sentences remain for lead.
+32. **partly.** Kept full day 47 with separate ten-minute repair/revision, written arrow precedents and printed-account fallback. Upstream unit-plan obsolete status/fold-in/budgets remain for lead.
+33. **partly.** Kept water amount on day 60, teaching graph evidence, separate habitat/source work and stimulus-only independent self-check. Added complete guided frost/clay explanation on different evidence. Unit-plan variable/practice/check directions remain for lead.
+34. **partly.** Day 57 now names original River Walls R diagram when the canyon photo is unavailable/unreadable, printed/said invented for practice and never called a canyon observation. Unit-plan hook source remains for lead.
+
+Counts: applied 6, rejected 0, partly 28. FIRM left: 0 in section plans, 4 in upstream unit-plan sources (findings 1, 6, 7, 8).
+
+For the lead, stage that made the fault: unit plan for findings 1, 6 to 26 and 29 to 34. Update s01 to s04 Goal maps, exit sources, assessment commands, supply/marking/handoff directions and hook fallback to the final section specifications. Section-only findings 2, 3, 4, 5, 27 and 28 are applied. No brief/template exemption was used.
+
+Validation: unitplan before 0 failures; after 0 failures. Science ledger before 0 problems; after 0 problems; final citation advisory has 0 planned-only findings and 0 unmatched citations. Earlier checks had 2 unmatched grade-2 citations; no other-course ledger was edited by this job. Eighty-one notes were corrected through ledger.py note, without hand-editing CSV. Changed keys were solved cold; quoted-copy sentence audit found no sentence over fifteen words. No total day minutes were increased.
+
+Course gate: literal before/after command has Windows child-process Access denied. A process-local executable correction, without editing the gate, runs twelve checks but plan and lesson crash because markdown is unavailable. Before/after counts and all final new lines are recorded below. No baseline was stored manually. A stored baseline became available by the final run; its comparison reports one failing finding from the lesson gate changing from exit 0 to its dependency crash. Crashed checks give incomplete coverage, so their lower line counts are not repairs. Known pre-fix lint debt: 32 UK-spelling lines outside the editable prose. No dependency installation or build was run. No unrelated stray empty folder was observed. Helpers remain in the assigned scratch folder for lead cleanup.
+
+Final checks: unitplan 0 to 0 failures; ledger 0 to 0 problems, 10352 rows. Course gate 32 to 32 lint lines, 2 to 2 dependency crashes. Final gate exits 1, with 1 failing comparison finding and 29 new note lines below. The stored baseline is from an earlier revision than the final working tree. No missing-baseline exit 2 occurred.
+
+```text
+12 gates run; 2 crashed: lesson-science-grade-4, plan-science-grade-4.
+32 failing lines: lint-science-grade-4, style UK spelling (32 before, 32 after).
+== index-reports: exit code 1 -> 0
+== lesson-science-grade-4: exit code 0 -> 1
+== index-reports (2 new line(s), 0 failing); failing lines fell 1 -> 0
+  note drift: 0 new, 0 known, 0 fixed
+  note index: 87850 nodes, 430529 edges (235689 hard) -> data/index.db
+== ledger-science (2 new line(s), 0 failing)
+  note review notes: 4167, cited targets: 4395
+  note unmatched citations: 0 (no ledger row matches the cited target)
+== lesson-science-grade-4 (8 new line(s), 0 failing); failing lines fell 33 -> 0
+  note --- stderr ---
+  note File "S:\CurioClass\scripts\lesson.py", line 15, in <module>
+  note File "S:\CurioClass\scripts\lesson_course.py", line 17, in <module>
+  note ModuleNotFoundError: No module named 'markdown'
+  note Traceback (most recent call last):
+  note ^^^^^^^^^^^^^
+  note import lesson  # noqa: E402
+  note import markdown
+== plan-science-grade-4 (17 new line(s), 0 failing); failing lines fell 21 -> 0
+  note --- stderr ---
+  note File "S:\CurioClass\scripts\lesson.py", line 15, in <module>
+  note File "S:\CurioClass\scripts\plan.py", line 1176, in check
+  note File "S:\CurioClass\scripts\plan.py", line 1451, in main
+  note File "S:\CurioClass\scripts\plan.py", line 1499, in <module>
+  note File "S:\CurioClass\scripts\plan.py", line 552, in parse
+  note File "S:\CurioClass\scripts\plan.py", line 572, in cross_day
+  note ModuleNotFoundError: No module named 'markdown'
+  note Traceback (most recent call last):
+  note ^^^^^^^^
+  note ^^^^^^^^^^^^^
+  note cross_day(course, days, items, horizon, fails, notes)
+  note d = parse(b)
+  note fails, notes, ni, nw = check(c)
+  note import lesson   # lesson.py reads a day file; imported here, since it imports this module
+  note import markdown
+  note main(sys.argv[1:])
+gate science-grade-4 against its baseline: 1 failing finding(s), 29 new note line(s)
+```
+
+Copy check: all quoted sentences in the 23 changed section plans have at most fifteen words. The unchanged section 6.2 has a sixteen-word teacher-facing ledger quotation, not a changed printed student stem; it was retained. All 26 section plans have no em dash or writer placeholder. The final unitplan check confirms every forty-five-minute day.
