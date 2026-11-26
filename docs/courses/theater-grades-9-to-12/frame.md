@@ -13,7 +13,12 @@ Course `theater-grades-9-to-12` (catalogue id `theater-9-12`), a band course for
   the phases of one project the student leads (research, concept, role, criticism, production), with checkpoints as
   check days and critique on respond days (APPROACH "High school levels and music"). Choice grows by level: Level 1
   sets the problems, Level 2 lets the student pick among them and research, Level 3 has the student set the problem,
-  Level 4 is the student's own production.
+  Level 4 is the student's own production. Level 4 company model (fix pass 2026-11-26): the class works as companies
+  of about five (one company in a small class); units 16 to 19 stay each student's own work, with the company as
+  cast and readers; in unit 20 each company stages one short piece (about 5 minutes) built from its members' plays,
+  each student leading one creative role and its research and running the element they design in the cued run;
+  each student's full design folio and its defense are for their own play, on paper; the company chooses the
+  audience.
 - **Days.** 640: 160 a level for four levels. Each level: 156 days in its five units, 2 course-level check days (one
   mid-year, one year-end) and 2 respond days, one after each check. One lesson of about 45 minutes a day, five a
   week, 32 weeks (STANDARD.md 3.4: a high school level is 160 course days of 45 minutes, about the 120 hours of the

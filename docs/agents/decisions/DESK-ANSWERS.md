@@ -2018,3 +2018,28 @@ because the reviews say a log line is owed. Cory's open questions from the same 
 ## 2026-11-26: Personal Finance folds into Economics with its own units (chat)
 
 - Cory in chat 2026-11-26: Personal Finance 9 to 12 folds into Economics but still gets a unit. Economics already teaches it in two units (unit 8, earning, spending and protecting; unit 9, saving, credit and investing; docs/courses/economics/frame.md), so no new frame is written and the Personal Finance course row stays inactive. The Dashboard marks frame:personal-finance done as folded. The catalogue retag of its modules (later.csv L90 part 2) is unchanged and still waits for the retool with kept ids.
+
+## 2026-11-26: arts scope lead calls (lead, the arts scope fix pass)
+
+The 20 arts band scopes were fixed under these calls (full wording in the fix brief, build/scope-writes/ARTS-FIX.md).
+- **A year about 10 days short** means 10 school days: about 4 sessions a year for a K to 8 course meeting twice a week
+  (name at least 4 fold-in days), 10 course days for a daily 9 to 12 course.
+- **Four processes:** each year of a course covers all four artistic processes; a unit claims only what its frame row
+  names, and a missing process may be practiced on an existing day without claiming an id.
+- **Codes a course-level check does not sample** are named with the reason where the frame's check table limits the
+  sample; frame changes go to the structure pass.
+- **school_day** counts across the whole band in a K to 8 course (year 1 is 1 to 160, the next 161 to 320); a 9 to 12
+  course may count inside each level and says which. A filled days.csv school_day wins over frame.py's even spread, and
+  the lead regenerates calendar.csv (`frame.py sync`) at commit; every unit and check must fall in the frame's weeks.
+- **Task forms in arts:** a showing or performance is the discipline's own evidence and may follow a unit showing; what
+  may not repeat inside two weeks is the same item on the same work.
+- **A frame check cell that re-asks a unit's recent items** draws them from earlier works in another form or carries
+  the unit's record, and says so.
+- **Theater 9 to 12 Level 4** uses companies of about five (one for a small class): units 16 to 19 are each student's
+  own work, unit 20 one short piece per company built from its members' plays, each student leading one creative role;
+  folios and defenses per student, on paper.
+- **Dance 6 to 8 timed blocks:** on the once-a-week path the written check runs as one or two blocks of about 12
+  minutes at the close of a later rehearsal session. Accepted; the structure pass considers it for media arts 3 to 5,
+  theater 6 to 8 and dance 9 to 12.
+- **Kept from the fix passes:** Vivaldi's "Spring" on music K to 2 day 73; media arts 6 to 8 keeps 6 unit 4 sessions and
+  its check in week 17, off week 16 (grade 6 math and PE week).
