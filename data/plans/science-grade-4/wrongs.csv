@@ -8,7 +8,7 @@ s01-K2,Changing both makes it fairer.,,,G,Error G: Changing both makes it fairer
 s01-Pr2,Different cups prove speed matters.,,,G,Error G: Different cups prove speed matters.
 s01-X2,Use a different lid for each speed.,,,G,Error G: Use a different lid for each speed.
 s01-P3,Keep changing cups.,,,G,Error G: Keep changing cups.
-s01-K3,The pencil travels 7 centimeters.,,,H,Error H: The pencil travels 7 centimeters.
+s01-K3,Four intervals measure the pencil.,,,x,Error x: counts only four intervals instead of the five spaces from zero to 5.
 s01-Pp3,The axis measures energy in centimeters.,,,B,Error B: The axis measures energy in centimeters.
 s01-Pr3,Erase the awkward result and invent a matching one.,,,x,Error x: Erase the awkward result and invent a matching one.
 s01-X3,First travel is 28 centimeters.,,,H,Error H: The stop mark is not travel from a nonzero start.
@@ -22,7 +22,7 @@ s01-P5,Centimeters measure energy.,,,B,Error B: distance confused with energy.
 s01-Pn5,The cup traveled centimeters of energy.,,,B,Error B: The cup traveled centimeters of energy.
 s01-X5,Same cylinder means equal energy.,,,A,Error A: Same cylinder means equal energy.
 s01-P6,One marble always has equal motion energy.,,,A,Error A: One marble always has equal motion energy.
-s01-K6,B supplies evidence by repeating faster.,,,x,Error x: B supplies evidence by repeating faster.
+s01-K6,All three statements are direct observations.,,,x,Error x: treats an energy explanation as a direct motion observation.
 s01-Pm6,Same tire proves equal energy.,,,A,Error A: Same tire proves equal energy.
 s01-X6,The same hoop always has equal energy.,,,A,Error A: The same hoop always has equal energy.
 s01-X6,Tube travel measures energy in centimeters.,,,B,Error B: effect indicator confused with energy measurement.
@@ -733,3 +733,5 @@ s01-A2b,All energy becomes sound,,,D,Omits motion and warming destinations.
 s01-A2b,Warming must be felt to exist,,,E,Confuses lack of detection with no warming.
 s01-A2b,The force arrow carries energy into air,,,J,Confuses object force with energy destinations.
 s01-X3,The washer has 11 centimeters of energy.,,,B,"Error B: Travel units describe a motion effect, not an energy quantity."
+s01-Pr5,The same marble must have equal motion energy.,,,A,Error A: The same marble must have equal motion energy.
+s01-Pm5,An invented row is our measured result.,,,x,Error x: confuses an invented record with a classroom measurement.
