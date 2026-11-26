@@ -1,0 +1,17 @@
+---
+piece: blank
+course: social-studies-grade-4
+unit: 1.4
+version: draft 2, not yet taught
+credit: ours
+teacher_note: Use as the day 15 student response form, one sheet with two faces. Print source maps separately. All answers are in teacher-only key-15.md. Keep the packet unseen until Assessment Q1.
+---
+# Unit 1 end-of-unit assessment
+
+<style>body.student{font-size:14pt;line-height:1.12}body.student p{margin:.12em 0}.assess-form p{margin:.1em 0}.assess-form table{width:100%;border-collapse:collapse;margin:.12em 0}.assess-form td,.assess-form th{font-size:14pt;padding:.08em .18em;height:auto}.answerline{height:.23in;border-bottom:1px solid #777;margin:.015in 0}.face2{break-before:page;page-break-before:always}</style>
+<div class="assess-form">
+<p><b>Use the separate map sheets. Name: __________________</b></p>
+<p>Label C&#x27;s numbered features using its index.</p><p>1 ____ 2 ____ 3 ____ 4 ____ 5 ____</p><p>Explain which line is a river using C&#x27;s key.</p><div class="answerline"></div><div class="answerline"></div><p>Explain which direction P lies from Q using the north arrow.</p><div class="answerline"></div><div class="answerline"></div><p>Find the ground distance from P to Q in kilometers and approximate miles.</p><p>Kilometers: __________ About this many miles: __________</p><p>Outline Canada on Map D.</p><p>Complete D&#x27;s location table for its seven indexed places.</p><table><tr><th>Letter</th><th>Place</th><th>Kind</th></tr><tr><td>a</td><td>____________________</td><td>________________</td></tr><tr><td>b</td><td>____________________</td><td>________________</td></tr><tr><td>c</td><td>____________________</td><td>________________</td></tr><tr><td>d</td><td>____________________</td><td>________________</td></tr><tr><td>e</td><td>____________________</td><td>________________</td></tr><tr><td>f</td><td>____________________</td><td>________________</td></tr><tr><td>g</td><td>____________________</td><td>________________</td></tr></table></div>
+<div class="face2"></div>
+<div class="assess-form">
+<p>Complete the city-to-continent record using the Madison inset.</p><p>Madison city → ____ County → ____ state → ____ country → ____ continent.</p><p>Explain county using the inset.</p><div class="answerline"></div><p>Explain province using the division reference.</p><div class="answerline"></div><p>Mark K at 50 degrees north, 100 degrees west.</p><p>Give L&#x27;s coordinates.</p><p>L: ________________________________________</p><p>Explain how Card H identifies a named Native nation today.</p><div class="answerline"></div><div class="answerline"></div><p>Use E to locate the library and park.</p><div class="answerline"></div><p>Use F and G to place Madison within Wisconsin and North America.</p><div class="answerline"></div><p>Explain which map supports deliveries across Wisconsin, including one detail it omits.</p><div class="answerline"></div><p>Explain what C and D establish for a visitor. Support your claim with both maps and a limit.</p><div class="answerline"></div><div class="answerline"></div><div class="answerline"></div><div class="answerline"></div><p>Scored from the work you handed in. Write nothing here.</p><p>Describe another reader&#x27;s different question and needed map.</p><div class="answerline"></div><div class="answerline"></div><p>Different map uses. Scored from the work you handed in. Write nothing here.</p></div>

@@ -7,7 +7,6 @@ s01-P1-5,North.,,,B,"Predicted response; use look-fors, not spelling."
 s01-K1-1,Which pencil is prettiest?,,,M,"Predicted response; use look-fors, not spelling."
 s01-P1-6,The pencil strip answers the map question.,,,M,"Predicted response; use look-fors, not spelling."
 s01-P1-7,It is useful only because it is my favorite.,,,M,"Predicted response; use look-fors, not spelling."
-s01-X1,Only a physical map can be useful.,,,J,"Predicted response; use look-fors, not spelling."
 s01-P1-E,Only my favorite matters.,,,M,"Predicted response; use look-fors, not spelling."
 s01-F2-1,River because it looks long.,,,A,"Predicted response; use look-fors, not spelling."
 s01-F2-2,Page-up stays north.,,,B,"Predicted response; use look-fors, not spelling."
@@ -37,15 +36,11 @@ s01-P2-RC,3 meters.,,,C,"Predicted response; use look-fors, not spelling."
 s01-P2-RJ,Only one map can ever help anyone.,,,J,"Predicted response; use look-fors, not spelling."
 s01-P2-RM,Like the prettiest map.,,,M,"Predicted response; use look-fors, not spelling."
 s01-P5-R,Country.,,,E,Predicted response; score the geographic idea separately from spelling.
-s01-K5-1,A 336-centimeter strip.,,,C,Predicted response; score the geographic idea separately from spelling.
-s01-P5-1,A 392-centimeter strip.,,,C,Predicted response; score the geographic idea separately from spelling.
-s01-P5-2,A 448-centimeter strip.,,,C,Predicted response; score the geographic idea separately from spelling.
 s01-F5-1,Both labels say centimeters.,,,C,Predicted response; score the geographic idea separately from spelling.
 s01-F5-2,56 centimeters on land.,,,C,Predicted response; score the geographic idea separately from spelling.
 s01-P5-3,The ruler directly measures kilometers.,,,C,Predicted response; score the geographic idea separately from spelling.
 s01-X5,5 kilometers.,,,C,Predicted response; score the geographic idea separately from spelling.
 s01-X5,80 kilometers for the entire segment.,,,C,Treats the scale label as the whole segment distance.
-s01-P6-R,224 centimeters.,,,C,Predicted response; score the geographic idea separately from spelling.
 s01-P6-1,"Whole bar: 112 kilometers, about 112 miles.",,,C,Predicted response; score the geographic idea separately from spelling.
 s01-F6-1,About 336 miles.,,,C,Predicted response; score the geographic idea separately from spelling.
 s01-F6-2,About 140 miles.,,,C,Predicted response; score the geographic idea separately from spelling.
@@ -59,7 +54,6 @@ s01-P7-1,Every window covers the same area.,,,D,Predicted response; score the ge
 s01-P7-2,Every view shows Ash Road.,,,D,Predicted response; score the geographic idea separately from spelling.
 s01-F7-1,Hall and pond.,,,O,Predicted response; score the geographic idea separately from spelling.
 s01-P7-3,Every map shows everything.,,,N,Predicted response; score the geographic idea separately from spelling.
-s01-X7,Library and river.,,,O,Predicted response; score the geographic idea separately from spelling.
 s01-X7,All three maps contain the local streets.,,,D,Does not distinguish wider extent from retained street detail.
 s01-P8-R,Every wider map has every road.,,,D,Predicted response; score the geographic idea separately from spelling.
 s01-P8-1,I like this map.,,,H,Predicted response; score the geographic idea separately from spelling.
@@ -68,7 +62,6 @@ s01-P8-3,Every pond must be on the continent map.,,,N,Predicted response; score 
 s01-P8-4,The map shows every person.,,,H,Predicted response; score the geographic idea separately from spelling.
 s01-X8,I like this map.,,,H,Predicted response; score the geographic idea separately from spelling.
 s01-X8,The continent map gives every street.,,,D,Expects local detail on the broad view.
-s01-X8,The town map shows everything.,,,N,No specific limit recognized.
 s01-P9-R,Every view shows the bench.,,,D,Does not meet the geographic or source look-for.
 s01-P9-R,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-K9-1,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
@@ -81,7 +74,6 @@ s01-P9-2,Northwest Territories is a province.,,,E,Does not meet the geographic o
 s01-P9-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-P9-3,I like this map.,,,H,Does not meet the geographic or source look-for.
 s01-P9-3,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
-s01-X9,Alberta is a country.,,,E,Alberta is a province within Canada; score this category separately.
 s01-X9,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-P10-R,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
 s01-P10-R,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
@@ -97,7 +89,6 @@ s01-P10-3,The division is a separate country.,,,E,Does not meet the geographic o
 s01-P10-3,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-P10-4,Cuba contains all of the Caribbean.,,,E,Does not meet the geographic or source look-for.
 s01-P10-4,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
-s01-X10,Sonora is a country.,,,E,Sonora is a Mexican state; score this category separately.
 s01-X10,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-P11-R,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
 s01-P11-R,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
@@ -116,9 +107,6 @@ s01-X11,Any other unsupported response.,,,x,Use the teacher look-fors; do not sc
 s01-P11-E,Every nation must be an independent country.,,,L,Does not meet the geographic or source look-for.
 s01-P11-E,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-P11-E,Citizen Potawatomi Nation has government only in the past.,,,F,"Card N describes government today, not only the past."
-s01-P11-E,Saskatchewan is a separate country.,,,E,The printed division label identifies a province within Canada.
-s01-X9,Nunavut is a province.,,,E,Nunavut is a territory; score this category separately.
-s01-X10,Barbados is a state.,,,E,Barbados is a Caribbean country; score this category separately.
 s01-P12-R,The county contains the state.,,,E,Accept equivalent supported wording. Accept the correction matching the assigned record; never put nation on the containment ladder.
 s01-P12-R,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
 s01-P12-R,Cherokee Nation has no government today.,,,F,The printed reference describes present government.
@@ -140,7 +128,6 @@ s01-P13-1,A changes latitude; B changes longitude.,,,G,Accept equivalent support
 s01-P13-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
 s01-P13-2,Horizontal lines are longitude.,,,G,"Accept equivalent supported wording. Uses direction measured, not the line direction alone; no ordered pair requested."
 s01-P13-2,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
-s01-P13-3,Measure latitude east/west from prime meridian.,,,P,Accept equivalent supported wording. Repairs ordering and reference line without locating a point.
 s01-P13-3,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
 s01-P13-4,A degree label is a kilometer distance.,,,x,"Accept equivalent supported wording. Explains degree labels with the general reference, not a supplied coordinate pair."
 s01-P13-5,The first label is whichever is larger.,,,G,Accept equivalent supported wording. Uses an accurate reference link. All children submit a written explanation; public talk optional.
@@ -154,7 +141,6 @@ s01-P14-1,Only the titles are evidence.,,,H,Accept equivalent supported wording.
 s01-P14-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
 s01-P14-2,A and B are nice.,,,H,"Accept equivalent supported wording. Uses a relevant detail from A, identifies A and links it to the supplied claim."
 s01-P14-2,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
-s01-P14-3,A marks Mississippi River.,,,I,Accept equivalent supported wording. Names B and its own relevant detail; does not repeat A evidence.
 s01-P14-3,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
 s01-P14-4,It supports it because I wrote it.,,,H,Accept equivalent supported wording. Explains the link rather than repeating the detail alone.
 s01-P14-4,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
@@ -196,7 +182,6 @@ s01-A4b,Any other unsupported response,,,x,Record the missing component; do not 
 s01-A4c,Only my question matters.,,,M,Accept equivalent supported wording. Another reader is named.
 s01-A4c,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
 s01-A4c,Only one map use is possible.,,,J,A different supported question and reader are possible.
-s01-P16-R,Copies an assessment answer without addressing the cue.,,,x,"Accept equivalent supported wording. Use earlier practice from the named day, not a rehearsal of the fresh repair card."
 s01-P16-1,Solid line is river because it looks like water.,,,A,Accept equivalent supported wording. Uses the new legend for the symbol correction; rotates directions using its own arrow. Score only the privately assigned component.
 s01-P16-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
 s01-P16-1,Page-right is east despite the downward north arrow.,,,B,"Direction depends on the printed north arrow, not the page edge."
@@ -1481,3 +1466,23 @@ s07-H1,Naming hurricane explains how every response helped.,,,S,A hazard name al
 s07-H2,Only the tornado matters; resident materials have no connection.,,,S,The record links resident materials with learning during disruption.
 s07-H3,Watering rules make the rain return.,,,T,Limits change use; the record does not show weather control.
 s07-H4,One national body carried out both named responses.,,,O,The record names officials and residents as different actors.
+s01-X1,Which pencil color is prettiest?,,,M,The question does not address either reader's map need.
+s01-K5-1,Its 12 centimeters mean 12 kilometers.,,,C,Treats paper length as represented ground distance.
+s01-P5-1,Its 14 centimeters mean 14 kilometers.,,,C,Treats paper length as represented ground distance.
+s01-P5-2,Its 16 centimeters mean 16 kilometers.,,,C,Treats paper length as represented ground distance.
+s01-P6-R,224 centimeters on the ground.,,,C,Fails to repair the ground-distance unit.
+s01-X7,The views are useful because I like them.,,,H,No visible detail supports the usefulness comparison.
+s01-X8,The shoreline alone locates every street turn.,,,H,The justification does not use the mapped street information.
+s01-X9,Prince Edward Island is an independent country.,,,E,Confuses Canadian province with independent country.
+s01-X10,Sonora marked outside its outlined state.,,,E,Index trail does not reach the requested location.
+s01-X9,Prince Edward Island is a territory.,,,E,Reads the wrong division category.
+s01-X10,Barbados marked outside its outlined island.,,,E,Index trail does not reach the requested island.
+s01-P13-3,Longitude stays unchanged along Route C.,,,G,"Route C follows a parallel, so latitude remains fixed."
+s01-P14-3,A lake detail proves that B shows country boundaries.,,,H,The detail belongs to the wrong source and feature category.
+s01-P16-R,Selects a comparison unrelated to the private cue.,,,x,The comparison does not address the named priority gap.
+s01-X13b,Z plotted using latitude from prime meridian.,,,P,Uses the wrong zero-line reference.
+s01-A2a-outline,Only Manitoba outlined as Canada.,,,E,Confuses the country and its division.
+s01-A2b-county,County means country.,,,E,Confuses two different place terms.
+s01-A2b-province,A province is an independent country.,,,E,Confuses a Canadian division with its country.
+s01-A2c-read,"110 degrees west, 30 degrees north.",,,G,Reverses latitude-first notation.
+s01-A4c-interpretation,Every reader must use the maps for the same question.,,,J,Does not identify a second reasonable interpretation of map usefulness.
