@@ -128,7 +128,7 @@ STANDARD.md section 2 ("one frame per grade year").
   teaching days) than in K to 2, since the weight moves to written academic register; oral rehearsal before writing
   stays every day.
 - **Readiness and retrieval.** Every row grade 9 assumes was taught in grade 8, in English Language Development,
-  grades 6 to 8 (Pending(docs/courses/english-language-development-grades-6-to-8/frame.md): that frame's grade 8 unit numbers are cited here), and every row grades 10, 11 and 12 assume was taught the year
+  grades 6 to 8 (its grade 8 units 18 to 26; each retrieval task names the unit that taught its row), and every row grades 10, 11 and 12 assume was taught the year
   before in this band; so each opens as a retrieval task inside a day of the unit that first needs it (day 2, after
   day 1's hook), in the same words as sequence-write rule 2; no unit needs a readiness check. The count starts from
   the student's own grade year. Many high school English learners enter the program in grade 9 or later: a student
