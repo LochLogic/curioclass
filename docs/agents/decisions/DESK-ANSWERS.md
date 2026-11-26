@@ -2043,3 +2043,10 @@ The 20 arts band scopes were fixed under these calls (full wording in the fix br
   theater 6 to 8 and dance 9 to 12.
 - **Kept from the fix passes:** Vivaldi's "Spring" on music K to 2 day 73; media arts 6 to 8 keeps 6 unit 4 sessions and
   its check in week 17, off week 16 (grade 6 math and PE week).
+
+## 2026-11-26: media arts 9 to 12 Level 1 family showing stays at school (Cory, chat; Desk q-arts-scope-1)
+
+- Cory: "School space only." The unit 5 family showing in media arts 9 to 12 Level 1 is held in the school's own space
+  with the school's own adults, on the free path; the frame's Candidate (a community partner's space) is dropped.
+  Unit 18 (Level 4, work for a real audience) keeps its community space where the school allows it. Why: every school
+  has the space, it needs no outside agreement, and families know the way.
