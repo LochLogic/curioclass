@@ -242,6 +242,9 @@ def parse(slug):
             break
     pw = re.search(r'\b(five|four|three|two|one|\d)\s+(?:lessons?|days?|sessions?|meetings?|times|periods?)?\s*(?:a|per|each)\s+week', timing, re.I)
     out['per_week'] = _num(pw.group(1)) if pw else (5 if re.search(r'every school day|each school day|\bdaily\b', timing) else None)
+    if out['per_week'] is None and re.search(r'\b(?:one|a)\s+(?:\w+\s+)?every (?:two|other) weeks?|every second week',
+                                             timing, re.I):
+        out['per_week'] = 0.5                      # library 6 to 8 and 9 to 12: about one session every two weeks
     out['half'] = bool(re.search(r'half[- ]year|a half year', timing, re.I))
     out['checks'] = parse_checks(section(t, 'Course-level checks'))
     # band courses (2026-11-25): a Year column in the Units table names the grade year or level each unit is taught in
@@ -382,8 +385,19 @@ def calendar_rows():
         if cal is None:
             cal = [(kind, n, label, a, b, school_day(s, f, a), school_day(s, f, b))
                    for kind, n, label, a, b in (calendar(s) or [])]
+        g = COURSE_META.get(s, ('', ''))[1]
+        ys = f.get('years') or []
         for kind, n, label, a, b, sa, sb in cal:
-            out.append(dict(course=s, grade=COURSE_META.get(s, ('', ''))[1], subject=COURSE_ROWS[s][0], kind=kind,
+            gr = g
+            if ys:
+                # a band course: each year's rows go on that year's own calendar, under its grade (K, 1 to 12) where
+                # the Year cell names one, so the stagger rule and CALENDAR.md read them beside the core grades
+                span = meeting(s, f)[0] // len(ys) * 5          # school days one year of the band spans
+                i = min(len(ys) - 1, (sa - 1) // span)
+                y = re.sub(r'(?i)^(grade|year)\s+', '', ys[i]).strip()
+                gr = y.upper() if re.fullmatch(r'(?i)k|\d{1,2}', y) else '%s %s' % (g, ys[i])
+                sa, sb = sa - i * span, min(sb - i * span, span)
+            out.append(dict(course=s, grade=gr, subject=COURSE_ROWS[s][0], kind=kind,
                             unit=n, label=label[:80], first_day=a, last_day=b, first_school_day=sa,
                             last_school_day=sb, first_week=week(sa), last_week=week(sb)))
     return out
@@ -543,7 +557,7 @@ def check(slug, cal_rows=None):
             owned_codes |= {c for c in split(own[i]['standard']) if not c.startswith('~')}
             contrib |= {c[1:] for c in split(own[i]['standard']) if c.startswith('~')}
         cell = u.get('Owned standards', '').replace('`', '')
-        listed = {c for c in split(cell) if not c.startswith('~')}
+        listed = {c for c in split(cell) if not c.startswith('~') and c.lower() not in ('none', 'none owned')}
         for c in sorted(listed - owned_codes):
             fails.append('%s unit %s: owned standard %s is not owned by the unit\'s rows' % (slug, n, c))
         for c in sorted(owned_codes - listed):

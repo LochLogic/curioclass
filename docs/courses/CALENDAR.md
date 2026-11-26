@@ -66,17 +66,34 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 <!-- gen:calendar -->
 | Grade | Course | Course-level check days (weeks) | Units end (week) |
 |---|---|---|---|
+| K | visual-arts-grades-k-to-2 | Year K mid-year (week 18 week 18, Year K year-end (week 26 week 26 | 32 |
+| K | computer-science-kindergarten | Course-level check, mid- week 12, Course-level check, year week 27 | 32 |
 | K | english-language-arts-kindergarten | Check 1 week 16, Check 2 week 32 | 32 |
+| K | english-language-development-grades-k-to-2 | Kindergarten mid-year (w week 18, Kindergarten year-end (w week 28 | 32 |
+| K | health-grades-k-to-2 | Kindergarten mid-year ch week 12, Kindergarten year-end ch week 27 | 26 |
+| K | library-and-research-skills-kindergarten | 1, mid-year week 13, 2, year-end weeks 27 to 28 | 26 |
 | K | math-kindergarten | Mid-year course-level ch week 17, Year-end course-level ch week 31 | 31 |
+| K | physical-education-grades-k-to-2 | Kindergarten mid-year (w week 18, Kindergarten year-end (w week 28 | 32 |
 | K | science-kindergarten | Course-level check, mid- week 14, Course-level check, year week 29 | 28 |
+| K | social-and-emotional-learning-grades-k-to-2 | Kindergarten check 1 (se week 11, Kindergarten check 2 (se week 26 | 32 |
 | K | social-studies-kindergarten | 1, mid-year week 15, 2, year-end week 30 | 29 |
+| 1 | visual-arts-grades-k-to-2 | Year 1 mid-year (week 18 week 18, Year 1 year-end (week 26 week 26 | 32 |
 | 1 | english-language-arts-grade-1 | Check 1 week 16, Check 2 week 32 | 32 |
+| 1 | english-language-development-grades-k-to-2 | Grade 1 mid-year (week 1 week 18, Grade 1 year-end (week 2 week 28 | 32 |
+| 1 | health-grades-k-to-2 | Grade 1 mid-year check ( week 11, Grade 1 year-end check ( week 27 | 26 |
 | 1 | math-grade-1 | Mid-year course-level ch week 19, Year-end course-level ch week 30 | 32 |
+| 1 | physical-education-grades-k-to-2 | Grade 1 mid-year (week 1 week 18, Grade 1 year-end (week 2 week 28 | 32 |
 | 1 | science-grade-1 | Course-level check, mid- week 15, Course-level check, year week 29 | 28 |
+| 1 | social-and-emotional-learning-grades-k-to-2 | Grade 1 check 1 (session week 9, Grade 1 check 2 (session week 26 | 32 |
 | 1 | social-studies-grade-1 | 1, mid-year week 14, 2, year-end week 31 | 31 |
+| 2 | visual-arts-grades-k-to-2 | Year 2 mid-year (week 17 week 17, Year 2 year-end (week 26 week 26 | 32 |
 | 2 | english-language-arts-grade-2 | Check 1 weeks 15 to 16, Check 2 week 32 | 32 |
+| 2 | english-language-development-grades-k-to-2 | Grade 2 mid-year (week 1 week 17, Grade 2 year-end (week 2 week 27 | 32 |
+| 2 | health-grades-k-to-2 | Grade 2 mid-year check ( week 11, Grade 2 year-end check ( week 27 | 26 |
 | 2 | math-grade-2 | Mid-year course-level ch weeks 18 to 19, Year-end course-level ch week 29 | 32 |
+| 2 | physical-education-grades-k-to-2 | Grade 2 mid-year (week 1 week 17, Grade 2 year-end (week 2 week 27 | 32 |
 | 2 | science-grade-2 | Course-level check, mid- week 20, Course-level check, year week 28 | 27 |
+| 2 | social-and-emotional-learning-grades-k-to-2 | Grade 2 check 1 (session week 10, Grade 2 check 2 (session week 26 | 32 |
 | 2 | social-studies-grade-2 | 1, mid-year (week 14) week 14, 2, year-end week 31 | 30 |
 | 3 | english-language-arts-grade-3 | Check 1 week 16, Check 2 week 32 | 32 |
 | 3 | math-grade-3 | Check 1 week 12, Check 2 week 23, Check 3 week 31 | 30 |
@@ -124,6 +141,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 12 | psychology | 1, mid-year week 17, 2, year-end week 32 | 32 |
 | 12 | us-government-and-politics | 1, midpoint week 8, 2, final week 15 | 16 |
 | 12 | us-history-ii | 1 week 8, 2, mid-year (days 84 and week 17, 3, year-end week 30 | 32 |
+| 6-8 | career-exploration-grades-6-to-8 | Course-level check 1, mi week 16, Course-level check 2, ye week 32 | 32 |
 
-Stagger rule breaks (K to 5 by week, 6 to 8 by school day before the finals week): none.
+Stagger rule breaks (K to 5 by week, 6 to 8 by school day before the finals week): grade K week 12 (computer-science, health); grade K week 18 (arts, eld, physical-education); grade K week 26 (arts, sel); grade K week 27 (computer-science, health, library); grade K week 28 (eld, library, physical-education); grade 1 week 18 (arts, eld, physical-education); grade 1 week 26 (arts, sel); grade 1 week 28 (eld, physical-education); grade 2 week 17 (arts, eld, physical-education); grade 2 week 26 (arts, sel); grade 2 week 27 (eld, health, physical-education).
 <!-- /gen -->

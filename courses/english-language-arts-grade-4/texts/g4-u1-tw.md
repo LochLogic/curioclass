@@ -11,14 +11,16 @@ days: "36; response revision 37"
 first_day: 36
 edition: "2026 original edition"
 rights_basis: ours
-rights_checked: 2026-11-22
+rights_checked: 2026-11-25
 ---
 
 ## Reading notes
 
+Scheduling note for the lead: the unit plan names Another Missing Line for day 34 and Williams at Work for day 36. Section 1.8 replaces them with The Last Token (g4-u1-lt) and Two Ways to Find a Poem (g4-u1-tw). Both sets are on file. Keep every candidate reserved while the lead aligns the plan documents; do not distribute them in advance teaching or home packets.
+
 One file and one row for the complete set read together by D36a. Section 1.8 replaces Williams at Work with this case. This is a grade-level assessment reading, not a cycle reader; no Skills Block cycle is assigned. The plan specifies no additional length target.
 
-Word count: 85. Paragraph 1: 42 words; Paragraph 2: 43 words. Counts include printed cast, setting, speaker and stage-direction words. They exclude headings, reference numbers, metadata and teacher notes. No quantitative reading measure has been obtained. Preserve verse line breaks and scene directions. First reading is on day 36; day 37 returns the original response for independent revision.
+Word count: 85. Paragraph 1: 42 words; Paragraph 2: 43 words. Counts include the two complete paragraphs. They exclude headings, reference numbers, metadata and teacher notes. No quantitative reading measure has been obtained. Preserve the two paragraph divisions. First reading is on day 36; day 37 returns the original response for independent revision.
 
 The text is preserved from section 1.8's complete commissioned companion. No answer key or question is included in this reading copy. Do not distribute a manuscript containing reserved texts ahead of collection.
 

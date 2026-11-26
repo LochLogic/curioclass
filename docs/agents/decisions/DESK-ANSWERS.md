@@ -1980,3 +1980,14 @@ course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN
   sit beside the teaching instead of inside it, which is what ELSF and WIDA ask against; COURSE-RUN stage 7 no longer
   makes them and its cold read checks they are there. Report docs/reviews/consolidation/pedagogy-architecture-review.md;
   later.csv L137 to L141 (changes 10 to 14), L142 (the 91 baselined misses).
+- **The after-core frames are written now, as band frames** (Cory in chat, 2026-11-25: "id like you to work on
+  Course frames. its at 58 of 120, please see if you can get them all completed. ensure all work by you and codex is
+  done to the new architecture."). This lifts, for frames only, the after-core pages' "core subjects come first:
+  nothing here starts a frame" lines (SEL, ELD); their scopes, days and the ELD C11 gate still follow COURSE-RUN.
+  The lead's shape, written into docs/pipeline/briefs/frame-write.md ("After-core courses"): one frame file per
+  catalog course; a band course's Units table has a Year column (K, 1, 2 or Level 1 and so on), each year whole on
+  its own (its units, assessments, mid-year and year-end checks), so "one frame per grade year" (SEL, ELD) is met by
+  each year's part of the file; scripts/frame.py spreads a band's days over its years and reads the new `rows`
+  selector parts (`file:`, `grade:`, `strand:`). Each subject runs stage 3 as the core did: a pilot frame, the expert
+  and second-model reads, one fix pass, then the rest. Personal finance gets no frame: it has no progression rows,
+  since Economics teaches it (settled 2026-11-14); its catalog row waits on L90.

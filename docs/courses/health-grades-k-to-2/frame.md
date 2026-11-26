@@ -1,0 +1,327 @@
+# Course frame: Health, grades K to 2
+
+Course `health-grades-k-to-2` (catalog id `health-k-2`), grades K, 1 and 2, one band course with one part per grade year. Draft frame, 2026-11-25; the scope and sequence sets the days later, one year at a time.
+
+## The course in brief
+
+- **Units.** 17 through the band: 5 in kindergarten (units 1 to 5), 6 in grade 1 (units 6 to 11), 6 in grade 2
+  (units 12 to 17). Five of them are sensitive units (5, 10, 11, 16, 17), each removable. Each year is whole on its
+  own: its own units, end-of-unit assessments, mid-year check and year-end check.
+- **Days.** 84: 28 a year for three years. Each year has 24 days in units and 4 course-level days (a mid-year check
+  and its respond day, a year-end check and its respond day). One lesson a week, 30 minutes long, 28 weeks a year
+  (weeks 1 to 28 of the 32-week school year), so the 30 minutes hold the opening scenario, the work, clean-up (hand
+  washing days name five minutes for it) and collecting sheets. The dose is the health approach page's default
+  (docs/courses/health/APPROACH.md, Pacing: K to 5 about 30 sessions a year of 30 minutes, kept by Cory 2026-11-21,
+  Desk q-prework-open-2). This frame sets 28, two under "about 30", for one reason: weeks 29 to 32 hold the core
+  subjects' year-end checks in kindergarten and grade 1 (and week 28 in grade 2), and a health year-end check there
+  would break the after-core rule, so the health year ends in week 28 with its check in week 27. Days are weighed by
+  load, not equal shares: a row that is one plain fact shares a day with its neighbor, a row that introduces a step
+  card (a skill model) gets its own day, and every unit's last day is its end-of-unit assessment. Each unit's days
+  include its end-of-unit assessment (no unit here runs over 25 days, so none has a mid-unit assessment). These are
+  course days: docs/courses/CALENDAR.md places them on school weeks. The national figure is higher: the 2007
+  National Health Education Standards (second edition, page 76) recommend at least 40 hours a year in pre-K to grade
+  2; this course gives 14 hours a year. The course page names that figure and the gap so a school can add time
+  (APPROACH.md, Pacing). A sensitive unit's days count as optional (STANDARD.md section 5 rule 6): a school that
+  leaves one out uses its days to extend the non-sensitive unit named in its row.
+- **Standard.** National Health Education Standards, 2024, SHAPE America: the 33 indicators of the PreK-2 span
+  (`NHES.S<n>.2.<n>`), each owned by one row (10 in kindergarten, 14 in grade 1, 9 in grade 2) and placed in one
+  unit here; ids and our own words only (data/standards/nhes-2024.txt), never the indicator text. Review tool: CDC's
+  Health Education Curriculum Analysis Tool (HECAT), 2021 edition, keyed to the 2007 standards
+  (docs/standards-notes/health-2007-to-2024.md); each unit names the healthy behavior outcomes it serves
+  (`HECAT.<topic>.HBO<n>`), every day ties to one (bar criterion 1). Every year touches all eight standards, and every
+  skill standard (2 to 8) is practiced in at least two topics in the band (STANDARD.md section 4). The C3 column of
+  the Units table holds, for health, the skill standard the unit teaches or practices and its step card (the model).
+  Check set: each unit planner reads the HECAT 2021 module of its topic, PreK-2 knowledge and skill expectations,
+  before planning (STANDARD.md section 3); the "Check set adds" column names what that read is expected to add.
+  Values rule (DESK-ANSWERS 2026-11-12) holds, with the health lines of "What a health day never does" (APPROACH.md).
+- **Base text.** None. Health is Curio Class's own: scenarios, step cards, picture sorts, short character stories
+  read aloud and family notes are written by Curio Class. Facts come from public health agencies (CDC, the national
+  highway safety agency, the national poison help line, USDA's food guide pages), each with its source and year,
+  checked by the health expert agent (below). No trade book, paid video or library visit.
+- **The health unit shape.** Each unit names its behavior outcomes, three objectives (knowing, valuing, doing) and
+  one skill with its steps (APPROACH.md). A skill is taught in the bar's five steps: why it matters, the steps, a
+  model (the teacher says each step aloud), practice on a short scenario, feedback. K to 2 step cards are three or
+  four pictured words said aloud. The teacher holds the model on the first fluency day, pairs hold the card on the
+  second, the card is withdrawn on the first application day, and the end-of-unit assessment is taken without it.
+  At one lesson a week a skill that returns gets its card back for one day, then goes without.
+- **Day kinds.** As docs/GLOSSARY.md ("teaching day"): Understanding (first teaching of a fact or idea, ending in a
+  choice and a reason), Fluency (practice only: the scripted pair rehearsals of a step card, a refusal line, an
+  I-statement, asking an adult), Application (the skill on a new scenario or on the child's own safe-list goal),
+  Check (the end-of-unit assessment) and Respond (the course-level respond days). Fluency in this course is short:
+  a five-minute pair rehearsal inside most days, and at most one whole Fluency day a unit.
+- **End-of-unit evidence.** Every unit ends on a check day: a sitting with unseen pictured scenario cards, read
+  aloud by the teacher, that each child answers alone (circle, draw, point or tell an adult who scribes), scored on
+  the skill steps with a guide, plus one facts-in-use item per fact the unit lists and one valuing item (what would
+  be a good choice for this character and why, scored on whether the reason uses a unit fact, never on which
+  choice; APPROACH.md). In units that teach a communication step (3, 7, 14), the said-aloud step is heard from every
+  child across the unit's last two days on a class record sheet, a third of the class on the second-to-last day and
+  the rest on the check day while others draw. Never a fact-recall test; no score on a day a topic is first taught.
+  Twice a unit the child rates their own use of the steps with a face card (bar criterion 8). The teacher marks
+  met, partly or not yet.
+- **Readiness and retrieval.** No readiness check in this course. Kindergarten assumes no earlier health course.
+  Every row grade 1 assumes is a kindergarten row taught the year before, and every row grade 2 assumes is a grade 1
+  row taught the year before, so each opens as a short retrieval task inside a day of the unit that needs it
+  (sequence-write.md rule 2), with the kindergarten or grade 1 unit named in the unit's row below. The count starts
+  from the grade of the year being taught; there are no routes.
+- **Sensitive units and the leave-out rule.** STANDARD.md section 5: sensitive content lives only in its own units
+  (body safety: units 5, 10, 16; families, bodies and respect: units 11, 17); no skill lives only in a sensitive unit
+  (each indicator a sensitive row touches is owned by a non-sensitive row); getting help is taught in a
+  non-sensitive unit every year (units 4, 7, 13); no non-sensitive unit assumes a sensitive one; each sensitive unit
+  has a leave-out note on its first page and a longer family note (English and Spanish) sent home two weeks before.
+  Each year's sensitive units sit after its non-sensitive units and right before the year-end check, and no
+  course-level check samples a sensitive unit, so leaving one out changes no check. In sensitive units rehearsal uses
+  written scripts of the refusal or telling line only; the teacher or a card plays any pressure; no child plays a
+  person who pressures, touches or threatens (APPROACH.md).
+- **Body names (later.csv L85, L89).** Unit 1 holds `k-phw-body-names`, the one non-sensitive place correct body
+  names are taught, including penis, vulva, breasts and bottom, said once in a calm voice, words only, no pictures
+  (Cory, 2026-11-21). A short family note (English and Spanish) goes home in week 1 listing the words first, saying
+  there are no pictures, offering preview and a quiet opt-out of that one part of the day; the lesson is in week 3.
+  A person reads the row and its family note before either is published (later.csv L89): unit 1's body-names day
+  and its family note are marked "person read before publishing" in the scope and sequence. No later item, check or
+  task asks a child to say the private part names.
+- **Reading level.** Children read nothing alone beyond a pictured word card; every scenario and story is read aloud
+  or pictured (APPROACH.md, Supports). Each unit teaches six to ten health words in depth with a sentence frame for
+  each skill step ("I feel ___ when ___. I need ___."). The right idea said in another language or shown by pointing
+  is a language gap, not a content gap. No child must speak aloud: every rehearsal and check item can be done by
+  pointing, drawing, a card or with an adult.
+- **Family notes.** Every unit sends a home task (a talk with a trusted adult the child chooses; a school adult
+  counts), written in English and Spanish when the unit is finished. No task asks a child about their own home,
+  food, body, feelings or family; scenarios are about characters.
+- **Devices.** None needed. No owned code needs technology. Any Curio Class practice tool a unit plan adds (a
+  picture sort, a step-card practice) runs on one teacher screen for the class, collects no health information and
+  has a paper path with the same items.
+- **Paper path.** Every day runs on paper cards, picture sorts and objects; any electronic tool has the same task on
+  paper beside it, and no student account is ever made.
+- **Safety.** Hands-on days and their controls are named in the last column of the Units table. Guides the safety
+  read uses: CDC, "Clean Hands" handwashing pages (https://www.cdc.gov/clean-hands/); the national highway traffic
+  safety agency's car seat and booster pages (https://www.nhtsa.gov/vehicle-safety/car-seats-and-booster-seats); the
+  federal Poison Help pages (https://poisonhelp.hrsa.gov/); the school's own food, allergy and active-play rules.
+  Links named from memory, opened at the safety and expert reads. No real medicine, cleaner, cigarette, vape or
+  lighter is ever brought to class; pictures only. No child applies sunscreen in class.
+- **Expert read (bar criterion 7).** The Curio Class health expert agent reads every unit plan and day for medical
+  and scientific accuracy against current public health sources and records the date (STANDARD.md section 6). The
+  course page may say figures were last checked against their sources on a date, and that a school's health staff
+  should read it too.
+- **Sensitivity reads.** Every unit gets the fresh sensitivity agent's read (docs/pipeline/briefs/sensitivity-read.md);
+  no outside reader is planned (settled 2026-11-14), and the safety and answer-key reads are agent reads too. Units
+  that need the agent to study named sources first: unit 1 (body names: families of many faiths and cultures;
+  docs/reviews/sensitivity-health-body-names-2026-11-20.md and a national pediatrics association's family pages on
+  correct body names), units 5, 10 and 16 (body safety: children who have been harmed and their families; the
+  federal Child Welfare Information Gateway pages on preventing child sexual abuse, CDC's child abuse prevention
+  pages and a national child traumatic stress network's guidance for teachers), units 11 and 17 (families and growing
+  bodies: families of every structure, faith and culture, including same-sex parents, kinship and foster families,
+  and children whose bodies change early; the HECAT 2021 Sexual Health module PreK-2 expectations), units 2, 8 and 12
+  (food: children with too little food at home, cultural foods, and the risk of early body and weight talk; USDA's
+  food guide pages for families and a national eating disorders association's guidance for schools), units 4, 7 and
+  13 (safety and emergencies: children who have lived through an injury, a fire or an emergency, or live with
+  someone who smokes; no blame on a family member). Every unit with hands-on work (1, 2, 4, 6, 9, 13) also gets the
+  safety agent's read against the guides above, and every check gets the answer-key agent's read.
+- **Course-level checks.** Placed off the core check weeks (docs/courses/CALENDAR.md): kindergarten's core checks
+  fall in weeks 14 to 17 and 29 to 32, grade 1's in 14 to 16, 19 and 29 to 32, grade 2's in 14 to 16, 18 to 20, 28,
+  29, 31 and 32. Health checks fall in week 12 (kindergarten mid-year), week 11 (grades 1 and 2 mid-year) and week 27
+  (every year-end).
+
+## Seams
+
+### Picked up from the course before
+
+Kindergarten has no health course before it; the band starts here. Unit 1 assumes no earlier row. Within the band,
+each grade picks up the year before as below; every pick-up is a retrieval task inside a day of the unit named.
+
+#### Kindergarten to grade 1
+
+| Kindergarten row | Unit | Grade 1 row that picks it up | Unit | What grade 1 does with it |
+|---|---|---|---|---|
+| k-phw-wellness-parts | 1 | g1-phw-my-strengths | 6 | Body, mind and friends become strengths for each part |
+| k-phw-hand-washing | 1 | g1-phw-stop-germs | 6 | Why washing stops germs spreading |
+| k-phw-hand-washing; k-phw-sleep-rest | 1 | g1-phw-daily-habits | 6 | Habits kept every day, for me and for others |
+| k-phw-body-names | 1 | g1-phw-eyes-ears-sun | 6 | Outside body names (eyes, ears, skin) only, retrieved to match each part to its protection |
+| k-phw-things-that-help | 2 | g1-phw-surroundings; g1-phw-how-things-touch-me | 8 | The influence check turns to places and to how things touch me |
+| k-fn-foods-for-growing; k-fn-water-first | 2 | g1-fn-plate-and-water | 8 | A pictured plate and a water cup; what a snack ad wants |
+| k-fn-foods-for-growing | 2 | g1-fn-snack-options | 8 | Snack options and what could happen with each |
+| k-pa-move-every-day | 2 | g1-pa-play-safe | 9 | Active play kept safe |
+| k-phw-pick-a-habit | 2 | g1-phw-name-a-goal; g1-phw-goal-helpers-and-steps | 9 | The habit becomes a goal with helpers and steps |
+| k-meh-feeling-words; k-meh-good-listening | 3 | g1-meh-tell-a-helper | 7 | The I-statement and listening steps used to ask for help with a worry |
+| k-meh-feeling-words | 3 | g1-s-unsafe-feels-wrong | 7 | Saying what feels wrong |
+| k-v-kind-words-and-hands | 3 | g1-v-settle-without-hurting | 9 | Settling a small problem with words |
+| k-v-kind-words-and-hands | 3 | g1-sh-families-and-respect | 11 | Respect for many kinds of families (sensitive unit) |
+| k-s-trusted-helpers | 4 | g1-s-ask-for-help; g1-meh-tell-a-helper; g1-s-unsafe-feels-wrong | 7 | The helpers named become the people asked |
+| k-s-trusted-helpers | 4 | g1-s-help-others-stay-safe | 9 | Helping a friend get to a helper |
+| k-s-safety-gear-and-cars | 4 | g1-pa-play-safe | 9 | The helmet rule carried into play |
+| k-t-smoke-and-vapor | 4 | g1-s-unsafe-feels-wrong | 7 | A found vape, lighter or pills: leave it, tell an adult |
+| k-s-notice-a-choice | 4 | g1-s-choose-and-ask | 7 | Choices that need a grown-up |
+| k-s-notice-a-choice | 4 | g1-fn-snack-options | 8 | Decision steps 2 and 3 |
+| k-aod-medicine-safety | 4 | g1-aod-medicine-helpers | 7 | Who gives medicine safely |
+| k-v-body-safety | 5 | g1-v-body-safety | 10 | Sensitive to sensitive only: keep telling (if unit 5 was left out, unit 10 opens with the one idea it needs) |
+
+#### Grade 1 to grade 2
+
+| Grade 1 row | Unit | Grade 2 row that picks it up | Unit | What grade 2 does with it |
+|---|---|---|---|---|
+| g1-phw-my-strengths; g1-phw-daily-habits | 6 | g2-phw-why-health-matters | 12 | A reason health matters, tied to a habit done |
+| g1-phw-stop-germs | 6 | g2-phw-stopping-germs; g2-phw-doctor-nurse-visit | 12 | Germ habits deeper; when a doctor or nurse visit is a good idea |
+| g1-s-ask-for-help | 7 | g2-s-find-school-helpers; g2-s-hurt-or-sick-get-help | 13 | A helper map; getting help when hurt or suddenly sick |
+| g1-s-unsafe-feels-wrong | 7 | g2-t-no-thanks-smoke | 13 | "No thanks" and walk away from an offered cigarette or vape |
+| g1-aod-medicine-helpers | 7 | g2-s-outdoor-and-home-safety | 13 | Medicines and cleaners stay with adults |
+| g1-meh-tell-a-helper | 7 | g2-meh-people-are-different; g2-meh-feelings-calm-and-talk | 14 | Listening before judging; calm first, then talk |
+| g1-s-unsafe-feels-wrong | 7 | g2-v-my-limits-say-stop | 14 | Saying stop becomes the boundary steps |
+| g1-fn-snack-options | 8 | g2-fn-pick-best-snack | 12 | Decision step 4: pick the best option and give a reason |
+| g1-pa-play-safe | 9 | g2-pa-invite-friends-to-move; g2-s-outdoor-and-home-safety | 15; 13 | Inviting others to move; rules for water, bikes, fire and kitchens |
+| g1-v-settle-without-hurting | 9 | g2-v-settle-it-with-words | 14 | The conflict steps in short form |
+| g1-phw-goal-helpers-and-steps; g1-phw-name-a-goal | 9 | g2-phw-goal-do-it; g2-phw-goal-look-back | 15 | Acting on the goal for a week and looking back |
+| g1-v-body-safety | 10 | g2-v-body-safety | 16 | Sensitive to sensitive only: the helper map applied |
+| g1-sh-families-and-respect | 11 | g2-sh-bodies-grow-respect | 17 | Sensitive to sensitive only (if unit 11 was left out, unit 17 opens with one scene on respect for every family) |
+
+### Handed on to Health, grades 3 to 5
+
+| This course hands on | Unit here | Row that picks it up (grade 3) | What it does with it |
+|---|---|---|---|
+| g2-phw-why-health-matters | 12 | g3-phw-grow-strengths; g3-phw-wellness-actions; g3-phw-habits-look-closely | Growing a strength; an action for each part of wellness; habits looked at closely |
+| g2-phw-stopping-germs | 12 | g3-phw-habits-look-closely | Who benefits from each habit |
+| g2-phw-doctor-nurse-visit | 12 | g3-phw-find-resources | Wellness resources at home, school and in the community |
+| g2-fn-pick-best-snack | 12 | g3-fn-food-groups; g3-fn-added-sugar-drinks; g3-s-decide-careful | Food groups; added sugar on a drink label; choices that need careful thinking |
+| g2-s-find-school-helpers | 13 | g3-s-which-helper; g3-phw-find-resources | Which helper fits which situation (the second help step) |
+| g2-s-outdoor-and-home-safety | 13 | g3-s-stay-safe-places; g3-aod-medicine-rules | Safety by place, online in its simplest form; medicine rules and first plain facts on alcohol |
+| g2-t-no-thanks-smoke | 13 | g3-t-tobacco-facts | What nicotine, smoke and vapor do, and what most people that age really do |
+| g2-meh-people-are-different | 14 | g3-phw-influences-on-health; g3-meh-listening | Influences on health; careful listening in several places |
+| g2-meh-feelings-calm-and-talk | 14 | g3-meh-feelings-say | The I-statement with a reason and a request |
+| g2-v-my-limits-say-stop | 14 | g3-v-my-limits-and-yours | Stating and respecting limits |
+| g2-v-settle-it-with-words | 14 | g3-v-bullying | Conflict steps used on bullying, with an upstander line |
+| g2-pa-invite-friends-to-move | 15 | g3-pa-active-and-invite | An hour of activity a day and inviting others |
+| g2-phw-goal-do-it | 15 | g3-phw-set-goal; g3-phw-goal-alone-or-together | One goal in a sentence; alone, with a helper or as a team |
+| g2-v-body-safety | 16 | g3-v-body-safety | Sensitive to sensitive |
+| g2-sh-bodies-grow-respect | 17 | g3-sh-respect-all-people | Sensitive to sensitive |
+
+Threads that end in this band with no grade 3 row (their skills return inside other grade 3 rows): k-meh-calm-body
+(returns in g2-meh-feelings-calm-and-talk), g1-phw-eyes-ears-sun, g1-phw-surroundings, g1-phw-how-things-touch-me,
+g1-fn-plate-and-water, g1-s-choose-and-ask, g1-s-help-others-stay-safe, g2-s-hurt-or-sick-get-help and
+g2-phw-goal-look-back. Every pair above is answered at both ends in data/progressions/health.csv (checked by script,
+2026-11-25).
+
+## Models carried
+
+The models are the step cards (APPROACH.md, "What is carried"). Each is introduced on its first row's first fluency
+day, with the teacher holding the model.
+
+| Model | Where it comes from | Introduced or first used here | Used again here |
+|---|---|---|---|
+| influence-check (name it, say how it touches me) | New in this course | Unit 2 (k-phw-things-that-help: helps or hurts) | Unit 8 (g1-phw-surroundings, g1-phw-how-things-touch-me, g1-fn-plate-and-water), unit 14 (g2-meh-people-are-different); on to grade 3 |
+| goal-plan (pick, say, steps and helpers, do, look back) | New in this course | Unit 2 (k-phw-pick-a-habit: pick one) | Unit 9 (g1-phw-name-a-goal, g1-phw-goal-helpers-and-steps), unit 15 (g2-phw-goal-do-it, g2-phw-goal-look-back); on to grade 3 |
+| i-statement ("I feel ___ when ___. I need ___.") | New in this course | Unit 3 (k-meh-feeling-words) | Unit 7 (g1-meh-tell-a-helper, g1-s-unsafe-feels-wrong), unit 14 (g2-meh-feelings-calm-and-talk, g2-v-my-limits-say-stop); on to grade 3 |
+| listening-steps (look, quiet body, wait, say back) | New in this course | Unit 3 (k-meh-good-listening) | Unit 7 (g1-meh-tell-a-helper), unit 14 (g2-meh-people-are-different); on to grade 3 |
+| help-steps (know your helpers, say who, what happened, that it matters, keep telling) | New in this course | Unit 4 (k-s-trusted-helpers) | Unit 5 (sensitive), unit 7 (all four rows), unit 9 (g1-phw-goal-helpers-and-steps), unit 10 (sensitive), unit 13 (g2-s-find-school-helpers, g2-s-hurt-or-sick-get-help), unit 14 (g2-meh-feelings-calm-and-talk), unit 16 (sensitive); on to grade 3 |
+| decision-steps (notice a choice, ask if it needs a grown-up, name options, pick and say why) | New in this course | Unit 4 (k-s-notice-a-choice: step 1) | Unit 7 (g1-s-choose-and-ask), unit 8 (g1-fn-snack-options: steps 2 and 3), unit 12 (g2-fn-pick-best-snack: step 4); on to grade 3 |
+| boundary-steps (say it, say stop again, move away, tell) | New in grade 2 | Unit 14 (g2-v-my-limits-say-stop) | Unit 14 (g2-v-settle-it-with-words), unit 16 (sensitive); on to grade 3 |
+| conflict-steps (stop, say what happened, listen, find a fair way) | New in grade 2 | Unit 14 (g2-v-settle-it-with-words, short form) | On to grade 3 (g3-v-bullying) |
+
+A row whose model_in names a card it does not receive from its own assumed row (progression read 2026-11-19,
+finding 9) gets it from the card's first row above; no model is used before its introducing unit.
+
+## Units
+
+| # | Year | Unit and compelling question | Days | Skills | Owned standards | C3 | What students learn | Why this unit, here | Check set adds | Sensitive topics and teacher notes |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | K | Healthy me. *What does a healthy body and mind need every day?* | 5 | k-phw-wellness-parts; k-phw-body-names; k-phw-hand-washing; k-phw-sleep-rest | NHES.S1.2.2; NHES.S1.2.4; NHES.S7.2.1 | Practicing healthy behaviors (standard 7): hand washing in five pictured steps (wet, soap, scrub for a song, rinse, dry) | Day 1: healthy has parts (body, mind, friends), sorted from pictured actions (NHES.S1.2.2). Day 2: hand washing done for real at the sink with its moments (before eating, after the toilet, after coughing) (NHES.S1.2.4, NHES.S7.2.1). Day 3 (week 3): body names, outside and main inside parts (heart, lungs, stomach, brain) and the private part names said once, with the idea of private (~NHES.S1.2.2 practice); words only, nothing about what parts do. Day 4: sleep and a calm bedtime routine as a picture list (~NHES.S7.2.1, ~NHES.S1.2.4 practice). Day 5: end-of-unit check: unseen pictured cards: order the washing steps, pick the moment to wash, sort an action under body, mind or friends; valuing item on a character who skips washing. Out: germ science (grade 1), how long a child sleeps. Serves HECAT.PHW.HBO1, HBO2, HBO5. Tools: a picture sort (paper; optional one-screen version). Curio Class writes: wellness sort cards, step card, a bedtime picture list, the body-names script and family note. Cost (class of 30, provisional): $3 printing; soap and paper towels from school stock | First because it names the parts of health the whole band sorts by, and hand washing is a daily school habit worth starting in week 2. Body names sit on day 3 (week 3) so the family note sent in week 1 gives two weeks for preview and opt-out, and they come before unit 5, which needs them. No earlier course; no readiness check | Candidate: HECAT PHW module PreK-2 read may add a tooth-brushing or dental-care expectation; add it inside day 4 if it fits, or list it under For the lead | Body names: person read before publishing (later.csv L89); family note in week 1 with the words first, no pictures, preview and a quiet opt-out of that part; teacher answers a question in one calm sentence and moves on; if a child says anything about being touched or hurt, listen, do not promise secrecy, do not question, follow the school's duty to report. Hand washing: wipe sink spills at once (slips), fragrance-free soap, five minutes of the period kept for washing and drying; a child without soap at home is never singled out. Sleep: never ask about a child's bedtime. Agent reads: sensitivity (sources named in the brief); safety (sink) |
+| 2 | K | Food, water and play. *What helps my body grow and feel strong?* | 6 | k-fn-foods-for-growing; k-fn-water-first; k-pa-move-every-day; k-phw-things-that-help; k-phw-pick-a-habit | NHES.S2.2.1; NHES.S6.2.1 | Analyzing influences (standard 2): the influence check introduced (helps or hurts, say one why); setting goals (standard 6): goal-plan step 1, pick one habit | Foods that help us grow and foods to have less often, named by color, never good or bad; water as the drink bodies need most (~NHES.S1.2.4 and ~NHES.S7.2.1 practice, owned in unit 1); playing hard makes the heart beat faster, with a water break (health teaches why and the habit, PE teaches the moving). Then things around us that help or hurt (sleep, washing, play, too much sun, foods), sorted with one why: the first influence check (NHES.S2.2.1, ~NHES.S2.2.1 practice in the food rows). Then pick one healthy habit to try from a short safe list of what the class has learned (washing, water, a sleep routine, time outside) and draw it (NHES.S6.2.1). End-of-unit check on day 6: unseen pictured cards sorted helps or hurts with one why; pick a habit for a character and say why it helps. Out: food groups by name and labels (grade 3), any amount, weight or calorie. Serves HECAT.FN.HBO1, HBO2, HBO3, HBO6, HBO7; PA.HBO1, HBO4; PHW.HBO1, HBO5. Tools: helps-or-hurts picture sort (paper first). Curio Class writes: food and drink picture cards, a pictured plate, the habit card. Cost: $3 printing; optional tasting of two fruits or vegetables, $15 for 30 children | After unit 1 because the influence sort uses unit 1's sleep and washing as its first "helps", and the habit pick draws on units 1 and 2. Second in the year because food and play are concrete and positive before feelings and safety. Ends before the mid-year check in week 12 | Candidate: HECAT FN and PA modules PreK-2 read may add a breakfast or "listen to hunger and fullness" expectation; keep it to one sentence inside the food day | Food: never ask what a child eats or drinks at home; foods and budgets vary; no good or bad foods, no weighing, no calories. Tasting is optional, under the school's food and allergy rules, with allergies checked first; otherwise pictures. Active bursts: clear space, a water break, a child who cannot run takes part by moving arms or clapping. Goals: never about weight, body or food limits; a character's goal is always an option. Agent reads: sensitivity (food sources named in the brief); safety (tasting, active play) |
+| 3 | K | Feelings and friends. *What can I do with a big feeling, and how do I show I am listening?* | 5 | k-meh-feeling-words; k-meh-calm-body; k-meh-good-listening; k-v-kind-words-and-hands | NHES.S4.2.1; NHES.S4.2.2; NHES.S4.2.5 | Communicating (standard 4): the I-statement and the listening steps introduced | Naming a feeling and a need with the frame "I feel ___ when ___. I need ___." (NHES.S4.2.1); calm-down tools chosen and practiced when calm (slow breaths, counting, squeezing hands, asking for a break) (~NHES.S4.2.1 practice); listening in four pictured steps with a partner who is different from me (NHES.S4.2.2); kind words and gentle hands, the first step on bullying: unkind acts hurt and an adult can help (NHES.S4.2.5). End evidence: the I-statement said for a character heard from every child across days 4 and 5; day 5 check on unseen pictured scenes (pick the kind act, pick a calm tool for a character). Out: bullying roles (grade 3). Serves HECAT.MEH.HBO1, HBO2, HBO4, HBO5, HBO7; V.HBO1, HBO3. Tools: feeling-face cards. Curio Class writes: face cards, step cards, short kind and unkind scenes with characters varied in family, ability and culture. Cost: $3 printing | After the mid-year check, when the class knows its routines; before unit 4 because asking a helper uses the I-statement and listening steps taught here. SEL kindergarten teaches feeling words and calm-down steps too (Cross-subject): this unit uses the same faces and routine | Candidate: HECAT MEH module PreK-2 read may add "show care for others' feelings"; it fits inside the kind-words day | No child is asked about their own feelings at home; feelings are a character's. A calm-down tool is never used as a punishment. A child who does not speak points to a face card. Agent reads: sensitivity |
+| 4 | K | Helpers and choices. *Who helps keep me safe, and what do I do when I have a choice?* | 6 | k-s-trusted-helpers; k-s-notice-a-choice; k-s-safety-gear-and-cars; k-aod-medicine-safety; k-t-smoke-and-vapor | NHES.S3.2.1; NHES.S5.2.1 | Accessing help (standard 3): help-steps step 1, know your helpers; deciding (standard 5): decision-steps step 1, notice a choice | Trusted adults at home, school and nearby, chosen on a hand drawing (families vary; a school adult always counts) (NHES.S3.2.1); this prepares asking others for help, NHES.S8.2.1, owned in grade 1 unit 7. Notice a choice: stop and say "I have a choice" (NHES.S5.2.1). Seat belts, car seats and helmets lower the chance of getting hurt (~NHES.S1.2.3, owned in grade 1 unit 6); medicine only from a trusted grown-up, pills and cleaners left alone; smoke and vapor are not good for lungs: stay away and tell (both ~NHES.S1.2.3). End-of-unit check on day 6: unseen pictured scenes: point to a helper for each, spot the choice, pick "leave it and tell". Out: any drug lesson; car-seat fitting. Serves HECAT.S.HBO1, HBO3, HBO4, HBO5, HBO7; AOD.HBO1; T.HBO1, HBO2. Tools: helper hand drawing, leave-it-and-tell picture sort. Curio Class writes: helper cards, choice scenes, a pictured "leave it and tell" card. Cost: $3 printing; one child's helmet and a doll, borrowed (or $15 for a helmet) | The getting-help unit every year needs, in a non-sensitive place, so unit 5 can be left out. After unit 3 because naming helpers uses the I-statement for what to say. Gear, medicine and smoke share the day plan of "notice, leave it, tell": one action, three settings | Candidate: HECAT S module PreK-2 read may add street-crossing or "know my address" expectations; one scene each inside the choice day | Helmets fitted on a doll or a partner's own school helmet only, never shared between heads. Pictures only for medicines, cleaners, cigarettes and vapes. A child who lives with someone who smokes is never made to feel blame for that person. Agent reads: sensitivity (safety sources named in the brief); safety |
+| 5 | K | My body is mine (sensitive, removable). *What do I do if a touch does not feel safe?* | 2 | k-v-body-safety | | Accessing help and communicating: help-steps practiced (no new skill) | Body safety in simple words: my body is mine; some touches are safe and some are not; secrets about touch are never kept; tell a trusted adult until one helps. Practices NHES.S3.2.1 (owned in unit 4) and begins NHES.S4.2.3 (owned in grade 1 unit 7); owns no indicator. Day 1 understanding; day 2 written-script practice of the telling line with a card, then the end-of-unit check: unseen pictured scenes, point to "tell" and to a helper. Leave-out note: the course still teaches trusted helpers and the help steps in unit 4; leaving it out removes HECAT.V.HBO8 for the year. Serves HECAT.V.HBO8. Curio Class writes: leave-out note, longer family note (English and Spanish), the scripts. Cost: $2 printing | After unit 4 (helpers, help-steps) and unit 1 (correct names). Last before the year-end check so the check never depends on it; if left out, its two days extend unit 4 | Candidate: HECAT V module PreK-2 read may add "surprises are okay, secrets about touch are not"; already in day 1 | Sensitive. Family note two weeks before, with the outline and how to opt out through the school (at home the parent decides). No child is asked about their own experience; no role play of a person who touches; a card plays any pressure. If a child tells you something: listen, do not promise to keep it secret, follow the school's duty to report, and tell the child who the next adult is; a parent teaching at home is pointed to the national child abuse hotline by purpose. Agent reads: sensitivity (sources named in the brief) |
+| 6 | 1 | Habits that keep germs away. *How do I keep germs from spreading, and what am I already good at?* | 4 | g1-phw-my-strengths; g1-phw-stop-germs; g1-phw-eyes-ears-sun; g1-phw-daily-habits | NHES.S1.2.1; NHES.S1.2.3; NHES.S7.2.2 | Practicing healthy behaviors (standard 7) for me and for others; health information (standard 1) | Day 1: strengths that keep me healthy (washing, trying foods, asking for help, being kind), one for body, mind and friends, never body traits (NHES.S1.2.1); the daily-habits picture chart starts, kept for a week by the child's own choice (NHES.S7.2.2). Day 2: germs are tiny living things that spread from person to person; wash, cough into the elbow, stay home when sick, do not share cups (NHES.S1.2.3); a washable-paint "germ" handshake shown by the teacher. Day 3: protecting eyes, ears and skin (hats, shade, sunglasses, sunscreen put on by an adult, turning sound down) (~NHES.S1.2.3 practice), and the habits chart looked at. Day 4: end-of-unit check: unseen pictured scenes, pick the germ-stopping action and say why; match a body part to its protection. Out: how germs make people sick, any illness story. Serves HECAT.PHW.HBO1, HBO2, HBO3, HBO4, HBO5. Curio Class writes: strength cards, a habits picture chart, a cough-and-wash step card. Cost: $4 (printing, washable paint) | First in grade 1 because germ habits build straight on kindergarten unit 1 and are used every school day. Retrieval tasks open day 1 (k-phw-wellness-parts) and day 2 (k-phw-hand-washing, k-phw-sleep-rest), all kindergarten unit 1, the year before; day 3 retrieves outside body names only (kindergarten unit 1) | Candidate: HECAT PHW module PreK-2 read may add hearing and vision checks; one sentence inside day 3 | No blame for who gets sick; no illness stories. Washable paint only, with clean-up time; no sunscreen product handled by children. The habits chart stays with the child. Agent reads: sensitivity; safety (paint, hand washing) |
+| 7 | 1 | Asking for help. *When something feels wrong, who do I tell and what do I say?* | 6 | g1-s-ask-for-help; g1-meh-tell-a-helper; g1-s-unsafe-feels-wrong; g1-s-choose-and-ask; g1-aod-medicine-helpers | NHES.S3.2.2; NHES.S8.2.1; NHES.S4.2.3; NHES.S5.2.2 | Accessing help (standard 3), communicating (standard 4) and advocacy (standard 8): help-steps (say who you need, what happened, that it matters) with the I-statement and listening steps | When and how to ask for help: who, what happened, that it is important, practiced in pairs with a card (NHES.S3.2.2); asking a trusted adult for help with a worry that will not go away and listening to what they say: "I feel ___ and I need help." (NHES.S8.2.1); what to say or do when something feels wrong or unsafe: say stop, move away, tell, keep telling (scenes: a rough game, a stranger asking for something, a scary place, a found vape or pills) (NHES.S4.2.3); choices I make alone and choices that need a grown-up (NHES.S5.2.2); the people who give medicine safely and why we ask first (~NHES.S1.2.3 practice, owned in unit 6). End evidence: the help request said for a character heard from every child across days 5 and 6; day 6 check on unseen pictured scenes. Out: emergencies and calling for help (grade 2). Serves HECAT.S.HBO4, HBO5, HBO6, HBO7; MEH.HBO4; V.HBO7; AOD.HBO1. Curio Class writes: help-step card, scripted scenes with an adult playing any pressure, a choose-alone-or-ask sort. Cost: $3 | The getting-help unit for grade 1 in a non-sensitive place, so units 10 and 11 can be left out. Before the mid-year check because units 9 and 10 use its steps. Retrieval opens it: k-s-trusted-helpers (kindergarten unit 4) on day 1, k-meh-feeling-words and k-meh-good-listening (kindergarten unit 3) on day 2, k-s-notice-a-choice, k-t-smoke-and-vapor and k-aod-medicine-safety (kindergarten unit 4) on day 4, all the year before | Candidate: HECAT MEH and S module PreK-2 reads may add "tell an adult if someone online asks for something"; one scene on day 3 | No child is asked about their own worries or family; scenes are characters'. Stranger scenes stay calm, with no kidnapping detail. Never test knowledge of home medicines. Agent reads: sensitivity (safety sources named in the brief) |
+| 8 | 1 | What shapes my health. *What around me helps me be healthy, and how do I choose a snack?* | 5 | g1-phw-surroundings; g1-phw-how-things-touch-me; g1-fn-plate-and-water; g1-fn-snack-options | NHES.S1.2.6; NHES.S2.2.2; NHES.S5.2.3 | Analyzing influences (standard 2): the influence check (name it, say how it touches me); deciding (standard 5): decision steps 2 and 3 | Where we live and learn affects health (clean water, safe play places, crowded or quiet rooms), drawn as a healthy place of the child's choice, never their own home (NHES.S1.2.6); how things touch my own health and feelings (a late night makes me tired) (NHES.S2.2.2); a pictured plate with a range of foods and a water cup, and what a snack ad wants (~NHES.S2.2.2 practice); two or three snack options and what could happen with each (NHES.S5.2.3). End-of-unit check on day 5: unseen pictured cards, name an influence and how it touches a character; give two options and a result for a character's snack. Out: food groups by name (grade 3). Serves HECAT.PHW.HBO1, HBO5; FN.HBO1, HBO2, HBO3, HBO6, HBO7. Curio Class writes: place pictures, a pictured plate, two snack ads invented for practice. Cost: $3 | After the mid-year check, using unit 7's choose-and-ask as decision step 1 to 2. Retrieval: k-phw-things-that-help, k-fn-foods-for-growing and k-fn-water-first (kindergarten unit 2), and k-s-notice-a-choice (kindergarten unit 4), the year before | Candidate: HECAT FN module PreK-2 read may add "eat breakfast"; one scene inside the snack day | Homes differ: children describe school and a place they choose, never their own home. Snack options all stay foods that help or foods for sometimes; no scolding. Ads are invented for practice, with no product names. Agent reads: sensitivity (food sources named in the brief) |
+| 9 | 1 | Playing safe together, and a goal to try. *How can playtime stay safe and fair, and what healthy thing will I work on?* | 5 | g1-pa-play-safe; g1-v-settle-without-hurting; g1-s-help-others-stay-safe; g1-phw-name-a-goal; g1-phw-goal-helpers-and-steps | NHES.S8.2.2; NHES.S6.2.2; NHES.S6.2.3; NHES.S6.2.4 | Advocacy (standard 8): helping others choose safely; setting goals (standard 6): goal-plan with helpers and steps | Active play stays safe with space, rules, water and stopping when hurt; the helmet rule carried (~NHES.S7.2.2 practice, owned in unit 6); small playground problems settled with words, taking turns or getting an adult: "Stop, I don't like that" (~NHES.S4.2.3 practice, owned in unit 7); ways to help others make safe choices (remind a friend to buckle up, tell an adult when a friend is hurt) (NHES.S8.2.2). Then a goal in the frame "I will ___" from the safe list and why it helps (NHES.S6.2.2), who can help and two or three steps in order, drawn (NHES.S6.2.3, NHES.S6.2.4). End-of-unit check on day 5: the child's goal plan shown (goal, helper, steps), or a character's, scored on the goal-plan steps; one unseen scene on helping a friend. Out: acting on and looking back on the goal (grade 2). Serves HECAT.PA.HBO1, HBO4, HBO6; V.HBO1, HBO3, HBO7; S.HBO8; PHW.HBO1, HBO2. Curio Class writes: safe-play rule cards, goal frame sheet. Cost: $3; cones from PE stock | Play-safe and settle share a day plan (a game gets rough), then advocacy, then the goal, which ends the grade 1 non-sensitive year so the plan can go home over the summer. Uses help-steps from unit 7. Retrieval: k-pa-move-every-day and k-phw-pick-a-habit (kindergarten unit 2), k-s-safety-gear-and-cars and k-s-trusted-helpers (kindergarten unit 4), k-v-kind-words-and-hands (kindergarten unit 3), the year before | Candidate: HECAT PA module PreK-2 read may add "warm up before play"; one line inside day 1 | Active play: clear space, water, stop when hurt; a child who cannot run takes part in another way. Goals from the safe list only; a character's goal is always an option; the plan stays with the child. Agent reads: sensitivity; safety (active play) |
+| 10 | 1 | Keep telling (sensitive, removable). *What if the first grown-up I tell does not help?* | 2 | g1-v-body-safety | | Accessing help and communicating: help-steps practiced (no new skill) | Body safety repeated with scenes about whom to tell and what to say when the first adult does not help: keep telling. Practices NHES.S4.2.3 (owned in unit 7) and NHES.S3.2.2 (owned in unit 7); owns no indicator. Day 1 understanding; day 2 written-script practice then the end-of-unit check on unseen pictured scenes (point to the next helper). Leave-out note: the course still teaches asking for help and keep telling in unit 7. Serves HECAT.V.HBO8. Cost: $2 | After unit 7's help steps. Sensitive units sit at the end of the year, before the year-end check, which never samples them; if left out, its days extend unit 9 | Candidate: HECAT V module PreK-2 read may add a scene where a friend tells you a worry; kept to a telling line | Sensitive. Leave-out note and family note as in unit 5. Disclosure steps as in unit 5 (listen, no secrecy promise, duty to report, name the next adult). No child is asked about their own experience; no role play of a person who harms. Agent reads: sensitivity (sources named in the brief) |
+| 11 | 1 | Many kinds of families (sensitive, removable). *How do we show respect to every family and every person?* | 2 | g1-sh-families-and-respect | | Communicating (standard 4): kind words practiced; influences (standard 2) practiced | Many kinds of families and friendships, and respect for every person whatever they look like or who they are. Practices NHES.S4.2.5 (owned in unit 3) and NHES.S2.2.2 (owned in unit 8); owns no indicator. No body or reproduction content. Day 1 understanding with a story read aloud; day 2 the end-of-unit check: unseen pictured scenes, pick the respectful words and say why. Leave-out note: the course still meets these skills in units 3 and 8. Serves HECAT.SH.HBO2, HBO3. Curio Class writes: a short family story with families of many structures. Cost: $2 | After unit 8 (influences) and kindergarten unit 3 (kind words). Last in grade 1; if left out, its days extend unit 8 | Candidate: HECAT SH module PreK-2 read (read in part 2026-11-16) may add friendship expectations; one scene | Sensitive. Families vary in structure, culture and faith: warm, neutral words; no child describes their own family. Teacher's own views note (APPROACH.md). Agent reads: sensitivity (sources named in the brief) |
+| 12 | 2 | Staying well. *Why does being healthy matter, and how do I make a choice that is good for my body?* | 5 | g2-phw-why-health-matters; g2-phw-stopping-germs; g2-phw-doctor-nurse-visit; g2-fn-pick-best-snack | NHES.S1.2.5; NHES.S1.2.7; NHES.S5.2.4 | Deciding (standard 5): decision step 4, pick the best option and give a reason | Why being healthy matters (energy to play and learn, feeling happy, being with friends), with a reason tied to a habit done (NHES.S1.2.5; reuses strengths, ~NHES.S1.2.1, owned in unit 6); germ habits deeper: where germs hide, why we stay home when sick, and that vaccines help protect people, a fact with no illness stories (~NHES.S1.2.3 and ~NHES.S7.2.2 practice, owned in unit 6); when a doctor or nurse visit is a good idea (very hot, a hurt that will not stop, a checkup) and that a trusted adult decides and goes with you (NHES.S1.2.7); pick the best snack option for your body and give a reason, several answers fit (NHES.S5.2.4). End-of-unit check on day 5: unseen pictured scenes, pick and give a reason; say when a character needs a doctor or nurse. Out: treating illness (grade 5). Serves HECAT.PHW.HBO1, HBO2, HBO5, HBO11; FN.HBO1, HBO3. Facts and sources: vaccines and germ habits (CDC pages; source and year at the expert read). Curio Class writes: reason frames, doctor-or-nurse scenes. Cost: $3 | First in grade 2 because it gathers grade 1's habits into a reason and finishes the decision steps begun in kindergarten. PE grade 2's foods-for-energy row (g2-foods-energy) is named in this unit's snack day so the two do not teach it twice. Retrieval: g1-phw-my-strengths, g1-phw-daily-habits and g1-phw-stop-germs (grade 1 unit 6) and g1-fn-snack-options (grade 1 unit 8), the year before | Candidate: HECAT PHW module PreK-2 read may add dental checkups; one sentence inside the doctor-or-nurse day | Vaccines: a plain fact, no stories of illness, no debate staged in class; a family's choices are never discussed. No child is asked about their own doctor visits or illnesses. Agent reads: sensitivity (food sources named in the brief) |
+| 13 | 2 | Helpers and emergencies. *Who helps with health at school and nearby, and what do I do when someone is hurt?* | 5 | g2-s-find-school-helpers; g2-s-hurt-or-sick-get-help; g2-s-outdoor-and-home-safety; g2-t-no-thanks-smoke | NHES.S3.2.3 | Accessing help (standard 3): help-steps, finding the right helper | Find the people who help with health at school and nearby (school nurse, teacher, counselor, crossing guard, firefighter, doctor) and map two (NHES.S3.2.3); getting help when you or a friend is hurt or suddenly sick: stay safe, get an adult, say what happened, and a first look at calling for emergency help with an adult (~NHES.S3.2.2 practice, owned in unit 7); safety rules for water, bikes, fire and kitchens with the reason behind each, and medicines and cleaners stay with adults (~NHES.S1.2.3 practice, owned in unit 6); "No thanks" and walk away if someone offers a cigarette or vape, then tell (~NHES.S4.2.3 practice, owned in unit 7). End-of-unit check on day 5: unseen pictured scenes, pick the helper and say what to tell; give the reason for a safety rule. Out: online safety (grade 3). Serves HECAT.S.HBO1, HBO3, HBO4, HBO5, HBO6, HBO7; T.HBO1, HBO2. Curio Class writes: helper map sheet, emergency script, "no thanks" script with a card playing the offer. Cost: $3; a toy phone or a paper phone for the emergency script | The getting-help unit for grade 2 in a non-sensitive place, so units 16 and 17 can be left out; unit 16 uses its helper map. Before the mid-year check. Retrieval: g1-s-ask-for-help, g1-s-unsafe-feels-wrong and g1-aod-medicine-helpers (grade 1 unit 7), g1-pa-play-safe (grade 1 unit 9), the year before | Candidate: HECAT S module PreK-2 read may add fire escape and "stop, drop and roll"; one scene inside the rules day | The emergency call is practiced with a paper or toy phone only, never a real number dialed. Fire and injury scenes stay calm, with helpers shown; never ask a child to retell an emergency. A card plays the offer; no child plays the person offering. Agent reads: sensitivity (safety sources named in the brief); safety |
+| 14 | 2 | Feelings, limits and fair settling. *How do I say stop, and how do we settle a problem fairly?* | 6 | g2-meh-people-are-different; g2-meh-feelings-calm-and-talk; g2-v-my-limits-say-stop; g2-v-settle-it-with-words | NHES.S2.2.3; NHES.S4.2.4 | Communicating (standard 4): boundary steps and conflict steps introduced; influences (standard 2) with the listening steps | The same thing can touch two people differently (loud music, a food, a new place), so listen before judging, with the influence check and the listening steps (NHES.S2.2.3); choose a calm tool, then say how I feel with the I-statement: calm first, talk second (~NHES.S4.2.1 practice, owned in kindergarten unit 3); personal limits in plain scenes (a grab, a tickle that goes on, a borrowed toy, personal space), the boundary steps (say it, say stop again, move away, tell), and honoring others' limits (NHES.S4.2.4); settle a small conflict with words: stop, say what happened, listen, find a fair way, an adult helps when words do not work (~NHES.S4.2.4 practice). End evidence: the boundary steps said for a character heard from every child across days 5 and 6; day 6 check on unseen pictured scenes. Out: bullying roles (grade 3). Serves HECAT.MEH.HBO1, HBO3, HBO4, HBO5, HBO7; V.HBO1, HBO3, HBO7. Curio Class writes: boundary and conflict step cards, short scenes. Cost: $3 | Two new step cards make this the heaviest grade 2 unit (six days). After the mid-year check; before unit 16, which uses the boundary steps. SEL grade 2 leans on the limits row here (Cross-subject). Retrieval: g1-meh-tell-a-helper and g1-s-unsafe-feels-wrong (grade 1 unit 7), g1-v-settle-without-hurting (grade 1 unit 9), the year before | Candidate: HECAT V and MEH module PreK-2 reads may add "accept a no from others"; it sits in the limits day already | Tickling and grabbing scenes are about characters and objects; no child acts a grab on another; scripted lines only for the pressure. Agent reads: sensitivity |
+| 15 | 2 | Moving together and my goal. *How can I help friends be active, and did my goal work?* | 4 | g2-pa-invite-friends-to-move; g2-phw-goal-do-it; g2-phw-goal-look-back | NHES.S8.2.3; NHES.S6.2.5; NHES.S6.2.6 | Advocacy (standard 8): encouraging others to be active; setting goals (standard 6): goal-plan do and look back | Encourage others to be active: invite someone left out, cheer, share a game, with an invite line (NHES.S8.2.3). Act on a safe-list goal for a week with a picture chart and a helper, telling what I did, not how well (NHES.S6.2.5); the week between lessons is the week the goal runs. Look back: what worked, what was hard, what next; a goal that did not work is information, not failure (NHES.S6.2.6). End-of-unit check on day 4: the goal chart and look-back shown (the child's or a character's), scored on the goal-plan steps, with one unseen invite scene. Out: goals alone or together (grade 3). Serves HECAT.PA.HBO1; PHW.HBO1, HBO2. Curio Class writes: a goal week picture chart, invite line card. Cost: $3 | Last non-sensitive unit of the band: it closes the goal thread begun in kindergarten unit 2 and hands the goal on to grade 3. Spring, so active play can be outside. Retrieval: g1-pa-play-safe, g1-phw-name-a-goal and g1-phw-goal-helpers-and-steps (grade 1 unit 9), the year before | Candidate: HECAT PA module PreK-2 read may add "find active things to do at home"; one line in the invite day | Goals from the safe list only; the chart stays with the child; no grade on how well the goal went. A child who is left out in real life is never named in a scene. Agent reads: sensitivity |
+| 16 | 2 | Who to tell (sensitive, removable). *Who can I tell at home, at school and nearby if a touch is not safe?* | 2 | g2-v-body-safety | | Accessing help and communicating: help-steps and boundary steps practiced (no new skill) | Body safety with the helper map from unit 13: who to tell at home, at school and nearby; a child is never to blame. Practices NHES.S4.2.4 (owned in unit 14) and NHES.S3.2.3 (owned in unit 13); owns no indicator. Day 1 understanding; day 2 written-script practice then the end-of-unit check on unseen pictured scenes. Leave-out note: the course still teaches limits in unit 14 and helpers in unit 13. Serves HECAT.V.HBO8. Cost: $2 | After units 13 and 14, whose helper map and boundary steps it uses; before the year-end check, which never samples it; if left out, its days extend unit 14 | Candidate: HECAT V module PreK-2 read may add a scene on trusted adults outside school; one scene | Sensitive. Leave-out note, family note and disclosure steps as in unit 5. No child is asked about their own experience; no role play of a person who harms. Agent reads: sensitivity (sources named in the brief) |
+| 17 | 2 | Growing bodies, respectful friends (sensitive, removable). *How do bodies grow, and how do we respect each other's privacy?* | 2 | g2-sh-bodies-grow-respect | | Communicating (standard 4): limits practiced | Bodies grow and change in many ways; privacy and respect for others' limits; correct names are already taught in kindergarten unit 1 and are not asked of any child. Practices NHES.S4.2.4 (owned in unit 14) and NHES.S1.2.2 (owned in kindergarten unit 1); owns no indicator. Age-matched with no reproduction detail. Day 1 understanding; day 2 end-of-unit check: unseen pictured scenes on privacy and respect. Leave-out note: the course still meets these skills in unit 14 and kindergarten unit 1; children whose bodies change early may be affected by leaving it out. Serves HECAT.SH.HBO1, HBO2. Cost: $2 | After unit 14's limits; last in the band, before the year-end check; if left out, its days extend unit 14 | Candidate: HECAT SH module PreK-2 read may add "all living things grow"; kept to one plain line with no reproduction detail | Sensitive. Leave-out note and family note as in unit 5; the school or family decides. Teacher's own views note. No pictures of bodies. Agent reads: sensitivity (sources named in the brief) |
+
+Cost by year (provisional, class of 30, printing in black and white, reusable items counted once): kindergarten
+$29 (with optional tasting and a bought helmet), grade 1 $17, grade 2 $16.
+
+## Course-level checks
+
+| Check | After unit | Check days | Respond days | What it checks |
+|---|---|---|---|---|
+| Kindergarten mid-year check (week 12; respond week 13) | 2 | 1 | 1 | Samples units 1 and 2 on unseen pictured cards read aloud, each child answering alone by circling, drawing or pointing: order the washing steps and pick a washing moment (NHES.S7.2.1, NHES.S1.2.4), sort an action under body, mind or friends (NHES.S1.2.2), sort a new set into helps or hurts with one why (NHES.S2.2.1), pick a habit for a character (NHES.S6.2.1). No item on body names. Unit 2's end-of-unit record is carried, not re-scored. The respond day re-rehearses each "not yet" step on a new scenario |
+| Kindergarten year-end check (week 27; respond week 28) | 5 | 1 | 1 | Samples units 3 and 4, with one item each drawn from units 1 and 2: the I-statement for a character (pointing to faces counts) and a listening step (NHES.S4.2.1, NHES.S4.2.2), a kind act (NHES.S4.2.5), point to a helper (NHES.S3.2.1), spot a choice (NHES.S5.2.1). Never unit 5. Unit 3's said-aloud records are carried, not re-heard |
+| Grade 1 mid-year check (week 11; respond week 12) | 7 | 1 | 1 | Samples units 6 and 7 on unseen pictured scenes: a germ-stopping action and why (NHES.S1.2.3, NHES.S7.2.2), a strength for a character (NHES.S1.2.1), what to say when something feels wrong (NHES.S4.2.3), who to ask and what to say (NHES.S3.2.2, NHES.S8.2.1), alone or ask a grown-up (NHES.S5.2.2). Unit 7's said-aloud record is carried, not re-heard |
+| Grade 1 year-end check (week 27; respond week 28) | 11 | 1 | 1 | Samples units 8 and 9, with one item each from units 6 and 7: an influence and how it touches a character (NHES.S2.2.2, NHES.S1.2.6), two options and a result (NHES.S5.2.3), a goal frame with a helper and steps for a character (NHES.S6.2.2 to NHES.S6.2.4), helping a friend choose safely (NHES.S8.2.2). Never units 10 or 11 |
+| Grade 2 mid-year check (week 11; respond week 12) | 13 | 1 | 1 | Samples units 12 and 13 on unseen pictured scenes, with a short written or dictated reason: pick the best option and why (NHES.S5.2.4), a reason health matters (NHES.S1.2.5), when to see a doctor or nurse (NHES.S1.2.7), the right school helper (NHES.S3.2.3) |
+| Grade 2 year-end check (week 27; respond week 28) | 17 | 1 | 1 | Samples units 14 and 15, with one item each from units 12 and 13: listen before judging (NHES.S2.2.3), the boundary steps for a character (NHES.S4.2.4), an invite line (NHES.S8.2.3), a character's goal week and look-back (NHES.S6.2.5, NHES.S6.2.6). Unit 14's said-aloud record is carried, not re-heard. Never units 16 or 17. Results go to the grade 3 teacher |
+
+## Cross-subject
+
+### Physical education, grades K to 2 (same year; frame written separately)
+
+The physical activity topic is shared (STANDARD.md section 8): health teaches why and the habit, PE teaches the
+moving, and the units in each name the other. The PE K to 2 frame places its rows; no PE unit number is guessed here.
+
+| Health row | Unit here | PE row it names | Needed by | If PE teaches it later |
+|---|---|---|---|---|
+| k-pa-move-every-day | 2 (kindergarten weeks 6 to 11) | k-fitness-activities (PE kindergarten) | Week 6 | Health's day stands alone: it teaches "playing hard makes the heart beat faster" itself, with short bursts in the classroom |
+| g1-pa-play-safe | 9 (grade 1 weeks 18 to 22) | g1-heart-muscle (PE grade 1) | Week 18 | Health names safe-play rules only; the heart fact is said in one line if PE has not reached it |
+| g2-pa-invite-friends-to-move; g2-fn-pick-best-snack | 15 (grade 2 weeks 19 to 22); 12 (grade 2 weeks 1 to 5) | g2-foods-energy (PE grade 2; its row asks health to name it) | Week 1 | Health's snack day teaches foods that give energy for play itself; PE then uses it, not teaches it again |
+
+### Social and emotional learning, grades K to 2 (same year; frame written separately)
+
+The SEL K to 2 rows lean on health rows (data/progressions/sel.csv cross_subject). The two courses use the same
+feeling faces, calm-down routine and step words, so a skill is not taught twice in a year. No SEL unit number is
+guessed here.
+
+| SEL row | Leans on | Unit here | Note |
+|---|---|---|---|
+| k-sa-name-feelings | k-meh-feeling-words | 3 (kindergarten weeks 14 to 18) | If SEL teaches feeling words first (its progression places them early in the year), health's unit 3 opens with them as retrieval and spends its first day on the I-statement frame |
+| k-sm-calm-down | k-meh-calm-body | 3 | Same pictured calm-down steps |
+| k-rel-say-no | k-s-trusted-helpers | 4 (kindergarten weeks 19 to 24) | If SEL comes first, SEL names school helpers by picture itself; health then adds home and nearby helpers |
+| g1-rel-say-no | g1-s-choose-and-ask | 7 (grade 1 weeks 5 to 10) | Health owns the safety topics; SEL uses class choices |
+| g1-rel-ask-offer-help | g1-s-ask-for-help | 7 | Same help-step words |
+| g1-sm-set-goal | g1-phw-name-a-goal | 9 (grade 1 weeks 18 to 22) | Same goal frame; health's goals stay on the safe health list |
+| g2-rel-say-no | g2-v-my-limits-say-stop | 14 (grade 2 weeks 13 to 18) | Health owns body limits; SEL uses dares and rule breaks |
+
+### Science, mathematics and English language arts
+
+No progression row of this course leans on a core course (the rows' cross_subject cells are empty). Health states
+its plain facts itself, with their source (STANDARD.md section 8): germs, vaccines and body part names come before
+science reaches body organs in grade 4. No number work beyond counting a week of ticks on a picture chart, which
+kindergarten and grade 1 mathematics teach well before. Speaking and listening are practiced, not owned.
+
+## For the lead
+
+1. **Dose (pick: 28 lessons a year, one a week, weeks 1 to 28).** APPROACH.md says about 30 sessions of 30 minutes;
+   this frame sets 28 so the year-end check (week 27) and its respond day (week 28) stay clear of the core checks in
+   weeks 29 to 32. Health 3 to 5 should copy the rule (end the health year before the grade's core year-end check
+   weeks) and set its own count. A school that adds time (the national figure is 40 hours a year; this is 14) adds a
+   second weekly lesson to extend units, never a new unit. Data: set `weeks` to 28 for health-grades-k-to-2 in
+   data/plans/course-list.csv, or frame.py spreads each year's 28 lessons over 32 weeks and calendar.csv's weeks will
+   not match the frame. frame.py also numbers band weeks straight through the three years (week 33 is grade 1 week
+   1); the lead decides whether calendar.csv should show weeks per year.
+2. **Band-course pattern for health 3 to 5, 6 to 8 and 9 to 12.** Copy: a Year column; units numbered through the
+   band; each year 24 or so unit days plus a mid-year and a year-end check of one day each with one respond day;
+   checks placed off that grade's core check weeks (named in the Course-level checks bullet); each year's sensitive
+   units last before its year-end check, two days each, owning no indicator, and never sampled by a check; one
+   getting-help unit per year in a non-sensitive place; end-of-unit evidence as a pictured or written unseen-scenario
+   sitting plus a said-aloud record in communication units; the C3 column used for the skill standard and its step
+   card. Decide per band: the dose (6 to 8 has 45 sessions of 45 minutes; 9 to 12 owns grade 9 rows only, 80 days
+   of 45 minutes, with the goal rows as one weekly thread and two- to four-day units, Desk q-prework-health-pe-2), and
+   whether readiness checks are needed (from grade 3 on, rows assume the band before only through the year before,
+   so retrieval is the likely count again).
+3. **Gate point (frame.py).** A sensitive unit that owns no indicator has an empty Owned standards cell here, since
+   frame.py reads "None" as a code and fails it. Pick: let frame.py accept "None" in Owned standards, then the other
+   health bands write "None" in those cells.
+4. **Body names (L89).** Unit 1 day 3 and its family note are marked for the person's read before publishing; the
+   scope and sequence and unit plan can go ahead. No row change.
+5. **Sensitive chains.** Units 10 and 16 assume units 5 and 10, and unit 17 assumes unit 11 (allowed: same topic).
+   A school may leave out an earlier one and keep a later one. Pick: each later sensitive unit opens with the one
+   idea it needs from the earlier (written into the Seams rows here), so the chain holds either way. Health 3 to 5
+   should do the same for g3-v-body-safety and g3-sh-respect-all-people.
+6. **Supplies ceiling.** Health has no settled ceiling for materials. Pick: $30 a year for a class of 30 (this frame
+   is $16 to $29). This is a money question for Cory.
+7. **SEL and PE frames.** When the SEL K to 2 and PE K to 2 frames are written, each should name the health units in
+   Cross-subject above and, for SEL kindergarten, say whether feeling words come before health unit 3 (week 14); no
+   row change needed. PE grade 2's g2-foods-energy is named in health unit 12.
+8. **Weeks a lesson day falls on.** The frame assumes one lesson a week in a fixed slot. A school that meets health
+   twice a week for half the year keeps the same order and checks; the scope and sequence says so in its short path.

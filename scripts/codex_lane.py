@@ -171,7 +171,7 @@ class Lane:
 
     # ------------------------------------------------------------ git (the lead's step, done here)
     def commit(self, course, msg, before):
-        allowed = ('docs/courses/%s/' % course, 'data/plans/%s/' % course)
+        allowed = ('docs/courses/%s/' % course, 'data/plans/%s/' % course, 'courses/%s/' % course)   # courses/: ELA texts
         with gitlock():
             while turn_held():
                 time.sleep(60)
@@ -432,7 +432,7 @@ def porcelain():
 
 
 def dirty(course):
-    return any(p.startswith(('docs/courses/%s/' % course, 'data/plans/%s/' % course)) for p, _ in porcelain())
+    return any(p.startswith(('docs/courses/%s/' % course, 'data/plans/%s/' % course, 'courses/%s/' % course)) for p, _ in porcelain())
 
 
 def turn_held():
