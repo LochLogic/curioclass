@@ -26,7 +26,7 @@ No course has lessons, print, checks with keys or teacher pages yet. That is lay
 | Science | 14 | 12 | 14 | 12 | 110 | 77 / 24 / 9 |
 | Social Studies | 16 | 15 | 16 | 15 | 146 | 122 / 4 / 5 |
 | **The four core subjects** | **58** | **52** | **58** | **52** | **513** | **416 / 52 / 32** |
-| Arts and Music | 20 | 0 | 0 | 0 | 72 | 0 / 58 / 14 |
+| Arts and Music | 20 | 0 | 20 | 0 | 72 | 0 / 58 / 14 |
 | Health and PE | 8 | 8 | 0 | 0 | 33 | 16 / 8 / 8 |
 | Computer Science | 13 | 0 | 0 | 0 | 20 | 2 / 10 / 8 |
 | World Languages | 2 | 0 | 0 | 0 | 20 | 18 / 0 / 2 |
@@ -34,7 +34,7 @@ No course has lessons, print, checks with keys or teacher pages yet. That is lay
 | Social and Emotional Learning | 4 | 0 | 0 | 0 | 10 | 2 / 0 / 8 |
 | English Language Development | 4 | 0 | 0 | 0 | 23 | 16 / 1 / 5 |
 | Library and Research Skills | 8 | 0 | 0 | 0 | 13 | 7 / 4 / 2 |
-| **All courses** | **120** | **60** | **58** | **52** | **723** | **489 / 136 / 83** |
+| **All courses** | **120** | **60** | **78** | **52** | **723** | **489 / 136 / 83** |
 
 Tool counts here leave out tools that sit on shared topics (last table). "Spec" includes a few that are still ideas.
 
@@ -120,26 +120,26 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 
 | Course | Core | Rubric file | Approach | Progression | Scope and sequence | Plans | Topics | Tools: spec / built / live |
 |---|---|---|---|---|---|---|---|---|
-| Dance, grades K to 2 |  | no | shared page only | no | no | no | 3 | 0 / 3 / 0 |
-| Media Arts, grades K to 2 |  | no | shared page only | no | no | no | 3 | 0 / 3 / 0 |
-| Music, grades K to 2 |  | no | shared page only | no | no | no | 5 | 0 / 2 / 3 |
-| Theater, grades K to 2 |  | no | shared page only | no | no | no | 3 | 0 / 3 / 0 |
-| Visual Arts, grades K to 2 |  | no | shared page only | no | no | no | 4 | 0 / 2 / 2 |
-| Dance, grades 3 to 5 |  | no | shared page only | no | no | no | 3 | 0 / 3 / 0 |
-| Media Arts, grades 3 to 5 |  | no | shared page only | no | no | no | 3 | 0 / 3 / 0 |
-| Music, grades 3 to 5 |  | no | shared page only | no | no | no | 4 | 0 / 1 / 3 |
-| Theater, grades 3 to 5 |  | no | shared page only | no | no | no | 3 | 0 / 3 / 0 |
-| Visual Arts, grades 3 to 5 |  | no | shared page only | no | no | no | 5 | 0 / 4 / 1 |
-| Dance, grades 6 to 8 |  | no | shared page only | no | no | no | 3 | 0 / 3 / 0 |
-| Media Arts, grades 6 to 8 |  | no | shared page only | no | no | no | 4 | 0 / 3 / 1 |
-| Music, grades 6 to 8 |  | no | shared page only | no | no | no | 5 | 0 / 4 / 1 |
-| Theater, grades 6 to 8 |  | no | shared page only | no | no | no | 3 | 0 / 2 / 1 |
-| Visual Arts, grades 6 to 8 |  | no | shared page only | no | no | no | 4 | 0 / 3 / 1 |
-| Dance, grades 9 to 12 |  | no | shared page only | no | no | no | 3 | 0 / 3 / 0 |
-| Media Arts, grades 9 to 12 |  | no | shared page only | no | no | no | 3 | 0 / 3 / 0 |
-| Music, grades 9 to 12 |  | no | shared page only | no | no | no | 4 | 0 / 3 / 1 |
-| Theater, grades 9 to 12 |  | no | shared page only | no | no | no | 3 | 0 / 3 / 0 |
-| Visual Arts, grades 9 to 12 |  | no | shared page only | no | no | no | 4 | 0 / 4 / 0 |
+| Dance, grades K to 2 |  | no | shared page only | no | yes | no | 3 | 0 / 3 / 0 |
+| Media Arts, grades K to 2 |  | no | shared page only | no | yes | no | 3 | 0 / 3 / 0 |
+| Music, grades K to 2 |  | no | shared page only | no | yes | no | 5 | 0 / 2 / 3 |
+| Theater, grades K to 2 |  | no | shared page only | no | yes | no | 3 | 0 / 3 / 0 |
+| Visual Arts, grades K to 2 |  | no | shared page only | no | yes | no | 4 | 0 / 2 / 2 |
+| Dance, grades 3 to 5 |  | no | shared page only | no | yes | no | 3 | 0 / 3 / 0 |
+| Media Arts, grades 3 to 5 |  | no | shared page only | no | yes | no | 3 | 0 / 3 / 0 |
+| Music, grades 3 to 5 |  | no | shared page only | no | yes | no | 4 | 0 / 1 / 3 |
+| Theater, grades 3 to 5 |  | no | shared page only | no | yes | no | 3 | 0 / 3 / 0 |
+| Visual Arts, grades 3 to 5 |  | no | shared page only | no | yes | no | 5 | 0 / 4 / 1 |
+| Dance, grades 6 to 8 |  | no | shared page only | no | yes | no | 3 | 0 / 3 / 0 |
+| Media Arts, grades 6 to 8 |  | no | shared page only | no | yes | no | 4 | 0 / 3 / 1 |
+| Music, grades 6 to 8 |  | no | shared page only | no | yes | no | 5 | 0 / 4 / 1 |
+| Theater, grades 6 to 8 |  | no | shared page only | no | yes | no | 3 | 0 / 2 / 1 |
+| Visual Arts, grades 6 to 8 |  | no | shared page only | no | yes | no | 4 | 0 / 3 / 1 |
+| Dance, grades 9 to 12 |  | no | shared page only | no | yes | no | 3 | 0 / 3 / 0 |
+| Media Arts, grades 9 to 12 |  | no | shared page only | no | yes | no | 3 | 0 / 3 / 0 |
+| Music, grades 9 to 12 |  | no | shared page only | no | yes | no | 4 | 0 / 3 / 1 |
+| Theater, grades 9 to 12 |  | no | shared page only | no | yes | no | 3 | 0 / 3 / 0 |
+| Visual Arts, grades 9 to 12 |  | no | shared page only | no | yes | no | 4 | 0 / 4 / 0 |
 
 ## Health and PE (8 courses)
 
