@@ -53,6 +53,22 @@ def link_line(course, name, subject):
             '`python -X utf8 scripts/plan_facts.py %s %s`. %s' % (SITE, subject, course, where, course, name, LINK_MARK))
 
 
+def subject(course):
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import course_pages
+    return {c['slug']: c['subject'] for c in course_pages.load()}[course]
+
+
+def with_link(course, name, text, subj=None):
+    """The plan text with its one facts link line right under the title (what a writer of a new plan stores)."""
+    body = LINK_LINE.sub('', text.replace('\r\n', '\n'))
+    title, sep, rest = body.partition('\n')
+    if not title.startswith('# '):
+        title, rest = '', body
+    want = link_line(course, name, subj or subject(course))
+    return (title + '\n\n' if title else '') + want + '\n\n' + rest.lstrip('\n')
+
+
 def links(write=False):
     """Lines for each written plan whose facts link line is missing or out of date; --write puts it right."""
     sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -75,11 +91,7 @@ def links(write=False):
             out.append('plan-link docs/courses/%s/%s: %s (plan_facts.py links --write)'
                        % (course, p.name, 'no Front Office link line' if not have else 'link line out of date'))
             if write:
-                body = LINK_LINE.sub('', text)
-                title, sep, rest = body.partition('\n')
-                if not title.startswith('# '):
-                    title, sep, rest = '', '', body
-                new = (title + '\n\n' if title else '') + want + '\n\n' + rest.lstrip('\n')
+                new = with_link(course, p.name, text, subj[course])
                 with safe_write.lock(p):
                     safe_write.replace(p, new.replace('\n', nl))
     return out

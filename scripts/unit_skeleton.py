@@ -2343,7 +2343,7 @@ def main(a):
         if p.exists():
             print('plan exists, kept:', p)
             continue
-        p.write_text(plan_facts.strip(text), encoding='utf-8', newline='\n')
+        p.write_text(plan_facts.with_link(course, p.name, plan_facts.strip(text)), encoding='utf-8', newline='\n')
         print('wrote', p, '(the starter plan: headings and writer markers; its facts render from data)')
     return 0
 

@@ -113,9 +113,18 @@ class Index:
         self.edges.append((src, dst, kind, 1 if hard else 0, path, line, course, day))
 
 
+def listing():
+    """The tracked and new files the index is built from (data/, docs/, courses/)."""
+    import subprocess
+    out = subprocess.run(['git', 'ls-files', '-co', '--exclude-standard', 'data', 'docs', 'courses'], cwd=ROOT,
+                         capture_output=True, text=True).stdout
+    return sorted(set(out.splitlines()))
+
+
 def build():
     import unit_skeleton as u
     ix = Index()
+    ix.started, ix.files = time.time(), listing()   # stale() reads both: a save during the build, a file gone
     keep = u.SUBJ
     try:
         _build(ix, u)
@@ -346,11 +355,15 @@ def save(ix):
     con.executemany('insert into edges values (?,?,?,?,?,?,?,?)', ix.edges)
     con.execute('create index e_dst on edges (dst)')
     con.execute('create index e_path on edges (path)')
+    con.execute('create table meta (files text)')
+    con.execute('insert into meta values (?)', ('\n'.join(getattr(ix, 'files', [])),))
     con.commit()
     con.close()
     for i in range(20):                               # another process may have the db open for a moment
         try:
             tmp.replace(DB)
+            if getattr(ix, 'started', None):          # dated from the build's start, not its save (Fable 4.L)
+                os.utime(DB, (ix.started, ix.started))
             return
         except PermissionError:
             time.sleep(0.5)
@@ -365,10 +378,18 @@ def stale():
     built = DB.stat().st_mtime
     if Path(__file__).stat().st_mtime > built:
         return True
-    import subprocess
-    out = subprocess.run(['git', 'ls-files', '-co', '--exclude-standard', 'data', 'docs', 'courses'], cwd=ROOT,
-                         capture_output=True, text=True).stdout
-    for f in out.splitlines():
+    files = listing()
+    try:
+        con = sqlite3.connect(DB)
+        try:
+            saved = con.execute('select files from meta').fetchone()[0].split('\n')
+        finally:
+            con.close()
+    except sqlite3.Error:
+        return True       # an index saved before the file list was kept
+    if saved != files:
+        return True       # a file added or gone since the build
+    for f in files:
         try:
             if (ROOT / f).stat().st_mtime > built:
                 return True

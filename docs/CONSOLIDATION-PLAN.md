@@ -693,8 +693,8 @@ Built (2026-11-25):
   each with its reason; coverage_ledger.py is named there: it measures tool coverage and writes a catalog file), with
   course_status.py's module-level placement counts as the second named exception. 0 lines; a probe script reading
   modules.csv is caught, and so is course_status.py without its exception.
-- Rows 4 and 5: goal test 10 also reads the day status in both homes: a ledger row at stage written must name a
-  day, and that day must have a day file (index.py day_status, in the status report; 0 today). Goal test 11 also
+- Rows 4 and 5: goal test 10 also reads the day status in one direction: a ledger row at stage written must name a
+  day, and that day must have a day file (the reverse and the version line are later L133) (index.py day_status, in the status report; 0 today). Goal test 11 also
   fails an item, day or source id that left its table since the last commit with no ids.py retire row (ids.py
   left_tables, in `ids.py check`; a trial deleting one item row of algebra II failed it). Each has a self-test case
   that fails it. Test 6 is named a convention in "What each word means" and in goal_tests.py.
@@ -715,6 +715,13 @@ Built (2026-11-25):
   place outside the index into data/homes.csv notes, soft prose item ids into data/plans/README.md (the older turn
   queue was already in AGENTS.md), each with a DESK-ANSWERS line. (e) vocabulary.py and ids.py say in their
   docstrings that they get no new features until their first real user (DESK-ANSWERS line).
+- Full gate 4L-final against base-all: 0 failing findings (note lines only). Fable read of the 4.L diff:
+  docs/reviews/consolidation/step4-L-review.md. Fixed at once: a new starter plan from unit_skeleton.py carries its
+  link line (plan_facts.with_link), so it passes `plan-links`; the index's fresh check stores the build's start time
+  and file list, so a save during a build or a deleted file rebuilds; goal test 2 reads every course-list id with any
+  home, not only framed ones. To the Desk: q-student-word-1 (older term rows read "no", so "never judged" and
+  "judged no" are one value). Later: L133 (test 10's other direction), L134 (catalog lint imports), L135 (shared
+  checks per course).
 
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 

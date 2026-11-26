@@ -30,9 +30,18 @@ HOMES = ['docs/courses/{c}/frame.md', 'docs/courses/{c}/scope-and-sequence.md', 
 
 
 def missing_homes():
-    """Each home a framed course (one with docs/courses/<course>/frame.md) lacks (close review finding 6)."""
-    framed = sorted(p.parent.name for p in (ROOT / 'docs' / 'courses').glob('*/frame.md'))
-    return [h.format(c=c) for c in framed for h in HOMES if not (ROOT / h.format(c=c)).exists()]
+    """Each home a started course lacks (close review finding 6): a course-list.csv id with any of the four homes
+    must have all four, so a deleted frame.md or a days.csv with no frame fails (Fable read of 4.L, finding 4).
+    A listed course with none of them has not started and is not counted."""
+    import csv
+    with open(ROOT / 'data' / 'plans' / 'course-list.csv', encoding='utf-8', newline='') as f:
+        ids = [r['id'] for r in csv.DictReader(f)]
+    out = []
+    for c in ids:
+        have = [h for h in HOMES if (ROOT / h.format(c=c)).exists()]
+        if have:
+            out += [h.format(c=c) for h in HOMES if h not in have]
+    return out
 
 
 def tests():
@@ -52,7 +61,7 @@ def tests():
     lay = index.r_layout(ix)
     missing = missing_homes()
     add(2, 'every course has the same homes', len(lay) + len(missing), 0,
-        'index layout report lines (data/homes.csv) plus %d home(s) a framed course lacks' % len(missing))
+        'index layout report lines (data/homes.csv) plus %d home(s) a started course lacks' % len(missing))
     drift = index.r_drift(ix)
     add(3, 'one home per fact', len(drift), 0, 'plans holding a stored <!-- skel --> block (the marker guard)')
     add(4, 'no curriculum list from the tool catalog', len(lint.catalog()), 0,
