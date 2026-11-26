@@ -269,6 +269,98 @@ textarea{width:100%;min-height:92px;resize:vertical;font:15px/1.45 var(--body);c
 .litem .lw{font:600 12px var(--body);color:var(--accent);margin:4px 0 2px}
 .litem .lwho{font:600 11px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .litem p{margin:4px 0 0;font-size:13px;color:var(--muted)}
+/* the whole site at a glance (2026-11-25): hero ring and layer ladder, pace, course map with drill-down, health */
+.site{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0;position:relative;overflow:hidden}
+#site::before{content:"";position:absolute;inset:-30% auto auto -10%;width:55%;height:380px;background:radial-gradient(closest-side,color-mix(in srgb,var(--brand) 12%,transparent),transparent);pointer-events:none}
+.site h2{font:700 clamp(22px,3.4vw,30px)/1.1 var(--display);margin:0}
+.site .sub{margin:4px 0 0;color:var(--muted);font-size:14px;max-width:72ch}
+.shead{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:flex-end;justify-content:space-between;position:relative}
+.sh3{font:700 17px/1.2 var(--display);margin:0 0 8px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.sh3 span{font:600 12px var(--body);color:var(--muted)}
+.hero{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:22px;align-items:center;position:relative}
+.ring{position:relative;width:100%;max-width:220px;aspect-ratio:1;justify-self:center}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.ring circle{fill:none;stroke-width:12}
+.ring .r0{stroke:color-mix(in srgb,var(--muted) 16%,transparent)}
+.ring .ra{stroke:var(--warn);stroke-linecap:round;transition:stroke-dasharray 1.2s cubic-bezier(.2,.8,.2,1)}
+.ring .rd{stroke:var(--ok);stroke-linecap:round;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--ok) 55%,transparent));transition:stroke-dasharray 1.2s cubic-bezier(.2,.8,.2,1)}
+.ring .rv{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px}
+.ring .rv b{font:700 clamp(36px,6vw,46px)/1 var(--display);font-variant-numeric:tabular-nums}
+.ring .rv span{font:600 12px/1.3 var(--body);color:var(--muted);max-width:15ch}
+.lad{display:flex;flex-direction:column;gap:8px;position:relative;padding-left:18px}
+.lad::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:3px;border-radius:3px;background:var(--line)}
+.lrow{display:grid;grid-template-columns:minmax(118px,200px) 1fr 104px;gap:2px 12px;align-items:center;position:relative}
+.lrow::before{content:"";position:absolute;left:-18px;top:50%;margin-top:-6px;width:13px;height:13px;border-radius:50%;background:var(--card);border:3px solid var(--line);box-sizing:border-box}
+.lrow.on::before{border-color:var(--warn)}
+.lrow.full::before{border-color:var(--ok);background:var(--ok)}
+.lrow .ln b{display:block;font:700 14px/1.2 var(--body)}
+.lrow .ln small{display:block;font:500 12px/1.25 var(--body);color:var(--muted)}
+.lrow .lb{height:14px;border-radius:999px;background:color-mix(in srgb,var(--muted) 14%,transparent);border:1px solid var(--line);display:flex;overflow:hidden}
+.lrow .lb.est{border-style:dashed}
+.lrow .lb i,.mini i{display:block;height:100%;animation:none!important;box-shadow:none!important;transition:width .9s ease}
+.lrow .lc{font:600 12px var(--body);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lrow .lc b{display:block;font:700 16px/1.1 var(--display);color:var(--ink)}
+.pace{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.pc1{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px 8px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.pc1 .pt{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.pc1 .pt span{font:600 11px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pc1 .pt b{font:700 20px/1.1 var(--display);font-variant-numeric:tabular-nums}
+.pc1 svg{width:100%;height:58px;display:block}
+.pc1 .pa{fill:color-mix(in srgb,var(--ok) 22%,transparent)}
+.pc1 .pl{fill:none;stroke:var(--ok);stroke-width:2;vector-effect:non-scaling-stroke}
+.pc1 .pb{fill:color-mix(in srgb,var(--brand) 55%,transparent)}
+.pc1 small{font:500 12px var(--body);color:var(--muted)}
+.pc1 small b{color:var(--ink)}
+.cm{display:flex;flex-direction:column;gap:1px}
+.cmg{font:700 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:12px 0 2px;display:flex;gap:10px;align-items:center}
+.cmg .mini{flex:0 1 160px}
+.cmg small{font:600 11px var(--body);letter-spacing:0;text-transform:none}
+.cmr{display:grid;grid-template-columns:minmax(110px,1.4fr) 38px 38px 1fr 1fr 1.6fr 38px 38px 70px;gap:8px;align-items:center;padding:5px 6px;border-radius:8px;border:0;background:none;color:inherit;font:500 13px var(--body);text-align:left;cursor:pointer;width:100%;min-height:30px}
+.cmr:hover,.cmr[aria-expanded="true"]{background:var(--bg)}
+.cmr:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+.cmr .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cmr .t::before{content:"\25B8";display:inline-block;width:1em;color:var(--muted);transition:transform .2s}
+.cmr[aria-expanded="true"] .t::before{transform:rotate(90deg)}
+.cmr.hd{cursor:default;font:700 9.5px var(--body);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);min-height:0;padding-top:0;padding-bottom:0}
+.cmr.hd:hover{background:none}
+.cmr.hd .t::before{content:none}
+.cmr .pip{justify-self:center}
+.pip{display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid color-mix(in srgb,var(--muted) 45%,transparent);animation:none!important}
+.mini{height:10px;border-radius:999px;display:flex;overflow:hidden;background:color-mix(in srgb,var(--muted) 14%,transparent);min-width:0}
+.mini.est{background:transparent;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--muted) 40%,transparent)}
+.mini.none{background:transparent;box-shadow:inset 0 0 0 1px var(--line)}
+.cmr .dn{font:600 12px var(--body);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.cmr.faint .t{color:var(--muted)}
+.cmd{margin:2px 0 10px 12px;padding:12px 14px;border-left:3px solid var(--brand);background:var(--bg);border-radius:0 12px 12px 0;display:flex;flex-direction:column;gap:10px}
+.cmd .cmh{font:600 12px var(--body);color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+.cmd .cmh b{color:var(--ink)}
+.cmu{display:flex;flex-direction:column;gap:5px;padding-top:8px;border-top:1px dashed var(--line)}
+.cmu h5{margin:0;font:700 14px/1.3 var(--body);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cmu h5 a{font:600 12px var(--body);color:var(--brand);text-underline-offset:3px}
+.cms{display:flex;flex-wrap:wrap;gap:6px 14px}
+.sec{display:inline-flex;gap:5px;align-items:center;font:600 11px var(--body);color:var(--muted)}
+.sec>b{padding:0 6px;border-radius:6px;border:1px solid var(--line);font:700 11px/16px var(--body);color:var(--muted)}
+.cmd .s-a,.cmd .s-d{animation:none!important;box-shadow:none!important}
+.sq{display:flex;gap:2px;flex-wrap:wrap}
+.sq i{width:9px;height:9px;border-radius:2px;background:color-mix(in srgb,var(--muted) 22%,transparent)}
+.cmd .more{font:500 12px var(--body);color:var(--muted);margin:0}
+.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.ht{background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.ht.known{border-left-color:var(--warn)}
+.ht.miss{border-left-color:var(--accent)}
+.ht .hn{font:600 11px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:6px}
+.ht .hn em{font-style:normal;color:var(--ok)}
+.ht.known .hn em{color:var(--warn)}
+.ht.miss .hn em{color:var(--accent)}
+.ht b{font:700 14px/1.25 var(--body)}
+.ht>span{font:500 12px/1.3 var(--body);color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ht .hn em{text-align:right}
+.hfacts{margin:0}
+@media (max-width:640px){
+  .hero{grid-template-columns:1fr}.ring{max-width:180px}
+  .lrow{grid-template-columns:1fr 92px}.lrow .lb{grid-column:1/-1;grid-row:2}
+  .cmr{grid-template-columns:34px 34px 1fr 1fr 1.5fr 34px 34px;gap:6px}.cmr .t{grid-column:1/-1}.cmr .dn{display:none}.cmr.hd .t{display:none}
+}
 details.oldview{margin-top:4px}
 details.oldview summary{cursor:pointer;font:700 15px var(--body);color:var(--muted);padding:6px 0}
 @media (max-width:600px){.urow{grid-template-columns:1fr}.band,.mile{grid-template-columns:20px 1fr;gap:0 8px}}
@@ -284,8 +376,24 @@ details.oldview summary{cursor:pointer;font:700 15px var(--body);color:var(--mut
   </div>
   <div id="p-road" class="wrap" role="tabpanel" aria-labelledby="tab-road" hidden style="max-width:860px;margin:0 auto;width:100%"><div class="road" id="road"><p>Loading the roadmap…</p></div></div>
   <div id="p-dash" role="tabpanel" aria-labelledby="tab-dash" style="display:none">
+  <section class="site" id="site" aria-label="Curio Class, built so far">
+    <div class="shead"><div><h2>Curio Class, built so far</h2><p class="sub" id="ssub">Loading the plan…</p></div>
+      <div class="seg" role="group" aria-label="Count" id="sscope"><button data-sc="core" aria-pressed="true">The 52 core courses</button><button data-sc="all" aria-pressed="false">Every course</button></div></div>
+    <div class="hero"><div class="ring" id="sring"></div><div class="lad" id="slad"></div></div>
+    <div><h3 class="sh3">Pace <span id="spsub"></span></h3><div class="pace" id="space"></div></div>
+  </section>
+  <section class="site" id="cmap" aria-label="Every course, top to bottom">
+    <div class="shead"><div><h2>Every course, top to bottom</h2><p class="sub">One row per course in build order: frame, scope and sequence, unit plans, section plans, days, grade close, finish. Open a course to see each unit, its sections and every day.</p></div></div>
+    <div class="seg" role="group" aria-label="Show courses" id="cmseg"></div>
+    <div class="cm" id="cmlist"></div>
+  </section>
+  <section class="site" id="health" aria-label="Health of the build">
+    <div class="shead"><div><h2>Health of the build</h2><p class="sub">The 12 end-goal tests from the last full gate, known misses kept on file, and what is waiting.</p></div></div>
+    <div class="hfacts tally" id="hfacts"></div>
+    <div class="hgrid" id="hgrid"></div>
+  </section>
   <section class="flow" id="flow" aria-label="The course run, from pre-work to course finish">
-    <div class="fhead"><div style="flex:1 1 300px"><h2>The path to every course</h2><p id="fsub">Loading the plan…</p></div><div class="kpis" id="fkpis"></div></div>
+    <div class="fhead"><div style="flex:1 1 300px"><h2>Stage by stage</h2><p id="fsub">Loading the plan…</p></div><div class="kpis" id="fkpis"></div></div>
     <div class="fpwrap"><span class="fpin" id="fpin" hidden></span><div class="fprog" id="fprog" aria-hidden="true"></div></div>
     <div class="flegend" id="flegend"></div>
     <div id="fbands"></div>
@@ -575,8 +683,216 @@ details.oldview summary{cursor:pointer;font:700 15px var(--body);color:var(--mut
     }
     return null;
   }
+  // ---- the whole site at a glance (2026-11-25): hero ring and layer ladder, pace, course map, health. All of it comes
+  // from the same stats/plan export (scripts/plan_flow.py): courses (k), section splits (secs), health and history.
+  let scope = 'core', cmSub = 'core', openK = null;
+  try { scope = localStorage.getItem('rd-scope') || 'core'; cmSub = localStorage.getItem('rd-cmsub') || 'core'; } catch {}
+  const C0 = () => ({n: 0, d: 0, a: 0, e: 0});
+  const addS = (c, s) => { c.n++; if (s === 'd') c.d++; else if (s === 'a') c.a++; else if (s === 'e') c.e++; };
+  const pctS = (a, b) => { const p = b ? 100 * a / b : 0; return p <= 0 ? '0%' : p < 1 ? '<1%' : p < 10 ? p.toFixed(1).replace(/\.0$/, '') + '%' : Math.round(p) + '%'; };
+  const nf = v => v.toLocaleString();
+  const stack = (c, cls) => {
+    const b = el('div', cls); for (const k of ['d', 'a', 'e']) if (c[k]) { const i = el('i', 's-' + k); i.style.width = (100 * c[k] / Math.max(c.n, 1)).toFixed(2) + '%'; b.append(i); }
+    return b;
+  };
+  const countOf = rle => { const c = C0(); for (const s of unrle(rle)) addS(c, s); return c; };
+  function siteIndex(d) {
+    const lab = {}, nodes = {}, faintN = {}, units = {}, secs = {}, days = [], tools = [];
+    for (const b of d.bands || []) {
+      if (b.type === 'milestone') continue;
+      for (const l of b.lanes || []) {
+        const f = !!(b.faint || l.faint);
+        for (const nd of l.nodes || []) { nodes[nd[0]] = nd[2]; faintN[nd[0]] = f; lab[nd[0]] = l.title.replace(/^Gate: /, '') + ', ' + nd[1]; }
+        for (const r of l.rows || []) if (b.id === 'units' && r.k) units[r.k] = Object.assign({}, r, {faint: f || !!r.faint});
+      }
+      for (const r of b.rows || []) {
+        const f = !!(b.faint || r.faint);
+        if (b.dots) tools.push(r);
+        else if (b.id === 'sections') secs[r.k] = Object.assign({}, r, {faint: f});
+        else if (b.id === 'days') days.push(Object.assign({}, r, {faint: f}));
+      }
+    }
+    return {lab, nodes, faintN, units, secs, days, tools};
+  }
+  function layersOf(ix, core) {
+    const L = [], keep = f => !core || !f;
+    const byPre = (pre, label, sub) => { const c = C0(); for (const id in ix.nodes) if (id.startsWith(pre) && keep(ix.faintN[id])) addS(c, ix.nodes[id]); L.push({label, sub, c}); };
+    const byRows = (rows, label, sub) => { const c = C0(); let est = false; for (const r of rows) { if (!keep(r.faint)) continue; if (r.est) est = true; for (const s of unrle(r.rle)) addS(c, s); } L.push({label, sub, c, est}); };
+    byPre('prog:', 'Progressions', 'what each grade owns');
+    byPre('frame:', 'Course frames', 'the shape of each course');
+    byPre('ss:', 'Scopes and sequences', 'the units in order');
+    byRows(Object.values(ix.units), 'Unit plans', 'one per unit');
+    byRows(Object.values(ix.secs), 'Section plans', 'with plan data and keys');
+    byRows(ix.days, 'Days', 'every lesson, written');
+    byPre('close:', 'Grade close', 'a grade read end to end');
+    byPre('finish:', 'Course finish', 'ready to teach');
+    byRows(ix.tools, 'Tools live', 'built, checked, signed off');
+    return L;
+  }
+  function siteRender() {
+    const d = plan; if (!d) return;
+    const ix = siteIndex(d), core = scope === 'core';
+    document.querySelectorAll('[data-sc]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sc === scope));
+    const L = layersOf(ix, core), T = C0();
+    for (const x of L) for (const k of ['n', 'd', 'a', 'e']) T[k] += x.c[k];
+    const nC = ix.days.filter(r => !core || !r.faint).length;
+    // the ring: share of every piece done (green) with work under way behind it (amber)
+    const R = 52, CIRC = 2 * Math.PI * R, ring = $('sring'); ring.replaceChildren();
+    const ns = 'http://www.w3.org/2000/svg', svg = document.createElementNS(ns, 'svg'); svg.setAttribute('viewBox', '0 0 120 120'); svg.setAttribute('aria-hidden', 'true');
+    const circ = cls => { const c = document.createElementNS(ns, 'circle'); c.setAttribute('cx', 60); c.setAttribute('cy', 60); c.setAttribute('r', R); c.setAttribute('class', cls); c.style.strokeDasharray = `0 ${CIRC}`; svg.append(c); return c; };
+    circ('r0').style.strokeDasharray = 'none';
+    const ca = circ('ra'), cd = circ('rd'), fd = T.d / Math.max(T.n, 1), fa = (T.d + T.a) / Math.max(T.n, 1);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      ca.style.strokeDasharray = `${(fa * CIRC).toFixed(1)} ${CIRC}`; cd.style.strokeDasharray = `${T.d ? Math.max(1.5, fd * CIRC).toFixed(1) : 0} ${CIRC}`;
+    }));
+    const rv = el('div', 'rv'); rv.append(el('b', null, pctS(T.d, T.n)), el('span', null, `of every piece, ${core ? 'the 52 core courses' : 'all ' + nC + ' courses'}`));
+    ring.setAttribute('role', 'img'); ring.setAttribute('aria-label', `${pctS(T.d, T.n)} done: ${nf(T.d)} of ${nf(T.n)} pieces, ${nf(T.a)} under way`);
+    ring.append(svg, rv);
+    const lad = $('slad'); lad.replaceChildren();
+    for (const x of L) {
+      const c = x.c, r = el('div', 'lrow' + (c.n && c.d === c.n ? ' full' : c.d + c.a ? ' on' : ''));
+      const ln = el('div', 'ln'); ln.append(el('b', null, x.label), el('small', null, x.sub));
+      const bar = stack(c, 'lb' + (x.est ? ' est' : '')); bar.setAttribute('role', 'img');
+      const lc = el('div', 'lc'); lc.append(el('b', null, pctS(c.d, c.n)), `${nf(c.d)} of ${x.est ? 'about ' : ''}${nf(c.n)}`);
+      bar.setAttribute('aria-label', `${x.label}: ${nf(c.d)} of ${x.est ? 'about ' : ''}${nf(c.n)} done${c.a ? ', ' + nf(c.a) + ' under way' : ''}${c.e ? ', ' + nf(c.e) + ' on file' : ''}`);
+      r.append(ln, bar, lc); lad.append(r);
+    }
+    const live = L.filter(x => x.c.a).map(x => `${nf(x.c.a)} ${x.label.toLowerCase()}`);
+    const gate = Object.keys(ix.nodes).filter(id => /^gate/.test(id) && !ix.faintN[id]).find(id => ix.nodes[id] !== 'd');
+    $('ssub').textContent = `${nf(T.d)} of ${nf(T.n)} pieces done across ${core ? 'the 52 core courses (math, English language arts, science and social studies)' : 'all ' + nC + ' courses, the other subjects estimated until their frames are written'}. `
+      + (live.length ? 'Under way now: ' + live.join(', ') + '. ' : '') + (gate ? 'Next gate: ' + ix.lab[gate] + '.' : '');
+    paceRender(d.history || []);
+    cmapRender(ix);
+    healthRender(d.health || {}, d.later || []);
+  }
+  document.querySelectorAll('[data-sc]').forEach(b => b.onclick = () => { scope = b.dataset.sc; try { localStorage.setItem('rd-scope', scope); } catch {} siteRender(); });
+  // pace: how many unit plans, section plans and days have been added, from the date each file first came into git
+  function paceRender(h) {
+    const box = $('space'); box.replaceChildren(); if (!h.length) { $('spsub').textContent = ''; return; }
+    const by = {}; for (const r of h) by[r[0]] = r;
+    const day = s => new Date(s + 'T12:00:00'), p2 = v => String(v).padStart(2, '0');
+    const iso = t => { const x = new Date(t); return `${x.getFullYear()}-${p2(x.getMonth() + 1)}-${p2(x.getDate())}`; };
+    const first = day(h[0][0]).getTime(), last = Math.max(day(h[h.length - 1][0]).getTime(), day(iso(Date.now())).getTime());
+    const dates = []; for (let t = first; t <= last; t += 864e5) dates.push(iso(t));
+    const wk = dates.slice(-7);
+    $('spsub').textContent = `files added each day, ${fmtD(dates[0])} to ${fmtD(dates[dates.length - 1])}`;
+    const ns = 'http://www.w3.org/2000/svg';
+    [['Unit plans', 1], ['Section plans', 2], ['Days', 3]].forEach(([label, j]) => {
+      const per = dates.map(t => by[t] ? by[t][j] : 0), cum = []; per.reduce((a, v, i) => (cum[i] = a + v), 0);
+      const tot = cum[cum.length - 1] || 0, max = Math.max(...per, 1), n = dates.length, W = 300, H = 58;
+      const card = el('div', 'pc1'), top = el('div', 'pt'); top.append(el('span', null, label), el('b', null, nf(tot))); card.append(top);
+      const svg = document.createElementNS(ns, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('preserveAspectRatio', 'none');
+      svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', `${label}: ${nf(tot)} in all; ` + dates.map((t, i) => per[i] ? `${fmtD(t)} ${per[i]}` : '').filter(Boolean).join(', '));
+      const x = i => n > 1 ? i * W / (n - 1) : W / 2, y = v => H - 2 - (H - 6) * v / Math.max(tot, 1);
+      const bw = Math.max(2, W / n * 0.5);
+      per.forEach((v, i) => { if (!v) return; const r = document.createElementNS(ns, 'rect'); const bh = Math.max(2, (H * 0.42) * v / max); r.setAttribute('x', Math.max(0, Math.min(W - bw, x(i) - bw / 2))); r.setAttribute('y', H - bh); r.setAttribute('width', bw); r.setAttribute('height', bh); r.setAttribute('class', 'pb'); const tt = document.createElementNS(ns, 'title'); tt.textContent = `${fmtD(dates[i])}: ${v} added`; r.append(tt); svg.append(r); });
+      const pts = cum.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`);
+      const area = document.createElementNS(ns, 'path'); area.setAttribute('d', `M0,${H} L${pts.join(' L')} L${W},${H} Z`); area.setAttribute('class', 'pa');
+      const line = document.createElementNS(ns, 'path'); line.setAttribute('d', 'M' + pts.join(' L')); line.setAttribute('class', 'pl');
+      svg.prepend(area); svg.append(line); card.append(svg);
+      const w7 = wk.reduce((a, t) => a + (by[t] ? by[t][j] : 0), 0), best = Math.max(...per), bi = per.indexOf(best);
+      const sm = el('small'); sm.append(el('b', null, '+' + nf(w7)), ' in the last 7 days' + (best ? ` · busiest ${fmtD(dates[bi])}, ${nf(best)}` : '')); card.append(sm);
+      box.append(card);
+    });
+  }
+  const fmtD = s => { try { return new Date(s + 'T12:00:00').toLocaleDateString([], {month: 'short', day: 'numeric'}); } catch { return s; } };
+  // the course map: one row per course, open a row to see its units, sections and days
+  function cmapRender(ix) {
+    const groups = []; for (const r of ix.days) if (!groups.includes(r.group)) groups.push(r.group);
+    const coreG = groups.filter(g => ix.days.some(r => r.group === g && !r.faint));
+    const opts = [['core', 'Core four'], ['all', 'Every course'], ...groups.map(g => [g, SHORT[g] || g])];
+    if (!opts.some(o => o[0] === cmSub)) cmSub = 'core';
+    const seg = $('cmseg'); seg.replaceChildren();
+    for (const [v, t] of opts) { const b = el('button', null, t); b.setAttribute('aria-pressed', v === cmSub); b.onclick = () => { cmSub = v; try { localStorage.setItem('rd-cmsub', v); } catch {} cmapRender(ix); }; seg.append(b); }
+    const show = cmSub === 'core' ? coreG : cmSub === 'all' ? groups : [cmSub];
+    const list = $('cmlist'); list.replaceChildren();
+    const hd = el('div', 'cmr hd'); hd.setAttribute('aria-hidden', 'true');
+    for (const t of ['Course', 'Frame', 'Scope', 'Unit plans', 'Sections', 'Days', 'Close', 'Finish', 'Days done']) hd.append(el('span', t === 'Course' ? 't' : t === 'Days done' ? 'dn' : null, t));
+    list.append(hd);
+    const pip = (id, what) => { const s = ix.nodes[id], i = el('i', 'pip' + (s && s !== '.' ? ' s-' + s : '')); i.title = `${what}: ${s ? FSTATE[s] : 'not on the plan'}`; if (!s) i.style.visibility = 'hidden'; return i; };
+    const bar = (r, what) => { if (!r) { const b = el('div', 'mini none'); b.title = what + ': none yet'; return b; } const c = countOf(r.rle), b = stack(c, 'mini' + (r.est ? ' est' : '')); b.title = `${what}: ${nf(c.d)} of ${r.est ? 'about ' : ''}${nf(c.n)} done${c.a ? ', ' + nf(c.a) + ' under way' : ''}${c.e ? ', ' + nf(c.e) + ' on file' : ''}`; return b; };
+    for (const g of show) {
+      const rows = ix.days.filter(r => r.group === g && (cmSub !== 'core' || !r.faint)), gc = C0();
+      for (const r of rows) for (const s of unrle(r.rle)) addS(gc, s);
+      const gh = el('div', 'cmg'); gh.append(el('span', null, g), stack(gc, 'mini'), el('small', null, `${rows.length} course${rows.length === 1 ? '' : 's'} · ${nf(gc.d)} of ${rows.some(r => r.est) ? 'about ' : ''}${nf(gc.n)} days done`)); list.append(gh);
+      for (const r of rows) {
+        const k = r.k, row = el('button', 'cmr' + (r.faint ? ' faint' : '')), dc = countOf(r.rle);
+        row.setAttribute('aria-expanded', openK === k ? 'true' : 'false');
+        row.setAttribute('aria-label', `${r.title}: ${nf(dc.d)} of ${r.est ? 'about ' : ''}${nf(dc.n)} days done. Open for units, sections and days.`);
+        row.append(el('span', 't', r.title), pip('frame:' + k, 'Frame'), pip('ss:' + k, 'Scope and sequence'), bar(ix.units[k], 'Unit plans'), bar(ix.secs[k], 'Section plans'), bar(r, 'Days'), pip('close:' + k, 'Grade close'), pip('finish:' + k, 'Course finish'),
+          el('span', 'dn', `${nf(dc.d)}/${r.est ? '~' : ''}${nf(dc.n)}`));
+        row.onclick = () => { openK = openK === k ? null : k; cmapRender(ix); const again = list.querySelector(`[data-ck="${k}"]`); if (again) again.focus(); };
+        row.dataset.ck = k; list.append(row);
+        if (openK === k) list.append(drill(ix, r));
+      }
+    }
+  }
+  function drill(ix, r) {
+    const k = r.k, box = el('div', 'cmd'), names = plan.names || {}, links = plan.links || {};
+    const u = ix.units[k], us = u ? unrle(u.rle) : [], sr = ix.secs[k], ss = sr ? unrle(sr.rle) : [], ds = unrle(r.rle), parts = (sr && sr.secs) || [];
+    const sc = countOf(sr ? sr.rle : ''), dc = countOf(r.rle), uc = countOf(u ? u.rle : '');
+    const hh = el('div', 'cmh');
+    for (const [t, c, est] of [['unit plans', uc, u && u.est], ['section plans', sc, sr && sr.est], ['days', dc, r.est]]) { const s = el('span'); s.append(el('b', null, nf(c.d)), ` of ${est ? 'about ' : ''}${nf(c.n)} ${t} done` + (c.a ? `, ${nf(c.a)} under way` : '')); hh.append(s); }
+    box.append(hh);
+    const sq = arr => { const w = el('div', 'sq'); for (const s of arr) w.append(el('i', s === '.' ? null : 's-' + s)); return w; };
+    let cell = 0, dayAt = 0;
+    const byUnit = {}; for (const p of parts) { const un = String(p[0]).split('.')[0]; (byUnit[un] = byUnit[un] || []).push(p); }
+    const nU = Math.max(us.length, ...Object.keys(byUnit).map(Number).filter(n => n > 0), 0);
+    for (let i = 1; i <= nU; i++) {
+      const id = 'unit:' + k + ':' + i, s = us[i - 1] || '.', ub = el('div', 'cmu'), h = el('h5');
+      h.append(el('i', 'pip' + (s !== '.' ? ' s-' + s : '')), names[id] || `Unit ${i}`);
+      if (links[id]) { const a = el('a', null, 'unit plan ↗'); a.href = links[id][1]; a.target = '_blank'; a.rel = 'noopener'; h.append(a); }
+      ub.append(h);
+      const ps = byUnit[i] || [];
+      if (ps.length) {
+        const w = el('div', 'cms');
+        for (const [sid, nd, ncell] of ps) {
+          const st = ss.slice(cell, cell + (ncell || 1)); cell += (ncell || 1);
+          const s0 = st.includes('a') ? 'a' : st.length && st.every(x => x === 'd') ? 'd' : st.includes('e') ? 'e' : st.includes('d') ? 'a' : '.';
+          const days = ds.slice(dayAt, dayAt + nd); dayAt += nd;
+          const sp = el('span', 'sec'), b = el('b', s0 !== '.' ? 's-' + s0 : null, sid); b.title = `Section ${sid}: ${FSTATE[s0]}`;
+          const q = sq(days); q.setAttribute('role', 'img'); q.setAttribute('aria-label', `Section ${sid}: ${days.filter(x => x === 'd').length} of ${nd} days done`);
+          sp.append(b, q); w.append(sp);
+        }
+        ub.append(w);
+      } else ub.append(el('p', 'more', ss.length ? 'No section plans yet.' : 'Section plans come after the unit plans.'));
+      box.append(ub);
+    }
+    const rest = ds.slice(dayAt);
+    if (rest.length) {
+      const ub = el('div', 'cmu'); ub.append(el('h5', null, parts.length ? `${rest.length} more days, not yet in a section plan` : `${r.est ? 'About ' : ''}${rest.length} days`));
+      ub.append(sq(rest)); box.append(ub);
+    }
+    return box;
+  }
+  // health: the 12 end-goal tests (latest gate), known misses on file, what is waiting
+  function healthRender(h, later) {
+    const g = h.goals || [], last = g.reduce((a, r) => r.date > a ? r.date : a, ''), cur = g.filter(r => r.date === last);
+    const grid = $('hgrid'); grid.replaceChildren();
+    const known = h.known || {};
+    let met = 0;
+    for (const r of cur) {
+      const cnt = parseFloat(r.count), tg = String(r.target), ok = tg.startsWith('<') ? cnt < parseFloat(tg.slice(1)) : cnt <= parseFloat(tg) || (tg === '1' && cnt === 1);
+      const noneNew = /\b0 of them new\b/.test(r.detail || '') || (r.test === '12' && known.orphans != null && cnt <= known.orphans);
+      if (ok) met++;
+      const t = el('div', 'ht' + (ok ? '' : noneNew ? ' known' : ' miss')), hn = el('div', 'hn');
+      hn.append(el('span', null, 'Test ' + r.test), el('em', null, ok ? 'met' : noneNew ? nf(cnt) + ' known, none new' : nf(cnt) + ' to fix'));
+      const nm = (r.name || '').replace(/^./, c => c.toUpperCase());
+      t.append(hn, el('b', null, nm), el('span', null, r.detail || '')); t.title = `Count ${r.count}, target ${r.target}. ${r.detail || ''}`;
+      grid.append(t);
+    }
+    const f = $('hfacts'); f.replaceChildren();
+    const fact = (b, t) => { const s = el('span'); s.append(el('b', null, b), ' ' + t); f.append(s); };
+    if (cur.length) fact(`${met} of ${cur.length}`, `goal tests met (gate of ${fmtD(last)})`);
+    const kn = Object.values(known).reduce((a, v) => a + v, 0); if (kn) fact(nf(kn), 'known misses on file, none new');
+    const lo = later.filter(x => x.state !== 'done').length; fact(String(lo), `open in Saved for later (${later.length - lo} done)`);
+    const debt = h.debt || []; fact(debt.length ? String(debt.length) : 'No', debt.length ? 'debt rows from grade closes' : 'debt recorded at any grade close');
+    if (h.kit) fact('Kit ' + h.kit, 'pipeline kit version');
+    const q = el('span'); q.id = 'hqs'; f.append(q); deskQs();
+  }
+  function deskQs() { const q = $('hqs'); if (!q) return; const n = items.filter(x => x.status === 'question').length; q.replaceChildren(el('b', null, String(n)), ` question${n === 1 ? '' : 's'} open on the Desk`); }
   function planRender(d) {
-    plan = d; closeBub();
+    plan = d; closeBub(); siteRender();
     const bands = d.bands || [], box = $('fbands'); box.replaceChildren();
     const cnt = () => ({n: 0, d: 0, a: 0, e: 0});
     const add = (c, s) => { c.n++; if (s === 'd') c.d++; else if (s === 'a') c.a++; else if (s === 'e') c.e++; };
@@ -832,13 +1148,13 @@ details.oldview summary{cursor:pointer;font:700 15px var(--body);color:var(--mut
       const wrap = r => ({id: r.id, data: () => r.data});
       $('offline').textContent = 'A read-only copy from ' + snap.at + '. Sign in on claude.ai for live data and to comment.';
       $('offline').hidden = false;
-      items = snap.items.map(r => ({id: r.id, ...r.data})); statsRender();
+      items = snap.items.map(r => ({id: r.id, ...r.data})); statsRender(); deskQs();
       try { statsApply(snap.stats.map(wrap)); } catch (e) { console.error(e); }
       render();
     };
     db = window.claude ? await window.claude.use('db') : null;
     if (!db) { fromSnap(); return; }
-    db.collection('items').onSnapshot(s => { items = s.docs.map(d => ({id: d.id, ...d.data()})); statsRender(); soon(); }, () => { if (!items.length) fromSnap(); else $('offline').hidden = false; });
+    db.collection('items').onSnapshot(s => { items = s.docs.map(d => ({id: d.id, ...d.data()})); statsRender(); deskQs(); soon(); }, () => { if (!items.length) fromSnap(); else $('offline').hidden = false; });
     db.collection('comments').onSnapshot(s => { comments = s.docs.map(d => ({id: d.id, ...d.data()})); soon(); }, () => {});
     db.collection('stats').onSnapshot(s => statsApply(s.docs), () => {});
   })();

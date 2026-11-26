@@ -205,26 +205,33 @@ def section_cells(c):
             data.add((r.get('unit') or '').strip())
     keys = {int(m.group(1)) for f in reviews('answer-key-%s-u*.md' % fid(c), fid(c))
             for m in [re.search(r'-u(\d+)-', os.path.basename(f))] if m}
-    cells = ''
+    cells, parts = '', []
     for u, n_d in secs.items():
         a, b = u.split('.')
         if b == '1' and n_d > 6 and not any(x.startswith(a + '.') and x != u for x in secs):
-            cells += '.' * max(1, round(n_d / 5)); est = True
+            n_c = max(1, round(n_d / 5))
+            cells += '.' * n_c; est = True
+            parts.append([u, n_d, n_c])
             continue
         f = os.path.join(ROOT, 'docs', 'courses', fid(c), 'u%02d-%s.md' % (int(a), b))
         s = ('d' if (u in data and int(a) in keys) else 'a') if os.path.exists(f) else '.'
         cells += led.get(f'section:{k}:{u}', s)
+        parts.append([u, n_d, 1])
     if not secs:
         cells, est = '.' * round(days_of(c)[0] / 5), True
+    SECS[k] = parts
     return cells, est
+# the Dashboard's course view: each core course's sections in day order, [section id, days, section cells], so the
+# page can split the day strip into units and sections (days.csv `unit` column)
+SECS = {}
 srows = []
 for n in SUBJ_ORDER:
     for c in core(n):
         cells, est = section_cells(c)
-        srows.append(dict(title=c['title'], group=sname(n), est=est, cells=cells))
+        srows.append(dict(title=c['title'], k=fid(c), group=sname(n), est=est, cells=cells, secs=SECS.get(fid(c), [])))
 for i, t, cs, pre in AFTER:
     for c in cs:
-        srows.append(dict(title=c['title'], group=t, est=True, faint=True, cells='.' * round(days_of(c)[0] / 5)))
+        srows.append(dict(title=c['title'], k=fid(c), group=t, est=True, faint=True, cells='.' * round(days_of(c)[0] / 5)))
 bands.append(dict(type='rows', id='sections', title='5. Section plans, plan data and keys', noun='sections', tip='row:sections',
                   sub='Per grade, units in order: section plans, then plan data (items, wrong answers, sources, pieces), then a fresh key read per unit. In a subject\'s first grade, unit 1 goes all the way through days first (the probe). Then the kit is frozen for the grade.',
                   lanes=[dict(title='Unit 1 probes', nodes=[N(f'probe:{slug(n)}', sname(n)) for n in SUBJ_ORDER])], rows=srows))
@@ -246,13 +253,13 @@ for n in SUBJ_ORDER:
             elif d_ <= len(old) and old[d_ - 1]: ch = 'e'
             else: ch = '.'
             cells += led.get(f'day:{fid(c)}:{d_}', ch)
-        rows.append(dict(title=c['title'], group=sname(n), est=est, cells=cells))
+        rows.append(dict(title=c['title'], k=fid(c), group=sname(n), est=est, cells=cells))
         cl.append(N(f'close:{fid(c)}', c['title'], 'd' if closed else ('a' if have else '.')))
     close_lanes.append(dict(title=sname(n) + ': grade close', nodes=cl))
 for i, t, cs, pre in AFTER:
     for c in cs:
         n_days, est = days_of(c)
-        rows.append(dict(title=c['title'], group=t, est=est, faint=True, cells=''.join(st(f'day:{fid(c)}:{j + 1}') for j in range(n_days))))
+        rows.append(dict(title=c['title'], k=fid(c), group=t, est=est, faint=True, cells=''.join(st(f'day:{fid(c)}:{j + 1}') for j in range(n_days))))
 bands.append(dict(type='rows', id='days', title='6. Days',
                   sub='Per grade, in order, 4 to 6 days a job, each job waiting until its ledger rows are written. A written day is under way until its grade closes: a cleanup job, then a sample read of 10 days by two fresh readers. Faint rows are the other subjects, at about %d days a course until each frame sets its count.' % EST_DAYS,
                   lanes=close_lanes, rows=rows))
@@ -376,9 +383,45 @@ if os.path.exists(p):
 LINKS_EXTRA = {'units-review:social-studies': ['The structure pass report', 'docs/reviews/ss-units-structure-pass-2026-11-14.md']}
 for n_, v_ in LINKS_EXTRA.items():
     flinks.setdefault(n_, v_)
+# the Dashboard's health and history (2026-11-25, Cory: "visually show the full progress of the site overall")
+def _csv(rel):
+    p_ = os.path.join(ROOT, *rel.split('/'))
+    return [dict(r) for r in csv.DictReader(io.open(p_, encoding='utf-8'))] if os.path.exists(p_) else []
+health = dict(goals=[{k_: r_.get(k_, '') for k_ in ('test', 'name', 'count', 'target', 'detail', 'date')}
+                     for r_ in _csv('data/plans/goal-tests.csv')],
+              known={}, debt=_csv('data/plans/debt.csv'))
+for r_ in _csv('data/index-baseline.csv'):
+    if r_.get('report') and r_['report'] != 'report':
+        health['known'][r_['report']] = health['known'].get(r_['report'], 0) + 1
+_kit = os.path.join(ROOT, 'docs', 'pipeline', 'kit', 'README.md')
+if os.path.exists(_kit):
+    _m = re.search(r'KIT-VERSION: (\d+)', io.open(_kit, encoding='utf-8').read())
+    health['kit'] = int(_m.group(1)) if _m else None
+# when each piece landed: the commit that first added each current unit plan, section plan and day file
+_now = set(subprocess.run(['git', 'ls-files', 'courses', 'docs/courses'], cwd=ROOT, capture_output=True,
+                          text=True, encoding='utf-8').stdout.splitlines())
+_log = subprocess.run(['git', 'log', '--diff-filter=A', '--name-only', '--format=@%ad', '--date=short', '--',
+                       'courses/*/u*/d[0-9][0-9][0-9]*.md', 'docs/courses/*/s[0-9][0-9].md',
+                       'docs/courses/*/u[0-9][0-9]-*.md'], cwd=ROOT, capture_output=True, text=True,
+                      encoding='utf-8').stdout
+_first, _day = {}, ''
+for _ln in _log.splitlines():
+    if _ln.startswith('@'):
+        _day = _ln[1:]
+    elif _ln and _ln in _now:
+        _first[_ln] = _day          # git log runs newest first, so the last date seen is the first add
+def _kind(f_):
+    b_ = f_.rsplit('/', 1)[-1]
+    if f_.startswith('courses/'):
+        return 'days'
+    return 'units' if re.fullmatch(r's\d\d\.md', b_) else 'sections'
+_by = {}
+for f_, d_ in _first.items():
+    _by.setdefault(d_, {'units': 0, 'sections': 0, 'days': 0})[_kind(f_)] += 1
+history = [[d_, _by[d_]['units'], _by[d_]['sections'], _by[d_]['days']] for d_ in sorted(_by)]
 REPO = 'https://github.com/LochLogic/curioclass/blob/main/'
 flinks = {n_: [v_[0], REPO + v_[1].replace(os.sep, '/')] for n_, v_ in flinks.items()}
-out = dict(names=names, links=flinks, at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later, about=ABOUT, info=info, found=found,
+out = dict(names=names, links=flinks, at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later, health=health, history=history, about=ABOUT, info=info, found=found,
            note='From docs/COURSE-RUN.md (draft 3): seven stages, the same for every subject. Day and unit counts marked "about" are estimates until each course frame sets them.')
 io.open(sys.argv[1], 'w', encoding='utf-8').write(json.dumps(strip_cells(out), separators=(',', ':')))
 # A Desk document holds at most 256 KB, so the plan also goes out as parts: <out>.parts/plan-c<i>.json, each
