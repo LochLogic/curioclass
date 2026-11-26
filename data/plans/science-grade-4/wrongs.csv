@@ -12,16 +12,13 @@ s01-K3,The pencil travels 7 centimeters.,,,H,Error H: The pencil travels 7 centi
 s01-Pp3,The axis measures energy in centimeters.,,,B,Error B: The axis measures energy in centimeters.
 s01-Pr3,Erase the awkward result and invent a matching one.,,,x,Error x: Erase the awkward result and invent a matching one.
 s01-X3,First travel is 15 centimeters.,,,H,Error H: First travel is 15 centimeters.
-s01-X3,The axis shows energy in centimeters.,,,B,Error B: distance unit confused with energy.
 s01-P4,The endpoint 7 is the travel.,,,H,Error H: The endpoint 7 is the travel.
 s01-P4,Centimeters measure energy.,,,B,Error B: distance is not an energy quantity.
 s01-Pr4,The cup moved centimeters of energy.,,,B,Error B: The cup moved centimeters of energy.
 s01-K4,The same marble has equal energy at both speeds.,,,A,Error A: The same marble has equal energy at both speeds.
 s01-X4,The same disk has equal energy at both speeds.,,,A,Error A: The same disk has equal energy at both speeds.
-s01-X4,Distances measure energy in centimeters.,,,B,"Error B: travel is an indicator, not energy units."
 s01-P5,Same marble means equal energy.,,,A,Error A: Same marble means equal energy.
 s01-P5,Centimeters measure energy.,,,B,Error B: distance confused with energy.
-s01-K5,Fast means fast; evidence is unnecessary.,,,x,Error x: Fast means fast; evidence is unnecessary.
 s01-Pn5,The cup traveled centimeters of energy.,,,B,Error B: The cup traveled centimeters of energy.
 s01-X5,Same cylinder means equal energy.,,,A,Error A: Same cylinder means equal energy.
 s01-P6,One marble always has equal motion energy.,,,A,Error A: One marble always has equal motion energy.
@@ -35,7 +32,6 @@ s01-K7,The push arrow leaves the crate and carries energy into air.,,,J,Error J:
 s01-Ke7,The force arrow carries energy away into the air.,,,J,Error J: force arrow confused with energy path.
 s01-Pq7,A is ready because best tells us what to measure.,,,F,Error F: no observable outcome.
 s01-Po7,My prediction counts as something already observed.,,,I,Error I: prediction confused with observation.
-s01-X7,Which speed is best?,,,F,Error F: no observable outcome.
 s01-X7,The slowing ball loses energy because it disappears.,,,C,Error C: Name a receiving destination.
 s01-X7,The contact push arrow leaves the carton for the air.,,,J,Error J: Put force arrow on receiver.
 s01-Pr8,Which speed is best needs no further detail.,,,F,Error F: no observable outcome.
@@ -50,8 +46,6 @@ s01-Pr9,The car slowing means its energy disappeared.,,,C,Error C: Identify a re
 s01-K9,My expected quiet sound counts as observed sound.,,,I,Error I: prediction confused with observation.
 s01-P9,"Sound receives all energy, so block motion needs no record.",,,D,Error D: sound mistaken for the only destination.
 s01-Pc9,All energy became sound.,,,D,Error D: sound mistaken for the only destination.
-s01-X9,The same wheel has equal starting motion energy at both speeds.,,,A,Error A: same object mistaken for equal energy.
-s01-X9,All the wheel energy became sound.,,,D,Error D: Box motion is another destination.
 s01-Pr10,All collision energy became sound.,,,D,Error D: sound mistaken for the only destination.
 s01-Pr10,The same car has equal energy at both speeds.,,,A,Error A: Speed changes motion energy.
 s01-K10,"We did not feel warmth, so warming cannot happen.",,,E,Error E: detection limit mistaken for absence.
@@ -65,7 +59,6 @@ s01-Pr11,Energy disappears,,,C,Loses energy instead of tracing destinations.
 s01-Pr11,No felt warmth proves no warming,,,E,Confuses detection limits with absence.
 s01-Po11,My expected result is an observation,,,I,Does not meet the look-fors: My expected result is an observation
 s01-Pn11,A prediction proves what happened,,,I,Does not meet the look-fors: A prediction proves what happened
-s01-X11,Which speed is best?,,,F,Does not meet the look-fors: Which speed is best?
 s01-X11,The same wagon has equal starting energy at both speeds,,,A,Ignores speed when comparing the same object.
 s01-X11,The wagon loses energy because energy vanishes,,,C,Does not trace transfer.
 s01-Pr12,Which speed is best?,,,F,Does not meet the look-fors: Which speed is best?
@@ -84,11 +77,7 @@ s01-X13,The energy vanishes after contact,,,C,Omits destinations.
 s01-X13,All energy becomes sound,,,D,Discards observed motion and account-based warming.
 s01-A1,Same spool means equal starting energy,,,A,Does not meet the look-fors: Same spool means equal starting energy
 s01-A1,The spool has 12 centimeters of energy,,,B,"Centimeters describe flap travel, not energy."
-s01-A2,All energy vanishes when the spool slows,,,C,Does not meet the look-fors: All energy vanishes when the spool slows
-s01-A2,All energy becomes sound,,,D,Omits motion and warming destinations.
-s01-A2,Warming must be felt to exist,,,E,Confuses lack of detection with no warming.
 s01-A2,Which speed is best?,,,F,Names no observable outcome.
-s01-A2,The force arrow carries energy into air,,,J,Confuses object force with energy destinations.
 s01-P15-1,Centimeters measure energy,,,B,Does not meet the look-fors: Centimeters measure energy
 s01-P15-1,Same marble always means equal motion energy,,,A,Ignores speed in the same-object comparison.
 s01-P15-2,All energy becomes sound,,,D,Does not meet the look-fors: All energy becomes sound
@@ -737,3 +726,10 @@ C-P120-structure,Outside parts alone explain growth.,,,AI,Omits inside cooperati
 C-P120-preserve,Label supplied invented readings as measurements I made.,,,AK,Supplied evidence is not firsthand observation.
 C-X120,"Lamp to sign to eye, labeled my firsthand measurement.",,,AK,"The path is accurate, but supplied invented evidence is mislabeled firsthand."
 C-X120,The eye supplies the light to the sign.,,,AE,Reversed light direction; code separately from provenance.
+s01-X4,The disk has 5 millimeters of energy.,,,B,"Error B: dent depth measures a deformation effect, not energy."
+s01-K5,Changing listener distance still isolates speed.,,,G,Error G: listening conditions also change.
+s01-A2b,All energy vanishes when the spool slows,,,C,Does not meet the look-fors: All energy vanishes when the spool slows
+s01-A2b,All energy becomes sound,,,D,Omits motion and warming destinations.
+s01-A2b,Warming must be felt to exist,,,E,Confuses lack of detection with no warming.
+s01-A2b,The force arrow carries energy into air,,,J,Confuses object force with energy destinations.
+s01-X3,The washer has 9 centimeters of energy.,,,B,"Error B: travel units describe a motion effect, not an energy quantity."
