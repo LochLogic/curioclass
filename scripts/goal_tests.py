@@ -33,14 +33,16 @@ HOMES = ['docs/courses/{c}/frame.md', 'docs/courses/{c}/scope-and-sequence.md', 
 def missing_homes():
     """Each home a started course lacks (close review finding 6): a course-list.csv id with any of the four homes
     must have all four, so a deleted frame.md or a days.csv with no frame fails (Fable read of 4.L, finding 4).
-    A listed course with none of them has not started and is not counted."""
+    A listed course with none of them has not started and is not counted, and neither is one with its frame.md
+    alone: a framed course gets its scope, days and ledger when its course run starts (2026-11-25, all 117 frames
+    written before any after-core run)."""
     import csv
     with open(ROOT / 'data' / 'plans' / 'course-list.csv', encoding='utf-8', newline='') as f:
         ids = [r['id'] for r in csv.DictReader(f)]
     out = []
     for c in ids:
         have = [h for h in HOMES if (ROOT / h.format(c=c)).exists()]
-        if have:
+        if have and have != [HOMES[0]]:
             out += [h.format(c=c) for h in HOMES if h not in have]
     return out
 
