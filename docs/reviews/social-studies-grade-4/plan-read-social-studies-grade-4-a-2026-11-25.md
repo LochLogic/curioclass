@@ -121,3 +121,75 @@ Before writing, ran `python -X utf8 scripts/gate.py --course social-studies-grad
 The attempt left `build/gates/now-social-studies-grade-4/` empty, confirmed and left alone. No second failed attempt was made. u04-5.md:176's existing day-79 template claims were not independently verified by this failed gate; they are not new findings here.
 
 Only this report was authored. No plans, curriculum data, days, shared scripts or ledger were edited. No helper script was created. The report used a temporary replacement after reading its existing target, if present.
+
+
+## Fixes applied (2026-11-25)
+
+Job 014, kit 14. Work and new source reopens performed 2026-11-26; heading follows the requested job date. Original report above retained unchanged.
+
+Disposition counts: applied 9; rejected 0; partly 21. FIRM left: 16 UNIT PLAN findings; 0 section-plan findings.
+
+| Finding | Disposition | Change or reason, including upstream stage |
+|---|---|---|
+| 1 | partly | Confirmed the conflicting s02 Q3 packet. Sections already require Halifax/Prince Rupert and independent province evidence. For the lead, UNIT PLAN: replace Vancouver in s02 packet/anchor and sweep data. |
+| 2 | partly | Confirmed unsupported support-request key. u04-5 now has distinct audience/purpose components and a reporting/authority key. For the lead, UNIT PLAN: replace s04 Q5 passage specification, anchor and copied keys. |
+| 3 | partly | Retained the explicit u04-4/u04-5 rejection of common royal funding. For the lead, UNIT PLAN: remove the unsupported funding claim from s04 Q4 key/anchor; preserve dates/places/causation limits. |
+| 4 | partly | u02-3 now reserves 25 minutes for thirty 45-second findings, with parallel reply slips separately retained. For the lead, UNIT PLAN: replace six-team and 15-minute repeat promises in s02. |
+| 5 | partly | E7 now compares useful detail and omissions across held Denver extents; locating/nesting stay practice. For the lead, UNIT PLAN: align s01 E7 and goal/evidence map. |
+| 6 | partly | E42 produces one answerable supporting question for the museum writer. Supplied-question audits replace generation practice; Q5 separately retains importance. For the lead, UNIT PLAN: align s03 E42 and D1.1/goal map. |
+| 7 | applied | Kept Nunavut teaching. E9 now categorizes held Prince Edward Island; a filtered ledger search found no earlier case. The existing Canadian source supports province status and was reopened 2026-11-26. Superseding ledger notes recorded through ledger.py. |
+| 8 | partly | E10 now independently marks Sonora and Barbados from a held index; United States categories remain review. For the lead, UNIT PLAN: replace inherited s01 E10 and sweep item/source reservations. |
+| 9 | partly | E66 now infers forced separation from the unused October 14 relocation-to-Spain order, requiring that detail. General captivity and route labels remain practice. For the lead, UNIT PLAN: replace s04 E66 and retire its route exit row. |
+| 10 | partly | E69 now tests an all-agreed claim against held documented disagreement among Tlaxcalteca leaders. The university page supports the detail; no Native identity is invented. For the lead, UNIT PLAN: replace s04 E69 and sweep reservations. |
+| 11 | partly | E71 infers a westward-route limit from held Hochelaga rapids. The museum account supports that relationship. Homeland naming stays practice. For the lead, UNIT PLAN: replace s04 E71 and its repeated second item. |
+| 12 | partly | E72 uses held food-stocked headquarters evidence to limit an aim-only account. The park source supports that detail; Hawikuh location/wealth/displacement stay practice. For the lead, UNIT PLAN: replace s04 E72 and retire its locator exit. |
+| 13 | partly | E65 infers a motive from an explicitly invented cargo/treasury commission. Instrument recall is unscored practice. For the lead, UNIT PLAN: replace s04 recall exit and retire X65-2 from it. |
+| 14 | applied | Record D asks repair using its zero-line diagram without disclosing a swap. The conceptual latitude/equator and longitude/prime-meridian key is retained, with a corrected ledger note. |
+| 15 | partly | E23 asks what the held language project can establish; it no longer scores copying names supplied in the ask. Key rejects universal speech claims. For the lead, UNIT PLAN: align s02 E23 and its inherited extraction wording. |
+| 16 | partly | E26 infers a connection from recorded cargo loading; ready-made service conclusion and extra employment ask removed. For the lead, UNIT PLAN: align s02 E26 and source/item copy. |
+| 17 | applied | X43a now requires an explained undisturbed-layer ordering judgment; naming U alone is insufficient. X43b keeps its separate context-recording criterion and individual Shape. |
+| 18 | applied | Removed the unsupported Boat Photo and Harbor Note attribution. The plan cites grade 3 u04-4 day 85 corroboration review and supplies a newly labeled invented notice/copy reminder. |
+| 19 | partly | Confirmed the blanket planned-only unit handoffs against the reports written-row evidence and filtered ledger checks. Sections retain their specific written references. For the lead, UNIT PLAN: correct s01 to s04 handoffs target by target; preserve genuine planned-only terms. |
+| 20 | partly | Sections already treat audience/purpose and independence as written review; retained those statements. For the lead, UNIT PLAN: correct s02/s04 progression descriptions to internal clues/provenance on unfamiliar records. |
+| 21 | applied | X51b now proposes associated crop/storage evidence linking the building with farming. Observation labels remain practice; X51a and X51b each have their own Shape. |
+| 22 | partly | E7/E8/E9/E10 are single judgments/products; E11 is one containment chain, with a separate single nation/country check. E13a reads and E13b plots, independently recorded. For the lead, UNIT PLAN: align s01 compound-exit specifications. |
+| 23 | partly | E24 asks one difference, E29 one accuracy repair, E30 growing reliance, E31 one flow interpretation, E36 proposed-verifier suitability; E23/E26 cues removed. Individual Shapes/keys align. For the lead, UNIT PLAN: replace inherited s02 exit wording. |
+| 24 | applied | Added individual Shape/practice comparison/reservation notes for every listed unit-3 a/b item. Changed X43a/X51b demands have their own cold keys; aggregate summaries no longer carry their only exclusions. |
+| 25 | applied | Added individual unit-4 Shapes for retained paired items. Replaced E65/E66/E69/E71/E72 with held single-item inferences and explicitly retired their superseded extra rows; E68/E70 have separate component Shapes. |
+| 26 | partly | Q5 audience/purpose and E68/E70 cases now have separate single-ask components, keys and Shapes on one scale. For the lead, UNIT PLAN: align s04 item/exit registers and copied master prompts. |
+| 27 | partly | Confirmed mixed unit scales; retained the sections single component scale, with unit 7 separate records unaffected. For the lead, UNIT PLAN: reconcile s01 to s04 records, labels and routing; replace numerical need cells with named components. |
+| 28 | partly | Retained section practice restrictions and replaced the newly changed exit practice at its cause. For the lead, UNIT PLAN: reconcile s01 to s04 teaching/closing descriptions with accepted annotation/repair designs and writing progression. Generated tables remain untouched. |
+| 29 | applied | Both u02-3 rosters reserve 25 minutes, including 2.5 minutes transition/recording. Day 28 is 5/3/25/5/2; day 29 is 5/6/4/25. Preprinted slips and one small revision keep both days at 40 minutes. |
+| 30 | applied | R38-A/B/C/D now have concrete records, asks, keys, error letters, Shapes and assignment focus. Other misses keep an explicit single-cell adaptation or remain not retried; no full multi-component retry is implied. |
+
+### Verification and limits of this fix
+
+Direct checks before and after: unitplan.py check social-studies-grade-4, 45 PASS files, 0 failures; ledger.py check social-studies, 8,382 rows, 0 problems. Advisory citation output unchanged: 2 planned-only and 1 unmatched, all in grades 2/3. No new lines from these checks.
+
+The course gate was attempted before any edit and after the edits. Both attempts exited 1 in subprocess creation with PermissionError: [WinError 5] Access is denied. Neither produced rule counts, a comparison or new-failure lines. This is not exit 2. Baseline status and new gate failures remain unknown; no manual baseline was stored. For the lead: obtain a working course-gate run. The empty build/gates/now-social-studies-grade-4/ folder was observed and left alone.
+
+Content audit: all 150 section day blocks retain 40-minute totals; 41 changed literal asks are present and every sentence has at most 15 words; no em dash or TODO(writer) in section plans. Individual Shape/key/error notes govern changed checks. The final integrated prototype has 318 whitespace words and 25 regional source entries; full physical layout, basic-reader pace and scribe path still require a paper trial. This is not classroom timing evidence.
+
+44 ledger note corrections were made only through ledger.py note and verified by full day+entry key. No ledger CSV was edited directly. Two ambiguous blank-day source-log notes remain for the lead as described in B F10. Their shared entry is source record returns through new maker/date/detail headings. Renote currently matches course+day+entry, not where. Earlier template points already recorded in u04-5 remain unverified because the course gate cannot run; no new template exception is claimed.
+
+Only 32 permitted section plans, this course ledger through its command, and these two reports were changed. Unit plans, source/item/handback data, lesson assets, kit and shared scripts were not edited. Helpers remain solely in _scratch/l87/tmp/social-studies-grade-4-plan-fix-grade/ for the lead to clear. Existing correct sections were retained; no file was restarted.
+
+### For the lead
+
+- UNIT PLAN: each partly line above identifies the authoritative key, goal, exit, practice, handoff, source catalog, scale or schedule needing correction. These are upstream faults, not template exceptions. Preserve the changed section design when sweeping s01 to s07 and data.
+- SCRIPT/LEDGER INTERFACE: disambiguate the two blank-day source-log notes by where, through locked writes. Section review language is already corrected.
+- DATA/DAY: retain and align existing assets/rows; superseding ledger notes do not rewrite them. Preserve held cases, new/retired item IDs, short stems, one scale per record and source-map order. Existing source statuses still predate the requested refresh; source CSV is outside this edit boundary. Reopens performed here occurred on 2026-11-26 and must never be recorded as a 2026-11-25 read. The new F6b 1872 act needs a source row with its actual verification date. Exact historical image geometry, rights and independent origins remain final-asset checks.
+- ASSESSMENT DESIGN: day 131's nine-minute location/date path and day 159's complete 318-word prototype need paper trials with neutral reading, all required responses, access and collection. If required coverage cannot fit, Cory decides schedule or scope. R103 migration-motive and other unmatched components remain not retried; do not imply complete repair coverage.
+
+### Browser check carried forward
+
+No refused page was retried or fetched another way. No new retained fact requires a new browser check. Existing pending list:
+
+| URL | Section plan | Fact |
+|---|---|---|
+| https://wdfw.wa.gov/places-to-go/fishing-piers/elliott-bay | u01-2.md | Elliott Bay adjoining Seattle waterfront. |
+| https://www.inegi.org.mx/contenidos/app/mexicocifras/datos_geograficos/14/14030.pdf | u02-1.md | Chapala map lake/country label and independence from geography article. |
+| https://www.winnipeg.ca/city-governance/documents-reports/corporate-strategic-plan-2024-2027 | u02-2.md | Winnipeg at Red/Assiniboine junction. |
+| https://files.conagua.gob.mx/conagua/publicaciones/Publicaciones/EAM%202021.pdf | u02-2.md | Water supporting agriculture, no invented quantity. |
+| https://archives.nypl.org/mss/485 | u04-1.md | Las Casas recorder attribution; independent teaching fallback retained. |
+| https://prescott-az.gov/planning-and-zoning/historic-preservation/ | u06-4.md | Prescott as early settlement on Arizona assessment map. |

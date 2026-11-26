@@ -109,3 +109,75 @@ Browser check:
 - https://prescott-az.gov/planning-and-zoning/historic-preservation/ | u06-4.md:137, M5c in s06.md:70 | Prescott as an early settlement on the Arizona assessment map. The section explicitly retains this fact as browser check after a refused city page and refused alternate. This reader did not retry either blocked source or use another route. The source row itself was not opened.
 
 Outstanding decision: if the complete required assessments cannot fit their stated reading and time limits after a concrete prototype, the lead should bring the schedule or scope choice to Cory. This report does not choose an additional day or remove required groups.
+
+## Fixes applied (2026-11-25)
+
+Job 014, kit 14. Work and new source reopens performed 2026-11-26; heading follows the requested job date. Original report above retained unchanged.
+
+Disposition counts: applied 7; rejected 0; partly 24. FIRM left: 16 UNIT PLAN findings plus F10's two ambiguous ledger notes, 17 grouped findings. Section prose for F10 is corrected.
+
+| Finding | Disposition | Change or reason, including upstream stage |
+|---|---|---|
+| F01 | partly | Confirmed incompatible Q3 packet/master. Sections retain Whitman versus Catherine Haun and her husband, with distinct trail/settlement details. For the lead, UNIT PLAN: replace Bidwell/motive in s05 packet C, anchor and every Q3 representation. |
+| F02 | partly | Canonical section register now uses source-supported Hmong textiles, living Taos Pueblo adobe homes, Makah museum and 1955 Japanese American gardeners associations. The four pages reopened on 2026-11-26; the integrated prototype follows them. For the lead, UNIT PLAN: align s07 strips, keys/look-fors and source references; retain all 25 groups. |
+| F03 | partly | E90 now weighs peaceful-intention versus prepared-control accounts against held conditional California-port orders, distinct from E89 border assertions. Key preserves the conditional-order limit. For the lead, UNIT PLAN: replace s05 E90 and its goal/evidence map. |
+| F04 | applied | E89 first item compares actual disputed-land assertions, not maker/date labels; its separate map-test assertion remains. Day instructions reserve those assertions from practice. |
+| F05 | partly | E98 now completes one held Virgin Islands location/1917 timeline record. Atlas source/date reopened; earlier teaching crops mask the inset/date. For the lead, UNIT PLAN: replace s05 E98 and goal/evidence map; data must preserve the new reservation. |
+| F06 | partly | E137a writes a researchable supporting question; E137b explains its importance. Practice audits supplied questions instead of generating them. For the lead, UNIT PLAN: align s07 daily evidence/goal map and both item IDs. |
+| F07 | partly | E153 now completes a held adopted-rule chain: blocked music-room doorway, student survey, board hearing/approval, later checks/shelf revision. For the lead, UNIT PLAN: replace s07 status-only exit and sweep records. |
+| F08 | partly | E156 drafts one integrated opening for a held event-coordinator brief about an omitted reading-tent schedule. Separate-component practice and retained chosen draft remain. For the lead, UNIT PLAN: align s07 E156 and goal map. |
+| F09 | partly | E157 revises an unused weak park-notice line from one evidence-need criterion cue. Chosen-product practice repairs action/feasibility separately; receiving 158 repairs now include H. For the lead, UNIT PLAN: replace s07 authority/status exit and sweep handoffs. |
+| F10 | partly | All stale section review claims corrected to the written citizenship, petition, immigrant, source-log, map-scale and perspective targets; genuine planned-only independence retained. Six unambiguous stale ledger review notes corrected. Two blank-day source-log entries in u05-4/u05-5 share the same full entry string; ledger.py note keys only day+entry and cannot distinguish them. For the lead, SCRIPT/LEDGER INTERFACE: supply a where-aware locked note operation, then correct those two notes. No direct CSV write attempted. |
+| F11 | partly | Confirmed the three blanket planned-only handoffs against specific written targets; retained section references. For the lead, UNIT PLAN: correct s05/s06/s07 target by target without confusing learning uncertainty with ledger stage. |
+| F12 | applied | R103 adds a concrete force/employment-label retry and a reserved source-supported slavery-expansion/division retry. Each has ask/key/error/Shape. Migration motives lack a distinct unused source record, so D explicitly remains not retried; unmatched war-date/argument gaps also stay open. Access or continuity cannot stand in for them. |
+| F13 | applied | Pottery now appears consistently in R103 record, day prompt and key; the old fabric ledger label receives an explicit superseding note. |
+| F14 | partly | E88 now distinguishes the held 1894 Hawaiian republic from United States annexation; E96 uses held Cuba claim-ending/nonannexation evidence versus state admission. The original fixed Texas/Hawaii facts remain practice. For the lead, UNIT PLAN: replace s05 exits/goals and sweep source-map reservations. |
+| F15 | partly | E95a political transfer and E95b consent inference have separate IDs, Shapes, keys and same-scale criteria; two parts total. For the lead, UNIT PLAN: split s05 originating E95 and sweep data. |
+| F16 | partly | Goal-matched E98 replaces cause/effect. E99a infers a cause; E99b compares unequal business/resident outcomes, with separate Shapes/keys and two parts total. For the lead, UNIT PLAN: align s05 E98/E99 and goal map. |
+| F17 | partly | E144 uses one two-row public-history contribution record with at most two criteria. The extra limit demand moves to a different unscored practice record. For the lead, UNIT PLAN: remove the originating third demand in s07. |
+| F18 | applied | E148b now explains how shared supply addresses water shortage only. Ramp status is not scored; the Southwest response remains the other exit item. Ledger note aligned. |
+| F19 | partly | E158a claim and E158b connected support have separate IDs/Shapes/keys and two total parts. For the lead, UNIT PLAN: split s07 exit specification and record cells. |
+| F20 | partly | Same-day closing practice now audits isolated source-to-given-claim links and missing reasons; it generates neither a claim nor both links. E158 keeps fresh synthesis. For the lead, UNIT PLAN: replace s07 closing-work description, not just its layout. |
+| F21 | partly | F6b now connects an unused archived Yellowstone care-rule assignment to a public-history question. The function-explaining caption is removed; a generic archive-function answer is insufficient. Actual Archives act opened 2026-11-26. For the lead, UNIT PLAN: replace s06 F6 stimulus/key and record the new source; never backdate it. |
+| S01 | partly | Single section scales retained; portfolio feedback now uses one checklist. For the lead, UNIT PLAN: reconcile s05/s06 labels, supplies and marking instructions. Unit 7 retains its explicitly separate records/scales. |
+| S02 | partly | Section registers and actual verification dates retained, with new F6 source explicitly identified. For the lead, UNIT PLAN: incorporate section source registers in s05/s06 field 10; DATA: align existing rows/statuses from evidence, never backdate. |
+| S03 | partly | Day 119 now uses one five-record component checklist and shared criterion-cue bank, one actionable priority per child, all originals retained. Estimate thirty minutes for thirty folders, ours untested. For the lead, UNIT PLAN: replace five prose-feedback-record workflow and workload estimate in s06. |
+| S04 | partly | Day 131 now reserves nine Locate and date minutes and one collection minute, preserving all F1/F2 components and the 40-minute total. No child-speed timing is claimed. For the lead, UNIT PLAN: align s06 sitting allocation; DATA/DAY: print and time the full location/date/access path before production. |
+| S05 | partly | u07-6 field 3 now contains a complete 318-word integrated source/response prototype, including labels/prompts and all 25 groups; old packet bodies are superseded. Coverage and cold response audit are explicit. Full paper read/respond/access timing remains unproved. For the lead, UNIT PLAN/DATA: trial the complete master first, align sitting design, and bring any schedule/scope conflict to Cory; no required group dropped. |
+| S06 | applied | Day 103 reserves the final two Fresh attempt minutes plus the five-minute close for scanning one short assigned cell, preprinted private criterion cues, and silent reflection. Unscanned/unclear components stay open; no thirty-child oral queue. |
+| S07 | applied | Day 123 ends in isolated within-source rows and missing-evidence annotations. No cross-source explanatory comparison is composed before E123; all four factual accounts remain. |
+| S08 | partly | E109 metadata now says produce for both independently completed records; no option bank added. For the lead, UNIT PLAN: change the originating s06 goal-map kind. |
+| S09 | partly | u06-7 supplies literal short F4 stems in one organizer, with supported waterpower/work/trade key. A2 has two short single-ask parts in owning/administering sections. For the lead, UNIT PLAN: replace inherited long s06 F4 and s07 A2 prompts and sweep data. |
+| S10 | applied | Verified sources.csv/items.csv exist. Removed contradictory absence claims from 5.4 to 5.6; all now say retain and align existing rows/assets, record actual source evidence/dates, and list unfinished selections individually. |
+
+### Verification and limits of this fix
+
+Direct checks before and after: unitplan.py check social-studies-grade-4, 45 PASS files, 0 failures; ledger.py check social-studies, 8,382 rows, 0 problems. Advisory citation output unchanged: 2 planned-only and 1 unmatched, all in grades 2/3. No new lines from these checks.
+
+The course gate was attempted before any edit and after the edits. Both attempts exited 1 in subprocess creation with PermissionError: [WinError 5] Access is denied. Neither produced rule counts, a comparison or new-failure lines. This is not exit 2. Baseline status and new gate failures remain unknown; no manual baseline was stored. For the lead: obtain a working course-gate run. The empty build/gates/now-social-studies-grade-4/ folder was observed and left alone.
+
+Content audit: all 150 section day blocks retain 40-minute totals; 41 changed literal asks are present and every sentence has at most 15 words; no em dash or TODO(writer) in section plans. Individual Shape/key/error notes govern changed checks. The final integrated prototype has 318 whitespace words and 25 regional source entries; full physical layout, basic-reader pace and scribe path still require a paper trial. This is not classroom timing evidence.
+
+44 ledger note corrections were made only through ledger.py note and verified by full day+entry key. No ledger CSV was edited directly. Two ambiguous blank-day source-log notes remain for the lead as described in B F10. Their shared entry is source record returns through new maker/date/detail headings. Renote currently matches course+day+entry, not where. Earlier template points already recorded in u04-5 remain unverified because the course gate cannot run; no new template exception is claimed.
+
+Only 32 permitted section plans, this course ledger through its command, and these two reports were changed. Unit plans, source/item/handback data, lesson assets, kit and shared scripts were not edited. Helpers remain solely in _scratch/l87/tmp/social-studies-grade-4-plan-fix-grade/ for the lead to clear. Existing correct sections were retained; no file was restarted.
+
+### For the lead
+
+- UNIT PLAN: each partly line above identifies the authoritative key, goal, exit, practice, handoff, source catalog, scale or schedule needing correction. These are upstream faults, not template exceptions. Preserve the changed section design when sweeping s01 to s07 and data.
+- SCRIPT/LEDGER INTERFACE: disambiguate the two blank-day source-log notes by where, through locked writes. Section review language is already corrected.
+- DATA/DAY: retain and align existing assets/rows; superseding ledger notes do not rewrite them. Preserve held cases, new/retired item IDs, short stems, one scale per record and source-map order. Existing source statuses still predate the requested refresh; source CSV is outside this edit boundary. Reopens performed here occurred on 2026-11-26 and must never be recorded as a 2026-11-25 read. The new F6b 1872 act needs a source row with its actual verification date. Exact historical image geometry, rights and independent origins remain final-asset checks.
+- ASSESSMENT DESIGN: day 131's nine-minute location/date path and day 159's complete 318-word prototype need paper trials with neutral reading, all required responses, access and collection. If required coverage cannot fit, Cory decides schedule or scope. R103 migration-motive and other unmatched components remain not retried; do not imply complete repair coverage.
+
+### Browser check carried forward
+
+No refused page was retried or fetched another way. No new retained fact requires a new browser check. Existing pending list:
+
+| URL | Section plan | Fact |
+|---|---|---|
+| https://wdfw.wa.gov/places-to-go/fishing-piers/elliott-bay | u01-2.md | Elliott Bay adjoining Seattle waterfront. |
+| https://www.inegi.org.mx/contenidos/app/mexicocifras/datos_geograficos/14/14030.pdf | u02-1.md | Chapala map lake/country label and independence from geography article. |
+| https://www.winnipeg.ca/city-governance/documents-reports/corporate-strategic-plan-2024-2027 | u02-2.md | Winnipeg at Red/Assiniboine junction. |
+| https://files.conagua.gob.mx/conagua/publicaciones/Publicaciones/EAM%202021.pdf | u02-2.md | Water supporting agriculture, no invented quantity. |
+| https://archives.nypl.org/mss/485 | u04-1.md | Las Casas recorder attribution; independent teaching fallback retained. |
+| https://prescott-az.gov/planning-and-zoning/historic-preservation/ | u06-4.md | Prescott as early settlement on Arizona assessment map. |
