@@ -260,7 +260,7 @@ task inside day 2 of its unit.
 | mu-g5-perform | 12 | mu-g6-perform | The student decides when a piece is ready |
 
 Each hand-on above is answered at both ends in data/progressions/arts.csv (the grade 6 rows' `assumes` cells).
-Pending(docs/courses/music-grades-6-to-8/frame.md#Seams): its picked-up table is checked against this one when it lands.
+Music 6 to 8 picks these rows up in its grade 6 units 1 to 4 (its Seams, "Picked up from Music, grades 3 to 5"); the music expert read checks the two tables against each other.
 
 ## Models carried
 

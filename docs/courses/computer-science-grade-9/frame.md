@@ -1,0 +1,269 @@
+# Course frame: Computer Science, Grade 9
+
+Course `computer-science-grade-9` (catalogue id `cs-k12`), grade 9, one year. Draft frame, 2026-11-25, written on the shape of the kindergarten pilot (docs/courses/computer-science-kindergarten/frame.md and its fix report); the scope and sequence sets the days later.
+
+## The course in brief
+
+- **Units.** 6, every concept area in the year, in the order the ideas build: lists and records (programming and
+  algorithms, the structures every later program uses, then designing with them), cleaner programs (procedures,
+  loops and modules, which rewrite unit 1's programs), algorithms that decide (deterministic and probabilistic
+  algorithms, a first tour of AI algorithm types and a first audit, using unit 1's lists and unit 2's library),
+  data you can trust (data dictionaries and simulated data, reusing unit 3's random choices), what the system does
+  for us (operating systems, device limits, a network read and security measures) and computing over time
+  (a technology's history, an emerging technology against an established one, and a private career note).
+- **Days.** 64 course days: 60 in units, 2 for course-level checks (1 after unit 3, 1 after unit 6) and 2 respond
+  days (one after each check). Two lessons a week of about 45 minutes, 32 weeks: the computer science default for
+  grades 6 to 12 (docs/courses/computer-science/STANDARD.md section 2, Cory, Desk q-fix-cs-1), a real elective, so
+  course days 2w-1 and 2w fall in week w. The 45 minutes hold set-up, clean-up and collecting work: a lesson opens with
+  a retrieval trace or a predict task of at most five minutes (APPROACH.md, "How a day opens"), device lessons keep
+  three minutes at the start to open the editor file and four at the end to save the work as a downloaded file and put
+  devices away, so a device lesson teaches for about 33 minutes and an unplugged one for about 38. Each unit's days
+  include its end-of-unit assessment and end with a respond day (APPROACH.md, Pacing), with the pilot's one shape for
+  a unit that a course-level check follows directly: in units 3 and 6 the check stands for the unit's own end-of-unit
+  assessment and the check's respond day is the unit's respond day (pilot For the lead 2). So units 1 to 6 teach on
+  11, 10, 7, 7, 10 and 7 days, 52 of the 64. Days follow the load of the rows: units 1 and 2 own the four programming
+  and design rows, each a device row with a trace, modify and make order and a scored product with its draft,
+  feedback and revision days, and get 13 and 12; unit 5 owns three ids and begins a fourth, two of them device rows,
+  and gets 12; units 3, 4 and 6 own one, two and two ids, mostly unplugged, with a contribution row or two each, and
+  get 7, 9 and 7. 64 sessions for 17 rows is about the progression read's "about two sessions a row" plus the product
+  days (docs/reviews/progression-computer-science-2026-11-19.md). No unit runs over 25 days, so there are no mid-unit
+  assessments. The short path (bar C2) is named by the scope and sequence from these days.
+- **Check weeks.** Grades 9 to 12 have no stagger rule but the finals week, week 32 (docs/courses/CALENDAR.md, stagger
+  rule 4), and this course keeps off the grade 9 core check weeks anyway (ELA 13, 20 and 32; Algebra I 12 to 13, 22
+  and 32; Biology 9, 16 and 32; World History I 10, 18 to 19 and 32). The mid-year check is course day 33 in week 17,
+  its respond day course day 34 in the same week; the year-end check is course day 63 in week 32, the finals week, its
+  respond day course day 64 in the same week. Units that hold no course-level check run across the core weeks.
+  Overlaps with other after-core subjects' check weeks are the lead's calendar pass (For the lead 1).
+- **Standard.** The 12 HS ids of the 2026 CSTA PK-12 Computer Science Standards that the progression gives grade 9
+  (STANDARD.md "Ownership of MS and HS ids"): HS-PRO-VD-16, HS-ALG-PS-01, HS-ALG-PS-02, HS-PRO-PD-12, HS-ALG-PS-04,
+  HS-DAT-DC-22, HS-DAT-DC-21, HS-SYS-HW-29, HS-SYS-HW-30, HS-SYS-SE-31, HS-SOC-HI-38, HS-SOC-ET-40, all five concepts
+  (ALG 3, PRO 2, DAT 2, SYS 3, SOC 2). Five rows begin ids a later grade owns (HS-ALG-ML-06 and HS-SYS-NT-34 in grade
+  10, HS-SOC-HU-43 in grade 10, HS-ALG-IM-10 and HS-DAT-IM-27 in grade 11, HS-SOC-CE-46 in grade 12); each is named
+  in its unit's text with its owner and is never scored here. Each owned id is taught at the depth its owner row's
+  notes set in our own words, checked against its boundary in the source store's copy of the standards
+  (S:\CurioClass-sources\computer-science\csta-2026-11-21, read 2026-11-25, not copied), and "What students learn" says
+  what is out. Plans cite ids and state each action in a short phrase of our own (STANDARD.md "Quoting"); the credit
+  line "Standards: 2026 CSTA PK-12 Computer Science Standards (CC BY-NC-SA 4.0)" goes on any day that leans on a
+  statement. Check set: each unit plan checks itself against the computer science bar (docs/ADOPTION-BAR-SUBJECTS.md
+  part 5, items 1 to 9) and the lens (docs/agents/lenses/computer-science.md); the "Check set adds" column names what
+  the writer expects that to add. Values rule (DESK-ANSWERS 2026-11-12) holds. No Specialty id is claimed (the S1 list
+  is grades 11 and 12's, Cory 2026-11-20), and no X + CS id.
+- **Practices and concept areas.** The Units table's seventh column names, for each unit, its concept areas and the
+  CSTA practices it teaches inside the content, by code and our label (STANDARD.md section 3), as bar items 1 and 2
+  ask. Each unit plan names the practice's day and task. Across the year: CT6 define the problem (units 2, 3, 5, 6),
+  CT7 abstract and find patterns (units 1 to 5), CT8 compare approaches and build (units 1, 2, 4), CT9 test, debug and
+  refine (units 1, 2), IC3 explain, give and take feedback (units 1, 2, 3, 5, 6), IC4 run a project with milestones
+  (unit 2), IC5 pair roles that switch (units 1, 2), HCD10 include different users (unit 6), HCD12 keep users informed
+  (units 4, 5), ESR1 weigh who gains and who is harmed (units 3, 6), ESR2 protect users' data (units 4, 5).
+  Dispositions are named in the unit plans, not here.
+- **Base text.** None. The partial base (England's archived Teach Computing Curriculum) covers kindergarten to grade 8
+  only (STANDARD.md section 2, Cory 2026-11-16), so grade 9 is our own writing: programs, case cards, toy system
+  pages, data tables and keys are written by Curio Class for each unit (the "Curio Class writes" line of each unit).
+  Real cases follow STANDARD.md "Real cases in society days": told by what happened, two views, a dated free source
+  in the teacher source line, government bodies and courts named, never companies. Every invented table, program or
+  case is marked "invented for practice" on its teacher page.
+- **Language and editor.** Python, run in Curio Class's own browser editor (STANDARD.md "Our own editor" and "Blocks to
+  text": grade 8 on is Python), with a text view, a step-through trace and stated tests that show "yes" or "not yet".
+  A program students read is at most twenty lines (APPROACH.md, Reading load). Grade 9 uses lists, key-value records
+  (Python dictionaries, always called key-value records in student copy so they are not confused with a data
+  dictionary), procedures with parameters, loops, selection, the editor's built-in random and math libraries and one
+  small class (an object with data and actions); inheritance, recursion and advanced structures are out.
+- **Day kinds.** As docs/GLOSSARY.md (row "teaching day") defines them, in computer science's words (APPROACH.md):
+  Understanding is an unplugged or trace lesson, the first teaching of a construct or idea (a list drawn as a
+  list-diagram and traced, an operating system acted out on cards, a predict task on a given program). Fluency is a
+  modify lesson: change a working program or design in small, checked steps (unit 1 lessons 2, 4 and 9, unit 2
+  lessons 3 and 5, unit 3 lesson 5, unit 4 lesson 5), plus the three-minute retrieval traces; grade 9 has a modest
+  share of it. Application is a make, design or society lesson: build a program or a design against criteria, write
+  a data dictionary, audit a case, choose a device with evidence, or draft and revise a short analysis (named in each
+  unit). Check is the end-of-unit assessment or a course-level check; Respond acts on it by error letter. Inside a unit:
+  understanding before modify before make, and no make day before a trace or modify day on the same construct.
+- **Evidence.** Daily evidence follows APPROACH.md "The form of daily evidence": an exit ticket with a short program
+  and "what happens?" on trace days, the program with its look-fors and a "what I tested and what I changed" line on
+  modify and make days, a claim with two views and dated sources on society days. Every end-of-unit assessment is a
+  sitting with unseen items, never the unit's own anchor: read and trace items, a short build or debug task (on the
+  device or on paper), and, in a society unit, a short audit or claim task (APPROACH.md, unit field 5). Units 1, 2 and
+  6 also score a product (a design, a modular program, a short analysis) by rubric, whose draft, written feedback and
+  revision days sit before the end-of-unit day and are counted in the unit. Each owned id has its own look-for. No score
+  comes from a lesson that first teaches a row. Units 3 and 6 are assessed in the course-level check that follows them.
+  The respond day reteaches by error letter and repeats the missed item in a new form.
+- **Devices.** One device per pair is the default on a device day, with driver and navigator roles that switch at a
+  stated time (APPROACH.md, section field 7). Every device day is written four ways (STANDARD.md "Devices and rooms"):
+  one device per pair, a few devices at stations with the other pairs on the paper version, one screen with the class
+  predicting and voting before each run, or no device. Three owned ids are met only on a device (STANDARD.md "Devices
+  and rooms"): HS-DAT-DC-21 (unit 4), HS-PRO-PD-12 (unit 2) and HS-SYS-HW-30 (unit 5). On the no-device path those
+  days teach the idea on paper (dice and cards generate a small simulated set; the module split is done on paper with
+  the solution key; a paper simulator is stepped through), and the course record marks each "part met without a
+  device"; the course never says the id was met. Every other owned id is met in full on paper: programs are written on
+  paper, traced with a trace-table and checked by a partner against the stated tests.
+- **Paper path.** Every lesson has its paper version: printed programs with trace-tables, list-diagrams and named-box
+  sheets, card sets for the unplugged lessons, the toy system pages printed as step-through sheets. No tool asks for a
+  student account, stores a student's name or sends anything off the device; work is saved as a file the student
+  downloads or printed (STANDARD.md "Privacy and safety").
+- **Reading level and vocabulary.** Grade 9 students read grade-level text; teacher pages explain each idea at adult
+  level for a teacher not trained in the subject (bar item 9). Each unit names five to eight words taught in depth,
+  with the everyday words that have a computing meaning taught as two meanings (record, key, library, object, driver,
+  seed); assignment is read "x becomes x plus 1", never "x equals x plus 1" (lens). Sentence frames: "I predict ___
+  because line ___ says ___" and "This structure fits because ___". A student may answer a trace in numbers, arrows
+  or the home language.
+- **Swap or leave out.** STANDARD.md section 3 lets a school swap or leave out a named unit for its community's
+  reasons. Unit 6's career lesson (begun HS-SOC-CE-46, owned in grade 12) may be left out with no id lost; unit 6's
+  history case may be swapped for another computing technology's trajectory with two secondary sources, so
+  HS-SOC-HI-38 and HS-SOC-ET-40 are always claimed (bar part 5 fails a course with nothing on society). Unit 4's
+  large-scale collection cases may be swapped for other cases; the unit is not left out (it holds both DAT ids).
+  Units 1 to 3 and 5 carry the programming, algorithm and systems ids the later grades build on and are not swapped
+  or left out.
+- **Safety.** No lab or field work, so no laboratory or field safety guide applies. Devices: cords behind the
+  table, two hands to carry, a stated break from the screen in any lesson with more than 25 minutes at the device.
+  The optional microcontroller board in unit 5 runs on low voltage from a USB cable, with no mains power, no soldering
+  and no battery packs opened; the simulated device is the default. Security lessons use only the toy systems built
+  into the page: no scanning, no attack and no test of a real school or home system (STANDARD.md "Privacy and
+  safety"). The scope and sequence copies these lines into each device and security day.
+- **Costs.** Provisional, for a class of 30, beyond the school's own devices: unit 1 $6 (printing trace-tables,
+  list-diagram and named-box sheets, the record cards), unit 2 $5 (printing the long program and the module cards,
+  rubric sheets), unit 3 $6 (two dice per pair, about 30 dice at $3, printing the task and case cards), unit 4 $4
+  (printing the survey tables and dictionary sheets), unit 5 $6 (printing the operating system card set, network
+  diagram and measure cards; the optional board about $25 a board, one per class for a teacher demonstration, not
+  counted), unit 6 $4 (printing the timeline strips and the two-source packets), about $31 in all.
+- **Sensitivity reads.** Every unit gets the fresh sensitivity agent's read (docs/pipeline/briefs/sensitivity-read.md);
+  no outside reader is planned (Cory, 2026-11-14). Units 3 and 4 touch bias and data about people. Unit 3's audit
+  cases (invented for practice) touch students who live far from school, students with disabilities and families with
+  less money; before it reads, the agent studies NIST Special Publication 1270, "Towards a Standard for Identifying
+  and Managing Bias in Artificial Intelligence" (2022, nist.gov, free) as background, and the brief's own community
+  sources, two of them owned by the communities the cases touch, and records them. Unit 4's large-scale collection
+  cases (a national census, a store loyalty program, told without names) touch families who may fear government data
+  collection, including immigrant families: the agent checks no task asks about a student's or family's status, home
+  or data, and that the census case gives the agency's own published privacy rules beside a critical view. No case in
+  grade 9 is about a Native nation's data (data sovereignty is grade 11's, g11-data-scale-ethics). Unit 6's history
+  case includes a civilian airliner shot down in 1983 with everyone aboard killed: the agent checks it is told as a
+  dated fact with no images and no role play. Unit 6's career lesson is private by default. The online safety and
+  personal information parts of unit 5 carry health's "If a student tells you something" steps word for word
+  (docs/courses/health/APPROACH.md; APPROACH.md, Sensitive ground). The course's checks get the answer-key agent's
+  read; no unit is hands-on in the laboratory sense, so no safety agent read is planned beyond the Safety lines above,
+  which the sensitivity read confirms are on each device day.
+
+## Seams
+
+### Picked up from Grade 8 computer science
+
+Every row grade 9 assumes is a grade 8 computer science row, the year before, so each opens as a retrieval task
+inside the first lesson that needs it (lesson 16), never as a reteach or a readiness check. Grade 8's course has no
+written frame to cite by unit, so the rows are named.
+
+| Grade 8 row | What it hands on | Grade 9 row | Unit here | Treatment |
+|---|---|---|---|---|
+| g8-text-project | a multi-week text project: flowchart and pseudocode, variables, a list and a procedure | g9-structures-program; g9-design-with-structures; g9-optimize-procedures; g9-modular | 1, 2 | Retrieval trace of a grade 8 style program (a list and a procedure) in unit 1 lesson 1 and unit 2 lesson 2 |
+| g8-ml-evaluate | a trained classifier's test results, where it fails | g9-det-vs-prob; g9-ai-tour | 3 | Retrieval in unit 3 lessons 1 and 4: an output that differs and errs |
+| g8-modify-for-bias | a rule traced on cases, a harm named, the rule changed | g9-algorithm-impacts | 3 | Retrieval in unit 3 lesson 6 |
+| g8-relationships | a relationship among variables found with a tool | g9-simulate-data | 4 | Retrieval in unit 4 lesson 4: a table's variables and their ranges |
+| g8-investigation-summary | a written summary of an investigation with its limits | g9-data-dictionary | 4 | Retrieval in unit 4 lesson 1: what a field in a summary's table means |
+| g8-biased-decisions | the stages of a dataset and where bias enters | g9-data-and-people | 4 | Retrieval in unit 4 lesson 7 |
+| g8-choose-a-system | choosing a system from requirements, with an energy and ethics note | g9-operating-systems; g9-device-limits | 5 | Retrieval in unit 5 lessons 1 and 4 |
+| g8-network-failure | a packet's path traced through a map with a failure | g9-network-sketch | 5 | Retrieval in unit 5 lesson 7 |
+| g8-cyber-attacks | attacks matched to the cia-triangle side they harm | g9-security-measures | 5 | Retrieval in unit 5 lesson 8 |
+| g8-history-case | a history case reread for what a rule could have done | g9-computing-history | 6 | Retrieval in unit 6 lesson 1 |
+| g8-emerging-design; g8-emerging-debate | how a design choice in an emerging technology changes users' experience; a backed debate | g9-emerging-differences | 6 | Retrieval in unit 6 lesson 5 |
+| g8-career-sketch | one career path sketched, kept at the level of ideas | g9-career-interests | 6 | Retrieval in unit 6 lesson 7 |
+
+One readiness check comes from outside the subject: chance and probability (math grade 7, m7-chance-probability, two
+grades back) is checked in the last ten minutes of unit 2's respond day (course day 25), before unit 3 opens
+(Cross-subject).
+
+### Handed on to Grade 10 computer science
+
+| This course hands on | Unit here | Row that picks it up | What it does with it |
+|---|---|---|---|
+| g9-structures-program: programs that store, find and change data in lists and key-value records | 1 | g10-analyze-code | Explain and trace a twenty-line program with a procedure that returns a value |
+| g9-design-with-structures: a design in pseudocode and a flowchart with a justified structure | 1 | g10-evaluate-algorithms | Two algorithms for one task compared by steps, tests and clarity |
+| g9-optimize-procedures: a long program rewritten with procedures and loops, same tests | 2 | g10-evaluate-algorithms | As above: clarity and efficiency judged with test cases |
+| g9-modular: modules, a library function and a small object | 2 | g10-analyze-code; g10-apis-docs | Reading code by its parts; using a supplied library's documentation |
+| g9-det-vs-prob: deterministic and probabilistic algorithms told apart | 3 | none | HS-ALG-PS-04 is checked here; probabilistic algorithms return as review where grade 10 and 11 rows use randomness |
+| g9-ai-tour: AI algorithm types matched to tasks | 3 | g10-choose-ai-type | The choice of type justified from the task, the data and the cost of an error |
+| g9-algorithm-impacts: a first audit of a rule-based and a data-driven algorithm | 3 | g10-design-hcd | Human-centered design with users, needs and testing |
+| g9-data-dictionary: names, types, allowed values and rules between fields | 4 | g10-clean-text; g10-verify-consistency | Cleaning text data; ways to check data against a dictionary |
+| g9-simulate-data: data generated to stated parameters and fed to a simulation | 4 | g10-verify-consistency; g10-visual-data | Checking generated data; a three-variable chart |
+| g9-data-and-people: a first look at large-scale collection | 4 | g11-data-scale-ethics (grade 11) | Grade 11 owns HS-DAT-IM-27; grade 10 has no row on it (the progression's gap, accepted 2026-11-19) |
+| g9-operating-systems: the operating system as manager of memory, files, tasks and peripherals | 5 | none | HS-SYS-HW-29 is checked here; the system-diagram's OS layer is used again in grade 10's network diagrams |
+| g9-device-limits: a device tested against a task, its capabilities and limits | 5 | none | HS-SYS-HW-30 is checked here |
+| g9-network-sketch: a given network diagram read and one request traced | 5 | g10-network-diagram; g10-network-of-networks | Drawing a network from a description; joining networks and tracing a packet between them |
+| g9-security-measures: measures and their trade-offs | 5 | g10-breach-causes | Breaches and social engineering classified by cause |
+| g9-computing-history: one technology's trajectory with backed factors | 6 | g10-history-policy | A policy or law on the timeline and what it did |
+| g9-emerging-differences: an emerging technology's technical differences from an established one | 6 | g10-emerging-impacts; g10-human-choices | Effects on society and environment; choices at use, design, deploy and regulate |
+| g9-career-interests: a private goal, its skills and one next step | 6 | g10-career-skills | Skills from built work matched to jobs |
+
+Every hand-on above is answered by that row's assumes in data/progressions/computer-science.csv.
+
+## Models carried
+
+| Model | Where it comes from | Introduced or first used here | Used again here |
+|---|---|---|---|
+| text-program | Grade 6 (g6-variable-types), Python from grade 8 | Unit 1: lists and records in a short Python program | Units 2 (rewritten with procedures and modules), 3 (fixed-order and random-pick searches), 4 (a generator program), the mid-year and year-end checks |
+| list-diagram | Grade 7 (g7-lists) | Unit 1, lesson 1: a list as a named box with numbered slots, from index 0 | Unit 1 (a list of records), unit 2 (g9-modular: a module's list), unit 3 (the searched list) |
+| named-box | Grade 2 (g2-name-and-label) | Unit 1, lesson 3: a key-value record drawn as labeled boxes | Unit 2 (a parameter as a named box filled at each call) |
+| trace-table | Grade 3 (g3-variable-trace) | Unit 1, lesson 1: each line's effect on the list | Units 2, 3 and 4 (every trace day) and both course-level checks |
+| pseudocode | Grade 6 (g6-model-algorithm) | Unit 1, lesson 8: the leaderboard design | Unit 2 (g9-optimize-procedures: the before and after design) |
+| flowchart | Grade 5 (g5-visual-algorithm) | Unit 1, lesson 8: the leaderboard's sort as a flowchart | Unit 2 (loops and selection redrawn), unit 3 (g9-det-vs-prob: where the random choice sits) |
+| training-set | Grade 2 (g2-ai-training-data) | Unit 3, lesson 4: what each AI algorithm type learns from | Unit 3 (g9-det-vs-prob: a trained model run on the same input) |
+| benefit-risk-chart | Grade 2 (g2-benefits-harms) | Unit 3, lesson 6: the audit's who gains and who is harmed | Unit 4 (g9-data-and-people), unit 5 (g9-security-measures: a measure's cost to users, data and devices), unit 6 (g9-emerging-differences) |
+| data-table | Grade 2 (g2-data-types) | Unit 4, lesson 1: the survey table whose fields are defined | Unit 4 (g9-simulate-data: a generated table; g9-data-and-people: what a large table holds) |
+| data-visualization | Grade 4 (g4-data-explain) | Unit 4, lesson 6: a chart of the simulation's result before and after a parameter change | Grade 10 (g10-visual-data) |
+| timeline | Kindergarten (k-then-now) | Unit 6, lesson 1: the technology's trajectory with factor arrows | Unit 6 (lessons 2 to 4), the year-end check |
+| system-diagram | Grade 2 (g2-io-parts) | Unit 5, lesson 2: the operating system layer added between programs and hardware | Unit 5 (g9-device-limits: the device's parts and limits) |
+| cia-triangle | Grade 5 (g5-cia-triad) | Unit 5, lesson 8: each measure placed on the side it protects | Unit 5 (lessons 9 and 10) |
+| network-diagram | Grade 3 (g3-reach-internet) | Unit 5, lesson 7: a given school network read and one request traced | Grade 10 (g10-network-diagram, drawn from a description) |
+
+All go on to grade 10 or later; none is new in grade 9.
+
+## Units
+
+| # | Unit and compelling question | Days | Skills | Owned standards | Practices and concept areas | What students learn | Why this unit, here | Check set adds | Sensitive topics and teacher notes |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Lists and records. *How should a program hold its data, so finding and changing it is easy?* Anchor: a made-up animal shelter's paper roster that keeps losing track of which animal is where, rebuilt as a program | 13 | g9-structures-program; g9-design-with-structures | HS-PRO-VD-16; HS-ALG-PS-01 | Concept areas: programming, algorithms and design. Practices: CT7 (a structure as a reusable model of the data); CT8 (choose a structure, then build); CT9 (tests before "done"); IC5 (driver and navigator, switching at the halfway signal); IC3 (written feedback on a partner's design) | Lesson 1 (understanding): retrieval trace of a grade 8 style program, then a given ten-line program that stores the roster in a list, traced with a list-diagram and a trace-table (index from 0, length, the last item). Lesson 2 (modify, device): add, remove and find by index, and loop over the list, in a working program. Lesson 3 (understanding): a key-value record as labeled boxes (named-box): a gradebook of made-up scores, a value found by its key. Lesson 4 (modify, device): change a value, add a key, handle a missing key, loop over keys. Lesson 5 (understanding): a list of records (each animal a record with name, kind and age), traced. Lesson 6 (make, device): a store, find and change program for a made-up task list or class library catalogue, against three look-fors and stated tests (HS-PRO-VD-16 in full: store, access and change). Lesson 7 (understanding, unplugged): one problem two ways (find a score by name in a list of pairs, then in a record), steps counted on cards, so structure changes the algorithm. Lesson 8 (understanding): a leaderboard designed in pseudocode and a flowchart: a list of scores and a sort from highest to lowest, done first by hand with cards. Lesson 9 (modify): the design changed for a new need (ties, top three only), with the structure justified. Lesson 10 (design, Application): each pair designs an algorithm with a chosen structure for a new problem card (a lost-and-found lookup, a waiting list), in pseudocode and a flowchart with a written justification, and gets a partner's written feedback. Lesson 11 (make, device): the pair builds its design, tests it and revises the design where the build showed a gap (HS-ALG-PS-01 in full: a design with an appropriate structure). Out: no linked lists, stacks, queues, trees or graphs, no memory management, no comparison of sorts by step counts on growing inputs (grade 10's HS-ALG-PS-03). End-of-unit (day 12): a sitting with unseen items: trace a new list-and-record program, choose and justify a structure for two new problems and write pseudocode for one, a short debug task; the lesson 10 and 11 design scored by rubric. Respond day 13. Tools: our own editor (text view, step-through trace, stated tests with "yes" or "not yet"). Curio Class writes: the shelter roster, gradebook and catalogue programs (invented for practice), the problem cards, trace-table and list-diagram sheets, the design rubric and keys | First because every later program in the year stores its data in these structures, and the progression places HS-PRO-VD-16 before HS-ALG-PS-01 (STANDARD.md ordering constraint): the structures are built before students design with them. It opens the year from grade 8's text project, the year before, as retrieval | Candidate: a Parsons problem (shuffled lines of the lesson 5 program) as the lesson 6 opener, zero added days | Data in every program is invented and about things (animals, books, tasks, made-up scores), never about real students. Pair roles switch at a stated time; no student holds the keyboard all lesson. Agent reads: sensitivity. |
+| 2 | Cleaner programs. *How can a program that works be made shorter, clearer and easier to reuse?* Anchor: a working but 60-line made-up report-card program that repeats the same five lines for every student | 12 | g9-optimize-procedures; g9-modular | HS-ALG-PS-02; HS-PRO-PD-12 | Concept areas: algorithms and design, programming. Practices: CT6 (say what a procedure's name promises); CT7 (procedures and modules as abstraction); CT8 (plan the split, then build); CT9 (the same tests pass before and after); IC4 (a pair project with two milestones); IC3 (written feedback on the draft) | Lesson 1 (understanding): the anchor traced and predicted in parts (twenty lines shown at a time): where it repeats, where it is unclear. Lesson 2 (understanding): a procedure with parameters, retrieval of grade 8's procedure; a call traced with the parameter as a named box; what the procedure hides and what its name promises. Lesson 3 (modify, device): repeated steps replaced by a procedure; the same test-table passes. Lesson 4 (understanding, unplugged): loops and selection to streamline a flowchart (a loop over unit 1's list of scores in place of repeated lines, one selection in place of three). Lesson 5 (modify, device): the anchor rewritten with a procedure and a loop, same output, same tests (HS-ALG-PS-02 in full: procedural abstraction and control structures improve a design). Lesson 6 (understanding, unplugged): a game program decomposed into parts on cards (movement, scoring, display), each part a module. Lesson 7 (understanding): a library function from the editor's built-in math and random libraries, and a small class that holds data and actions (a scorekeeper object), traced. Lesson 8 (modify, device): a given program split into modules with procedures, a library call and one object. Lesson 9 (make, device): each pair drafts its own modular program (a small quiz or game) with at least two procedures, one library function and one object, meeting the first milestone. Lesson 10 (feedback and revision): a partner's written feedback against the rubric, then revision and the second milestone (HS-PRO-PD-12 in full: procedures, a library and an object for reuse and readability). Out: no formal efficiency analysis, no recursion or dynamic programming, no inheritance or design patterns, no documentation-reading task (grade 10's HS-PRO-PD-13). End-of-unit (day 24): a sitting with unseen items: find the redundancy in a new program and rewrite it on paper with a procedure and a loop, trace a new modular program's call; the revised modular program handed in and scored by rubric. Respond day 25, whose last ten minutes hold the readiness check on chance for unit 3. Tools: our own editor with its built-in libraries (job: run, trace and test the programs). Curio Class writes: the report-card anchor (invented for practice), the module cards, the scorekeeper class, the rubric, a finished solution for every program and each common bug beside a right version | After unit 1 because its procedures and loops rewrite unit 1's list programs, and the progression places g9-modular after both unit 1 rows. HS-PRO-PD-12 is met only on a device (part met without a device on paper) | Candidate: a code-review checklist for the partner feedback in lesson 10, zero added days | The report-card anchor uses invented names and scores; no real grade is entered. Agent reads: sensitivity. |
+| 3 | Algorithms that decide. *When should a program give the same answer every time, and when should it not?* Anchor: two "who goes first" programs run five times on the same class list: one names the same student every time, one does not | 7 | g9-det-vs-prob; g9-ai-tour; g9-algorithm-impacts | HS-ALG-PS-04 | Concept area: algorithms and design (with machine learning and impacts). Practices: CT6 (say what each algorithm must do); CT7 (patterns across repeated runs); ESR1 (who a rule helps or harms); IC3 (explain a choice with evidence) | Lesson 1 (understanding, unplugged): a rule-based and a dice-based algorithm run several times on the same input and recorded; deterministic means the same output and the same steps every time, probabilistic uses a random choice so the output or the run can differ; retrieval of grade 8's classifier that errs. Lesson 2 (trace, then device): a fixed-order search and a random-pick search over unit 1's list, run several times, outputs and steps recorded (the random library from unit 2). Lesson 3 (Application): uses of each (a total or a grade must be deterministic; a game roll, a shuffle or a simulation wants chance), and why a random-pick search can find a target sooner on some lists (HS-ALG-PS-04 in full: the difference described, with uses). Lesson 4 (understanding, unplugged): a tour of AI algorithm types from three task cards (sort mail into groups that were labeled, group customers by habit with no labels, write a caption), matched as classify, cluster and generate, with the training-set each learns from; a trained classifier is deterministic on one input, a generator often uses chance. Lesson 5 (fluency): new task cards matched to a type with one reason; this begins HS-ALG-ML-06, owned in grade 10, where the choice is justified from data and the cost of an error. Lesson 6 (understanding, unplugged): an audit of two invented sign-up algorithms for a school club on the same case cards: a rule that ranks by distance from school, and a version trained on past sign-ups; where each could treat some students worse, on a benefit-risk-chart. Lesson 7 (Application): the audit written as a claim with the cases as evidence, two views and one refined rule; this begins HS-ALG-IM-10, owned in grade 11. Out: no probability calculation or distribution (math grade 7 gives the chance words, Cross-subject), no proof, no AI mathematics, no live AI tool. End-of-unit: the mid-year course-level check (day 33) stands for it. Tools: our own editor (two search programs, the random library). Curio Class writes: the two "who goes first" programs, the search programs, task cards and audit case cards (invented for practice), keys | After unit 1 (its lists are searched) and unit 2 (its random library is used), and before unit 4, whose generator relies on the random choice taught here. The readiness check on chance (math grade 7) sits on day 25 before it opens | Candidate: a class tally of 30 runs of the random-pick search shown as a dot plot, inside lesson 2, zero added days | The audit cases are invented: no real group, school or neighborhood is named; talk stays on how the rule was built and tested, never on a classmate. A distance rule can stand in for income or neighborhood: the teacher note says so plainly and keeps the talk on the rule. Agent reads: sensitivity (NIST SP 1270 and the community sources first, as in Sensitivity reads). |
+| 4 | Data you can trust. *How do we say what good data looks like, and make data that fits?* Anchor: a made-up club survey table with a rating of 7 on a 1 to 5 scale, a blank where a skipped question should be, and an end date before its start date | 9 | g9-data-dictionary; g9-simulate-data; g9-data-and-people | HS-DAT-DC-22; HS-DAT-DC-21 | Concept area: data and analysis (with impacts). Practices: CT7 (a dictionary as a model of the table); CT8 (generate data to a plan); HCD12 (a dictionary tells every user what is allowed); ESR2 (protect the people in a dataset) | Lesson 1 (understanding): the anchor's fields named, each with a type and allowed values; retrieval of grade 8's investigation summary. Lesson 2 (understanding): rules between fields (an end date after a start date; a skipped question leaves later answers blank, marked "no response", not an error). Lesson 3 (Application): each pair writes a data dictionary for a new given table; another pair tries to enter a bad row against it (HS-DAT-DC-22 in full: name, type, allowed values and the rules between fields). Lesson 4 (understanding, device): a short program that generates values in a stated range with the random library (retrieval of unit 3), traced; a seed makes a run repeatable. Lesson 5 (modify, device): change the count and range, then check the generated set against a dictionary's allowed values. Lesson 6 (Application, device): generate arrival times for a supplied lunch-line queue simulation, run it, change one parameter, and chart how the waiting time changes (a spreadsheet's random function is the other route) (HS-DAT-DC-21 in full: data generated to stated parameters for an existing simulation). Lesson 7 (understanding, society, unplugged): case cards of large-scale collection (a national census, a store loyalty program), told by what happened, with who benefits and who is exposed on a benefit-risk-chart; this begins HS-DAT-IM-27, owned in grade 11. Out: no building of the simulation, no distribution beyond equal-chance values in a range (no bell-shaped data, which math teaches later), no database tools, no dataset students make about people. End-of-unit (day 42): a sitting with unseen items: write a dictionary for a new small table including one rule between fields, find the bad rows; a short generator program to change for new parameters (on the device or on paper) and say what the simulation's result shows. Respond day 43. Tools: our own editor (generator program), a supplied queue simulation page (job: take the generated data and show the result), a spreadsheet as the alternative route. Curio Class writes: the survey tables (invented for practice), dictionary sheets, the generator program, the queue simulation page as a tool ask, census and loyalty case cards with a dated source each | After unit 3 because the generator uses the random choice and the probabilistic idea unit 3 teaches. The dictionary comes first so the generated data has stated allowed values to fit and be checked against. The society lesson closes the unit on the data the unit has just defined. HS-DAT-DC-21 is met only on a device (dice and cards on the paper path, part met without a device) | Candidate: the bad-row game as a recurring three-minute opener in lessons 4 to 6, zero added days | No dataset holds real students' data. Census case: some families fear government data collection; no student is asked about a family's status, home or records; the teacher page gives the agency's own published privacy rules beside a critical view, each dated. The loyalty case names no company. Agent reads: sensitivity (as in Sensitivity reads). |
+| 5 | What the system does for us. *What is a computer doing that we never see, and how do we keep it safe?* Anchor: two programs both ask for the printer and more memory at the same moment: who decides? | 12 | g9-operating-systems; g9-device-limits; g9-network-sketch; g9-security-measures | HS-SYS-HW-29; HS-SYS-HW-30; HS-SYS-SE-31 | Concept area: computing systems and security (with networks). Practices: IC3 (explain what the operating system does); CT6 (state a task's needs before choosing a device); CT7 (the system-diagram's layers); HCD12 (users told what a measure costs them); ESR2 (protect users' data and devices) | Lesson 1 (understanding, unplugged): the operating system acted out on cards: memory slots, a file shelf, a queue of tasks, and peripherals (keyboard, printer, sensor) reached through driver cards; retrieval of grade 8's system choice. Lesson 2 (understanding): software cards sorted into operating system, application and utility, and an operating system layer added to the system-diagram (HS-SYS-HW-29 in full: what makes the operating system different, including memory and peripherals). Lesson 3 (trace, device): a toy operating system page: predict, then watch memory fill, tasks wait and a print request pass through a driver. Lesson 4 (understanding): a device's capabilities and limits for a practical task (a group project's deadlines and task list across members: battery, screen size, storage, connection). Lesson 5 (device): a simulated counter tested against a task that needs ten events a second, and the point where it fails found; the optional board as a teacher demonstration. Lesson 6 (Application): a choice between two devices for a new practical task, with evidence of what each can and cannot do (HS-SYS-HW-30 in full: capabilities and limits shown on a real or simulated device). Lesson 7 (understanding, unplugged): a given school network diagram read, the hardware and software on each device named, one request traced through it; retrieval of grade 8's packet paths; this begins HS-SYS-NT-34, owned in grade 10, where students draw a network themselves. Lesson 8 (understanding, unplugged): security measures, cyber (a long passphrase, a second check, encryption, updates, backups) and physical (a locked room, a screen lock, a badge), each placed on the cia-triangle; retrieval of grade 8's attacks. Lesson 9 (Application, toy system page): measures added to a toy school system and their trade-offs charted for users, data and devices (cost, convenience, access). Lesson 10 (Application): a security plan for a pretend club site: three measures, each with its trade-off, and a partner's review (HS-SYS-SE-31 in full: measures named and their trade-offs for users, data and devices). Out: no coding or configuring an operating system or driver, no internal architecture of a device, no code that drives hardware directly, no measure set up on a real system, no network drawn from scratch. End-of-unit (day 54): a sitting with unseen items: sort new software and say what the operating system does in a new case, a new device-and-task card with its limits, a new measure with its trade-offs, and a request traced through a new diagram (unscored, for grade 10). Respond day 55. Tools: a toy operating system page, a simulated device page, a toy security page (jobs: show memory, tasks and drivers; run a device against a task; show what a measure changes), all tool asks. Curio Class writes: the operating system and driver cards, software sort cards, device-and-task cards, the network diagram, measure cards, the pretend club site | After unit 4 because the programs and data of units 1 to 4 are what the operating system manages and the security measures protect; systems sits in the second half so the year's programming is not split. HS-SYS-HW-30 is met only on a device (a paper simulator on the paper path, part met without a device) | Candidate: a security trade-off card game for lesson 9's opener, zero added days | Security lessons use only toy systems: no scanning, no attack, no test of a real school or home system. A passphrase example is never a student's real password, and no student types a real one. The online safety part carries health's "If a student tells you something" steps word for word. Optional board: low voltage, USB only, teacher demonstration. Agent reads: sensitivity. |
+| 6 | Computing over time. *What pushed a computing technology to become what it is, and what might change it next?* Anchor: a phone's map dot, then the same idea as a 1970s defense project that only the military could use | 7 | g9-computing-history; g9-emerging-differences; g9-career-interests | HS-SOC-HI-38; HS-SOC-ET-40 | Concept area: computing and society. Practices: ESR1 (who gained as the technology spread); IC3 (a claim backed and explained); CT6 (state what an emerging technology must do better); HCD10 (careers for many kinds of people) | Lesson 1 (understanding, unplugged): the trajectory of satellite positioning from its start as a defense project to the phone in a pocket, on a timeline; retrieval of grade 8's history case. Lesson 2 (understanding): the factors that pushed or slowed it, social and policy (after a civilian airliner was shot down in 1983, the government promised civilian access; in 2000 it turned off the deliberate error in civilian signals), economic (cheap receiver chips) and environmental (the upper atmosphere bends the signal, which led to correction systems), each backed by one of two short supplied secondary sources. Lesson 3 (Application): each student drafts a short analysis: one claim about a factor, backed by both sources. Lesson 4 (feedback and revision): a partner's written feedback against the rubric, then revision (HS-SOC-HI-38 in full: a trajectory linked to social and environmental factors, from secondary sources). Lesson 5 (understanding, unplugged): quantum computing set against classical computing: a bit holds 0 or 1, a qubit can hold a blend until it is measured, kept qualitative; what that lets some problems be done with fewer resources, and its present limits (errors, cooling, few qubits), dated as of the source. Lesson 6 (Application): how those differences influence computing, through one case: the need for new kinds of encryption, with the published new encryption standards of 2024 as the dated source (ties to unit 5); students also name one human choice at deploy or regulate, which begins HS-SOC-HU-43, owned in grade 10 (HS-SOC-ET-40 in full: the technical differences evaluated and how they influence computing). Lesson 7 (unplugged, private): each student lists a goal, the computing skills it needs and one next step, kept private by default; this begins HS-SOC-CE-46, owned in grade 12. Out: no primary-source research, no economic or legal model, no quantum mechanics, no prediction presented as fact; activity comparisons before and after a technology are earlier grades'. End-of-unit: the year-end course-level check (day 63) stands for it. Tools: none (all unplugged; one screen for the timeline). Curio Class writes: the satellite positioning timeline and two-source packet, the quantum and classical cards, the rubric. Sources for the teacher line, opened and dated by the unit writer: the government's own satellite positioning site (gps.gov: history and the 2000 decision), the National Institute of Standards and Technology's post-quantum cryptography project pages (csrc.nist.gov) and its quantum information pages (nist.gov) | Last because it gathers the year: the systems of unit 5 seen across time, and the encryption of unit 5's measures meeting an emerging technology. Its rows hand on to grade 10's society rows, so the year ends on them, and the year-end check in week 32 stands for its end-of-unit | Candidate: a second technology's trajectory (the national census's move from punched cards to online forms) as the check's unseen case, zero added days | The 1983 airliner is a dated fact (everyone aboard was killed): no images, no role play, a plain teacher note. Military origins are told as history, not judged. The career lesson is private: nothing is shared unless the student chooses; no student is asked about a family member's work. Agent reads: sensitivity. |
+
+## Course-level checks
+
+| Check | After unit | Check days | Respond days | What it checks |
+|---|---|---|---|---|
+| Course-level check, mid-year (week 17; it stands for unit 3's end-of-unit assessment) | 3 | 1 | 1 | Day 33 scores unit 3 in full with unseen items and samples units 1 and 2. Unit 3 (HS-ALG-PS-04): two new short algorithms, each run three times on paper from given outputs, classified as deterministic or probabilistic with the reason, and one use of each explained in writing. Unit 3's begun parts (an AI type matched to a new task, HS-ALG-ML-06; an audit claim, HS-ALG-IM-10) are recorded for grade 10 and 11, unscored. Units 1 and 2 sampled with new items: trace a new list-and-record program of at most twenty lines (HS-PRO-VD-16), choose a structure for a new problem (HS-ALG-PS-01), find the redundancy in a new program and rewrite it with a procedure and a loop on paper (HS-ALG-PS-02); units 1 and 2's scored designs and programs are carried unscored. A 40-minute paper sitting, with the device version for the trace items. Day 34, the respond day for unit 3 and the check, reteaches by error letter and gathers fresh evidence on the missed items |
+| Course-level check, year-end (week 32, the finals week; it stands for unit 6's end-of-unit assessment) | 6 | 1 | 1 | Day 63 scores unit 6 in full with unseen items and samples units 1 to 5. Unit 6: from a new two-source packet on another technology (the census's move from punched cards to online forms), a short claim about one factor backed by both sources (HS-SOC-HI-38), and from a new emerging-technology card, its technical differences and one way they influence computing (HS-SOC-ET-40); the revised lesson 4 analysis is scored by rubric. Units 1 to 5 sampled with new items: a short debug task on a modular program (HS-PRO-PD-12), a data dictionary rule for a new table (HS-DAT-DC-22), a generator's parameters changed to fit a stated range (HS-DAT-DC-21), what the operating system does in a new case (HS-SYS-HW-29), a device's limit for a new task (HS-SYS-HW-30) and a measure's trade-off (HS-SYS-SE-31); units 4 and 5's end-of-unit records are carried unscored. A 40-minute paper sitting. Day 64, the respond day for unit 6 and the check, reteaches and records each student's support and gains for grade 10 |
+
+## Cross-subject
+
+### Mathematics, grade 7 (two grades back)
+
+| Row | Lean | Used here | Where math teaches it | Treatment |
+|---|---|---|---|---|
+| g9-det-vs-prob | m7-chance-probability (7.SP.C.5, 7.SP.C.6: chance as a number from 0 to 1, relative frequency in the long run) | Unit 3, lessons 1 to 3 (weeks 13 to 14) | math grade 7 unit 8 (days 139 to 157) | Two grades back, so a readiness check in the last ten minutes of course day 25 (unit 2's respond day), in sequence-write.md rule 2's words. Unit 3 uses only the words chance, likely, outcome and long-run frequency, and computes no probability, so a student who missed it meets the words in lesson 1 |
+| g9-simulate-data | m7-chance-probability (7.SP.C.5, 7.SP.C.6) | Unit 4, lessons 4 to 6 (weeks 19 to 20) | math grade 7 unit 8 (days 139 to 157) | Covered by the day 25 readiness check and unit 3's use; values are equal-chance in a stated range, no distribution beyond it |
+
+No row leans on Algebra I, Biology, ELA grade 9 or World History I in the same year. Writing a backed claim (unit 6)
+and explaining a design in writing (units 1 to 3) are practiced here, not owned.
+
+## For the lead
+
+1. **After-core check weeks (calendar pass).** This course's checks sit in week 17 (mid-year) and week 32 (year-end,
+   finals), off every grade 9 core check week. The CALENDAR.md table shows ELD grades 9 to 12's grade 9 mid-year
+   check in week 17 too; grades 9 to 12 have no stagger rule but the finals week (`frame.py calendar` checks K to 8
+   only), so the pick is to keep it and name it in the pass.
+6. **A stale note this frame set off.** `stale.py check` now fails
+   docs/courses/career-pathways-grades-9-to-12/frame.md line 172, whose Pending marker waited on this frame; its
+   writer or the lead rewrites that note to say what is now true (not edited here: another course's frame).
+2. **Picks that change two row notes** (listed under Row changes in the final report): the history case is satellite
+   positioning, not the mail system or a map tool (a map route tool is grade 8's emerging-technology pick, g8-emerging-design),
+   and the emerging technology is quantum computing set against classical computing, not a map by a person against a
+   route tool (the same repeat). Grade 7's history picks (the telephone exchange, the personal computer, a large
+   database) are not repeated.
+3. **Simulated heights.** g9-simulate-data's note says "heights with a stated spread"; a spread beyond a range
+   suggests a bell-shaped distribution the math progression has not taught by grade 9 (lesson 13). Pick: the note
+   reads "values in a stated range". Listed under Row changes.
+4. **Our own editor for grade 9.** The course needs the editor's Python text view with a step-through trace, stated
+   tests, built-in random and math libraries and support for one small class (STANDARD.md "Our own editor"), plus
+   three toy pages (operating system, simulated device, security) and a queue simulation page, all for TOOL-ASKS.md
+   when the scope is written. The paper path meets every id except the three device-only ones in full, so the course
+   does not wait on them.
+5. **Source list.** docs/APPROACH-SOURCES.md: NIST SP 1270 (2022), gps.gov's history pages and the NIST post-quantum
+   cryptography project, to be opened and dated by the unit writers (no fetch was made for this frame).

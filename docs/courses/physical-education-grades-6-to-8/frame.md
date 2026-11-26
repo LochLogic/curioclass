@@ -356,9 +356,12 @@ idea; the other course teaches the model.
 ### After-core courses (name each other, no lean)
 
 Health's units and weeks are from docs/courses/health-grades-6-to-8/frame.md (its "PE" table names these rows too).
-The SEL and dance 6 to 8 frames are being written beside this one, so their unit numbers are not guessed:
-Pending(docs/courses/social-and-emotional-learning-grades-6-to-8/frame.md): SEL's units and weeks for its rows below.
-Pending(docs/courses/dance-grades-6-to-8/frame.md): dance's units and weeks for its rows below.
+The SEL and dance 6 to 8 frames are written (2026-11-25), and their units are cited from them.
+SEL 6 to 8 teaches its rows below in grade 6 unit 3 (g6-sm-calm-down), unit 4 (g6-rel-settle-disagreements) and
+unit 6 (g6-rel-lead-follow), and in grade 7 unit 7 (g7-rel-teamwork) and unit 10 (g7-sm-calm-down).
+Dance 6 to 8 teaches its rows first in each year: units 1 and 2 (grade 6 weeks 1 to 16), units 5 and 6 (grade 7
+weeks 1 to 16) and unit 9 (grade 8 weeks 1 to 9); its technique rows (da-g6-technique, da-g7-technique,
+da-g8-technique) carry the progression's physical education leans, and its cultural picks differ from this course's.
 Where the other course teaches first in the same year, the PE unit opens with a retrieval task on it and teaches
 only its own part, in its words; If later says what PE does if the other course runs later.
 
