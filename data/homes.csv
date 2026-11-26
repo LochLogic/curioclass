@@ -52,7 +52,6 @@ data/plans/*/source-map.csv,source,course runs,plan.py check,
 data/plans/*/reserved.csv,source,course runs,plan.py check,
 data/plans/*/words.csv,source,course runs,lesson.py check,banned word patterns for the course
 data/plans/*/wordlist.csv,source,course runs,,their fate is decided in 4.I
-data/plans/*/*.csv,source,course runs,rows.py check,other course tables
 data/ids-retired.csv,source,lead,ids.py check,append-only: retired and merged ids
 data/homes.csv,source,lead,homes.py check,this file
 data/bands.csv,source,lead,,grade bands; read through scripts/bands.py
@@ -86,8 +85,8 @@ docs/courses/social-studies/**,source,lead,,subject folder: the subject's standa
 docs/courses/world-languages/**,source,lead,,subject folder: the subject's standard; approach and outlines
 docs/courses/*/frame.md,source,course runs,frame.py check,units; days; minutes and why
 docs/courses/*/scope-and-sequence.md,source,course runs,plan.py check,
-docs/courses/*/u*.md,source,course runs,unitplan.py check,judgment prose only (marker guard); two allowed in-file copies: the header **Days** line and the Day list (from days.csv; do not edit); both gated against days.csv
-docs/courses/*/s*.md,source,course runs,unitplan.py check,judgment prose only (marker guard)
+docs/courses/*/u[0-9][0-9]-[0-9]*.md,source,course runs,unitplan.py check,judgment prose only (marker guard); two allowed in-file copies: the header **Days** line and the Day list (from days.csv; do not edit); both gated against days.csv
+docs/courses/*/s[0-9][0-9].md,source,course runs,unitplan.py check,judgment prose only (marker guard)
 docs/courses/*/DEFAULTS.md,source,course runs,,
 docs/courses/*/TOOL-ASKS.md,source,course runs,,what a course asks tools for
 docs/courses/*/STANDARD.md,source,lead,,a subject's standard choice (also in the ten subject folders)
@@ -97,7 +96,7 @@ courses/*/*/d[0-9][0-9][0-9].md,source,course runs,lesson.py check,a day's teach
 courses/*/*/d[0-9][0-9][0-9]?.md,source,course runs,lesson.py check,a day's teaching (lettered day)
 courses/*/texts/*.md,source,course runs,lesson.py check,texts a course reads
 courses/*/*.md,source,course runs,lesson.py check,course-wide pages (safety)
-courses/*/*/*.md,source,course runs,lesson.py check,pieces a day hands out or reads from; reached through leans_on
+courses/*/*/*.md,source,course runs,lesson.py check,pieces a day hands out or reads from; reached through leans_on (piece names are free, so a stray piece is caught as an orphan by index.py --orphans, not here)
 courses/*/*/*.svg,source,course runs,lesson.py check,figures a day uses
 courses/*/*/*.png,source,course runs,lesson.py check,figures a day uses
 courses/*/*/*.jpg,source,course runs,lesson.py check,figures a day uses

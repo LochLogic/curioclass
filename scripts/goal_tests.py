@@ -25,6 +25,16 @@ def git(*a):
     return subprocess.run(['git', *a], cwd=ROOT, capture_output=True, text=True).stdout
 
 
+HOMES = ['docs/courses/{c}/frame.md', 'docs/courses/{c}/scope-and-sequence.md', 'data/plans/{c}/days.csv',
+         'data/plans/{c}/ledger.csv']
+
+
+def missing_homes():
+    """Each home a framed course (one with docs/courses/<course>/frame.md) lacks (close review finding 6)."""
+    framed = sorted(p.parent.name for p in (ROOT / 'docs' / 'courses').glob('*/frame.md'))
+    return [h.format(c=c) for c in framed for h in HOMES if not (ROOT / h.format(c=c)).exists()]
+
+
 def tests():
     import homes
     import index
@@ -40,7 +50,9 @@ def tests():
     trees = [ln for ln in git('worktree', 'list').splitlines() if ln.strip()]
     add(1, 'one working folder', len(trees), 1, 'git worktrees (the main checkout counts as one)')
     lay = index.r_layout(ix)
-    add(2, 'every course has the same homes', len(lay), 0, 'index layout report lines (data/homes.csv)')
+    missing = missing_homes()
+    add(2, 'every course has the same homes', len(lay) + len(missing), 0,
+        'index layout report lines (data/homes.csv) plus %d home(s) a framed course lacks' % len(missing))
     drift = index.r_drift(ix)
     add(3, 'one home per fact', len(drift), 0, 'plans holding a stored <!-- skel --> block (the marker guard)')
     add(4, 'no curriculum list from the tool catalog', len(lint.catalog()), 0,

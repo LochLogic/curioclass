@@ -58,10 +58,26 @@ def rows():
     return out
 
 
+COURSE_ROW = re.compile(r'(docs/courses|courses|data/plans)/\*/')
+COURSE_PATH = re.compile(r'(docs/courses|courses|data/plans)/([^/]+)/')
+
+
+@lru_cache(None)
+def course_ids():
+    p = ROOT / 'data' / 'plans' / 'course-list.csv'
+    return {r['id'] for r in csv.DictReader(open(p, encoding='utf-8', newline=''))}
+
+
 def row_of(path):
+    """The first row that matches. A course row (a pattern with the course folder as `*`) matches only a folder that
+    is a data/plans/course-list.csv id, so a made-up course has no home (close review finding 6)."""
     path = path.replace('\\', '/')
     for r in rows():
         if r['rx'].match(path):
+            if COURSE_ROW.match(r['pattern']):
+                m = COURSE_PATH.match(path)
+                if m and m.group(2) not in course_ids():
+                    return None
             return r
     return None
 
@@ -120,6 +136,15 @@ def tracked():
     return [x for x in out.splitlines() if x]
 
 
+def course_files(course):
+    """Every file in a course's three homes that git would see: tracked, plus untracked and not ignored, so a stray
+    a writer just made fails that writer's gate (close review finding 6)."""
+    out = subprocess.run(['git', '-c', 'core.quotepath=off', 'ls-files', '--cached', '--others', '--exclude-standard',
+                          '--', 'docs/courses/' + course, 'courses/' + course, 'data/plans/' + course], cwd=ROOT,
+                         capture_output=True, text=True, encoding='utf-8').stdout
+    return sorted({x for x in out.splitlines() if x and (ROOT / x).exists()})
+
+
 def check(files=None):
     """Lines for each tracked file with no home, and each tracked file whose home says it is never committed."""
     lines = []
@@ -144,7 +169,12 @@ def self_test():
                        ('data/modules/x.json', 'frozen'), ('docs/reviews/ela-6-x.md', 'blind'),
                        ('docs/BUILD-BOARD.md', 'generated-committed'), ('README.md', 'source')]:
         assert kind(path) == want, (path, kind(path), want)
-    assert row_of('courses/x/u01-1/d012a.md')['note'].startswith("a day's teaching")
+    assert row_of('courses/biology/u01-1/d012a.md')['note'].startswith("a day's teaching")
+    for path in ['docs/courses/biology/summary.md', 'docs/courses/biology/unit-notes.md',
+                 'data/plans/biology/notes.csv', 'courses/newcourse-not-listed/u01-1/d001.md',
+                 'data/plans/newcourse-not-listed/days.csv']:     # the close review's made-up paths
+        assert kind(path) in (None, 'stray'), (path, kind(path))
+    assert kind('data/plans/newcourse-not-listed/days.csv') is None
     print('homes self-test: all passed')
     return 0
 

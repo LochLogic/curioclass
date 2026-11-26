@@ -674,6 +674,16 @@ Built (2026-11-25):
 - Row 1: index.py reads `scope-and-sequence.md` (58 plan nodes) and indexes soft "day N" mentions in day files and
   pieces too (a day's mention of itself is not an edge). Edges 315,400 to 358,471, 10,327 of them from the scope and
   sequence files; resolve, orphans and the rest unchanged (0 new), so data/index-baseline.csv needed no change.
+- Row 2: data/homes.csv plan patterns are the real names (`s[0-9][0-9].md`, `u[0-9][0-9]-[0-9]*.md`) and the
+  `data/plans/*/*.csv` catch-all is gone (every course table is named); a course row matches only a course-list.csv
+  folder (homes.py row_of), so `data/plans/newcourse-not-listed/days.csv` has no home and the review's other made-up
+  paths read as stray. Piece names stay free: a stray piece is an orphan (index.py --orphans). `lint.py --course` read
+  no files for layout before; it now reads every file git would see in the course's homes, untracked too
+  (homes.course_files), and --changed reads new files; a stray untracked file fails its course gate (tested).
+  Goal test 2 also counts a home a framed course lacks (frame.md, scope-and-sequence.md, days.csv, ledger.csv). The
+  17 courses with no ledger.csv got a header-only one (a home, not content); ledgers fill as writers run and none of
+  the 17 has had a writing run since the ledger began, except 10 older days in US history I and world history I
+  (later.csv L132).
 
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 

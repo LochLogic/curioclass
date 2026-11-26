@@ -8,7 +8,8 @@ Checks (each line starts with the check's name, so a gate compare shows what is 
   course_pages.py `known_standards` (docs/CONSOLIDATION-PLAN.md test 4).
 - never-touch: a changed file whose data/homes.csv kind is never-touch or state (state files change only through
   their owner script, which the lead runs).
-- generated and layout: scripts/homes.py check over the files in scope (all tracked files under --all): a file with
+- generated and layout: scripts/homes.py check over the files in scope (--course: every file git would see in the
+  course's homes, untracked too; --changed: changed and new files; --all: all tracked files): a file with
   no home, a stray in a course home, or a tracked file that homes.csv says is generated and never committed.
   Generated and committed files are checked by their own gate (homes.csv `check` column).
 - style: an em dash, "Curio" not followed by " Class", or a UK spelling from the short US list below, in finished
@@ -134,9 +135,15 @@ def main(a):
         import gate
         scope = gate.courses()
     import homes
-    tracked = set(homes.tracked())
-    lines = catalog() + never(files) + homes.check(None if '--all' in a or not ('--course' in a or '--changed' in a)
-                                                   else [f for f in files if f in tracked])
+    # layout: --course reads every file git would see in the course's homes, untracked ones too, and --changed every
+    # changed or new file still on disk, so a stray a writer just made fails that writer's gate (close review 6)
+    if '--course' in a:
+        lay = homes.check(homes.course_files(scope[0]))
+    elif '--changed' in a:
+        lay = homes.check([f for f in files if (ROOT / f).exists()])
+    else:
+        lay = homes.check()
+    lines = catalog() + never(files) + lay
     for c in scope:
         lines += style(c)
     print('\n'.join(lines))
