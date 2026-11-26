@@ -113,9 +113,11 @@ One file per course, written only through `scripts/ledger.py` (add, seed, promot
 subject and read that subject's courses in ladder order. Any other plan CSV row is written with
 `python -X utf8 scripts/rows.py upsert <course> <table> --key <cols> col=value ... [--dry-run]`.
 
-Columns: course, where, day, kind, entry, note, stage, student_word. student_word (4.L) is yes or no on term rows and
-blank on other kinds: yes only for a word the page teaches students as vocabulary (`ledger.py add ... --student-word`),
-no by default. The word backlog (`vocabulary.py report`) counts only yes rows.
+Columns: course, where, day, kind, entry, note, stage, student_word. student_word (4.L) is yes, no or blank on term rows
+and blank on other kinds: yes only for a word the page teaches students as vocabulary (`ledger.py add ... --student-word`),
+no for a writer's term row without the flag, blank for not judged yet (seeded rows, and the older rows migrated on
+2026-11-25, Desk q-student-word-1; the rows seeded from a progression's words list were marked yes). The word backlog
+(`vocabulary.py report`) counts only yes rows and prints the blank ones as undecided.
 
 ## The course list (`course-list.csv`, consolidation step 4.C, 2026-11-25)
 

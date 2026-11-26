@@ -140,6 +140,14 @@ def forms(w):
 
 
 @lru_cache(None)
+def ledger_rows(course):
+    p = PLANS / course / 'ledger.csv'
+    if not p.exists():
+        return []
+    with open(p, encoding='utf-8', newline='') as f:
+        return list(csv.DictReader(f))
+
+
 def ledger_terms(course, student_only=False):
     """[(where, day, entry, heads)] for the course's term rows; student_only keeps the rows marked student_word yes
     (the backlog, close review finding 4). A [[word:...]] mark may name any term row."""
@@ -239,9 +247,10 @@ def report(only=None):
         per[(k, c)] = per.get((k, c), 0) + 1
     for (k, c), n in sorted(per.items()):
         print('%-9s %-45s %d' % (k, c or '(table)', n))
-    print('vocabulary: %d introduced but undefined, %d defined but never used -> %s'
-          % (sum(1 for x in out if x[0] == 'undefined'), sum(1 for x in out if x[0] == 'unused'),
-             path.relative_to(ROOT).as_posix()))
+    undecided = sum(1 for c in cl for r in ledger_rows(c) if r.get('kind') == 'term' and not r.get('student_word'))
+    print('vocabulary: %d introduced but undefined, %d defined but never used, %d term rows undecided (student_word '
+          'blank) -> %s' % (sum(1 for x in out if x[0] == 'undefined'), sum(1 for x in out if x[0] == 'unused'),
+                            undecided, path.relative_to(ROOT).as_posix()))
     return 0
 
 

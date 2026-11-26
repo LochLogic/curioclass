@@ -720,7 +720,9 @@ Built (2026-11-25):
   link line (plan_facts.with_link), so it passes `plan-links`; the index's fresh check stores the build's start time
   and file list, so a save during a build or a deleted file rebuilds; goal test 2 reads every course-list id with any
   home, not only framed ones. To the Desk: q-student-word-1 (older term rows read "no", so "never judged" and
-  "judged no" are one value). Later: L133 (test 10's other direction), L134 (catalog lint imports), L135 (shared
+  "judged no" are one value). Cory took the pick: the 1,451 older term rows seeded from a progression's words list
+  are yes, the other 12,033 blank (not judged), and the report prints them as undecided; seed writes blank; a
+  writer's row without the flag stays no. The backlog is 1,450 undefined words (12,033 undecided). Later: L133 (test 10's other direction), L134 (catalog lint imports), L135 (shared
   checks per course).
 
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.

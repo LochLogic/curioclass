@@ -1,175 +1,175 @@
 course,where,day,kind,entry,note,stage,student_word
-geometry,s01,,term,construction,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,compass,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,straightedge,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,circle,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,radius,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,perpendicular bisector,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,angle bisector,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,inscribed,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,conjecture,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,no
+geometry,s01,,term,construction,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,compass,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,straightedge,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,circle,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,radius,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,perpendicular bisector,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,angle bisector,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,inscribed,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,conjecture,seeded from geo-constructions words (stage 4 fix 2026-11-24),planned,yes
 geometry,s01,,model,construction,built here; seeded from geo-constructions model_out (stage 4 fix 2026-11-24),planned,
-geometry,s01,,term,rigid transformation,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,translation,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,rotation,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,reflection,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,directed line segment,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,center of rotation,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,line of reflection,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,image,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,no
+geometry,s01,,term,rigid transformation,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,translation,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,rotation,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,reflection,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,directed line segment,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,center of rotation,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,line of reflection,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,image,seeded from geo-rigid-motion-definitions words (stage 4 fix 2026-11-24),planned,yes
 geometry,s01,,model,transformation,built here; seeded from geo-rigid-motion-definitions model_out (stage 4 fix 2026-11-24),planned,
-geometry,s01,,term,symmetry,seeded from geo-symmetry words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,line of symmetry,seeded from geo-symmetry words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,rotational symmetry,seeded from geo-symmetry words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,carries onto,seeded from geo-symmetry words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,regular polygon,seeded from geo-symmetry words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,proof,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,theorem,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,vertical angles,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,transversal,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,alternate interior angles,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,corresponding angles,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s01,,term,equidistant,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,congruent,seeded from geo-congruence-rigid-motions words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,corresponding parts,seeded from geo-congruence-rigid-motions words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,rigid motion,seeded from geo-congruence-rigid-motions words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,sequence of transformations,seeded from geo-congruence-rigid-motions words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,side-angle-side,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,angle-side-angle,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,side-side-side,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,criterion,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,counterexample,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,isosceles,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,parallelogram,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,rectangle,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,rhombus,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,diagonal,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,bisect,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,converse,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s02,,term,quadrilateral,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,dilation,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,center of dilation,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,scale factor,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,parallel,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,enlarge,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,reduce,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,no
+geometry,s01,,term,symmetry,seeded from geo-symmetry words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,line of symmetry,seeded from geo-symmetry words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,rotational symmetry,seeded from geo-symmetry words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,carries onto,seeded from geo-symmetry words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,regular polygon,seeded from geo-symmetry words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,proof,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,theorem,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,vertical angles,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,transversal,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,alternate interior angles,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,corresponding angles,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s01,,term,equidistant,seeded from geo-angle-line-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,congruent,seeded from geo-congruence-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,corresponding parts,seeded from geo-congruence-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,rigid motion,seeded from geo-congruence-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,sequence of transformations,seeded from geo-congruence-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,side-angle-side,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,angle-side-angle,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,side-side-side,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,criterion,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,counterexample,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,isosceles,seeded from geo-triangle-congruence-criteria words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,parallelogram,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,rectangle,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,rhombus,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,diagonal,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,bisect,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,converse,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s02,,term,quadrilateral,seeded from geo-parallelogram-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,dilation,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,center of dilation,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,scale factor,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,parallel,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,enlarge,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,reduce,seeded from geo-dilations words (stage 4 fix 2026-11-24),planned,yes
 geometry,s03,,model,ratio-table,built here; seeded from geo-dilations model_out (stage 4 fix 2026-11-24),planned,
-geometry,s03,,term,similar,seeded from geo-similarity-transformations words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,similarity transformation,seeded from geo-similarity-transformations words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,corresponding,seeded from geo-similarity-transformations words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,proportional,seeded from geo-similarity-transformations words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,angle-angle,seeded from geo-similarity-transformations words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,triangle proportionality,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,side splitter,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,altitude,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,Pythagorean Theorem,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,proportion,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s03,,term,similar triangles,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,sine,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,cosine,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,tangent,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,adjacent,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,opposite,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,hypotenuse,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,acute angle,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,complementary,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,solve a triangle,seeded from geo-solving-right-triangles words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,angle of elevation,seeded from geo-solving-right-triangles words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,inverse trigonometric ratio,seeded from geo-solving-right-triangles words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,approximate,seeded from geo-solving-right-triangles words (stage 4 fix 2026-11-24),planned,no
-geometry,s04,,term,precision,seeded from geo-solving-right-triangles words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,cross section,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,solid of rotation,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,prism,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,pyramid,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,cylinder,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,cone,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,sphere,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,axis,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,area scale factor,seeded from geo-scaling-area-volume words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,volume scale factor,seeded from geo-scaling-area-volume words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,square root,seeded from geo-scaling-area-volume words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,cube root,seeded from geo-scaling-area-volume words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,graph,seeded from geo-scaling-area-volume words (stage 4 fix 2026-11-24),planned,no
+geometry,s03,,term,similar,seeded from geo-similarity-transformations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,similarity transformation,seeded from geo-similarity-transformations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,corresponding,seeded from geo-similarity-transformations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,proportional,seeded from geo-similarity-transformations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,angle-angle,seeded from geo-similarity-transformations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,triangle proportionality,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,side splitter,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,altitude,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,Pythagorean Theorem,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,proportion,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s03,,term,similar triangles,seeded from geo-similar-triangle-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,sine,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,cosine,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,tangent,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,adjacent,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,opposite,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,hypotenuse,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,acute angle,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,complementary,seeded from geo-right-triangle-trig words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,solve a triangle,seeded from geo-solving-right-triangles words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,angle of elevation,seeded from geo-solving-right-triangles words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,inverse trigonometric ratio,seeded from geo-solving-right-triangles words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,approximate,seeded from geo-solving-right-triangles words (stage 4 fix 2026-11-24),planned,yes
+geometry,s04,,term,precision,seeded from geo-solving-right-triangles words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,cross section,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,solid of rotation,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,prism,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,pyramid,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,cylinder,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,cone,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,sphere,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,axis,seeded from geo-cross-sections-solids words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,area scale factor,seeded from geo-scaling-area-volume words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,volume scale factor,seeded from geo-scaling-area-volume words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,square root,seeded from geo-scaling-area-volume words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,cube root,seeded from geo-scaling-area-volume words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,graph,seeded from geo-scaling-area-volume words (stage 4 fix 2026-11-24),planned,yes
 geometry,s05,,model,area-model,built here; seeded from geo-scaling-area-volume model_out (stage 4 fix 2026-11-24),planned,
 geometry,s05,,model,graph-of-function,built here; seeded from geo-scaling-area-volume model_out (stage 4 fix 2026-11-24),planned,
 geometry,s05,,model,function-table,built here; seeded from geo-scaling-area-volume model_out (stage 4 fix 2026-11-24),planned,
-geometry,s05,,term,Cavalieri's principle,seeded from geo-volume-formulas words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,volume,seeded from geo-volume-formulas words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,dissection,seeded from geo-volume-formulas words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,model,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,density,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,per unit,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,design,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,constraint,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,estimate,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,no
-geometry,s05,,term,units,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,coordinate rule,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,mapping,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,input point,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,output point,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,translation rule,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,reflection rule,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,no
+geometry,s05,,term,Cavalieri's principle,seeded from geo-volume-formulas words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,volume,seeded from geo-volume-formulas words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,dissection,seeded from geo-volume-formulas words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,model,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,density,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,per unit,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,design,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,constraint,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,estimate,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,yes
+geometry,s05,,term,units,seeded from geo-modeling-objects-density words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,coordinate rule,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,mapping,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,input point,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,output point,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,translation rule,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,reflection rule,seeded from geo-transformations-coordinates words (stage 4 fix 2026-11-24),planned,yes
 geometry,s06,,model,coordinate-plane,built here; seeded from geo-transformations-coordinates model_out (stage 4 fix 2026-11-24),planned,
-geometry,s06,,term,distance formula,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,circle equation,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,center,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,parabola,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,focus,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,directrix,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,completing the square,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,slope,seeded from geo-slope-criteria-lines words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,perpendicular,seeded from geo-slope-criteria-lines words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,opposite reciprocal,seeded from geo-slope-criteria-lines words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,point-slope form,seeded from geo-slope-criteria-lines words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,intersection,seeded from geo-slope-criteria-lines words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,directed segment,seeded from geo-partition-segments words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,partition,seeded from geo-partition-segments words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,ratio,seeded from geo-partition-segments words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,weighted average,seeded from geo-partition-segments words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,midpoint,seeded from geo-partition-segments words (stage 4 fix 2026-11-24),planned,no
+geometry,s06,,term,distance formula,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,circle equation,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,center,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,parabola,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,focus,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,directrix,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,completing the square,seeded from geo-circle-parabola-equations words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,slope,seeded from geo-slope-criteria-lines words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,perpendicular,seeded from geo-slope-criteria-lines words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,opposite reciprocal,seeded from geo-slope-criteria-lines words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,point-slope form,seeded from geo-slope-criteria-lines words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,intersection,seeded from geo-slope-criteria-lines words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,directed segment,seeded from geo-partition-segments words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,partition,seeded from geo-partition-segments words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,ratio,seeded from geo-partition-segments words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,weighted average,seeded from geo-partition-segments words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,midpoint,seeded from geo-partition-segments words (stage 4 fix 2026-11-24),planned,yes
 geometry,s06,,model,number-line,built here; seeded from geo-partition-segments model_out (stage 4 fix 2026-11-24),planned,
-geometry,s06,,term,coordinate proof,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,median,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,centroid,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,midsegment,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,perimeter,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s06,,term,area,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,central angle,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,inscribed angle,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,chord,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,arc,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,circumscribed angle,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,diameter,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,circumcenter,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,incenter,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,inscribed circle,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,circumscribed circle,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,cyclic quadrilateral,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,supplementary,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,arc length,seeded from geo-arcs-sectors-radians words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,sector,seeded from geo-arcs-sectors-radians words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,radian,seeded from geo-arcs-sectors-radians words (stage 4 fix 2026-11-24),planned,no
-geometry,s07,,term,constant of proportionality,seeded from geo-arcs-sectors-radians words (stage 4 fix 2026-11-24),planned,no
+geometry,s06,,term,coordinate proof,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,median,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,centroid,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,midsegment,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,perimeter,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s06,,term,area,seeded from geo-coordinate-proofs words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,central angle,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,inscribed angle,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,chord,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,arc,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,circumscribed angle,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,diameter,seeded from geo-circle-angle-relationships words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,circumcenter,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,incenter,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,inscribed circle,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,circumscribed circle,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,cyclic quadrilateral,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,supplementary,seeded from geo-inscribed-circumscribed words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,arc length,seeded from geo-arcs-sectors-radians words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,sector,seeded from geo-arcs-sectors-radians words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,radian,seeded from geo-arcs-sectors-radians words (stage 4 fix 2026-11-24),planned,yes
+geometry,s07,,term,constant of proportionality,seeded from geo-arcs-sectors-radians words (stage 4 fix 2026-11-24),planned,yes
 geometry,s07,,model,unit-circle,built here; seeded from geo-arcs-sectors-radians model_out (stage 4 fix 2026-11-24),planned,
-geometry,s08,,term,sample space,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,outcome,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,event,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,subset,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,union,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,complement,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,and,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,or,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,not,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,two-way table,seeded from geo-two-way-probability words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,conditional probability,seeded from geo-two-way-probability words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,independent,seeded from geo-two-way-probability words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,related events,seeded from geo-two-way-probability words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,given,seeded from geo-two-way-probability words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,addition rule,seeded from geo-addition-rule words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,overlap,seeded from geo-addition-rule words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,mutually exclusive,seeded from geo-addition-rule words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,double counting,seeded from geo-addition-rule words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,independent events,seeded from geo-conditional-independence words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,multiplication rule,seeded from geo-conditional-independence words (stage 4 fix 2026-11-24),planned,no
-geometry,s08,,term,fraction of outcomes,seeded from geo-conditional-independence words (stage 4 fix 2026-11-24),planned,no
+geometry,s08,,term,sample space,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,outcome,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,event,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,subset,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,union,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,complement,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,and,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,or,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,not,seeded from geo-sample-spaces-events words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,two-way table,seeded from geo-two-way-probability words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,conditional probability,seeded from geo-two-way-probability words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,independent,seeded from geo-two-way-probability words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,related events,seeded from geo-two-way-probability words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,given,seeded from geo-two-way-probability words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,addition rule,seeded from geo-addition-rule words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,overlap,seeded from geo-addition-rule words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,mutually exclusive,seeded from geo-addition-rule words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,double counting,seeded from geo-addition-rule words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,independent events,seeded from geo-conditional-independence words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,multiplication rule,seeded from geo-conditional-independence words (stage 4 fix 2026-11-24),planned,yes
+geometry,s08,,term,fraction of outcomes,seeded from geo-conditional-independence words (stage 4 fix 2026-11-24),planned,yes

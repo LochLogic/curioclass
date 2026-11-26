@@ -1,136 +1,136 @@
 course,where,day,kind,entry,note,stage,student_word
-math-grade-8,s01,,term,translation,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,rotation,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,reflection,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,rigid transformation,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,image,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,center of rotation,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,line of reflection,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,no
+math-grade-8,s01,,term,translation,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,rotation,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,reflection,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,rigid transformation,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,image,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,center of rotation,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,line of reflection,seeded from m8-rigid-motions words (stage 4 fix 2026-11-24),planned,yes
 math-grade-8,s01,,model,transformation,built here; seeded from m8-rigid-motions model_out (stage 4 fix 2026-11-24),planned,
 math-grade-8,s01,,model,coordinate-plane,built here; seeded from m8-rigid-motions model_out (stage 4 fix 2026-11-24),planned,
-math-grade-8,s01,,term,congruent,seeded from m8-congruence words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,sequence of transformations,seeded from m8-congruence words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,corresponding,seeded from m8-congruence words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,map onto,seeded from m8-congruence words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,transversal,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,alternate interior angles,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,corresponding angles,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,angle sum,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,exterior angle,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s01,,term,angle-angle,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s02,,term,dilation,seeded from m8-dilations-similarity words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s02,,term,center of dilation,seeded from m8-dilations-similarity words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s02,,term,scale factor,seeded from m8-dilations-similarity words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s02,,term,similar,seeded from m8-dilations-similarity words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s02,,term,similarity transformation,seeded from m8-dilations-similarity words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s02,,term,coordinates,seeded from m8-transformations-coordinates words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s02,,term,preimage,seeded from m8-transformations-coordinates words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s02,,term,"(x, y) to (x + a, y + b)",seeded from m8-transformations-coordinates words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s02,,term,center,seeded from m8-transformations-coordinates words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,slope,seeded from m8-proportional-compare words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,unit rate,seeded from m8-proportional-compare words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,proportional,seeded from m8-proportional-compare words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,compare,seeded from m8-proportional-compare words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,representation,seeded from m8-proportional-compare words (stage 4 fix 2026-11-24),planned,no
+math-grade-8,s01,,term,congruent,seeded from m8-congruence words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,sequence of transformations,seeded from m8-congruence words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,corresponding,seeded from m8-congruence words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,map onto,seeded from m8-congruence words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,transversal,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,alternate interior angles,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,corresponding angles,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,angle sum,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,exterior angle,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s01,,term,angle-angle,seeded from m8-angle-facts words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s02,,term,dilation,seeded from m8-dilations-similarity words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s02,,term,center of dilation,seeded from m8-dilations-similarity words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s02,,term,scale factor,seeded from m8-dilations-similarity words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s02,,term,similar,seeded from m8-dilations-similarity words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s02,,term,similarity transformation,seeded from m8-dilations-similarity words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s02,,term,coordinates,seeded from m8-transformations-coordinates words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s02,,term,preimage,seeded from m8-transformations-coordinates words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s02,,term,"(x, y) to (x + a, y + b)",seeded from m8-transformations-coordinates words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s02,,term,center,seeded from m8-transformations-coordinates words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,slope,seeded from m8-proportional-compare words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,unit rate,seeded from m8-proportional-compare words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,proportional,seeded from m8-proportional-compare words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,compare,seeded from m8-proportional-compare words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,representation,seeded from m8-proportional-compare words (stage 4 fix 2026-11-24),planned,yes
 math-grade-8,s03,,model,graph-of-function,built here; seeded from m8-proportional-compare model_out (stage 4 fix 2026-11-24),planned,
-math-grade-8,s03,,term,rise,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,run,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,slope triangle,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,y = mx,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,y = mx + b,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,intercept,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,linear relationship,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,rate of change,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,initial value,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,vertical intercept,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,horizontal line,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s03,,term,vertical line,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,scatter plot,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,association,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,positive,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,negative,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,linear,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,nonlinear,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,cluster,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,outlier,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,line of fit,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,no
+math-grade-8,s03,,term,rise,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,run,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,slope triangle,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,y = mx,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,y = mx + b,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,intercept,seeded from m8-slope-similar-triangles words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,linear relationship,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,rate of change,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,initial value,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,vertical intercept,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,horizontal line,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s03,,term,vertical line,seeded from m8-linear-relationships words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,scatter plot,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,association,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,positive,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,negative,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,linear,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,nonlinear,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,cluster,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,outlier,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,line of fit,seeded from m8-scatter-plots words (stage 4 fix 2026-11-24),planned,yes
 math-grade-8,s04,,model,scatter-plot,built here; seeded from m8-scatter-plots model_out (stage 4 fix 2026-11-24),planned,
-math-grade-8,s04,,term,linear model,seeded from m8-linear-models-data words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,predict,seeded from m8-linear-models-data words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,interpret,seeded from m8-linear-models-data words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,two-way table,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,categorical data,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,frequency,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,relative frequency,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,row,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s04,,term,column,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,no
+math-grade-8,s04,,term,linear model,seeded from m8-linear-models-data words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,predict,seeded from m8-linear-models-data words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,interpret,seeded from m8-linear-models-data words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,two-way table,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,categorical data,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,frequency,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,relative frequency,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,row,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s04,,term,column,seeded from m8-two-way-tables words (stage 4 fix 2026-11-24),planned,yes
 math-grade-8,s04,,model,two-way-table,built here; seeded from m8-two-way-tables model_out (stage 4 fix 2026-11-24),planned,
-math-grade-8,s05,,term,one solution,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s05,,term,no solution,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s05,,term,infinitely many solutions,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s05,,term,collect like terms,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s05,,term,distributive property,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s05,,term,variable on both sides,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,no
+math-grade-8,s05,,term,one solution,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s05,,term,no solution,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s05,,term,infinitely many solutions,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s05,,term,collect like terms,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s05,,term,distributive property,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s05,,term,variable on both sides,seeded from m8-linear-equations words (stage 4 fix 2026-11-24),planned,yes
 math-grade-8,s05,,model,equation-balance,built here; seeded from m8-linear-equations model_out (stage 4 fix 2026-11-24),planned,
-math-grade-8,s05,,term,system of equations,seeded from m8-linear-systems words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s05,,term,simultaneous,seeded from m8-linear-systems words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s05,,term,point of intersection,seeded from m8-linear-systems words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s05,,term,substitution,seeded from m8-linear-systems words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s05,,term,parallel lines,seeded from m8-linear-systems words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,function,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,input,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,output,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,exactly one,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,ordered pair,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,graph of a function,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,no
+math-grade-8,s05,,term,system of equations,seeded from m8-linear-systems words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s05,,term,simultaneous,seeded from m8-linear-systems words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s05,,term,point of intersection,seeded from m8-linear-systems words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s05,,term,substitution,seeded from m8-linear-systems words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s05,,term,parallel lines,seeded from m8-linear-systems words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,function,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,input,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,output,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,exactly one,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,ordered pair,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,graph of a function,seeded from m8-function-define words (stage 4 fix 2026-11-24),planned,yes
 math-grade-8,s06,,model,function-table,built here; seeded from m8-function-define model_out (stage 4 fix 2026-11-24),planned,
-math-grade-8,s06,,term,linear function,seeded from m8-function-compare words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,model,seeded from m8-function-model words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,increasing,seeded from m8-function-qualitative words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,decreasing,seeded from m8-function-qualitative words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,constant,seeded from m8-function-qualitative words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,sketch,seeded from m8-function-qualitative words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,cylinder,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,cone,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,sphere,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,hemisphere,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,radius,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,volume,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s06,,term,pi,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,no
+math-grade-8,s06,,term,linear function,seeded from m8-function-compare words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,model,seeded from m8-function-model words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,increasing,seeded from m8-function-qualitative words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,decreasing,seeded from m8-function-qualitative words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,constant,seeded from m8-function-qualitative words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,sketch,seeded from m8-function-qualitative words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,cylinder,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,cone,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,sphere,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,hemisphere,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,radius,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,volume,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s06,,term,pi,seeded from m8-volume-curved words (stage 4 fix 2026-11-24),planned,yes
 math-grade-8,s06,,model,area-model,built here; seeded from m8-volume-curved model_out (stage 4 fix 2026-11-24),planned,
-math-grade-8,s07,,term,exponent,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s07,,term,power,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s07,,term,integer exponent,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s07,,term,zero exponent,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s07,,term,negative exponent,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s07,,term,product of powers,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s07,,term,power of a power,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,no
+math-grade-8,s07,,term,exponent,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s07,,term,power,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s07,,term,integer exponent,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s07,,term,zero exponent,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s07,,term,negative exponent,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s07,,term,product of powers,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s07,,term,power of a power,seeded from m8-integer-exponents words (stage 4 fix 2026-11-24),planned,yes
 math-grade-8,s07,,model,place-value-chart,built here; seeded from m8-integer-exponents model_out (stage 4 fix 2026-11-24),planned,
-math-grade-8,s07,,term,scientific notation,seeded from m8-scientific-notation words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s07,,term,power of ten,seeded from m8-scientific-notation words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s07,,term,estimate,seeded from m8-scientific-notation words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s07,,term,order of magnitude,seeded from m8-scientific-notation words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s07,,term,times as much,seeded from m8-scientific-notation words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,square root,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,cube root,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,perfect square,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,perfect cube,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,radical,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,irrational,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,irrational number,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,rational number,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,decimal expansion,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,repeating,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,approximate,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,real number,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,no
+math-grade-8,s07,,term,scientific notation,seeded from m8-scientific-notation words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s07,,term,power of ten,seeded from m8-scientific-notation words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s07,,term,estimate,seeded from m8-scientific-notation words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s07,,term,order of magnitude,seeded from m8-scientific-notation words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s07,,term,times as much,seeded from m8-scientific-notation words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,square root,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,cube root,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,perfect square,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,perfect cube,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,radical,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,irrational,seeded from m8-roots words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,irrational number,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,rational number,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,decimal expansion,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,repeating,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,approximate,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,real number,seeded from m8-irrational-numbers words (stage 4 fix 2026-11-24),planned,yes
 math-grade-8,s08,,model,number-line,built here; seeded from m8-irrational-numbers model_out (stage 4 fix 2026-11-24),planned,
-math-grade-8,s08,,term,Pythagorean theorem,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,converse,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,hypotenuse,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,leg,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,right triangle,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,proof,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,distance,seeded from m8-coordinate-distance words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,coordinate,seeded from m8-coordinate-distance words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,horizontal,seeded from m8-coordinate-distance words (stage 4 fix 2026-11-24),planned,no
-math-grade-8,s08,,term,vertical,seeded from m8-coordinate-distance words (stage 4 fix 2026-11-24),planned,no
+math-grade-8,s08,,term,Pythagorean theorem,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,converse,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,hypotenuse,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,leg,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,right triangle,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,proof,seeded from m8-pythagorean-theorem words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,distance,seeded from m8-coordinate-distance words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,coordinate,seeded from m8-coordinate-distance words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,horizontal,seeded from m8-coordinate-distance words (stage 4 fix 2026-11-24),planned,yes
+math-grade-8,s08,,term,vertical,seeded from m8-coordinate-distance words (stage 4 fix 2026-11-24),planned,yes

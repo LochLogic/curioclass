@@ -1,0 +1,6 @@
+== build_site (1 new line(s), 0 failing)
+  note 521 course and unit pages -> S:\CurioClass\build\gates\sw-final\dist\courses (hidden)
+== compare (2 new line(s), 0 failing)
+  note gate all against its baseline: 0 failing finding(s), 1 new note line(s)
+  note note 521 course and unit pages -> S:\CurioClass\build\gates\sw-final\dist\courses (hidden)
+compare base-all -> sw-final: 0 failing finding(s), 3 new note line(s)

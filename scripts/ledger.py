@@ -17,9 +17,11 @@ far) and adds what it teaches (`add`). Writers never edit the CSV by hand.
 
 Columns: course, where (u01-2, a section, or s01 for a unit-level entry), day (the day number, or blank when planned
 for the whole section), kind, entry, note, stage (planned when a section plan adds it, written when a day adds it).
-student_word (term rows only, yes or no; blank on other kinds): yes when the term is a word a student is taught and
-given a definition for, set by the writer with --student-word; no by default. The word backlog (vocabulary.py report)
-counts only yes rows; most term rows record what a later day may lean on, for teachers and writers (close review 4).
+student_word (term rows: yes, no or blank; blank on other kinds): yes when the term is a word a student is taught and
+given a definition for, set by the writer with --student-word; a writer's row without the flag is no. Blank means not
+judged yet: seed writes blank, and so do the older rows migrated in 4.L (Desk q-student-word-1). The word backlog
+(vocabulary.py report) counts only yes rows and prints the blank ones as undecided; most term rows record what a later
+day may lean on, for teachers and writers (close review 4).
 
 seed (stage 4): units.csv has columns course, where (s03 for a unit-level entry, or u03-2), kind, entry, note; every
 row is added at stage planned in one call; all-or-nothing, refuses bad kinds, courses off the ladder and duplicates.
@@ -65,7 +67,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DIR = Path(os.environ['LEDGER_DIR']) if os.environ.get('LEDGER_DIR') else ROOT / 'data' / 'plans'
 PLANS = ROOT / 'data' / 'plans'
 COLS = ['course', 'where', 'day', 'kind', 'entry', 'note', 'stage', 'student_word']
-STUDENT = ('yes', 'no')   # term rows only: is this a word a student is taught and given a definition for? (4.L)
+STUDENT = ('yes', 'no', '')   # term rows: is this a word a student is taught and given a definition for? blank = not judged
 KINDS = ('term', 'notation', 'model', 'case', 'investigation', 'material', 'routine', 'text', 'skill')
 sys.path.insert(0, str(ROOT / 'scripts'))
 import subjects  # noqa: E402  one home for subject ids and ladders (consolidation 4.H)
@@ -256,7 +258,7 @@ def seed(subject, file):
         else:
             have.add(key)
             out.append([r['course'], r['where'], '', r['kind'], r['entry'], r['note'], 'planned',
-                        'no' if r['kind'] == 'term' else ''])
+                        ''])                      # a term row from seed is not judged yet (blank)
     if errs:
         print('\n'.join(errs))
         sys.exit('ledger seed: refused, nothing added (%d problems)' % len(errs))
@@ -423,7 +425,7 @@ def check(subject, show_all=False):
             print('line %d: unknown kind or course' % i)
             bad += 1
         elif r['student_word'] not in (STUDENT if r['kind'] == 'term' else ('',)):
-            print('line %d: student_word is yes or no on a term row and blank on any other kind' % i)
+            print('line %d: student_word is yes, no or blank on a term row and blank on any other kind' % i)
             bad += 1
     print('%s ledger: %d rows, %d problems' % (subject, len(rs), bad))
     ix = index(rs)

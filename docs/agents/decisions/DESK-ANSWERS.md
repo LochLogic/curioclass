@@ -1966,3 +1966,7 @@ course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN
 - **vocabulary.py and ids.py: no new features until their first real user** (close review "what got worse" (e), 4.L
   row 8): they stay as built; vocabulary.py waits for L129 and L130, ids.py for the first real retire. Stated in each
   script's docstring.
+- **Older ledger term rows: blank for not judged, seeded words yes** (Desk q-student-word-1, answered 2026-11-25):
+  Cory, "Use your recommendation. And mark them." The 1,451 term rows seeded from a progression's words list read
+  student_word yes, the other 12,033 older rows blank (not judged); vocabulary.py report prints the blank count as
+  undecided; seed writes blank; a writer's term row without --student-word is no.
