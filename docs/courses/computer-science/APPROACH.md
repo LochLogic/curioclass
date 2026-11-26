@@ -16,7 +16,7 @@ The `kind` column keeps the shared words; the goal says the activity.
 |---|---|---|
 | Understanding | Unplugged or trace day | An idea taught with cards, paper or movement, or a given program traced and predicted before it is run |
 | Fluency | Modify day | Students change a working program or algorithm in small, checked steps; short practice with the construct |
-| Application | Make day, design day or society day | Students design and build their own program or artifact against criteria, or audit a real system or case with evidence |
+| Application | Make day, design day, or society day that applies a row already taught (a society day that first teaches its row is Understanding, as GLOSSARY says) | Students design and build their own program or artifact against criteria, or audit a real system or case with evidence |
 | Check | Assessment day | The end-of-unit assessment (unit field 5, below) |
 | Respond | Respond day | Fixes from the assessment, by error letter |
 
@@ -147,8 +147,8 @@ read by the sensitivity agent before they go live (docs/FOUNDATION.md section 7;
 ## Pacing
 
 Each course frame states weeks, sessions a week and minutes a session; the defaults and the short path are in
-STANDARD.md section 2 (Cory, 2026-11-21, Desk q-fix-cs-1). Because K to 5 meet once a week, every session
-opens with the three-minute retrieval trace and every unit ends with a respond day. Ours, untested: kindergarten to
+STANDARD.md section 2 (Cory, 2026-11-21, Desk q-fix-cs-1). Because K to 5 meet once a week, every teaching and respond
+session opens with a three-minute retrieval task, a trace where the earlier row is a program or algorithm, and every unit ends with a respond day. Ours, untested: kindergarten to
 grade 2 spend about two thirds of the time away from a device; grades 3 to 5 about half; grades 6 to 12 at least one
 unplugged day in every unit. A K to 5 unit lets two or three ids share one anchor program, so one id is not one
 session. Which ids a high school year owns is set in STANDARD.md "Ownership of MS and HS ids".

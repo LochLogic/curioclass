@@ -2079,3 +2079,22 @@ Cory answered on the Desk; each frame's open item now states the call (docs/revi
   optional kit.
 - **Calendar stagger rule kept** as refined in the lead calendar pass (CALENDAR.md rules 1 and 3), "because specials
   teachers run their own checks, and a student takes one arts elective at a time in 6 to 8".
+
+
+## 2026-11-26: computer science scope lead calls
+
+The 13 computer science scopes (K to 12) were written, read and fixed (docs/reviews/sequence-computer-science-*-2026-11-26.md).
+- **End-of-unit check:** scripts/sequence.py accepts a course-level C Check on the day right after a unit's last day as
+  that unit's end-of-unit assessment; workaround end and observe marks on teaching days were cleared.
+- **No source-map.csv yet:** placements stay in the scope and the frame's Source map until the base text is loaded
+  (later.csv L149); grade 5's early file moved to its scratch folder.
+- **Frames:** frame.py failures and stale wording fixed in each course's own frame; GLOSSARY wins on day kinds (a society
+  day that first teaches its row is Understanding); bar C1 under 10 percent holds on the Shorter path too; begun ids
+  count as standard content.
+- **Grade 9 entry with no programming:** Cory's q-frames-scope-1 answer (as recommended) set the budget; the lead's
+  provision is four worked-program sheets from grade 8 unit 2's text project, each with a planted-bug step, taken beside
+  days 1 to 6, not a stated prerequisite. No new Desk card.
+- **Read over frame:** where a read's settled fix follows the standard's wording (grade 3 day 20: each child codes a
+  student-created algorithm), the read wins and the frame is reworded.
+- **Spelling:** "Open Government Licence" is a proper name; scripts/lint.py skips it.
+- **Next:** the Codex read after 2026-11-30 (later.csv L150); browser checks at grade close (L151).

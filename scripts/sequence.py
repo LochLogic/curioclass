@@ -325,9 +325,15 @@ def check(course):
         if got.get(u, 0) != n:
             fails.append('unit %s: %d days, the frame says %d' % (u, got.get(u, 0), n))
     for u, ds in sorted(kinds_in.items(), key=lambda kv: int(kv[0])):
-        if not any(d['assess'] == 'end' or (d['assess'] == 'observe' and frame.COURSE_META.get(slug, ('', ''))[1] in ('K', '1', '2'))
+        # a course-level check on the day right after a unit's last day may stand for that unit's end-of-unit
+        # assessment, as frames on the pilot shape set it (lead, 2026-11-26, computer science run)
+        last = max(int(d['day']) for d in ds)
+        after = next((x for x in days if x['day'].strip().isdigit() and int(x['day']) == last + 1), None)
+        check_after = after is not None and after['stretch'].strip() == 'C' and after['kind'] == 'Check'
+        if not check_after and not any(d['assess'] == 'end' or (d['assess'] == 'observe' and frame.COURSE_META.get(slug, ('', ''))[1] in ('K', '1', '2'))
                    for d in ds):
-            fails.append('unit %s: no end-of-unit assessment day (assess = end; K to 2 may use observe)' % u)
+            fails.append('unit %s: no end-of-unit assessment day (assess = end, or a course-level check the day after '
+                         'its last day; K to 2 may use observe)' % u)
         if len(ds) > MID_UNIT_DAYS and not any(d['assess'] == 'mid' for d in ds):
             fails.append('unit %s: %d days and no mid-unit assessment (assess = mid)' % (u, len(ds)))
     # each course-level check is followed by a respond day before the next unit day

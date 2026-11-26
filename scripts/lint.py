@@ -65,7 +65,7 @@ EXCEPTIONS = {('course_pages.py', 'known_standards'): 'until the standards pages
               ('course_status.py', ''): "its catalog placement counts (docs/COURSES-STATUS.md's module column)"}
 EMDASH = '—'
 UK = re.compile(r'\b(colour(?:s|ed|ing)?|centre(?:s|d)?|(?:centi|milli|kilo)?metres?|(?:milli)?litres?|'
-                r'practis(?:e|es|ed|ing)|licences?|modelling|modelled|labell(?:ed|ing)|'
+                r'practis(?:e|es|ed|ing)|(?<!Government )licences?|modelling|modelled|labell(?:ed|ing)|'
                 r'behaviours?|favourites?|organis(?:e|es|ed|ing|ation|ations)|recognis(?:e|es|ed|ing)|'
                 r'analys(?:e|ed|ing)|moulds?|programmes?|travell(?:ed|ing)|grey)\b', re.I)
 QUOTED = re.compile(r'"[^"\n]*"|“[^”\n]*”')

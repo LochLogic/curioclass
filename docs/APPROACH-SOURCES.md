@@ -505,3 +505,34 @@ docs/courses/computer-science/APPROACH.md "Honest limits".
   Science Education 29(2-3) 136-176, doi 10.1080/08993408.2019.1608781. Not read: the open author copies on core.ac.uk
   and qmro.qmul.ac.uk refused automated download (403, 404) on 2026-11-21. Its result is cited only through the
   seminar paper's summary.
+
+## Computer science scope and sequence reads, 2026-11-26
+
+From the 13 computer science scope writes, expert reads and fix passes (docs/reviews/sequence-computer-science-*-2026-11-26*.md).
+"Opened" means read at source on 2026-11-26; "search only" means named from search results and not yet opened; "browser
+check" means the page refused automated reads and is opened in Claude in Chrome at grade close.
+
+- Grade 2: Computer History Museum abacus page, opened; gives no origin date (cards drawn as spans to today). Smithsonian
+  NMAI khipu page (americanindian.si.edu/exhibitions/infinityofnations/andes/143866.html) and Britannica "quipu"
+  (britannica.com/technology/quipu): browser check; the khipu period comes from the NMAI page.
+- Grade 3: a dated disability organization page on voice helpers, to pick before day 30's cards are written.
+- Grade 5: US Bureau of Labor Statistics Occupational Outlook Handbook, interpreters and translators (dated 2026-08-27)
+  and craft and fine artists (dated 2026-10-29), bls.gov/ooh; opened, both say AI tools affect the work.
+- Grade 6: NASA Dorothy Vaughan biography, opened; supports her leading the West Area Computing unit and teaching
+  herself and her staff FORTRAN, not "programming its first electronic computers". Social Security Administration
+  history pages (ssa.gov/history): browser check (403).
+- Grade 7: FCC vote of 2025-09-30 (2 to 1) ending E-Rate hotspot lending support: Route Fifty, October 2025, and the
+  American Library Association hotspot FAQ, search only. OPM Office of the Inspector General reporting on the 2015
+  data breach: to find and date.
+- Grade 8: CISA phishing guidance page and ASPE telehealth report (2021): browser check.
+- Grade 9: gps.gov civilian uses pages and noaa.gov numerical weather prediction history: named, not opened.
+- Grade 10: FBI Internet Crime Complaint Center announcement of 2024-04-11, opened; confirms day 28's case. Office of
+  Educational Technology report: browser check (403); from memory the office closed in 2025. FTC children's online
+  privacy rule: amended in 2025 from memory, confirm the date at source.
+- Grade 11: EEOC technical assistance on AI in employment selection (issued May 2023, removed from eeoc.gov January
+  2025), search only. US Office of Personnel Management structured interview guide (2008), from memory, to open. The
+  Dalles, Oregon data center water use (WaterWatch of Oregon and OPB reporting; 29 percent of city water in 2021 from
+  city records), search only. Washington electronic product recycling law, chapter 70A.500 RCW (2006 c 183), opened on
+  the Legislature's RCW page.
+- Grade 12: Smithsonian Grace Hopper oral history PDF (si.edu/media/NMAH/NMAH-AC0196_hopp680700.pdf): browser check
+  (403). NASA Langley Katherine Johnson feature: check whether it is in her own words; swap for a NASA interview if not.
