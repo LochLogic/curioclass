@@ -291,7 +291,7 @@ s02-F4-triangle,Omits one member while counting.,,,K,Assign this letter only whe
 s02-F4order,"Correct counts but order 6, 4, 2.",,,G,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P19-1,Omits one square when linking.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P20-1,Leaves one of eight squares without its mark.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P21-1,Skips a square while pairing.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P21-1,Skips a triangle while pairing.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P23-1,Leaves five and explicitly calls it fewer than five.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P24-1,Calls the wider equal-five row more because of spacing.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P25-1,Leaves the fourth square unmarked.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
@@ -340,9 +340,9 @@ s02-D21,Calls the five-piece group fewer despite the extras.,,,I,Infer the lette
 s02-M21,Keeps three and calls that more than five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
 s02-N21,Keeps eight and calls that fewer than five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
 s02-R22,Skips a word while omitting a piece.,,,K,Infer the letter only from observed actions or heard words; record help separately.
-s02-K22,Skips a square while pairing.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-K22,Skips a triangle while pairing.,,,K,Infer the letter only from observed actions or heard words; record help separately.
 s02-F22,Calls the group with extras fewer.,,,I,Infer the letter only from observed actions or heard words; record help separately.
-s02-E22,Calls one equal group more because its squares are larger.,,,N,Infer the letter only from observed actions or heard words; record help separately.
+s02-E22,Calls one equal group more because its triangles are larger.,,,N,Infer the letter only from observed actions or heard words; record help separately.
 s02-M22,Leaves eight while explicitly saying it is the same as five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
 s02-N22,Leaves five and calls it fewer than five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
 s02-R23,Skips a word and its piece.,,,K,Infer the letter only from observed actions or heard words; record help separately.
@@ -353,13 +353,13 @@ s02-Gm23,Draws three and explicitly calls it more than five.,,,I,Infer the lette
 s02-Ge23,Omits three reference rectangles during observed matching to the drawing.,,,K,"Only the observed omission establishes K. An unexplained five-mark drawing establishes no reversal; record the action, not a guessed cause."
 s02-R24,Skips a word while omitting its piece.,,,K,Infer the letter only from observed actions or heard words; record help separately.
 s02-F24,Calls the group with extras fewer.,,,I,Infer the letter only from observed actions or heard words; record help separately.
-s02-K24,Omits a square during matching.,,,K,Infer the letter only from observed actions or heard words; record help separately.
-s02-C24,Omits one square during counting.,,,K,Infer the letter only from observed actions or heard words; record help separately.
-s02-D24,Omits one square during counting.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-K24,Omits a triangle during matching.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-C24,Omits one triangle during counting.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-D24,Omits one triangle during counting.,,,K,Infer the letter only from observed actions or heard words; record help separately.
 s02-E24,Chooses five has more because the pieces are bigger.,,,N,Infer the letter only from observed actions or heard words; record help separately.
-s02-P224,Leaves one square without a link or count mark.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-P224,Leaves one triangle without a link or count mark.,,,K,Infer the letter only from observed actions or heard words; record help separately.
 s02-P20-2,Leaves one square without a linked mark.,,,K,Infer the letter only from observed actions or heard words; record help separately.
-s02-P22-1,Leaves an upper square without its partner.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-P22-1,Leaves an upper triangle without its partner.,,,K,Infer the letter only from observed actions or heard words; record help separately.
 s02-R25,Skips a counting word.,,,x,Assign only from this observed action or heard reason; record help separately.
 s02-F25,Uses one object in two pairs.,,,L,Assign only from this observed action or heard reason; record help separately.
 s02-K25-1,Says the new start makes four objects.,,,C,Assign only from this observed action or heard reason; record help separately.
