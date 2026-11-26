@@ -217,6 +217,19 @@ use this brief with these changes. Their own pages outrank the core lessons abov
 - **Course-level checks:** grades K to 8 after-core checks do not take the core subjects' target weeks; place them
   so they do not fall in a week (K to 5) where docs/courses/CALENDAR.md shows a core check for that grade, and say
   which weeks.
+- **The seventh Units column** (lead 2026-11-25, from the pilot fix passes): arts heads it "Processes, anchors and
+  works", physical education "Cues and settings", health "Skill steps", SEL "Core link and routines", computer
+  science "Practices and concept areas", career education "Practices", ELD "Host unit and key language uses", library
+  "Inquiry phases".
+- **Owned standards cell:** a unit that owns no code (a carry-only or removable sensitive unit) says `None`; the
+  check reads `None` and an empty cell alike.
+- **A course-level check right after a unit** is that unit's end-of-unit assessment when it covers the unit, as in
+  the core frames; say so in the unit's row and the check's "What it checks" cell. Units not followed by a check end
+  in their own end-of-unit assessment.
+- **Grades 6 to 12:** the year-end check may sit in week 32, the finals week (CALENDAR.md stagger rules 3 and 4).
+- **After-core stagger:** each after-core course counts on its own in `frame.py calendar` (the five arts courses of a
+  band are five checks, not one). Writers keep checks off core check weeks; the lead runs one calendar pass across
+  the after-core frames for clashes among them.
 - **Gates the subject sets:** a subject page that holds building until a condition is met (ELD: C11 proven in the
   core courses) still gets its frame now (Cory 2026-11-25: "please see if you can get them all completed"); the
   frame says in **For the lead** which later stage the condition holds.

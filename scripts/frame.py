@@ -96,10 +96,14 @@ def selector(sel, subject):
 
 
 COURSE_ROWS, COURSE_META, LEGACY, TERM, WEEKS, PINS = {}, {}, {}, {}, {}, {}
+ROWS_GRADE = {}   # a one-year course over a grade range (career exploration 6-8) sits on its `rows` grade's calendar
 for _r in course_list():
     _s, _sel = _r['id'], _r['rows']
     if _sel:
         COURSE_ROWS[_s] = selector(_sel, _r['subject'])
+        _g = [p.partition(':')[2] for p in _sel.split('&') if p.strip().startswith('grade:')]
+        if len(_g) == 1 and len(re.split(r'[|,]', _g[0])) == 1:
+            ROWS_GRADE[_s] = _g[0].strip().upper()
         COURSE_META[_s] = (_r['catalog_id'], _r['grade'])
     if _r['legacy_plan_id']:
         LEGACY[_r['legacy_plan_id']] = _s       # a plan folder kept under its old name (the math-4 pilot)
@@ -388,7 +392,7 @@ def calendar_rows():
         g = COURSE_META.get(s, ('', ''))[1]
         ys = f.get('years') or []
         for kind, n, label, a, b, sa, sb in cal:
-            gr = g
+            gr = ROWS_GRADE.get(s, g) if '-' in g else g
             if ys:
                 # a band course: each year's rows go on that year's own calendar, under its grade (K, 1 to 12) where
                 # the Year cell names one, so the stagger rule and CALENDAR.md read them beside the core grades
@@ -414,6 +418,15 @@ def check_weeks(cal_rows):
     return out
 
 
+SUBJECT_CORE = ('math', 'science', 'ela', 'social-studies')
+
+
+def stagger_key(r):
+    """The core subjects count by subject; an after-core course counts on its own (the five arts courses of a band
+    are five teachers' or five sessions' checks, not one), named by its course slug (lead 2026-11-25)."""
+    return r['subject'] if r['subject'] in SUBJECT_CORE else r['course']
+
+
 def clashes(cal_rows):
     """The stagger rule (docs/courses/CALENDAR.md): K to 5 have one teacher, so no school week holds course-level
     check days of two subjects; 6 to 8 have a teacher per subject, so no school day does, and week 32 is a finals week.
@@ -427,10 +440,10 @@ def clashes(cal_rows):
         if g in ('6', '7', '8'):
             for d in range(r['first_school_day'], r['last_school_day'] + 1):
                 if week(d) < YEAR_WEEKS:
-                    by.setdefault(g, {}).setdefault('day %d' % d, set()).add(r['subject'])
+                    by.setdefault(g, {}).setdefault('day %d' % d, set()).add(stagger_key(r))
         else:
             for w in range(r['first_week'], r['last_week'] + 1):
-                by.setdefault(g, {}).setdefault('week %d' % w, set()).add(r['subject'])
+                by.setdefault(g, {}).setdefault('week %d' % w, set()).add(stagger_key(r))
     for g in sorted(by, key=lambda k: -1 if k == 'K' else int(k)):
         for when, ss in sorted(by[g].items(), key=lambda kv: int(kv[0].split()[1])):
             if len(ss) > 1:
