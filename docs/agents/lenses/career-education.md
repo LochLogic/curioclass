@@ -20,7 +20,7 @@ demand. Variation by place is shown.
 plan a menu at a cost, triage a case on paper, test a design) and defend a decision with data.
 
 **Employability skills taught directly, and in context.** Communication, teamwork, reliability and problem solving are
-modelled, practised in tasks and judged with criteria, as the 2024 career ready practices frame them; never a list on
+modeled, practiced in tasks and judged with criteria, as the 2024 career ready practices frame them; never a list on
 a wall.
 
 **Many paths, no ranking of people.** Apprenticeship, the military, two-year and four-year study, certificates and
@@ -36,12 +36,12 @@ are outside the page; the course says what to add and gives a paper path when a 
 - Clusters listed and toured with no personal plan made or revised.
 - All 14 clusters given equal one-day slots with no depth anywhere (Exploration), or one cluster only (Pathways).
 - No applied task from a field in a unit; no data source named.
-- A practice claimed with no task that practises it.
+- A practice claimed with no task that practices it.
 
 **Unit**
 - A wage or outlook figure with no source or year; old figures; national figures shown as local.
 - The end-of-unit assessment is vocabulary or a quiz about clusters, with no plan, demonstration or portfolio piece.
-- An interest quiz that tells a student what job to do, or a scored instrument adapted without its licence's
+- An interest quiz that tells a student what job to do, or a scored instrument adapted without its license's
   conditions.
 - A company, platform, credential vendor or job board named or promoted.
 - One path (usually a four-year degree) treated as the default; a job shown only through one gender or group.
@@ -64,5 +64,5 @@ source may be adapted (BASE-TEXTS.md and the scout).
 - National Career Development Association, 2024 National Career Development Guidelines (04/2024), read in text
   2026-11-20 and 2026-11-21; NCDA's terms (site legal notice and framework page) read 2026-11-21. Ids and our own
   words in data/standards/ncdg-2024.txt and ncdg-2024-words.txt.
-- BLS Occupational Outlook Handbook; O*NET (as data, licence pages opened 2026-11-16).
+- BLS Occupational Outlook Handbook; O*NET (as data, license pages opened 2026-11-16).
 - Holland's interest types and career construction ideas (from memory; never presented as a sorting test).

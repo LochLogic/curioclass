@@ -8,7 +8,7 @@ ids and our own words only). The approach: docs/courses/sel/APPROACH.md.
 ## What good teaching of SEL looks like
 
 **Skills, taught like skills.** A good session names one skill, gives it steps and a reason, models it, and has
-every student practise it. Programs that work in studies share four features: a connected sequence, active
+every student practice it. Programs that work in studies share four features: a connected sequence, active
 practice, a set focus of time on the skills, and explicit skill goals (SAFE). A session of talk about values with no
 rehearsal is the common failure.
 
@@ -80,7 +80,7 @@ Read 2026-11-16 or earlier in this repo; check the source before a finding rests
   full (design and implementation criteria, final designation). All rights reserved; our words only.
 - CASEL framework page (the 40 sub-skills), read 2026-11-16.
 - Durlak, Weissberg and others, 2011, and Cipriano and others, 2023: meta-analyses of school SEL programs (abstracts
-  read): gains in skills, behaviour and attainment, larger with SAFE programs.
+  read): gains in skills, behavior and attainment, larger with SAFE programs.
 - Education Endowment Foundation, Improving Social and Emotional Learning in Primary Schools: six recommendations,
   explicit teaching, modelling and practice, a whole-school frame.
 - Oregon Department of Education, transformative SEL review tool, 2023 (docs/reviews/bar-other-subjects-2026-11-11.md).

@@ -19,11 +19,11 @@ before reading it closely (lateral reading), to find the original (go upstream),
 it is an ad (click restraint). A checklist run on the page itself is the old method and fails on polished fakes.
 
 **Questions drive searching.** Students turn a topic into questions, pick key words, try, look at what came back and
-change the search. Library catalogues, databases, reference works and the open web are each taught for what they are
+change the search. Library catalogs, databases, reference works and the open web are each taught for what they are
 good at.
 
 **Honest use of others' work, every band.** Saying where an idea came from (K to 2), a simple list of sources (3 to 5),
-paraphrase, quotation, one citation style and fair use basics (6 to 8), copyright, open licences, fair use in depth,
+paraphrase, quotation, one citation style and fair use basics (6 to 8), copyright, open licenses, fair use in depth,
 asking a maker's permission and AI-made text (9 to 12); bands checked against the continuum's band files
 (Cory, 2026-11-21, Desk q-fix-library-1).
 
@@ -41,7 +41,7 @@ asking a maker's permission and AI-made text (9 to 12); bands checked against th
 - No host task from another course named.
 - Source judging taught as a website checklist (domain endings, a nice design, an about page) without lateral moves.
 - A citation unit with no research to cite.
-- The end-of-unit assessment is recall of terms, with no search, judgement or citation actually done.
+- The end-of-unit assessment is recall of terms, with no search, judgment or citation actually done.
 - AASL competency text copied, or a claim of AASL alignment.
 
 **Day**
@@ -62,7 +62,7 @@ adapted (BASE-TEXTS.md and the scout).
   the chart read 2026-11-21 for our own words; competency text not quoted).
 - Stripling, Empire State Information Fluency Continuum (2019; the 3 to 5 band read 2026-11-16, the PK to 2, 6 to 8 and
   9 to 12 bands 2026-11-21).
-- Digital Inquiry Group, Civic Online Reasoning (licence page and lesson list read 2026-11-16; lessons not read).
+- Digital Inquiry Group, Civic Online Reasoning (license page and lesson list read 2026-11-16; lessons not read).
 - Wineburg and McGrew on lateral reading by professional fact-checkers; Wineburg and others, the 2022 district field
   study in high school government classes (from memory, not re-read).
 - Caulfield, Web Literacy for Student Fact-Checkers, 2017 (contents read 2026-11-16).

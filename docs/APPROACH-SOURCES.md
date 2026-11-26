@@ -536,3 +536,36 @@ check" means the page refused automated reads and is opened in Claude in Chrome 
   the Legislature's RCW page.
 - Grade 12: Smithsonian Grace Hopper oral history PDF (si.edu/media/NMAH/NMAH-AC0196_hopp680700.pdf): browser check
   (403). NASA Langley Katherine Johnson feature: check whether it is in her own words; swap for a NASA interview if not.
+
+## Health, physical education, SEL, library and career exploration scope and sequence reads, 2026-11-26
+
+From the scope writes, expert reads and fix passes for those courses (docs/reviews/sequence-<course>-2026-11-26.md and
+-fixes-2026-11-26.md). "Opened" means read at source on 2026-11-26 unless another date is given; "browser check" pages
+are listed in the fix reports, not here.
+
+- CDC, adult cigarette data, https://www.cdc.gov/tobacco/php/data-statistics/adult-data-cigarettes/index.html: opened 2026-11-26; the source for health K to 2's norm days.
+- CDC, youth tobacco data, https://www.cdc.gov/tobacco/php/data-statistics/youth-data-tobacco/index.html: opened 2026-11-26 (page dated 2024-10-17); NYTS 2024 middle school figures for health 3 to 5.
+- CDC, About bullying, https://www.cdc.gov/youth-violence/about/about-bullying.html: opened 2026-11-26 (page dated 2024-10-28); the uniform definition.
+- FDA, National Youth Tobacco Survey results, https://www.fda.gov/tobacco-products/youth-and-tobacco/results-annual-national-youth-tobacco-survey-nyts: opened 2026-11-26; the new address (the old one redirects). CDC YRBS 2025 "Youth Health in Focus" covers five topics only, so substance figures still come from 2023.
+- National Weather Service, "Cold Water Hazards and Safety", https://www.weather.gov/safety/coldwater: opened 2026-11-26; cold shock and hypothermia, advice for the person in the water, not rescuers.
+- Drowning Prevention Coalition of Palm Beach County, "Reach, Throw, Don't Go", https://discover.pbc.gov/drowningprevention/Pages/Reach-Throw-DontGo.aspx: opened 2026-11-26; the reach and throw rescue steps (call for help first, reach lying flat, throw something that floats, never go in) for PE K to 2, 3 to 5, 6 to 8 and 9 to 12. CDC "Preventing Drowning" (https://www.cdc.gov/drowning/prevention/index.html, dated 2025-09-29) has no rescue technique content.
+- UNESCO Intangible Cultural Heritage entries, opened 2026-11-26: kolo, https://ich.unesco.org/en/RL/kolo-traditional-folk-dance-01270; capoeira circle, https://ich.unesco.org/en/RL/capoeira-circle-00892; Naadam, https://ich.unesco.org/en/RL/naadam-mongolian-traditional-festival-00395.
+- Korea Ministry of Culture, Sports and Tourism, "Korea's Culture of Play", mcst.go.kr/english/useful/month202112.jsp: opened 2026-11-26; names alleyway games but not Mugunghwa, so not enough alone for that game.
+- Wage and Hour Division, YouthRules, https://www.dol.gov/agencies/whd/youthrules: opened 2026-11-26, public domain; minors' hours and barred tasks (career exploration 6 to 8; Career Pathways will need it).
+- Wage and Hour Division, child labor, https://www.dol.gov/agencies/whd/child-labor: opened 2026-11-26, public domain; as above.
+- National Park Service, Brown v. Board five cases, https://www.nps.gov/brvb/learn/historyculture/fivecases.htm: opened 2026-11-26; SEL 3 to 5 day 153.
+- National Park Service, Briggs v. Elliott, https://www.nps.gov/brvb/learn/historyculture/socarolina.htm: opened 2026-11-26; the plaintiffs' job loss and refused loans (the families source; the Brown Foundation page, https://www.brownvboard.org/brown-foundation-story, is the foundation's own history, kept as a secondary link).
+- CPSC Public Playground Safety Handbook, https://www.cpsc.gov/s3fs-public/325.pdf: opened 2026-11-26; December 29, 2015 edition, 61 pages.
+- ADA.gov, Introduction to the ADA, https://www.ada.gov/topics/intro-to-ada/: opened 2026-11-26, public domain; a federal page for the ADA case (it does not give the 1990 date).
+- National Archives, Americans with Disabilities research page, https://www.archives.gov/research/americans-with-disabilities: opened 2026-11-26; "Signed on July 26, 1990".
+- National Archives, milestone documents list, https://www.archives.gov/milestone-documents/list: opened 2026-11-26; the list stops at 1965, so a frame naming a "milestone page" for a later law needs another federal source.
+- National Park Service, "Who was excluded?", https://www.nps.gov/articles/who-was-excluded-women-s-suffrage.htm: opened 2026-11-26; who was still kept from the polls after 1920 (SEL 6 to 8 day 90).
+- The Japan Foundation, Erin's Challenge, lesson 7 "Let's try", https://www.erin.jpf.go.jp/en/lesson/07/let-us-try: opened 2026-11-26; the pointing game after rock, paper, scissors (SEL K to 2 days 111 and 112).
+- Tema International School, Ghana, https://www.tis.edu.gh/2017/05/19/service-in-action-myp-grade-7-8-engagement-with-calvary-presby-school/: opened 2026-11-26; describes how Ampe is played (SEL K to 2 days 46 and 47). The myjoyonline Ghana Month Ampe article names the game but does not describe the play.
+- NetSmartz resources listing, https://www.missingkids.org/netsmartz/resources: opened 2026-11-26; free K to 2 and 3 to 5 titles listed; downloads ask for a sign-in or registration.
+- Dewey Decimal Classification summaries, https://www.oclc.org/content/dam/oclc/dewey/resources/summaries/deweysummaries.pdf and https://www.oclc.org/en/dewey/resources/summaries.html: opened 2026-11-26; class numbers for library grade 2. The system's name is a trademark and never appears on a student or teacher page, which say "call number".
+- CISA, "Use strong passwords", https://www.cisa.gov/secure-our-world/use-strong-passwords: opened 2026-11-26; at least 16 characters, random or a passphrase of 4 to 7 unrelated words, one per account; for any password card K to 12.
+- Civic Online Reasoning license page, https://cor.inquirygroup.org/creative-commons/: opened 2026-11-26; CC BY 4.0 for the parallel assessments and most lessons, CC BY-NC-ND 4.0 for the curricular assessments, four history lessons and the professional learning sessions (the /terms-of-use/ address returns 404).
+- US Copyright Office, fair use index, https://www.copyright.gov/fair-use/: opened 2026-11-26 without a block (library 9 to 12).
+- EEOC, enforcement guidance on preemployment disability-related questions and medical examinations, https://www.eeoc.gov/laws/guidance/enforcement-guidance-preemployment-disability-related-questions-and-medical: opened 2026-11-26, public domain; what an employer may ask before an offer (career pathways 9 to 12).
+- Bureau of Labor Statistics, CPS table 37, median weekly earnings, https://www.bls.gov/cps/cpsaat37.htm: opened 2026-11-26, public domain; 2025 figures are 11-month averages that exclude October (career pathways 9 to 12).

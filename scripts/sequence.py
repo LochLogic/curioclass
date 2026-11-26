@@ -358,6 +358,10 @@ def check(course):
         s = d['stretch'].strip()
         if i == 0 and s == '1':
             continue  # unit 1's own check, the last ten minutes of day 1
+        if i in starts and i > 0 and days[i - 1]['stretch'].strip() == 'C' and days[i - 1]['kind'] == 'Respond':
+            # a band course's new year opens after the course-level respond day, weeks or a summer later, so its first
+            # unit takes the check as unit 1 does, after the hook (lead, 2026-11-26, after-core scope run)
+            continue
         if i in starts:
             fails.append("day %s: a readiness check on unit %s's first day (give it before the unit opens: the last "
                          "ten minutes of the previous unit's last day or of the respond day between; unit 1: the "

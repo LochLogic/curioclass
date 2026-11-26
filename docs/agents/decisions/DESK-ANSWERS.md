@@ -2098,3 +2098,23 @@ The 13 computer science scopes (K to 12) were written, read and fixed (docs/revi
   student-created algorithm), the read wins and the frame is reworded.
 - **Spelling:** "Open Government Licence" is a proper name; scripts/lint.py skips it.
 - **Next:** the Codex read after 2026-11-30 (later.csv L150); browser checks at grade close (L151).
+
+## 2026-11-26: after-core scope lead calls
+
+The 22 after-core scopes (health, PE and SEL in four bands, library K to 12 in eight courses, career exploration 6 to 8
+and career pathways 9 to 12) were written, read and fixed (docs/reviews/sequence-<course>-*2026-11-26.md). ELD's four
+drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
+- **Specials and the stagger:** CALENDAR.md rule 1 settles every K to 5 check-week clash that involves only PE, ELD or
+  library; frame lines reworded, scope items dropped.
+- **Readiness on a band year's first day:** scripts/sequence.py accepts a readiness check on a unit's first day when the
+  day before is a course-level Respond day; such days carry assess = readiness. A row last used the year before is a
+  retrieval, never a readiness check (rule 2), and a read that shows it wins over an earlier frame read.
+- **Begun ids** are written ~ID in the codes column and count as standard content.
+- **Collect once:** a course-level check reuses a unit's record instead of re-collecting the same task form within two
+  weeks; frame check cells say so.
+- **Shared cards:** PE's team-talk card quotes health's five conflict steps word for word, ending "an adult helps when
+  words do not work"; health day 72 opens them as retrieval where the school runs PE.
+- **No partner plays the push:** in SEL, health and PE rehearsals the teacher (or a card or puppet) voices any pressure,
+  dare or unkind line; the partner coaches with the step card.
+- **No source-map.csv yet** (L149); browser checks at grade close (L157); sensitivity and safety reads before the case
+  cards (L158); Codex read after 2026-11-30 (L156).

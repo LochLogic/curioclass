@@ -265,7 +265,12 @@ Applied to SEL:
 5. **Hard facts plain, at the right age.** SO6 "norms that have been unfair" uses settled history the courts have
    ruled on (school segregation struck down in 1954 is the model case) and facts, not opinion; current political
    disputes are not SEL content. Grade sets the case: playground fairness in K to 2, unfair rules of the past from
-   grade 5.
+   grade 5. Each case rests on an opened federal page. The National Archives milestone documents list
+   (archives.gov/milestone-documents/list) stops at 1965, so a later law needs another federal page: for the ADA,
+   ADA.gov's introduction (ada.gov/topics/intro-to-ada/) and the National Archives ADA research page
+   (archives.gov/research/americans-with-disabilities). For the families' cost in Brown v. Board, the National Park
+   Service's five cases and Briggs v. Elliott pages (nps.gov/brvb); for who was still kept from the polls after 1920,
+   its "Who was excluded?" page. All opened 2026-11-26; docs/APPROACH-SOURCES.md holds the full addresses.
 6. **Families.** Every family note says what the unit teaches, the words it uses and how to practice at home, in
    English and Spanish. Settled (Cory, 2026-11-21): a school may leave out an SEL unit (as with health's sensitive units),
    the school is told which sub-skills that year then does not teach, a later unit never assumes the left-out one (its readiness item rests on the previous year's row for that sub-skill, or, if that unit was left out too,

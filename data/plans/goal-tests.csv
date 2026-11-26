@@ -23,11 +23,11 @@ test,name,count,target,detail,date
 6,"changes run as scripts, rows through rows.py",0,0,"a convention, not a test (4.L): plan CSVs rows.py check cannot split like the csv reader (a hand edit that broke a row); how a row was written cannot be read from the file",2026-11-26
 7,one gate command,0,0,old filtered gate placeholders left in the kit and briefs,2026-11-26
 8,generated things never stored twice,0,0,tracked files data/homes.csv marks generated-ignored,2026-11-26
-9,every relation resolves,0,0,"0 misses, 0 of them new against data/index-baseline.csv",2026-11-26
+9,every relation resolves,289,0,"289 misses, 289 of them new against data/index-baseline.csv",2026-11-26
 10,one status per object,125,0,"status report lines, 0 of them new against data/index-baseline.csv (flow-status rows a file contradicts; ledger and day files that disagree either way; day files with no version line; L133)",2026-11-26
 11,retired ids never reused,0,0,"0 retired ids recorded; also fails an item, day or source id that left its table since the last commit with no retire row",2026-11-26
-12,nothing orphaned,304,0,orphans report lines,2026-11-26
+12,nothing orphaned,293,0,orphans report lines,2026-11-26
 13,every owned code assessed,1,0,"frame Owned standards codes with no end item (items.csv check end) citing the code, a lettered part or its parent, over the 108 units that have end items so far",2026-11-26
 14,no open alignment defects,130,0,open kind-alignment rows in data/plans/defects.csv (plan.py defect); 237 open rows of every kind,2026-11-26
-15,every review claim matches,1,0,"ledger recheck citations that match no item or day row (ledger.recheck_tally, four core subjects; 15393 citations, 31 flagged in all)",2026-11-26
+15,every review claim matches,1,0,"ledger recheck citations that match no item or day row (ledger.recheck_tally, four core subjects; 15418 citations, 31 flagged in all)",2026-11-26
 16,every day read at grade close,1779,0,"day files whose version line has no ""grade read"" or ""signed off"" (day_version.py), of 2107",2026-11-26

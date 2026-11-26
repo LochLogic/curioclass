@@ -28,13 +28,13 @@ No course has lessons, print, checks with keys or teacher pages yet. That is lay
 | **The four core subjects** | **58** | **52** | **58** | **52** | **513** | **416 / 52 / 32** |
 | Arts and Music | 20 | 0 | 20 | 0 | 72 | 0 / 58 / 14 |
 | Health and PE | 8 | 8 | 0 | 0 | 33 | 16 / 8 / 8 |
-| Computer Science | 13 | 0 | 0 | 0 | 20 | 2 / 10 / 8 |
+| Computer Science | 13 | 0 | 13 | 0 | 20 | 2 / 10 / 8 |
 | World Languages | 2 | 0 | 0 | 0 | 20 | 18 / 0 / 2 |
 | Career and Technical Education | 3 | 0 | 0 | 0 | 19 | 12 / 3 / 4 |
 | Social and Emotional Learning | 4 | 0 | 0 | 0 | 10 | 2 / 0 / 8 |
 | English Language Development | 4 | 0 | 0 | 0 | 23 | 16 / 1 / 5 |
 | Library and Research Skills | 8 | 0 | 0 | 0 | 13 | 7 / 4 / 2 |
-| **All courses** | **120** | **60** | **78** | **52** | **723** | **489 / 136 / 83** |
+| **All courses** | **120** | **60** | **91** | **52** | **723** | **489 / 136 / 83** |
 
 Tool counts here leave out tools that sit on shared topics (last table). "Spec" includes a few that are still ideas.
 
@@ -158,19 +158,19 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 
 | Course | Core | Rubric file | Approach | Progression | Scope and sequence | Plans | Topics | Tools: spec / built / live |
 |---|---|---|---|---|---|---|---|---|
-| Computer Science, Kindergarten |  | no | shared page only | no | no | no | 3 | 1 / 1 / 1 |
-| Computer Science, Grade 1 |  | no | shared page only | no | no | no | 3 | 0 / 1 / 2 |
-| Computer Science, Grade 2 |  | no | shared page only | no | no | no | 3 | 0 / 1 / 2 |
-| Computer Science, Grade 3 |  | no | shared page only | no | no | no | 3 | 0 / 2 / 1 |
-| Computer Science, Grade 4 |  | no | shared page only | no | no | no | 4 | 0 / 3 / 1 |
-| Computer Science, Grade 5 |  | no | shared page only | no | no | no | 4 | 1 / 2 / 1 |
-| Computer Science, Grade 6 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
-| Computer Science, Grade 7 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
-| Computer Science, Grade 8 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
-| Computer Science, Grade 9 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
-| Computer Science, Grade 10 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
-| Computer Science, Grade 11 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
-| Computer Science, Grade 12 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
+| Computer Science, Kindergarten |  | no | shared page only | no | yes | no | 3 | 1 / 1 / 1 |
+| Computer Science, Grade 1 |  | no | shared page only | no | yes | no | 3 | 0 / 1 / 2 |
+| Computer Science, Grade 2 |  | no | shared page only | no | yes | no | 3 | 0 / 1 / 2 |
+| Computer Science, Grade 3 |  | no | shared page only | no | yes | no | 3 | 0 / 2 / 1 |
+| Computer Science, Grade 4 |  | no | shared page only | no | yes | no | 4 | 0 / 3 / 1 |
+| Computer Science, Grade 5 |  | no | shared page only | no | yes | no | 4 | 1 / 2 / 1 |
+| Computer Science, Grade 6 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
+| Computer Science, Grade 7 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
+| Computer Science, Grade 8 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
+| Computer Science, Grade 9 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
+| Computer Science, Grade 10 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
+| Computer Science, Grade 11 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
+| Computer Science, Grade 12 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
 
 ## World Languages (2 courses)
 
