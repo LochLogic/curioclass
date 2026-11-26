@@ -14,7 +14,7 @@ plans under docs/courses/<course>/. It never reads a tool catalog file (modules,
 Node key: type, course and local id (`item:english-language-arts-grade-1:s01-X2`, `day:math-grade-3:d042`,
 `unit:algebra-i:3`, `section:algebra-i:3.2`, `piece:math-grade-3:u02-1/opener.md`, `code:3.OA.A.1`,
 `prog:science:sk-push-pull`, `file:<path>`). The type column is free text, so step 5 adds `tool` nodes with no change.
-Edges are hard (they must resolve) or soft (`mentions`: "day N" in a course's own plans, bare item ids in prose;
+Edges are hard (they must resolve) or soft (`mentions`: "day N" in a course's own plans, days and pieces, bare item ids in prose;
 shown by uses.py, never failing).
 
 Reports (one flag each; each starts from the known misses in data/index-baseline.csv, so a new miss fails from day one
@@ -273,32 +273,33 @@ def _course(ix, c, frame, std):
     folder = PIECES / c
     if folder.is_dir():
         for f in sorted(folder.rglob('*.md')):
-            _piece(ix, c, f)
+            _piece(ix, c, f, days)
     # written plans: soft mentions
     pd = DOCS / c
     if pd.is_dir():
         for f in sorted(pd.glob('*.md')):
-            if re.fullmatch(r's\d+\.md|u\d+-\d+\.md|scope\.md|frame\.md', f.name):
+            if re.fullmatch(r's\d+\.md|u\d+-\d+\.md|scope-and-sequence\.md|frame\.md', f.name):
                 k = 'file:' + rel(f)
                 ix.node(k, 'plan', c, f.name, rel(f))
                 _mentions(ix, c, k, f, f.read_text(encoding='utf-8'), days)
 
 
 def _mentions(ix, c, k, f, text, days, links=False, day=None):
+    """Item links (hard when links=True, in days and pieces), bare item ids and "day N" mentions (soft). A day file's
+    mention of its own day is not an edge (close review finding 5)."""
     for i, ln in enumerate(text.splitlines(), 1):
         for m in LINK.finditer(ln):
             ix.edge(k, 'item:%s:%s' % (c, m.group(2)), 'link', links, rel(f), i, c, day)
         bare = LINK.sub(' ', ln)
         for m in BARE_ITEM.finditer(bare):
             ix.edge(k, 'item:%s:%s' % (c, m.group(1)), 'mentions', False, rel(f), i, c, day)
-        if not links:
-            for m in DAY_MENTION.finditer(bare):
-                n = int(m.group(1))
-                if n in days:
-                    ix.edge(k, 'day:%s:d%03d' % (c, n), 'mentions', False, rel(f), i, c, n)
+        for m in DAY_MENTION.finditer(bare):
+            n = int(m.group(1))
+            if n in days and n != day:
+                ix.edge(k, 'day:%s:d%03d' % (c, n), 'mentions', False, rel(f), i, c, n)
 
 
-def _piece(ix, c, f):
+def _piece(ix, c, f, days):
     text = f.read_text(encoding='utf-8')
     head, _ = front(text)
     r = rel(f)
@@ -314,12 +315,12 @@ def _piece(ix, c, f):
             soft = x.lower().startswith(WHEN)
             path = x[len(WHEN):].strip() if soft else x
             ix.edge(k, 'path:' + path, 'leans_on', not soft, r, 1, c, n)
-        _mentions(ix, c, k, f, text, set(), links=True, day=n)
+        _mentions(ix, c, k, f, text, days, links=True, day=n)
     else:
         local = f.relative_to(PIECES / c).as_posix()
         k = 'piece:%s:%s' % (c, local)
         ix.node(k, 'piece', c, local, r, 0, head.get('version', ''))
-        _mentions(ix, c, k, f, text, set(), links=True)
+        _mentions(ix, c, k, f, text, days, links=True)
 
 
 def resolved(ix):

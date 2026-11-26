@@ -669,6 +669,12 @@ in the first go. The rest runs in this order, one commit each, before step 5 sta
 | 7 | The Word Wall overlap, when L130 opens (not before). Cory allowed one read of data/closet/words for this: a lead-run, read-only script prints overlap counts only (ledger term heads that match a card word, by band). If overlap is high it writes an ignored lookup file for definition writers. It never writes rows in vocabulary.csv | 3 | the counts are in L130's detail |
 | 8 | What got worse, answered: (a) the plan facts read on GitHub again: a generated, committed rendered copy per plan beside the stripped one is NOT the fix (two homes); instead the Front Office plan page links from each plan's header line; (b) the course gate's 24 s floor: the index rebuild is skipped when uses.py's stale check says fresh; (c) the debt baselines get a schedule: each course run's cleanup job works its course's baselined lines down and the lead records the count per grade close; (d) standing rules now living only in Built notes move to the doc that owns them (AGENTS.md, data/homes.csv notes, data/plans/README.md), each with one DESK-ANSWERS line; (e) machinery ahead of use: vocabulary.py and ids.py stay, but get no new features until their first real user (L129, L130) | what got worse | each line closed or moved to later.csv with a reason |
 
+Built (2026-11-25):
+
+- Row 1: index.py reads `scope-and-sequence.md` (58 plan nodes) and indexes soft "day N" mentions in day files and
+  pieces too (a day's mention of itself is not an edge). Edges 315,400 to 358,471, 10,327 of them from the scope and
+  sequence files; resolve, orphans and the rest unchanged (0 new), so data/index-baseline.csv needed no change.
+
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 
 ## Step 5: tools, plumbing standardized and play left free
