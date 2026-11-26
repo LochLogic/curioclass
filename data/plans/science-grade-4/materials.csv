@@ -7,8 +7,8 @@ tape,1,1 2 3 85,classroom,room,Marks and containment.
 table-edge guard,1,1 2 3,classroom,room,Used with catch barrier on floor lane.
 catch barrier,1,1 2 3 7 8 9 11,classroom,room,Stops escaped rolls.
 impact eye protection,1,1 2 3 7 8 9 11,classroom,room,Existing stock for everyone; otherwise use invented record. No purchase decision.
-wipes,1,1 2 3 7 8 9 11 17 18 19 104 107 108,classroom,room,Cleaning protection.
-storage bags,1,1 2 3 7 8 9 11 17,classroom,room,Store protection.
+wipes,1,1 2 3 7 8 9 11 17 18 19 36 104 107 108,classroom,room,Cleaning protection.
+storage bags,1,1 2 3 7 8 9 11 17 36,classroom,room,Store protection.
 question board,1,1 2 3 4 5 6 7 8 13 16 27 35 57 58 94 97 98 99 103 104,classroom,room,Teacher retains.
 class record book,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15,classroom,room,One marking scale and heard roster.
 Ramp record R,1,1 2 3 4 5 6 7 13 15,classroom,room,Invented fallback; never mixed with measured observations.
@@ -265,7 +265,7 @@ inside/outside view cards,104,104 105 106 107 108,unit 6 folder,room,Original en
 rootless setup drawing,105,105 106 107 108,unit 6 folder,room,Retained cut-flower panel from plant-views.svg; no roots shown.
 complete reason strips,106,106,unit 6 folder,student,"Two complete reasons printed on the student page and copied for matching, no new draft."
 blank exit-box cover,104,104,unit 6 folder,student,Reusable blank paper covers only the held Exit box while Side 2 practice remains visible.
-six cleaning places,1,1 2 3 7 8 9 11 17,room cleaning stations,room,Six captains clean five student pairs each in three minutes; adult cleans own pair. Follow wipe contact-time directions and store until ready for reuse.
+six cleaning places,1,1 2 3 7 8 9 11 17 36,room cleaning stations,room,Six captains clean five student pairs each in three minutes; adult cleans own pair. Follow wipe contact-time directions and store until ready for reuse.
 courses/science-grade-4/u01-1/ramp-anchor-r.md,1,1,unit 1 folder,room,Original shared piece. Keep after feedback; invented records stay separate from measured ones.
 courses/science-grade-4/u01-1/ramp-record-r.md,2,2 3 4 5 6 7 13 15,unit 1 folder,room,Original shared piece. Keep after feedback; invented records stay separate from measured ones.
 courses/science-grade-4/u01-1/position-strip.md,1,1,unit 1 folder,student,Original shared piece. Keep after feedback; invented records stay separate from measured ones.
