@@ -22,13 +22,13 @@ Samples: Shown: Recognizable closed six-sided outline with two long/four shorter
 
 ## s03-X58, day 58
 
-Tell about the shape you found here.
+What shape is the hanging flag?
 
-Answer: Triangle, three straight joined sides/three corners, beside doorway.
+Answer: Triangle. Its boundary has three joined straight sides and three corners; beside the doorway is an optional accurate location description.
 
-Look for: Original hallway drawing default. Mark pennant boundary, hear six names/features/location. Optional school visit uses fresh pennant. | Shape: Transfer naming/location to reserved hallway boundary; practice room sketches from seats, never this hallway pennant.
+Look for: Use the reserved hallway drawing by default. Indicate the hanging flag without naming its shape; each child marks that boundary, and six name it. Do not require another spoken feature or location answer. Paper alone cannot establish an unheard name. An optional school visit uses the same reserved fresh flag. | Shape: Independently name the reserved environmental shape; practice corrects room sketches from seats, never this hallway flag.
 
-Samples: Shown: Triangle, three straight joined sides/three corners, beside doorway. | Not yet seen: Too narrow to be triangle. (C).
+Samples: Shown: names the indicated hanging flag triangle; feature marks support the name. | Not yet seen: says the flag is too narrow to be a triangle (C). Naming the doorway instead is an unclassified target mismatch, not C.
 
 ## s03-X59, day 59
 
@@ -374,11 +374,11 @@ Samples: Shown: The short wide practice cup holds more, established by the actua
 
 Join the opening in this five-edge drawing.
 
-Answer: Join the missing edge to close the four-sided frame.
+Answer: Join the two open ends to make a closed six-sided boundary.
 
-Look for: One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Join the missing edge to close the four-sided frame. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+Look for: One five-minute priority action: the fresh open path has five straight edges and six marked corners. Add the missing edge between its two free ends, making a closed six-sided boundary, and mark the join. This is a new irregular boundary, never the reserved exit-57 frame. If absent choose one queued letter on fresh practice objects, never reserved checks.
 
-Samples: Shown: Join the missing edge to close the four-sided frame. | Not yet seen: Open boundary treated as closed. (D).
+Samples: Shown: adds the missing sixth edge between the free ends and marks the join. | Not yet seen: calls the still-open boundary closed (D).
 
 ## s03-F59-C, day 59
 

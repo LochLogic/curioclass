@@ -12,13 +12,13 @@ Read every student prompt aloud. Use shown, shown with help, not yet seen. An un
 
 ## s03-X50, day 50
 
-Tell about this shape.
+What is this shape called?
 
-Answer: Triangle: three joined straight sides and three corners; thinness and turn do not change its name.
+Answer: Triangle. The three joined straight sides and three corners support the name; thinness and turn do not change it.
 
-Look for: All mark the one reserved sideways thin scalene triangle. Hear six names/descriptions. The separate C50 checks a circle during the model block, not on the exit slip. | Shape: Name/describe one reserved thin triangle; practice corrects supplied labels on different single cards.
+Look for: All mark the one reserved sideways thin scalene triangle. Hear six shape names. Boundary marks support the name; do not require a second spoken description. Paper alone cannot establish an unheard name. The separate C50 checks a circle during the model block, not on the exit slip. | Shape: Independently name one reserved thin triangle; practice corrects supplied labels on different single cards.
 
-Samples: Shown: Triangle, with three joined sides marked. | Not yet seen: says the thin shape is not a triangle (C).
+Samples: Shown: says triangle for the indicated thin closed three-sided figure. | Not yet seen: says the thin shape is not a triangle (C). A feature description without a name leaves the naming component not yet seen, with the description retained.
 
 ## s03-X51, day 51
 

@@ -42,13 +42,13 @@ Samples: Shown: The larger upright square. | Not yet seen: None, turned target c
 
 ## s03-X48, day 48
 
-Show one way these shapes are different.
+Tell one way the side lengths are different.
 
-Answer: The square has four equal sides; the nonsquare rectangle has two longer and two shorter sides.
+Answer: A true side-length contrast: the square has four equal sides; the nonsquare rectangle has two longer and two shorter sides. Also accept that the rectangle has sides longer and shorter than the square sides.
 
-Look for: All mark the contrasting sides on the fresh tilted-square/nonsquare-rectangle pair; hear six descriptions. A side-length contrast is enough. Do not require a second comparison. | Shape: Produce one difference on the reserved pair; practice corrects features on single cards, never a paired alike/different sheet.
+Look for: All mark the contrasting sides on the reserved tilted-square/nonsquare-rectangle pair; hear six side-length comparisons. Accept a valid contrast within the shapes or between their sides. A turn, position or overall-size comment alone does not identify the requested side-length difference. Do not require a second comparison or a shape name. | Shape: Produce one side-length difference on the reserved pair; practice corrects features on single cards, never a paired comparison sheet.
 
-Samples: Shown: marks the square sides as equal and the rectangle long/short sides. | Not yet seen: rejects the tilted square because of its turn (B).
+Samples: Shown: marks the square sides as equal and the rectangle long/short sides, or marks a rectangle side longer than a square side. | Not yet seen: says only that one shape is tilted, without a side-length contrast; retain this descriptively. Rejects square because of its turn: B, only when heard.
 
 ## s03-X49, day 49
 

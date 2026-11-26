@@ -516,9 +516,9 @@ s02-P44-familiar,Leaves the blue double-border square on the red mat.,,,F,"Assig
 s03-X45,In front of folder.,,,A,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X46,Closed triangle despite gap.,,,D,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X47,"None, turned target cannot be square.",,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-X48,Turned figure cannot be square.,,,B,"Rejects the reserved turned square; assign B only from the observed response, not from a missing comparison."
+s03-X48,Turned figure cannot be square.,,,B,Assign B only when the child rejects the turned square as a square. A true turn or size difference alone does not answer the new side-length prompt; retain it descriptively without B.
 s03-X49,Not with triangles because too thin.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-X50,Thin closed three-sided figure not triangle.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-X50,Thin closed three-sided figure not triangle.,,,C,"Assign C only for rejecting the thin closed triangle. A correct feature description without its name leaves naming not yet seen, with no forced error letter."
 s03-X52,Open join called complete.,,,D,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X53,Only big.,,,F,One attribute is enough; only big fails to identify an attribute.
 s03-X53,Only color.,,,L,"One attribute is enough; color alone is not a length, height, weight or capacity attribute."
@@ -527,7 +527,7 @@ s03-X54,Turning made longer.,,,M,"Assign only from observed action or heard stat
 s03-X55,Large ring envelope must be heavier because bigger.,,,H,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X56,Tall pot holds more because taller.,,,I,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X57,Calls open drawing complete.,,,D,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-X58,Too narrow to be triangle.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-X58,Too narrow to be triangle.,,,C,Assign C only for rejecting the indicated hanging flag as a triangle because it is narrow. A doorway response is an unclassified target mismatch; do not assign C from a wrong mark alone.
 s03-X59,Gap at claimed join.,,,E,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X59,Overlap instead of edge contact.,,,K,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X61,Gaps in fill.,,,E,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
