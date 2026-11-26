@@ -79,7 +79,8 @@ time: a grade's section plans, then its days, then a retool, then the next grade
   examples are written as data. The ledger gets the unit's rows at stage planned.
 - **Check:** unit structure, with every goal holding an exit and a practice of a different shape; review entries
   point at real earlier rows and hand-backs have both ends; a fresh read across each grade's units; an expert read
-  per unit.
+  per unit. The lead reads `scripts/spacing.py <course>` (do owned skills come back after their unit?) and puts a
+  skill that never returns into the fix.
 - **Fix:** one fix per unit.
 - **Retool:** the section brief, the day skeleton and the shape checks.
 - **Gate:** one cold read from the progression down across every course, then owner approval of the baseline.
@@ -108,18 +109,23 @@ time: a grade's section plans, then its days, then a retool, then the next grade
 - **Fix:** small fixes go to the same writer, resumed. Faults across days go to one cleanup job at grade close,
   which also works the course's baselined gate lines down (the known debt, 4.L). After it is committed, the lead runs
   `gate.py --course <course> --record`, which writes the course's failing count to data/plans/debt.csv, so each grade
-  close shows whether the debt shrank.
+  close shows whether the debt shrank. At grade close the lead also reads `scripts/spacing.py <course>` (gaps, and
+  words taught once and never used again) and logs what it finds in the grade report. The lead also adds the sample read's measures to data/plans/pass-marks.csv
+  (`scripts/pass_marks.py add`: days sampled, serious faults a day, wrong keys, tokens a day; a measure not
+  recorded stays blank) and moves the days' version lines (`scripts/day_version.py <course> grade-read <date>`).
 - **Retool:** the grade report's findings go into the kit, and the next grade runs on the new version.
 - **Gate:** pass marks met (section 5), then the next grade's stage 5.
 
 ### Stage 7. Course finish (per course)
 
-- **Make:** the course's checks read as one assessment plan; a coherence pass over units and seams; English learner
-  supports; art and voice; the tools the sections name.
-- **Check:** the cross-grade continuity pass (section 4); a whole-course cold read against the rubric; final
+- **Make:** the course's checks read as one assessment plan; a coherence pass over units and seams; art and voice; the tools the sections name.
+  English learner supports are not made here: they are made in the lesson (APPROACH principle 9, section plan
+  field 9, the day's sentence frames).
+- **Check:** the cross-grade continuity pass (section 4); a whole-course cold read against the rubric, which also
+  checks that every section fills field 9 and every day prints its frames (a gap goes to the fix pass); final
   sensitivity and safety reads.
 - **Fix:** one fix pass.
-- **Gate:** owner sign-off.
+- **Gate:** owner sign-off, then `scripts/day_version.py <course> signed-off <date>`, so each day file says it.
 
 ## 3. The six kinds of check, by stage
 
@@ -155,5 +161,6 @@ every review claim against the written day, with one fix job per grade for whate
 - Wrong answer keys rare.
 - Skills taught as new when an earlier grade taught them: rare.
 - About 60k tokens a day or less, also reported per minute of class.
+- Each grade close's measures are one row of data/plans/pass-marks.csv, shown on the Dashboard's quality panel.
 
 Planning stages report tokens per stage, so the cost of planning each subject becomes known.

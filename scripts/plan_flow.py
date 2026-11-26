@@ -393,6 +393,26 @@ health = dict(goals=[{k_: r_.get(k_, '') for k_ in ('test', 'name', 'count', 'ta
 for r_ in _csv('data/index-baseline.csv'):
     if r_.get('report') and r_['report'] != 'report':
         health['known'][r_['report']] = health['known'].get(r_['report'], 0) + 1
+# quality (pedagogy-architecture review change 4): open defects by kind and course, the ledger recheck per subject,
+# and the readers' pass marks per grade close, beside the gate debt already shown
+_open = [r_ for r_ in _csv('data/plans/defects.csv') if r_.get('status') == 'open']
+_bykind, _bycourse = {}, {}
+for r_ in _open:
+    _bykind[r_.get('kind') or '?'] = _bykind.get(r_.get('kind') or '?', 0) + 1
+    _bycourse[r_.get('course') or '?'] = _bycourse.get(r_.get('course') or '?', 0) + 1
+health['defects'] = dict(open=len(_open), kinds=sorted(_bykind.items(), key=lambda x: -x[1]),
+                         courses=sorted(_bycourse.items(), key=lambda x: -x[1]))
+health['recheck'] = {}
+try:
+    import contextlib as _cl
+    sys.path.insert(0, os.path.join(ROOT, 'scripts'))
+    import ledger as _ledger
+    for _s in ('math', 'ela', 'science', 'social-studies'):
+        with _cl.redirect_stdout(io.StringIO()):
+            health['recheck'][_s] = _ledger.recheck_tally(_s)[0]
+except Exception as _e:                      # the Dashboard still builds; the panel says the recheck did not run
+    health['recheck'] = {'error': str(_e)[:200]}
+health['passmarks'] = _csv('data/plans/pass-marks.csv')
 _kit = os.path.join(ROOT, 'docs', 'pipeline', 'kit', 'README.md')
 if os.path.exists(_kit):
     _m = re.search(r'KIT-VERSION: (\d+)', io.open(_kit, encoding='utf-8').read())

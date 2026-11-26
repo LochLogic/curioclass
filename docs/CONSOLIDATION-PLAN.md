@@ -726,6 +726,17 @@ Built (2026-11-25):
 - L133, done the same day: goal test 10 now also fails a day file with no written ledger row (one `none` row
   covers a day that introduces nothing; kit 12) and a day file with no version line; 34 known days, later L136.
   Still later: L134 (catalog lint imports), L135 (shared checks per course).
+- The pedagogy-architecture review (docs/reviews/consolidation/pedagogy-architecture-review.md), changes 1 to 9,
+  built 2026-11-25 (Cory: "do them all"): index.py status order rules (a day needs its section plan, a section plan
+  its unit plan, items their plan) and an upstream-changed mark (day-marks.csv); scripts/day_version.py moved the
+  328 science K to 3 day files to "grade read 2026-11-22, signed off 2026-11-23"; data/plans/pass-marks.csv
+  (scripts/pass_marks.py); a Quality part on the Desk Dashboard; index edges owns, leans-cross, teaches and reviews,
+  and scripts/trace.py; a `retrieves` column in every days.csv but math-4 (pilot), read by unit_skeleton.py rule 2;
+  scripts/spacing.py, read at the stage 4 gate and grade close; English learner supports made in the lesson only
+  (COURSE-RUN stage 7 checks them). Kit 13 (RETOOL 12). The 91 new status misses are baselined, later L142; changes
+  10 to 14 are L137 to L141. The science grade 4 unit 4 section plans, which its Codex days had run ahead of, were
+  written and lens-read (docs/reviews/section-lens-science-grade-4-u04-2026-11-25.md); 14 day conflicts went to
+  defects.csv because L105 is paused.
 
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 

@@ -146,12 +146,74 @@ def _build(ix, u):
             if r.get('skill_id'):
                 ix.node('prog:%s:%s' % (p.stem, r['skill_id']), 'prog', '', r['skill_id'], rel(p), i)
         for i, r in enumerate(rows_of(p), 2):
+            sk = 'prog:%s:%s' % (p.stem, r.get('skill_id'))
             for a in ids(r.get('assumes')):
-                ix.edge('prog:%s:%s' % (p.stem, r.get('skill_id')), 'prog:%s:%s' % (p.stem, a), 'assumes', True,
-                        rel(p), i)
+                ix.edge(sk, 'prog:%s:%s' % (p.stem, a), 'assumes', True, rel(p), i)
+            # the skill owns its standard codes (review change 5); a cell that is not a code is soft, shown by trace
+            for code in ids(r.get('standard')):
+                code = code.strip().lstrip('~')
+                known = code in all_codes()
+                if known:
+                    ix.node('code:' + code, 'code', '', code)
+                ix.edge(sk, 'code:' + code, 'owns', known, rel(p), i)
+            # cross_subject: "math:K.MD.A.2 (why)"; the subject's code or skill it leans on, soft
+            for m in re.finditer(r'\b([a-z][a-z-]*):\s*([A-Za-z0-9][\w.-]*[\w])', r.get('cross_subject') or ''):
+                tgt = m.group(2)
+                if m.group(1) not in CROSS:
+                    continue
+                dst = ('code:' + tgt) if tgt in all_codes() else 'prog:%s:%s' % (m.group(1), tgt)
+                if tgt in all_codes():
+                    ix.node(dst, 'code', '', tgt)
+                ix.edge(sk, dst, 'leans-cross', False, rel(p), i)
     for c in cl:
         _course(ix, c, frames.get(c), u.subject_of(c) or '')
+        _frame_units(ix, c, u.subject_of(c) or '')
+    _ledger_reviews(ix)
     _tools(ix, cl)
+
+
+def _frame_units(ix, c, subj):
+    """unit teaches skill (review change 5): the frame's Units table, column Skills, through frame.py."""
+    try:
+        import frame
+        f = frame.parse(c)
+    except Exception:                      # a course with no frame file yet
+        return
+    path = 'docs/courses/%s/frame.md' % c
+    for r in f.get('table') or []:
+        n = (r.get('#') or '').strip()
+        if not n.isdigit():
+            continue
+        for sid in ids(r.get('Skills')):
+            ix.edge('unit:%s:%d' % (c, int(n)), skill_key(ix, subj, sid) or 'prog:%s:%s' % (subj, sid), 'teaches',
+                    True, path, 0, c)
+
+
+def ledger_key(r):
+    return 'row:%s:%s:%s:%s:%s' % (r['course'], r['where'], r['day'] or '-', r['kind'], (r['entry'] or '')[:60])
+
+
+def _ledger_reviews(ix):
+    """row reviews row (review change 5): every ledger "review of ..." citation, resolved by ledger.py as the recheck
+    does. Soft: the recheck is the gate on them; the index lets trace.py walk them."""
+    import ledger
+    for subj in ('math', 'ela', 'science', 'social-studies'):
+        try:
+            rs = ledger.rows(subj)
+        except Exception:
+            continue
+        lix = ledger.index(rs)
+        for r, ts in ledger.claims(subj, rs):
+            src = ledger_key(r)
+            for t in ts:
+                st, hit = ledger.resolve(t, lix)
+                for h in hit[:4]:
+                    for row in (r, h):
+                        ix.node(ledger_key(row), 'row', row['course'], ledger_key(row)[4:],
+                                'data/plans/%s/ledger.csv' % row['course'], 0, row['stage'])
+                    d = int(r['day']) if (r['day'] or '').isdigit() else None
+                    ix.edge(src, ledger_key(h), 'reviews', False, 'data/plans/%s/ledger.csv' % r['course'], 0,
+                            r['course'], d)
 
 
 def _tools(ix, cl):
@@ -181,6 +243,8 @@ def _tools(ix, cl):
 
 
 CODES = set()
+CROSS = {'lit', 'ela', 'math', 'science', 'social-studies', 'health', 'sel', 'physical-education', 'computer-science',
+         'library', 'arts', 'cte', 'eld', 'spanish'}    # cross_subject prefixes (lit: the literacy codes)
 
 
 def skill_key(ix, subj, sid):
@@ -500,6 +564,74 @@ def r_status(ix):
                 v = re.search(r'^version:[ \t]*(.*)$', f.read_text(encoding='utf-8')[:1500], re.M)
                 have.setdefault(int(m.group(1)), []).append((rel(f), v.group(1).strip() if v else ''))
         out += day_status(c, rows_of(PLANS / c / 'ledger.csv'), have)
+        plans = {p.name for p in (DOCS / c).glob('*.md')} if (DOCS / c).is_dir() else set()
+        items = rows_of(PLANS / c / 'items.csv')
+        out += order_status(c, DAYS.get(c) or rows_of(PLANS / c / 'days.csv'), items, set(have), plans)
+        out += upstream_status(c, DAYS.get(c) or rows_of(PLANS / c / 'days.csv'), items)
+    return out
+
+
+def upstream_status(c, days, items):
+    """A day read at a gate whose days.csv row or items (keys too) changed since (review change 6; marks stored by
+    scripts/day_version.py in data/plans/<course>/day-marks.csv). Look at the day against the new data, then stamp
+    it again (`day_version.py <course> stamp <date>` after a full read)."""
+    import day_version
+    return [('upstream|%s|d%03d' % (c, d), 'data/plans/%s/days.csv: day %d changed upstream (its days.csv row or '
+             'items) since its %s mark of %s; re-read the day against it' % (c, d, r['stage'], r['date']))
+            for d, r in day_version.changed(c, days, items)]
+
+
+def _sections(cell):
+    return ['u%02d-%d.md' % (int(a), int(b)) for a, b in re.findall(r'(\d+)\.(\d+)', cell or '')]
+
+
+def order_status(c, days, items, have, plans):
+    """Build order (pedagogy-architecture review change 1, 2026-11-25): nothing is made before the plan above it.
+    - a day file needs its section plan (uNN-S.md); a course-level day (stretch C) needs the scope and sequence;
+    - a section plan needs its unit plan (sNN.md), and a unit plan needs the scope and sequence;
+    - a section's items.csv rows need its section plan (a row's section is its `unit` cell, else its day's section);
+      a unit-level row (stretch N, no section) needs the unit plan, a course-level row (stretch C) the scope.
+    One miss per (course, kind, missing parent), so a whole unshaped section is one line, not twenty.
+    `days` and `items` are CSV rows, `have` the day numbers with a day file, `plans` the file names in docs/courses/<c>/."""
+    scope = 'scope-and-sequence.md'
+    of_day = {int(r['day']): r for r in days if (r.get('day') or '').isdigit()}
+    miss = {}
+
+    def need(kind, parent, what):
+        if parent not in plans:
+            miss.setdefault((kind, parent), []).append(what)
+
+    for d in sorted(have):
+        r = of_day.get(d)
+        if not r:
+            continue                              # a day file with no row is the orphans report's
+        secs = _sections(r.get('unit'))
+        if secs:
+            for p in secs:
+                need('day', p, 'day %d' % d)
+        elif (r.get('stretch') or '').strip() == 'C':
+            need('day', scope, 'day %d' % d)
+        elif (r.get('stretch') or '').strip().isdigit():
+            need('day', 's%02d.md' % int(r['stretch']), 'day %d' % d)
+    for p in sorted(plans):
+        m = re.fullmatch(r'u(\d+)-\d+\.md', p)
+        if m:
+            need('section', 's%02d.md' % int(m.group(1)), p)
+        elif re.fullmatch(r's\d+\.md', p):
+            need('unit', scope, p)
+    for r in items:
+        secs = _sections(r.get('unit'))
+        if not secs and (r.get('day') or '').isdigit() and int(r['day']) in of_day:
+            secs = _sections(of_day[int(r['day'])].get('unit'))
+        st = (r.get('stretch') or '').strip()
+        for p in secs or ([scope] if st == 'C' else ['s%02d.md' % int(st)] if st.isdigit() else []):
+            need('items', p, r.get('item_id', ''))
+    out = []
+    words = {'day': 'day file', 'section': 'section plan', 'unit': 'unit plan', 'items': 'items.csv row'}
+    for (kind, parent), what in sorted(miss.items()):
+        out.append(('order|%s|%s|%s' % (c, kind, parent),
+                    'docs/courses/%s/%s is missing, but %d %s(s) under it exist (%s%s): write the plan above first'
+                    % (c, parent, len(what), words[kind], ', '.join(what[:6]), ', ...' if len(what) > 6 else '')))
     return out
 
 
@@ -655,6 +787,17 @@ def self_test():
           == ['dayfile|c|d005', 'version|c|d005']
           and not day_status('c', led[3:] + [{'day': '5', 'stage': 'written', 'kind': 'none'}], {4: [('p', 'x')],
                                                                                              5: [('q', 'y')]}))
+    days = [{'day': '1', 'stretch': '1', 'unit': '1.1'}, {'day': '2', 'stretch': '1', 'unit': '1.2'},
+            {'day': '3', 'stretch': 'C', 'unit': ''}]
+    items = [{'item_id': 's01-X2', 'stretch': '1', 'unit': '', 'day': '2'}, {'item_id': 's01-E1', 'stretch': '1',
+                                                                            'unit': '', 'day': ''}]
+    got = sorted(k for k, _ in order_status('c', days, items, {1, 2, 3}, {'u01-1.md', 'u02-1.md'}))
+    check('order: a day, a section plan and items need the plan above them (review change 1)',
+          got == ['order|c|day|scope-and-sequence.md', 'order|c|day|u01-2.md',
+                  'order|c|items|s01.md', 'order|c|items|u01-2.md', 'order|c|section|s01.md',
+                  'order|c|section|s02.md']
+          and not order_status('c', days, items, {1, 2, 3}, {'u01-1.md', 'u01-2.md', 's01.md',
+                                                               'scope-and-sequence.md'}))
     print('index self-test: %s' % ('all passed' if ok else 'FAILED'))
     return 0 if ok else 1
 

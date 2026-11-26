@@ -38,8 +38,10 @@ data/plans/course-list.csv,source,lead,rows.py check,which courses exist
 data/plans/later.csv,source,lead,rows.py check,parked work; the Desk Dashboard reads it
 data/plans/flow-status.csv,source,lead,index.py --status,only what no file can show; the done rows stay: plan_flow reads them as done to the stage 4 bar, which the plan file alone does not show
 data/plans/debt.csv,source,gate.py --course <course> --record,rows.py check,known failing lines per course at each grade close (4.L)
+data/plans/pass-marks.csv,source,scripts/pass_marks.py add,rows.py check,reader pass marks per course at each grade close (review change 3)
 data/plans/*.csv,source,lead,rows.py check,cross-course plan tables
 data/plans/README.md,source,lead,,plan table formats
+data/plans/*/day-marks.csv,generated-committed,scripts/day_version.py,index.py --status,what each day was built from at its last read (upstream hash; review change 6)
 data/plans/*/ledger.csv,source,course runs,ledger.py check,what was taught when; written through rows.py and ledger.py
 data/plans/*/days.csv,source,course runs,plan.py check,
 data/plans/*/items.csv,source,course runs,plan.py check,

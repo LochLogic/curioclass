@@ -9,7 +9,9 @@ and reads the plan flow (https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC). It 
 Top to bottom (rebuilt 2026-11-25): "Curio Class, built so far" (a ring for every piece done, a ladder of the layers
 from progressions to tools live, for the 52 core courses or every course, and a pace strip of files added per day);
 "Every course, top to bottom" (one row per course, opened down to units, sections and days); "Health of the build"
-(the 12 goal tests, known misses, Saved for later, debt, kit version, open questions); then "Stage by stage" (the
+(the 12 goal tests, known misses, Saved for later, debt, kit version, open questions), with a Quality part under it (open defects by kind and course from
+data/plans/defects.csv, `ledger.py recheck` totals per subject, and pass marks per grade close from
+data/plans/pass-marks.csv); then "Stage by stage" (the
 seven-stage flow), Saved for later and the tool counts. All of it reads the stats/plan parts from plan_flow.py:
 course keys, section splits (secs), health and history are in that export.
 

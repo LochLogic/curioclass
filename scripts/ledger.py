@@ -511,6 +511,19 @@ def gate(subject, course, first, last):
 
 
 def recheck(subject, show_all=False):
+    tally, lines = recheck_tally(subject, show_all)
+    if not show_all and len(lines) > 40:
+        lines = lines[:40] + ['... %d more (use --all)' % (len(lines) - 40)]
+    print('\n'.join(lines))
+    print('%s recheck: %d citations; target written %d, planned only %d, unmatched %d; target day gone %d; flagged %d' % (
+        subject, tally['citations'], tally['written'], tally['planned'], tally['unmatched'], tally['gone'],
+        tally['flagged']))
+    return 1 if tally['flagged'] else 0
+
+
+def recheck_tally(subject, show_all=False):
+    """The recheck counts as data ({citations, written, planned, unmatched, gone, flagged}) and its lines; the
+    Dashboard's quality panel reads the counts (plan_flow.py health, review change 4)."""
     rs = rows(subject)
     ix = index(rs)
     dcache, cnt, n, gone, flagged, lines = {}, {'written': 0, 'planned': 0, None: 0}, 0, 0, 0, []
@@ -537,12 +550,8 @@ def recheck(subject, show_all=False):
             flagged += 0 if ok else 1
             if show_all or not ok:
                 lines.append('%s | cites %s -> %s%s' % (rowname(r), t['text'], st or 'unmatched', extra))
-    if not show_all and len(lines) > 40:
-        lines = lines[:40] + ['... %d more (use --all)' % (len(lines) - 40)]
-    print('\n'.join(lines))
-    print('%s recheck: %d citations; target written %d, planned only %d, unmatched %d; target day gone %d; flagged %d' % (
-        subject, n, cnt['written'], cnt['planned'], cnt[None], gone, flagged))
-    return 1 if flagged else 0
+    return dict(citations=n, written=cnt['written'], planned=cnt['planned'], unmatched=cnt[None], gone=gone,
+                flagged=flagged), lines
 
 
 def self_test():

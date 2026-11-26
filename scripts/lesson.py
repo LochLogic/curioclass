@@ -2007,9 +2007,17 @@ def slip_fits(d, course, items):
     return (int(m[1]) == 1, note) if m else None
 
 
+def print_version(v):
+    """The version as a print foot shows it: once a day is signed off, its grade-read date is dropped (the foot has
+    the room of one line; day_version.py writes both dates into the file, review change 2)."""
+    if re.search(r'\bsigned off \d', v or ''):
+        v = re.sub(r',\s*grade read \d{4}-\d{2}-\d{2}', '', v)
+    return v
+
+
 def foot_line(h, course, credits=()):
     s = 'Curio Class, %s, day %s, version %s, CC BY 4.0, curioclass.org' % (
-        course_name(course), int(h['day']), h['version'])
+        course_name(course), int(h['day']), print_version(h['version']))
     return '<div class="foot">%s%s</div>' % (html.escape(s), ''.join(
         '<br>%s' % html.escape(c) for c in credits))
 
@@ -2974,7 +2982,7 @@ def piece_rows(p, items):
 def unit_foot(h, course, what):
     return '<div class="foot">%s</div>' % html.escape(
         'Curio Class, %s, section %s, %s, version %s, CC BY 4.0, curioclass.org'
-        % (course_name(course), h['unit'], what, h['version']))
+        % (course_name(course), h['unit'], what, print_version(h['version'])))
 
 
 def section(body, name):

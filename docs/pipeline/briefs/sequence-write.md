@@ -32,7 +32,7 @@ step 5.
   notes (a label in passing does not count; an empty cell says "none"). Every practice and concept the frame names
   is on at least one day.
 - `data/plans/{course}/days.csv`, one row per course day, columns in this order:
-  `day,stretch,unit,kind,goal,skills,codes,assess,school_day,note`
+  `day,stretch,unit,kind,goal,skills,codes,assess,school_day,note,retrieves`
   - **day**: 1 to the frame's total, in order, none skipped.
   - **stretch**: the unit number (the code name lags, GLOSSARY), or `C` for a course-level check day, its respond
     days and course-level review days.
@@ -47,6 +47,10 @@ step 5.
   - **goal**: what the day is for, in a short teacher sentence ("I can" lines come with the unit plan).
   - **skills**: the skill_ids the day teaches or assesses, `; `-separated. Every owned skill is on at least one day
     of its unit.
+  - **retrieves**: the skill_ids the day's retrieval task brings back (an earlier unit's or an earlier grade's),
+    `; `-separated; blank when the day retrieves nothing. The note still says how; this column is what the rule 2
+    count and the spacing report (scripts/spacing.py) read, so a retrieval written only in prose is not seen as one.
+    Readiness rows stay in the note (below).
   - **codes**: the standard codes the day carries, lettered parts by their own code (RL.4.1a). Every owned code is on
     at least one day.
   - **assess**: `readiness`, `mid`, `end`, `course`, `observe` (K to 2 only, an observation task standing for the

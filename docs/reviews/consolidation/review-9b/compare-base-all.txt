@@ -1,0 +1,40 @@
+== build_site (1 new line(s), 0 failing)
+  note 521 course and unit pages -> S:\CurioClass\build\gates\review-9b\dist\courses (hidden)
+== compare (18 new line(s), 0 failing)
+  note == index-reports (2 new line(s), 0 failing)
+  note == lesson-check (1 new line(s), 0 failing)
+  note == lesson-science-grade-4 (1 new line(s), 0 failing)
+  note == plan-science-grade-4 (1 new line(s), 0 failing)
+  note == rows-check (1 new line(s), 0 failing)
+  note == unitplan-science-grade-4 (4 new line(s), 0 failing)
+  note gate all against its baseline: 0 failing finding(s), 12 new note line(s)
+  note note 521 course and unit pages -> S:\CurioClass\build\gates\review-9b\dist\courses (hidden)
+  note note NOTE courses/science-grade-4/u04-4/d071.md: the section plan's day 71 block names 1.1, 1.2, which the day and its items never use; if the data overruled the plan, correct the plan
+  note note PASS docs/courses/science-grade-4/u04-1.md
+  note note PASS docs/courses/science-grade-4/u04-2.md
+  note note PASS docs/courses/science-grade-4/u04-3.md
+  note note PASS docs/courses/science-grade-4/u04-4.md
+  note note index: 69509 nodes, 424998 edges (234494 hard) -> data/index.db
+  note note note unit 4: 7847 words of prose outside the generated tables (s04.md)
+  note note ok     order: a day, a section plan and items need the plan above them (review change 1)
+  note note rows check: 351 files, 0 problems
+  note note status: 0 new, 125 known, 0 fixed
+== index-reports (2 new line(s), 0 failing)
+  note index: 69509 nodes, 424998 edges (234494 hard) -> data/index.db
+  note status: 0 new, 125 known, 0 fixed
+== lesson-check (1 new line(s), 0 failing)
+  note NOTE courses/science-grade-4/u04-4/d071.md: the section plan's day 71 block names 1.1, 1.2, which the day and its items never use; if the data overruled the plan, correct the plan
+== lesson-science-grade-4 (1 new line(s), 0 failing)
+  note NOTE courses/science-grade-4/u04-4/d071.md: the section plan's day 71 block names 1.1, 1.2, which the day and its items never use; if the data overruled the plan, correct the plan
+== plan-science-grade-4 (1 new line(s), 0 failing)
+  note note unit 4: 7847 words of prose outside the generated tables (s04.md)
+== rows-check (1 new line(s), 0 failing)
+  note rows check: 351 files, 0 problems
+== selftest-index (1 new line(s), 0 failing)
+  note ok     order: a day, a section plan and items need the plan above them (review change 1)
+== unitplan-science-grade-4 (4 new line(s), 0 failing)
+  note PASS docs/courses/science-grade-4/u04-1.md
+  note PASS docs/courses/science-grade-4/u04-2.md
+  note PASS docs/courses/science-grade-4/u04-3.md
+  note PASS docs/courses/science-grade-4/u04-4.md
+compare base-all -> review-9b: 0 failing finding(s), 30 new note line(s)

@@ -1973,3 +1973,10 @@ course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN
 - **L133 before the dashboard** (Cory in chat, 2026-11-25: "do L133 first, then the dashboard"): a day file must have
   a written ledger row; a day that introduces nothing new gets one ledger row of kind `none`. 34 known days are
   baselined and worked off under later.csv L136.
+- **The pedagogy-architecture review's changes 1 to 9 built; 10 to 14 to later** (Desk q-pedagogy-architecture-1,
+  Cory 2026-11-25: "i dont think i have an opinion on item 9. do what is best for the end result. yes, start working
+  them now and do them all"). Item 9, decided by the lead: English learner supports are made in the lesson
+  (APPROACH principle 9, section plan field 9, the day's sentence frames), because supports written after the days
+  sit beside the teaching instead of inside it, which is what ELSF and WIDA ask against; COURSE-RUN stage 7 no longer
+  makes them and its cold read checks they are there. Report docs/reviews/consolidation/pedagogy-architecture-review.md;
+  later.csv L137 to L141 (changes 10 to 14), L142 (the 91 baselined misses).

@@ -356,6 +356,16 @@ textarea{width:100%;min-height:92px;resize:vertical;font:15px/1.45 var(--body);c
 .ht>span{font:500 12px/1.3 var(--body);color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .ht .hn em{text-align:right}
 .hfacts{margin:0}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin-top:4px}
+.qc{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.qc h4{margin:0;font:700 14px var(--body)}
+.qc .qs{font:500 12px/1.35 var(--body);color:var(--muted);margin:0}
+.qr{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:2px 8px;align-items:center;font:500 12px var(--body)}
+.qr .qn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qr .qv{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.qr .qb{grid-column:1/-1;height:5px;border-radius:3px;background:color-mix(in srgb,var(--muted) 18%,transparent);overflow:hidden}
+.qr .qb i{display:block;height:100%;background:var(--accent)}
+.qr .qb i.ok{background:var(--ok)}.qr .qb i.warn{background:var(--warn)}
 @media (max-width:640px){
   .hero{grid-template-columns:1fr}.ring{max-width:180px}
   .lrow{grid-template-columns:1fr 92px}.lrow .lb{grid-column:1/-1;grid-row:2}
@@ -391,6 +401,7 @@ details.oldview summary{cursor:pointer;font:700 15px var(--body);color:var(--mut
     <div class="shead"><div><h2>Health of the build</h2><p class="sub">The 12 end-goal tests from the last full gate, known misses kept on file, and what is waiting.</p></div></div>
     <div class="hfacts tally" id="hfacts"></div>
     <div class="hgrid" id="hgrid"></div>
+    <div><h3 class="sh3">Quality <span class="sub" style="font-weight:500">what readers found, beside what the gates find</span></h3><div class="qgrid" id="hqual"></div></div>
   </section>
   <section class="flow" id="flow" aria-label="The course run, from pre-work to course finish">
     <div class="fhead"><div style="flex:1 1 300px"><h2>Stage by stage</h2><p id="fsub">Loading the plan…</p></div><div class="kpis" id="fkpis"></div></div>
@@ -889,6 +900,41 @@ details.oldview summary{cursor:pointer;font:700 15px var(--body);color:var(--mut
     const debt = h.debt || []; fact(debt.length ? String(debt.length) : 'No', debt.length ? 'debt rows from grade closes' : 'debt recorded at any grade close');
     if (h.kit) fact('Kit ' + h.kit, 'pipeline kit version');
     const q = el('span'); q.id = 'hqs'; f.append(q); deskQs();
+    qualityRender(h);
+  }
+  // quality (pedagogy-architecture review change 4): open defects by kind and course, the ledger recheck per subject,
+  // and the readers' pass marks per grade close (data/plans/pass-marks.csv; the mark is under 1.0 serious a day)
+  function qualityRender(h) {
+    const cname = id => ({ ela: 'English language arts' }[id] || id.replace(/-/g, ' ').replace(/^./, x => x.toUpperCase()));
+    const box = $('hqual'); if (!box) return; box.replaceChildren();
+    const card = (title, sub) => { const c = el('div', 'qc'); c.append(el('h4', null, title)); if (sub) c.append(el('p', 'qs', sub)); box.append(c); return c; };
+    const row = (c, name, val, frac, cls, tip) => { const r = el('div', 'qr'), b = el('div', 'qb'), i = el('i', cls || null);
+      i.style.width = Math.max(2, Math.min(100, Math.round(frac * 100))) + '%'; b.append(i);
+      const n = el('span', 'qn', name); n.title = tip || name; r.append(n, el('span', 'qv', val), b); c.append(r); };
+    const d = h.defects || {};
+    if (d.open != null) {
+      const c = card(nf(d.open) + ' open defects', 'Logged by readers and writers in data/plans/defects.csv, by kind, then the courses holding most.');
+      const kinds = (d.kinds || []).slice(0, 5), top = kinds.length ? kinds[0][1] : 1;
+      for (const [k, n] of kinds) row(c, k, nf(n), n / top, 'warn');
+      const cs = (d.courses || []).slice(0, 4), ct = cs.length ? cs[0][1] : 1;
+      for (const [k, n] of cs) row(c, cname(k), nf(n), n / ct, null, k);
+    }
+    const rc = h.recheck || {};
+    if (rc.error) card('Ledger recheck', 'Did not run when the Dashboard was built: ' + rc.error);
+    else if (Object.keys(rc).length) {
+      const c = card('Ledger recheck', 'Each review claim a plan or day makes, checked against the ledger: flagged means it cites something not yet written or no longer there.');
+      for (const [s, r] of Object.entries(rc)) {
+        const fl = r.flagged || 0, n = r.citations || 0;
+        row(c, cname(s) + ': ' + nf(n) + ' citations', fl ? nf(fl) + ' flagged' : 'clean', n ? 1 - fl / n : 1, fl ? 'warn' : 'ok', `${r.written} written, ${r.planned} planned only, ${r.unmatched} unmatched, ${r.gone} day gone`);
+      }
+    }
+    const pm = h.passmarks || [];
+    const c = card('Pass marks at grade close', pm.length ? 'Serious faults a day in each grade-close sample read; the mark is under 1.0.' : 'No grade close has recorded its pass marks yet.');
+    for (const r of pm) {
+      const s = parseFloat(r.serious_a_day), ok = s < 1;
+      row(c, cname(r.course) + ', ' + fmtD(r.date), isNaN(s) ? '?' : s.toFixed(1), isNaN(s) ? 0 : Math.min(1, s / 2), ok ? 'ok' : null,
+          `${r.days_sampled || '?'} days sampled; wrong keys ${r.wrong_keys || 'not recorded'}; tokens a day ${r.tokens_a_day || 'not recorded'}. ${r.note || ''}`);
+    }
   }
   function deskQs() { const q = $('hqs'); if (!q) return; const n = items.filter(x => x.status === 'question').length; q.replaceChildren(el('b', null, String(n)), ` question${n === 1 ? '' : 's'} open on the Desk`); }
   function planRender(d) {

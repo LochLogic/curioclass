@@ -170,3 +170,15 @@ Source: the Fable read of 4.L, finding 1 (later.csv L133). No grade running.
 | Finding (stage that found / made it) | Where it went |
 |---|---|
 | Goal test 10 checked one direction: a written ledger row must name a day with a file, but a day file with no ledger row passed, and the day's `version:` line was never read (Fable read of 4.L, finding 1) | index.py status report fails a day file with no written ledger row and a day file with no version line; ledger kind `none` for a day that introduces nothing new; day.txt tells writers to add one `none` row for such a day. The 34 days found on 2026-11-25 are baselined and worked off under later.csv L136 |
+
+## Retool 12: KIT-VERSION 13 (2026-11-25)
+
+Source: the pedagogy-architecture review (docs/reviews/consolidation/pedagogy-architecture-review.md), changes 2, 3, 6, 7, 8 and 9. No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| A day's retrieval was picked by rule 2 alone; the plan could not say which earlier skill a day brings back (review change 7) | days.csv `retrieves` column; data.txt tells the plan-data writer to fill it; unit_skeleton.py rule 2 uses a stated retrieval first |
+| Grade-close pass marks were prose in grade reports (review change 3) | data/plans/pass-marks.csv via scripts/pass_marks.py add at stage 6 Fix; shown on the Dashboard quality panel |
+| Day version lines never moved past draft, and a day read against data that later changed looked finished (review changes 2 and 6) | scripts/day_version.py moves version lines at grade read and sign-off and stores upstream marks (day-marks.csv); index.py status lists days whose upstream changed |
+| No reading of how far apart returns sit (review change 8) | scripts/spacing.py, read at the stage 4 gate and at grade close (COURSE-RUN.md) |
+| English learner supports were named in two places: section plan field 9 (APPROACH principle 9) and stage 7 Make (review change 9) | made in the lesson only (section field 9, day sentence frames); stage 7 checks them across the course and fills a gap it finds |

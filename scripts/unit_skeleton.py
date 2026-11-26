@@ -1272,9 +1272,12 @@ def earlier_rows(course, rows, allrows, prog, frame_meta, ready_day):
             clauses = ' '.join(t for d, t in tasks if d == int(r['day']))
         else:
             clauses = ' '.join(retrieval_clauses(r['note'], int(r['day']), broad=True))
+        # days.csv `retrieves` (review change 7): the skill ids a day retrieves, stated; it is read first, and the
+        # note text still counts where a written course has not filled the column yet
+        stated = split_list(r.get('retrieves') or '')
         for a in assumes:
-            if (a in split_list(r['skills']) and re.search(r'retriev', r['note'], re.I)) or a in ids_in(clauses, prog) \
-                    or (not nss and a in clauses):
+            if a in stated or (a in split_list(r['skills']) and re.search(r'retriev', r['note'], re.I)) \
+                    or a in ids_in(clauses, prog) or (not nss and a in clauses):
                 retr_days.setdefault(a, []).append(int(r['day']))
     if nss:     # a task for this unit on a day before it (its readiness window)
         for d, t in tasks:
