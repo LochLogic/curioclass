@@ -84,7 +84,7 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 | Science, Grade 1 | yes | yes | lens and rubric | yes | yes | 21 | 5 | 4 / 1 / 0 |
 | Science, Grade 2 | yes | yes | lens and rubric | yes | yes | 23 | 6 | 3 / 0 / 3 |
 | Science, Grade 3 | yes | yes | lens and rubric | yes | yes | 27 | 7 | 7 / 0 / 0 |
-| Science, Grade 4 | yes | yes | lens and rubric | yes | yes | 28 | 8 | 7 / 0 / 1 |
+| Science, Grade 4 | yes | yes | lens and rubric | yes | yes | 32 | 8 | 7 / 0 / 1 |
 | Science, Grade 5 | yes | yes | lens and rubric | yes | yes | 36 | 8 | 6 / 2 / 0 |
 | Science, Grade 6 | yes | yes | lens and rubric | yes | yes | 6 | 10 | 7 / 2 / 1 |
 | Science, Grade 7 | yes | yes | lens and rubric | yes | yes | 8 | 10 | 9 / 1 / 0 |

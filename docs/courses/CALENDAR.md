@@ -150,7 +150,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 5 | english-language-arts-grade-5 | Check 1 week 17, Check 2 week 32 | 32 |
 | 5 | english-language-development-grades-3-to-5 | Grade 5 mid-year (week 1 week 18, Grade 5 year-end (week 2 week 28 | 32 |
 | 5 | health-grades-3-to-5 | Grade 5 mid-year check ( week 15, Grade 5 year-end check ( week 28 | 27 |
-| 5 | library-and-research-skills-grade-5 | 1, mid-year week 14, 2, year-end week 28 | 27 |
+| 5 | library-and-research-skills-grade-5 | 1, mid-year week 13, 2, year-end week 28 | 27 |
 | 5 | math-grade-5 | Check 1 week 11, Check 2 week 22, Check 3 week 31 | 30 |
 | 5 | physical-education-grades-3-to-5 | Grade 5 mid-year (week 1 week 18, Grade 5 year-end (week 2 week 26 | 32 |
 | 5 | science-grade-5 | Course-level check 1 (we week 10, Course-level check 2 week 21, Course-level check 3 week 30 | 30 |
