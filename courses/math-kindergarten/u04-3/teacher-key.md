@@ -14,13 +14,13 @@ Teacher only. Keep off child pages and displays. Read each item stem exactly. Re
 
 Read: Draw a solution to this story.
 
-Look for: Ten represented, three removed, seven remaining.
+Look for: Eight represented, two removed, six remaining.
 
-Read: "Rin has ten puzzle pieces on a tray and puts three away. How many stay on the tray?" Ask: "Draw a solution to this story." All draw; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Generate a complete separating drawing independently on blank paper; practice uses adult-directed counters or supplied partial drawing corrections, never a whole blank-paper solution or puzzle pieces.
+Read: "Rin has eight puzzle pieces on a tray and puts two away. How many stay on the tray?" Ask: "Draw a solution to this story." All draw; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Generate a complete separating drawing independently on blank paper; practice uses adult-directed counters or supplied partial drawing corrections, never a whole blank-paper solution or puzzle pieces.
 
-Shown: ten dots, three crossed, seven ringed. | Not yet seen: Adds three, thirteen (C); rings removed three as answer (E).
+Shown: eight dots, two crossed, six ringed. | Not yet seen: Adds two, ten (C); rings removed two as answer (E).
 
-Wrong ideas: Adds three, thirteen (C) (C). Code only when the corresponding action or reason is observed, never a wrong numeral alone.; rings removed three as answer (E). (E). Code only when the corresponding action or reason is observed, never a wrong numeral alone.
+Wrong ideas: Adds two, ten (C) (C). Code only when the corresponding action or reason is observed, never a wrong numeral alone.; rings removed two as answer (E). (E). Code only when the corresponding action or reason is observed, never a wrong numeral alone.
 
 ## s04-X73
 

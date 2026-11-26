@@ -26,13 +26,13 @@ Wrong ideas: Adds three (C) (C). Code only when the corresponding action or reas
 
 Read: Tell a joining story for these pictures.
 
-Look for: Five first, two join, seven now.
+Look for: One first, nine join, ten now.
 
-Silent toy-boat panels show five in play and Rin bringing two more. "Tell a joining story for these pictures." All make paper action marks independently, then enact for partners; teacher hears six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Independently narrate/enact a silent joining scene with a partner; practice supplies a missing action in adult-started square stories, never creates complete stories from silent panels or uses boats.
+Silent toy-boat panels show one in play and Rin bringing nine more. "Tell a joining story for these pictures." All make paper action marks independently, then enact for partners; teacher hears six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Independently narrate/enact a silent joining scene with a partner; practice supplies a missing action in adult-started square stories, never creates complete stories from silent panels or uses boats.
 
-Shown: "Rin had five boats, brought two, seven now." | Not yet seen: Counts just two arrivals as the whole (B).
+Shown: "Rin had one boat and brought nine more; ten now." | Not yet seen: Counts just nine arrivals as the whole (B).
 
-Wrong ideas: Counts just two arrivals as the whole (B). (B). Code only when the corresponding action or reason is observed, never a wrong numeral alone.
+Wrong ideas: Counts just nine arrivals as the whole (B). (B). Code only when the corresponding action or reason is observed, never a wrong numeral alone.
 
 ## s04-X70
 

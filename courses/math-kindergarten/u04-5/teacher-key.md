@@ -26,11 +26,11 @@ Wrong ideas: Seven with an invented arrival (F). (F). Code only when the corresp
 
 Read: Tell a story for this card.
 
-Look for: One actor, nine first, five removed, question about remaining four.
+Look for: One actor, nine first, five removed, a question about how many remain; four if solved, not required.
 
-Read bare expression 9 - 5 beside a blank scene. "Tell a story for this card." All draw reminders; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Independently create story from expression; practice interprets adult-told stories beside complete equations, never creates whole stories from expressions or uses trains. Both equation orders are practiced, not a second exit ask.
+Read bare expression 9 - 5 beside a blank scene. "Tell a story for this card." All draw reminders; hear six. The story question is the evidence sought. A solution or four drawn is optional, not another criterion. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Independently create story from expression; practice interprets adult-told stories beside complete equations, never creates whole stories from expressions or uses trains. Both equation orders are practiced, not a second exit ask.
 
-Shown: "Rin has nine trains, parks five; how many still moving?" with four shown. | Not yet seen: Joining to fourteen (C).
+Shown: "Rin has nine trains and parks five. How many are still moving?" Paper reminders preserve nine and the five moved; a solved four is optional. | Not yet seen: Joining to fourteen (C).
 
 Wrong ideas: Joining to fourteen (C). (C). Code only when the corresponding action or reason is observed, never a wrong numeral alone.
 

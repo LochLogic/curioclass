@@ -76,11 +76,11 @@ Read: Join this joining picture to every matching equation.
 
 Look for: 3 + 5 = 8 and 8 = 3 + 5.
 
-Use same joining picture. Read choices 3 + 5 = 8; 8 = 3 + 5; 9 - 4 = 5; 5 = 9 - 4; 9 - 4 = 4 evenly. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Connect that joining picture to every true equation, including both orders.
+Use same joining picture. Read choices 3 + 5 = 8; 8 = 3 + 5; 9 - 4 = 5; 5 = 9 - 4; 9 - 4 = 4; 3 + 5 = 5; 5 = 3 + 5 evenly. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Connect that joining picture to every true equation, including both orders. Equal quantities must be checked: matching 3 + 5 alone cannot select the two true eight-equations over the two false five-equations.
 
-Shown: Both eight-equations linked. | Not yet seen: Rejects 8 = 3 + 5 solely for order.
+Shown: Both eight-equations linked; neither 3 + 5 = 5 nor 5 = 3 + 5 linked. | Not yet seen: Rejects 8 = 3 + 5 solely for order (D); links a false five-equation because only the incoming five are treated as the whole (B).
 
-Wrong ideas: Rejects total-left solely for order. (D). Code only when the corresponding action or reason is observed, never a wrong numeral alone.
+Wrong ideas: Rejects total-left solely for order. (D). Code only when the corresponding action or reason is observed, never a wrong numeral alone.; Links 3 + 5 = 5 or 5 = 3 + 5 and calls only the incoming five the whole. (B). Code B only when the child indicates that the starting three were excluded. A false equation selection alone is descriptive; retain feedback for the existing day 80 revision and conference.
 
 ## s04-F1b-expression
 
@@ -100,7 +100,7 @@ Read: Join this taking-away picture to every matching equation.
 
 Look for: 9 - 4 = 5 and 5 = 9 - 4.
 
-Same removal picture and five equation choices as joining picture. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Connect that removal picture to every true equation, including both orders.
+Same removal picture and seven equation choices as joining picture. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Connect that removal picture to every true equation, including both orders.
 
 Shown: Both five-equations linked. | Not yet seen: 9 - 4 = 4 because four moved.
 
