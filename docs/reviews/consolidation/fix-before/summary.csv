@@ -1,0 +1,210 @@
+gate,exit,last_line
+board,0,concept 7  spec 557  build 7  selfcheck 116  refine 0  fix 20  exit 0  artvoice 10  finish 0  live 92
+build_site,0,"6768 pages, 83 built tools, 717 on the bench, 3742 in sitemap -> dist/"
+check_safety,0,safety scan: all tools clean
+check_site,0,"6777 pages checked, 10 redirects (1 splat), 0 broken internal links, 0 external loads, 8610 files (limit 20000), 0 over 25 MiB"
+check_tools,1,spec  zoom-to-the-limit
+course_status,0,courses 120 core4 58 shared sets 8
+desk_stats,0,noidea 0  concept 7  spec 557  build 7  selfcheck 116  refine 0  fix 20  exit 0  artvoice 10  finish 0  live 92 total 809
+frame,0,"  note world-history-ii: 11 units, 160 days (150 in units, 10 for checks and respond days)"
+front-office,0,"front office: 465 files; {'courses': 58, 'frames': 58, 'scopes': 58, 'units': 462, 'unit_plans': 397, 'unit_written': 138, 'sections': 1858, 'days': 8504, 'written': 2059, 'skills': 1411}"
+ids-check,0,"ids: 0 retired id(s) checked, 0 line(s)"
+index-reports,0,"drift: 0 new, 0 known, 0 fixed"
+ledger-ela,0,"  unmatched: english-language-arts-grade-1 u01-3 day 12: first, next, last with event cards and counters cites english-language-arts-kindergarten (retelling)"
+ledger-files,0,"ledger files: 41 on disk, 0 stray"
+ledger-math,0,unmatched citations: 0 (no ledger row matches the cited target)
+ledger-science,0,  unmatched: science-grade-2 u01-2 day 6: map key (what each dot means; here the filled dot is liquid  cites science-grade-1 (map key)
+ledger-social-studies,0,  ... 2 more unmatched (use --all)
+lesson-algebra-i,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-algebra-ii,0,"lesson_course: 13 failure(s) in 5 day(s), 2 in day files"
+lesson-biology,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-calculus,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-check,1,"  NOTE courses/world-history-i/u03-4/d046.md: the exit ticket s03-X46-v2 goes back, but day 49 is not written yet; its writer must hand back s03-X46-v2"
+lesson-chemistry,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-civics-government-and-civic-life,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-earth-and-space-science,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-economics,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-english-language-arts-grade-1,0,"lesson_course: 14 failure(s) in 160 day(s), 12 in day files"
+lesson-english-language-arts-grade-10,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-english-language-arts-grade-11,0,"lesson_course: 9 failure(s) in 5 day(s), 0 in day files"
+lesson-english-language-arts-grade-12,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-english-language-arts-grade-2,0,"lesson_course: 18 failure(s) in 160 day(s), 12 in day files"
+lesson-english-language-arts-grade-3,0,"lesson_course: 40 failure(s) in 160 day(s), 31 in day files"
+lesson-english-language-arts-grade-4,0,"lesson_course: 404 failure(s) in 38 day(s), 47 in day files"
+lesson-english-language-arts-grade-5,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-english-language-arts-grade-6,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-english-language-arts-grade-7,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-english-language-arts-grade-8,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-english-language-arts-grade-9,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-english-language-arts-kindergarten,0,"lesson_course: 27 failure(s) in 160 day(s), 27 in day files"
+lesson-environmental-science,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-geometry,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-math-4,0,"lesson_course: 13 failure(s) in 48 day(s), 12 in day files"
+lesson-math-grade-1,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-math-grade-2,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-math-grade-3,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-math-grade-4,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-math-grade-5,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-math-grade-6,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-math-grade-7,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-math-grade-8,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-math-kindergarten,0,"lesson_course: 215 failure(s) in 160 day(s), 131 in day files"
+lesson-physics,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-precalculus,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-psychology,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-science-grade-1,0,"lesson_course: 0 failure(s) in 68 day(s), 0 in day files"
+lesson-science-grade-2,0,"lesson_course: 1 failure(s) in 76 day(s), 0 in day files"
+lesson-science-grade-3,0,"lesson_course: 0 failure(s) in 120 day(s), 0 in day files"
+lesson-science-grade-4,0,"lesson_course: 29 failure(s) in 120 day(s), 5 in day files"
+lesson-science-grade-5,0,"lesson_course: 32 failure(s) in 120 day(s), 26 in day files"
+lesson-science-grade-6,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-science-grade-7,0,"lesson_course: 18 failure(s) in 6 day(s), 0 in day files"
+lesson-science-grade-8,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-science-kindergarten,0,"lesson_course: 0 failure(s) in 64 day(s), 0 in day files"
+lesson-social-studies-grade-1,0,"lesson_course: 24 failure(s) in 96 day(s), 22 in day files"
+lesson-social-studies-grade-2,0,"lesson_course: 27 failure(s) in 96 day(s), 27 in day files"
+lesson-social-studies-grade-3,0,"lesson_course: 56 failure(s) in 160 day(s), 47 in day files"
+lesson-social-studies-grade-4,0,"lesson_course: 193 failure(s) in 160 day(s), 128 in day files"
+lesson-social-studies-grade-5,0,"lesson_course: 63 failure(s) in 51 day(s), 18 in day files"
+lesson-social-studies-kindergarten,0,"lesson_course: 12 failure(s) in 64 day(s), 12 in day files"
+lesson-statistics,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-us-government-and-politics,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-us-history-i,0,"lesson_course: 0 failure(s) in 5 day(s), 0 in day files"
+lesson-us-history-ii,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-world-geography-and-ancient-civilizations-i,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-world-geography-and-ancient-civilizations-ii,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lesson-world-history-i,0,"lesson_course: 1 failure(s) in 5 day(s), 1 in day files"
+lesson-world-history-ii,0,"lesson_course: 0 failure(s) in 0 day(s), 0 in day files"
+lint-all,0,lint: 4210 line(s) over 59 course(s): style 4210
+plan-algebra-i,0,"  note day 101: Fluency, first day in the course for A-SSE.A.1b, A-SSE.B.3c, F-IF.C.8, F-IF.C.8b, A-SSE.B.3 (practice of a taught skill, or first teaching?)"
+plan-algebra-ii,1,"  FAIL shape-note: u01-1.md day 5: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-biology,0,"  note day 126: Fluency, first day in the course for HS-ETS1-3 (practice of a taught skill, or first teaching?)"
+plan-calculus,0,"  note unit 5 (rule 2): alg2-normal-distributions wants retrieval (last used grade 11), not the readiness check that names it"
+plan-chemistry,0,  note day 158: reads like hands-on work but names no supplies and no safety
+plan-civics-government-and-civic-life,0,sequence civics-government-and-civic-life: 0 failure(s)
+plan-earth-and-space-science,0,  note day 117: reads like hands-on work but names no supplies and no safety
+plan-economics,0,sequence economics: 0 failure(s)
+plan-english-language-arts-grade-1,1,"  FAIL shape-note: u04-8.md day 157: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-english-language-arts-grade-10,0,"  note day 69: Fluency, first day in the course for SL.9-10.4, SL.9-10.6 (practice of a taught skill, or first teaching?)"
+plan-english-language-arts-grade-11,1,"  FAIL shape-note: u01-1.md day 5: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-english-language-arts-grade-12,0,sequence english-language-arts-grade-12: 0 failure(s)
+plan-english-language-arts-grade-2,1,"  FAIL shape-note: u04-9.md day 152: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-english-language-arts-grade-3,1,"  FAIL shape-note: u04-9.md day 156: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-english-language-arts-grade-4,1,"  FAIL shape-note: u01-8.md day 33: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-english-language-arts-grade-5,0,sequence english-language-arts-grade-5: 0 failure(s)
+plan-english-language-arts-grade-6,0,sequence english-language-arts-grade-6: 0 failure(s)
+plan-english-language-arts-grade-7,0,sequence english-language-arts-grade-7: 0 failure(s)
+plan-english-language-arts-grade-8,0,sequence english-language-arts-grade-8: 0 failure(s)
+plan-english-language-arts-grade-9,0,sequence english-language-arts-grade-9: 0 failure(s)
+plan-english-language-arts-kindergarten,1,"  FAIL shape-note: u04-8.md day 157: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-environmental-science,0,sequence environmental-science: 0 failure(s)
+plan-geometry,0,"  note day 111: Fluency, first day in the course for A-SSE.B.3 (practice of a taught skill, or first teaching?)"
+plan-math-4,1,"  FAIL one-ask: s04-X37b: the stem has 2 question marks, so it asks 2 things (one ask per item)"
+plan-math-grade-1,0,sequence math-grade-1: 0 failure(s)
+plan-math-grade-2,0,"  note day 1: Fluency, first day in the course for 2.OA.B.2 (practice of a taught skill, or first teaching?)"
+plan-math-grade-3,0,"  note day 106: Fluency, but the note says ""Teach"" (Understanding or Application?)"
+plan-math-grade-4,0,"  note day 100: Fluency, first day in the course for 3.OA.B.5, 3.MD.C.7c (practice of a taught skill, or first teaching?)"
+plan-math-grade-5,0,sequence math-grade-5: 0 failure(s)
+plan-math-grade-6,0,sequence math-grade-6: 0 failure(s)
+plan-math-grade-7,0,"  note day 71: Fluency, first day in the course for 7.NS.A.1d (practice of a taught skill, or first teaching?)"
+plan-math-grade-8,0,"  note day 99: Fluency, first day in the course for 8.F.A.2 (practice of a taught skill, or first teaching?)"
+plan-math-kindergarten,1,"  note day 84: hand-backs land in ""assessment"", which names no timed part of the day in its day (handbacks.csv row 210, handbacks.csv row 236); name the part in `where`, or give the day a slot for the"
+plan-physics,0,"  note day 138: Fluency, but the note says ""teach"" (Understanding or Application?)"
+plan-precalculus,0,sequence precalculus: 0 failure(s)
+plan-psychology,0,sequence psychology: 0 failure(s)
+plan-science-grade-1,0,  note day 68: shows names no end-of-unit item; the unit assessment does not see this goal
+plan-science-grade-2,1,  note day 76: shows names no end-of-unit item; the unit assessment does not see this goal
+plan-science-grade-3,0,"  note day 117: the goal piece ""source links"" is shown by no exit of the day, only by s06-E7, s06-E10; does the exit check the goal?"
+plan-science-grade-4,1,  note day 120: shows names no end-of-unit item; the unit assessment does not see this goal
+plan-science-grade-5,1,"  FAIL shape-note: u06-6.md day 117: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-science-grade-6,0,sequence science-grade-6: 0 failure(s)
+plan-science-grade-7,1,"  FAIL shape-note: u01-1.md day 6: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-science-grade-8,0,sequence science-grade-8: 0 failure(s)
+plan-science-kindergarten,0,"  note day 12: hand-backs need 5 minutes in ""Warm-up"", a 4-minute part in its day (handbacks.csv row 18); widen the part or route fewer repairs there"
+plan-social-studies-grade-1,1,"  FAIL shape-note: u08-4.md day 93: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-social-studies-grade-2,1,"  FAIL shape-note: u04-2.md day 54: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-social-studies-grade-3,1,"  FAIL shape-note: u07-5.md day 160: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-social-studies-grade-4,1,"  note day 157: the goal piece ""send it"" is set-up, shown by no item; is it really set-up?"
+plan-social-studies-grade-5,1,"  FAIL shape-note: u04-4.md day 57: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-social-studies-kindergarten,1,"  FAIL shape-note: u06-3.md day 61: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-statistics,0,sequence statistics: 0 failure(s)
+plan-us-government-and-politics,0,sequence us-government-and-politics: 0 failure(s)
+plan-us-history-i,1,"  FAIL shape-note: u05-2.md day 82: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-us-history-ii,0,"  note day 46: Fluency, first day in the course for MA.USII.T3.4 (practice of a taught skill, or first teaching?)"
+plan-world-geography-and-ancient-civilizations-i,0,"  note day 144: Fluency, first day in the course for MA.6.T5b.2 (practice of a taught skill, or first teaching?)"
+plan-world-geography-and-ancient-civilizations-ii,0,"  note day 79: Fluency, first day in the course for MA.7.T4a.2 (practice of a taught skill, or first teaching?)"
+plan-world-history-i,1,"  FAIL shape-note: u03-4.md day 46: the day has an exit but no ""Shared shape"" note naming the practice shape against the exit's"
+plan-world-history-ii,0,sequence world-history-ii: 0 failure(s)
+rows-check,0,"rows check: 330 files, 0 problems"
+selftest-day_skeleton,0,all passed
+selftest-homes,0,homes self-test: all passed
+selftest-index,0,index self-test: all passed
+selftest-ledger,0,"ledger self-test: all passed (exit codes [0, 0, 0, 0], 40 of 40 rows, leftovers none)"
+selftest-plan_facts,0,plan_facts self-test: all passed
+selftest-rows,0,rows.py self-test: all passed (5 processes x 20 upserts: 100 of 100 rows)
+selftest-safe_write,0,"safe_write self-test: all passed (exit codes [0, 0, 0, 0, 0, 0], 240 of 240 rows, leftovers none)"
+selftest-section_skeleton,0,all passed
+selftest-unit_skeleton,0,all passed
+selftest-vocabulary,0,vocabulary self-test: all passed
+sequence,0,sequence world-history-ii: 0 failure(s)
+skel-guard,0,skel guard: 0 plan(s) with stored blocks
+unitplan-algebra-i,0,PASS docs/courses/algebra-i/s07.md
+unitplan-algebra-ii,0,PASS docs/courses/algebra-ii/s07.md
+unitplan-biology,0,PASS docs/courses/biology/s10.md
+unitplan-calculus,0,no unit plans found for: calculus
+unitplan-chemistry,0,PASS docs/courses/chemistry/s11.md
+unitplan-civics-government-and-civic-life,0,PASS docs/courses/civics-government-and-civic-life/s10.md
+unitplan-earth-and-space-science,0,no unit plans found for: earth-and-space-science
+unitplan-economics,0,PASS docs/courses/economics/s09.md
+unitplan-english-language-arts-grade-1,0,PASS docs/courses/english-language-arts-grade-1/u04-8.md
+unitplan-english-language-arts-grade-10,0,PASS docs/courses/english-language-arts-grade-10/s07.md
+unitplan-english-language-arts-grade-11,0,PASS docs/courses/english-language-arts-grade-11/s09.md
+unitplan-english-language-arts-grade-12,0,PASS docs/courses/english-language-arts-grade-12/s08.md
+unitplan-english-language-arts-grade-2,0,PASS docs/courses/english-language-arts-grade-2/u04-9.md
+unitplan-english-language-arts-grade-3,0,PASS docs/courses/english-language-arts-grade-3/u04-9.md
+unitplan-english-language-arts-grade-4,1,PASS docs/courses/english-language-arts-grade-4/u04-7.md
+unitplan-english-language-arts-grade-5,0,PASS docs/courses/english-language-arts-grade-5/s04.md
+unitplan-english-language-arts-grade-6,0,PASS docs/courses/english-language-arts-grade-6/s06.md
+unitplan-english-language-arts-grade-7,0,PASS docs/courses/english-language-arts-grade-7/s06.md
+unitplan-english-language-arts-grade-8,0,PASS docs/courses/english-language-arts-grade-8/s05.md
+unitplan-english-language-arts-grade-9,0,PASS docs/courses/english-language-arts-grade-9/s08.md
+unitplan-english-language-arts-kindergarten,0,PASS docs/courses/english-language-arts-kindergarten/u04-8.md
+unitplan-environmental-science,0,no unit plans found for: environmental-science
+unitplan-geometry,0,PASS docs/courses/geometry/s08.md
+unitplan-math-4,1,no unit plans found for: math-4
+unitplan-math-grade-1,0,PASS docs/courses/math-grade-1/s08.md
+unitplan-math-grade-2,0,PASS docs/courses/math-grade-2/s09.md
+unitplan-math-grade-3,0,PASS docs/courses/math-grade-3/s08.md
+unitplan-math-grade-4,0,PASS docs/courses/math-grade-4/s09.md
+unitplan-math-grade-5,0,PASS docs/courses/math-grade-5/s10.md
+unitplan-math-grade-6,0,PASS docs/courses/math-grade-6/s08.md
+unitplan-math-grade-7,0,PASS docs/courses/math-grade-7/s08.md
+unitplan-math-grade-8,0,PASS docs/courses/math-grade-8/s08.md
+unitplan-math-kindergarten,1,PASS docs/courses/math-kindergarten/u08-3.md
+unitplan-physics,0,PASS docs/courses/physics/s10.md
+unitplan-precalculus,0,no unit plans found for: precalculus
+unitplan-psychology,0,no unit plans found for: psychology
+unitplan-science-grade-1,0,PASS docs/courses/science-grade-1/u08-1.md
+unitplan-science-grade-2,0,PASS docs/courses/science-grade-2/u07-2.md
+unitplan-science-grade-3,0,PASS docs/courses/science-grade-3/u06-4.md
+unitplan-science-grade-4,0,PASS docs/courses/science-grade-4/u06-5.md
+unitplan-science-grade-5,0,PASS docs/courses/science-grade-5/u06-6.md
+unitplan-science-grade-6,0,PASS docs/courses/science-grade-6/s06.md
+unitplan-science-grade-7,0,PASS docs/courses/science-grade-7/s06.md
+unitplan-science-grade-8,0,PASS docs/courses/science-grade-8/s06.md
+unitplan-science-kindergarten,0,PASS docs/courses/science-kindergarten/u06-2.md
+unitplan-social-studies-grade-1,0,PASS docs/courses/social-studies-grade-1/u08-4.md
+unitplan-social-studies-grade-2,0,PASS docs/courses/social-studies-grade-2/u07-4.md
+unitplan-social-studies-grade-3,0,PASS docs/courses/social-studies-grade-3/u07-5.md
+unitplan-social-studies-grade-4,0,PASS docs/courses/social-studies-grade-4/u07-6.md
+unitplan-social-studies-grade-5,0,PASS docs/courses/social-studies-grade-5/u10-4.md
+unitplan-social-studies-kindergarten,0,PASS docs/courses/social-studies-kindergarten/u06-3.md
+unitplan-statistics,0,no unit plans found for: statistics
+unitplan-us-government-and-politics,0,PASS docs/courses/us-government-and-politics/s09.md
+unitplan-us-history-i,0,PASS docs/courses/us-history-i/s09.md
+unitplan-us-history-ii,0,PASS docs/courses/us-history-ii/s12.md
+unitplan-world-geography-and-ancient-civilizations-i,0,PASS docs/courses/world-geography-and-ancient-civilizations-i/s11.md
+unitplan-world-geography-and-ancient-civilizations-ii,0,PASS docs/courses/world-geography-and-ancient-civilizations-ii/s12.md
+unitplan-world-history-i,0,PASS docs/courses/world-history-i/s10.md
+unitplan-world-history-ii,0,PASS docs/courses/world-history-ii/s11.md
+vocabulary-check,0,"vocabulary: 0 row(s) checked, 0 line(s)"

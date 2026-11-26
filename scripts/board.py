@@ -1,4 +1,6 @@
-r"""The build board: where every tool is in the pipeline, worked out from its files so it never drifts.
+r"""The build board: where every tool is in the pipeline. The stage is read from data/tool-stages.csv
+(scripts/tool_stages.py, its one home); art, voice, verify, plan and sub come from the tool's files. The file guess
+below (infer) seeded that table and is what `tool_stages.py check` compares against.
 
     python scripts/board.py              write docs/BUILD-BOARD.md and print the totals
     python scripts/board.py --wave 1     print one wave's rows
@@ -44,28 +46,50 @@ def voice(f):
     return sum((f / 'voice' / clip_name(t)).exists() for t in lines), len(lines)
 
 
-def first_line(p):
-    return p.read_text(encoding='utf-8').split('\n', 1)[0].upper() if p.exists() else ''
+def first_line(tid, name):
+    """The first line of a record part, from the old file or from tool.md (scripts/tool_record.py)."""
+    import tool_record
+    return tool_record.part(tid, name).split('\n', 1)[0].upper()
+
+
+def has(tid, name):
+    import tool_record
+    return tool_record.has(tid, name)
+
+
+_STAGES = None
 
 
 def row(tid):
-    """Where a tool is: the last step it has finished (docs/BUILD-PLAN.md, "Names for each step")."""
+    """Where a tool is: its stage from data/tool-stages.csv (scripts/tool_stages.py, consolidation step 5 item 1),
+    the other columns from its files. A tool with no row there falls back to the file guess."""
+    global _STAGES
+    if _STAGES is None:
+        import tool_stages
+        _STAGES = {k: r['stage'] for k, r in tool_stages.read().items()}
+    r = infer(tid)
+    r['stage'] = _STAGES.get(tid, r['stage'])
+    return r
+
+
+def infer(tid):
+    """The file guess (before data/tool-stages.csv): the last step a tool's files show finished (docs/BUILD-PLAN.md,
+    "Names for each step"). tool_stages.py seed starts from it and tool_stages.py check compares against it."""
     f = TOOLS / tid
     a, an = art(f); v, vn = voice(f)
-    verify = f / 'refine.md' if (f / 'refine.md').exists() else f / 'verify.md'
-    verdict = first_line(verify)
+    verdict = first_line(tid, 'refine.md' if has(tid, 'refine.md') else 'verify.md')
     if (f / 'tool.json').exists():
         st = 'live'
     elif (f / 'tool.draft.json').exists():
         if 'PASS' in verdict:
             if a == an and v == vn:  # every asset painted and every line recorded (or none asked for)
-                st = 'finish' if 'PASS' in first_line(f / 'final.md') else 'artvoice'
+                st = 'finish' if 'PASS' in first_line(tid, 'final.md') else 'artvoice'
             else:
                 st = 'exit'
         elif verdict:  # Refine wrote its fix list (OPEN, or ROUND 2 after an exit check)
-            st = 'fix' if (f / 'polish.md').exists() else 'refine'
+            st = 'fix' if has(tid, 'polish.md') else 'refine'
         else:
-            st = 'selfcheck' if (f / 'codex-review.md').exists() else 'build'
+            st = 'selfcheck' if has(tid, 'codex-review.md') else 'build'
     elif (f / 'spec.md').exists():
         st = 'spec'
     else:

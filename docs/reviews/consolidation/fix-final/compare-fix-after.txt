@@ -1,0 +1,21 @@
+== build_site (1 new line(s), 0 failing)
+  note 521 course and unit pages -> S:\CurioClass\build\gates\fix-final\dist\courses (hidden)
+== compare (9 new line(s), 0 failing); failing lines fell 18 -> 15
+  note == lint-all (16 new line(s), 15 failing); failing lines fell 4210 -> 1341
+  note == tool-record (1 new line(s), 0 failing) [no baseline file]
+  note == tool-stages (1 new line(s), 0 failing) [no baseline file]
+  note gate all against its baseline: 15 failing finding(s), 6 new note line(s)
+  note note 521 course and unit pages -> S:\CurioClass\build\gates\fix-final\dist\courses (hidden)
+  note note index: 49496 nodes, 315400 edges (226879 hard) -> data/index.db
+  note note lint: 1341 line(s) over 59 course(s): style 1341
+  note note tool_record check: 194 tool.md files, 0 problems
+  note note tool_stages check: 809 rows, 0 problems, 0 notes
+== index-reports (1 new line(s), 0 failing)
+  note index: 49496 nodes, 315400 edges (226879 hard) -> data/index.db
+== lint-all (1 new line(s), 0 failing); failing lines fell 1352 -> 1341
+  note lint: 1341 line(s) over 59 course(s): style 1341
+== tool-record (1 new line(s), 0 failing) [no baseline file]
+  note tool_record check: 194 tool.md files, 0 problems
+== tool-stages (1 new line(s), 0 failing) [no baseline file]
+  note tool_stages check: 809 rows, 0 problems, 0 notes
+compare fix-after -> fix-final: 0 failing finding(s), 14 new note line(s)

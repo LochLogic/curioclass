@@ -65,6 +65,7 @@ data/courses.csv,frozen,tool catalog,,catalog course list; the curriculum reads 
 data/sequence.csv,frozen,tool catalog,,
 data/coverage.csv,frozen,tool catalog,,
 data/tools-concepts.csv,frozen,tool catalog,,
+data/tool-stages.csv,source,scripts/tool_stages.py set,tool_stages.py check,"one home of each tool's pipeline stage (consolidation step 5 item 1); written only through tool_stages.py; board.py and desk_stats.py read it"
 data/concepts/**,frozen,tool catalog,check_concepts.py,
 data/modules/**,frozen,tool catalog,,
 docs/agents/catalog/shape/**,frozen,tool catalog,,

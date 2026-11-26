@@ -131,9 +131,10 @@ Wall's cards (data/closet/words, 4,413 cards keyed by tool topic). The chain is 
 pages, the topic hub, Sub Day packets, the worksheet word bank). It stays frozen with the tool catalog, and
 data/closet/words keeps its never-touch rule whole:
 
-1. **Now (4.I):** a one-time read-only import copies each card's word and definition into the word table as candidate
-   rows (status "from the Word Wall, unread", `from` naming file and topic). Collisions and span-grade topics go to a
-   review list, never guessed. Writers then often find a definition waiting.
+1. **When L130 opens (4.L row 7; Cory accepted the close review's reversal, 2026-11-25):** no rows are imported. A
+   lead-run, read-only script prints overlap counts only (ledger term heads that match a card word, by band); if the
+   overlap is high it writes an ignored lookup file definition writers consult. The word table holds only rows a
+   writer wrote, so no tool-catalog list seeds the curriculum.
 2. **At the tool reshaping stage,** with the topic pages: the Word Wall becomes a view over the word table. Pictures,
    examples and Spanish move as their own tables keyed by sense id, the art's R2 keys move through sync_media.py,
    and walls for subjects with no days yet keep their cards until those subjects are written.
@@ -602,7 +603,7 @@ See "Words: from the days, not from the tool catalog" in the end goal.
    plain text, so it can never break a page.
 4. The index's "day uses word" edges come from ledger term rows; lint checks that a marked word has a ledger term row
    in that course. Two reports: introduced but undefined (the backlog), defined but never used.
-5. The read-only import of Word Wall definitions as candidate rows, collisions and span-grade topics to a review list.
+5. Replaced (Cory, 2026-11-25): no import as rows; the count-only overlap read is 4.L row 7.
 6. Print and popup design, and who writes definitions (reading level per band, a fresh-agent sensitivity read of fun
    facts), are later.csv rows.
 
@@ -619,7 +620,8 @@ See "Words: from the days, not from the tool catalog" in the end goal.
   day (or the section, when the row names no day); `uses.py word:runoff` lists them. Step 6: later L129 (print
   design of the Words today box) and L130 (who writes definitions and how they are read), beside L116 and L119.
   Step 5, the read-only Word Wall import, is not run: reading data/closet/words was refused by this session's
-  permission check, since the folder is never-touch. It needs Cory's word that a read-only read is allowed.
+  permission check, since the folder is never-touch. Cory then allowed one read and accepted the close review's
+  reversal (no rows; a count-only overlap read when L130 opens, 4.L row 7).
 
 ### 4.J Close step 4 (S)
 
@@ -648,7 +650,26 @@ moves). D before G, since side-by-side work is only safe once ledgers are per co
 sees 2,763 files that are about to go; E2 before F for the same reason (the index and its baselines would otherwise
 count block copies), and before writing restarts, so no new plan is born with markers. G closes block one.
 Order: A, B, C, D, E, E2, F, G, H, I, J, then the close review. 4.E2 needs its own go and stops once, at its hand list (step 2); F and G
-then run under the block-one go. H, then I (it alone waits on a design answer), then J.
+then run under the block-one go. H, then I (it alone waits on a design answer), then J. After the close review, 4.L (its own order inside).
+
+### 4.L Close-review fixes (before step 5; Cory, 2026-11-25)
+
+Cory read the close review (docs/reviews/consolidation/step4-close-review.md) and said: fix the first three, make a
+plan for the rest, and run the nine-word spelling sweep now. Findings 1, 2 and 7 and the sweep (finding 8) are done
+in the first go. The rest runs in this order, one commit each, before step 5 starts. None writes curriculum content.
+
+| Order | What | Finding | Done when |
+|---|---|---|---|
+| 1 | Index the day mentions. index.py matches `scope-and-sequence.md` (not `scope.md`) and indexes soft day mentions in day files and pieces (`links=True` drops them today); re-store data/index-baseline.csv | 5 | uses.py on a sample day lists its mentions in the scope and sequence and in other days; the new orphan and resolve counts are on the baseline with a line in the Built note |
+| 2 | Tighten the homes. Course patterns become the real names (`s[0-9][0-9].md`, `u[0-9][0-9]-[0-9]*.md`, a named table list for data/plans/<course>/); the folder must be a course-list.csv id; `--course` layout check reads untracked files too; goal test 2 also counts a framed course missing a home (17 courses lack ledger.csv today: list them, and seed each ledger with `ledger.py seed` or record why not) | 6 | homes.py kind on the review's made-up paths says "no home"; a stray untracked file fails its writer's gate; goal test 2 counts what it says |
+| 3 | Invert the catalog lint: every script under scripts/ except a named tool-side set; course_status.py's catalog counts become a second named exception; coverage_ledger.py is fixed or named | 9 | goal test 4 reads every curriculum script; the named set is in lint.py's docstring |
+| 4 | Make goal tests 10 and 11 honest. Test 10 also compares day status (frontmatter `version:` against the ledger `stage`); test 11 also fails an id that left a table without `ids.py retire` (compare against the last committed ids) | review table, 10 and 11 | each test has a self-test case that fails it |
+| 5 | Name test 6 a convention, not a test, in "What each word means" and goal_tests.py | review table, 6 | the doc says so |
+| 6 | The word backlog. Add a `student_word` yes or no column to ledger term rows (default no, set at writing time); vocabulary.py report counts only yes rows | 4 | the report's backlog is a real number before L130 is scoped |
+| 7 | The Word Wall overlap, when L130 opens (not before). Cory allowed one read of data/closet/words for this: a lead-run, read-only script prints overlap counts only (ledger term heads that match a card word, by band). If overlap is high it writes an ignored lookup file for definition writers. It never writes rows in vocabulary.csv | 3 | the counts are in L130's detail |
+| 8 | What got worse, answered: (a) the plan facts read on GitHub again: a generated, committed rendered copy per plan beside the stripped one is NOT the fix (two homes); instead the Front Office plan page links from each plan's header line; (b) the course gate's 24 s floor: the index rebuild is skipped when uses.py's stale check says fresh; (c) the debt baselines get a schedule: each course run's cleanup job works its course's baselined lines down and the lead records the count per grade close; (d) standing rules now living only in Built notes move to the doc that owns them (AGENTS.md, data/homes.csv notes, data/plans/README.md), each with one DESK-ANSWERS line; (e) machinery ahead of use: vocabulary.py and ids.py stay, but get no new features until their first real user (L129, L130) | what got worse | each line closed or moved to later.csv with a reason |
+
+Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 
 ## Step 5: tools, plumbing standardized and play left free
 
@@ -683,7 +704,7 @@ resumes after the curriculum, alongside reshaping the tools to it.
 4. **A sameness check, the opposite of a design system.** At Refine, the tool is compared with the tools of its grade
    band on look, voice and world; too close fails. Mechanics are compared only within a family, since the family
    engines (number line, graphing and the rest) share a mechanic by design.
-5. **Flatten the record, not the tool, and only after Spec.** idea.md and spec.md stay as they are (the build briefs
+5. **Flatten the record, not the tool, and only after Spec** (done 2026-11-25 for every tool, see the note below). idea.md and spec.md stay as they are (the build briefs
    and queues name spec.md). A tool past Spec gets one record, `tools/<id>/tool.md`, holding everything after Spec (build
    report, self-check, refine, fix, exit check, art and voice, finish check, sign-off) and a dated log, plus `checks/`
    for its super-check scripts. Earlier rounds (polish-1, refine-2026-10-28, codex-report-1) go to the archive. This
@@ -693,6 +714,20 @@ resumes after the curriculum, alongside reshaping the tools to it.
    repository and the archive are found by `uses.py`, not by a one-off listing.
 6. **Pilots.** Cipher Vault (about 40 pieces in four places), Living Pond and one tool just past Spec go through 1 to 5
    by hand before the rule applies to new work.
+
+- Items 1 and 5 built 2026-11-25 (Cory: "go ahead and do item 1 and 5 from step 5 too", given before 4.L ran).
+  Item 1: data/tool-stages.csv (809 rows: concept 7, spec 557, build 7, selfcheck 116, fix 20, artvoice 10, live
+  92), seeded from the old file guess with each row's proving record and its git date; scripts/tool_stages.py
+  (seed, set, check); board.py, and through it desk_stats.py, read the stage from it; `tool_stages.py check` joined
+  `gate.py --all`. data/tools.csv (two rows, read by no script) is left alone: it is not a stage record. Tool nodes
+  (state = stage) and `ask` nodes from the 14 TOOL-ASKS.md files, with edges to their units and to any tool they name
+  by folder, are in the index. Item 5: scripts/tool_record.py (flatten, part, check; `tool_record.py check` in
+  `gate.py --all`); board.py and refine_pack.py read both shapes. A dry run over every tool: 194 tools hold record
+  files (732 parts, 12 earlier rounds). On scratch copies, every part read back identical through `part()` and the
+  board read the same verdicts from both shapes. Cory chose to flatten all 194 now (Desk q-tool-record-1, "that should give us a more uniform baseline"):
+  done 2026-11-25, 732 parts in 194 tools/<id>/tool.md, 12 earlier rounds moved to
+  S:/CurioClass-archive/tool-rounds-2026-11-25/; the board and the stage check read the same before and after. The docs/agents/ briefs
+  still name the old files; they change with items 2 to 4 and 6 (later.csv L131).
 
 ## Step 6: close
 

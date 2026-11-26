@@ -15,7 +15,7 @@ the concept catalog, the neighbors script, the kit, the family specs and the bri
 ## Names for each step (Cory, 2026-11-08)
 
 "Review" alone is never used: it could mean five different moments. Each check has its own name, and the files keep
-their old names so nothing breaks.
+their old names so nothing breaks (a flattened tool keeps them as part names inside tool.md, below).
 
 | # | Who | Name | File it leaves |
 |---|---|---|---|
@@ -49,7 +49,23 @@ and voice, Finish check, Your sign-off, Live.
 | 9. Sign-off | Cory, on the Desk | | approve, or notes back to step 5 |
 | 10. Live | rename tool.draft.json to tool.json, make the card art (`python scripts/preview.py <id>`, look at it), deploy | | preview.svg |
 
-`python scripts/board.py` shows where every tool is (docs/BUILD-BOARD.md). It reads the files, so it can't drift.
+`python scripts/board.py` shows where every tool is (docs/BUILD-BOARD.md). The stage comes from data/tool-stages.csv,
+its one home: the step that moves a tool runs `python -X utf8 scripts/tool_stages.py set <id> <stage> --record <file>`,
+naming the file that proves it, and `tool_stages.py check` (in `gate.py --all`) fails a row whose record is gone and
+notes where the files look like another stage.
+
+## One record per tool (consolidation step 5 item 5, 2026-11-25)
+
+idea.md and spec.md stay as they are. Everything after Spec (the "File it leaves" column above: build report,
+self-check, refine and its lens reports, fix, the exit check inside refine.md, the art plan, finish check, handoff)
+belongs in one file, `tools/<id>/tool.md`, one part per old file name with a dated log at the end; a super-check
+script goes in `tools/<id>/checks/`. `python -X utf8 scripts/tool_record.py flatten <id>` folds a tool's old files in
+(`--dry-run` first) and moves earlier rounds (polish-1.md, refine-2026-10-28.md) to the archive. Every tool that had record
+files was flattened on 2026-11-25 (194 tools, Cory, Desk q-tool-record-1); a new part is written into tool.md by the
+step that makes it. Readers (board.py, refine_pack.py) read through `tool_record.part` and `has`, which also take an
+old loose file, so a stray one still reads; `tool_record.py check` fails a part that is in both places. The briefs in docs/agents/ still name the old files; they
+change when tool work resumes, with steps 2 to 4 and 6 of the consolidation's step 5 (later.csv). Teacher pages stay
+their own files: notes.md, plan.md, exit.md.
 
 ## Overlap: kit, family engine, tool
 

@@ -1941,3 +1941,21 @@ course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN
   course that spans bands uses the band of its own grade through data/bands.csv; the six ELA wordlist.csv files stay
   as planning reading lists, and the ledger stays the record of where each word is taught. Cory: these are opinions,
   and a better way to the end goal should be raised.
+- **Word Wall import** (Desk card q-wordwall-import-1, answered 2026-11-25): Cory allowed one read-only read of
+  data/closet/words and accepted the step 4 close review's reversal of plan decision 9: no Word Wall rows go into
+  data/plans/vocabulary.csv. When L130 opens, a lead-run script prints overlap counts only, and if overlap is high
+  writes an ignored lookup file for definition writers (docs/CONSOLIDATION-PLAN.md 4.L row 7).
+- **US spelling sweep** (2026-11-25, reverses Desk q-fix-health-2's "no separate pass" for nine words): Cory, "i dont
+  see why we cant run the nine word sweep now." scripts/us_spelling.py fixed labelled, licence, practise, practised,
+  practises, recognise, modelled, modelling and colour across course pages, plans and plan CSVs, quote-aware;
+  other UK spellings are still fixed when a page is next edited (AGENTS.md).
+- **Close review fixes** (2026-11-25): Cory, "fix the first three and make a plan to fix the rest before we
+  continue." Findings 1, 2 and 7 fixed (the course gate stores its own baseline on an unchanged course and fails
+  with no baseline; it prints counts by rule and only new lines; AGENTS.md, the kit and HANDOFF agree); the rest is
+  docs/CONSOLIDATION-PLAN.md 4.L, before step 5.
+- **Step 5 items 1 and 5 now** (2026-11-25): Cory, "go ahead and do item 1 and 5 from step 5 too." Item 1:
+  data/tool-stages.csv is the one home of each tool's stage (scripts/tool_stages.py); item 5: one record per tool
+  past Spec, tools/<id>/tool.md (scripts/tool_record.py). Items 2 to 4 and 6 still wait for tool work.
+- **Tool records flattened at once** (Desk card q-tool-record-1, answered 2026-11-25): Cory, "yes, flatten them all
+  now. that should give us a more uniform baseline." This replaces the plan's "when a tool next moves": all 194 tools
+  with record files were flattened in one scripted pass; the briefs that still name the old files are later L131.

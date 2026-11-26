@@ -1,0 +1,55 @@
+== build_site (1 new line(s), 0 failing)
+  note 521 course and unit pages -> S:\CurioClass\build\gates\fix-after\dist\courses (hidden)
+== compare (27 new line(s), 18 failing) [no baseline file]; failing lines 0 -> 18
+  note == build_site (1 new line(s), 0 failing)
+  note == index-reports (1 new line(s), 0 failing)
+  note == lint-all (19 new line(s), 18 failing); failing lines fell 4210 -> 1352
+  note == plan-english-language-arts-grade-2 (1 new line(s), 0 failing)
+  FAIL-NEW FAIL-NEW style courses/english-language-arts-kindergarten/u03-1/d083.md: UK spelling "labelled" x2
+  FAIL-NEW FAIL-NEW style courses/english-language-arts-kindergarten/u03-2/d085.md: UK spelling "labelled" x1
+  FAIL-NEW FAIL-NEW style courses/social-studies-grade-2/u04-2/d054.md: UK spelling "modelled" x1
+  FAIL-NEW FAIL-NEW style docs/courses/biology/s10.md: UK spelling "licence" x1
+  FAIL-NEW FAIL-NEW style docs/courses/economics/s01.md: UK spelling "licence" x1
+  FAIL-NEW FAIL-NEW style docs/courses/english-language-arts-grade-1/frame.md: UK spelling "licence" x1
+  FAIL-NEW FAIL-NEW style docs/courses/english-language-arts-grade-10/s03.md: UK spelling "practise" x1
+  FAIL-NEW FAIL-NEW style docs/courses/english-language-arts-grade-2/frame.md: UK spelling "licence" x1
+  FAIL-NEW FAIL-NEW style docs/courses/english-language-arts-grade-2/s01.md: UK spelling "licence" x1
+  FAIL-NEW FAIL-NEW style docs/courses/math-grade-6/scope-and-sequence.md: UK spelling "labelled" x1
+  FAIL-NEW FAIL-NEW style docs/courses/science-grade-2/s03.md: UK spelling "colour" x1
+  FAIL-NEW FAIL-NEW style docs/courses/world-geography-and-ancient-civilizations-i/s02.md: UK spelling "licence" x1
+  FAIL-NEW FAIL-NEW style docs/courses/world-geography-and-ancient-civilizations-i/s03.md: UK spelling "licence" x1
+  FAIL-NEW FAIL-NEW style docs/courses/world-geography-and-ancient-civilizations-i/s09.md: UK spelling "licence" x1
+  FAIL-NEW FAIL-NEW style docs/courses/world-geography-and-ancient-civilizations-ii/s01.md: UK spelling "licence" x1
+  FAIL-NEW FAIL-NEW style render:chemistry/s01.md: UK spelling "licence" x1
+  FAIL-NEW FAIL-NEW style render:english-language-arts-grade-3/s04.md: UK spelling "labelled" x1
+  FAIL-NEW FAIL-NEW style render:math-grade-3/s04.md: UK spelling "practise" x1
+  note gate all against its baseline: 18 failing finding(s), 4 new note line(s)
+  note note 521 course and unit pages -> S:\CurioClass\build\gates\fix-after\dist\courses (hidden)
+  note note index: 48638 nodes, 315379 edges (226858 hard) -> data/index.db
+  note note lint: 1352 line(s) over 59 course(s): style 1352
+  note note note day 107: the goal piece "practice clear presentation sentences" is set-up, shown by no item; is it really set-up?
+== index-reports (1 new line(s), 0 failing)
+  note index: 48638 nodes, 315379 edges (226858 hard) -> data/index.db
+== lint-all (19 new line(s), 18 failing); failing lines fell 4210 -> 1352
+  note lint: 1352 line(s) over 59 course(s): style 1352
+  FAIL-NEW style courses/english-language-arts-kindergarten/u03-1/d083.md: UK spelling "labelled" x2
+  FAIL-NEW style courses/english-language-arts-kindergarten/u03-2/d085.md: UK spelling "labelled" x1
+  FAIL-NEW style courses/social-studies-grade-2/u04-2/d054.md: UK spelling "modelled" x1
+  FAIL-NEW style docs/courses/biology/s10.md: UK spelling "licence" x1
+  FAIL-NEW style docs/courses/economics/s01.md: UK spelling "licence" x1
+  FAIL-NEW style docs/courses/english-language-arts-grade-1/frame.md: UK spelling "licence" x1
+  FAIL-NEW style docs/courses/english-language-arts-grade-10/s03.md: UK spelling "practise" x1
+  FAIL-NEW style docs/courses/english-language-arts-grade-2/frame.md: UK spelling "licence" x1
+  FAIL-NEW style docs/courses/english-language-arts-grade-2/s01.md: UK spelling "licence" x1
+  FAIL-NEW style docs/courses/math-grade-6/scope-and-sequence.md: UK spelling "labelled" x1
+  FAIL-NEW style docs/courses/science-grade-2/s03.md: UK spelling "colour" x1
+  FAIL-NEW style docs/courses/world-geography-and-ancient-civilizations-i/s02.md: UK spelling "licence" x1
+  FAIL-NEW style docs/courses/world-geography-and-ancient-civilizations-i/s03.md: UK spelling "licence" x1
+  FAIL-NEW style docs/courses/world-geography-and-ancient-civilizations-i/s09.md: UK spelling "licence" x1
+  FAIL-NEW style docs/courses/world-geography-and-ancient-civilizations-ii/s01.md: UK spelling "licence" x1
+  FAIL-NEW style render:chemistry/s01.md: UK spelling "licence" x1
+  FAIL-NEW style render:english-language-arts-grade-3/s04.md: UK spelling "labelled" x1
+  FAIL-NEW style render:math-grade-3/s04.md: UK spelling "practise" x1
+== plan-english-language-arts-grade-2 (1 new line(s), 0 failing)
+  note note day 107: the goal piece "practice clear presentation sentences" is set-up, shown by no item; is it really set-up?
+compare fix-before -> fix-after: 36 failing finding(s), 13 new note line(s)

@@ -1,0 +1,228 @@
+== build_site (1 new line(s), 0 failing)
+  note 521 course and unit pages -> S:\CurioClass\build\gates\fix-before\dist\courses (hidden)
+== lesson-check (72 new line(s), 72 failing); failing lines fell 5416 -> 1188
+  FAIL-NEW FAIL s01-A13b-evidence and 4 more have the same stem: s01-A30-audience, s01-A34b-evidence, s01-A35-range, s01-A38c
+  FAIL-NEW FAIL s01-P10-10 and 3 more have the same stem: s01-P11-8, s01-P12-8, s01-P13-3
+  FAIL-NEW FAIL s01-W22 and 2 more have the same stem: s01-W26-1, s01-W27-1
+  FAIL-NEW FAIL s01-W22-2 and 2 more have the same stem: s01-W26-2, s01-W27-2
+  FAIL-NEW FAIL s02-F2reason-40 and 2 more have the same stem: s02-F2reason-41, s02-F2reason-42
+  FAIL-NEW FAIL s02-F3-1 and 2 more have the same stem: s02-F3-2, s02-F3-3
+  FAIL-NEW FAIL s02-F3reason-40 and 2 more have the same stem: s02-F3reason-41, s02-F3reason-42
+  FAIL-NEW FAIL s02-F4-circle and 2 more have the same stem: s02-F4-square, s02-F4-triangle
+  FAIL-NEW FAIL s02-K30-0 and 10 more have the same stem: s02-K30-1, s02-K30-2, s02-K30-3, s02-K30-4, s02-K30-5, s02-K30-6, s02-K30-7, s02-K30-8, s02-K30-9, s02-K30-10
+  FAIL-NEW FAIL s02-M1a-34 and 5 more have the same stem: s02-M1a-35, s02-M1a-36, s02-M1a-37, s02-M1a-38, s02-M1a-39
+  FAIL-NEW FAIL s02-M1b-34 and 5 more have the same stem: s02-M1b-35, s02-M1b-36, s02-M1b-37, s02-M1b-38, s02-M1b-39
+  FAIL-NEW FAIL s02-M1c-34 and 5 more have the same stem: s02-M1c-35, s02-M1c-36, s02-M1c-37, s02-M1c-38, s02-M1c-39
+  FAIL-NEW FAIL s02-M1d-34 and 5 more have the same stem: s02-M1d-35, s02-M1d-36, s02-M1d-37, s02-M1d-38, s02-M1d-39
+  FAIL-NEW FAIL s02-M2a-34 and 5 more have the same stem: s02-M2a-35, s02-M2a-36, s02-M2a-37, s02-M2a-38, s02-M2a-39
+  FAIL-NEW FAIL s02-M2p-1 and 3 more have the same stem: s02-M2p-3, s02-M2p-5, s02-M2p-7
+  FAIL-NEW FAIL s02-P30-2 and 13 more have the same stem: s02-P30-3, s02-P30-4, s02-P30-5, s02-P30-6, s02-P33-2, s02-P33-3, s02-P33-4, s02-P33-5, s02-P32-4, s02-P32-5, s02-P32-6, s02-P32-7, s02-P32-8
+  FAIL-NEW FAIL s02-P31-1 and 2 more have the same stem: s02-F31, s02-F32
+  FAIL-NEW FAIL s02-P32-1 and 3 more have the same stem: s02-K32-1, s02-P32-2, s02-F33
+  FAIL-NEW FAIL s02-R30-oral and 3 more have the same stem: s02-R31-oral, s02-R32-oral, s02-R33-oral
+  FAIL-NEW FAIL s03-A63-F1 and 5 more have the same stem: s03-A63-F2, s03-A63-F3, s03-A63-F4, s03-A63-F5, s03-A63-F6
+  FAIL-NEW FAIL s03-F1-talk-58 and 4 more have the same stem: s03-F1-talk-59, s03-F1-talk-60, s03-F1-talk-61, s03-F1-talk-62
+  FAIL-NEW FAIL s03-F2-talk-58 and 4 more have the same stem: s03-F2-talk-59, s03-F2-talk-60, s03-F2-talk-61, s03-F2-talk-62
+  FAIL-NEW FAIL s03-F5-talk-58 and 4 more have the same stem: s03-F5-talk-59, s03-F5-talk-60, s03-F5-talk-61, s03-F5-talk-62
+  FAIL-NEW FAIL s03-F50-C and 12 more have the same stem: s03-F51-C, s03-F52-G, s03-F57-I, s03-F58-D, s03-F59-C, s03-F60-E, s03-F61-K, s03-F62-E, s03-F60-K, s03-F60-N, s03-F61-corners, s03-F62-K
+  FAIL-NEW FAIL s03-F6-capacity-58 and 4 more have the same stem: s03-F6-capacity-59, s03-F6-capacity-60, s03-F6-capacity-61, s03-F6-capacity-62
+  FAIL-NEW FAIL s03-F6-weight-58 and 4 more have the same stem: s03-F6-weight-59, s03-F6-weight-60, s03-F6-weight-61, s03-F6-weight-62
+  FAIL-NEW FAIL s03-W50 and 9 more have the same stem: s03-W51, s03-W52, s03-W57, s03-W58, s03-W59, s03-W60, s03-W61, s03-W62, s03-W63
+  FAIL-NEW FAIL s05-C101-F1 and 2 more have the same stem: s05-C102-F1, s05-C103-F1
+  FAIL-NEW FAIL s05-C101-F2 and 2 more have the same stem: s05-C102-F2, s05-C103-F2
+  FAIL-NEW FAIL s05-C101-F3 and 2 more have the same stem: s05-C102-F3, s05-C103-F3
+  FAIL-NEW FAIL s05-F-C92 and 4 more have the same stem: s05-F-C96, s05-FC97, s05-FC99, s05-FC102
+  FAIL-NEW FAIL s05-F1-0-1 and 10 more have the same stem: s05-F1-1-1, s05-F1-2-1, s05-F1-3-1, s05-F1-4-1, s05-F1-5-1, s05-F1-6-1, s05-F1-7-1, s05-F1-8-1, s05-F1-9-1, s05-F1-10-1
+  FAIL-NEW FAIL s05-F1-2-2 and 8 more have the same stem: s05-F1-3-2, s05-F1-4-2, s05-F1-5-2, s05-F1-6-2, s05-F1-7-2, s05-F1-8-2, s05-F1-9-2, s05-F1-10-2
+  FAIL-NEW FAIL s05-F2-1 and 8 more have the same stem: s05-F2-2, s05-F2-3, s05-F2-4, s05-F2-5, s05-F2-6, s05-F2-7, s05-F2-8, s05-F2-9
+  FAIL-NEW FAIL s05-FA97 and 2 more have the same stem: s05-FA98, s05-FA102
+  FAIL-NEW FAIL s05-FD98 and 3 more have the same stem: s05-FD99, s05-FD100, s05-FD102
+  FAIL-NEW FAIL s05-FE100 and 2 more have the same stem: s05-FE101, s05-FE102
+  FAIL-NEW FAIL s05-G87-1 and 67 more have the same stem: s05-G87-2, s05-G87-3, s05-G87-4, s05-G88-1, s05-G88-2, s05-G88-3, s05-G88-4, s05-G89-1, s05-G89-2, s05-G89-3, s05-G89-4, s05-G90-1, s05-G90-2, s05-G90-3, s05-G90-4, s05-G91-1, s05-G91-2, s05-G91-3, s05-G91-4, s05-G92-1, s05-G92-2, s05-G92-3, s05-G92-4, s05-G93-1, s05-G93-2, s05-G93-3, s05-G93-4, s05-G94-1, s05-G94-2, s05-G94-3, s05-G94-4, s05-G95-1, s05-G95-2, s05-G95-3, s05-G95-4, s05-G96-1, s05-G96-2, s05-G96-3, s05-G96-4, s05-G97-1, s05-G97-2, s05-G97-3, s05-G97-4, s05-G98-1, s05-G98-2, s05-G98-3, s05-G98-4, s05-G99-1, s05-G99-2, s05-G99-3, s05-G99-4, s05-G100-1, s05-G100-2, s05-G100-3, s05-G100-4, s05-G101-1, s05-G101-2, s05-G101-3, s05-G101-4, s05-G102-1, s05-G102-2, s05-G102-3, s05-G102-4, s05-G103-1, s05-G103-2, s05-G103-3, s05-G103-4
+  FAIL-NEW FAIL s05-K87-count and 3 more have the same stem: s05-K88-count, s05-K89-count, s05-K90-count
+  FAIL-NEW FAIL s05-Kcount91 and 12 more have the same stem: s05-Kcount92, s05-Kcount93, s05-Kcount94, s05-Kcount95, s05-Kcount96, s05-Kcount97, s05-Kcount98, s05-Kcount99, s05-Kcount100, s05-Kcount101, s05-Kcount102, s05-Kcount103
+  FAIL-NEW FAIL s05-Kone97 and 2 more have the same stem: s05-Ktwo97, s05-Kfive97
+  FAIL-NEW FAIL s06-C115-F2-count and 3 more have the same stem: s06-C116-F2-count, s06-C117-F2-count, s06-C118-F2-count
+  FAIL-NEW FAIL s06-C115-F2-out and 3 more have the same stem: s06-C116-F2-out, s06-C117-F2-out, s06-C118-F2-out
+  FAIL-NEW FAIL s06-C115-F4-start and 3 more have the same stem: s06-C116-F4-start, s06-C117-F4-start, s06-C118-F4-start
+  FAIL-NEW FAIL s06-F1-14 and 20 more have the same stem: s06-F1-00, s06-F1-18, s06-F1-11, s06-F1-20, s06-F1-16, s06-F1-13, s06-F1-19, s06-F1-12, s06-F1-17, s06-F1-15, s06-F1-07, s06-F1-02, s06-F1-10, s06-F1-04, s06-F1-01, s06-F1-09, s06-F1-03, s06-F1-08, s06-F1-05, s06-F1-06
+  FAIL-NEW FAIL s06-F2-paper-1 and 3 more have the same stem: s06-F2-paper-2, s06-F2-paper-3, s06-F2-paper-4
+  FAIL-NEW FAIL s06-F3-split-14 and 8 more have the same stem: s06-F3-split-19, s06-F3-split-12, s06-F3-split-16, s06-F3-split-11, s06-F3-split-18, s06-F3-split-15, s06-F3-split-17, s06-F3-split-13
+  FAIL-NEW FAIL s06-G108-1 and 7 more have the same stem: s06-G109-1, s06-G110-1, s06-G111-1, s06-G116-1, s06-G117-1, s06-G118-1, s06-G119-1
+  FAIL-NEW FAIL s06-G108-2 and 7 more have the same stem: s06-G109-2, s06-G110-2, s06-G111-2, s06-G116-2, s06-G117-2, s06-G118-2, s06-G119-2
+  FAIL-NEW FAIL s06-G108-3 and 7 more have the same stem: s06-G109-3, s06-G110-3, s06-G111-3, s06-G116-3, s06-G117-3, s06-G118-3, s06-G119-3
+  FAIL-NEW FAIL s06-G108-4 and 7 more have the same stem: s06-G109-4, s06-G110-4, s06-G111-4, s06-G116-4, s06-G117-4, s06-G118-4, s06-G119-4
+  FAIL-NEW FAIL s06-K108 and 6 more have the same stem: s06-K109, s06-K110, s06-K111, s06-K116, s06-K117, s06-K118
+  FAIL-NEW FAIL s06-X110 and 4 more have the same stem: s06-C115-F3-name, s06-C116-F3-name, s06-C117-F3-name, s06-C118-F3-name
+  FAIL-NEW FAIL s07-G120-1 and 4 more have the same stem: s07-G126-1, s07-G127-1, s07-G128-1, s07-G129-1
+  FAIL-NEW FAIL s07-G120-2 and 4 more have the same stem: s07-G126-2, s07-G127-2, s07-G128-2, s07-G129-2
+  FAIL-NEW FAIL s07-G120-3 and 4 more have the same stem: s07-G126-3, s07-G127-3, s07-G128-3, s07-G129-3
+  FAIL-NEW FAIL s07-G120-4 and 4 more have the same stem: s07-G126-4, s07-G127-4, s07-G128-4, s07-G129-4
+  FAIL-NEW FAIL s07-W120-ones and 4 more have the same stem: s07-W126-ones, s07-W127-ones, s07-W128-ones, s07-W129-ones
+  FAIL-NEW FAIL s07-W120-tens and 4 more have the same stem: s07-W126-tens, s07-W127-tens, s07-W128-tens, s07-W129-tens
+  FAIL-NEW FAIL s08-G135-1 and 29 more have the same stem: s08-G136-1, s08-G137-1, s08-G138-1, s08-G139-1, s08-G135-2, s08-G136-2, s08-G137-2, s08-G138-2, s08-G139-2, s08-G135-3, s08-G136-3, s08-G137-3, s08-G138-3, s08-G139-3, s08-G135-4, s08-G136-4, s08-G137-4, s08-G138-4, s08-G139-4, s08-G135-5, s08-G136-5, s08-G137-5, s08-G138-5, s08-G139-5, s08-G135-6, s08-G136-6, s08-G137-6, s08-G138-6, s08-G139-6
+  FAIL-NEW FAIL s08-G140-1 and 5 more have the same stem: s08-G141-1, s08-G142-1, s08-G143-1, s08-G144-1, s08-G145-1
+  FAIL-NEW FAIL s08-G140-2 and 5 more have the same stem: s08-G141-2, s08-G142-2, s08-G143-2, s08-G144-2, s08-G145-2
+  FAIL-NEW FAIL s08-G140-3 and 5 more have the same stem: s08-G141-3, s08-G142-3, s08-G143-3, s08-G144-3, s08-G145-3
+  FAIL-NEW FAIL s08-G140-4 and 5 more have the same stem: s08-G141-4, s08-G142-4, s08-G143-4, s08-G144-4, s08-G145-4
+  FAIL-NEW FAIL s08-G140-5 and 5 more have the same stem: s08-G141-5, s08-G142-5, s08-G143-5, s08-G144-5, s08-G145-5
+  FAIL-NEW FAIL s08-G140-6 and 5 more have the same stem: s08-G141-6, s08-G142-6, s08-G143-6, s08-G144-6, s08-G145-6
+  FAIL-NEW FAIL s08-Q135 and 4 more have the same stem: s08-Q136, s08-Q137, s08-Q138, s08-Q139
+  FAIL-NEW FAIL s08-R-sort and 10 more have the same stem: s08-R-compare, s08-R-one-more, s08-R-numerals, s08-R-arrangements, s08-R-teens, s08-R-start, s08-R-flat-solid, s08-R-features, s08-R-represent, s08-R-stories
+  FAIL-NEW FAIL sC-E152-L and 3 more have the same stem: sC-E152-A, sC-E152-C, sC-E152-S
+  FAIL-NEW FAIL sC-E152-N01 and 20 more have the same stem: sC-E152-N02, sC-E152-N03, sC-E152-N04, sC-E152-N05, sC-E152-N06, sC-E152-N07, sC-E152-N08, sC-E152-N09, sC-E152-N10, sC-E152-N11, sC-E152-N12, sC-E152-N13, sC-E152-N14, sC-E152-N15, sC-E152-N16, sC-E152-N17, sC-E152-N18, sC-E152-N19, sC-E152-N20, sC-E152-N21
+  FAIL-NEW FAIL sC-P154-count and 3 more have the same stem: sC-P155-count, sC-P156-count, sC-P157-count
+  FAIL-NEW FAIL sC-P154-gamea and 7 more have the same stem: sC-P154-gameb, sC-P155-gamea, sC-P155-gameb, sC-P156-gamea, sC-P156-gameb, sC-P157-gamea, sC-P157-gameb
+== lesson-english-language-arts-grade-4 (5 new line(s), 4 failing); failing lines fell 432 -> 414
+  FAIL-NEW FAIL s01-A13b-evidence and 4 more have the same stem: s01-A30-audience, s01-A34b-evidence, s01-A35-range, s01-A38c
+  FAIL-NEW FAIL s01-P10-10 and 3 more have the same stem: s01-P11-8, s01-P12-8, s01-P13-3
+  FAIL-NEW FAIL s01-W22 and 2 more have the same stem: s01-W26-1, s01-W27-1
+  FAIL-NEW FAIL s01-W22-2 and 2 more have the same stem: s01-W26-2, s01-W27-2
+  note lesson_course: 404 failure(s) in 38 day(s), 47 in day files
+== lesson-math-kindergarten (69 new line(s), 68 failing); failing lines fell 4426 -> 216
+  FAIL-NEW FAIL s02-F2reason-40 and 2 more have the same stem: s02-F2reason-41, s02-F2reason-42
+  FAIL-NEW FAIL s02-F3-1 and 2 more have the same stem: s02-F3-2, s02-F3-3
+  FAIL-NEW FAIL s02-F3reason-40 and 2 more have the same stem: s02-F3reason-41, s02-F3reason-42
+  FAIL-NEW FAIL s02-F4-circle and 2 more have the same stem: s02-F4-square, s02-F4-triangle
+  FAIL-NEW FAIL s02-K30-0 and 10 more have the same stem: s02-K30-1, s02-K30-2, s02-K30-3, s02-K30-4, s02-K30-5, s02-K30-6, s02-K30-7, s02-K30-8, s02-K30-9, s02-K30-10
+  FAIL-NEW FAIL s02-M1a-34 and 5 more have the same stem: s02-M1a-35, s02-M1a-36, s02-M1a-37, s02-M1a-38, s02-M1a-39
+  FAIL-NEW FAIL s02-M1b-34 and 5 more have the same stem: s02-M1b-35, s02-M1b-36, s02-M1b-37, s02-M1b-38, s02-M1b-39
+  FAIL-NEW FAIL s02-M1c-34 and 5 more have the same stem: s02-M1c-35, s02-M1c-36, s02-M1c-37, s02-M1c-38, s02-M1c-39
+  FAIL-NEW FAIL s02-M1d-34 and 5 more have the same stem: s02-M1d-35, s02-M1d-36, s02-M1d-37, s02-M1d-38, s02-M1d-39
+  FAIL-NEW FAIL s02-M2a-34 and 5 more have the same stem: s02-M2a-35, s02-M2a-36, s02-M2a-37, s02-M2a-38, s02-M2a-39
+  FAIL-NEW FAIL s02-M2p-1 and 3 more have the same stem: s02-M2p-3, s02-M2p-5, s02-M2p-7
+  FAIL-NEW FAIL s02-P30-2 and 13 more have the same stem: s02-P30-3, s02-P30-4, s02-P30-5, s02-P30-6, s02-P33-2, s02-P33-3, s02-P33-4, s02-P33-5, s02-P32-4, s02-P32-5, s02-P32-6, s02-P32-7, s02-P32-8
+  FAIL-NEW FAIL s02-P31-1 and 2 more have the same stem: s02-F31, s02-F32
+  FAIL-NEW FAIL s02-P32-1 and 3 more have the same stem: s02-K32-1, s02-P32-2, s02-F33
+  FAIL-NEW FAIL s02-R30-oral and 3 more have the same stem: s02-R31-oral, s02-R32-oral, s02-R33-oral
+  FAIL-NEW FAIL s03-A63-F1 and 5 more have the same stem: s03-A63-F2, s03-A63-F3, s03-A63-F4, s03-A63-F5, s03-A63-F6
+  FAIL-NEW FAIL s03-F1-talk-58 and 4 more have the same stem: s03-F1-talk-59, s03-F1-talk-60, s03-F1-talk-61, s03-F1-talk-62
+  FAIL-NEW FAIL s03-F2-talk-58 and 4 more have the same stem: s03-F2-talk-59, s03-F2-talk-60, s03-F2-talk-61, s03-F2-talk-62
+  FAIL-NEW FAIL s03-F5-talk-58 and 4 more have the same stem: s03-F5-talk-59, s03-F5-talk-60, s03-F5-talk-61, s03-F5-talk-62
+  FAIL-NEW FAIL s03-F50-C and 12 more have the same stem: s03-F51-C, s03-F52-G, s03-F57-I, s03-F58-D, s03-F59-C, s03-F60-E, s03-F61-K, s03-F62-E, s03-F60-K, s03-F60-N, s03-F61-corners, s03-F62-K
+  FAIL-NEW FAIL s03-F6-capacity-58 and 4 more have the same stem: s03-F6-capacity-59, s03-F6-capacity-60, s03-F6-capacity-61, s03-F6-capacity-62
+  FAIL-NEW FAIL s03-F6-weight-58 and 4 more have the same stem: s03-F6-weight-59, s03-F6-weight-60, s03-F6-weight-61, s03-F6-weight-62
+  FAIL-NEW FAIL s03-W50 and 9 more have the same stem: s03-W51, s03-W52, s03-W57, s03-W58, s03-W59, s03-W60, s03-W61, s03-W62, s03-W63
+  FAIL-NEW FAIL s05-C101-F1 and 2 more have the same stem: s05-C102-F1, s05-C103-F1
+  FAIL-NEW FAIL s05-C101-F2 and 2 more have the same stem: s05-C102-F2, s05-C103-F2
+  FAIL-NEW FAIL s05-C101-F3 and 2 more have the same stem: s05-C102-F3, s05-C103-F3
+  FAIL-NEW FAIL s05-F-C92 and 4 more have the same stem: s05-F-C96, s05-FC97, s05-FC99, s05-FC102
+  FAIL-NEW FAIL s05-F1-0-1 and 10 more have the same stem: s05-F1-1-1, s05-F1-2-1, s05-F1-3-1, s05-F1-4-1, s05-F1-5-1, s05-F1-6-1, s05-F1-7-1, s05-F1-8-1, s05-F1-9-1, s05-F1-10-1
+  FAIL-NEW FAIL s05-F1-2-2 and 8 more have the same stem: s05-F1-3-2, s05-F1-4-2, s05-F1-5-2, s05-F1-6-2, s05-F1-7-2, s05-F1-8-2, s05-F1-9-2, s05-F1-10-2
+  FAIL-NEW FAIL s05-F2-1 and 8 more have the same stem: s05-F2-2, s05-F2-3, s05-F2-4, s05-F2-5, s05-F2-6, s05-F2-7, s05-F2-8, s05-F2-9
+  FAIL-NEW FAIL s05-FA97 and 2 more have the same stem: s05-FA98, s05-FA102
+  FAIL-NEW FAIL s05-FD98 and 3 more have the same stem: s05-FD99, s05-FD100, s05-FD102
+  FAIL-NEW FAIL s05-FE100 and 2 more have the same stem: s05-FE101, s05-FE102
+  FAIL-NEW FAIL s05-G87-1 and 67 more have the same stem: s05-G87-2, s05-G87-3, s05-G87-4, s05-G88-1, s05-G88-2, s05-G88-3, s05-G88-4, s05-G89-1, s05-G89-2, s05-G89-3, s05-G89-4, s05-G90-1, s05-G90-2, s05-G90-3, s05-G90-4, s05-G91-1, s05-G91-2, s05-G91-3, s05-G91-4, s05-G92-1, s05-G92-2, s05-G92-3, s05-G92-4, s05-G93-1, s05-G93-2, s05-G93-3, s05-G93-4, s05-G94-1, s05-G94-2, s05-G94-3, s05-G94-4, s05-G95-1, s05-G95-2, s05-G95-3, s05-G95-4, s05-G96-1, s05-G96-2, s05-G96-3, s05-G96-4, s05-G97-1, s05-G97-2, s05-G97-3, s05-G97-4, s05-G98-1, s05-G98-2, s05-G98-3, s05-G98-4, s05-G99-1, s05-G99-2, s05-G99-3, s05-G99-4, s05-G100-1, s05-G100-2, s05-G100-3, s05-G100-4, s05-G101-1, s05-G101-2, s05-G101-3, s05-G101-4, s05-G102-1, s05-G102-2, s05-G102-3, s05-G102-4, s05-G103-1, s05-G103-2, s05-G103-3, s05-G103-4
+  FAIL-NEW FAIL s05-K87-count and 3 more have the same stem: s05-K88-count, s05-K89-count, s05-K90-count
+  FAIL-NEW FAIL s05-Kcount91 and 12 more have the same stem: s05-Kcount92, s05-Kcount93, s05-Kcount94, s05-Kcount95, s05-Kcount96, s05-Kcount97, s05-Kcount98, s05-Kcount99, s05-Kcount100, s05-Kcount101, s05-Kcount102, s05-Kcount103
+  FAIL-NEW FAIL s05-Kone97 and 2 more have the same stem: s05-Ktwo97, s05-Kfive97
+  FAIL-NEW FAIL s06-C115-F2-count and 3 more have the same stem: s06-C116-F2-count, s06-C117-F2-count, s06-C118-F2-count
+  FAIL-NEW FAIL s06-C115-F2-out and 3 more have the same stem: s06-C116-F2-out, s06-C117-F2-out, s06-C118-F2-out
+  FAIL-NEW FAIL s06-C115-F4-start and 3 more have the same stem: s06-C116-F4-start, s06-C117-F4-start, s06-C118-F4-start
+  FAIL-NEW FAIL s06-F1-14 and 20 more have the same stem: s06-F1-00, s06-F1-18, s06-F1-11, s06-F1-20, s06-F1-16, s06-F1-13, s06-F1-19, s06-F1-12, s06-F1-17, s06-F1-15, s06-F1-07, s06-F1-02, s06-F1-10, s06-F1-04, s06-F1-01, s06-F1-09, s06-F1-03, s06-F1-08, s06-F1-05, s06-F1-06
+  FAIL-NEW FAIL s06-F2-paper-1 and 3 more have the same stem: s06-F2-paper-2, s06-F2-paper-3, s06-F2-paper-4
+  FAIL-NEW FAIL s06-F3-split-14 and 8 more have the same stem: s06-F3-split-19, s06-F3-split-12, s06-F3-split-16, s06-F3-split-11, s06-F3-split-18, s06-F3-split-15, s06-F3-split-17, s06-F3-split-13
+  FAIL-NEW FAIL s06-G108-1 and 7 more have the same stem: s06-G109-1, s06-G110-1, s06-G111-1, s06-G116-1, s06-G117-1, s06-G118-1, s06-G119-1
+  FAIL-NEW FAIL s06-G108-2 and 7 more have the same stem: s06-G109-2, s06-G110-2, s06-G111-2, s06-G116-2, s06-G117-2, s06-G118-2, s06-G119-2
+  FAIL-NEW FAIL s06-G108-3 and 7 more have the same stem: s06-G109-3, s06-G110-3, s06-G111-3, s06-G116-3, s06-G117-3, s06-G118-3, s06-G119-3
+  FAIL-NEW FAIL s06-G108-4 and 7 more have the same stem: s06-G109-4, s06-G110-4, s06-G111-4, s06-G116-4, s06-G117-4, s06-G118-4, s06-G119-4
+  FAIL-NEW FAIL s06-K108 and 6 more have the same stem: s06-K109, s06-K110, s06-K111, s06-K116, s06-K117, s06-K118
+  FAIL-NEW FAIL s06-X110 and 4 more have the same stem: s06-C115-F3-name, s06-C116-F3-name, s06-C117-F3-name, s06-C118-F3-name
+  FAIL-NEW FAIL s07-G120-1 and 4 more have the same stem: s07-G126-1, s07-G127-1, s07-G128-1, s07-G129-1
+  FAIL-NEW FAIL s07-G120-2 and 4 more have the same stem: s07-G126-2, s07-G127-2, s07-G128-2, s07-G129-2
+  FAIL-NEW FAIL s07-G120-3 and 4 more have the same stem: s07-G126-3, s07-G127-3, s07-G128-3, s07-G129-3
+  FAIL-NEW FAIL s07-G120-4 and 4 more have the same stem: s07-G126-4, s07-G127-4, s07-G128-4, s07-G129-4
+  FAIL-NEW FAIL s07-W120-ones and 4 more have the same stem: s07-W126-ones, s07-W127-ones, s07-W128-ones, s07-W129-ones
+  FAIL-NEW FAIL s07-W120-tens and 4 more have the same stem: s07-W126-tens, s07-W127-tens, s07-W128-tens, s07-W129-tens
+  FAIL-NEW FAIL s08-G135-1 and 29 more have the same stem: s08-G136-1, s08-G137-1, s08-G138-1, s08-G139-1, s08-G135-2, s08-G136-2, s08-G137-2, s08-G138-2, s08-G139-2, s08-G135-3, s08-G136-3, s08-G137-3, s08-G138-3, s08-G139-3, s08-G135-4, s08-G136-4, s08-G137-4, s08-G138-4, s08-G139-4, s08-G135-5, s08-G136-5, s08-G137-5, s08-G138-5, s08-G139-5, s08-G135-6, s08-G136-6, s08-G137-6, s08-G138-6, s08-G139-6
+  FAIL-NEW FAIL s08-G140-1 and 5 more have the same stem: s08-G141-1, s08-G142-1, s08-G143-1, s08-G144-1, s08-G145-1
+  FAIL-NEW FAIL s08-G140-2 and 5 more have the same stem: s08-G141-2, s08-G142-2, s08-G143-2, s08-G144-2, s08-G145-2
+  FAIL-NEW FAIL s08-G140-3 and 5 more have the same stem: s08-G141-3, s08-G142-3, s08-G143-3, s08-G144-3, s08-G145-3
+  FAIL-NEW FAIL s08-G140-4 and 5 more have the same stem: s08-G141-4, s08-G142-4, s08-G143-4, s08-G144-4, s08-G145-4
+  FAIL-NEW FAIL s08-G140-5 and 5 more have the same stem: s08-G141-5, s08-G142-5, s08-G143-5, s08-G144-5, s08-G145-5
+  FAIL-NEW FAIL s08-G140-6 and 5 more have the same stem: s08-G141-6, s08-G142-6, s08-G143-6, s08-G144-6, s08-G145-6
+  FAIL-NEW FAIL s08-Q135 and 4 more have the same stem: s08-Q136, s08-Q137, s08-Q138, s08-Q139
+  FAIL-NEW FAIL s08-R-sort and 10 more have the same stem: s08-R-compare, s08-R-one-more, s08-R-numerals, s08-R-arrangements, s08-R-teens, s08-R-start, s08-R-flat-solid, s08-R-features, s08-R-represent, s08-R-stories
+  FAIL-NEW FAIL sC-E152-L and 3 more have the same stem: sC-E152-A, sC-E152-C, sC-E152-S
+  FAIL-NEW FAIL sC-E152-N01 and 20 more have the same stem: sC-E152-N02, sC-E152-N03, sC-E152-N04, sC-E152-N05, sC-E152-N06, sC-E152-N07, sC-E152-N08, sC-E152-N09, sC-E152-N10, sC-E152-N11, sC-E152-N12, sC-E152-N13, sC-E152-N14, sC-E152-N15, sC-E152-N16, sC-E152-N17, sC-E152-N18, sC-E152-N19, sC-E152-N20, sC-E152-N21
+  FAIL-NEW FAIL sC-P154-count and 3 more have the same stem: sC-P155-count, sC-P156-count, sC-P157-count
+  FAIL-NEW FAIL sC-P154-gamea and 7 more have the same stem: sC-P154-gameb, sC-P155-gamea, sC-P155-gameb, sC-P156-gamea, sC-P156-gameb, sC-P157-gamea, sC-P157-gameb
+  note lesson_course: 215 failure(s) in 160 day(s), 131 in day files
+== plan-english-language-arts-grade-4 (5 new line(s), 4 failing); failing lines fell 393 -> 375
+  FAIL-NEW FAIL s01-A13b-evidence and 4 more have the same stem: s01-A30-audience, s01-A34b-evidence, s01-A35-range, s01-A38c
+  FAIL-NEW FAIL s01-P10-10 and 3 more have the same stem: s01-P11-8, s01-P12-8, s01-P13-3
+  FAIL-NEW FAIL s01-W22 and 2 more have the same stem: s01-W26-1, s01-W27-1
+  FAIL-NEW FAIL s01-W22-2 and 2 more have the same stem: s01-W26-2, s01-W27-2
+  note english-language-arts-grade-4: 431 items and 470 wrong answers checked, 346 failure(s)
+== plan-math-kindergarten (69 new line(s), 68 failing); failing lines fell 4294 -> 84
+  FAIL-NEW FAIL s02-F2reason-40 and 2 more have the same stem: s02-F2reason-41, s02-F2reason-42
+  FAIL-NEW FAIL s02-F3-1 and 2 more have the same stem: s02-F3-2, s02-F3-3
+  FAIL-NEW FAIL s02-F3reason-40 and 2 more have the same stem: s02-F3reason-41, s02-F3reason-42
+  FAIL-NEW FAIL s02-F4-circle and 2 more have the same stem: s02-F4-square, s02-F4-triangle
+  FAIL-NEW FAIL s02-K30-0 and 10 more have the same stem: s02-K30-1, s02-K30-2, s02-K30-3, s02-K30-4, s02-K30-5, s02-K30-6, s02-K30-7, s02-K30-8, s02-K30-9, s02-K30-10
+  FAIL-NEW FAIL s02-M1a-34 and 5 more have the same stem: s02-M1a-35, s02-M1a-36, s02-M1a-37, s02-M1a-38, s02-M1a-39
+  FAIL-NEW FAIL s02-M1b-34 and 5 more have the same stem: s02-M1b-35, s02-M1b-36, s02-M1b-37, s02-M1b-38, s02-M1b-39
+  FAIL-NEW FAIL s02-M1c-34 and 5 more have the same stem: s02-M1c-35, s02-M1c-36, s02-M1c-37, s02-M1c-38, s02-M1c-39
+  FAIL-NEW FAIL s02-M1d-34 and 5 more have the same stem: s02-M1d-35, s02-M1d-36, s02-M1d-37, s02-M1d-38, s02-M1d-39
+  FAIL-NEW FAIL s02-M2a-34 and 5 more have the same stem: s02-M2a-35, s02-M2a-36, s02-M2a-37, s02-M2a-38, s02-M2a-39
+  FAIL-NEW FAIL s02-M2p-1 and 3 more have the same stem: s02-M2p-3, s02-M2p-5, s02-M2p-7
+  FAIL-NEW FAIL s02-P30-2 and 13 more have the same stem: s02-P30-3, s02-P30-4, s02-P30-5, s02-P30-6, s02-P33-2, s02-P33-3, s02-P33-4, s02-P33-5, s02-P32-4, s02-P32-5, s02-P32-6, s02-P32-7, s02-P32-8
+  FAIL-NEW FAIL s02-P31-1 and 2 more have the same stem: s02-F31, s02-F32
+  FAIL-NEW FAIL s02-P32-1 and 3 more have the same stem: s02-K32-1, s02-P32-2, s02-F33
+  FAIL-NEW FAIL s02-R30-oral and 3 more have the same stem: s02-R31-oral, s02-R32-oral, s02-R33-oral
+  FAIL-NEW FAIL s03-A63-F1 and 5 more have the same stem: s03-A63-F2, s03-A63-F3, s03-A63-F4, s03-A63-F5, s03-A63-F6
+  FAIL-NEW FAIL s03-F1-talk-58 and 4 more have the same stem: s03-F1-talk-59, s03-F1-talk-60, s03-F1-talk-61, s03-F1-talk-62
+  FAIL-NEW FAIL s03-F2-talk-58 and 4 more have the same stem: s03-F2-talk-59, s03-F2-talk-60, s03-F2-talk-61, s03-F2-talk-62
+  FAIL-NEW FAIL s03-F5-talk-58 and 4 more have the same stem: s03-F5-talk-59, s03-F5-talk-60, s03-F5-talk-61, s03-F5-talk-62
+  FAIL-NEW FAIL s03-F50-C and 12 more have the same stem: s03-F51-C, s03-F52-G, s03-F57-I, s03-F58-D, s03-F59-C, s03-F60-E, s03-F61-K, s03-F62-E, s03-F60-K, s03-F60-N, s03-F61-corners, s03-F62-K
+  FAIL-NEW FAIL s03-F6-capacity-58 and 4 more have the same stem: s03-F6-capacity-59, s03-F6-capacity-60, s03-F6-capacity-61, s03-F6-capacity-62
+  FAIL-NEW FAIL s03-F6-weight-58 and 4 more have the same stem: s03-F6-weight-59, s03-F6-weight-60, s03-F6-weight-61, s03-F6-weight-62
+  FAIL-NEW FAIL s03-W50 and 9 more have the same stem: s03-W51, s03-W52, s03-W57, s03-W58, s03-W59, s03-W60, s03-W61, s03-W62, s03-W63
+  FAIL-NEW FAIL s05-C101-F1 and 2 more have the same stem: s05-C102-F1, s05-C103-F1
+  FAIL-NEW FAIL s05-C101-F2 and 2 more have the same stem: s05-C102-F2, s05-C103-F2
+  FAIL-NEW FAIL s05-C101-F3 and 2 more have the same stem: s05-C102-F3, s05-C103-F3
+  FAIL-NEW FAIL s05-F-C92 and 4 more have the same stem: s05-F-C96, s05-FC97, s05-FC99, s05-FC102
+  FAIL-NEW FAIL s05-F1-0-1 and 10 more have the same stem: s05-F1-1-1, s05-F1-2-1, s05-F1-3-1, s05-F1-4-1, s05-F1-5-1, s05-F1-6-1, s05-F1-7-1, s05-F1-8-1, s05-F1-9-1, s05-F1-10-1
+  FAIL-NEW FAIL s05-F1-2-2 and 8 more have the same stem: s05-F1-3-2, s05-F1-4-2, s05-F1-5-2, s05-F1-6-2, s05-F1-7-2, s05-F1-8-2, s05-F1-9-2, s05-F1-10-2
+  FAIL-NEW FAIL s05-F2-1 and 8 more have the same stem: s05-F2-2, s05-F2-3, s05-F2-4, s05-F2-5, s05-F2-6, s05-F2-7, s05-F2-8, s05-F2-9
+  FAIL-NEW FAIL s05-FA97 and 2 more have the same stem: s05-FA98, s05-FA102
+  FAIL-NEW FAIL s05-FD98 and 3 more have the same stem: s05-FD99, s05-FD100, s05-FD102
+  FAIL-NEW FAIL s05-FE100 and 2 more have the same stem: s05-FE101, s05-FE102
+  FAIL-NEW FAIL s05-G87-1 and 67 more have the same stem: s05-G87-2, s05-G87-3, s05-G87-4, s05-G88-1, s05-G88-2, s05-G88-3, s05-G88-4, s05-G89-1, s05-G89-2, s05-G89-3, s05-G89-4, s05-G90-1, s05-G90-2, s05-G90-3, s05-G90-4, s05-G91-1, s05-G91-2, s05-G91-3, s05-G91-4, s05-G92-1, s05-G92-2, s05-G92-3, s05-G92-4, s05-G93-1, s05-G93-2, s05-G93-3, s05-G93-4, s05-G94-1, s05-G94-2, s05-G94-3, s05-G94-4, s05-G95-1, s05-G95-2, s05-G95-3, s05-G95-4, s05-G96-1, s05-G96-2, s05-G96-3, s05-G96-4, s05-G97-1, s05-G97-2, s05-G97-3, s05-G97-4, s05-G98-1, s05-G98-2, s05-G98-3, s05-G98-4, s05-G99-1, s05-G99-2, s05-G99-3, s05-G99-4, s05-G100-1, s05-G100-2, s05-G100-3, s05-G100-4, s05-G101-1, s05-G101-2, s05-G101-3, s05-G101-4, s05-G102-1, s05-G102-2, s05-G102-3, s05-G102-4, s05-G103-1, s05-G103-2, s05-G103-3, s05-G103-4
+  FAIL-NEW FAIL s05-K87-count and 3 more have the same stem: s05-K88-count, s05-K89-count, s05-K90-count
+  FAIL-NEW FAIL s05-Kcount91 and 12 more have the same stem: s05-Kcount92, s05-Kcount93, s05-Kcount94, s05-Kcount95, s05-Kcount96, s05-Kcount97, s05-Kcount98, s05-Kcount99, s05-Kcount100, s05-Kcount101, s05-Kcount102, s05-Kcount103
+  FAIL-NEW FAIL s05-Kone97 and 2 more have the same stem: s05-Ktwo97, s05-Kfive97
+  FAIL-NEW FAIL s06-C115-F2-count and 3 more have the same stem: s06-C116-F2-count, s06-C117-F2-count, s06-C118-F2-count
+  FAIL-NEW FAIL s06-C115-F2-out and 3 more have the same stem: s06-C116-F2-out, s06-C117-F2-out, s06-C118-F2-out
+  FAIL-NEW FAIL s06-C115-F4-start and 3 more have the same stem: s06-C116-F4-start, s06-C117-F4-start, s06-C118-F4-start
+  FAIL-NEW FAIL s06-F1-14 and 20 more have the same stem: s06-F1-00, s06-F1-18, s06-F1-11, s06-F1-20, s06-F1-16, s06-F1-13, s06-F1-19, s06-F1-12, s06-F1-17, s06-F1-15, s06-F1-07, s06-F1-02, s06-F1-10, s06-F1-04, s06-F1-01, s06-F1-09, s06-F1-03, s06-F1-08, s06-F1-05, s06-F1-06
+  FAIL-NEW FAIL s06-F2-paper-1 and 3 more have the same stem: s06-F2-paper-2, s06-F2-paper-3, s06-F2-paper-4
+  FAIL-NEW FAIL s06-F3-split-14 and 8 more have the same stem: s06-F3-split-19, s06-F3-split-12, s06-F3-split-16, s06-F3-split-11, s06-F3-split-18, s06-F3-split-15, s06-F3-split-17, s06-F3-split-13
+  FAIL-NEW FAIL s06-G108-1 and 7 more have the same stem: s06-G109-1, s06-G110-1, s06-G111-1, s06-G116-1, s06-G117-1, s06-G118-1, s06-G119-1
+  FAIL-NEW FAIL s06-G108-2 and 7 more have the same stem: s06-G109-2, s06-G110-2, s06-G111-2, s06-G116-2, s06-G117-2, s06-G118-2, s06-G119-2
+  FAIL-NEW FAIL s06-G108-3 and 7 more have the same stem: s06-G109-3, s06-G110-3, s06-G111-3, s06-G116-3, s06-G117-3, s06-G118-3, s06-G119-3
+  FAIL-NEW FAIL s06-G108-4 and 7 more have the same stem: s06-G109-4, s06-G110-4, s06-G111-4, s06-G116-4, s06-G117-4, s06-G118-4, s06-G119-4
+  FAIL-NEW FAIL s06-K108 and 6 more have the same stem: s06-K109, s06-K110, s06-K111, s06-K116, s06-K117, s06-K118
+  FAIL-NEW FAIL s06-X110 and 4 more have the same stem: s06-C115-F3-name, s06-C116-F3-name, s06-C117-F3-name, s06-C118-F3-name
+  FAIL-NEW FAIL s07-G120-1 and 4 more have the same stem: s07-G126-1, s07-G127-1, s07-G128-1, s07-G129-1
+  FAIL-NEW FAIL s07-G120-2 and 4 more have the same stem: s07-G126-2, s07-G127-2, s07-G128-2, s07-G129-2
+  FAIL-NEW FAIL s07-G120-3 and 4 more have the same stem: s07-G126-3, s07-G127-3, s07-G128-3, s07-G129-3
+  FAIL-NEW FAIL s07-G120-4 and 4 more have the same stem: s07-G126-4, s07-G127-4, s07-G128-4, s07-G129-4
+  FAIL-NEW FAIL s07-W120-ones and 4 more have the same stem: s07-W126-ones, s07-W127-ones, s07-W128-ones, s07-W129-ones
+  FAIL-NEW FAIL s07-W120-tens and 4 more have the same stem: s07-W126-tens, s07-W127-tens, s07-W128-tens, s07-W129-tens
+  FAIL-NEW FAIL s08-G135-1 and 29 more have the same stem: s08-G136-1, s08-G137-1, s08-G138-1, s08-G139-1, s08-G135-2, s08-G136-2, s08-G137-2, s08-G138-2, s08-G139-2, s08-G135-3, s08-G136-3, s08-G137-3, s08-G138-3, s08-G139-3, s08-G135-4, s08-G136-4, s08-G137-4, s08-G138-4, s08-G139-4, s08-G135-5, s08-G136-5, s08-G137-5, s08-G138-5, s08-G139-5, s08-G135-6, s08-G136-6, s08-G137-6, s08-G138-6, s08-G139-6
+  FAIL-NEW FAIL s08-G140-1 and 5 more have the same stem: s08-G141-1, s08-G142-1, s08-G143-1, s08-G144-1, s08-G145-1
+  FAIL-NEW FAIL s08-G140-2 and 5 more have the same stem: s08-G141-2, s08-G142-2, s08-G143-2, s08-G144-2, s08-G145-2
+  FAIL-NEW FAIL s08-G140-3 and 5 more have the same stem: s08-G141-3, s08-G142-3, s08-G143-3, s08-G144-3, s08-G145-3
+  FAIL-NEW FAIL s08-G140-4 and 5 more have the same stem: s08-G141-4, s08-G142-4, s08-G143-4, s08-G144-4, s08-G145-4
+  FAIL-NEW FAIL s08-G140-5 and 5 more have the same stem: s08-G141-5, s08-G142-5, s08-G143-5, s08-G144-5, s08-G145-5
+  FAIL-NEW FAIL s08-G140-6 and 5 more have the same stem: s08-G141-6, s08-G142-6, s08-G143-6, s08-G144-6, s08-G145-6
+  FAIL-NEW FAIL s08-Q135 and 4 more have the same stem: s08-Q136, s08-Q137, s08-Q138, s08-Q139
+  FAIL-NEW FAIL s08-R-sort and 10 more have the same stem: s08-R-compare, s08-R-one-more, s08-R-numerals, s08-R-arrangements, s08-R-teens, s08-R-start, s08-R-flat-solid, s08-R-features, s08-R-represent, s08-R-stories
+  FAIL-NEW FAIL sC-E152-L and 3 more have the same stem: sC-E152-A, sC-E152-C, sC-E152-S
+  FAIL-NEW FAIL sC-E152-N01 and 20 more have the same stem: sC-E152-N02, sC-E152-N03, sC-E152-N04, sC-E152-N05, sC-E152-N06, sC-E152-N07, sC-E152-N08, sC-E152-N09, sC-E152-N10, sC-E152-N11, sC-E152-N12, sC-E152-N13, sC-E152-N14, sC-E152-N15, sC-E152-N16, sC-E152-N17, sC-E152-N18, sC-E152-N19, sC-E152-N20, sC-E152-N21
+  FAIL-NEW FAIL sC-P154-count and 3 more have the same stem: sC-P155-count, sC-P156-count, sC-P157-count
+  FAIL-NEW FAIL sC-P154-gamea and 7 more have the same stem: sC-P154-gameb, sC-P155-gamea, sC-P155-gameb, sC-P156-gamea, sC-P156-gameb, sC-P157-gamea, sC-P157-gameb
+  note math-kindergarten: 1773 items and 1900 wrong answers checked, 84 failure(s)
+compare step4-J -> fix-before: 216 failing finding(s), 5 new note line(s)

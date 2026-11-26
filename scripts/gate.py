@@ -5,7 +5,10 @@
                                                      the shared ones (and the self-tests if a script changed)
     python -X utf8 scripts/gate.py --all [--site]    every gate; --site also builds the site into the run folder
                                                      and runs check_site.py on it
-    add --baseline to store this run as the scope's baseline (build/gates/base-<scope>/, ignored)
+    add --baseline to store this run as the scope's baseline (build/gates/base-<scope>/, ignored). A --course run
+    stores it by itself whenever the course has nothing uncommitted, refuses --baseline on a changed course, and
+    fails (exit 2) on a changed course with no baseline. A --course run prints failing counts by gate and rule and
+    only the new lines; add --verbose to list every failing line.
     add --save <name> to keep the run as build/gates/<name>/ with docs/reviews/consolidation/<name>/summary.csv
     python -X utf8 scripts/gate.py compare <a> <b>   new lines in run b against run a (folder names under build/gates)
     python -X utf8 scripts/gate.py list [--course <id> | --changed | --all]
@@ -13,7 +16,8 @@
 Per course: plan.py check, lesson_course.py, unitplan.py check, ledger.py check for its subject, frame.py check, the
 index reports (scripts/index.py) and lint (scripts/lint.py) for the course. --all adds ledger.py files, rows.py
 check, the marker guard, sequence.py check, the self-tests (the skeletons, rows.py, safe_write.py, ledger.py,
-index.py), lesson.py check, front_office.py check, check_tools.py, check_safety.py, board.py, course_status.py and
+index.py), lesson.py check, front_office.py check, check_tools.py, check_safety.py, tool_stages.py check,
+tool_record.py check, board.py, course_status.py and
 desk_stats.py. board.py and course_status.py rewrite docs/BUILD-BOARD.md and docs/COURSES-STATUS.md; commit or
 restore them.
 
@@ -112,6 +116,7 @@ def gates(scope, raw):
               ('lint-all', ['scripts/lint.py', '--all']), ('lesson-check', ['scripts/lesson.py', 'check']),
               ('front-office', ['scripts/front_office.py', 'check']),
               ('check_tools', ['scripts/check_tools.py']), ('check_safety', ['scripts/check_safety.py']),
+              ('tool-stages', ['scripts/tool_stages.py', 'check']), ('tool-record', ['scripts/tool_record.py', 'check']),
               ('board', ['scripts/board.py']), ('course_status', ['scripts/course_status.py']),
               ('desk_stats', ['scripts/desk_stats.py', str(raw / 'desk_stats.json')])]
         if arg == 'site':
@@ -283,20 +288,89 @@ def main(a):
     if scope[0] == 'all' and summary and not pats:   # a saved full run records the 12 end-goal tests (4.J)
         subprocess.run([sys.executable, '-X', 'utf8', str(ROOT / 'scripts' / 'goal_tests.py'), '--write'], cwd=ROOT)
     base = RAW / ('base-' + key)
-    if '--baseline' in a:
-        if base.exists():
-            shutil.rmtree(base)
-        shutil.copytree(raw, base)
-        print('baseline stored: %s' % base.relative_to(ROOT).as_posix())
-        return 0
     if scope[0] == 'course':
-        cur = current_failures(raw, scope[1])
-        print('%d failing line(s) for %s now:' % (len(cur), scope[1]))
-        print('\n'.join('  ' + l for l in cur))
+        return course_answer(scope[1], raw, base, pats, '--verbose' in a, '--baseline' in a)
+    if '--baseline' in a:
+        store(raw, base)
+        return 0
     if not base.exists():
-        print('no stored baseline for %s: the lines above are the whole answer (store one with --baseline)' % key)
-        return 1 if scope[0] != 'course' and current_failures(raw) else 0
+        print('no stored baseline for %s: the failing lines are the whole answer (store one with --baseline)' % key)
+        return 1 if current_failures(raw) else 0
     return 1 if compare_dirs(base, raw, 'gate %s against its baseline' % key, raw / 'compare.txt') else 0
+
+
+def store(raw, base):
+    if base.exists():
+        shutil.rmtree(base)
+    shutil.copytree(raw, base)
+    (base / 'BASE-COMMIT.txt').write_text(head() + '\n', encoding='utf-8')
+    print('baseline stored: %s (commit %s)' % (base.relative_to(ROOT).as_posix(), head()[:9]))
+
+
+def head():
+    return subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+
+
+def dirty(course):
+    """Uncommitted or untracked files in the course's three homes (close review finding 1)."""
+    out = subprocess.run(['git', 'status', '--porcelain', '--untracked-files=all', '--', 'data/plans/' + course,
+                          'docs/courses/' + course, 'courses/' + course], cwd=ROOT, capture_output=True,
+                         text=True).stdout
+    return [l[3:] for l in out.splitlines() if l.strip()]
+
+
+def rule_of(line):
+    """A failing line's rule, for counts: 'copied-exit' from 'FAIL copied-exit: ...', else the words left once ids,
+    numbers, paths and quotes are taken out (the first eight)."""
+    t = re.sub(r'^[\w.-]+: ', '', line, count=1)          # the gate name current_failures puts in front
+    t = re.sub(r'^\s*FAIL\s+', '', t)
+    m = re.match(r'([a-z][a-z-]+): ', t)
+    if m:
+        return m[1]
+    t = re.sub(r'"[^"]*"|\([^)]*\)|\[\[[^\]]*\]\]', ' ', t)
+    words = [w for w in t.split() if not re.search(r'[\d/:]', w)]
+    return ' '.join(words[:8]) or '(ids only)'
+
+
+def course_answer(course, raw, base, pats, verbose, force_base):
+    """A course run (close review findings 1 and 2). On a clean course (nothing uncommitted or untracked in its three
+    homes) the run IS the baseline: it is stored with its commit, so each job starts from the committed state and no
+    flag has to be remembered. On a changed course the run is compared with that baseline; with none it fails (exit
+    2). --baseline on a changed course is refused, so a baseline can never absorb new work. Output: failing counts by
+    gate and rule, then only the new lines; --verbose lists every failing line."""
+    cur = current_failures(raw, course)
+    if verbose:
+        print('\n'.join('  ' + l for l in cur))
+    by = {}
+    for l in cur:
+        k = (l.split(':', 1)[0], rule_of(l))
+        by[k] = by.get(k, 0) + 1
+    print('%d failing line(s) for %s now, by gate and rule%s:' % (len(cur), course,
+                                                                  '' if verbose else ' (--verbose lists them)'))
+    for (g, r), n in sorted(by.items(), key=lambda x: (-x[1], x[0])):
+        print('  %6d  %s: %s' % (n, g, r))
+    changed = dirty(course)
+    if pats:
+        print('(--only: a partial run is never stored as the baseline)')
+    elif not changed:
+        store(raw, base)
+        print('%s has nothing uncommitted, so this run is its baseline. Change the course, then run the gate again.'
+              % course)
+        return 0
+    elif force_base:
+        print('FAIL --baseline refused: %s has %d uncommitted file(s) (%s); a baseline is taken only from the committed '
+              'course' % (course, len(changed), ', '.join(changed[:3])))
+        return 2
+    if not base.exists():
+        print('FAIL no baseline for %s, and it has %d uncommitted file(s) (%s): the gate cannot tell new lines from old. '
+              'Run the gate before changing the course (the lead commits between jobs).'
+              % (course, len(changed), ', '.join(changed[:3])))
+        return 2
+    bc = (base / 'BASE-COMMIT.txt').read_text(encoding='utf-8').strip() if (base / 'BASE-COMMIT.txt').exists() else ''
+    if bc != head():
+        print('note: the baseline is from commit %s, HEAD is %s; lines committed since then count as new'
+              % (bc[:9] or 'unknown', head()[:9]))
+    return 1 if compare_dirs(base, raw, 'gate %s against its baseline' % course, raw / 'compare.txt') else 0
 
 
 if __name__ == '__main__':

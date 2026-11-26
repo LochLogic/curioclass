@@ -470,12 +470,15 @@ def words_checks(C, tool, folder, src):
     files = [('src.html', True), ('notes.md', True), ('plan.md', True), ('voice/lines.json', True), ('tool.json', True), ('tool.draft.json', True),
              ('spec.md', False), ('art/prompts.json', False), ('handoff.md', False)]
     em, en, alone, seen = [], 0, [], []
+    import tool_record   # handoff.md may sit inside tool.md (consolidation step 5 item 5)
     for name, ships in files:
         p = folder / name
-        if not p.exists():
+        body = p.read_text(encoding='utf-8', errors='replace') if p.exists() else (
+            tool_record.part(folder.name, name) if name == 'handoff.md' else '')
+        if not body:
             continue
         seen.append(name)
-        for n, line in enumerate(p.read_text(encoding='utf-8', errors='replace').split('\n'), 1):
+        for n, line in enumerate(body.split('\n'), 1):
             if EM in line or '&mdash;' in line or '\\u2014' in line or '&#8212;' in line:
                 k = max(line.find(EM), 0)
                 em.append((ships, f'- {name}:{n}: ...{line[max(0, k - 40):k + 40].strip()}...'))

@@ -142,6 +142,33 @@ def _build(ix, u):
                         rel(p), i)
     for c in cl:
         _course(ix, c, frames.get(c), u.subject_of(c) or '')
+    _tools(ix, cl)
+
+
+def _tools(ix, cl):
+    """Tool nodes (consolidation step 5 item 1): one per data/tool-stages.csv row, its stage as state and its record as
+    path. Each course's TOOL-ASKS.md heading is an `ask` node, with a hard edge to the unit it names ("[unit N](sNN.md)")
+    and to any tool it names by folder (tools/<id>). Asks are the curriculum's side: a tool answers an ask, never
+    the other way round, and no catalog list is read."""
+    for i, r in enumerate(rows_of(ROOT / 'data' / 'tool-stages.csv'), 2):
+        ix.node('tool:' + r['tool_id'], 'tool', '', r['tool_id'], r.get('record', ''), 0, r.get('stage', ''))
+    for c in cl:
+        p = DOCS / c / 'TOOL-ASKS.md'
+        if c in PILOT or not p.exists():
+            continue
+        ask = ''
+        for i, ln in enumerate(p.read_text(encoding='utf-8').splitlines(), 1):
+            h = re.match(r'## (.+)', ln)
+            if h:
+                ask = 'ask:%s:%s' % (c, re.sub(r'[^a-z0-9]+', '-', h.group(1).lower()).strip('-'))
+                ix.node(ask, 'ask', c, h.group(1).strip(), rel(p), i)
+                continue
+            if not ask:
+                continue
+            for m in re.finditer(r'\[unit (\d+)\]\(s(\d+)\.md\)', ln):
+                ix.edge(ask, 'unit:%s:%d' % (c, int(m.group(2))), 'asked-by', True, rel(p), i, c)
+            for m in re.finditer(r'(?<![\w/])tools/([a-z0-9][a-z0-9-]*)', ln):
+                ix.edge(ask, 'tool:' + m.group(1), 'answered-by', True, rel(p), i, c)
 
 
 CODES = set()
