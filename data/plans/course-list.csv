@@ -79,10 +79,10 @@ theater-grades-9-to-12,"Theater, grades 9 to 12",arts,9-12,,theater-9-12,theater
 visual-arts-grades-9-to-12,"Visual Arts, grades 9 to 12",arts,9-12,,visual-arts-9-12,visual-arts-9-12,grade:9|10|11|12&strand:va,year,,,,active
 health-grades-k-to-2,"Health, grades K to 2",health-pe,k-2,yes,health-k-2,health-k-2,file:health&grade:K|1|2,year,28,,,active
 physical-education-grades-k-to-2,"Physical Education, grades K to 2",health-pe,k-2,yes,pe-k-2,pe-k-2,file:physical-education&grade:K|1|2,year,,,,active
-health-grades-3-to-5,"Health, grades 3 to 5",health-pe,3-5,yes,health-3-5,health-3-5,file:health&grade:3|4|5,year,,,,active
+health-grades-3-to-5,"Health, grades 3 to 5",health-pe,3-5,yes,health-3-5,health-3-5,file:health&grade:3|4|5,year,,60:300 75:370,,active
 physical-education-grades-3-to-5,"Physical Education, grades 3 to 5",health-pe,3-5,yes,pe-3-5,pe-3-5,file:physical-education&grade:3|4|5,year,,,,active
 health-grades-6-to-8,"Health, grades 6 to 8",health-pe,6-8,yes,health-6-8,health-6-8,file:health&grade:6|7|8,year,,,,active
-physical-education-grades-6-to-8,"Physical Education, grades 6 to 8",health-pe,6-8,yes,pe-6-8,pe-6-8,file:physical-education&grade:6|7|8,year,,,,active
+physical-education-grades-6-to-8,"Physical Education, grades 6 to 8",health-pe,6-8,yes,pe-6-8,pe-6-8,file:physical-education&grade:6|7|8,year,,50:77 96:160 146:237 192:320 242:394,,active
 health-grades-9-to-12,"Health, grades 9 to 12",health-pe,9-12,yes,health-9-12,health-9-12,file:health&grade:9,fall,,,,active
 physical-education-grades-9-to-12,"Physical Education, grades 9 to 12",health-pe,9-12,yes,pe-9-12,pe-9-12,file:physical-education&grade:9|10|11|12,year,,,,active
 computer-science-kindergarten,"Computer Science, Kindergarten",computer-science,K,,cs-k12,cs-k12-k,grade:K,year,,,,active
@@ -91,7 +91,7 @@ computer-science-grade-2,"Computer Science, Grade 2",computer-science,2,,cs-k12,
 computer-science-grade-3,"Computer Science, Grade 3",computer-science,3,,cs-k12,cs-k12-3,grade:3,year,,,,active
 computer-science-grade-4,"Computer Science, Grade 4",computer-science,4,,cs-k12,cs-k12-4,grade:4,year,,,,active
 computer-science-grade-5,"Computer Science, Grade 5",computer-science,5,,cs-k12,cs-k12-5,grade:5,year,,,,active
-computer-science-grade-6,"Computer Science, Grade 6",computer-science,6,,cs-k12,cs-k12-6,grade:6,year,,,,active
+computer-science-grade-6,"Computer Science, Grade 6",computer-science,6,,cs-k12,cs-k12-6,grade:6,year,,38:89,,active
 computer-science-grade-7,"Computer Science, Grade 7",computer-science,7,,cs-k12,cs-k12-7,grade:7,year,,,,active
 computer-science-grade-8,"Computer Science, Grade 8",computer-science,8,,cs-k12,cs-k12-8,grade:8,year,,,,active
 computer-science-grade-9,"Computer Science, Grade 9",computer-science,9,,cs-k12,cs-k12-9,grade:9,year,,,,active

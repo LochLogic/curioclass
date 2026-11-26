@@ -320,19 +320,20 @@ Each check samples earlier units by skill tasks (the main cue of a sampled unit 
 knowledge task, and conduct watched again at the new station or carried unscored. A student is watched once in each
 window. Across a year's two checks every standard (S1 to S4) is sampled at least once from units before the check.
 Grades 6 to 8 follow the school-day rule (CALENDAR.md stagger rule 3): every mid-year check sits on course days 49
-and 50 of its year (school days 82 and 84, week 17) with the respond day on day 51 (school day 85), a week that holds
-no core course-level check day in grade 6, 7 or 8 (grade 6's math respond day 81 is the day before; it is practice,
-not a check). Every year-end check sits on course days 94 and 95 (school days 157 and 159) with the respond day on
+and 50 of its year, pinned (data/plans/course-list.csv `pins`, lead calendar pass 2026-11-26) to school days 76 and 77
+(week 16) in grades 6 and 7 and 73 and 74 (week 15) in grade 8, with the respond day on day 51 (school day 79 in
+grades 6 and 7, 76 in grade 8). Those days hold no other course-level check day in the grade, core or after-core
+(`frame.py calendar`, school-day rule). Every year-end check sits on course days 94 and 95 (school days 157 and 159) with the respond day on
 day 96 (school day 160), in week 32, the finals week, which may hold every subject's year-end check. Clashes with
-other after-core courses wait on the lead's calendar pass (For the lead 6).
+other after-core courses were settled in the lead's calendar pass (For the lead 6).
 
 | Check | After unit | Check days | Respond days | What it checks |
 |---|---|---|---|---|
-| Grade 6 mid-year (week 17, course days 49 and 50 of the year) | 4 | 2 | 1 | Units 1 to 3, at new stations: two throwing forms (unit 1), one skill-related drill (unit 2), one health-related exercise with its cue (unit 3); knowledge: name the part to fix in a pictured skill (unit 1), sort five activities by fitness part (unit 2), convert a count to beats per minute (unit 3); conduct: rules and equipment steps (unit 1, S3). Unit 4's record (taken days before) is carried unscored. Respond on day 51 |
+| Grade 6 mid-year (week 16, course days 49 and 50 of the year) | 4 | 2 | 1 | Units 1 to 3, at new stations: two throwing forms (unit 1), one skill-related drill (unit 2), one health-related exercise with its cue (unit 3); knowledge: name the part to fix in a pictured skill (unit 1), sort five activities by fitness part (unit 2), convert a count to beats per minute (unit 3); conduct: rules and equipment steps (unit 1, S3). Unit 4's record (taken days before) is carried unscored. Respond on day 51 |
 | Grade 6 year-end (week 32, days 94 and 95) | 7 | 2 | 1 | Units 4 to 6: a catch at three heights and a pass on the move (unit 4), a dribble past a passive defender (unit 5), a four-phrase sequence (unit 6); knowledge: a movement idea for a pictured problem (unit 5), how self-expression changes joining in and the kind of activity that fits best (unit 6, S4); conduct: a helpful, inclusive contribution (unit 4, S3). Unit 7's record carried unscored. Respond on day 96 |
-| Grade 7 mid-year (week 17, days 49 and 50) | 11 | 2 | 1 | Units 8 to 10: a throw for distance and one to a target (unit 8), a cut and pass in a three-on-two (unit 9), a pace kept at talk-test effort (unit 10); knowledge: a defense for a diagram (unit 9), a plan changed for a new goal (unit 10); conduct: a specific comment given and taken (unit 8, S3). Unit 11's record carried unscored. Respond on day 51 (its last ten minutes hold unit 12's readiness check) |
+| Grade 7 mid-year (week 16, days 49 and 50) | 11 | 2 | 1 | Units 8 to 10: a throw for distance and one to a target (unit 8), a cut and pass in a three-on-two (unit 9), a pace kept at talk-test effort (unit 10); knowledge: a defense for a diagram (unit 9), a plan changed for a new goal (unit 10); conduct: a specific comment given and taken (unit 8, S3). Unit 11's record carried unscored. Respond on day 51 (its last ten minutes hold unit 12's readiness check) |
 | Grade 7 year-end (week 32, days 94 and 95) | 14 | 2 | 1 | Units 11 to 13: a mature swing at a tossed ball (unit 11), serves to a named zone (unit 12), a sequence changed with one idea (unit 13); knowledge: settling a pictured disagreement (unit 11, S3), three strategies for managing feelings (unit 12, S4), a challenge and a fix (unit 13, S4); conduct: good-conduct norms in a self-officiated round (unit 11). Unit 14's record carried unscored. Respond on day 96 |
-| Grade 8 mid-year (week 17, days 49 and 50) | 18 | 2 | 1 | Units 15 to 17: the chosen test done with form (unit 15), a stick dribble past a passive defender (unit 16), a volley rally (unit 17); knowledge: rate a new tool card (unit 15), a participation goal with an obstacle and a plan (unit 15, S4), a shot choice for a court picture (unit 17); conduct: courtesy calls (unit 17). Unit 18's record (the warm-up led, S3) carried unscored. Respond on day 51 |
+| Grade 8 mid-year (week 15, days 49 and 50) | 18 | 2 | 1 | Units 15 to 17: the chosen test done with form (unit 15), a stick dribble past a passive defender (unit 16), a volley rally (unit 17); knowledge: rate a new tool card (unit 15), a participation goal with an obstacle and a plan (unit 15, S4), a shot choice for a court picture (unit 17); conduct: courtesy calls (unit 17). Unit 18's record (the warm-up led, S3) carried unscored. Respond on day 51 |
 | Grade 8 year-end (week 32, days 94 and 95) | 22 | 2 | 1 | Units 16 to 21: a get-open move in a three-on-two (unit 16), a placed hit in the fielding game (unit 19), orienteering form on a short course (unit 20), a life jacket fastened and checked (unit 21); knowledge: fielders placed on a diagram (unit 19), an outdoor safety checklist (unit 20), a cold-water rule (unit 21); conduct: links courtesy to leading in a pictured case (unit 18, S3); the participation goal looked at again (unit 15, S4). Unit 22's record carried unscored. Respond on day 96, which hands the band's records to grade 9 |
 
 ## Cross-subject
@@ -412,7 +413,8 @@ only its own part, in its words; If later says what PE does if the other course 
    heritage register (unit 13); the UNESCO kolo and capoeira entries showed a human-verification wall to the
    second-model read: browser check. Naadam was not checked: the agent checks it or swaps it. Capoeira carries hard history (slavery in Brazil); the case card needs the sensitivity read
    before writing.
-6. **After-core check clash, for the lead's calendar pass.** Every PE mid-year check is in week 17 (school days 82
+6. **After-core check clash, settled 2026-11-26.** The lead pinned the mid-year checks off school days 82 to 84 (see
+   Course-level checks); before that every PE mid-year check was in week 17 (school days 82
    and 84) and every year-end check in week 32 (a finals week, stagger rule 3). Health 6 to 8 also checks on school
    day 84 in grades 6, 7 and 8, so the two share a day in each grade (a stagger rule 3 break), and ELD 6 to 8 checks on
    school day 82 in grade 6. Per the brief

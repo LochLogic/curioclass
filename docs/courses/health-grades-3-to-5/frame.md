@@ -153,8 +153,9 @@ Course `health-grades-3-to-5` (catalog id `health-3-5`), grades 3, 4 and 5, one 
   a school that keeps the unit may add one practice day before its check.
 - **Course-level checks.** Placed off the core check weeks (`frame.py calendar`): grade 3's core checks fall in weeks
   9, 12, 14, 16, 20, 23, 25, 28, 30, 31 and 32; grade 4's in 8, 10, 12, 16, 19, 21, 23, 27, 30, 31 and 32; grade 5's
-  in 10, 11, 16, 17, 21, 22, 29, 30, 31 and 32. Health checks fall in week 15 (grade 3 and grade 5 mid-year), week 14
-  (grade 4 mid-year), week 29 (grade 3 and grade 4 year-end) and week 28 (grade 5 year-end, which takes two respond
+  in 10, 11, 16, 17, 21, 22, 29, 30, 31 and 32. Health checks fall in week 15 (grade 3 mid-year), week 14
+  (grade 4 and grade 5 mid-year; grade 5's is pinned there, data/plans/course-list.csv `pins`, lead calendar pass
+  2026-11-26, because SEL 3 to 5's grade 5 mid-year check is in week 15), week 29 (grade 3 and grade 4 year-end) and week 28 (grade 5 year-end, which takes two respond
   days in weeks 29 and 30 so the check stays out of week 29, a grade 5 social studies check week).
 
 ## Seams
@@ -326,7 +327,7 @@ grade 4 $20; grade 5 $20. The optional snack day in unit 19, if a school holds i
 | Grade 3 year-end check (week 29; respond week 30) | 7 | 1 | 1 | Samples units 4 and 5, with one item each from units 2 and 3 (the influence check on a drink label, NHES.S2.5.1; spot the careful choice, NHES.S5.5.1): the I-statement for a character (NHES.S4.5.1), the listening steps on a scene (NHES.S4.5.2), a goal sentence with its reason (NHES.S6.5.1) and an alone-or-together choice (NHES.S6.5.2), how to grow a strength (NHES.S1.5.1). Unit 4's spoken record is carried, not re-heard. Never units 6 or 7. Results go to the grade 4 teacher |
 | Grade 4 mid-year check (week 14; respond week 15) | 10 | 1 | 1 | Samples units 8 and 9 on unseen short cases: a plan's actions, resources and check for a character (NHES.S6.5.3), a block and a way around it (NHES.S6.5.4), the habit that prevents an illness or an injury (NHES.S1.5.3), who should help with a decision (NHES.S5.5.2), two options and their results (NHES.S5.5.3); with one item from unit 10, which just ended: the ask for help for a character (NHES.S4.5.3). Unit 9's routine record (NHES.S1.5.4) and unit 10's spoken record are carried, not re-scored |
 | Grade 4 year-end check (week 29; respond week 30) | 14 | 1 | 1 | Samples units 11 and 12, with one item each from units 8 and 9 (a plan with a check, NHES.S6.5.3; two options and their results, NHES.S5.5.3): how one influence affects two characters (NHES.S2.5.2, NHES.S2.5.3), the source check on a new claim (NHES.S3.5.3), the boundary steps and the refusal steps for a character (NHES.S4.5.4, NHES.S4.5.5), a speak-up plan for a new case (NHES.S8.5.1, NHES.S8.5.2). Unit 12's spoken record is carried, not re-heard. Never units 13 or 14. Results go to the grade 5 teacher |
-| Grade 5 mid-year check (week 15; respond week 16) | 17 | 1 | 1 | Samples units 15 and 16 on unseen short cases: a look-back on a character's log (NHES.S6.5.6), the source check on a new claim and how it could hurt (NHES.S1.5.5, NHES.S3.5.4), how a feature shapes a person's and a community's health (NHES.S1.5.6), when a character should get care (NHES.S1.5.7); with one item from unit 17, which just ended: the decision steps to a safe option (NHES.S5.5.4). Unit 15's log and doing record (NHES.S7.5.2, NHES.S6.5.5) are carried, not re-scored |
+| Grade 5 mid-year check (week 14; respond week 16) | 17 | 1 | 1 | Samples units 15 and 16 on unseen short cases: a look-back on a character's log (NHES.S6.5.6), the source check on a new claim and how it could hurt (NHES.S1.5.5, NHES.S3.5.4), how a feature shapes a person's and a community's health (NHES.S1.5.6), when a character should get care (NHES.S1.5.7); with one item from unit 17, which just ended: the decision steps to a safe option (NHES.S5.5.4). Unit 15's log and doing record (NHES.S7.5.2, NHES.S6.5.5) are carried, not re-scored |
 | Grade 5 year-end check (week 28; respond weeks 29 and 30) | 21 | 1 | 2 | Samples units 18 and 19, with one item each from units 16 and 17 (when to get care, NHES.S1.5.7; a look-back on a character's decision, NHES.S5.5.5, and a tool for an influence, NHES.S2.5.4): the conflict steps for a character (NHES.S4.5.6), a kind reply in a disagreement (NHES.S4.5.7), an advocacy approach and audience for a new case (NHES.S8.5.3). Unit 19's delivered message (NHES.S8.5.4) is carried, not re-scored. Never units 20 or 21. The first respond day re-rehearses each "not yet" step; the second is the band look-back, where each student writes one step card they will carry to grade 6, and results go to the grade 6 health teacher |
 
 ## Cross-subject
@@ -400,7 +401,10 @@ and 3 mathematics teach) and ticking a four-week log; no percent, rate, serving 
    progress), with a note line on each, so standard 6 is practiced in personal health and physical activity with the
    sensitive rows out. No handoff cell changed: every grade 2 to grade 3 pair and every grade 5 to grade 6 pair
    already agrees at both ends.
-4. **After-core check clashes (CALENDAR.md rule 1), not moved here.** The lead's one calendar pass settles them.
+4. **After-core check clashes (CALENDAR.md rule 1), settled 2026-11-26.** The rule now counts only the classroom
+   teacher's courses in K to 5 (core, health, SEL), so the music, library and ELD overlaps below no longer break it;
+   the one real clash, grade 5 week 15 with SEL, was settled by pinning health's grade 5 mid-year check to week 14.
+   The list as it stood:
    `frame.py calendar` (2026-11-25): grade 3 week 15 (health, music) and week 29 (health, library); grade 4 week 14
    (health, library) and week 29 (health, ELD, library), with SEL's week 15 check beside health's grade 4 respond day;
    grade 5 week 15 (health, music, SEL) and week 28 (health, ELD, library).

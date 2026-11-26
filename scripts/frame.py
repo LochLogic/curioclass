@@ -426,15 +426,27 @@ def check_weeks(cal_rows):
 SUBJECT_CORE = ('math', 'science', 'ela', 'social-studies')
 
 
+def classroom_course(r):
+    """K to 5: the courses the classroom teacher teaches (the four core subjects, health and SEL). Specials (arts,
+    physical education, computer science, library, English language development) have their own teacher and check
+    in their own slot, so they do not count toward the classroom week (lead 2026-11-26)."""
+    return r['subject'] in SUBJECT_CORE or r['subject'] == 'sel' or r['course'].startswith('health-')
+
+
 def stagger_key(r):
-    """The core subjects count by subject; an after-core course counts on its own (the five arts courses of a band
-    are five teachers' or five sessions' checks, not one), named by its course slug (lead 2026-11-25)."""
-    return r['subject'] if r['subject'] in SUBJECT_CORE else r['course']
+    """The core subjects count by subject; an after-core course counts on its own, named by its course slug (lead
+    2026-11-25), except that in 6 to 8 the arts electives count as one (a student takes one arts elective at a time;
+    lead 2026-11-26)."""
+    if r['subject'] in SUBJECT_CORE:
+        return r['subject']
+    if r['subject'] == 'arts' and r['grade'] in ('6', '7', '8'):
+        return 'arts elective'
+    return r['course']
 
 
 def clashes(cal_rows):
-    """The stagger rule (docs/courses/CALENDAR.md): K to 5 have one teacher, so no school week holds course-level
-    check days of two subjects; 6 to 8 have a teacher per subject, so no school day does, and week 32 is a finals week.
+    """The stagger rule (docs/courses/CALENDAR.md): K to 5 have one classroom teacher, so no school week holds
+    course-level check days of two of that teacher's courses (classroom_course); 6 to 8 have a teacher per subject, so no school day does, and week 32 is a finals week.
     Returns (grade, 'week N' or 'day N', [subjects])."""
     out = []
     by = {}
@@ -446,7 +458,7 @@ def clashes(cal_rows):
             for d in range(r['first_school_day'], r['last_school_day'] + 1):
                 if week(d) < YEAR_WEEKS:
                     by.setdefault(g, {}).setdefault('day %d' % d, set()).add(stagger_key(r))
-        else:
+        elif classroom_course(r):
             for w in range(r['first_week'], r['last_week'] + 1):
                 by.setdefault(g, {}).setdefault('week %d' % w, set()).add(stagger_key(r))
     for g in sorted(by, key=lambda k: -1 if k == 'K' else int(k)):
