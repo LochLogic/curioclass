@@ -310,6 +310,8 @@ def load():
     courses = []
     for r in rows:
         slug = r['course']
+        if r['subject'] not in SUBJECT_LABEL:
+            continue   # the after-core frames (2026-11-25): their course pages come with their course runs (COURSE-RUN)
         f = frame.parse(slug)
         cal = frame.calendar(slug) or []
         span = {(k, n, lab): (a, b) for k, n, lab, a, b in cal}
