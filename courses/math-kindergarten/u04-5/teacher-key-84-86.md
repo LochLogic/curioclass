@@ -123,17 +123,73 @@ Shown: Counts nine and four, says nine-group has more. | Not yet seen: Four larg
 
 ## sC-E84-9
 
-**Show.** Card G: small circle, thin left-pointing scalene triangle, turned square, sloping nonsquare rectangle, irregular convex hexagon; all closed, unlabelled.
+**Show.** Card G, first card only: small circle, closed curved boundary, no corners.
 
-**Say.** Name these flat shapes.
+**Say.** Name the first flat card.
 
-**Answer.** Circle, triangle, square, rectangle, hexagon in order.
+**Answer.** Circle.
 
-**Look for.** One naming ask across five cards; record each name. Square also rectangle: accept inclusive true name, note if specific square name unheard.
+**Look for.** Names circle while indicating its boundary; pointing alone does not establish the spoken name.
 
-Shown: All five named, including square despite turn. | Not yet seen: Rejects thin triangle because unlike usual triangle.
+Shown: Names circle. | Not yet seen: Calls the circle a triangle.
+
+**Error x.** Unmatched shape name; describe it without assigning a register misconception.
+
+## sC-E84-9b
+
+**Show.** Card G, second card only: thin left-pointing scalene triangle, three straight joined sides.
+
+**Say.** Name the second flat card.
+
+**Answer.** Triangle.
+
+**Look for.** Names triangle despite its thin shape and direction.
+
+Shown: Names triangle, tracing three joined sides. | Not yet seen: Rejects thin triangle because unlike usual triangle.
 
 **Error O.** Prototype-only naming, unit 3 error C.
+
+## sC-E84-9c
+
+**Show.** Card G, third card only: turned square with four equal sides and exact square corners.
+
+**Say.** Name the third flat card.
+
+**Answer.** Square; also accept rectangle as a true inclusive name.
+
+**Look for.** Names square despite its turn. Accept rectangle, recording the specific square name as unheard.
+
+Shown: Names square despite its turn. | Not yet seen: Only diamond, never square because tilted.
+
+**Error I.** Orientation determines name, unit 3 error B.
+
+## sC-E84-9d
+
+**Show.** Card G, fourth card only: sloping nonsquare rectangle with unequal adjacent sides and exact square corners.
+
+**Say.** Name the fourth flat card.
+
+**Answer.** Rectangle, not square.
+
+**Look for.** Names rectangle despite its turn and unequal adjacent sides.
+
+Shown: Names rectangle. | Not yet seen: Calls the long rectangle a square.
+
+**Error x.** Unmatched shape name; retain a descriptive note.
+
+## sC-E84-9e
+
+**Show.** Card G, fifth card only: irregular convex hexagon with six straight joined sides.
+
+**Say.** Name the fifth flat card.
+
+**Answer.** Hexagon.
+
+**Look for.** Names hexagon despite its unequal sides.
+
+Shown: Names hexagon, tracing six sides. | Not yet seen: Calls the six-sided card a pentagon.
+
+**Error x.** Unmatched shape name; retain a descriptive note.
 
 ## sC-E84-10
 
@@ -319,7 +375,7 @@ Shown: Writes 6 for shown quantity. | Not yet seen: Counts 6 correctly but write
 
 ## sC-E85-C1
 
-**Show.** Card H1: 7 disks in line; assigned six only. New layout, not labeled tray. Circle has start arrow, no number.
+**Show.** Card H1: 7 disks in line; assigned six only. New layout, not labeled tray. No numeral model.
 
 **Say.** Count the disks on this line card aloud.
 
@@ -333,7 +389,7 @@ Shown: Indicates each once, ordered words ending at 7. | Not yet seen: Leaves on
 
 ## sC-E85-C2
 
-**Show.** Card H2: 6 disks in rectangular array; assigned six only. New layout, not labeled tray. Circle has start arrow, no number.
+**Show.** Card H2: 6 disks in rectangular array; assigned six only. New layout, not labeled tray. No numeral model.
 
 **Say.** Count the disks on this rectangular array card aloud.
 
@@ -361,7 +417,7 @@ Shown: Indicates each once, ordered words ending at 9. | Not yet seen: Leaves on
 
 ## sC-E85-C4
 
-**Show.** Card H4: 10 disks in scatter; assigned six only. New layout, not labeled tray. Circle has start arrow, no number.
+**Show.** Card H4: 10 disks in scatter; assigned six only. New layout, not labeled tray. No numeral model.
 
 **Say.** Count the disks on this scatter card aloud.
 
@@ -488,7 +544,7 @@ Shown: Three, nothing entered or left. | Not yet seen: Marks 6 because row is wi
 
 ## sC-X86-next
 
-**Show.** Adult counts four large paper stars once, adds exactly one. Slip has unlabelled four-dot and five-dot choices, no numeral, tower or equation.
+**Show.** Adult counts four large paper stars once, adds exactly one. Slip has unlabeled four-dot and five-dot choices, no numeral, tower or equation.
 
 **Say.** Mark the picture for the amount now.
 

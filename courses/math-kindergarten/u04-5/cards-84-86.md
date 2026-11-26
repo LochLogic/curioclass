@@ -23,7 +23,7 @@ E: six wide-spaced tray outlines, eight close tag pieces; all movable. Puppet: "
 
 F: nine small disks close, four large disks spread, all fully visible. Puppet: "The big disks have more."
 
-G: five unlabelled boundaries below. Name prompt first, then square alone. Puppet: "Tilted means not square." Rotate only, never stretch. Cut cards or hand-copy; square corners must be exact. The sloping rectangle has unequal adjacent sides and exact square corners.
+G: five unlabeled boundaries below. Show each naming card alone, first through fifth, with its separate stem. Then show the square alone for the reason prompt. Puppet: "Tilted means not square." Rotate only, never stretch. Cut cards or hand-copy; square corners must be exact. The sloping rectangle has unequal adjacent sides and exact square corners.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 230" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2.5" stroke-linejoin="round"><circle cx="65" cy="110" r="24"/><path d="M135 135L235 105L216 127Z"/><rect x="270" y="80" width="58" height="58" transform="rotate(45 299 109)"/><rect x="375" y="80" width="110" height="40" transform="rotate(-30 430 100)"/><path d="M555 55L605 80L615 125L580 160L535 145L520 95Z"/></g></svg>
 ## Day 85 teacher counting cards

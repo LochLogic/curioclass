@@ -51,7 +51,7 @@ Teacher setup: Adult counts three large paper leaves in a close row, then spread
 
 ## next, sC-X86-next
 
-Teacher setup: Adult counts four large paper stars once, adds exactly one. Slip has unlabelled four-dot and five-dot choices, no numeral, tower or equation.
+Teacher setup: Adult counts four large paper stars once, adds exactly one. Slip has unlabeled four-dot and five-dot choices, no numeral, tower or equation.
 
 <div style="border:2px solid;padding:10px;min-height:3.3in">
 

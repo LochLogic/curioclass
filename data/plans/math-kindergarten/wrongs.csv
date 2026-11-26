@@ -869,7 +869,7 @@ sC-E84-5,Six even after extra wheel arrives.,,,F,"No advance for one more, unit 
 sC-E84-6,Seven because its printed mark is taller.,,,H,"Print size as value, unit 2 error J."
 sC-E84-7,Tray row has more because it is wider.,,,D,"Spread replaces quantity, unit 2 error B."
 sC-E84-8,Four large disks have more because they are larger.,,,G,"Object size replaces count, unit 2 error N."
-sC-E84-9,Rejects thin triangle because unlike usual triangle.,,,O,"Prototype-only naming, unit 3 error C."
+sC-E84-9,Calls the circle a triangle.,,,x,Unmatched shape name; describe it without assigning a register misconception.
 sC-E84-10,"Only diamond, never square because tilted.",,,I,"Orientation determines name, unit 3 error B."
 sC-E84-R,Re-administers a secure story.,,,x,"Administration error, not child misconception."
 sC-E85-L1,Writes 1 for empty tray.,,,K,"Zero as none, unit 2 error E."
@@ -2009,3 +2009,7 @@ s04-P66-u3-capacity,"Tallest must hold most, without a real transfer.",,,x,"Unit
 s04-P66-game5,One square visibly unmatched but record called complete.,,,A,"Classify only the corresponding observed omission/exclusion, not a wrong number alone."
 s04-P66-game4,"Only the incoming three represented, starting one omitted.",,,B,"Classify only the corresponding observed omission/exclusion, not a wrong number alone."
 s04-F66-B,Only incoming three retained; starting one omitted.,,,B,"Observed starting-group exclusion, not a wrong number alone."
+sC-E84-9b,Rejects thin triangle because unlike usual triangle.,,,O,"Prototype-only naming, unit 3 error C."
+sC-E84-9c,"Only diamond, never square because tilted.",,,I,"Orientation determines name, unit 3 error B."
+sC-E84-9d,Calls the long rectangle a square.,,,x,Unmatched shape name; retain a descriptive note.
+sC-E84-9e,Calls the six-sided card a pentagon.,,,x,Unmatched shape name; retain a descriptive note.
