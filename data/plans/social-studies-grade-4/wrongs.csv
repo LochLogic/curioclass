@@ -1486,3 +1486,5 @@ s01-A2b-province,A province is an independent country.,,,E,Confuses a Canadian d
 s01-A2c-read,"110 degrees west, 30 degrees north.",,,G,Reverses latitude-first notation.
 s01-A4c-interpretation,Every reader must use the maps for the same question.,,,J,Does not identify a second reasonable interpretation of map usefulness.
 s01-A2c,"K marked at 50 degrees north, 90 degrees west.",,,x,K is at the wrong crossing. A misplaced mark alone does not establish reversed coordinate order or a wrong zero line.
+s01-X1,Both readers always need identical map details.,,,J,Ignores how the stated walking and country-comparison purposes need different details.
+s01-P1-E,"Only the student needs an answer, to find paths.",,,J,Gives one defensible use but omits the other reader. Score reader components separately.
