@@ -6,226 +6,261 @@ stretch: 2
 version: draft, not yet taught
 credit: All ours.
 ---
-# Categories and counts: teacher answer key
+# Private teacher key
 
-Teacher only. Keep separate from student copies. These cold-solved keys supply look-fors and two samples. Use shown, shown with help, not yet seen by component. Diagnose letters from observed actions or heard reasons.
+Keep this key off student pages and displays. Use shown, shown with help, not yet seen. Read each single stem from its data row. A correct paper product cannot establish unheard counting or reasoning.
+
 
 ## s02-X41
 
-Prompt: Make the sorted picture with a ring around the pile with more.
+Four mittens on the mitten mat and seven socks on the sock mat.
 
-Answer: Four mittens together, seven socks together; socks ringed.
+Shown: Four mittens on the mitten mat and seven socks on the sock mat. | Not yet seen: the requested action is incomplete or the quantity/category is incorrect. Record the observed action before assigning a letter.
 
-Look for: Icon mats; outlines retain membership. | Shape: New two-pile object sort with larger-pile recognition. No mittens/socks, 4/7 case or independent two-mat larger-pile sheet in practice; correct partial three-color groups and given count order.
-
-Shown: Four mittens together, seven socks together; socks ringed. | Not yet seen: Places mitten on sock mat. (F).
+Observed errors: F: Places mitten on sock mat..
 
 ## s02-O41
 
-Prompt: How does your picture show more?
+It has stripes like the mat.
 
-Answer: Seven socks, four mittens; socks have extras.
+Shown: It has stripes like the mat. | Not yet seen: Striped card assigned to the dot rule. Diagnose only from the observed action or heard words.
 
-Look for: Rotating six only, 45 seconds each; record names heard. Paper cannot prove unheard reasons.
-
-Shown: Seven socks, four mittens; socks have extras. | Not yet seen: Acknowledges sock extras but calls socks fewer. (I).
+Observed errors: F: Striped card assigned to the dot rule..
 
 ## s02-X42
 
-Prompt: Make the new length sort with a ring around the pile with more.
+Six short rectangles on the short mat and four long rectangles on the long mat.
 
-Answer: Six short, four long; short ringed.
+Shown: Six short rectangles on the short mat and four long rectangles on the long mat. | Not yet seen: the requested action is incomplete or the quantity/category is incorrect. Record the observed action before assigning a letter.
 
-Look for: Initial pattern groups five each: short two striped/four plain, long three striped/one plain. | Shape: Reclassify a sorted two-property set under a new rule, indicate largest. No striped/plain length cards, 6/4 redistribution or full re-sort comparison sheet in practice; change rules in supplied partly completed color/border pictures, discuss corrected counts.
-
-Shown: Six short, four long; short ringed. | Not yet seen: Keeps pattern groups instead of length rule. (F).
+Observed errors: F: Keeps pattern groups instead of length rule..
 
 ## s02-O42
 
-Prompt: What rule did you use?
+Wide here, narrow there.
 
-Answer: Short here, long there.
+Shown: Wide here, narrow there. | Not yet seen: Uses color instead of width. Diagnose only from the observed action or heard words.
 
-Look for: Rotating six only, 45 seconds each; record names heard. Paper cannot prove unheard reasons.
-
-Shown: Short here, long there. | Not yet seen: Keeps pattern after length rule named. (F).
+Observed errors: F: Uses color instead of width..
 
 ## s02-X43
 
-Prompt: Fill this picture order.
+Exactly three mushrooms attached or outlined on the pizza, then stop.
 
-Answer: Three mushrooms and six pepper pieces on pizza, outlined.
+Shown: Exactly three mushrooms attached or outlined on the pizza, then stop. | Not yet seen: the requested action is incomplete or the quantity/category is incorrect. Record the observed action before assigning a letter.
 
-Look for: Order icons 3/6 read aloud; ten spare of each. | Shape: Complete unfamiliar two-food order on a blank pizza. No mushrooms/pepper pieces, 3/6 order or blank full-order pizza in practice; repair partly filled five-ring/eight-strip orders and compare packed orders/supplied labels.
-
-Shown: Three mushrooms and six pepper pieces on pizza, outlined. | Not yet seen: Continues after requested six. (D).
+Observed errors: D: Continues beyond the requested three mushrooms..
 
 ## s02-O43
 
-Prompt: How did you know when to stop?
+The request says five.
 
-Answer: Order asked for three mushrooms and six pepper pieces.
+Shown: The request says five. | Not yet seen: Continues to eight after the request for five loops. Diagnose only from the observed action or heard words.
 
-Look for: Rotating six only, 45 seconds each; record names heard. Paper cannot prove unheard reasons.
-
-Shown: Order asked for three mushrooms and six pepper pieces. | Not yet seen: Keeps adding until tray is empty. (D).
+Observed errors: D: Continues to eight after the request for five loops..
 
 ## s02-F1a
 
-Prompt: Circle a full five.
+Full top row of five occupied cells circled.
 
-Answer: Full top row of five occupied cells circled.
+Shown: Full top row of five occupied cells circled. | Not yet seen: Skips one top-row dot while counting and circles only the other four. (K).
 
-Look for: Nine occupied cells start as five and four; full-five recognition supports MP.7. | Shape: Nine-to-ten joined-frame completion, full-five recognition and new total; not practiced in this format.
-
-Shown: Full top row of five occupied cells circled. | Not yet seen: Circles four as full five. (K).
+Observed errors: K: Skips one top-row dot while counting and circles only the other four..
 
 ## s02-F1b
 
-Prompt: Mark where the extra tab goes.
-
-Answer: Tenth cell, bottom right.
-
-Look for: Only empty cell; an extra tab starts outside. | Shape: Nine-to-ten joined-frame completion, full-five recognition and new total; not practiced in this format.
+Tenth cell, bottom right.
 
 Shown: Tenth cell, bottom right. | Not yet seen: Treats occupied cell as empty by skipping its dot. (K).
 
+Observed errors: K: Treats occupied cell as empty by skipping its dot..
+
 ## s02-F1c
 
-Prompt: Write the number now.
-
-Answer: 10.
-
-Look for: Total after extra tab, not handwriting neatness. | Shape: Nine-to-ten joined-frame completion, full-five recognition and new total; not practiced in this format.
+10.
 
 Shown: 10. | Not yet seen: Says still nine after adding one and writes 9. (H).
 
+Observed errors: H: Says still nine after adding one and writes 9..
+
 ## s02-F2reason-41
 
-Prompt: Use counting to explain this comparison.
-
-Answer: One, two; one, two, three. Three has more.
-
-Look for: Retained two/three case. Hear both sequences and reason; children 11 to 20, 45-second ask. | Shape: Two-case independent matching/counting paper, two/three tabs and equal fours, plus a heard reason; no full practice interview.
+One, two; one, two, three. Three has more.
 
 Shown: One, two; one, two, three. Three has more. | Not yet seen: Counts both but calls three fewer. (I).
+
+Observed errors: I: Counts both but calls three fewer..
 
 ## s02-F3reason-41
 
-Prompt: Explain one of your choices.
-
-Answer: Nine comes later than six, so nine is greater.
-
-Look for: Point to one retained F3 pair. Accept any valid quantity/count-order reason. Separate 45 seconds; both asks plus notes total two minutes per child. | Shape: Reason from retained numeral choice; no second paper collection.
+Nine comes later than six, so nine is greater.
 
 Shown: Nine comes later than six, so nine is greater. | Not yet seen: Says 4 greater because print larger. (J).
+
+Observed errors: J: Says 4 greater because print larger..
 
 ## s02-F2reason-42
 
-Prompt: Use counting to explain this comparison.
-
-Answer: One, two; one, two, three. Three has more.
-
-Look for: Retained two/three case. Hear both sequences and reason; children 21 to 30, 45-second ask. | Shape: Two-case independent matching/counting paper, two/three tabs and equal fours, plus a heard reason; no full practice interview.
+One, two; one, two, three. Three has more.
 
 Shown: One, two; one, two, three. Three has more. | Not yet seen: Counts both but calls three fewer. (I).
 
+Observed errors: I: Counts both but calls three fewer..
+
 ## s02-F3reason-42
 
-Prompt: Explain one of your choices.
-
-Answer: Nine comes later than six, so nine is greater.
-
-Look for: Point to one retained F3 pair. Accept any valid quantity/count-order reason. Separate 45 seconds; both asks plus notes total two minutes per child. | Shape: Reason from retained numeral choice; no second paper collection.
+Nine comes later than six, so nine is greater.
 
 Shown: Nine comes later than six, so nine is greater. | Not yet seen: Says 4 greater because print larger. (J).
 
+Observed errors: J: Says 4 greater because print larger..
+
 ## s02-F4a
 
-Prompt: Sort these pictures onto their mats.
-
-Answer: Two circles, four squares, six triangles on matching mats.
-
-Look for: Fresh mixed cards, example-icon mats; preserve membership by outlines. | Shape: Independent fresh three-category shape sort, counts and ascending mats; no 2/4/6 sticker-shape practice.
+Two circles, four squares, six triangles on matching mats.
 
 Shown: Two circles, four squares, six triangles on matching mats. | Not yet seen: Triangle on square mat. (F).
 
+Observed errors: F: Triangle on square mat..
+
 ## s02-F4-circle
 
-Prompt: Write this group's number.
-
-Answer: 2
-
-Look for: Point to circle mat; count 2 once. Judge membership/count/writing separately. | Shape: Independent fresh three-category shape sort, counts and ascending mats; no 2/4/6 sticker-shape practice.
+2
 
 Shown: 2 | Not yet seen: Omits one member while counting. (K).
 
+Observed errors: K: Omits one member while counting..
+
 ## s02-F4-square
 
-Prompt: Write this group's number.
-
-Answer: 4
-
-Look for: Point to square mat; count 4 once. Judge membership/count/writing separately. | Shape: Independent fresh three-category shape sort, counts and ascending mats; no 2/4/6 sticker-shape practice.
+4
 
 Shown: 4 | Not yet seen: Omits one member while counting. (K).
 
+Observed errors: K: Omits one member while counting..
+
 ## s02-F4-triangle
 
-Prompt: Write this group's number.
-
-Answer: 6
-
-Look for: Point to triangle mat; count 6 once. Judge membership/count/writing separately. | Shape: Independent fresh three-category shape sort, counts and ascending mats; no 2/4/6 sticker-shape practice.
+6
 
 Shown: 6 | Not yet seen: Omits one member while counting. (K).
 
+Observed errors: K: Omits one member while counting..
+
 ## s02-F4order
 
-Prompt: Put the mats from fewest to most.
-
-Answer: Circle, square, triangle; 2, 4, 6.
-
-Look for: Retain pasted/traced mat order. Components scored separately. | Shape: Independent fresh three-category shape sort, counts and ascending mats; no 2/4/6 sticker-shape practice.
+Circle, square, triangle; 2, 4, 6.
 
 Shown: Circle, square, triangle; 2, 4, 6. | Not yet seen: Correct counts but order 6, 4, 2. (G).
 
-## s02-P41-1
+Observed errors: G: Correct counts but order 6, 4, 2..
 
-Prompt: Fix this started category record.
+## s02-A44-M1
 
-Answer: Move blue double-border square off red mat; counts 3, 5, 8.
+Use dated O20/O31 words for the explanation component only when heard. Paper rearrangement alone cannot prove an explanation; unheard language stays not yet seen.
 
-Look for: Correct supplied partial work; read labels aloud. Return marked paper. No answer on student sheet.
+Seven altogether, unchanged by arrangement or starting point, from retained M1.
 
-Shown: Move blue double-border square off red mat; counts 3, 5, 8. | Not yet seen: Does not repair the indicated action. (F).
+Shown: Seven altogether, unchanged by arrangement or starting point, from retained M1. | Not yet seen: Observed skipped tab in the original count. (K).
 
-## s02-P42-1
+Observed errors: K: Observed skipped tab in the original count..
 
-Prompt: Fix the changed-rule record.
+## s02-A44-M2
 
-Answer: After border sort, each group has eight; either comes first.
+Seven tabs moved from ten, then stopped, from retained M2.
 
-Look for: Correct supplied partial work; read labels aloud. Return marked paper. No answer on student sheet.
+Shown: Seven tabs moved from ten, then stopped, from retained M2. | Not yet seen: Continues past the requested seven. (D).
 
-Shown: After border sort, each group has eight; either comes first. | Not yet seen: Does not repair the indicated action. (F).
+Observed errors: D: Continues past the requested seven..
 
-## s02-P43-1
+## s02-A44-M3
 
-Prompt: Finish the partly filled ring order.
+Retained boxes: 6, 0, 8, 3, 10, 1, 9, 4, 2, 7, 5.
 
-Answer: Three present; add two for supplied five.
+Shown: Retained boxes: 6, 0, 8, 3, 10, 1, 9, 4, 2, 7, 5. | Not yet seen: Labels the empty box 1. (E).
 
-Look for: Correct supplied partial work; read labels aloud. Return marked paper. No answer on student sheet.
+Observed errors: E: Labels the empty box 1..
 
-Shown: Three present; add two for supplied five. | Not yet seen: Does not repair the indicated action. (D).
+## s02-A44-F1
 
-## s02-P43-2
+For a without-recounting claim, use an observed one-more strategy or dated O37 words. A correct numeral alone does not establish the strategy.
 
-Prompt: Finish the partly filled strip order.
+Retained full five circled, extra tab marked in tenth cell, new numeral 10.
 
-Answer: Five present; add three for supplied eight.
+Shown: Retained full five circled, extra tab marked in tenth cell, new numeral 10. | Not yet seen: Added tab but says nine remains and writes 9. (H).
 
-Look for: Correct supplied partial work; read labels aloud. Return marked paper. No answer on student sheet.
+Observed errors: H: Added tab but says nine remains and writes 9..
 
-Shown: Five present; add three for supplied eight. | Not yet seen: Does not repair the indicated action. (D).
+## s02-A44-F2
+
+Also retain the day 23 creation papers with feedback and revisions: Gm23 is any countable group larger than five (six is one shown sample); Ge23 is eight marks. These provide the creation evidence; do not ask again.
+
+Retained two/three matches and counts, three more and two fewer; equal fours match with no extras, with heard counting reason.
+
+Shown: Retained two/three matches and counts, three more and two fewer; equal fours match with no extras, with heard counting reason. | Not yet seen: Acknowledges extras in three but calls three fewer. (I).
+
+Observed errors: I: Acknowledges extras in three but calls three fewer..
+
+## s02-A44-F3
+
+Retained choices: 8 over 4, 9 over 6, both threes; recorded quantity or counting-order reason.
+
+Shown: Retained choices: 8 over 4, 9 over 6, both threes; recorded quantity or counting-order reason. | Not yet seen: Explains that 4 is greater because its print is larger. (J).
+
+Observed errors: J: Explains that 4 is greater because its print is larger..
+
+## s02-A44-F4
+
+Retained fresh F4: two circles, four squares, six triangles, labels 2/4/6, mats circle-square-triangle.
+
+Shown: Retained fresh F4: two circles, four squares, six triangles, labels 2/4/6, mats circle-square-triangle. | Not yet seen: Correct counts but orders mats 6, 4, 2. (G).
+
+Observed errors: G: Correct counts but orders mats 6, 4, 2..
+
+## s02-P41a
+
+3
+
+Shown: 3 | Not yet seen: 2 after correctly counting three. Record formation help separately from numeral understanding.
+
+Observed errors: M: 2 after correctly counting three..
+
+## s02-P41b
+
+8
+
+Shown: 8 | Not yet seen: 3 after correctly counting eight. Record formation help separately from numeral understanding.
+
+Observed errors: M: 3 after correctly counting eight..
+
+## s02-P42a
+
+3
+
+Shown: 3 | Not yet seen: 2 after correctly counting three. Record formation help separately from numeral understanding.
+
+Observed errors: M: 2 after correctly counting three..
+
+## s02-P42b
+
+8
+
+Shown: 8 | Not yet seen: 3 after correctly counting eight. Record formation help separately from numeral understanding.
+
+Observed errors: M: 3 after correctly counting eight..
+
+## s02-P42c
+
+Short mat, then long mat; three before eight.
+
+Shown: Short mat, then long mat; three before eight. | Not yet seen: Long mat before short after correct counts. Record formation help separately from numeral understanding.
+
+Observed errors: G: Long mat before short after correct counts..
+
+## s02-P43
+
+Six pepper pieces attached or outlined, then stop.
+
+Shown: Six pepper pieces attached or outlined, then stop. | Not yet seen: Continues beyond six after losing the requested stop. Record formation help separately from numeral understanding.
+
+Observed errors: D: Continues beyond six after losing the requested stop..

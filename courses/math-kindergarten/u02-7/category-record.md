@@ -5,18 +5,19 @@ unit: 2.7
 stretch: 2
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Read every word aloud. Use 18 point print; no independent reading.
 ---
 # Day 42 category record
 
-Teacher reads all words aloud. Invented for practice.
+Invented for practice.
 
 Sort these pictures onto their mats.
 
-Write this group's number.
+Write the circle group's number.
 
-Write this group's number.
+Write the square group's number.
 
-Write this group's number.
+Write the triangle group's number.
 
 Put the mats from fewest to most.
 

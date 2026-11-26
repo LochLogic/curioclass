@@ -6,66 +6,39 @@ stretch: 2
 version: draft, not yet taught
 credit: All ours.
 ---
-# Total and arrangement: teacher answer key
+# Private teacher key
 
-Teacher only. Keep separate from student copies. These cold-solved keys supply look-fors and two samples. Use shown, shown with help, not yet seen by component. Diagnose letters from observed actions or heard reasons.
+Keep this key off student pages and displays. Use shown, shown with help, not yet seen. Read each single stem from its data row. A correct paper product cannot establish unheard counting or reasoning.
+
 
 ## s02-X19
 
-Prompt: Draw seven paper clips on Rin's mat.
-
-Answer: Seven distinct clip marks.
-
-Look for: Accept loops or strokes, one per requested clip. | Shape: Produces an unseen requested collection on a blank mat. No clip drawings, seven-object requests or blank-mat production in teaching; interpret displayed fingers and check an adult's representation instead.
+Seven distinct clip marks.
 
 Shown: Seven distinct clip marks. | Not yet seen: Omits one requested clip. (K).
 
+Observed errors: K: Omits one requested clip..
+
 ## s02-O19
 
-Prompt: How many altogether?
+Eight.
 
-Answer: Seven altogether.
+Shown: Eight. | Not yet seen: Repeats the sequence without naming its total. Diagnose only from the observed action or heard words.
 
-Look for: Rotating six only, 45 seconds each; record names heard. Paper cannot prove unheard reasons.
-
-Shown: Seven altogether. | Not yet seen: Repeats the sequence without a final total. (A).
+Observed errors: A: Repeats the sequence without naming its total..
 
 ## s02-X20
 
-Prompt: Spread these bears out on the big patch.
-
-Answer: The same five bears spread farther apart and outlined.
-
-Look for: All five retained with a visible paper trace. | Shape: Transforms a compact bear set to a wider paper arrangement and accounts for invariance. No bears, five-piece spreading or prediction-after-spreading in practice; reform eight square pieces into compact clusters or a bundle, not a widened row.
+The same five bears spread farther apart and outlined.
 
 Shown: The same five bears spread farther apart and outlined. | Not yet seen: Omits one bear when moving. (K).
 
+Observed errors: K: Omits one bear when moving..
+
 ## s02-O20
 
-Prompt: What did spreading do to the number of bears?
+Still ten; none came or went.
 
-Answer: It stayed five; none came or went.
+Shown: Still ten; none came or went. | Not yet seen: More because the moved group spreads wider. Diagnose only from the observed action or heard words.
 
-Look for: Rotating six only, 45 seconds each; record names heard. Paper cannot prove unheard reasons.
-
-Shown: It stayed five; none came or went. | Not yet seen: Says it became more because the patch is wider. (B).
-
-## s02-P19-1
-
-Prompt: Link a mark to each square.
-
-Answer: Three links, one per supplied square.
-
-Look for: Correct supplied partial work; read labels aloud. Return marked paper. No answer on student sheet.
-
-Shown: Three links, one per supplied square. | Not yet seen: Does not repair the indicated action. (K).
-
-## s02-P20-1
-
-Prompt: Fix this count record.
-
-Answer: Eight linked marks; supplied record omitted one.
-
-Look for: Correct supplied partial work; read labels aloud. Return marked paper. No answer on student sheet.
-
-Shown: Eight linked marks; supplied record omitted one. | Not yet seen: Does not repair the indicated action. (K).
+Observed errors: B: More because the moved group spreads wider..

@@ -11,7 +11,7 @@ rows: 30
 
 Teacher record. One scale only: shown, shown with help, not yet seen. If not heard, leave heard date blank and record that component as not yet seen. Distinguish motor help from a mathematical prompt. Paper cannot prove an unheard sequence or reason.
 
-Roster numbers are placeholders for names. Rotate six-child exit groups across days 19 to 23, 24 to 28, 29 to 33, 34 to 38 and 39 to 43. Later hearing is new evidence for its own goal, never proof of an earlier unheard response. Formal counting reaches all thirty on days 34 to 39; F2/F3 reasons on days 40 to 42. Day 44 follows up gaps within forty minutes, no promise of unlimited completion. Preserve dates and help.
+Roster numbers are placeholders for names. Record x only as an observed response outside a diagnosed pattern, with no diagnostic group. For each day d, use roster 6 x (d modulo 5) + 1 through 6 x (d modulo 5) + 6 for both exit observations and the separate heard check. These are observations of different single actions, in separate funded parts. Later hearing is new evidence for its own goal, never proof of an earlier unheard response. Formal counting reaches all thirty on days 34 to 39; F2/F3 reasons on days 40 to 42. Day 44 follows up gaps within forty minutes, no promise of unlimited completion. Preserve dates and help.
 
 | Roster | Name | Counting day | F2/F3 day | Heard exit dates |
 |---|---|---|---|---|
@@ -52,7 +52,7 @@ Name: __________________  Communication/motor support: __________________
 
 | Component | Initial date | Initial scale | Help | Feedback date | Revision date | Revised scale | Judgment date |
 |---|---|---|---|---|---|---|---|
-| M1a tracking | | | | | | | |
+| M1a counted visits | | | | | | | |
 | M1b total | | | | | | | |
 | M1c arrangement | | | | | | | |
 | M1d count order | | | | | | | |

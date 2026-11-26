@@ -5,11 +5,12 @@ unit: 2.2
 stretch: 2
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Read every word aloud. Use 18 point print; no independent reading.
 exit: half
 ---
 # Day 22 exit ticket
 
-Teacher reads all words aloud. Invented for practice.
+Invented for practice.
 
 ## s02-X22
 

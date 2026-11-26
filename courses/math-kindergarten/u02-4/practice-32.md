@@ -5,10 +5,11 @@ unit: 2.4
 stretch: 2
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Read every word aloud. Use 18 point print; no independent reading.
 ---
 # Day 32 practice
 
-Teacher reads all words aloud. Invented for practice.
+Invented for practice.
 
 ## s02-P32-1
 

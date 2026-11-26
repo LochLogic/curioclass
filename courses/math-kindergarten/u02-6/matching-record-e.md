@@ -5,16 +5,17 @@ unit: 2.6
 stretch: 2
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Read every word aloud. Use 18 point print; no independent reading.
 ---
 # Day 40 comparison record
 
-Teacher reads all words aloud. Invented for practice.
+Invented for practice.
 
-Join the partners.
+Join partners on the second comparison sheet.
 
-Write how many in the left group.
+Write the lower left group's number.
 
-Write how many in the right group.
+Write the lower right group's number.
 
 Ring both groups if they have the same number.
 
