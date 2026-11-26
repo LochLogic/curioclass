@@ -24,8 +24,8 @@ approach page is docs/courses/arts/APPROACH.md (approved 2026-11-20, Desk q-prew
 ## 1. The standard
 
 - National Core Arts Standards, 2014 (National Coalition for Core Arts Standards), the performance standards.
-- Loaded in data/standards/ncas-performance-standards.txt as ids only, no wording: 1,264 ids across the five
-  disciplines (visual arts 195, music 264, theater 298, dance 273, media arts 234), from the 2021-11 "at a glance"
+- Loaded in data/standards/ncas-performance-standards.txt as ids only, no wording: 1,265 ids across the five
+  disciplines (visual arts 195, music 265, theater 298, dance 273, media arts 234), from the 2021-11 "at a glance"
   handouts, fetched 2026-10-27, and the 2021-11 music composition and theory strand handout, downloaded and read
   2026-11-21 (Cory, Desk q-fix-downloads-1). Format `DIS:<process><anchor>.<standard>.<grade><letter>`, for example
   `DA:Cr1.1.2a`. High school levels are `.Ia`, `.IIa`, `.IIIa` (media arts cells with one statement carry no
@@ -60,7 +60,7 @@ Read on the coalition's own copyright guidelines (nationalartsstandards.org, "NC
   the performance standards. The eleven anchors may be quoted in their real wording. Decided (Cory, 2026-11-20, Desk q-prework-arts-1):
   a one-line words file for the taught ids (id, tab, at most 14 words of what the student does, never a
   re-sentence of the standards' phrasing), written by one agent and read by a second, in the public repository; the
-  63 strand ids joined it 2026-11-21, so it holds all 1,176 taught ids. The file now exists (data/standards/ncas-performance-standards-words.txt,
+  63 strand ids joined it 2026-11-21 and MU:Cr2.1.Kb 2026-11-26, so it holds all 1,177 taught ids. The file now exists (data/standards/ncas-performance-standards-words.txt,
   written 2026-11-20): a plan cites the id and uses the file's line for the action.
 
 ## 3. The band-year rule
@@ -130,21 +130,21 @@ state frameworks that turn them into yearlong courses.
   school levels (three in each of the five 9 to 12 courses), so many schools that cannot give an arts course every
   day can still use the course.
 
-### Ids owned by each course-year (counted from the id file, 2026-11-19, music 9 to 12 on 2026-11-21; pre-kindergarten excluded)
+### Ids owned by each course-year (counted from the id file, 2026-11-19, music 9 to 12 on 2026-11-21, MU:Cr2.1.Kb on 2026-11-26; pre-kindergarten excluded)
 
 | Discipline | K to 2 (K, 1, 2) | 3 to 5 | 6 to 8 | 9 to 12, per level (`.Ia`, `.IIa`, `.IIIa`; Level 4 repeats `.IIIa`) |
 |---|---|---|---|---|
 | Visual arts (VA) | 15 + 15 + 15 = 45 | 45 | 45 | 15 |
-| Music (MU) | 18 + 20 + 20 = 58 | 63 | 63 | 21 each, strand `.C`, 63 in all (3.3) |
+| Music (MU) | 19 + 20 + 20 = 59 | 63 | 63 | 21 each, strand `.C`, 63 in all (3.3) |
 | Theater (TH) | 17 + 24 + 24 = 65 | 72 | 72 | 24 |
 | Dance (DA) | 21 + 21 + 21 = 63 | 63 | 63 | 21 |
 | Media arts (MA) | 18 + 18 + 18 = 54 | 54 | 54 | 18 |
 
 An id is one lettered statement (`DA:Cr1.1.2a`). A year's scope and sequence claims every id of its grade in its
-discipline, counted in this table. The file holds 1,264 ids: 1,176 taught (K to 8 and the high school levels) and 88
-pre-kindergarten, not taught. Totals of taught ids: visual arts 180, music 247, theater 281, dance 252, media arts
+discipline, counted in this table. The file holds 1,265 ids: 1,177 taught (K to 8 and the high school levels) and 88
+pre-kindergarten, not taught. Totals of taught ids: visual arts 180, music 248, theater 281, dance 252, media arts
 216. The header's "per grade" figures are unlettered standards and are not the count. Music and theater
-kindergarten are uneven (music K 18, grades 1 and 2 20, grades 3 to 8 21; theater K 17, grade 1 on 24), so no
+kindergarten are uneven (music K 19, grades 1 and 2 20, grades 3 to 8 21; theater K 17, grade 1 on 24), so no
 year is counted by an even spread. High school music is one of the 20 courses, not an extra one; its 63 ids are
 in the file since 2026-11-21.
 

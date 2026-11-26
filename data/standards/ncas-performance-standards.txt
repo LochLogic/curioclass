@@ -17,6 +17,7 @@
 # note: HS spelled .Ia/.IIa/.IIIa as in the VA, DA, MA and TH handouts. Some state adoptions write theatre/dance HS as HSI/HSII/HSIII (e.g. TH:Cr1.1.HSI); not verified at source, so not used.
 # note: handout typos normalised: DA:Re.7.1 and VA:Re.7.x -> Re7; VA "Pka" -> PKa; TH:Cr2-PK -> TH:Cr2.1.PK; TH:Cr.1.1.5 -> TH:Cr1.1.5; TH:Cn11.2.-1 -> TH:Cn11.2.1; MA:Re9.1.HS.I -> MA:Re9.1.I; music handout's "(MA:Cr3.1.PK)" -> MU:Cr3.1.PK.
 # note: added 2026-11-16. Reuse terms read at source (NCAS Copyright Guidelines, 2025 posting): performance standards are all rights reserved (rights administered by Young Audiences, Inc.); only the anchor standards and framework matrix are free; paraphrase with citation is allowed. This file keeps ids only. Band-year rule and revision watch: docs/courses/arts/STANDARD.md.
+# note: 2026-11-26: MU:Cr2.1.Kb added (organize personal music ideas with iconic notation or recording, with guidance). The music handout prints both kindergarten Cr2.1 statements with an "a" label; the NAfME kindergarten unit (nafme.org, General-Music-Responding-Unit-Kindergarten.pdf, printed page 7) and New Mexico's published K to 5 music standards list them as Ka and Kb (docs/reviews/frame-music-grades-k-to-2-codex-2026-11-25.md, finding 1).
 # source: https://www.nationalartsstandards.org/sites/default/files/2021-11/Music%20Theory%20and%20Composition%20Strand%20at%20a%20Glance.pdf (high school composition and theory strand, downloaded and read 2026-11-21, Cory, Desk q-fix-downloads-1)
 # note: composition and theory strand ids are as the handout prints them, every cell lettered; its connecting ids print anchor .0 (MU:Cn10.0.C.Ia, MU:Cn11.0.C.Ia), unlike the PK-8 handout's .1, and are kept as printed.
 DA:Cr1.1.PKa
@@ -545,6 +546,7 @@ MU:Cr1.1.8a
 MU:Cr2.1.PKa
 MU:Cr2.1.PKb
 MU:Cr2.1.Ka
+MU:Cr2.1.Kb
 MU:Cr2.1.1a
 MU:Cr2.1.1b
 MU:Cr2.1.2a

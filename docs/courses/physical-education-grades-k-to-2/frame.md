@@ -283,8 +283,8 @@ this frame finds in its units; each is to a core course, or is a name-each-other
 
 ### After-core courses (name each other, no lean)
 
-The health, SEL and visual arts K to 2 frames are written (2026-11-25); their units and weeks are cited below. The
-dance K to 2 frame is not written, so its unit numbers are not guessed. Visual arts K to 2 shares no row with this
+The health, SEL, visual arts and dance K to 2 frames are written (2026-11-25); their units and weeks are cited below.
+Visual arts K to 2 shares no row with this
 course. Where the other course teaches first in the same year, the PE unit opens with a retrieval task on it and
 teaches only its own part; If later says what PE does if a school runs the other course later.
 
