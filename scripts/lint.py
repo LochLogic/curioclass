@@ -3,9 +3,11 @@
     python -X utf8 scripts/lint.py [--course <id> | --changed | --all]
 
 Checks (each line starts with the check's name, so a gate compare shows what is new):
-- catalog: no curriculum script (CURRICULUM below) opens a tool catalog file (data/modules.csv, sequence.csv,
-  coverage.csv, tools-concepts.csv, data/concepts/). One named exception until the standards pages are rebuilt:
-  course_pages.py `known_standards` (docs/CONSOLIDATION-PLAN.md test 4).
+- catalog: no curriculum script opens a tool catalog file (data/modules.csv, sequence.csv, coverage.csv,
+  tools-concepts.csv, data/concepts/). Every script under scripts/ is a curriculum script except the named tool-side
+  set (TOOL_SIDE below, each with its reason), so a new script is linted by default. Two named exceptions
+  (EXCEPTIONS): course_pages.py `known_standards`, until the standards pages are rebuilt, and course_status.py's
+  module-level catalog placement counts (docs/CONSOLIDATION-PLAN.md test 4, close review finding 9).
 - never-touch: a changed file whose data/homes.csv kind is never-touch or state (state files change only through
   their owner script, which the lead runs).
 - generated and layout: scripts/homes.py check over the files in scope (--course: every file git would see in the
@@ -27,13 +29,31 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
 
-CURRICULUM = ['plan.py', 'plan_facts.py', 'plan_flow.py', 'unitplan.py', 'unit_skeleton.py', 'section_skeleton.py',
-              'day_skeleton.py', 'lesson.py', 'lesson_course.py', 'ledger.py', 'rows.py', 'safe_write.py', 'frame.py',
-              'coursegen.py', 'turn.py', 'index.py', 'uses.py', 'gate.py', 'lint.py', 'skel_strip.py',
-              'front_office.py', 'front_office_docs.py', 'course_pages.py']
+# Every script under scripts/ is a curriculum script except these, which exist to serve tools, the tool catalog, the
+# Supply Closet or the tool site (close review finding 9: the list is inverted, so a new script is linted by default).
+TOOL_SIDE = {
+    'add_codes.py': 'module codes in data/modules/*.txt',
+    'apply_ideas.py': 'tool idea cards into data/concepts/',
+    'board.py': 'the tool build board',
+    'build_db.py': 'builds the catalog itself',
+    'build_site.py': 'the tool site and topic pages (course pages come from course_pages.py)',
+    'catalog_batch.py': 'catalog review', 'catalog_compute.py': 'catalog review', 'catalog_maps.py': 'catalog review',
+    'check_charts.py': 'Supply Closet charts', 'check_concepts.py': 'tool concepts', 'check_games.py': 'Supply Closet games',
+    'check_plans.py': "tools' lesson plans", 'check_words.py': 'the Word Wall', 'check_words_review.py': 'the Word Wall',
+    'check_worksheets.py': 'worksheet lists',
+    'coverage_ledger.py': 'how the tools cover the standards (writes data/coverage.csv, a catalog file)',
+    'desk_stats.py': 'tool counts for the Desk', 'gen_links.py': 'worksheet generator links on topic pages',
+    'neighbors.py': 'tool spec context', 'rename_tools.py': 'tool renames', 'review_word_pictures.py': 'the Word Wall',
+    'shape_courses.py': 'catalog shape (path step 3)', 'spec_fixes.py': 'tool spec fixes', 'teaching_map.py': 'the Map',
+    'tool_bins.py': 'tool demand bins', 'tool_record.py': 'tool records', 'tool_stages.py': 'tool stages',
+    'wordart.py': 'Word Wall pictures',
+    'lint.py': 'it names the catalog files in order to look for them',
+}
 CATALOG = re.compile(r"modules\.csv|sequence\.csv|coverage\.csv|tools-concepts\.csv|data[/\\]concepts\b|"
                      r"'concepts'\)")
-EXCEPTION = ('course_pages.py', 'known_standards')
+# Named exceptions inside curriculum scripts: (script, function; '' = module level)
+EXCEPTIONS = {('course_pages.py', 'known_standards'): 'until the standards pages are rebuilt',
+              ('course_status.py', ''): "its catalog placement counts (docs/COURSES-STATUS.md's module column)"}
 EMDASH = '—'
 UK = re.compile(r'\b(colour(?:s|ed|ing)?|centre(?:s|d)?|(?:centi|milli|kilo)?metres?|(?:milli)?litres?|'
                 r'practis(?:e|es|ed|ing)|licences?|modelling|modelled|labell(?:ed|ing)|'
@@ -60,18 +80,18 @@ def courses_of(files):
 
 def catalog():
     out = []
-    for name in CURRICULUM:
-        if name == 'lint.py':          # it names the catalog files in order to look for them
-            continue
-        p = ROOT / 'scripts' / name
-        if not p.exists():
+    for p in sorted((ROOT / 'scripts').glob('*.py')):
+        name = p.name
+        if name in TOOL_SIDE:
             continue
         func = ''
         for i, ln in enumerate(p.read_text(encoding='utf-8').splitlines(), 1):
             m = re.match(r'def (\w+)', ln)
             if m:
                 func = m.group(1)
-            if CATALOG.search(ln) and not ln.lstrip().startswith('#') and (name, func) != EXCEPTION:
+            elif ln and not ln[0].isspace():
+                func = ''                  # back at module level
+            if CATALOG.search(ln) and not ln.lstrip().startswith('#') and (name, func) not in EXCEPTIONS:
                 out.append('catalog scripts/%s:%d: a curriculum script reads a tool catalog file' % (name, i))
     return out
 

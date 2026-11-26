@@ -56,7 +56,8 @@ def tests():
     drift = index.r_drift(ix)
     add(3, 'one home per fact', len(drift), 0, 'plans holding a stored <!-- skel --> block (the marker guard)')
     add(4, 'no curriculum list from the tool catalog', len(lint.catalog()), 0,
-        'catalog lint lines (one named exception, course_pages.known_standards, is outside the count)')
+        'catalog lint lines over every script but the named tool-side set (two named exceptions, '
+        'course_pages.known_standards and course_status.py placement counts, are outside the count)')
     t = time.time()
     subprocess.run([sys.executable, '-X', 'utf8', 'scripts/uses.py', 'word:runoff'], cwd=ROOT, capture_output=True)
     add(5, 'any object found by id', round(time.time() - t, 1), '<10', 'seconds for uses.py word:runoff, index fresh')

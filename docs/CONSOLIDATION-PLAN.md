@@ -684,6 +684,10 @@ Built (2026-11-25):
   17 courses with no ledger.csv got a header-only one (a home, not content); ledgers fill as writers run and none of
   the 17 has had a writing run since the ledger began, except 10 older days in US history I and world history I
   (later.csv L132).
+- Row 3: lint.py's catalog check reads every script under scripts/ except a named tool-side set of 29 (TOOL_SIDE,
+  each with its reason; coverage_ledger.py is named there: it measures tool coverage and writes a catalog file), with
+  course_status.py's module-level placement counts as the second named exception. 0 lines; a probe script reading
+  modules.csv is caught, and so is course_status.py without its exception.
 
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 
