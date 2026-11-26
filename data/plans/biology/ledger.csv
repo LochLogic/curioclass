@@ -1,203 +1,203 @@
-course,where,day,kind,entry,note,stage
-biology,s01,,case,"a runner's heart rate climbs in a race and is back near resting within minutes; a plant's leaf pores close on a hot, dry afternoon",unit 1 anchoring phenomenon or design problem (frame),planned
-biology,s01,,model,system-model,used and extended here by bio-body-systems,planned
-biology,s01,,model,structure-function,used and extended here by bio-body-systems,planned
-biology,s01,,term,cell,progression row bio-body-systems (HS-LS1-2),planned
-biology,s01,,term,tissue,progression row bio-body-systems (HS-LS1-2),planned
-biology,s01,,term,organ,progression row bio-body-systems (HS-LS1-2),planned
-biology,s01,,term,organ system,progression row bio-body-systems (HS-LS1-2),planned
-biology,s01,,term,hierarchy,progression row bio-body-systems (HS-LS1-2),planned
-biology,s01,,term,interacting systems,progression row bio-body-systems (HS-LS1-2),planned
-biology,s01,,model,data-graph,used and extended here by bio-homeostasis-feedback,planned
-biology,s01,,model,cause-effect,used and extended here by bio-homeostasis-feedback,planned
-biology,s01,,model,stability-change,used and extended here by bio-homeostasis-feedback,planned
-biology,s01,,term,homeostasis,progression row bio-homeostasis-feedback (HS-LS1-3),planned
-biology,s01,,term,feedback,progression row bio-homeostasis-feedback (HS-LS1-3),planned
-biology,s01,,term,negative feedback,progression row bio-homeostasis-feedback (HS-LS1-3),planned
-biology,s01,,term,set point,progression row bio-homeostasis-feedback (HS-LS1-3),planned
-biology,s01,,term,stimulus,progression row bio-homeostasis-feedback (HS-LS1-3),planned
-biology,s01,,term,response,progression row bio-homeostasis-feedback (HS-LS1-3),planned
-biology,s02,,case,"an axolotl that loses a leg grows back bone, muscle, nerve and skin in the right places",unit 2 anchoring phenomenon or design problem (frame),planned
-biology,s02,,model,structure-function,used and extended here by bio-dna-to-protein,planned
-biology,s02,,term,DNA,progression row bio-dna-to-protein (HS-LS1-1),planned
-biology,s02,,term,gene,progression row bio-dna-to-protein (HS-LS1-1),planned
-biology,s02,,term,protein,progression row bio-dna-to-protein (HS-LS1-1),planned
-biology,s02,,term,base sequence,progression row bio-dna-to-protein (HS-LS1-1),planned
-biology,s02,,term,code,progression row bio-dna-to-protein (HS-LS1-1),planned
-biology,s02,,term,specialised cell,progression row bio-dna-to-protein (HS-LS1-1),planned
-biology,s02,,model,system-model,used and extended here by bio-mitosis-differentiation,planned
-biology,s02,,term,mitosis,progression row bio-mitosis-differentiation (HS-LS1-4),planned
-biology,s02,,term,cell division,progression row bio-mitosis-differentiation (HS-LS1-4),planned
-biology,s02,,term,differentiation,progression row bio-mitosis-differentiation (HS-LS1-4),planned
-biology,s02,,term,stem cell,progression row bio-mitosis-differentiation (HS-LS1-4),planned
-biology,s02,,term,growth,progression row bio-mitosis-differentiation (HS-LS1-4),planned
-biology,s02,,term,repair,progression row bio-mitosis-differentiation (HS-LS1-4),planned
-biology,s03,,case,"short-grown bean seedlings in the dark lose dry mass, while light-grown cohorts may lose less; supplied longer-grown records show a net gain",unit 3 anchoring phenomenon or design problem (frame),planned
-biology,s03,,model,particle-model,used and extended here by bio-photosynthesis-energy,planned
-biology,s03,,model,energy-transfer,used and extended here by bio-photosynthesis-energy,planned
-biology,s03,,model,matter-cycle,used and extended here by bio-photosynthesis-energy,planned
-biology,s03,,term,photosynthesis,progression row bio-photosynthesis-energy (HS-LS1-5),planned
-biology,s03,,term,glucose,progression row bio-photosynthesis-energy (HS-LS1-5),planned
-biology,s03,,term,chloroplast,progression row bio-photosynthesis-energy (HS-LS1-5),planned
-biology,s03,,term,chemical energy,progression row bio-photosynthesis-energy (HS-LS1-5),planned
-biology,s03,,term,light energy,progression row bio-photosynthesis-energy (HS-LS1-5),planned
-biology,s03,,term,reactant,progression row bio-photosynthesis-energy (HS-LS1-5),planned
-biology,s03,,term,product,progression row bio-photosynthesis-energy (HS-LS1-5),planned
-biology,s03,,term,cellular respiration,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned
-biology,s03,,term,aerobic,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned
-biology,s03,,term,anaerobic,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned
-biology,s03,,term,fermentation,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned
-biology,s03,,term,bond,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned
-biology,s03,,term,net energy transfer,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned
-biology,s03,,model,structure-function,used and extended here by bio-carbon-molecules,planned
-biology,s03,,term,amino acid,progression row bio-carbon-molecules (HS-LS1-6),planned
-biology,s03,,term,protein,progression row bio-carbon-molecules (HS-LS1-6),planned
-biology,s03,,term,carbon-based molecule,progression row bio-carbon-molecules (HS-LS1-6),planned
-biology,s03,,term,sugar,progression row bio-carbon-molecules (HS-LS1-6),planned
-biology,s03,,term,element,progression row bio-carbon-molecules (HS-LS1-6),planned
-biology,s03,,term,large molecule,progression row bio-carbon-molecules (HS-LS1-6),planned
-biology,s04,,case,"a clear spring-fed river makes tonnes of plant matter a year yet feeds only a few large fish, and the air's carbon dioxide rises and falls every year like a breath",unit 4 anchoring phenomenon or design problem (frame),planned
-biology,s04,,model,food-web,used and extended here by bio-energy-pyramids,planned
-biology,s04,,model,energy-transfer,used and extended here by bio-energy-pyramids,planned
-biology,s04,,model,matter-cycle,used and extended here by bio-energy-pyramids,planned
-biology,s04,,model,scale-proportion,used and extended here by bio-energy-pyramids,planned
-biology,s04,,term,trophic level,progression row bio-energy-pyramids (HS-LS2-4),planned
-biology,s04,,term,biomass,progression row bio-energy-pyramids (HS-LS2-4),planned
-biology,s04,,term,energy pyramid,progression row bio-energy-pyramids (HS-LS2-4),planned
-biology,s04,,term,producer,progression row bio-energy-pyramids (HS-LS2-4),planned
-biology,s04,,term,consumer,progression row bio-energy-pyramids (HS-LS2-4),planned
-biology,s04,,term,conservation of matter,progression row bio-energy-pyramids (HS-LS2-4),planned
-biology,s04,,model,system-model,used and extended here by bio-carbon-cycle,planned
-biology,s04,,term,carbon cycle,progression row bio-carbon-cycle (HS-LS2-5),planned
-biology,s04,,term,biosphere,progression row bio-carbon-cycle (HS-LS2-5),planned
-biology,s04,,term,atmosphere,progression row bio-carbon-cycle (HS-LS2-5),planned
-biology,s04,,term,hydrosphere,progression row bio-carbon-cycle (HS-LS2-5),planned
-biology,s04,,term,geosphere,progression row bio-carbon-cycle (HS-LS2-5),planned
-biology,s04,,term,reservoir,progression row bio-carbon-cycle (HS-LS2-5),planned
-biology,s04,,term,flux,progression row bio-carbon-cycle (HS-LS2-5),planned
-biology,s05,,case,"for more than sixty years winter surveys, with gaps, have estimated moose and wolf populations on an island in Lake Superior; the moose have boomed and crashed, and the wolves nearly vanished before new wolves were brought in",unit 5 anchoring phenomenon or design problem (frame),planned
-biology,s05,,model,food-web,used and extended here by bio-population-carrying-capacity,planned
-biology,s05,,model,data-graph,used and extended here by bio-population-carrying-capacity,planned
-biology,s05,,model,system-model,used and extended here by bio-population-carrying-capacity,planned
-biology,s05,,model,computational-model,built here by bio-population-carrying-capacity,planned
-biology,s05,,term,carrying capacity,progression row bio-population-carrying-capacity (HS-LS2-1),planned
-biology,s05,,term,limiting factor,progression row bio-population-carrying-capacity (HS-LS2-1),planned
-biology,s05,,term,population,progression row bio-population-carrying-capacity (HS-LS2-1),planned
-biology,s05,,term,density-dependent,progression row bio-population-carrying-capacity (HS-LS2-1),planned
-biology,s05,,term,density-independent,progression row bio-population-carrying-capacity (HS-LS2-1),planned
-biology,s05,,term,model run,progression row bio-population-carrying-capacity (HS-LS2-1),planned
-biology,s05,,term,biodiversity,progression row bio-biodiversity-math (HS-LS2-2),planned
-biology,s05,,term,species richness,progression row bio-biodiversity-math (HS-LS2-2),planned
-biology,s05,,term,abundance,progression row bio-biodiversity-math (HS-LS2-2),planned
-biology,s05,,term,sample,progression row bio-biodiversity-math (HS-LS2-2),planned
-biology,s05,,term,mean,progression row bio-biodiversity-math (HS-LS2-2),planned
-biology,s05,,term,trend,progression row bio-biodiversity-math (HS-LS2-2),planned
-biology,s05,,model,claim-evidence-reasoning,used and extended here by bio-ecosystem-stability-change,planned
-biology,s05,,model,cause-effect,used and extended here by bio-ecosystem-stability-change,planned
-biology,s05,,model,stability-change,used and extended here by bio-ecosystem-stability-change,planned
-biology,s05,,term,stability,progression row bio-ecosystem-stability-change (HS-LS2-6),planned
-biology,s05,,term,disturbance,progression row bio-ecosystem-stability-change (HS-LS2-6),planned
-biology,s05,,term,resilience,progression row bio-ecosystem-stability-change (HS-LS2-6),planned
-biology,s05,,term,succession,progression row bio-ecosystem-stability-change (HS-LS2-6),planned
-biology,s05,,term,equilibrium,progression row bio-ecosystem-stability-change (HS-LS2-6),planned
-biology,s05,,term,new ecosystem,progression row bio-ecosystem-stability-change (HS-LS2-6),planned
-biology,s05,,term,group behavior,progression row bio-group-behavior (HS-LS2-8),planned
-biology,s05,,term,flocking,progression row bio-group-behavior (HS-LS2-8),planned
-biology,s05,,term,schooling,progression row bio-group-behavior (HS-LS2-8),planned
-biology,s05,,term,cooperation,progression row bio-group-behavior (HS-LS2-8),planned
-biology,s05,,term,survival,progression row bio-group-behavior (HS-LS2-8),planned
-biology,s05,,term,reproduction,progression row bio-group-behavior (HS-LS2-8),planned
-biology,s06,,case,"two black Labrador retrievers have a litter with black, chocolate and yellow puppies, and no two puppies are exactly alike",unit 6 anchoring phenomenon or design problem (frame),planned
-biology,s06,,model,structure-function,used and extended here by bio-dna-chromosomes-traits,planned
-biology,s06,,model,patterns,used and extended here by bio-dna-chromosomes-traits,planned
-biology,s06,,term,chromosome,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned
-biology,s06,,term,allele,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned
-biology,s06,,term,inherit,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned
-biology,s06,,term,trait,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned
-biology,s06,,term,non-coding DNA,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned
-biology,s06,,term,parent,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned
-biology,s06,,term,offspring,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned
-biology,s06,,model,claim-evidence-reasoning,used and extended here by bio-sources-of-variation,planned
-biology,s06,,model,cause-effect,used and extended here by bio-sources-of-variation,planned
-biology,s06,,term,meiosis,progression row bio-sources-of-variation (HS-LS3-2),planned
-biology,s06,,term,recombination,progression row bio-sources-of-variation (HS-LS3-2),planned
-biology,s06,,term,mutation,progression row bio-sources-of-variation (HS-LS3-2),planned
-biology,s06,,term,replication error,progression row bio-sources-of-variation (HS-LS3-2),planned
-biology,s06,,term,mutagen,progression row bio-sources-of-variation (HS-LS3-2),planned
-biology,s06,,term,heritable variation,progression row bio-sources-of-variation (HS-LS3-2),planned
-biology,s06,,model,data-graph,used and extended here by bio-trait-distribution,planned
-biology,s06,,term,probability,progression row bio-trait-distribution (HS-LS3-3),planned
-biology,s06,,term,distribution,progression row bio-trait-distribution (HS-LS3-3),planned
-biology,s06,,term,genotype,progression row bio-trait-distribution (HS-LS3-3),planned
-biology,s06,,term,phenotype,progression row bio-trait-distribution (HS-LS3-3),planned
-biology,s06,,term,dominant,progression row bio-trait-distribution (HS-LS3-3),planned
-biology,s06,,term,recessive,progression row bio-trait-distribution (HS-LS3-3),planned
-biology,s06,,term,environment,progression row bio-trait-distribution (HS-LS3-3),planned
-biology,s07,,case,"stickleback populations lost much of their bony armor after marine ancestors colonized postglacial freshwater environments, and genetic evidence helps explain how",unit 7 anchoring phenomenon or design problem (frame),planned
-biology,s07,,model,patterns,used and extended here by bio-evidence-common-ancestry,planned
-biology,s07,,model,claim-evidence-reasoning,used and extended here by bio-evidence-common-ancestry,planned
-biology,s07,,term,common ancestry,progression row bio-evidence-common-ancestry (HS-LS4-1),planned
-biology,s07,,term,evolution,progression row bio-evidence-common-ancestry (HS-LS4-1),planned
-biology,s07,,term,homologous structure,progression row bio-evidence-common-ancestry (HS-LS4-1),planned
-biology,s07,,term,DNA sequence,progression row bio-evidence-common-ancestry (HS-LS4-1),planned
-biology,s07,,term,embryo,progression row bio-evidence-common-ancestry (HS-LS4-1),planned
-biology,s07,,term,fossil record,progression row bio-evidence-common-ancestry (HS-LS4-1),planned
-biology,s07,,term,line of evidence,progression row bio-evidence-common-ancestry (HS-LS4-1),planned
-biology,s07,,model,cause-effect,used and extended here by bio-natural-selection-factors,planned
-biology,s07,,term,natural selection,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned
-biology,s07,,term,adaptation,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned
-biology,s07,,term,variation,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned
-biology,s07,,term,competition,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned
-biology,s07,,term,reproductive success,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned
-biology,s07,,term,gene frequency,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned
-biology,s07,,model,data-graph,used and extended here by bio-trait-proportion-shifts,planned
-biology,s07,,model,scale-proportion,used and extended here by bio-trait-proportion-shifts,planned
-biology,s07,,term,proportion,progression row bio-trait-proportion-shifts (HS-LS4-3),planned
-biology,s07,,term,advantageous trait,progression row bio-trait-proportion-shifts (HS-LS4-3),planned
-biology,s07,,term,generation,progression row bio-trait-proportion-shifts (HS-LS4-3),planned
-biology,s07,,term,frequency,progression row bio-trait-proportion-shifts (HS-LS4-3),planned
-biology,s07,,term,histogram,progression row bio-trait-proportion-shifts (HS-LS4-3),planned
-biology,s07,,term,shift,progression row bio-trait-proportion-shifts (HS-LS4-3),planned
-biology,s08,,case,rocks older than about 2.4 billion years hold grains of minerals that rust in today's air and did not rust then; younger sandstones laid down on land are stained red by rust,unit 8 anchoring phenomenon or design problem (frame),planned
-biology,s08,,model,cause-effect,used and extended here by bio-environment-change-species,planned
-biology,s08,,model,plate-model,used and extended here by bio-environment-change-species,planned
-biology,s08,,model,claim-evidence-reasoning,used and extended here by bio-environment-change-species,planned
-biology,s08,,term,speciation,progression row bio-environment-change-species (HS-LS4-5),planned
-biology,s08,,term,extinction,progression row bio-environment-change-species (HS-LS4-5),planned
-biology,s08,,term,reproductive isolation,progression row bio-environment-change-species (HS-LS4-5),planned
-biology,s08,,term,rate of change,progression row bio-environment-change-species (HS-LS4-5),planned
-biology,s08,,term,habitat,progression row bio-environment-change-species (HS-LS4-5),planned
-biology,s08,,term,geographic barrier,progression row bio-environment-change-species (HS-LS4-5),planned
-biology,s08,,model,system-model,used and extended here by bio-earth-life-coevolution,planned
-biology,s08,,term,coevolution,progression row bio-earth-life-coevolution (HS-ESS2-7),planned
-biology,s08,,term,biosphere,progression row bio-earth-life-coevolution (HS-ESS2-7),planned
-biology,s08,,term,oxygenation,progression row bio-earth-life-coevolution (HS-ESS2-7),planned
-biology,s08,,term,weathering,progression row bio-earth-life-coevolution (HS-ESS2-7),planned
-biology,s08,,term,soil formation,progression row bio-earth-life-coevolution (HS-ESS2-7),planned
-biology,s08,,term,reef,progression row bio-earth-life-coevolution (HS-ESS2-7),planned
-biology,s08,,term,feedback,progression row bio-earth-life-coevolution (HS-ESS2-7),planned
-biology,s09,,case,"after two dams on Washington State's Elwha River came down (2011 to 2014), salmon swam above the old dam sites within a few years, and decades of trapped sediment flowed downstream and built new beach and delta at the river's mouth",unit 9 anchoring phenomenon or design problem (frame),planned
-biology,s09,,model,design-cycle,used and extended here by bio-define-human-impact-problem,planned
-biology,s09,,model,system-model,used and extended here by bio-define-human-impact-problem,planned
-biology,s09,,term,criteria,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned
-biology,s09,,term,constraint,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned
-biology,s09,,term,trade-off,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned
-biology,s09,,term,invasive species,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned
-biology,s09,,term,habitat loss,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned
-biology,s09,,term,mitigation,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned
-biology,s09,,model,data-graph,used and extended here by bio-evaluate-impact-solutions,planned
-biology,s09,,term,technological solution,progression row bio-evaluate-impact-solutions (HS-ESS3-4; HS-ETS1-3),planned
-biology,s09,,term,prioritize,progression row bio-evaluate-impact-solutions (HS-ESS3-4; HS-ETS1-3),planned
-biology,s09,,term,reliability,progression row bio-evaluate-impact-solutions (HS-ESS3-4; HS-ETS1-3),planned
-biology,s09,,term,impact data,progression row bio-evaluate-impact-solutions (HS-ESS3-4; HS-ETS1-3),planned
-biology,s09,,term,pollutant,progression row bio-evaluate-impact-solutions (HS-ESS3-4; HS-ETS1-3),planned
-biology,s10,,case,Northern cod off Newfoundland collapsed around 1992; subsequent recovery has required continued assessment. North Atlantic right whales suffer ship strikes and fishing-gear entanglements,unit 10 anchoring phenomenon or design problem (frame),planned
-biology,s10,,model,computational-model,used and extended here by bio-biodiversity-simulation,planned
-biology,s10,,model,design-cycle,used and extended here by bio-biodiversity-simulation,planned
-biology,s10,,model,system-model,used and extended here by bio-biodiversity-simulation,planned
-biology,s10,,term,simulation,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned
-biology,s10,,term,parameter,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned
-biology,s10,,term,sustainability,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned
-biology,s10,,term,endangered species,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned
-biology,s10,,term,resource management,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned
-biology,s10,,term,scenario,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned
+course,where,day,kind,entry,note,stage,student_word
+biology,s01,,case,"a runner's heart rate climbs in a race and is back near resting within minutes; a plant's leaf pores close on a hot, dry afternoon",unit 1 anchoring phenomenon or design problem (frame),planned,
+biology,s01,,model,system-model,used and extended here by bio-body-systems,planned,
+biology,s01,,model,structure-function,used and extended here by bio-body-systems,planned,
+biology,s01,,term,cell,progression row bio-body-systems (HS-LS1-2),planned,no
+biology,s01,,term,tissue,progression row bio-body-systems (HS-LS1-2),planned,no
+biology,s01,,term,organ,progression row bio-body-systems (HS-LS1-2),planned,no
+biology,s01,,term,organ system,progression row bio-body-systems (HS-LS1-2),planned,no
+biology,s01,,term,hierarchy,progression row bio-body-systems (HS-LS1-2),planned,no
+biology,s01,,term,interacting systems,progression row bio-body-systems (HS-LS1-2),planned,no
+biology,s01,,model,data-graph,used and extended here by bio-homeostasis-feedback,planned,
+biology,s01,,model,cause-effect,used and extended here by bio-homeostasis-feedback,planned,
+biology,s01,,model,stability-change,used and extended here by bio-homeostasis-feedback,planned,
+biology,s01,,term,homeostasis,progression row bio-homeostasis-feedback (HS-LS1-3),planned,no
+biology,s01,,term,feedback,progression row bio-homeostasis-feedback (HS-LS1-3),planned,no
+biology,s01,,term,negative feedback,progression row bio-homeostasis-feedback (HS-LS1-3),planned,no
+biology,s01,,term,set point,progression row bio-homeostasis-feedback (HS-LS1-3),planned,no
+biology,s01,,term,stimulus,progression row bio-homeostasis-feedback (HS-LS1-3),planned,no
+biology,s01,,term,response,progression row bio-homeostasis-feedback (HS-LS1-3),planned,no
+biology,s02,,case,"an axolotl that loses a leg grows back bone, muscle, nerve and skin in the right places",unit 2 anchoring phenomenon or design problem (frame),planned,
+biology,s02,,model,structure-function,used and extended here by bio-dna-to-protein,planned,
+biology,s02,,term,DNA,progression row bio-dna-to-protein (HS-LS1-1),planned,no
+biology,s02,,term,gene,progression row bio-dna-to-protein (HS-LS1-1),planned,no
+biology,s02,,term,protein,progression row bio-dna-to-protein (HS-LS1-1),planned,no
+biology,s02,,term,base sequence,progression row bio-dna-to-protein (HS-LS1-1),planned,no
+biology,s02,,term,code,progression row bio-dna-to-protein (HS-LS1-1),planned,no
+biology,s02,,term,specialised cell,progression row bio-dna-to-protein (HS-LS1-1),planned,no
+biology,s02,,model,system-model,used and extended here by bio-mitosis-differentiation,planned,
+biology,s02,,term,mitosis,progression row bio-mitosis-differentiation (HS-LS1-4),planned,no
+biology,s02,,term,cell division,progression row bio-mitosis-differentiation (HS-LS1-4),planned,no
+biology,s02,,term,differentiation,progression row bio-mitosis-differentiation (HS-LS1-4),planned,no
+biology,s02,,term,stem cell,progression row bio-mitosis-differentiation (HS-LS1-4),planned,no
+biology,s02,,term,growth,progression row bio-mitosis-differentiation (HS-LS1-4),planned,no
+biology,s02,,term,repair,progression row bio-mitosis-differentiation (HS-LS1-4),planned,no
+biology,s03,,case,"short-grown bean seedlings in the dark lose dry mass, while light-grown cohorts may lose less; supplied longer-grown records show a net gain",unit 3 anchoring phenomenon or design problem (frame),planned,
+biology,s03,,model,particle-model,used and extended here by bio-photosynthesis-energy,planned,
+biology,s03,,model,energy-transfer,used and extended here by bio-photosynthesis-energy,planned,
+biology,s03,,model,matter-cycle,used and extended here by bio-photosynthesis-energy,planned,
+biology,s03,,term,photosynthesis,progression row bio-photosynthesis-energy (HS-LS1-5),planned,no
+biology,s03,,term,glucose,progression row bio-photosynthesis-energy (HS-LS1-5),planned,no
+biology,s03,,term,chloroplast,progression row bio-photosynthesis-energy (HS-LS1-5),planned,no
+biology,s03,,term,chemical energy,progression row bio-photosynthesis-energy (HS-LS1-5),planned,no
+biology,s03,,term,light energy,progression row bio-photosynthesis-energy (HS-LS1-5),planned,no
+biology,s03,,term,reactant,progression row bio-photosynthesis-energy (HS-LS1-5),planned,no
+biology,s03,,term,product,progression row bio-photosynthesis-energy (HS-LS1-5),planned,no
+biology,s03,,term,cellular respiration,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned,no
+biology,s03,,term,aerobic,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned,no
+biology,s03,,term,anaerobic,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned,no
+biology,s03,,term,fermentation,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned,no
+biology,s03,,term,bond,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned,no
+biology,s03,,term,net energy transfer,progression row bio-respiration-energy (HS-LS1-7; HS-LS2-3),planned,no
+biology,s03,,model,structure-function,used and extended here by bio-carbon-molecules,planned,
+biology,s03,,term,amino acid,progression row bio-carbon-molecules (HS-LS1-6),planned,no
+biology,s03,,term,protein,progression row bio-carbon-molecules (HS-LS1-6),planned,no
+biology,s03,,term,carbon-based molecule,progression row bio-carbon-molecules (HS-LS1-6),planned,no
+biology,s03,,term,sugar,progression row bio-carbon-molecules (HS-LS1-6),planned,no
+biology,s03,,term,element,progression row bio-carbon-molecules (HS-LS1-6),planned,no
+biology,s03,,term,large molecule,progression row bio-carbon-molecules (HS-LS1-6),planned,no
+biology,s04,,case,"a clear spring-fed river makes tonnes of plant matter a year yet feeds only a few large fish, and the air's carbon dioxide rises and falls every year like a breath",unit 4 anchoring phenomenon or design problem (frame),planned,
+biology,s04,,model,food-web,used and extended here by bio-energy-pyramids,planned,
+biology,s04,,model,energy-transfer,used and extended here by bio-energy-pyramids,planned,
+biology,s04,,model,matter-cycle,used and extended here by bio-energy-pyramids,planned,
+biology,s04,,model,scale-proportion,used and extended here by bio-energy-pyramids,planned,
+biology,s04,,term,trophic level,progression row bio-energy-pyramids (HS-LS2-4),planned,no
+biology,s04,,term,biomass,progression row bio-energy-pyramids (HS-LS2-4),planned,no
+biology,s04,,term,energy pyramid,progression row bio-energy-pyramids (HS-LS2-4),planned,no
+biology,s04,,term,producer,progression row bio-energy-pyramids (HS-LS2-4),planned,no
+biology,s04,,term,consumer,progression row bio-energy-pyramids (HS-LS2-4),planned,no
+biology,s04,,term,conservation of matter,progression row bio-energy-pyramids (HS-LS2-4),planned,no
+biology,s04,,model,system-model,used and extended here by bio-carbon-cycle,planned,
+biology,s04,,term,carbon cycle,progression row bio-carbon-cycle (HS-LS2-5),planned,no
+biology,s04,,term,biosphere,progression row bio-carbon-cycle (HS-LS2-5),planned,no
+biology,s04,,term,atmosphere,progression row bio-carbon-cycle (HS-LS2-5),planned,no
+biology,s04,,term,hydrosphere,progression row bio-carbon-cycle (HS-LS2-5),planned,no
+biology,s04,,term,geosphere,progression row bio-carbon-cycle (HS-LS2-5),planned,no
+biology,s04,,term,reservoir,progression row bio-carbon-cycle (HS-LS2-5),planned,no
+biology,s04,,term,flux,progression row bio-carbon-cycle (HS-LS2-5),planned,no
+biology,s05,,case,"for more than sixty years winter surveys, with gaps, have estimated moose and wolf populations on an island in Lake Superior; the moose have boomed and crashed, and the wolves nearly vanished before new wolves were brought in",unit 5 anchoring phenomenon or design problem (frame),planned,
+biology,s05,,model,food-web,used and extended here by bio-population-carrying-capacity,planned,
+biology,s05,,model,data-graph,used and extended here by bio-population-carrying-capacity,planned,
+biology,s05,,model,system-model,used and extended here by bio-population-carrying-capacity,planned,
+biology,s05,,model,computational-model,built here by bio-population-carrying-capacity,planned,
+biology,s05,,term,carrying capacity,progression row bio-population-carrying-capacity (HS-LS2-1),planned,no
+biology,s05,,term,limiting factor,progression row bio-population-carrying-capacity (HS-LS2-1),planned,no
+biology,s05,,term,population,progression row bio-population-carrying-capacity (HS-LS2-1),planned,no
+biology,s05,,term,density-dependent,progression row bio-population-carrying-capacity (HS-LS2-1),planned,no
+biology,s05,,term,density-independent,progression row bio-population-carrying-capacity (HS-LS2-1),planned,no
+biology,s05,,term,model run,progression row bio-population-carrying-capacity (HS-LS2-1),planned,no
+biology,s05,,term,biodiversity,progression row bio-biodiversity-math (HS-LS2-2),planned,no
+biology,s05,,term,species richness,progression row bio-biodiversity-math (HS-LS2-2),planned,no
+biology,s05,,term,abundance,progression row bio-biodiversity-math (HS-LS2-2),planned,no
+biology,s05,,term,sample,progression row bio-biodiversity-math (HS-LS2-2),planned,no
+biology,s05,,term,mean,progression row bio-biodiversity-math (HS-LS2-2),planned,no
+biology,s05,,term,trend,progression row bio-biodiversity-math (HS-LS2-2),planned,no
+biology,s05,,model,claim-evidence-reasoning,used and extended here by bio-ecosystem-stability-change,planned,
+biology,s05,,model,cause-effect,used and extended here by bio-ecosystem-stability-change,planned,
+biology,s05,,model,stability-change,used and extended here by bio-ecosystem-stability-change,planned,
+biology,s05,,term,stability,progression row bio-ecosystem-stability-change (HS-LS2-6),planned,no
+biology,s05,,term,disturbance,progression row bio-ecosystem-stability-change (HS-LS2-6),planned,no
+biology,s05,,term,resilience,progression row bio-ecosystem-stability-change (HS-LS2-6),planned,no
+biology,s05,,term,succession,progression row bio-ecosystem-stability-change (HS-LS2-6),planned,no
+biology,s05,,term,equilibrium,progression row bio-ecosystem-stability-change (HS-LS2-6),planned,no
+biology,s05,,term,new ecosystem,progression row bio-ecosystem-stability-change (HS-LS2-6),planned,no
+biology,s05,,term,group behavior,progression row bio-group-behavior (HS-LS2-8),planned,no
+biology,s05,,term,flocking,progression row bio-group-behavior (HS-LS2-8),planned,no
+biology,s05,,term,schooling,progression row bio-group-behavior (HS-LS2-8),planned,no
+biology,s05,,term,cooperation,progression row bio-group-behavior (HS-LS2-8),planned,no
+biology,s05,,term,survival,progression row bio-group-behavior (HS-LS2-8),planned,no
+biology,s05,,term,reproduction,progression row bio-group-behavior (HS-LS2-8),planned,no
+biology,s06,,case,"two black Labrador retrievers have a litter with black, chocolate and yellow puppies, and no two puppies are exactly alike",unit 6 anchoring phenomenon or design problem (frame),planned,
+biology,s06,,model,structure-function,used and extended here by bio-dna-chromosomes-traits,planned,
+biology,s06,,model,patterns,used and extended here by bio-dna-chromosomes-traits,planned,
+biology,s06,,term,chromosome,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned,no
+biology,s06,,term,allele,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned,no
+biology,s06,,term,inherit,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned,no
+biology,s06,,term,trait,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned,no
+biology,s06,,term,non-coding DNA,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned,no
+biology,s06,,term,parent,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned,no
+biology,s06,,term,offspring,progression row bio-dna-chromosomes-traits (HS-LS3-1),planned,no
+biology,s06,,model,claim-evidence-reasoning,used and extended here by bio-sources-of-variation,planned,
+biology,s06,,model,cause-effect,used and extended here by bio-sources-of-variation,planned,
+biology,s06,,term,meiosis,progression row bio-sources-of-variation (HS-LS3-2),planned,no
+biology,s06,,term,recombination,progression row bio-sources-of-variation (HS-LS3-2),planned,no
+biology,s06,,term,mutation,progression row bio-sources-of-variation (HS-LS3-2),planned,no
+biology,s06,,term,replication error,progression row bio-sources-of-variation (HS-LS3-2),planned,no
+biology,s06,,term,mutagen,progression row bio-sources-of-variation (HS-LS3-2),planned,no
+biology,s06,,term,heritable variation,progression row bio-sources-of-variation (HS-LS3-2),planned,no
+biology,s06,,model,data-graph,used and extended here by bio-trait-distribution,planned,
+biology,s06,,term,probability,progression row bio-trait-distribution (HS-LS3-3),planned,no
+biology,s06,,term,distribution,progression row bio-trait-distribution (HS-LS3-3),planned,no
+biology,s06,,term,genotype,progression row bio-trait-distribution (HS-LS3-3),planned,no
+biology,s06,,term,phenotype,progression row bio-trait-distribution (HS-LS3-3),planned,no
+biology,s06,,term,dominant,progression row bio-trait-distribution (HS-LS3-3),planned,no
+biology,s06,,term,recessive,progression row bio-trait-distribution (HS-LS3-3),planned,no
+biology,s06,,term,environment,progression row bio-trait-distribution (HS-LS3-3),planned,no
+biology,s07,,case,"stickleback populations lost much of their bony armor after marine ancestors colonized postglacial freshwater environments, and genetic evidence helps explain how",unit 7 anchoring phenomenon or design problem (frame),planned,
+biology,s07,,model,patterns,used and extended here by bio-evidence-common-ancestry,planned,
+biology,s07,,model,claim-evidence-reasoning,used and extended here by bio-evidence-common-ancestry,planned,
+biology,s07,,term,common ancestry,progression row bio-evidence-common-ancestry (HS-LS4-1),planned,no
+biology,s07,,term,evolution,progression row bio-evidence-common-ancestry (HS-LS4-1),planned,no
+biology,s07,,term,homologous structure,progression row bio-evidence-common-ancestry (HS-LS4-1),planned,no
+biology,s07,,term,DNA sequence,progression row bio-evidence-common-ancestry (HS-LS4-1),planned,no
+biology,s07,,term,embryo,progression row bio-evidence-common-ancestry (HS-LS4-1),planned,no
+biology,s07,,term,fossil record,progression row bio-evidence-common-ancestry (HS-LS4-1),planned,no
+biology,s07,,term,line of evidence,progression row bio-evidence-common-ancestry (HS-LS4-1),planned,no
+biology,s07,,model,cause-effect,used and extended here by bio-natural-selection-factors,planned,
+biology,s07,,term,natural selection,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned,no
+biology,s07,,term,adaptation,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned,no
+biology,s07,,term,variation,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned,no
+biology,s07,,term,competition,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned,no
+biology,s07,,term,reproductive success,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned,no
+biology,s07,,term,gene frequency,progression row bio-natural-selection-factors (HS-LS4-2; HS-LS4-4),planned,no
+biology,s07,,model,data-graph,used and extended here by bio-trait-proportion-shifts,planned,
+biology,s07,,model,scale-proportion,used and extended here by bio-trait-proportion-shifts,planned,
+biology,s07,,term,proportion,progression row bio-trait-proportion-shifts (HS-LS4-3),planned,no
+biology,s07,,term,advantageous trait,progression row bio-trait-proportion-shifts (HS-LS4-3),planned,no
+biology,s07,,term,generation,progression row bio-trait-proportion-shifts (HS-LS4-3),planned,no
+biology,s07,,term,frequency,progression row bio-trait-proportion-shifts (HS-LS4-3),planned,no
+biology,s07,,term,histogram,progression row bio-trait-proportion-shifts (HS-LS4-3),planned,no
+biology,s07,,term,shift,progression row bio-trait-proportion-shifts (HS-LS4-3),planned,no
+biology,s08,,case,rocks older than about 2.4 billion years hold grains of minerals that rust in today's air and did not rust then; younger sandstones laid down on land are stained red by rust,unit 8 anchoring phenomenon or design problem (frame),planned,
+biology,s08,,model,cause-effect,used and extended here by bio-environment-change-species,planned,
+biology,s08,,model,plate-model,used and extended here by bio-environment-change-species,planned,
+biology,s08,,model,claim-evidence-reasoning,used and extended here by bio-environment-change-species,planned,
+biology,s08,,term,speciation,progression row bio-environment-change-species (HS-LS4-5),planned,no
+biology,s08,,term,extinction,progression row bio-environment-change-species (HS-LS4-5),planned,no
+biology,s08,,term,reproductive isolation,progression row bio-environment-change-species (HS-LS4-5),planned,no
+biology,s08,,term,rate of change,progression row bio-environment-change-species (HS-LS4-5),planned,no
+biology,s08,,term,habitat,progression row bio-environment-change-species (HS-LS4-5),planned,no
+biology,s08,,term,geographic barrier,progression row bio-environment-change-species (HS-LS4-5),planned,no
+biology,s08,,model,system-model,used and extended here by bio-earth-life-coevolution,planned,
+biology,s08,,term,coevolution,progression row bio-earth-life-coevolution (HS-ESS2-7),planned,no
+biology,s08,,term,biosphere,progression row bio-earth-life-coevolution (HS-ESS2-7),planned,no
+biology,s08,,term,oxygenation,progression row bio-earth-life-coevolution (HS-ESS2-7),planned,no
+biology,s08,,term,weathering,progression row bio-earth-life-coevolution (HS-ESS2-7),planned,no
+biology,s08,,term,soil formation,progression row bio-earth-life-coevolution (HS-ESS2-7),planned,no
+biology,s08,,term,reef,progression row bio-earth-life-coevolution (HS-ESS2-7),planned,no
+biology,s08,,term,feedback,progression row bio-earth-life-coevolution (HS-ESS2-7),planned,no
+biology,s09,,case,"after two dams on Washington State's Elwha River came down (2011 to 2014), salmon swam above the old dam sites within a few years, and decades of trapped sediment flowed downstream and built new beach and delta at the river's mouth",unit 9 anchoring phenomenon or design problem (frame),planned,
+biology,s09,,model,design-cycle,used and extended here by bio-define-human-impact-problem,planned,
+biology,s09,,model,system-model,used and extended here by bio-define-human-impact-problem,planned,
+biology,s09,,term,criteria,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned,no
+biology,s09,,term,constraint,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned,no
+biology,s09,,term,trade-off,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned,no
+biology,s09,,term,invasive species,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned,no
+biology,s09,,term,habitat loss,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned,no
+biology,s09,,term,mitigation,progression row bio-define-human-impact-problem (HS-LS2-7; HS-ETS1-1),planned,no
+biology,s09,,model,data-graph,used and extended here by bio-evaluate-impact-solutions,planned,
+biology,s09,,term,technological solution,progression row bio-evaluate-impact-solutions (HS-ESS3-4; HS-ETS1-3),planned,no
+biology,s09,,term,prioritize,progression row bio-evaluate-impact-solutions (HS-ESS3-4; HS-ETS1-3),planned,no
+biology,s09,,term,reliability,progression row bio-evaluate-impact-solutions (HS-ESS3-4; HS-ETS1-3),planned,no
+biology,s09,,term,impact data,progression row bio-evaluate-impact-solutions (HS-ESS3-4; HS-ETS1-3),planned,no
+biology,s09,,term,pollutant,progression row bio-evaluate-impact-solutions (HS-ESS3-4; HS-ETS1-3),planned,no
+biology,s10,,case,Northern cod off Newfoundland collapsed around 1992; subsequent recovery has required continued assessment. North Atlantic right whales suffer ship strikes and fishing-gear entanglements,unit 10 anchoring phenomenon or design problem (frame),planned,
+biology,s10,,model,computational-model,used and extended here by bio-biodiversity-simulation,planned,
+biology,s10,,model,design-cycle,used and extended here by bio-biodiversity-simulation,planned,
+biology,s10,,model,system-model,used and extended here by bio-biodiversity-simulation,planned,
+biology,s10,,term,simulation,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned,no
+biology,s10,,term,parameter,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned,no
+biology,s10,,term,sustainability,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned,no
+biology,s10,,term,endangered species,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned,no
+biology,s10,,term,resource management,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned,no
+biology,s10,,term,scenario,progression row bio-biodiversity-simulation (HS-LS4-6; HS-ESS3-3; HS-ETS1-4),planned,no

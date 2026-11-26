@@ -146,3 +146,11 @@ Source: the step 4 close review (docs/reviews/consolidation/step4-close-review.m
 | A course gate with no stored baseline passed, and a job could store a broken course as its own baseline (step 4 close review, finding 1) | gate.py --course stores the baseline itself on an unchanged course, refuses --baseline on a changed one and exits 2 with no baseline; common.txt, day.txt, cleanup.txt and continuity-fix.txt no longer tell jobs to store one |
 | The course gate printed every known line (math K 8,721 lines) and plan.py printed same-stem pairs one by one (finding 2) | the gate prints counts by rule and only new lines (`--verbose` for all); plan.py groups same-stem files per unit (math K plan lines 4,292 to 82) |
 | common.txt said both "two jobs never write the same course" and "jobs in one course may both write" (finding 7) | one sentence: never two jobs in the same course at once |
+
+## Retool 9: KIT-VERSION 10 (2026-11-25)
+
+Source: the step 4 close review, finding 4 (consolidation 4.L row 6). No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| The word backlog counted every ledger term row (16,128 heads, mostly phrases a later day leans on, not words a student is taught) (close review, finding 4) | ledger term rows carry student_word yes or no (default no); day.txt and section-write.md tell writers to add `--student-word` only for a word the page teaches students as vocabulary; vocabulary.py report counts only yes rows |

@@ -138,13 +138,15 @@ def forms(w):
 
 
 @lru_cache(None)
-def ledger_terms(course):
-    """[(where, day, entry, heads)] for the course's term rows."""
+def ledger_terms(course, student_only=False):
+    """[(where, day, entry, heads)] for the course's term rows; student_only keeps the rows marked student_word yes
+    (the backlog, close review finding 4). A [[word:...]] mark may name any term row."""
     p = PLANS / course / 'ledger.csv'
     if not p.exists():
         return []
     with open(p, encoding='utf-8', newline='') as f:
-        return [(r['where'], r['day'], r['entry'], heads(r['entry'])) for r in csv.DictReader(f) if r['kind'] == 'term']
+        return [(r['where'], r['day'], r['entry'], heads(r['entry'])) for r in csv.DictReader(f) if r['kind'] == 'term'
+                and (not student_only or r.get('student_word') == 'yes')]
 
 
 def in_ledger(course, word):
@@ -207,8 +209,8 @@ def check():
 
 
 def report(only=None):
-    """Two lists: terms the ledgers introduce with no row for the course's band (the backlog), and rows no ledger
-    in their band introduces. Counts per course; the full lists go to build/vocabulary-report.csv."""
+    """Two lists: student words (ledger term rows marked student_word yes) with no row for the course's band (the
+    backlog), and rows no student word in their band introduces. Counts per course; the full lists go to build/vocabulary-report.csv."""
     cl = [c for c, r in course_rows().items() if r.get('status') != 'shelved' and (not only or c == only)]
     defined = {}
     for (s, b), r in table().items():
@@ -216,7 +218,7 @@ def report(only=None):
     out, used = [], {}
     for c in cl:
         b = band(c)
-        for where, day, entry, hs in ledger_terms(c):
+        for where, day, entry, hs in ledger_terms(c, student_only=True):
             for h in hs:
                 used.setdefault(b, set()).add(h)
                 if not (forms(h) & defined.get(b, set())):

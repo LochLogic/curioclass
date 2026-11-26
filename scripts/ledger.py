@@ -1,6 +1,6 @@
 """The subject ledger: what each grade of a subject actually taught, carried up the ladder.
 
-    python -X utf8 scripts/ledger.py add <subject> <course> <where> <day> <kind> "<entry>" ["<note>"]
+    python -X utf8 scripts/ledger.py add <subject> <course> <where> <day> <kind> "<entry>" ["<note>"] [--student-word]
     python -X utf8 scripts/ledger.py show <subject> [--before <course>] [--kind <kind>] [--term <text>] [--course <course>]
     python -X utf8 scripts/ledger.py note <subject> <course> <day> "<entry>" "<new note>"
     python -X utf8 scripts/ledger.py check <subject> [--all]
@@ -17,6 +17,9 @@ far) and adds what it teaches (`add`). Writers never edit the CSV by hand.
 
 Columns: course, where (u01-2, a section, or s01 for a unit-level entry), day (the day number, or blank when planned
 for the whole section), kind, entry, note, stage (planned when a section plan adds it, written when a day adds it).
+student_word (term rows only, yes or no; blank on other kinds): yes when the term is a word a student is taught and
+given a definition for, set by the writer with --student-word; no by default. The word backlog (vocabulary.py report)
+counts only yes rows; most term rows record what a later day may lean on, for teachers and writers (close review 4).
 
 seed (stage 4): units.csv has columns course, where (s03 for a unit-level entry, or u03-2), kind, entry, note; every
 row is added at stage planned in one call; all-or-nothing, refuses bad kinds, courses off the ladder and duplicates.
@@ -61,7 +64,8 @@ import safe_write  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 DIR = Path(os.environ['LEDGER_DIR']) if os.environ.get('LEDGER_DIR') else ROOT / 'data' / 'plans'
 PLANS = ROOT / 'data' / 'plans'
-COLS = ['course', 'where', 'day', 'kind', 'entry', 'note', 'stage']
+COLS = ['course', 'where', 'day', 'kind', 'entry', 'note', 'stage', 'student_word']
+STUDENT = ('yes', 'no')   # term rows only: is this a word a student is taught and given a definition for? (4.L)
 KINDS = ('term', 'notation', 'model', 'case', 'investigation', 'material', 'routine', 'text', 'skill')
 sys.path.insert(0, str(ROOT / 'scripts'))
 import subjects  # noqa: E402  one home for subject ids and ladders (consolidation 4.H)
@@ -117,13 +121,13 @@ def write_all(subject, rs):
             _write(c, mine)
 
 
-def add(subject, course, where, day, kind, entry, note=''):
+def add(subject, course, where, day, kind, entry, note='', student=False):
     """Holds the course's lock (safe_write) for the whole read, change and write."""
     with safe_write.lock(path(course)):
-        return _add(subject, course, where, day, kind, entry, note)
+        return _add(subject, course, where, day, kind, entry, note, student)
 
 
-def _add(subject, course, where, day, kind, entry, note=''):
+def _add(subject, course, where, day, kind, entry, note='', student=False):
     if subject not in LADDER or course not in LADDER[subject]:
         sys.exit('ledger: %s is not on the %s ladder' % (course, subject))
     if kind not in KINDS:
@@ -132,6 +136,9 @@ def _add(subject, course, where, day, kind, entry, note=''):
         sys.exit('ledger: day is a number or blank')
     if not entry.strip():
         sys.exit('ledger: entry is empty')
+    if student and kind != 'term':
+        sys.exit('ledger: --student-word marks term rows only')
+    sw = ('yes' if student else 'no') if kind == 'term' else ''
     if day:
         # A planned row of the same section, kind and entry (written at section-plan time) is promoted, not duplicated.
         rs = rows(subject)
@@ -140,13 +147,15 @@ def _add(subject, course, where, day, kind, entry, note=''):
         if hit:
             r = hit[0]
             r['day'], r['stage'] = day, 'written'
+            if student:
+                r['student_word'] = 'yes'
             if note.strip() and note.strip() != r['note']:
                 r['note'] = (r['note'] + '; ' + note.strip()) if r['note'] else note.strip()
             write_all(subject, rs)
             print('promoted: %s %s day %s %s: %s' % (course, where, day, kind, entry.strip()))
             return
     stage = 'written' if day else 'planned'
-    _append(course, [[course, where, day, kind, entry.strip(), note.strip(), stage]])
+    _append(course, [[course, where, day, kind, entry.strip(), note.strip(), stage, sw]])
     print('added: %s %s day %s %s: %s' % (course, where, day or '-', kind, entry.strip()))
 
 
@@ -246,7 +255,8 @@ def seed(subject, file):
             errs.append('line %d: duplicate of an existing or earlier row: %s %s %s' % (i, r['course'], r['where'], r['entry']))
         else:
             have.add(key)
-            out.append([r['course'], r['where'], '', r['kind'], r['entry'], r['note'], 'planned'])
+            out.append([r['course'], r['where'], '', r['kind'], r['entry'], r['note'], 'planned',
+                        'no' if r['kind'] == 'term' else ''])
     if errs:
         print('\n'.join(errs))
         sys.exit('ledger seed: refused, nothing added (%d problems)' % len(errs))
@@ -412,6 +422,9 @@ def check(subject, show_all=False):
         elif r['kind'] not in KINDS or r['course'] not in LADDER[subject]:
             print('line %d: unknown kind or course' % i)
             bad += 1
+        elif r['student_word'] not in (STUDENT if r['kind'] == 'term' else ('',)):
+            print('line %d: student_word is yes or no on a term row and blank on any other kind' % i)
+            bad += 1
     print('%s ledger: %d rows, %d problems' % (subject, len(rs), bad))
     ix = index(rs)
     po, un, nclaims, ntargets = [], [], 0, 0
@@ -566,9 +579,11 @@ def main(a):
         print(__doc__)
         return 2
     if a[0] == 'add':
-        if len(a) < 7:
-            sys.exit('ledger add: subject course where day kind entry [note]')
-        add(*a[1:9])
+        student = '--student-word' in a
+        a = [x for x in a if x != '--student-word']
+        if len(a) not in (7, 8):
+            sys.exit('ledger add: subject course where day kind entry [note] [--student-word]')
+        add(*a[1:8], student=student)
         return 0
     if a[0] == 'note':
         if len(a) != 6:

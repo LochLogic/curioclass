@@ -109,6 +109,8 @@ The job names it when it is one (the kit in docs/pipeline/kit/). Continuity acro
 - **Add what you plan,** one call per entry, day left blank:
   `python -X utf8 scripts/ledger.py add <subject> {course} u{uu}-<n> "" <kind> "<entry>" "<note>"`.
   - Kinds are term, notation, model, case, investigation, material, routine, text and skill.
+  - Add `--student-word` to a term row only when the section teaches that word to students as vocabulary (they
+    say, read and use it, and need a student-facing definition); every other term row is for teachers and writers.
   - Add every new term and every case, investigation, model and routine the section teaches. Add a material only
     when students handle it for the first time.
   - Add review entries too, with the note "review of <course> <where>". If the cited entry is still at stage planned

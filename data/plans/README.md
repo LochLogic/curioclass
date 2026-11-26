@@ -113,6 +113,10 @@ One file per course, written only through `scripts/ledger.py` (add, seed, promot
 subject and read that subject's courses in ladder order. Any other plan CSV row is written with
 `python -X utf8 scripts/rows.py upsert <course> <table> --key <cols> col=value ... [--dry-run]`.
 
+Columns: course, where, day, kind, entry, note, stage, student_word. student_word (4.L) is yes or no on term rows and
+blank on other kinds: yes only for a word the page teaches students as vocabulary (`ledger.py add ... --student-word`),
+no by default. The word backlog (`vocabulary.py report`) counts only yes rows.
+
 ## The course list (`course-list.csv`, consolidation step 4.C, 2026-11-25)
 
 Row order within a subject is teaching order (grade, then the order the courses are taken): ledger.py builds each

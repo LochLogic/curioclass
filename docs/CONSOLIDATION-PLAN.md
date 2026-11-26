@@ -698,6 +698,11 @@ Built (2026-11-25):
   fails an item, day or source id that left its table since the last commit with no ids.py retire row (ids.py
   left_tables, in `ids.py check`; a trial deleting one item row of algebra II failed it). Each has a self-test case
   that fails it. Test 6 is named a convention in "What each word means" and in goal_tests.py.
+- Row 6: every ledger has a student_word column (34,173 rows migrated by ledger.py's own writer: term rows no, other
+  kinds blank; no other cell changed). `ledger.py add ... --student-word` marks a term row yes (refused on other
+  kinds); check fails any other value. day.txt and section-write.md say when to mark (kit 10, RETOOL 9). vocabulary.py
+  report counts only yes rows: the backlog is 0 today, a real number, since no writer has marked a word yet; a
+  `[[word:...]]` mark may still name any term row. It grows as course runs mark words (later.csv L130).
 
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 
