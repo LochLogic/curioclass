@@ -2,7 +2,7 @@
 
 Write the unit plan for unit {unit}, to docs/courses/UNIT-PLAN.md, as docs/courses/{course}/s{uu}.md. Unit plans
 follow the subject-wide order in PRODUCTION-PATH steps 3 and 4: every unit of the subject is planned before the probe,
-and a preceding unit need not have written lessons. Section plans (docs/courses/{course}/u{uu}-N.md) follow in step 7,
+and a preceding unit need not have written lessons. Section plans (docs/courses/{course}/u{uu}-N.md) follow in COURSE-RUN stage 5,
 except the section chosen for the probe, which the lead names.
 
 Read first, in this order: docs/GLOSSARY.md; docs/courses/UNIT-PLAN.md (some of its fields are math only; it says

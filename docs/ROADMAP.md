@@ -1,6 +1,6 @@
 # Roadmap
 
-Reworked 2026-11-22 to match docs/PRODUCTION-PATH.md and docs/HANDOFF.md. The text it replaced is in
+Reworked 2026-11-22, brought current 2026-11-25, to match docs/PRODUCTION-PATH.md and docs/HANDOFF.md. The text it replaced is in
 docs/archive/ROADMAP-history-2026-11-22.md (older history: docs/archive/ROADMAP-history-2026-11-11.md); nothing in
 either archive is current.
 
@@ -26,8 +26,9 @@ the site ends up, not a reason to spread thin.
 
 State lives in docs/HANDOFF.md. Counts by course: docs/COURSES-STATUS.md (`python -X utf8 scripts/course_status.py`).
 Tools by step: docs/BUILD-BOARD.md (`python -X utf8 scripts/board.py`). By stage: the Desk Dashboard's plan flow.
-Parked work: data/plans/later.csv. In one line, on 2026-11-22: all 52 core courses are planned down to units, days are
-written for kindergarten to grade 3 in science, social studies and ELA, and the site is live but not marketed.
+Parked work: data/plans/later.csv. In one line, on 2026-11-25: all 52 core courses are planned down to units, days are
+written for kindergarten to grade 3 in science, social studies and ELA (science K to 3 signed off), Codex draft days
+for six more courses wait unread (L105), the consolidation's architecture work is done, and the site is live but not marketed.
 
 ## The course work: the order
 
@@ -41,21 +42,22 @@ by docs/COURSE-RUN.md (since 2026-11-20). In short:
    ELA and math followed together. Grade 4 math's older work is reconciled into math's units (later.csv L13).
 3. **Then days, a grade at a time** (COURSE-RUN stages 5 and 6): section plans, plan data and keys, then
    ledger-gated days and a retool before the next grade. A subject's first grade starts with a unit 1 probe.
-4. **Then each course's finish** (COURSE-RUN stage 7): the course's checks as one assessment plan, a coherence pass,
-   English learner supports, Art and voice, the tools its sections name, the final reads, and Cory's Sign-off.
+4. **Then each course's finish** (COURSE-RUN stage 7): the course's checks as one assessment plan, a coherence pass
+   (with a check that the English learner supports made in each lesson are there), Art and voice, the tools its sections name, the final reads, and Cory's Sign-off.
    Before any course goes live: the watch items in later.csv L101.
 5. **Then the subjects after the core**, from COURSE-RUN stage 1: first the 6 core electives, then the other
    subjects (PRODUCTION-PATH, "After the core subjects"). Stage 1 and the progressions are already done for every
    after-core subject.
 
-Where each core subject stands in that order, as of 2026-11-22:
+Where each core subject stands in that order, as of 2026-11-25 (the Codex draft days named below are on main and
+unread; their review, later.csv L105, is paused at Cory's call):
 
 | Subject | Done | Waits on | Next |
 |---|---|---|---|
-| Social studies | All units planned; kindergarten to grade 3 days written and fixed | Nothing | Grades 4 and 5 and World Geography I, one lane of the next run |
-| Math | Kindergarten to grade 3 Goal maps and section skeletons (later.csv L102) | Nothing | Kindergarten to grade 3, the other lane of the next run, with a unit 1 probe |
-| Science | Kindergarten to grade 3 days written and fixed | Cory (later.csv L81) | Refine 1 and grades 4 and up, when Cory lifts the pause |
-| ELA | Kindergarten to grade 3 days written and fixed | Not yet queued | Grades 4 and up, after the current run |
+| Social studies | All units planned; kindergarten to grade 3 days written and fixed; Codex drafts of grade 4 (160 days) and grade 5 (51 of 160) | L105 for grades 4 and 5 | Grades 4 and 5 and World Geography I |
+| Math | Kindergarten to grade 3 Goal maps and section skeletons (later.csv L102); Codex draft of kindergarten (160 days) | L105 for kindergarten | Kindergarten to grade 3, with a unit 1 probe |
+| Science | Kindergarten to grade 3 finished to stage 7 and signed off (2026-11-23); Codex drafts of grades 4 and 5 (120 days each; grade 4 unit 4 section plans written 2026-11-25) | L105 for grades 4 and 5 | Grades 4 and up |
+| ELA | Kindergarten to grade 3 days written and fixed; Codex draft of part of grade 4 | L105 for grade 4 | Grades 4 and up |
 
 ## The layers
 
@@ -124,10 +126,10 @@ docs/agents/decisions/BASELINE.md.
 - **State.** Held since 2026-11-10: no Build, Refine or Codex queue builds, Community Plot Planner included. Live
   tools stay live as free-standing tools and claim no course coverage (BASELINE rule 26). The one exception is a fix
   that holds whatever happens (a wrong fact, a broken control on a live tool).
-- **Waits on.** Tools come after days in the top-down order (PRODUCTION-PATH step 9): a course's key tools are built
+- **Waits on.** The tool catalog is frozen until consolidation step 5 items 2 to 4 and 6 (CONSOLIDATION-PLAN.md), curriculum first: a course's key tools are built
   or rebuilt at its finish (COURSE-RUN stage 7) for the sections that name them, live and verified, with print
-  covering the rest. No tool is built or refined until a section plan names its job (FOUNDATION section 6). No
-  course has reached stage 7 yet.
+  covering the rest. No tool is built or refined until a section plan names its job (FOUNDATION section 6). Science K to 3
+  reached stage 7 and was signed off 2026-11-23 with print covering its tools.
 - **Next.** Held: Cory 2026-11-24 (Desk), "lets come back to this when we are further into writing days". Tools do
   not restart at the first course finish on their own; Cory sets the restart. When they do: a course's key tools,
   taken from the three bins (BASELINE rule 26), then its light tools; the tool-step leftovers are later.csv L39, and

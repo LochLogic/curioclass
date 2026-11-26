@@ -49,7 +49,7 @@ def _rows(p):
     if not p.exists():
         return []
     with io.open(p, encoding='utf-8', newline='') as f:
-        return list(csv.DictReader(f))
+        return list(csv.DictReader(line for line in f if not line.startswith('#')))   # as index.rows_of reads
 
 
 def upstream(days, items):
@@ -74,13 +74,15 @@ def marks(course):
     return {int(r['day']): r for r in _rows(PLANS / course / MARKS) if (r.get('day') or '').isdigit()}
 
 
-def stamp(course, stage, date, have):
-    """Store the hash of every day in `have` (day numbers with a file); other days' marks are kept."""
+def stamp(course, stage, date, have, keep=()):
+    """Store the hash of every day in `have` (day numbers with a file); other days' marks are kept. A day in `keep`
+    (its version line did not move, e.g. a grade read over a signed-off day) keeps its stage label."""
     now = upstream(_rows(PLANS / course / 'days.csv'), _rows(PLANS / course / 'items.csv'))
     m = marks(course)
     for d in have:
         if d in now:
-            m[d] = dict(day=str(d), hash=now[d], date=date, stage=stage)
+            st = m[d]['stage'] if d in keep and d in m else stage
+            m[d] = dict(day=str(d), hash=now[d], date=date, stage=st)
     with io.open(PLANS / course / MARKS, 'w', encoding='utf-8', newline='') as f:
         w = csv.DictWriter(f, MARK_COLS, lineterminator='\n')
         w.writeheader()
@@ -96,7 +98,7 @@ def changed(course, days=None, items=None):
     now = upstream(days if days is not None else _rows(PLANS / course / 'days.csv'),
                    items if items is not None else _rows(PLANS / course / 'items.csv'))
     return [(d, m[d]) for d in sorted(m) if now.get(d) != m[d]['hash']]
-LINE = re.compile(r'^version:[ \t]*(.*?)[ \t]*$', re.M)
+LINE = re.compile(r'^version:[ \t]*(.*?)[ \t]*\r?$', re.M)      # \r?: a CRLF file keeps its line end
 DATE = re.compile(r'\d{4}-\d{2}-\d{2}$')
 
 
@@ -156,6 +158,7 @@ def run(course, stage, date, dry):
         sys.exit('no day files under courses/%s' % course)
     changed = 0
     seen = {}
+    still = set()
     for f in files:
         raw = f.read_bytes()
         text = raw.decode('utf-8')
@@ -166,6 +169,7 @@ def run(course, stage, date, dry):
         new = move(m.group(1), stage, date)
         seen[new] = seen.get(new, 0) + 1
         if new == m.group(1):
+            still.add(int(re.match(r'd(\d{3})', f.name).group(1)))
             continue
         changed += 1
         if not dry:
@@ -175,7 +179,7 @@ def run(course, stage, date, dry):
         print('%4d  version: %s' % (n, v))
     print('%s: %d of %d day files %s' % (course, changed, len(files), 'would change' if dry else 'changed'))
     if not dry:
-        stamp(course, stage, date, day_numbers(files))
+        stamp(course, stage, date, day_numbers(files), still)
 
 
 def day_numbers(files):
@@ -217,6 +221,8 @@ def self_test():
     h1 = upstream(a, it)
     h2 = upstream(a, [{'item_id': 's01-X1', 'day': '1', 'answer': '5'}])
     check('upstream mark: a changed key changes only its day', h1[1] != h2[1] and h1[2] == h2[2])
+    m = LINE.search('day: 1\r\nversion: draft 1, not yet taught\r\nunit: 1\r\n')
+    check('a CRLF version line is read without its line end', bool(m) and m.group(1) == 'draft 1, not yet taught')
     print('day_version self-test: %s' % ('all passed' if ok else 'FAILED'))
     return 0 if ok else 1
 

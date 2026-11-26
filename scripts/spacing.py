@@ -71,7 +71,9 @@ def report(course, full=False):
             if r['course'] != course or not (r['day'] or '').isdigit():
                 continue
             d = int(r['day'])
-            for h in hit[:1]:
+            # measure from the earliest cited row in this course (a broad "review of <course> u02-1" cites a whole
+            # section, and its first day is the first teaching), else from the earlier course's row
+            for h in sorted(hit, key=lambda x: (x['course'] != course, int(x['day']) if (x['day'] or '').isdigit() else 999))[:1]:
                 if h['course'] == course and (h['day'] or '').isdigit():
                     g = school.get(d, d) - school.get(int(h['day']), int(h['day']))
                     if g > 0:
@@ -80,9 +82,10 @@ def report(course, full=False):
                     earlier[h['course']] = earlier.get(h['course'], 0) + 1
     print('\n1. Gaps between first teaching and a return, in school days (%d returns within the course)' % len(within))
     bands = [(1, 5, 'within a week'), (6, 20, '1 to 4 weeks'), (21, 60, '1 to 3 months'), (61, 999, 'over 3 months')]
-    for lo, hi, name in bands:
-        n = sum(1 for g in within if lo <= g <= hi)
-        print('   %-14s %4d %s' % (name, n, '#' * min(60, n // 2 if len(within) > 120 else n)))
+    counts = [sum(1 for g in within if lo <= g <= hi) for lo, hi, _ in bands]
+    top = max(counts + [1])
+    for (lo, hi, name), n in zip(bands, counts):
+        print('   %-14s %4d %s' % (name, n, '#' * (60 * n // top)))
     if within:
         s = sorted(within)
         print('   median %d, longest %d' % (s[len(s) // 2], s[-1]))

@@ -203,17 +203,22 @@ def _ledger_reviews(ix):
         except Exception:
             continue
         lix = ledger.index(rs)
+        key, seen = {}, {}
+        for row in rs:                         # every row is a node, reviewed or not (trace lists a day's rows)
+            k = ledger_key(row)
+            seen[k] = seen.get(k, 0) + 1
+            if seen[k] > 1:                    # two rows can share course, place, kind and 60 characters
+                k = '%s#%d' % (k, seen[k])
+            key[id(row)] = k
+            ix.node(k, 'row', row['course'], k[4:], 'data/plans/%s/ledger.csv' % row['course'], 0, row['stage'])
         for r, ts in ledger.claims(subj, rs):
-            src = ledger_key(r)
+            src = key.get(id(r)) or ledger_key(r)
             for t in ts:
                 st, hit = ledger.resolve(t, lix)
                 for h in hit[:4]:
-                    for row in (r, h):
-                        ix.node(ledger_key(row), 'row', row['course'], ledger_key(row)[4:],
-                                'data/plans/%s/ledger.csv' % row['course'], 0, row['stage'])
                     d = int(r['day']) if (r['day'] or '').isdigit() else None
-                    ix.edge(src, ledger_key(h), 'reviews', False, 'data/plans/%s/ledger.csv' % r['course'], 0,
-                            r['course'], d)
+                    ix.edge(src, key.get(id(h)) or ledger_key(h), 'reviews', False,
+                            'data/plans/%s/ledger.csv' % r['course'], 0, r['course'], d)
 
 
 def _tools(ix, cl):
@@ -574,9 +579,10 @@ def r_status(ix):
 def upstream_status(c, days, items):
     """A day read at a gate whose days.csv row or items (keys too) changed since (review change 6; marks stored by
     scripts/day_version.py in data/plans/<course>/day-marks.csv). Look at the day against the new data, then stamp
-    it again (`day_version.py <course> stamp <date>` after a full read)."""
+    it again (`day_version.py <course> stamp <date>` after a full read). The key carries the stored mark's hash, so a
+    baselined miss stays known only until the next stamp: a later change to a restamped day shows as new."""
     import day_version
-    return [('upstream|%s|d%03d' % (c, d), 'data/plans/%s/days.csv: day %d changed upstream (its days.csv row or '
+    return [('upstream|%s|d%03d|%s' % (c, d, r['hash'][:8]), 'data/plans/%s/days.csv: day %d changed upstream (its days.csv row or '
              'items) since its %s mark of %s; re-read the day against it' % (c, d, r['stage'], r['date']))
             for d, r in day_version.changed(c, days, items)]
 

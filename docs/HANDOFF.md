@@ -14,7 +14,7 @@ Where every kind of file lives and who writes it: [../data/homes.csv](../data/ho
   - 4.L done 2026-11-25 (CONSOLIDATION-PLAN 4.L Built list; Fable read docs/reviews/consolidation/step4-L-review.md). At each grade close the lead runs `gate.py --course <course> --record` (data/plans/debt.csv). Row 7, the count-only Word Wall read, waits for L130. Next: step 5's items 2 to 4 and 6, on Cory's go. Step 5's record items ran early on Cory's word (2026-11-25): item 1, the tool stage table data/tool-stages.csv (scripts/tool_stages.py), and item 5, one record per tool, tools/<id>/tool.md, with all 194 tools flattened (scripts/tool_record.py). Its tool-changing items 2 to 4 and 6 wait for tool work.
   - L133 done 2026-11-25: a day file needs a written ledger row (kind `none` for review, practice and test days) and a version line, or the index status report fails it; 34 known days are baselined, later.csv L136 (kit 12).
   - The Desk Dashboard was rebuilt 2026-11-25 to show the whole site (built so far, every course with drill-down to days, health); desk/README.md says what each part reads.
-  - The pedagogy-architecture review's changes 1 to 9 are built (2026-11-25; CONSOLIDATION-PLAN 4.L list; kit 13). New lead steps: at grade close `scripts/pass_marks.py add`, `scripts/day_version.py <course> grade-read <date>` and a read of `scripts/spacing.py <course>`; at sign-off `day_version.py <course> signed-off <date>`; `scripts/trace.py` walks a code, skill or day up and down. English learner supports are made in the lesson, not at stage 7. Later L137 to L142.
+  - The pedagogy-architecture review's changes 1 to 9 are built (2026-11-25; CONSOLIDATION-PLAN 4.L list; kit 13), then code-reviewed and every living doc checked for continuity the same day (kit 14). New lead steps: at grade close `scripts/pass_marks.py add`, `scripts/day_version.py <course> grade-read <date>` and a read of `scripts/spacing.py <course>`; at sign-off `day_version.py <course> signed-off <date>`; `scripts/trace.py` walks a code, skill or day up and down. English learner supports are made in the lesson, not at stage 7. Later L137 to L142.
   - The Word Wall gets no import: a count-only overlap read when L130 opens (Cory, 2026-11-25).
   - Block two and step 5 touch no course data. Scale counts for later marketing: [funding/SCALE.md](funding/SCALE.md).
 - **Ended 2026-11-24: the Codex draft run (later.csv L105).** Stopped softly by Cory; main merged into draft/codex and a baseline sheet written (docs/reviews/codex-draft-baseline-2026-11-24.md). Merged into main 2026-11-24 (consolidation step 2, docs/reviews/consolidation/step2-report.md): the six lane courses' days are on main as draft 1, unread, with their known gate failures; course pages stay off the deploy. The review is PAUSED for Cory (L105 lists its classes).
@@ -25,14 +25,14 @@ Where every kind of file lives and who writes it: [../data/homes.csv](../data/ho
 - **Done 2026-11-21: L87, the process aligned to COURSE-RUN.** Versioned kit docs/pipeline/kit/ (KIT-VERSION 1; 2 since the 2026-11-22 wording retool, RETOOL.md), `scripts/coursegen.py` (queues in COURSE-RUN order with a unit 1 probe and ledger-gate lines), `scripts/ledger.py` gate, seed, recheck and settle (and `add` promotes planned rows), `made_at` in defects.csv, ten new tagged checks across unitplan.py, plan.py and lesson.py, and `scripts/tokens.py`. Docs point at COURSE-RUN. Record docs/reviews/l87-alignment-2026-11-21.md; new-check hits in finished courses and the math Goal maps are later.csv L102. Next: the two-lane run (below).
 - **Done 2026-11-22: the social studies and ELA sample fixes (later.csv L99, L100; Cory 2026-11-21, Desk q-ladder-ss-ela-1).** One fresh fix agent per course applied or rejected every sampled FIRM fault, replaced weak sources or cut the facts, moved keys out of 63 child pieces, applied the ELA grade 1 tale sensitivity read and restored the Maathai Nobel line from the Nobel Prize site. Gates are back to each course's before counts. Record docs/reviews/ladder-ss-ela-fixes-2026-11-22.md. Next: the two-lane run (below).
 - **Done 2026-11-21: the social studies and ELA ladder run (later.csv L98).** Kindergarten to grade 3, initial dirty pass, straight through: ledgers (social-studies.csv, ela.csv), section plans, plan data and 1,056 days (social studies K 64, grades 1 and 2 96, grade 3 160; ELA 160 a grade), then run-end fixes from an outside reader, a capstone cross-grade continuity pass (social studies 7 of 257 claims drifted, ELA 29 of 302, all fixed) and an 80-day read-only sample. Report docs/reviews/ladder-ss-ela-report-2026-11-19.md. Pass marks: FIRM 1.19 a day (miss; science 1.4), wrong keys down by a third (met), review not said still common (miss), 79k tokens a day (miss; target 60k). L99 and L100 were done 2026-11-22 (above); L101 (watch items and template points, to settle before any course goes live) is open.
-- **After-core subjects (side work, 2026-11-20 to 22):** stage 1 and the progression are done for every after-core subject (health, PE, arts, computer science, SEL, ELD, library, career education, Spanish): each was read cold and by a second model, fixed, and Cory's calls applied (docs/reviews/prework-*, progression-*; DESK-ANSWERS.md). World languages is Spanish only and still shelved; ASL waits on the required review (later.csv L93). Still owed: the catalogue retag (later.csv L90 part 2, with L95), a person to read the health kindergarten body names (L89), the library band-file comparison (L103) and the can-do note (L92). Their frames, scopes and later stages wait for their course runs (COURSE-RUN).
+- **After-core subjects (side work, 2026-11-20 to 22):** stage 1 and the progression are done for every after-core subject (health, PE, arts, computer science, SEL, ELD, library, career education, Spanish): each was read cold and by a second model, fixed, and Cory's calls applied (docs/reviews/prework-*, progression-*; DESK-ANSWERS.md). World languages is Spanish only and still shelved; ASL waits on the required review (later.csv L93). Still owed: the catalog retag (later.csv L90 part 2, with L95), a person to read the health kindergarten body names (L89), the library band-file comparison (L103) and the can-do note (L92). Their frames, scopes and later stages wait for their course runs (COURSE-RUN).
 
 - **Done 2026-11-19: the science ladder test (later.csv L81).** Kindergarten to grade 3, initial dirty pass: ledger (scripts/ledger.py, data/plans/ledgers/science.csv), section plans, plan data and 328 days (K 64, grade 1 68, grade 2 76, grade 3 120), all committed, then a read-only sample of 40 days. Result: 1.4 FIRM faults a day, nearly none gate-visible; fill cost about 72k tokens a day. Report: docs/reviews/ladder-science-report-2026-11-19.md. Cory picked: fix all that can be fixed, then pause. Fixed 2026-11-19 (gates, briefs, every sample FIRM finding, all 328 days at 0 lesson.py failures): docs/reviews/ladder-science-fixes-2026-11-19.md. PAUSED for Cory; Refine 1 and grades past 3 wait. Day-stage jobs now come from scripts/coursegen.py (gen.py, the earlier generator, archived 2026-11-24). Tokens: docs/reviews/ladder-science-tokens-2026-11-18.csv.
 
 - **Probes, 2026-11-15 to 18 (history; each is closed).** Social studies US History I and World History I (docs/reviews/probe-social-studies-2026-11-15.md, probe-social-studies-2-2026-11-15.md); kindergarten (probe-social-studies-3-2026-11-18.md); science grade 5 and Algebra II (probe-science-math-2026-11-18.md); ELA grade 11 and science grade 7 (probe-confirm-2026-11-18.md). Their rule and gate work fed the kit (L87). Cory's seven units.csv rows are later.csv L71.
 - **Done 2026-11-17: the Claude second lens pass** over the 186 jobs in docs/pipeline/claude-jobs.txt (reports docs/reviews/claude-lens-*-2026-11-17.md and claude-fix-*; carried list docs/reviews/lead-list-lens-pass-2026-11-17.md). Never `git stash` here; two old stashes are left in place.
 
-The plan is [PRODUCTION-PATH.md](PRODUCTION-PATH.md): the four core subjects are planned top down, one layer at a
+Courses run by [COURSE-RUN.md](COURSE-RUN.md); [PRODUCTION-PATH.md](PRODUCTION-PATH.md) is the record of why the four core subjects were planned top down, one layer at a
 time, before more days are written.
 
 - **Progressions** (step 1): done for all four core subjects, K to 12, in data/progressions/.
@@ -42,11 +42,11 @@ time, before more days are written.
   structure pass (docs/courses/<course>/scope-and-sequence.md, data/plans/<course>/days.csv). The scope gate prints
   no rule 2 notes (social studies fixed 2026-11-15, later.csv L28).
 - **Unit plans**: all 259 science, ELA and math units have skeletons (scripts/unit_skeleton.py); social studies has 138 plans, read twice, fixed and through a structure pass. Judgement fields are filled at each course's run, and the ladder grades (K to 3) are done (math Goal maps: later.csv L102).
-- **Section plans and days**: the ladder runs wrote section plans and days for science K to 3 (328 days) and social studies and ELA K to 3 (1,056 days), all fixed and gated (above); the probe sections (US History I 5.2, World History I 3.4, science grade 5, Algebra II, ELA grade 11, science grade 7) have section plans only or a few days. Grade 4 math's older plans and 48 days, made under the retired pilot plan, are held for math's units (PRODUCTION-PATH; rework list in L13).
+- **Section plans and days**: the ladder runs wrote section plans and days for science K to 3 (328 days) and social studies and ELA K to 3 (1,056 days), all fixed and gated (above); the probe sections (US History I 5.2, World History I 3.4, science grade 5, Algebra II, ELA grade 11, science grade 7) have section plans only or a few days. Grade 4 math's older plans and 48 days, made under the retired pilot plan, are held for math's units (PRODUCTION-PATH; rework list in L13). The Codex draft days (math kindergarten, science grades 4 and 5, social studies grades 4 and 5, part of ELA grade 4) are on main and unread (L105, paused).
 - **The site**: live but not marketed (marketing starts when all curriculum is written and tools are beyond 75 percent complete, Cory 2026-11-24). scripts/course_pages.py builds hidden course and unit pages for all 52 core courses
   (`SHOWN = False`); the design is [SITE-DESIGN.md](SITE-DESIGN.md). Day pages will be one source file per day,
   published as one page per section with each day as an anchor (settled 2026-11-15, see DESK-ANSWERS).
-- **Tools**: paused until step 9, the Codex queue's builds included. Live tools stay live and claim no course
+- **Tools**: the catalog is frozen until consolidation step 5 items 2 to 4 and 6, the Codex queue's builds included. Live tools stay live and claim no course
   coverage (BASELINE rule 26).
 
 By course: [COURSES-STATUS.md](COURSES-STATUS.md) (generated; never edit by hand). By step: the Desk Dashboard's
@@ -65,19 +65,22 @@ why the core was planned top down; its steps 7 and 8 are superseded by COURSE-RU
    its exit cards; an exit that does not measure its goal is logged in data/plans/defects.csv (found_by cheap, kind
    alignment, ref "later.csv L102"): 369 open (six more rejected under the K to 2 speech rule), 247 of them day faults in the K to 3 written days, 122 in plan
    exits. They are fixed in each course's refine or day fix, and the row states the goal's target exit to fix toward.
-2. **The next course run, two lanes side by side** (DESK-ANSWERS 2026-11-20): math K to 3, and social studies grades 4
-   and 5 with World Geography I. Each subject's first grade starts with a unit 1 probe. The queue comes from
-   `scripts/coursegen.py` and the kit in docs/pipeline/kit/; day jobs are ledger-gated (`scripts/ledger.py gate`);
-   cost tables come from `scripts/tokens.py`. Prep done 2026-11-22 (later.csv L102): math K to 3 Goal maps and
-   section skeletons, the math subject note, grade notes 4 to 6; both lanes generate their queues cleanly.
-3. **Science grades 4 and up can climb** (K to 3 signed off 2026-11-23, later.csv L81). Each new science scope gets the coverage table (L104). Art, voice and tools for K to 3 wait for their stages.
+2. **Decide where curriculum writing restarts (Desk q-restart-1).** The architecture work is done (consolidation
+   step 4, the pedagogy-architecture review, then kit 14 after the continuity check), so writing may restart. Six courses already hold Codex draft
+   days on main, unread: math kindergarten (160), science grades 4 and 5 (120 each), social studies grade 4 (160) and
+   grade 5 (51 of 160), and part of ELA grade 4. Their review, later.csv L105, is paused at Cory's call. The queues
+   come from `scripts/coursegen.py` and the kit in docs/pipeline/kit/ (all four subjects generate cleanly on kit 13; kit 14 changes only the lead checklist and spelling,
+   checked 2026-11-25); day jobs are ledger-gated (`scripts/ledger.py gate`); costs from `scripts/tokens.py`.
+3. **Science grades 4 and up can climb** (K to 3 signed off 2026-11-23, later.csv L81), starting from the grade 4
+   and 5 Codex drafts once L105 opens. Each new science scope gets the coverage table (L104). Art, voice and tools
+   for K to 3 wait for their stages.
 4. **Before any course goes live:** the watch items in later.csv L101, and each course's stage 7 finish (COURSE-RUN).
 5. **After the core:** the electives and later subjects run from COURSE-RUN stage 1; their second-model reads and
    calibration are later.csv L88.
 
 ## How to start
 
-Read [AGENTS.md](../AGENTS.md), then PRODUCTION-PATH.md, [GLOSSARY.md](GLOSSARY.md), the decision log and
+Read [AGENTS.md](../AGENTS.md), then COURSE-RUN.md (PRODUCTION-PATH.md for background), [GLOSSARY.md](GLOSSARY.md), the decision log and
 [BASELINE.md](agents/decisions/BASELINE.md). The pipeline guide is [pipeline/README.md](pipeline/README.md).
 
 The folders (the truth is the GitHub repository, branch `main`):
@@ -103,7 +106,7 @@ Each rule lives in one doc. Dated reports go in docs/reviews/; retired docs are 
 | docs/VISION.md | The north star, the pillars, how the site talks, what we will not do |
 | docs/FOUNDATION.md | Purpose, who it is for, the promises, the bar, how work is checked |
 | docs/ROADMAP.md | The one plan: tracks and their status |
-| docs/PRODUCTION-PATH.md | How courses are built, layer by layer (progressions, scopes, units, days) |
+| docs/PRODUCTION-PATH.md | Why the core was planned top down, layer by layer (a record; COURSE-RUN.md is how courses run now) |
 | docs/COURSE-RUN.md, docs/pipeline/ | Running a course through the pipeline; the pipeline kit and guide |
 | docs/APPROACH.md, APPROACH-MATH/ELA.md | How Curio Class teaches; which standards and why; per-subject approach |
 | docs/APPROACH-SOURCES.md | The sources behind the approach and their access notes |

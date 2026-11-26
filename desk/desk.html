@@ -932,7 +932,7 @@ details.oldview summary{cursor:pointer;font:700 15px var(--body);color:var(--mut
     const c = card('Pass marks at grade close', pm.length ? 'Serious faults a day in each grade-close sample read; the mark is under 1.0.' : 'No grade close has recorded its pass marks yet.');
     for (const r of pm) {
       const s = parseFloat(r.serious_a_day), ok = s < 1;
-      row(c, cname(r.course) + ', ' + fmtD(r.date), isNaN(s) ? '?' : s.toFixed(1), isNaN(s) ? 0 : Math.min(1, s / 2), ok ? 'ok' : null,
+      row(c, cname(r.course) + ', ' + fmtD(r.date), isNaN(s) ? '?' : s.toFixed(1), isNaN(s) ? 0 : Math.min(1, s / 2), isNaN(s) ? null : ok ? 'ok' : 'warn',
           `${r.days_sampled || '?'} days sampled; wrong keys ${r.wrong_keys || 'not recorded'}; tokens a day ${r.tokens_a_day || 'not recorded'}. ${r.note || ''}`);
     }
   }

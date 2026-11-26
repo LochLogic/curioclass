@@ -281,7 +281,9 @@ assumed until each course's frame sets them.
 
 ### Step 9. Tools
 
-Tools stay held until days are being written; then key tools are built or rebuilt for the sections that name them,
+Superseded for timing (2026-11-24): the tool catalog is frozen until consolidation step 5 items 2 to 4 and 6
+(CONSOLIDATION-PLAN.md), curriculum first, and Cory sets the restart. The rest of this step still describes what
+happens then. Tools stay held until days are being written; then key tools are built or rebuilt for the sections that name them,
 live and verified, with print covering the rest (FOUNDATION 6.3). A key tool is never replaced by its paper path in
 a finished course. Tools already live stay live as free-standing tools and claim no course coverage until a section
 names them (BASELINE rule 26).
@@ -337,7 +339,7 @@ these before Codex writes its first scope:
 - The start-of-year check and the unit 4 readiness items (the old rule 25 exceptions): held with grade 4 math.
 - Sara's list (docs/courses/NEXT-SPINES.md): input to step 2's course frames.
 - The science simulations to list per unit: listed when science's units are planned.
-- The Codex queue's queued builds (for example Community Plot Planner): paused with all tool work until step 9;
+- The Codex queue's queued builds (for example Community Plot Planner): paused with all tool work (catalog frozen until consolidation step 5);
   Codex's budget goes to reads first.
 - The 149-lesson IM table: kept in the source store for math's source map.
 - Unchanged: light credit, course order by what teaches best, science 6 to 8 on OpenSciEd's order after its loss

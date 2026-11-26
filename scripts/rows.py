@@ -133,20 +133,23 @@ def upsert(course, table, key, values, dry=False):
 
 def check(courses):
     bad = n = 0
-    for c in courses or sorted(x.name for x in PLANS.iterdir() if x.is_dir()):
-        for p in sorted((PLANS / c).glob('*.csv')):
-            n += 1
-            text = p.read_bytes().decode('utf-8')
-            try:
-                recs = records(text)
-            except SystemExit as e:
-                print('FAIL %s: %s' % (p.relative_to(PLANS).as_posix(), e))
-                bad += 1
-                continue
-            ref = list(csv.reader(io.StringIO(text, newline='')))
-            if ''.join(r for r, _ in recs) != text or [f for _, f in recs] != ref:
-                print('FAIL %s: records differ from the csv reader' % p.relative_to(PLANS).as_posix())
-                bad += 1
+    files = [p for c in courses or sorted(x.name for x in PLANS.iterdir() if x.is_dir())
+             for p in sorted((PLANS / c).glob('*.csv'))]
+    if not courses:                            # the shared tables too (debt.csv, pass-marks.csv, later.csv, ...)
+        files += sorted(PLANS.glob('*.csv'))
+    for p in files:
+        n += 1
+        text = p.read_bytes().decode('utf-8')
+        try:
+            recs = records(text)
+        except SystemExit as e:
+            print('FAIL %s: %s' % (p.relative_to(PLANS).as_posix(), e))
+            bad += 1
+            continue
+        ref = list(csv.reader(io.StringIO(text, newline='')))
+        if ''.join(r for r, _ in recs) != text or [f for _, f in recs] != ref:
+            print('FAIL %s: records differ from the csv reader' % p.relative_to(PLANS).as_posix())
+            bad += 1
     print('rows check: %d files, %d problems' % (n, bad))
     return 1 if bad else 0
 

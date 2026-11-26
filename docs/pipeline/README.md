@@ -2,7 +2,7 @@
 
 How lesson days are planned, written, read and fixed by several workers in one repository, one at a time. Any course
 can use it. The build order above the day (progressions, frames, scopes and sequences, unit plans) is
-docs/PRODUCTION-PATH.md; its scripts are in "Planning above the day" below.
+docs/COURSE-RUN.md stages 1 to 4 (PRODUCTION-PATH.md is the record); its scripts are in "Planning above the day" below.
 
 ## Planning above the day
 
@@ -89,6 +89,6 @@ Workers today (data/pipeline/workers.json):
 Nothing in turn.py, the runner or the job order is about math. A new course needs: its plan data in
 data/plans/<course>/ (the README there), its frame, scope and sequence and unit plans, and a probe (a few days
 written from finished unit plans and read the full way, docs/pipeline/PROBE-GUARD.md), because the gates and the
-writer's brief are adapted from what the probe finds; a guard runs in every subject before full writing. The briefs
+writer's brief are adapted from what the probe finds; each subject's first grade starts with a unit 1 probe (COURSE-RUN stage 5). The briefs
 name math files only as examples; where a brief names a math-only file (the rubric, the progression), the course's
-own file takes its place. Social studies runs the first probe (docs/HANDOFF.md).
+own file takes its place. The probes so far are listed in docs/HANDOFF.md.

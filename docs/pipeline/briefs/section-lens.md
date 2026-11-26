@@ -1,6 +1,6 @@
 # Job: read, then patch, the section plans of one unit (kindergarten probe, 2026-11-17)
 
-Step 4 of "How section plans are authored" (PRODUCTION-PATH step 7): lens reads take a whole unit's sections at
+Step 4 of "How section plans are authored" (COURSE-RUN stage 5; once PRODUCTION-PATH step 7): lens reads take a whole unit's sections at
 once; the fix pass patches flagged fields and never rewrites. Reader and fixer are separate agents. The job names
 the stage, the course and the unit (`uu`, two digits).
 

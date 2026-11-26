@@ -1,6 +1,6 @@
 # Job: write the section plans of unit {unit} of {course}
 
-Written 2026-11-17 for the kindergarten social studies probe (PRODUCTION-PATH step 7, "How section plans are
+Written 2026-11-17 for the kindergarten social studies probe (COURSE-RUN stage 5; written under PRODUCTION-PATH step 7, "How section plans are
 authored", with a Sonnet writer while Codex is out of quota). One run writes every section of one unit, so the
 shared context is loaded once and the handoffs between sections are seen together.
 

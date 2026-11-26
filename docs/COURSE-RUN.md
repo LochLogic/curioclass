@@ -74,7 +74,7 @@ time: a grade's section plans, then its days, then a retool, then the next grade
 
 ### Stage 4. Unit plans (per course, grades in order, units in order)
 
-- **Make:** each goal names its exit kind (produce or recognise, matching the goal's verb), a practice shape that
+- **Make:** each goal names its exit kind (produce or recognize, matching the goal's verb), a practice shape that
   differs from the exit, and review entries pointing at earlier ledger rows. Hand-backs, materials and reserved
   examples are written as data. The ledger gets the unit's rows at stage planned.
 - **Check:** unit structure, with every goal holding an exit and a practice of a different shape; review entries

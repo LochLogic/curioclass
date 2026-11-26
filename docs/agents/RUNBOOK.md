@@ -9,9 +9,9 @@ kit in docs/pipeline/kit/, not by these waves.
 
 ## Start of session
 
-1. `git pull`; `python scripts/board.py` for where every tool stands. **Current work (2026-10-28): the build and refine
-   waves. Start at `docs/agents/BATCH-BR.md`, "Resume here"** (next: a single-tool test, network-help-desk with Codex
-   as builder per `docs/agents/CODEX.md`).
+1. `git pull`; `python scripts/board.py` for where every tool stands. **Held since 2026-11-10: the tool catalog is frozen
+   until consolidation step 5 items 2 to 4 and 6 (docs/CONSOLIDATION-PLAN.md).** When tools restart, the last place
+   the build and refine waves stood is `docs/agents/BATCH-BR.md`, "Resume here" (a record).
 2. Read the open items at the bottom of this file and the newest batch log.
 3. Ask Cory which tools (or pick from `data/waves.csv`). Write a short batch note, `docs/agents/BATCH-<name>.md`: the
    tools in build order, the band, anything batch-specific. Keep the standing rules in STANDARDS.md, not here.

@@ -182,3 +182,12 @@ Source: the pedagogy-architecture review (docs/reviews/consolidation/pedagogy-ar
 | Day version lines never moved past draft, and a day read against data that later changed looked finished (review changes 2 and 6) | scripts/day_version.py moves version lines at grade read and sign-off and stores upstream marks (day-marks.csv); index.py status lists days whose upstream changed |
 | No reading of how far apart returns sit (review change 8) | scripts/spacing.py, read at the stage 4 gate and at grade close (COURSE-RUN.md) |
 | English learner supports were named in two places: section plan field 9 (APPROACH principle 9) and stage 7 Make (review change 9) | made in the lesson only (section field 9, day sentence frames); stage 7 checks them across the course and fills a gap it finds |
+
+## Retool 13: KIT-VERSION 14 (2026-11-25)
+
+Source: the continuity check after the pedagogy-architecture review (2026-11-25). No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| retool-stop.txt, the lead's grade-close checklist, still lacked the new grade-close steps that COURSE-RUN stage 6 names (continuity check / Retool 12) | retool-stop.txt steps 1 and 2: `gate.py --course --record`, `pass_marks.py add`, a `spacing.py` read and `day_version.py grade-read` |
+| UK spellings left in kit templates flow into job files (continuity check / the nine-word sweep) | plan-read.txt, text.txt, text2.txt in US spelling |

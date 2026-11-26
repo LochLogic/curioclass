@@ -1,8 +1,9 @@
 # Consolidation plan: one flat product, then an architecture that scales
 
-Status: draft 6, 2026-11-25, for Cory. Steps 0 to 3 are done (reports in docs/reviews/consolidation/). Step 4: 4.A
-to 4.E are built and pushed (Cory's block-one go, 2026-11-25); work is paused at tag `pause-4e` for Cory's read of
-draft 6, and 4.E2 waits for his go. History: draft 1 (2026-11-24) was read by a fresh Fable
+Status: 2026-11-25. Steps 0 to 4 are done (reports in docs/reviews/consolidation/; step 4 closed with 4.L and the
+pedagogy-architecture review's changes 1 to 9). Step 5: items 1 and 5 are done; items 2 to 4 and 6 are tool work and
+wait for Cory's go (the tool catalog is frozen, curriculum first). Step 6, the close, is not done. Curriculum writing
+may restart (since 4.G). History: draft 1 (2026-11-24) was read by a fresh Fable
 agent and its 16 findings folded into draft 3 with Cory's comments and six decisions; draft 4 rewrote step 4 after a
 second Fable read (step4-fable-read.md), defined the end goal as tests and added the words architecture; draft 5 folds
 in the full Fable review of step 4 (step4-full-review.md: 18 findings, 10 rule changes), Cory decision 9; draft 6
@@ -737,6 +738,12 @@ Built (2026-11-25):
   10 to 14 are L137 to L141. The science grade 4 unit 4 section plans, which its Codex days had run ahead of, were
   written and lens-read (docs/reviews/section-lens-science-grade-4-u04-2026-11-25.md); 14 day conflicts went to
   defects.csv because L105 is paused.
+- Then, the same day, a fresh code review of those changes (10 findings, all fixed: CRLF version lines, upstream
+  miss keys carry the mark's hash so a baselined day that changes again shows as new, every ledger row is an index
+  node so trace.py lists a day's whole ledger, rows.py check covers the shared plan tables, spacing gaps measure from
+  the earliest cited row, a failed pass mark shows in the warning color) and a continuity check of every living doc
+  (stale "next" text, tools timing, PRODUCTION-PATH pointers, the version line, retool-stop.txt's grade-close steps;
+  kit 14, RETOOL 13). Desk q-restart-1 asks where writing restarts and which paused scheduled tasks come back.
 
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 

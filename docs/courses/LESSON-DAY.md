@@ -102,8 +102,8 @@ for a practice row written on the board when there is no printer; `spoken` for a
 picture cards and never printed for the child, kindergarten, 2026-11-18) and `source` (rule 4). In wrongs.csv, error `x`
 is any other wrong answer, with no group.
 
-The file starts with a header block: `day`, `course`, `unit`, `version` ("draft, not yet taught" until a taught
-run), `materials`, `print`, `credit` (see rule 4) and `leans_on`: every outside piece the day needs, by path (the
+The file starts with a header block: `day`, `course`, `unit`, `version` (writers write "draft 1, not ready, not yet taught"; the lead's `scripts/day_version.py` adds
+"grade read DATE" at grade close and "signed off DATE" at sign-off; "not yet taught" stays until a taught run), `materials`, `print`, `credit` (see rule 4) and `leans_on`: every outside piece the day needs, by path (the
 tool, the section opener, a sheet from another unit, the record sheet), or "nothing". The check fails a day whose
 piece is missing unless its version says "not ready", and the build then prints "Not ready to teach: <piece>
 missing" at the top of the teacher page. A piece that does not exist yet and is not needed to teach the day is

@@ -1,0 +1,13 @@
+== build_site (1 new line(s), 0 failing)
+  note 521 course and unit pages -> S:\CurioClass\build\gates\continuity-1\dist\courses (hidden)
+== compare (5 new line(s), 0 failing)
+  note == index-reports (1 new line(s), 0 failing)
+  note gate all against its baseline: 0 failing finding(s), 3 new note line(s)
+  note note 521 course and unit pages -> S:\CurioClass\build\gates\continuity-1\dist\courses (hidden)
+  note note index: 85991 nodes, 424998 edges (234494 hard) -> data/index.db
+  note note rows check: 365 files, 0 problems
+== index-reports (1 new line(s), 0 failing)
+  note index: 85991 nodes, 424998 edges (234494 hard) -> data/index.db
+== rows-check (1 new line(s), 0 failing)
+  note rows check: 365 files, 0 problems
+compare base-all -> continuity-1: 0 failing finding(s), 8 new note line(s)

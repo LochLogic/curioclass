@@ -91,7 +91,7 @@ language inside a public cell (base text, rows, agents, card ids, file paths) ne
 Day URLs stay flat under the course. Breadcrumb (course / unit / section / day N of 160; Approved 2026-11-14,
 finding 1); a course-level day's breadcrumb is course / Course-level check N / day (Approved 2026-11-14, finding 2).
 Then the day's title, the "I can" goal, minutes, standards, kind of
-day, version label ("draft 1, not yet taught" until a taught run), previous and next day. Then six views of one
+day, version label (the day file's version line, for example "draft 1, signed off 2026-11-23, not yet taught"), previous and next day. Then six views of one
 page, as tabs that also work as plain links with no script:
 
 | View | What it is | Source today |

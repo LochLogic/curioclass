@@ -386,7 +386,10 @@ for n_, v_ in LINKS_EXTRA.items():
 # the Dashboard's health and history (2026-11-25, Cory: "visually show the full progress of the site overall")
 def _csv(rel):
     p_ = os.path.join(ROOT, *rel.split('/'))
-    return [dict(r) for r in csv.DictReader(io.open(p_, encoding='utf-8'))] if os.path.exists(p_) else []
+    if not os.path.exists(p_):
+        return []
+    with io.open(p_, encoding='utf-8', newline='') as f:
+        return [dict(r) for r in csv.DictReader(line for line in f if not line.startswith('#'))]
 health = dict(goals=[{k_: r_.get(k_, '') for k_ in ('test', 'name', 'count', 'target', 'detail', 'date')}
                      for r_ in _csv('data/plans/goal-tests.csv')],
               known={}, debt=_csv('data/plans/debt.csv'))

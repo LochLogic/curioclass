@@ -29,7 +29,7 @@ def rows():
     if not FILE.exists():
         return []
     with io.open(FILE, encoding='utf-8', newline='') as f:
-        return list(csv.DictReader(f))
+        return list(csv.DictReader(line for line in f if not line.startswith('#')))
 
 
 def write(rs):
