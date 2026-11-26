@@ -15,7 +15,7 @@ Days 66 to 68 use pages of the unit's own read-alouds, read aloud again; they ar
 
 ## Day 66
 
-**Story page:** section 5, page 3, of Yusuf and the Parcel (texts/gk-u2-03.md), read aloud again, words only, its picture covered. **Item a:** four drawings, a boy at a kitchen table wearing blue mittens with a red stripe; a boy in red mittens with no stripe; a pair of mittens alone; a bus. "Which drawing is Yusuf at the end?" **Item b**, six children: "Tell me one more detail to add to the drawing."
+**Card E66**, invented for practice, read aloud twice: "Puff is a small cloud with a gray hat. Puff carries a tiny umbrella." **Item a:** an empty drawing box. "Draw Puff with the two details the card gives." **Item b**, six children, each with their drawing: "Tell me one more detail you could add to your drawing of Puff."
 
 ## Day 67
 

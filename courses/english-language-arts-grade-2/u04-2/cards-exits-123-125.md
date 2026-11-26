@@ -14,4 +14,4 @@ Rows that open "This card is invented for practice" are made up: say so aloud an
 - **Day 124 (s04-X124).** This card is invented for practice. Read aloud twice: "Owl says, The cave is safe. Mouse says, The cave is not safe. Mouse runs out." Show two picture cards: a cave with a smile sign and a small owl; a cave with a warning sign and a running mouse. Say: "Mark the picture that shows what Mouse believes about the cave."
 - **Day 124 (s04-X124b).** Same card. Say: "Say what Mouse believes about the cave."
 - **Day 125 (s04-X125).** This card is invented for practice. Read aloud twice: "Snail says, Let us wait for the rain. Beetle says, Let us move before the rain." Show two picture cards: a waiting snail; a moving beetle. Say: "Mark the picture that matches what Beetle wants."
-- **Day 125 (s04-X125b).** Same card. Say: "Say what Snail wants."
+- **Day 125 (s04-X125b).** Same card. Say: "Say Snail's line in a voice that fits what Snail wants."

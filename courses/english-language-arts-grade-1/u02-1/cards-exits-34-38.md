@@ -11,9 +11,9 @@ Each exit reads a named passage of the unit's texts aloud; this page holds only 
 
 ## Day 34 exit pictures (s02-X34v2, RI.1.3)
 
-Passage: Sky Patterns, page 2 (what a pattern is), read aloud again; day 34 works pages 3 and 4. Reread page 2 of Sky Patterns aloud: "A pattern is something that happens again and again, in the same order." Show three strips: sun, dim sky, stars, then the same three again; sun, dim sky, stars, then stars, sun, dim sky; sun, dim sky, stars, then rain. Say: "Point to the strip that shows a pattern." Hear the day's rotating six.
+Passage: Sky Patterns, page 5 (the moon's pattern), read aloud again; day 34 works pages 3 and 4. Reread page 5 of Sky Patterns aloud: "The moon has a pattern too. Some nights it is round and bright. Some nights it is a thin curve. Then it grows round again." Show the class record card: a thin moon, and a week later a round moon, read aloud: "We saw a thin moon. Later we saw a round moon." Say: "Connect what we saw to the fact on the page. Use because or so." Hear the day's rotating six.
 
-**Right answer:** The first strip: sun, dim sky, stars, then the same three again. A child who says why: it happens again in the same order.
+**Right answer:** The moon looked thin and then round because the moon has a pattern: it is a thin curve, then it grows round again.
 
 ## Day 35 exit pictures (s02-X35v2, RL.1.5)
 

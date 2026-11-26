@@ -25,10 +25,10 @@ Say aloud each time: "This card is made up for practice." Read each card twice w
 
 **Read:** "Draft: I like this tree. Peer: What do you hear there? Source: Wind chimes ring in its branches."
 **Pictures:** wind chimes hanging in a tree; the unchanged draft; a lone cloud.
-**Ask:** "Mark the picture that answers the partner." Right: the wind chimes. Wrong: the unchanged draft (M); the lone cloud (K).
+**Ask:** "Mark the picture that answers the partner." Then each of the day's six says the detail they would add to the draft. Right: the wind chimes; a detail such as wind chimes ring in its branches. Wrong: the unchanged draft (M); the lone cloud (K).
 
 ## Day 145 card E145
 
 **Read:** "Opinion: I like watching ants on this tree. Source: A line of ants climbs it."
-**Pictures:** three pencil sketches: a line of ants climbing a tree; a cloud; a blank sheet.
-**Ask:** "Mark the sketch that adds information." Right: the ants. Wrong: the cloud (K); the blank sheet (J).
+**Box:** one empty sketch box.
+**Ask:** "On your card, make a quick pencil sketch that adds information from the source line." Right: a line of ants climbing the tree. Wrong: a cloud or a sun (K); a blank box (J).

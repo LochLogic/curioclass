@@ -21,9 +21,9 @@ Each card is marked by every child and goes with a spoken question heard from th
 
 **Read:** "The class rocking horse rocks back and forth. It stops by the door."
 
-**Picture:** three pictures in a row, each in a ring: a rocking horse tipped forward with short motion lines behind it; a horse with a happy face and no motion; a child waving.
+**Picture:** none; one large empty box for the child's drawing.
 
-**Mark:** circle the drawing that teaches a reader about this toy. **Spoken, to the day's six:** "What will you tell a reader about the horse?"
+**Draw:** in the box, the horse, so the drawing teaches a reader how it moves. **Spoken, to the day's six:** "What will you tell a reader about the horse?"
 
 ## Day 19 retry card (not scored)
 

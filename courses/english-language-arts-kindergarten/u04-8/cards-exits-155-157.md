@@ -13,7 +13,7 @@ Card E155 is made up: say aloud "This card is made up for practice", read it twi
 
 **Read:** "Card A says the tree holds a swing for children. Card B says its roots make a bench for sitting. Together they support: Trees help our community."
 **Show:** cards A and B.
-**Ask:** "Choose the order for the two cards: A then B, or B then A." Right: either order, chosen by the child. Wrong: waits for the adult to choose (N). The recording itself is kept for P1.
+**Ask:** "Say the line for card A that you will record for our audio version." Right: the line in the child's own words, said clearly, such as The tree holds a swing for children. Wrong: waits for the adult to say it (N); too soft to record (L). The recording itself is kept for P1.
 
 ## Day 157 sheet E157a: page 10 of each story
 

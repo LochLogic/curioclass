@@ -11,9 +11,9 @@ Print "invented for practice" in small letters at the foot of every card. Plain 
 
 ## Day 112 card (s03-X112a, W.1.8)
 
-This card is invented for practice. Show the card and read it aloud: "Source Y1: A crane has long legs. Source Y2: A crane looks for food in shallow water." Show two pictures: the long legs, the crane's wings. Say: "Which drawing should your note show?" Hear the day's rotating six.
+This card is invented for practice. Show the card and read it aloud: "Source Y1: A crane has long legs. Source Y2: A crane looks for food in shallow water." Say: "Gather one fact for your note from source Y1: draw it on your page and label it Y1."
 
-**Right answer:** The long legs.
+**Right answer:** A drawing of the long legs, labeled Y1.
 
 ## Day 112 card (s03-X112b, W.1.8)
 

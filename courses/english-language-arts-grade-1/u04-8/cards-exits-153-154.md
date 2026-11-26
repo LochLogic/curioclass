@@ -17,9 +17,9 @@ Reread aloud page 15 of Ben and the Bird and the end of page 5 of Nia Calls for 
 
 ## Day 153 pages (s04-X153bv2, RL.1.9)
 
-The same two pages stay open; reread them if the child asks. Say: "Say one way they are different." Hear the day's rotating six.
+The same two pages stay open; reread them if the child asks. Say: "Tell how the two children are the same, and tell what each page says about it." Hear the day's rotating six.
 
-**Right answer:** Ben picks up his shovel to dig in the garden; Nia smiles as the dove goes with the helper.
+**Right answer:** Both know to call a grown-up: Ben says on page 15 he will call a grown-up; on page 5 Nia knows to call a grown-up and keep her distance.
 
 ## Day 154 pages (s04-X154av2, RI.1.9)
 
@@ -29,6 +29,6 @@ Reread aloud page 5 of Volunteers Build Bluebird Boxes and page 3 of Feeders Nee
 
 ## Day 154 pages (s04-X154bv2, RI.1.9)
 
-The same two pages stay open; reread them if the child asks. Say: "Say one way the pages are different." Hear the day's rotating six.
+The same two pages stay open; reread them if the child asks. Point to the picture of a bird at a nest box beside a bird at a clean feeder. Say: "Use this picture to explain what both pages are about, with one thing each page tells." Hear the day's rotating six.
 
-**Right answer:** One page is about nest boxes that give birds places to raise their young; the other is about a feeder that helps only if someone cares for it.
+**Right answer:** People helping birds: a nest box gives birds a place to raise their young; a clean feeder needs a grown-up's care.

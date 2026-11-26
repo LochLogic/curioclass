@@ -15,7 +15,7 @@ Each card or strip is marked by every child and goes with a spoken question hear
 
 **Picture:** three pictures in a row, each in a ring: Mira and Kiko with the toy lion on her road; Mira playing zoo with the group; Mira pushing the lion away.
 
-**Mark:** circle what Mira does when Kiko comes. **Spoken, to the day's six:** "Which words help you know how Kiko feels about the road?"
+**Mark:** circle what Mira does when Kiko comes. **Spoken, to the day's six:** "Ask me a question about what the words on this page show about Mira."
 
 ## Day 21 strip: Mira Makes a Road, page 3
 

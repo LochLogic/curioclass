@@ -55,7 +55,7 @@ Each exit has a card or strip every child marks and a spoken question heard from
 
 **Picture:** three pictures in a row, each in a ring: a top and a cart side by side, each turning; a top alone; a cart alone.
 
-**Mark:** circle the picture that shows what the whole page is about. **Spoken, with two pictures:** "Point to the picture that shows rolls from place to place." The two pictures are a cart rolling across the floor and a top spinning on a table.
+**Mark:** circle the picture that shows what the whole page is about. **Spoken, to the day's six:** "Tell one new detail from this page to add to our topic chart about things that turn."
 
 ## Key (teacher)
 

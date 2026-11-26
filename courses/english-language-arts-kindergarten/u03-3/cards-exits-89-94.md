@@ -17,7 +17,7 @@ The sheets and the cards use plain black line drawings on white, thick lines, no
 
 **Mark (item a):** Which picture group shows the topic with one detail? Three pictures in a row, each in a ring: a tree with an arrow to a family picking its apples; a family with a basket and a small tree far off; a sun with no tree.
 
-**Spoken, to the day's six (item b):** "Who needs something the tree gives, and what is it?"
+**Spoken, to the day's six (item b):** "Ask me one question about who needs the tree on this page."
 
 ## Day 90 sheet E90: page 3 of The Oak
 

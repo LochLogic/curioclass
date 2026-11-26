@@ -13,9 +13,9 @@ The "pictures" entries reread a named part of the unit's own texts (texts/g1-u3-
 
 Passage: Feet That Help, page 2, Feet for Grasping (day 87 models the duck foot and works the sparrow diagram).
 
-Reread aloud the part of Feet That Help headed Feet for Grasping, page 2. Say: "My drawing shows a hawk's foot with round toes and no claws." Show three pictures: a hawk's foot with sharp claws, the round-toed foot colored yellow, a duck's webbed foot. Say: "Point to the picture the drawing should be changed to." Hear the day's rotating six.
+Reread aloud the part of Feet That Help headed Feet for Grasping, page 2. Say: "My drawing shows a hawk's foot with round toes and no claws. Tell me what to change in my drawing so it matches the words." Hear the day's rotating six.
 
-**Right answer:** The hawk's foot with sharp claws.
+**Right answer:** Give the hawk's foot sharp claws, as the words say.
 
 ## Day 87 pictures (s03-X87bv2, RI.1.6)
 

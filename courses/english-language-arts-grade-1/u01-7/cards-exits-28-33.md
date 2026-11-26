@@ -35,11 +35,11 @@ Read aloud: "Our paper tube carries rolled posters. Its closed ends keep them fr
 
 ## Day 31 card (s01-X31, W.1.2)
 
-Show two strips under a picture. Print the first strip: "The folder holds paper." Print the second strip: "the folder holds paper" (no capital, no ending mark). Ask: "Point to the strip that is ready to share."
+Show one strip under a picture. Print the strip: "the folder holds paper" (no capital, no ending mark). Say: "Edit the strip so it is ready to share: point to each place you would fix and say what you change."
 
 **Picture:** joined papers inside a folder, beside a few loose papers.
 
-**Right answer:** The first strip. Record which mark was missed for a wrong choice, with no error letter.
+**Right answer:** A capital T and an ending mark: "The folder holds paper." Record which mark was missed, with no error letter.
 
 ## Day 33 card (s01-X33, SL.1.1b)
 

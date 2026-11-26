@@ -19,7 +19,7 @@ Days 54 and 57 use pages of The Picnic Plan (texts/gk-u2-02.md, selection a), re
 
 ## Day 56
 
-Strips printed by the teacher and read aloud; no child reads them. **Item a:** "the puddle is big." and "The puddle is big." Ask: "Circle the strip that starts the right way." **Item b:** "Soon i run." and "Soon I run." Ask: "Circle the strip with the I written the right way." **Item c:** a period, a question mark and an exclamation mark on three cards with no sentence. Ask: "Circle the question mark." The six also say the name of each mark. **Item d:** three strips read aloud, each beside a picture: "A seal naps." (a seal asleep); "A seal naps on the rock." (a seal asleep on a rock); "A seal." (a seal). Ask: "Circle the sentence that says where the seal naps."
+Strips printed by the teacher and read aloud; no child reads them. **Item a:** "the puddle is big." and "The puddle is big." Ask: "Circle the strip that starts the right way." **Item b:** "Soon i run." and "Soon I run." Ask: "Circle the strip with the I written the right way." **Item c:** a period, a question mark and an exclamation mark on three cards with no sentence. Ask: "Circle the question mark." The six also say the name of each mark. **Item d**, spoken, to the day's six: a picture of a seal asleep on a rock. Say: "A seal naps." Then: "Make the sentence tell more. Say it again and add where the seal naps."
 
 ## Day 57
 

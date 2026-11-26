@@ -19,9 +19,9 @@ Passage: The Weaver Girl and the Cowherd, page 6, last two sentences; day 43 wor
 
 ## Day 44 exit pictures (s02-X44v2, RL.1.5)
 
-Passage: Quiet Sky, page 1, lines 3 and 4, beside Stars in Daylight and Darkness, page 3 (first read on day 58); day 44 works the Quiet Sky line on page 2, the Chinese tale and Sky Patterns, page 5. Hold up two pages and read a part of each. Quiet Sky, page 1: "The first small star blinks on, as bright as morning dew." The star article, page 3: "The stars are still up there." Say: "Point to the page that tells a fact you could check." Hear the day's rotating six.
+Passage: Quiet Sky, page 1, lines 3 and 4, beside Stars in Daylight and Darkness, page 3 (first read on day 58); day 44 works the Quiet Sky line on page 2, the Chinese tale and Sky Patterns, page 5. Hold up two pages and read a part of each. Quiet Sky, page 1: "The first small star blinks on, as bright as morning dew." The star article, page 3: "The stars are still up there." Say: "Tell one way the poem page is different from the star article page." Hear the day's rotating six.
 
-**Right answer:** The star article page.
+**Right answer:** The poem uses words to help you picture the star; the article tells a fact you could check.
 
 ## Day 45 card (s02-X45, RF.1.3b)
 

@@ -11,4 +11,4 @@ Say aloud each time: "This card is made up for practice." Print "invented for pr
 
 - **Day 93 (s03-X93).** This card is invented for practice. Show the source line: "Some flowers open early in the morning, and bees visit them then." Show the note: "Bees visit flowers late in the evening." Say: "Does the note match the source?"
 - **Day 93 (s03-X93b).** Same card. Say: "Which word would you change in the note?"
-- **Day 93 (s03-X93c).** Same card. Say: "Point to the words in the source that tell you."
+- **Day 93 (s03-X93c).** Same card. Say: "Say a true note from the source line, in your own words, and say where it came from."

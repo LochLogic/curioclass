@@ -23,9 +23,9 @@ Passage: Sun's Day, page 2 (midday shadows), checked against Sun Across the Sky,
 
 ## Day 69 card (s02-X69a, W.1.3)
 
-This card is invented for practice. Read aloud the poem: "First a cat jumped up on the step. Then its warm fur brushed my hand. Last the cat curled up to nap. I feel glad." Show two strips: jump, brush, curl; and curl, brush, jump. Say: "Point to the strip that guides your rehearsal." Hear the day's rotating six. 
+This card is invented for practice. Read aloud the poem: "First a cat jumped up on the step. Then its warm fur brushed my hand. Last the cat curled up to nap. I feel glad." Say: "Rehearse the plan aloud: tell the three things the cat does, in order." Hear the day's rotating six.
 
-**Right answer:** The strip jump, brush, curl.
+**Right answer:** Jumps up on the step, brushes my hand, curls up to nap.
 
 ## Day 69 exit pictures (s02-X69bv2, RL.1.4)
 

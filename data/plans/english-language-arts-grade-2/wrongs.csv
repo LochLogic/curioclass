@@ -234,8 +234,6 @@ s02-X57v2,The skull Joseph found.,,,C,the focus of the other paragraph is given 
 s02-X58,Buckled again.,,,H,a prefix meaning is mistaken
 s02-X59v2,Rob is skipping.,,,P,the ending is not named; the opening is repeated
 s02-X59v2,Rob trips on a rock.,,,P,"a middle event is given as the ending, so the start is not finished"
-s02-X59b,"He wonders, Is it a bone?",,,x,a part that does belong to the find is named
-s02-X59b,He brushes it clean.,,,x,a part that does belong to the find is named
 s02-X60,While Pru holds the lamp.,,,AD,a sentence is incomplete
 s02-X60b,Leo painted a door.,,,x,the sentence is repeated with no detail added
 s02-X60b,a red door,,,AD,"a group of words is given, not a whole sentence"
@@ -312,7 +310,6 @@ s03-X91v2,It pushes its bill in. Then its face is dusted.,,,B,then gives the ord
 s03-X91v2,"Its face is dusted, so it pushes its bill in.",,,B,the link runs backwards
 s03-X93,"Yes, it matches.",,,C,a note that contradicts the source is accepted
 s03-X93b,Bees like flowers.,,,E,a fact that does not fix the wrong word
-s03-X93c,Points to the note instead of the source.,,,AE,the note is read as if it were the source
 s03-X96,"Yes, they support it.",,,C,the unsupported wing claim is kept
 s03-X96b,Leaves it as it is.,,,C,the note that the picture does not support is kept
 s03-X96c,It shows the pollen reaching the next flower.,,,C,the photograph shows no second flower
@@ -533,7 +530,6 @@ s04-X123bv2,La Fontaine made up the fable first.,,,,a beginning is claimed that 
 s04-X124,the cave with the smile sign,,,C,Owl's view is given to Mouse
 s04-X124b,The cave is safe.,,,C,another character's view is given to Mouse
 s04-X125,the picture of the waiting snail,,,C,Snail's want is given to Beetle
-s04-X125b,To move before the rain.,,,C,Beetle's want is given to Snail
 s04-X126v2,the picture of the child sitting still beside a bare pot,,,,the picture does not fit the words; no register letter
 s04-X126bv2,It repeats.,,,O,the device is named and its effect is left out
 s04-X126bv2,It says plant a flower a lot.,,,O,the device is named and its effect is left out
@@ -721,7 +717,6 @@ s04-X142b,Our pot is pink because pink is nice.,,,J,a reason that is not on the 
 s04-X143v2,the picture of the bare soil just sown,,,Z,the step before the waiting is taken for what comes after
 s04-X143bv2,Because it is next.,,,Z,"order stated, no connection"
 s04-X143bv2,Because it is on the list.,,,Z,"order stated, no connection"
-s04-X144,fact B,,,J,a fact that does not help the opinion
 s04-X144b,The mat is blue.,,,J,an irrelevant fact given as the help
 s04-X145,strip B,,,L,the reason is said again and no ending is added
 s04-X145b,Our class should make a suggestion box. A box can hold good ideas.,,,K,the reason has no linking word
@@ -841,3 +836,15 @@ s04-X128cv2,"the jaguar's line read in the hummingbird's small, sure voice",,,C,
 s04-X128cv2,the hummingbird's answer read in place of the jaguar's line,,,C,the other character's line and view are given
 s04-X155v2,You read it louder.,,,,a change of voice is named with no tie to a character; no register letter
 s04-X155v2,Both were the ant.,,,C,the two characters are given one voice and one view
+s01-X2v2,Mira made it.,,,A,the wrong person; the story says Ada made it
+s01-X27,Pupils like markers.,,,E,a page the card does not support
+s02-X59b,He tells the class about his birthday cake.,,,K,an event that leaves the find
+s02-X59b,He brushes it clean.,,,P,an action with no ending
+s03-X93c,Bees visit flowers late in the evening; the note.,,,AE,the note is taken as the source
+s03-X93c,Bees make honey.,,,E,a fact the source line does not give
+s03-X94,Bats fly north each spring. 01-d,,,E,a fact that does not answer how pollen moves
+s03-X94,Pollen sticks to the bat. 01-e,,,AE,the note is tagged to the wrong article
+s03-X95,Butterflies look for pollen. 01-c,,,C,contradicts the source: it moves pollen by accident
+s03-X95,Pollen sticks to a butterfly. 01-b,,,AE,the note is tagged to the wrong article
+s04-X125b,"Let us move before the rain, said fast.",,,C,Beetle's line and voice given to Snail
+s04-X144,The mat is blue.,,,I,a fact copied; no opinion is stated

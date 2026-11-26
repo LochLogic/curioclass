@@ -21,9 +21,9 @@ Each exit has a card every child marks and a spoken question heard from the day'
 
 **Read:** "Three children open a toy shop. One sorts the toys on a shelf."
 
-**Picture:** three pictures in a row, each in a ring: a child sorting toys on a shelf; one toy alone on a floor; a playground.
+**Picture:** none; one large empty box for the child's drawing.
 
-**Mark:** circle the picture that goes in a drawing plan about this shop. **Spoken, to the day's six:** "What will you tell a reader about the shop?"
+**Draw:** in the box, a plan picture of one thing a child does in this shop. **Spoken, to the day's six:** "What will a reader learn from your drawing?"
 
 ## Day 8 retry card (not scored)
 

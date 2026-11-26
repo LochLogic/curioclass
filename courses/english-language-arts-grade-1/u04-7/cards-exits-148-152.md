@@ -23,9 +23,9 @@ This card is invented for practice. The same card stays in view; read it again i
 
 ## Day 149 card (s04-X149a, W.1.8)
 
-This card is invented for practice. Show the card and read it aloud: "Page A: Clay dries hard in the air. Page B: A damp cloth keeps clay soft. A class makes a plan for the clay." Show three pictures: a plan with one fact from each page and each fact's page tag, a plan with a fact from page A only, a plan with a fact from neither page. Say: "Which plan uses both pages?" Hear the day's rotating six.
+This card is invented for practice. Show the card and read it aloud: "Page A: Clay dries hard in the air. Page B: A damp cloth keeps clay soft. A class makes a plan for the clay." Say: "Make the plan on your page: draw one fact from page A in box A and one fact from page B in box B."
 
-**Right answer:** The plan with a tagged fact from each page.
+**Right answer:** Box A: clay drying hard in the air. Box B: a damp cloth over clay.
 
 ## Day 149 card (s04-X149b, W.1.8)
 
@@ -41,9 +41,9 @@ This card is invented for practice. The same card stays in view; read it again i
 
 ## Day 150 card (s04-X150a, W.1.2)
 
-This card is invented for practice. Show the card and read it aloud: "A writer's draft says, 'Helmets are fun.' A source page says, 'Helmets have a strap. Helmets protect the head.'" Show three pictures: a page with the topic helmets and the two facts from the source, a page that says I like helmets, a page about a different topic. Say: "Which page shows a draft with a topic and two facts from the source?" Hear the day's rotating six.
+This card is invented for practice. Show the card and read it aloud: "A writer's draft says, 'Helmets are fun.' A source page says, 'Helmets have a strap. Helmets protect the head.'" Say: "Draft the page again on your paper: write the topic word, then draw the two facts from the source in the two fact boxes."
 
-**Right answer:** The page with the topic and the two source facts.
+**Right answer:** The topic word helmets, then the strap and a helmet on a head.
 
 ## Day 150 card (s04-X150b, W.1.2)
 
@@ -59,15 +59,15 @@ This card is invented for practice. Show the card and read it aloud: "A writer's
 
 ## Day 151 card (s04-X151b, W.1.5)
 
-This card is invented for practice. The same card stays in view; read it again if the child asks: "A writer's page says, 'Our class has a book cart. Children return books.' A peer asks, 'When do we return books?'" Say: "Say the line the writer added." Hear the day's rotating six.
+This card is invented for practice. The same card stays in view; read it again if the child asks: "A writer's page says, 'Our class has a book cart. Children return books.' A peer asks, 'When do we return books?'" Say: "Say the line you would add to answer the peer." Hear the day's rotating six.
 
 **Right answer:** "We return books on Friday." (any line that tells when)
 
 ## Day 152 card (s04-X152a, L.1.1h)
 
-This card is invented for practice. Show the card and read it aloud: "Three paper ribbons hang on the wall." Show three pictures: three printed captions read aloud: 'These ribbons wave.' 'These ribbons waves.' 'A ribbons wave.'. Say: "Which caption fits?" Hear the day's rotating six.
+This card is invented for practice. Show the card and read it aloud: "Three paper ribbons hang on the wall." Show one printed caption, read aloud: 'These ribbons waves.' Say: "Edit the caption so it fits: circle the word that is wrong and write it the right way above it."
 
-**Right answer:** "These ribbons wave."
+**Right answer:** Circles waves and writes wave: "These ribbons wave."
 
 ## Day 152 card (s04-X152b, L.1.1h)
 

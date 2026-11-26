@@ -13,6 +13,6 @@ Days 1 to 3 exits use passages of Tools at Work (texts/g1-u1-02.md), reread alou
 
 ## Day 4 card (s01-X4, L.1.5b)
 
-This card is invented for practice. Read aloud: "A whisk is a kitchen tool. Its wires mix the eggs." Show two pictures: a whisk, and a spoon. Say: "What is a whisk? Use the card."
+This card is invented for practice. Read aloud: "A whisk is a kitchen tool. Its wires mix the eggs." Show two pictures: a whisk, and a spoon. Say: "Ask one question the card answers about the whisk, then tell what a whisk is: its kind and its use."
 
-**Right answer:** A kitchen tool with wires for mixing eggs (the category and the use, in either order).
+**Right answer:** A question the card answers, such as What does a whisk do? Then: a kitchen tool with wires for mixing eggs (the category and the use, in either order).

@@ -17,7 +17,7 @@ Say aloud each time: "This card is made up for practice." Read each card twice w
 
 ## Day 44 card C44 and picture P44: clear and under
 
-**Read:** "The window is clear. I can see a bird." **Picture:** a window with a bird outside, nothing blocking it. **Spoken, item a:** "What does clear mean here?" Show the clear cup and the milk if a child needs help.
+**Read:** "The window is clear. I can see a bird." **Picture:** a window with a bird outside, nothing blocking it. **Item a pictures:** a glass of water you can see through; a blue sky with no clouds. **Spoken, item a:** "Which picture shows what clear means here?"
 
 **P44:** a boot under a bed. **Item b:** "Tell me where the boot is."
 

@@ -9,7 +9,7 @@ credit: ours
 
 Say aloud each time: "This card is made up for practice." Print "invented for practice" in small letters at the foot of every card. Plain black line drawings on white, thick lines, no shading. Every exit is one ask; read each card twice before the children write. Answers and wrong answers are in items.csv.
 
-- **Day 30 (s01-X30).** Read: "Before she passes the ball, Noor looks to see which teammate is open. She sees Ines by the goal. Noor passes to Ines." Ask: Write one sentence that names this strategy for a younger reader.
+- **Day 30 (s01-X30).** Read: "Before she passes the ball, Noor looks to see which teammate is open. She sees Ines by the goal. Noor passes to Ines." Ask: Name Noor's strategy for a younger reader. Then plan a strategy like it for your own reading.
 - **Day 31 (s01-X31).** Read: "Kofi sets his football boots by the door. He puts his water bottle inside one boot. In the morning he picks up both and goes." Ask: Give one reason for getting ready the night before. Use both details.
 - **Day 32 (s01-X32).** Read: "Before the trip, Rosa checks the packing list on the fridge. She takes the red torch from the shelf and puts it in her bag." Ask: In one sentence, say how checking the list helps Rosa.
 - **Day 33 (s01-X33).** Read: "Tomas checks the time on the wall card. He puts his towel in his bag. Then he sets off for the pool." Ask: Write one sentence that explains how these facts help Tomas swim on time. Use also or so.

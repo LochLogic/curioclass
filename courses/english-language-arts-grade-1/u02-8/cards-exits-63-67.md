@@ -53,9 +53,9 @@ Heard in the day's rotating six, with the notes from the last card in view. Say:
 
 ## Day 67 card (s02-X67a, W.1.5)
 
-This card is invented for practice. Read aloud the shared draft: "Moon saw a girl. Then the girl went to bed." A peer asks, "What was the girl doing?" Read the source note: "A girl swept the porch." Show two pictures: a girl sweeping a porch, and a girl eating at a table. Say: "Point to the picture that helps the writer fix the draft." Hear the day's rotating six. 
+This card is invented for practice. Read aloud the shared draft: "Moon saw a girl. Then the girl went to bed." Read the source note: "A girl swept the porch." Say: "Give the writer one kind, specific note about the draft." Hear the day's rotating six.
 
-**Right answer:** The picture of the girl sweeping the porch.
+**Right answer:** A kind note on the same topic, such as "I like that Moon saw a girl. What was the girl doing before bed?"
 
 ## Day 67 card (s02-X67b, W.1.5)
 

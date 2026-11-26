@@ -25,7 +25,7 @@ The sheet and the cards use plain black line drawings on white, thick lines, no 
 
 **Mark (item a):** Which strip is a fact from the card for the collage? Three strips read aloud, each with a picture: (a) "Wild turkeys eat the nuts." with a turkey under a beech; (b) "Beeches are the best trees." with a beech; (c) "Wild turkeys gobble loudly." with a turkey.
 
-**Spoken, to the day's six (item b):** "Show me the line."
+**Spoken, to the day's six (item b):** "Tell me a fact from the card that you would draft for our collage."
 
 ## Day 113 card E113
 

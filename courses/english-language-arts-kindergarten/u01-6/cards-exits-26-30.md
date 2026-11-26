@@ -13,9 +13,9 @@ Each card is marked by every child and goes with a spoken question heard from th
 
 **Say, as Pip:** "My pick is the xylophone. I like how it chimes."
 
-**Picture:** three pictures in a row, each in a ring: a xylophone with two mallets; a toy telephone; a tricycle.
+**Picture:** Pip the puppet beside an empty label box with the words Pip's pick under it, read aloud.
 
-**Mark:** circle Pip's pick. **Spoken, to the day's six:** "What could you ask before you label it?"
+**Record:** draw Pip's pick in the label box. **Spoken, to the day's six:** "What could you ask before you label it?"
 
 ## Day 27 card: the page about beads
 

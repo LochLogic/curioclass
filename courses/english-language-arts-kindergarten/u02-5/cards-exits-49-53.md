@@ -11,19 +11,19 @@ Days 49 to 51, and item b of day 52, use pages of the unit's own texts, read alo
 
 ## Day 49
 
-**Information page:** page 2 of Weather Changes (texts/gk-u2-01.md, selection a). Three place pictures in a row, each in a ring: the shade by the bench; the swings; the sunny path. **Item a:** "Point to the picture where children sit when they feel hot."
+**Information pages:** pages 2 and 3 of Weather Changes (texts/gk-u2-01.md, selection a), with their pictures: the sunny playground and the rainy playground. **Item a:** "How is the weather on the sunny playground different from the weather on the rainy playground?"
 
 **Story page:** page 5 of The Picnic Plan (texts/gk-u2-02.md, selection a). **Item b:** "What happens on this page that changes the picnic again?"
 
 ## Day 50
 
-**Information page:** page 2 of Clouds (texts/gk-u2-01.md, selection d). **Item a:** "Where is some water that we cannot see?"
+**Information pages:** pages 4 and 5 of Clouds (texts/gk-u2-01.md, selection d), with their pictures. **Item a:** "How is the weather by the big bridge different from the weather over the school?"
 
-**Story page:** page 4 of The Picnic Plan. **Item b:** "Tell me where Tomas and Grandma Rosa are going on this page."
+**Story page:** page 4 of The Picnic Plan. The story began on Saturday morning. **Item b:** "Tell me where Tomas and Grandma Rosa go on this page and when it happens."
 
 ## Day 51
 
-**Information page:** page 3 of Clouds. **Item a:** "Ask me a question that this page answers."
+**Information page:** page 3 of Clouds. **Item a:** "Are all clouds the same? Use the page to tell me how you know."
 
 **Story page:** page 5 of The Picnic Plan. Three pictures, shuffled: Tomas unpacks the basket; Tomas spreads the blanket on the floor; Tomas puts out the plates and cups. **Item b:** "Put the pictures in the order they happen."
 
@@ -31,7 +31,7 @@ Days 49 to 51, and item b of day 52, use pages of the unit's own texts, read alo
 
 **Information card:** "Wind bends the reeds by the shed. The ground below is wet." **Item a:** "Tell me one thing about the weather on this card, in a sentence."
 
-**Story page:** page 1 of The Picnic Plan, read aloud again. **Item b:** "Tell me what happens last on this page."
+**Story page:** page 1 of The Picnic Plan, read aloud again. **Item b:** "Tell me what happens first, next and last on this page."
 
 ## Day 53
 
