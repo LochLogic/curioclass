@@ -1,6 +1,6 @@
 # Handoff: the current state
 
-Where the work stands and what to do next, as of 2026-11-25. The reasons behind decisions are in the decision log,
+Where the work stands and what to do next, as of 2026-11-26. The reasons behind decisions are in the decision log,
 [agents/decisions/DESK-ANSWERS.md](agents/decisions/DESK-ANSWERS.md). If another page disagrees with this one, find
 which is stale, fix it and say so.
 
@@ -8,6 +8,9 @@ Where every kind of file lives and who writes it: [../data/homes.csv](../data/ho
 
 ## State now
 
+- **Done 2026-11-26: every after-core course frame (65 frames, 117 of 117 courses framed; 3 world-language courses stay shelved).** Each frame was written to the new architecture, read by Codex and by a subject expert, then fixed in one pass per subject (docs/reviews/frame-*-fixes-2026-11-2*.md; arts in frame-music-theater-media-arts-fixes-2026-11-26.md). The lead calendar pass followed: CALENDAR.md's K to 5 rule now counts only the classroom teacher's courses (core, health, SEL) and 6 to 8 counts the arts electives as one; pins for PE 6 to 8, computer science grade 6 and health 3 to 5 leave `frame.py calendar` with no clash. Open lead items and Cory's questions are in build/frame-writes/NEXT.txt and on the Desk.
+- **Done 2026-11-26: Health of the build and Quality.** gate.py refuses to store a baseline when a gate crashed (the pile-up cause); goal tests 13 to 16 added; ELA K to 3 alignment defects (108 fixed, 3 rejected) and social studies K to 3 and 5 (111 fixed, 11 rejected, 49 left open; reasons in build/quality/ss-dispositions-2026-11-26/).
+- **Running from 2026-11-25: Codex days, one lane per core subject** (math-kindergarten, science-grade-4, social-studies-grade-4, english-language-arts-grade-4; scripts/codex_lane.py, logs build/lanes/<lane>/run.log). The lead commits outside the lanes with `codex_lane.py lead-commit`.
 - **In progress from 2026-11-24: the consolidation ([CONSOLIDATION-PLAN.md](CONSOLIDATION-PLAN.md)).** Everything comes back into this one folder, then the architecture for scale; curriculum first (the tool catalog is frozen; tools are reshaped after the curriculum is done). Steps run one at a time: 0 freeze, 1 rescue, 2 Codex merge, 3 cleanup, 4 architecture, 5 tool records, 6 close.
   - Done: steps 0 to 3; step 4 sub-steps 4.A to 4.J (report [reviews/consolidation/step4-report.md](reviews/consolidation/step4-report.md)). Curriculum writing may restart (since 4.G).
   - The close Fable review is [reviews/consolidation/step4-close-review.md](reviews/consolidation/step4-close-review.md). Its findings 1, 2 and 7 are fixed and the nine-word US spelling sweep has run (2026-11-25, scripts/us_spelling.py).
@@ -37,7 +40,7 @@ time, before more days are written.
 
 - **Progressions** (step 1): done for all four core subjects, K to 12, in data/progressions/.
 - **Course frames** (step 2): done for all 52 core courses (docs/courses/<course>/frame.md, totals in
-  data/plans/frames.csv). Baseline 1 is closed.
+  data/plans/frames.csv). Baseline 1 is closed. The after-core frames were done 2026-11-26 (117 courses framed).
 - **Scopes and sequences** (steps 3 and 5): all 52 written, read by the expert and by Codex, fixed and through a
   structure pass (docs/courses/<course>/scope-and-sequence.md, data/plans/<course>/days.csv). The scope gate prints
   no rule 2 notes (social studies fixed 2026-11-15, later.csv L28).
