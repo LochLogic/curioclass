@@ -117,3 +117,93 @@ The nine lint messages were scope-and-sequence.md, UK spelling "practising" once
 
 Did not open day files, plan CSVs, source CSVs, unrelated course plans, prohibited paths, or source lesson pages. Therefore implementation, source-row checked dates, exact base-text fidelity, and actual physical pretests were not judged. Unit-plan source lists and their read/not-read qualifications were checked as plan instructions only. The base-order conflict needs the lead's decision under this job's instruction; the frame was not opened. No browser source was attempted or refused, so there is no Browser check URL list. No helper script was created, and no stray empty folder was observed.
 
+
+
+## Fixes applied (2026-11-25)
+
+Job 013, applied on 2026-11-26; requested heading date retained. Each finding was confirmed at its cited cause. Applied means fully closed within this job; partly includes a corrected or already-correct section whose unit-plan contract or required ledger-note change is still blocked. No finding was rejected.
+
+- F01: **partly**. Confirmed 9 + 1 occupies the tenth space; retained the already correct section keys. Unit-plan s02 F1 still says ninth; lead must change the unit master.
+- F02: **partly**. Replaced bundled F1/F2 language with 180 position cells on days 47 to 56 and 150 shape-class cells on days 50 to 57; first teach the five names on day 46. Final days 58 to 62 hear six 4.5-minute measurement turns, 27 minutes, with three separate F5 asks, heft and a 75-second child-directed capacity procedure. Unit-plan s03 collection contract still needs alignment; the duplicated blank-day rolling-conference notes cannot be selected by ledger.py note.
+- F03: **partly**. All five unit-1 sections now use the same 3.5-minute conference: eight children each days 15 to 17, six day 18; day 18 capacity eleven in forty minutes. Initial/revised work stays distinct. Unit-plan s01 must adopt that roster and duration; two same-name blank-day ledger routine rows block note updates.
+- F04: **partly**. Confirmed and retained the workable section F2/F3 split: day 40 nine-plus-four paper minutes and ten two-minute paired reason turns; ten further turns days 41 and 42. Unit-plan s02 remains inconsistent; do not restore its bundled two-minute interview.
+- F05: **partly**. Confirmed the four separate 45-second asks and existing 35-minute class conference blocks. Day 80 home route now also funds 3.5 minutes including reset. Unit-plan s04 still needs the four-ask and paper/conference accounting correction.
+- F06: **partly**. Days 39 and 40 each now reserve ten response minutes, five repair/revision plus five matching fresh transfer, for the prior completed cohort. Removed five repeated rehearsal minutes each day, preserving evidence blocks and sixty-minute totals. Unit-plan s02 response table still needs the late-cohort allocation.
+- F07: **applied**. Days 64 and 65 now route repair and fresh transfer by the actual priority component: positions, names/corners, closure, fit, attributes, alignment/turn, heft or capacity. Six heard cases must match the missing domain; the first five day-66 center teacher minutes receive the remaining named priority roster, with other domains explicitly not yet seen.
+- F08: **applied**. Day 20 retrieval now uses ten paper squares. T20 alone receives eight fresh leaves in the ten-minute prior-unit response; retain the independent chosen route, dots and actual heard count. Return T20 with E20 in day 21 repair before later judgment. Updated its unambiguous ledger note.
+- F09: **applied**. E5 now asks which tray helps keep track, without saying separate spaces. Kept recognition-only judgment and action-based error letters; updated the planned exit note.
+- F10: **partly**. E48 asks for one difference, with the nonsquare rectangle/square side relationship solved cold. C48 separately checks a shared feature on a new circle/oval case, five connected minutes and six 45-second turns. Unit-plan s03 Goal map/U3 must adopt the single-difference exit.
+- F11: **partly**. E50 now has one thin triangle, named/described with three joined straight sides. C50 separately records one circle in five paid Model minutes after explicit teaching, six single turns. Updated the unique E50 case note. Unit-plan s03 still has the bundled pair.
+- F12: **partly**. E53 asks for one measurable wagon attribute, with one paper mark and one heard response. F5 retains three separately prompted tub attributes in the counted final turn; no extra preference. Unit-plan s03 map/sample must drop the exit bundle.
+- F13: **applied**. F6 now reserves a child-chosen direct-comparison procedure on new unmarked vessels: child selects source and directs adult fill/pour, records result. Short wide holds more: spare space if narrow pours into wide, leftover source water if wide pours into narrow. Practice remains supplied scripted correction; E56 remains the fixed leftover-in-source case. Updated F6 ledger note and 75-second procedure turn.
+- F14: **partly**. Section 4.1 now calls altogether/total review of written u02-1 day 19, preserving the whole-group meaning. Its planned term notes remain blocked: note selects by day/entry, finding two blank-day altogether rows and three total rows. Lead must fix the helper selector and correct only the intended section rows.
+- F15: **applied**. Section 4.3 now calls drawing review of written u03-4 day 57; the new application represents story referents/action. Updated both its unique planned term note and day-72 written note through ledger.py note.
+- F16: **applied**. E19/E20 retain one paper production/transformation ask; O19/O20 are separately named, cold-case total/invariance checks in five connected minutes, with Shapes, keys, six-child rotation and next-day return. Their language is not scored on the exit.
+- F17: **applied**. E21 to E24 have one request each; O21 to O24 separately hear the reason/fewer language on different cases in five paid connected minutes. E21 matches three drums to whistles; E22 optional links are not a hidden requirement; an intentional empty E23 uses its taught finish mark, without another question.
+- F18: **applied**. Removed E26 to E29 oral follow-ups. Separate O26 to O29 supplied-case checks have their own Shape, solved sample, named rotating six, five connected minutes and next-day feedback. Paper and heard evidence remain distinct.
+- F19: **applied**. E31 draws a rearranged quantity, E32 makes the requested subset, E33 makes one intentional empty order. P31/P32 separately check new numerals and P33 the positive request, three counted center minutes each. O30 to O33 separately collect totals/reasons; E30 stays one numeral choice. No paired positive/zero exit.
+- F20: **applied**. E34 labels only the empty bowl; P34 independently labels an occupied bowl. E35 makes only the order; P35 checks another numeral. s02-O36 is an explicitly separate one-more check. O34/O35 and all paper components have paid connected minutes and separate records.
+- F21: **applied**. E37 extends the tower without a label; P37 checks a new numeral. O37 to O40 separately hear next-number/reason language on different cases. O40 replaces repeated Oral count, preserving the full day-40 evidence block and ten late-cohort response minutes.
+- F22: **applied**. E41/E42 each ask only for sorting; P41/P42 separately read the new count/order cases; E43 asks only for three mushrooms, P43 separately orders six peppers. O41 follows first rule teaching in its own five-minute part; O42/O43 have five funded rehearsal minutes. Adjusted optional comparison/connected repetition, retaining all sixty-minute totals and full conference capacities.
+- F23: **partly**. Retained the single shown/shown with help/not yet seen scale in every section and all new checks. Unit-plan s01/s02 alternative scale labels remain for the lead; no alternative scale was introduced.
+- F24: **partly**. Reduced both remaining section-3 home routes from thirty-five to thirty minutes by cutting repeated guided work, keeping evidence, repair and exits. Unit-plan s01 to s04 home templates remain over cap and need lead changes.
+- F25: **applied**. Days 64/65 home path is thirty minutes including ten prior-unit response minutes, current repair and exit. Day 79 is repair five, F2 paper ten, F1 paper eight, exit five, tidy two; day 80 fits the full four-ask conference and feedback revision within thirty. No added family day.
+- F26: **partly**. Confirmed the corrected owning-section E5/E6/E7 contracts and kept them rather than changing sound section items back to stale masters. Unit-plan s01 U3/key/look-fors still require lead alignment.
+- F27: **partly**. Section 2.7 now has explicitly separate sort, count and order components, and no larger-pile ring. Unit-plan s02 U3/Goal map still needs the resulting E41/E42 contract rather than either old bundled version.
+- F28: **partly**. Confirmed the inherited base-order conflict in the cited day credits and section note. Removed the instruction to retain that exception; the plan explicitly sends the source-map/unit-plan conflict to the lead before day production. No mapping, frame, unit plan or cross-subject timing decision was changed; source order itself remains unresolved.
+- F29: **partly**. Kept the supplied route taught on day 65 and rehearsed on day 66, with no new route on the fluency day. Unit-plan s04 still directs first modeling on day 66 and must be corrected by the lead.
+- F30: **partly**. Kept F5/F6 content ownership in section 3.3 and collection in sections 3.4/3.5; redesigned turns do not move ownership. Unit-plan s03 owner cells still name 3.1 and require lead correction.
+- F31: **partly**. Converted inherited unit-2 section credits to the full K-12 Math title, mapped lesson identification, license link and Changed by Curio Class form, preserving existing open lesson links. Unit-plan credit templates remain for the lead.
+
+Disposition counts: applied 13; rejected 0; partly 18. FIRM not fully closed: 10; remaining section-content FIRM faults: 0. Across both reports: applied 20, rejected 0, partly 28, FIRM not fully closed 16 (14 unit-plan contracts, two planned term-note corrections). The section fixes do not close those upstream/helper obligations.
+
+### For the lead
+
+- Unit-plan stage: F01 to F06, F10 to F12, F23/F24, F26 to F31. Apply the corrected section contracts to the named unit masters, maps, scale, home routes, owners and credit templates. F28 also needs source-map/frame sequencing resolution before day writing; this job cannot decide an exception to base order or cross-subject timing.
+- Ledger-helper stage: F14's total/altogether notes and the F02/F03 routine notes are blocked by the day/entry-only selector. It ignores section location and requires exactly one match. Refused blank-day entries: altogether (two), total (three), Three-minute retained counting conference (two), Rolling shape-attribute-comparison conferences (two). Correct only the intended section rows after adding a full selector; never replace all same-name course rows.
+- Existing s02 day-36 item accounting and the unavailable full gate need the lead's working-environment rerun. No template exception was used to skip a plan design repair.
+
+
+### Validation and boundaries
+
+The required direct course gate was attempted before and after changes. Both failed before checks at Windows CreateProcess, PermissionError WinError 5, because this environment returns a directory as the launcher executable. A current-process-only runpy correction to the observed interpreter path ran the checks without editing a script or storing a baseline manually. Before: twelve gates, three nonzero, ten failing summary lines (nine UK-spelling lint, one ids-only unitplan summary); lesson/plan crashed because markdown is unavailable, and the wrapper said no baseline was stored. After: twelve gates, four nonzero (index-reports, lesson, plan, unitplan), the same ten failing summary lines (nine UK-spelling lint and one ids-only unitplan line), plus one failing baseline-comparison finding from lesson exit 0 to 1 and twenty-five new note lines from the missing markdown dependency. The index-reports log identifies orphan files in another course, science-grade-4; no such course file was opened or changed. The after wrapper found a stored baseline and compared against it; these are the actual observed before/after outputs, not equivalent successful runs. This is not a passing full gate or an exit-2 result. The new lines it printed are preserved below.
+
+Filtered unitplan check: two failures before, two after, both unchanged in s02.md:76, assessment day 36 missing K.CC.B.4c and K.CC.C.7 items; every section plan passes. Do not add first-teaching scored items merely to silence those unit-plan failures. Filtered math ledger check: zero problems before/after; zero planned-only citation findings and zero unmatched citations before/after. Counts were 6,678 rows initially and 6,735 at final check, but other math courses can change concurrently, so that difference is not this job's write count. This job made 101 successful ledger helper calls and six refused note calls. Refusals changed no row. Local verification: all 148 classroom days in 37 sections total sixty minutes; changed numeric keys and complete language-roster arithmetic solved independently; no section TODO(writer) or em dash.
+
+No build, source-map/data-plan edit, unit-plan edit, shared instruction/script edit, or source-page fetch. No Browser check URL. Helpers and the exact ledger-command results are left only in `_scratch/l87/tmp/math-kindergarten-plan-fix-grade/`; no stray empty folder observed. Historical reader text above is retained; these additions describe the section repair, not a certification of unwritten days or physical pretests.
+
+### New lines printed by the final course gate
+
+The one failing finding is the lesson check's exit-code change, 0 to 1. It and all twenty-five new note lines below are interpreter/dependency failures; they do not establish a newly introduced curriculum failure. The separate unitplan comparison remains two to two and ledger zero to zero. The shared index-reports command also exited nonzero; its output is not a course-content finding.
+
+```text
+== lesson-math-kindergarten: exit code 0 -> 1
+== lesson-math-kindergarten (8 new line(s), 0 failing); failing lines fell 216 -> 0
+  note --- stderr ---
+  note File "S:\CurioClass\scripts\lesson.py", line 18, in <module>
+  note File "S:\CurioClass\scripts\lesson_course.py", line 17, in <module>
+  note ModuleNotFoundError: No module named 'markdown'
+  note Traceback (most recent call last):
+  note ^^^^^^^^^^^^^
+  note import lesson  # noqa: E402
+  note import markdown
+== plan-math-kindergarten (17 new line(s), 0 failing); failing lines fell 84 -> 0
+  note --- stderr ---
+  note File "S:\CurioClass\scripts\lesson.py", line 18, in <module>
+  note File "S:\CurioClass\scripts\plan.py", line 1176, in check
+  note File "S:\CurioClass\scripts\plan.py", line 1451, in main
+  note File "S:\CurioClass\scripts\plan.py", line 1499, in <module>
+  note File "S:\CurioClass\scripts\plan.py", line 552, in parse
+  note File "S:\CurioClass\scripts\plan.py", line 572, in cross_day
+  note ModuleNotFoundError: No module named 'markdown'
+  note Traceback (most recent call last):
+  note ^^^^^^^^
+  note ^^^^^^^^^^^^^
+  note cross_day(course, days, items, horizon, fails, notes)
+  note d = parse(b)
+  note fails, notes, ni, nw = check(c)
+  note import lesson   # lesson.py reads a day file; imported here, since it imports this module
+  note import markdown
+  note main(sys.argv[1:])
+gate math-kindergarten against its baseline: 1 failing finding(s), 25 new note line(s)
+```

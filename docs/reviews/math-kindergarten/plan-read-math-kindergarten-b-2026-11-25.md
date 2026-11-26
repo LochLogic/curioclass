@@ -95,3 +95,79 @@ Attempted before any report write: `python -X utf8 scripts/gate.py --course math
 Exited 1 with an exception before a check summary or baseline result: `PermissionError: [WinError 5] Access is denied`, from gate.py's subprocess launch through Windows `CreateProcess`. The available interpreter resolved to the bundled office-suite interpreter. No rule counts and no new-against-baseline lines were printed. This was not an exit-2/no-baseline result and is not a passing gate. No baseline was manually stored. The unchanged launch failure was not retried after this report-only write; the lead must rerun the authorized gate in a working interpreter environment.
 
 Only this report was written. No helper scripts or folders were created, no build was run, and no curriculum, ledger or CSV was changed.
+
+
+## Fixes applied (2026-11-25)
+
+Job 013, applied on 2026-11-26; requested heading date retained. Each finding was confirmed at its cited cause. Applied means fully closed within this job; partly includes a corrected or already-correct section whose unit-plan contract or required ledger-note change is still blocked. No finding was rejected.
+
+- F01: **partly**. Replaced language sampling with a complete component grid: 180 separately heard position cells across days 120 to 126, twenty or twenty-eight daily; sixty cube/sphere naming turns across days 127 to 129 after first naming instruction; final conferences hear cylinder, cone and F2f separately for every child. All 330 asks have 247.5 heard minutes plus separately funded reset, without assuming planned records prove actual evidence. Independent math paper continues during listening. Unit-plan s07 must adopt the complete roster/collection contract.
+- F02: **applied**. E123 now uses true equal-total choices 7 = 3 + 4, 7 = 2 + 5, 7 = 1 + 6, read neutrally. Paper links must connect each actual part to its own addend; counting seven alone cannot pass. Solved each equation and updated the unique planned case note.
+- F03: **applied**. Day 136 has matching fresh A/B/C/D/E/F/M/N/O routes, each with one ask, paper evidence, key and observation-based letter. E/F language gets six paid 45-second turns on each of days 136 to 140 if needed; return written feedback and revise day 142 before judgment. Recognition never proves a spoken description/name. Added the route-bank ledger entry; further domains remain separately identified.
+- F04: **partly**. E128a now asks same kind or different with equal taught-icon response spaces, without stating the answer. Reserved cylinder/circle pair correctly differs in dimension; E128b remains separate feature evidence. Updated its section ledger note. Unit-plan s07 U3 still gives the answer-bearing stem.
+- F05: **partly**. E89 now predicts a marked move on a fresh nine-cell train split four/five: moving one to the first part gives five/four, all nine retained. Paper production records the relationship; loose-piece practice remains a different procedure. Unit-plan s05 map/U3 and evidence mapping still need the corrected exit contract.
+- F06: **partly**. Section 6.2 calls compose review of written u03-4 day 60, applying the same put-parts-together meaning to numbers. The planned compose note cannot be selected by ledger.py note: four rows share its blank day and entry. Lead must fix the helper selector before that planned term note can be corrected.
+- F07: **partly**. E114 is one drawing of nineteen as ten individual ones and nine further ones. Q114 independently asks for an equation of a new sixteen-ribbon picture, 16 = 10 + 6 or reverse order, in five funded center minutes with six heard turns. Separate Shape, cold key and day-115 feedback. Unit-plan s06 map/master remain bundled; two same-name blank-day E114 notes also block helper correction.
+- F08: **partly**. C151 now asks for the subtraction matching a new four-bell addition/part-whole picture. All three options are true; links must identify removed one and retained three in 4 - 1 = 3. Five existing model minutes fund six turns, replacing practice comments. E151 remains one hidden-three exit; day-152 revision precedes later judgment. Unit-plan s08 map must add this distinct evidence for the connection clause.
+- F09: **partly**. E135 only orders a new already-sorted 0/3/5 set. S135 sorts a different 4/2/0 case; L135 reads three separate number-label asks. Five Model plus two Connected minutes fund the checks, with explicit keys and next-day repair. Unit-plan s08 map/master must separate sort, labels and order.
+- F10: **applied**. Every unit-5 teaching day now reserves four existing practice minutes for a complete child-directed loose-key construction, with varied totals, empty parts and explanations. Each partner gets a 45-second turn, with handling/checking and a returned sketch. Fixed dot-strip, train prediction, independent equation and two-panel story assessment formats remain reserved. Added the planned concrete cases to the ledger.
+- F11: **applied**. All nonconference unit-6 centers now have a picture-cued minute menu: game, taught collection/teen models, already taught numerals, paired feedback and tidy. Days 104/105 retain the full Unit 5 response; day 114 funds Q114 by replacing labels/feedback repetition. Six teacher observations are concurrent with the eight model minutes, never another teacher task; every paper has a named return.
+- F12: **applied**. E129 has precut matching body/end pieces and broad slotted paper or soft-tab joins, usable without a serial adult queue. Demonstrate fastening on a different partial piece on understanding day 127. Six directed access builds fit the exit construction minutes; excess supported builds have five paid day-130 Connected minutes, replacing repeated correction, with later feedback/revision. The cylinder keeps its curved body/two circular ends, never a rod cage.
+- F13: **applied**. Expanded the supplied-image feedback bank with 1 + 1 = 2, 2 + 2 = 4, 1 + 4 = 5 and 5 - 1 = 4. Mix at least two nonzero-addend additions and a removal. Solved all facts; kept reserved F1 expressions, pictures and independent station format cold, with no new procedure on fluency days.
+- F14: **partly**. Named every warm-up start/stop. Because prior written ones stop at twenty, days 135/136 stay in that taught range; understanding day 137 explicitly teaches later ones and all decade bridges in ten extra Counting minutes funded from repeated centers, then rehearse before day 146. Days 144/145 supply cumulative choral/prompted counts, never an uncued full recital. The new sequence ledger row is planned only; sections do not claim it was written. Unit-plan s08 preparation progression/Goal map still need this first-teaching contract, rather than introducing new names on a fluency day.
+- F15: **partly**. Confirmed and retained twenty Unit 5 F1 panels, section-6 paper-in-centers collection and 60/60/30/30 teacher minutes, plus the single-arrival E138. These sound section schedules were not replaced by stale unit instructions. Unit plans s05/s06/s08 must adopt them; no unit-plan edit is authorized here.
+- F16: **partly**. Confirmed the narrative counts disagree with their listed day kinds: s07 three understanding/eleven application, 21.4/78.6 percent; s08 two understanding/eight fluency/seven application, 11.8/47.1/41.2 percent. Section plans contain no copied false summary to replace; the lead must correct the two unit-plan summaries.
+- F17: **applied**. E94 now says each hat has only stars or only spots, never both. E95 says each puzzle piece has one marked tab, round or square. Seven and nine totals/allocations stay correct; updated the reserved case notes through the helper.
+
+Disposition counts: applied 7; rejected 0; partly 10. FIRM not fully closed: 6; remaining section-content FIRM faults: 0. Across both reports: applied 20, rejected 0, partly 28, FIRM not fully closed 16 (14 unit-plan contracts, two planned term-note corrections). The section fixes do not close those upstream/helper obligations.
+
+### For the lead
+
+- Unit-plan stage: findings 1, 4, 5, 7, 8, 9, 14, 15 and 16. Adopt the complete component roster, corrected exit shapes/separate checks, day-137 first teaching before the ones recital, current paper/conference budgets and corrected rigor arithmetic in s05 to s08 and their evidence mappings.
+- Ledger-helper stage: finding 6's planned compose note (four blank-day matches) and finding 7's E114 reserved nineteen blank drawing-equation record (two) cannot be corrected by the existing note selector. Add a full location/row selector, then update just the intended rows. Exact attempted commands/new notes are preserved in this job's scratch JSON; no hand edit was made.
+- Full course gate remains unavailable until the interpreter/markdown environment is repaired. The unitplan and ledger comparisons themselves have no new failure. No template exception was used to excuse design faults.
+
+
+### Validation and boundaries
+
+The required direct course gate was attempted before and after changes. Both failed before checks at Windows CreateProcess, PermissionError WinError 5, because this environment returns a directory as the launcher executable. A current-process-only runpy correction to the observed interpreter path ran the checks without editing a script or storing a baseline manually. Before: twelve gates, three nonzero, ten failing summary lines (nine UK-spelling lint, one ids-only unitplan summary); lesson/plan crashed because markdown is unavailable, and the wrapper said no baseline was stored. After: twelve gates, four nonzero (index-reports, lesson, plan, unitplan), the same ten failing summary lines (nine UK-spelling lint and one ids-only unitplan line), plus one failing baseline-comparison finding from lesson exit 0 to 1 and twenty-five new note lines from the missing markdown dependency. The index-reports log identifies orphan files in another course, science-grade-4; no such course file was opened or changed. The after wrapper found a stored baseline and compared against it; these are the actual observed before/after outputs, not equivalent successful runs. This is not a passing full gate or an exit-2 result. The new lines it printed are preserved below.
+
+Filtered unitplan check: two failures before, two after, both unchanged in s02.md:76, assessment day 36 missing K.CC.B.4c and K.CC.C.7 items; every section plan passes. Do not add first-teaching scored items merely to silence those unit-plan failures. Filtered math ledger check: zero problems before/after; zero planned-only citation findings and zero unmatched citations before/after. Counts were 6,678 rows initially and 6,735 at final check, but other math courses can change concurrently, so that difference is not this job's write count. This job made 101 successful ledger helper calls and six refused note calls. Refusals changed no row. Local verification: all 148 classroom days in 37 sections total sixty minutes; changed numeric keys and complete language-roster arithmetic solved independently; no section TODO(writer) or em dash.
+
+No build, source-map/data-plan edit, unit-plan edit, shared instruction/script edit, or source-page fetch. No Browser check URL. Helpers and the exact ledger-command results are left only in `_scratch/l87/tmp/math-kindergarten-plan-fix-grade/`; no stray empty folder observed. Historical reader text above is retained; these additions describe the section repair, not a certification of unwritten days or physical pretests.
+
+### New lines printed by the final course gate
+
+The one failing finding is the lesson check's exit-code change, 0 to 1. It and all twenty-five new note lines below are interpreter/dependency failures; they do not establish a newly introduced curriculum failure. The separate unitplan comparison remains two to two and ledger zero to zero. The shared index-reports command also exited nonzero; its output is not a course-content finding.
+
+```text
+== lesson-math-kindergarten: exit code 0 -> 1
+== lesson-math-kindergarten (8 new line(s), 0 failing); failing lines fell 216 -> 0
+  note --- stderr ---
+  note File "S:\CurioClass\scripts\lesson.py", line 18, in <module>
+  note File "S:\CurioClass\scripts\lesson_course.py", line 17, in <module>
+  note ModuleNotFoundError: No module named 'markdown'
+  note Traceback (most recent call last):
+  note ^^^^^^^^^^^^^
+  note import lesson  # noqa: E402
+  note import markdown
+== plan-math-kindergarten (17 new line(s), 0 failing); failing lines fell 84 -> 0
+  note --- stderr ---
+  note File "S:\CurioClass\scripts\lesson.py", line 18, in <module>
+  note File "S:\CurioClass\scripts\plan.py", line 1176, in check
+  note File "S:\CurioClass\scripts\plan.py", line 1451, in main
+  note File "S:\CurioClass\scripts\plan.py", line 1499, in <module>
+  note File "S:\CurioClass\scripts\plan.py", line 552, in parse
+  note File "S:\CurioClass\scripts\plan.py", line 572, in cross_day
+  note ModuleNotFoundError: No module named 'markdown'
+  note Traceback (most recent call last):
+  note ^^^^^^^^
+  note ^^^^^^^^^^^^^
+  note cross_day(course, days, items, horizon, fails, notes)
+  note d = parse(b)
+  note fails, notes, ni, nw = check(c)
+  note import lesson   # lesson.py reads a day file; imported here, since it imports this module
+  note import markdown
+  note main(sys.argv[1:])
+gate math-kindergarten against its baseline: 1 failing finding(s), 25 new note line(s)
+```
