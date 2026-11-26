@@ -303,6 +303,14 @@ def main(a):
 
 
 def store(raw, base):
+    # a gate that crashed (missing module, wrong python) must never become the baseline: every old line would then
+    # count as new on each later run (the lane pile-ups of 2026-11-25, a python without markdown)
+    crashed = sorted(f.name for f in raw.glob('*.txt') if 'Traceback (most recent call last)' in
+                     f.read_text(encoding='utf-8', errors='replace'))
+    if crashed:
+        print('FAIL baseline not stored: these gates crashed (%s); run with the project python (%s)'
+              % (', '.join(crashed), sys.executable))
+        raise SystemExit(2)
     if base.exists():
         shutil.rmtree(base)
     shutil.copytree(raw, base)
