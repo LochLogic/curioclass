@@ -415,3 +415,4 @@ from_day,to_day,what,where,minutes,error,note
 24,25,s02-K24-1,Return and repair,0,,Return the criterion-and-limit response with the existing E24 repair and written practice feedback; no additional repair minutes.
 38,39,s02-P38-A s02-P38-B s02-P38-L s02-P38-C s02-P38-D s02-P38-E s02-P38-F s02-P38-I s02-P38-J s02-P38-K s02-P38-G s02-P38-H,opening,0,,"Return assigned repair strips with final written feedback alongside the existing revision-paper handoff. No additional repair, score or interview."
 34,35,s02-X34-graph,Return and repair,0,,"Return graph feedback with the existing E34 ticket; use the same five-minute return slot, without another repair round."
+16,17,s02-P16-report,Return and repair,0,,Return on the question strip with written feedback alongside the ticket; no extra repair round.

@@ -740,3 +740,4 @@ s02-X28-retest,A preferred change needs no retest.,,,D,"Record the observed misc
 s02-E2b,My preferred change needs no retest.,,,D,Preference does not replace failure evidence and a comparable retest.
 s02-X18,"The screen makes the tile warmer for certain, without a temperature record.",,,H,Some transmitted light does not supply a missing warming observation; retain unknown warming.
 s02-X34-graph,Wind has four shares.,,,x,The invented record gives wind two shares. Confer on matching each bar to its label and count; do not diagnose a science misconception from this graph error.
+s02-P16-report,The report is true because someone said so.,,,x,An unsupported report is not an observation or a testable question.

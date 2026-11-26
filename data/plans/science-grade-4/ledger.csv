@@ -1367,8 +1367,8 @@ science-grade-4,u02-1,,term,destination: where transferred energy goes,"review o
 science-grade-4,u02-1,,notation,energy arrows connect initial motion energy to destinations,"review of science-grade-4 u01-3 day 7; section-plan revision, day left blank; written source row verified.",planned,
 science-grade-4,u02-1,,case,marble into paper cup at two visibly different approach speeds,"review of science-grade-4 u01-1 day 1; section-plan revision, day left blank; written source row verified.",planned,
 science-grade-4,u02-1,,routine,question board: notices become questions,"review of science-grade-3 u01-1 day 1; section-plan revision, day left blank; written source row verified.",planned,
-science-grade-4,u02-1,,routine,"rotating six heard, record sheet names who","review of science-grade-3 u01-1 day 1; section-plan revision, day left blank; written source row verified.",planned,
-science-grade-4,u02-1,,routine,"revise the record in a second color, keeping the original observations and initials","review of science-grade-3 u01-2 day 8; section-plan revision, day left blank; written source row verified.",planned,
+science-grade-4,u02-1,17,routine,"rotating six heard, record sheet names who","review of science-grade-3 u01-1 day 1; section-plan revision, day left blank; written source row verified.; review of science-grade-4 u02-1 day 16",written,
+science-grade-4,u02-1,19,routine,"revise the record in a second color, keeping the original observations and initials","review of science-grade-3 u01-2 day 8; section-plan revision, day left blank; written source row verified.; review of science-grade-3 u01-2 day 8",written,
 science-grade-4,u02-1,,routine,"return and repair, 2 minutes a letter","review of science-grade-3 u01-1 day 2; section-plan revision, day left blank; written source row verified.",planned,
 science-grade-4,u02-1,,term,"temperature, read from the thermometer to the nearest mark","review of science-grade-3 u01-1 day 2; section-plan revision, day left blank; written source row verified.",planned,no
 science-grade-4,u02-1,,skill,sunlight warms a surface,"review of science-kindergarten u05-2 day 52; section-plan revision, day left blank; written source row verified.",planned,
@@ -1376,16 +1376,16 @@ science-grade-4,u02-1,,term,"lets light through, lets some through, blocks light
 science-grade-4,u02-1,,term,turns the light,"review of science-grade-1 u05-2 day 44; section-plan revision, day left blank; written source row verified.",planned,no
 science-grade-4,u02-1,,term,"sound off, sound on","review of science-grade-1 u04-2 day 32; section-plan revision, day left blank; written source row verified.",planned,no
 science-grade-4,u02-1,,term,source: where transferred energy comes from,"Explicit student definition in days 16, 18 or 19, before use in a check.",planned,yes
-science-grade-4,u02-1,,term,recipient: the object receiving transferred energy,"Explicit student definition in days 16, 18 or 19, before use in a check.",planned,yes
+science-grade-4,u02-1,16,term,recipient: the object receiving transferred energy,"Explicit student definition in days 16, 18 or 19, before use in a check.; Children read, say and use the definition with apparatus labels.",written,yes
 science-grade-4,u02-1,,term,opaque: blocks direct light,"Explicit student definition in days 16, 18 or 19, before use in a check.",planned,yes
-science-grade-4,u02-1,,term,translucent: lets some light through,"Explicit student definition in days 16, 18 or 19, before use in a check.",planned,yes
-science-grade-4,u02-1,,term,heat: energy transfer from a warmer object to a cooler one,"Explicit student definition in days 16, 18 or 19, before use in a check.",planned,yes
+science-grade-4,u02-1,18,term,translucent: lets some light through,"Explicit student definition in days 16, 18 or 19, before use in a check.; Children read, say and use the definition beside the grade 1 light labels.",written,yes
+science-grade-4,u02-1,19,term,heat: energy transfer from a warmer object to a cooler one,"Explicit student definition in days 16, 18 or 19, before use in a check.; Children read, say and use this meaning with the held/untouched spoon comparison. No particle mechanism or numerical energy.",written,yes
 science-grade-4,u02-1,,model,"energy-path model with source, recipient and observable change; unresolved inside parts remain questions",Section-plan revision; introduced within this section.,planned,
 science-grade-4,u02-1,,investigation,separate-support covered drums compared during gentle taps and silence,Actual readings first; named invented fallback when unresolved; protect assessment configurations.,planned,
 science-grade-4,u02-1,,investigation,matched cloth sunlight/shade and dark/pale comparisons with whole-degree readings,Actual readings first; named invented fallback when unresolved; protect assessment configurations.,planned,
 science-grade-4,u02-1,,investigation,warm-palm-to-spoon comparison beside an untouched spoon,Actual readings first; named invented fallback when unresolved; protect assessment configurations.,planned,
 science-grade-4,u02-1,,case,sealed hand-crank light anchor,"Actual classroom phenomenon; record after-stop behavior, not an assumed outcome.",planned,
-science-grade-4,u02-1,,case,K: handle turns and light appears; no after-stop record,"Invented for practice; failed-crank fallback, no live-observation claim.",planned,
+science-grade-4,u02-1,16,case,K: handle turns and light appears; no after-stop record,"Invented for practice; failed-crank fallback, no live-observation claim.; Conditional invented practice record; no live-observation or after-stop claim.",written,
 science-grade-4,u02-1,,case,D: receiver still in silence and moving during taps,Invented for practice; failed or unavailable live-drum fallback.,planned,
 science-grade-4,u02-1,,case,"S: shaded cloth 22 to 23, sunlit cloth 22 to 27 degrees Celsius",Invented for practice; 1-degree instrument-compatible fallback.,planned,
 science-grade-4,u02-1,,case,"H: held spoon 20 to 23, untouched spoon 20 to 20 degrees Celsius",Invented for practice; unresolved-contact fallback.,planned,
@@ -1688,3 +1688,12 @@ science-grade-4,u01-4,12,notation,opposite contact-force arrows on the two colli
 science-grade-4,u01-4,13,skill,label each anchor evidence tag as observation or scientific account,review of science-grade-4 u01-3 day 10,written,
 science-grade-4,u01-4,14,none,independent assessment of unit 1 speed and collision evidence,,written,
 science-grade-4,u01-4,15,none,response day revising unit 1 explanations and models with feedback,,written,
+science-grade-4,u02-1,16,term,source: where the transferred energy comes from,"Energy sense. Children read, say and use it with observed and uncertain apparatus labels.",written,yes
+science-grade-4,u02-1,16,skill,write an observable question testing an unsupported crank report,Separate Question board task; no report-testing ask added to the badge exit.,written,
+science-grade-4,u02-1,16,model,tentative crank energy-path model and paths/control/origins question board,Observed apparatus sketch and sorted labels; complete new-case path drawing is reserved for the exit. Retain questions for later evidence.,written,
+science-grade-4,u02-1,17,routine,"six cleaning places, five children each, protection stays on during grain collection",Two minutes collect/store apparatus; three minutes wipe/store protection and wipe hands.,written,
+science-grade-4,u02-1,17,investigation,observe receiving tub on separate supports during tapping and silence,Six two-minute views plus three minutes for movement/reset. Unclear remains unclear; invented D is separate.,written,
+science-grade-4,u02-1,18,term,opaque: blocks light,"Children read, say and use the label in a separate flashlight material trial.",written,yes
+science-grade-4,u02-1,18,investigation,"separate card, translucent sheet and mirror flashlight comparisons",Table records for separate materials; no three-path practice drawing or combined warming diagram.,written,
+science-grade-4,u02-1,18,case,E18 reflected sunlight onto a tile with blocked and partly transmitted paths,"Invented paper exit only; matched warming record, screened temperature unknown. Do not reproduce with sunlight.",written,
+science-grade-4,u02-1,19,investigation,palm-warm one spoon and compare an untouched spoon,Adult uses stable whole-degree contact readings; six thirty-second observers. Keep unclear and invented H distinct.,written,

@@ -7,8 +7,8 @@ tape,1,1 2 3 85,classroom,room,Marks and containment.
 table-edge guard,1,1 2 3,classroom,room,Used with catch barrier on floor lane.
 catch barrier,1,1 2 3 7 8 9 11,classroom,room,Stops escaped rolls.
 impact eye protection,1,1 2 3 7 8 9 11,classroom,room,Existing stock for everyone; otherwise use invented record. No purchase decision.
-wipes,1,1 2 3 7 8 9 11 18 104 107 108,classroom,room,Cleaning protection.
-storage bags,1,1 2 3 7 8 9 11,classroom,room,Store protection.
+wipes,1,1 2 3 7 8 9 11 17 18 19 104 107 108,classroom,room,Cleaning protection.
+storage bags,1,1 2 3 7 8 9 11 17,classroom,room,Store protection.
 question board,1,1 2 3 4 5 6 7 8 13 16 27 35 57 58 94 97 98 99 103 104,classroom,room,Teacher retains.
 class record book,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15,classroom,room,One marking scale and heard roster.
 Ramp record R,1,1 2 3 4 5 6 7 13 15,classroom,room,Invented fallback; never mixed with measured observations.
@@ -35,8 +35,8 @@ First crank ideas,16,16 19,section 2.1 folder: initial-model.md,student,"Day 16 
 Energy-path labels,16,16 17 19,section 2.1 folder: path-labels.md,pair,"Blank student sheet; print with the day packet, including its words in the 350-word total. Day 35 uses the teacher's handwritten board/model, not these printed frames. Day 23 uses the teacher's handwritten anchor model and free evidence labels."
 Question board strip,16,16,section 2.1 folder: question-strip.md,student,"Included on day 16 student side 2, not an extra printed side."
 Sound observation log,17,17,section 2.1 folder: observation-log.md,student,"Blank student sheet; print with the day packet, including its words in the 350-word total."
-Light-material sort,18,18,section 2.1 folder: light-paths.md,student,"Included on day 18 student side 1, no extra sheet copy."
-Surface temperature record,18,18 19 20 21 22 23,section 2.1 folder: warming-table.md,student,Included on day 18 student side 2; retain for optional sunlight retry on days 19 to 23.
+Light-material sort,18,18,section 2.1 folder: light-paths.md,student,"Included on day 18 student side 2, no extra sheet copy. Record separate beam observations in the table."
+Surface temperature record,18,18 19 20 21 22 23,section 2.1 folder: warming-table.md,student,Included on day 18 student side 1; retain for optional sunlight retry on days 19 to 23.
 Hand-to-spoon observation,19,19,section 2.1 folder: contact-log.md,student,"Blank student sheet; print with the day packet, including its words in the 350-word total."
 Teaching fallback records,16,16 17 18 19,section 2.1 folder: fallback-records.md,room,"Teacher-only K/D/S/H records; show only the needed day record, announced and printed invented for practice. Never claim supplied evidence is measured."
 Individual wiring log,20,20 21 22,section 2.2 folder: wiring-log.md,student,"Blank student sheet; print with the day packet, including its words in the 350-word total."
@@ -265,7 +265,7 @@ inside/outside view cards,104,104 105 106 107 108,unit 6 folder,room,Original en
 rootless setup drawing,105,105 106 107 108,unit 6 folder,room,Retained cut-flower panel from plant-views.svg; no roots shown.
 complete reason strips,106,106,unit 6 folder,student,"Two complete reasons printed on the student page and copied for matching, no new draft."
 blank exit-box cover,104,104,unit 6 folder,student,Reusable blank paper covers only the held Exit box while Side 2 practice remains visible.
-six cleaning places,1,1 2 3 7 8 9 11,room cleaning stations,room,Six captains clean five student pairs each in three minutes; adult cleans own pair. Follow wipe contact-time directions and store until ready for reuse.
+six cleaning places,1,1 2 3 7 8 9 11 17,room cleaning stations,room,Six captains clean five student pairs each in three minutes; adult cleans own pair. Follow wipe contact-time directions and store until ready for reuse.
 courses/science-grade-4/u01-1/ramp-anchor-r.md,1,1,unit 1 folder,room,Original shared piece. Keep after feedback; invented records stay separate from measured ones.
 courses/science-grade-4/u01-1/ramp-record-r.md,2,2 3 4 5 6 7 13 15,unit 1 folder,room,Original shared piece. Keep after feedback; invented records stay separate from measured ones.
 courses/science-grade-4/u01-1/position-strip.md,1,1,unit 1 folder,student,Original shared piece. Keep after feedback; invented records stay separate from measured ones.
