@@ -493,17 +493,40 @@ def r_status(ix):
     print('status: %d flow-status done rows sit on a written plan; they stay: plan_flow reads them as "done to the '
           'stage 4 bar", which the file alone does not show (only "on file")' % same)
     for c in sorted(COURSE_SET):
-        have = {int(m.group(1)) for f in (PIECES / c).glob('*/d*.md')
-                for m in [re.fullmatch(r'd(\d{3})[a-z]?\.md', f.name)] if m}
+        have = {}
+        for f in sorted((PIECES / c).glob('*/d*.md')):
+            m = re.fullmatch(r'd(\d{3})[a-z]?\.md', f.name)
+            if m:
+                v = re.search(r'^version:[ \t]*(.*)$', f.read_text(encoding='utf-8')[:1500], re.M)
+                have.setdefault(int(m.group(1)), []).append((rel(f), v.group(1).strip() if v else ''))
         out += day_status(c, rows_of(PLANS / c / 'ledger.csv'), have)
     return out
 
 
 def day_status(c, ledger, have):
     """A day's status has two homes: its file (frontmatter `version:`, which exists only once the day is written) and
-    the ledger stage (`written` only when a day adds the row, ledger.py add). A written row with no day, or naming a day
-    with no day file, contradicts the files (close review, goal test 10)."""
+    the ledger stage (`written` only when a day adds the row, ledger.py add). They must agree both ways (close review,
+    goal test 10; later L133):
+    - a written row with no day, or naming a day with no day file, contradicts the files;
+    - a day file with no written ledger row for its day contradicts the ledger (a day that introduces nothing new says
+      so with one `none` row, ledger.py add ... none "<why>");
+    - a day file with no `version:` line has no status of its own.
+    `have` is {day number: [(path, version line), ...]} (a plain set of day numbers is read as files with versions)."""
+    if not isinstance(have, dict):
+        have = {d: [('', 'draft')] for d in have}
     out = []
+    led = set()
+    for r in ledger:
+        if r.get('stage') == 'written':
+            led.update(int(d) for d in re.findall(r'\d+', r.get('day') or ''))
+    for d in sorted(have):
+        if d not in led:
+            out.append(('dayfile|%s|d%03d' % (c, d), '%s: day %d has a day file but no written ledger row in '
+                        'data/plans/%s/ledger.csv (add what it introduces, or one `none` row)'
+                        % (have[d][0][0] or c, d, c)))
+        for path, v in have[d]:
+            if not v:
+                out.append(('version|%s|d%03d' % (c, d), '%s: day %d has no version: line' % (path or c, d)))
     for i, r in enumerate(ledger, 2):
         if r.get('stage') != 'written':
             continue
@@ -627,6 +650,11 @@ def self_test():
            {'day': '9', 'stage': 'planned', 'entry': 'c'}, {'day': '4', 'stage': 'written', 'entry': 'd'}]
     check('day status: a written ledger row with no day, or a day with no file, fails (goal test 10)',
           len(day_status('c', led, {4})) == 2 and not day_status('c', led[2:], {4}))
+    check('day status: a day file with no written ledger row, or no version line, fails (L133)',
+          [k for k, _ in day_status('c', led[3:], {4: [('p', 'draft 1')], 5: [('q', '')]})]
+          == ['dayfile|c|d005', 'version|c|d005']
+          and not day_status('c', led[3:] + [{'day': '5', 'stage': 'written', 'kind': 'none'}], {4: [('p', 'x')],
+                                                                                             5: [('q', 'y')]}))
     print('index self-test: %s' % ('all passed' if ok else 'FAILED'))
     return 0 if ok else 1
 

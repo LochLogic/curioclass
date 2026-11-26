@@ -722,8 +722,10 @@ Built (2026-11-25):
   home, not only framed ones. To the Desk: q-student-word-1 (older term rows read "no", so "never judged" and
   "judged no" are one value). Cory took the pick: the 1,451 older term rows seeded from a progression's words list
   are yes, the other 12,033 blank (not judged), and the report prints them as undecided; seed writes blank; a
-  writer's row without the flag stays no. The backlog is 1,450 undefined words (12,033 undecided). Later: L133 (test 10's other direction), L134 (catalog lint imports), L135 (shared
-  checks per course).
+  writer's row without the flag stays no. The backlog is 1,450 undefined words (12,033 undecided).
+- L133, done the same day: goal test 10 now also fails a day file with no written ledger row (one `none` row
+  covers a day that introduces nothing; kit 12) and a day file with no version line; 34 known days, later L136.
+  Still later: L134 (catalog lint imports), L135 (shared checks per course).
 
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 

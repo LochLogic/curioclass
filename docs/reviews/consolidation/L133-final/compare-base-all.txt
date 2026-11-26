@@ -1,0 +1,14 @@
+== build_site (1 new line(s), 0 failing)
+  note 521 course and unit pages -> S:\CurioClass\build\gates\L133-final\dist\courses (hidden)
+== compare (6 new line(s), 0 failing)
+  note == index-reports (1 new line(s), 0 failing)
+  note == selftest-index (1 new line(s), 0 failing)
+  note gate all against its baseline: 0 failing finding(s), 3 new note line(s)
+  note note 521 course and unit pages -> S:\CurioClass\build\gates\L133-final\dist\courses (hidden)
+  note note ok     day status: a day file with no written ledger row, or no version line, fails (L133)
+  note note status: 0 new, 34 known, 0 fixed
+== index-reports (1 new line(s), 0 failing)
+  note status: 0 new, 34 known, 0 fixed
+== selftest-index (1 new line(s), 0 failing)
+  note ok     day status: a day file with no written ledger row, or no version line, fails (L133)
+compare base-all -> L133-final: 0 failing finding(s), 9 new note line(s)

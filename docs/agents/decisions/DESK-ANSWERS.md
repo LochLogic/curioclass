@@ -1970,3 +1970,6 @@ course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN
   Cory, "Use your recommendation. And mark them." The 1,451 term rows seeded from a progression's words list read
   student_word yes, the other 12,033 older rows blank (not judged); vocabulary.py report prints the blank count as
   undecided; seed writes blank; a writer's term row without --student-word is no.
+- **L133 before the dashboard** (Cory in chat, 2026-11-25: "do L133 first, then the dashboard"): a day file must have
+  a written ledger row; a day that introduces nothing new gets one ledger row of kind `none`. 34 known days are
+  baselined and worked off under later.csv L136.

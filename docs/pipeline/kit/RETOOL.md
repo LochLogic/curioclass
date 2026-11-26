@@ -162,3 +162,11 @@ Source: the step 4 close review, "what got worse" (c) (consolidation 4.L row 8).
 | Finding (stage that found / made it) | Where it went |
 |---|---|
 | The debt baselines (the `--all` lesson check and lint style lines) had no schedule, so they could sit forever (close review, "what got worse" (c)) | cleanup.txt part D "Known debt": the cleanup job works a course's known debt down and reports "known debt fixed / left by rule"; the lead records the count per grade close with `gate.py --course <course> --record` into data/plans/debt.csv (COURSE-RUN.md stage 6) |
+
+## Retool 11: KIT-VERSION 12 (2026-11-25)
+
+Source: the Fable read of 4.L, finding 1 (later.csv L133). No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| Goal test 10 checked one direction: a written ledger row must name a day with a file, but a day file with no ledger row passed, and the day's `version:` line was never read (Fable read of 4.L, finding 1) | index.py status report fails a day file with no written ledger row and a day file with no version line; ledger kind `none` for a day that introduces nothing new; day.txt tells writers to add one `none` row for such a day. The 34 days found on 2026-11-25 are baselined and worked off under later.csv L136 |

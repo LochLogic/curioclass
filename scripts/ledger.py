@@ -51,7 +51,9 @@ Kinds:
 - material: equipment or supplies students handle;
 - routine: a classroom routine students learn (a notebook page, a talk move);
 - text: a read-aloud, passage or sheet text;
-- skill: a practice students do (measure with a ruler, sort by one property).
+- skill: a practice students do (measure with a ruler, sort by one property);
+- none: the day introduces nothing new (a review, practice or test day); the entry says why, one row per such day
+  (the index's status report fails a day file with no written row, later L133).
 """
 import csv
 import io
@@ -68,7 +70,7 @@ DIR = Path(os.environ['LEDGER_DIR']) if os.environ.get('LEDGER_DIR') else ROOT /
 PLANS = ROOT / 'data' / 'plans'
 COLS = ['course', 'where', 'day', 'kind', 'entry', 'note', 'stage', 'student_word']
 STUDENT = ('yes', 'no', '')   # term rows: is this a word a student is taught and given a definition for? blank = not judged
-KINDS = ('term', 'notation', 'model', 'case', 'investigation', 'material', 'routine', 'text', 'skill')
+KINDS = ('term', 'notation', 'model', 'case', 'investigation', 'material', 'routine', 'text', 'skill', 'none')
 sys.path.insert(0, str(ROOT / 'scripts'))
 import subjects  # noqa: E402  one home for subject ids and ladders (consolidation 4.H)
 

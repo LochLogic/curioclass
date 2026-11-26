@@ -88,8 +88,11 @@ def tests():
     add(9, 'every relation resolves', len(res), 0,
         '%d misses, %d of them new against data/index-baseline.csv' % (len(res), sum(1 for k, _ in res if k not in known)))
     st = index.r_status(ix)
+    sk = {k for r, k in index.baseline() if r == 'status'}
     add(10, 'one status per object', len(st), 0,
-        'status report lines (flow-status rows a file contradicts; ledger rows at stage written with no day file)')
+        'status report lines, %d of them new against data/index-baseline.csv (flow-status rows a file contradicts; '
+        'ledger and day files that disagree either way; day files with no version line; L133)'
+        % sum(1 for k, _ in st if k not in sk))
     import ids
     idl = [ln for ln in ids.check() + ids.left_tables() if ln.startswith('FAIL')]
     add(11, 'retired ids never reused', len(idl), 0, '%d retired ids recorded; also fails an item, day or source id that left its table since the last commit '

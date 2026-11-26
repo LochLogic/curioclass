@@ -8,6 +8,6 @@ test,name,count,target,detail,date
 7,one gate command,0,0,old filtered gate placeholders left in the kit and briefs,2026-11-25
 8,generated things never stored twice,0,0,tracked files data/homes.csv marks generated-ignored,2026-11-25
 9,every relation resolves,11,0,"11 misses, 0 of them new against data/index-baseline.csv",2026-11-25
-10,one status per object,0,0,status report lines (flow-status rows a file contradicts; ledger rows at stage written with no day file),2026-11-25
+10,one status per object,34,0,"status report lines, 0 of them new against data/index-baseline.csv (flow-status rows a file contradicts; ledger and day files that disagree either way; day files with no version line; L133)",2026-11-25
 11,retired ids never reused,0,0,"0 retired ids recorded; also fails an item, day or source id that left its table since the last commit with no retire row",2026-11-25
 12,nothing orphaned,386,0,orphans report lines,2026-11-25
