@@ -16,7 +16,7 @@ Sources 15M, 15D and 15C0. The inset describes containment, not distances.
 
 Record: Madison city → ______ County → ______ state → ______ country → ______ continent.
 
-Division reference: provinces are major divisions of Canada.
+
 
 ## Card H: Chickasaw Nation
 Chickasaw Nation has elected officials and a supreme court today.

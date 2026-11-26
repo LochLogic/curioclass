@@ -7,7 +7,7 @@ credit: ours
 stretch: 1
 rows: 30
 written: s01-P1-E; s01-P2-E; s01-P3-E; s01-P4-E; s01-P11-E
-lookfors: A1a=5;A1b=1;A1c=1;A1d=2;A2a=7;A2a-outline=1;A2b=4;A2b-county=1;A2b-province=1;A2c=1;A2c-read=1;A2d=1;A3a=2;A3b=2;A3c=2;A4a=3;A4b=2;A4c=2;A4c-interpretation=1
+lookfors: A1a=5;A1b=1;A1c=1;A1d=2;A2a=4;A2a-outline=1;A2b=4;A2b-county=1;A2b-province=1;A2c=1;A2c-read=1;A2d=1;A3a=2;A3b=2;A3c=2;A4a=3;A4b=2;A4c=2;A4c-interpretation=1
 ---
 # Unit 1 component record
 

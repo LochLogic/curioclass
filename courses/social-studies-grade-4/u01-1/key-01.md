@@ -61,9 +61,9 @@ Look for: Points to a printed feature or border.; Names what that detail helps a
 
 ## s01-X1
 
-Which details does each reader need on a map? Accept another relevant smaller question.
+The student needs a walking route. The traveler needs country locations to compare countries. Their different purposes call for different map details.
 
-Look for: Question addresses the two stated map needs.
+Look for: Explains how the two stated purposes lead to different needed map information. Accept another supported comparison.
 
 ## s01-P1-E
 

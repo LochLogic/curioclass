@@ -24,7 +24,7 @@ ________________________________________
 
 <!-- item: s01-X1 -->
 
-Write a supporting question about their different map needs.
+Why might the two readers ask different map questions?
 
 ________________________________________
 

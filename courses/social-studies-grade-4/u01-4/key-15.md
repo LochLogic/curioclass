@@ -37,9 +37,9 @@ Look for: Measures 3 centimeters.; Uses one-and-a-half 800-kilometer bars.; Adds
 
 ## s01-A2a
 
-a Manitoba: province in Canada; b Oaxaca: state in Mexico; c Jamaica: Caribbean country; d Kansas: state in United States; e United States: country; f Mexico: country; g Nunavut: Canadian territory.
+a Manitoba: province in Canada; b Oaxaca: state in Mexico; c Jamaica: Caribbean country; d Kansas: state in United States.
 
-Look for: Locate each indexed place in D or its supplement. | Record a name and political category for each of the seven letters.
+Look for: Use D and its a-d index to locate each place.; Record each place and its political category. The country and territory supplement is unscored reference only.
 
 ## s01-A2b
 
@@ -55,15 +55,15 @@ Look for: Plots the supplied pair at a crossing, retaining hemisphere directions
 
 ## s01-A2d
 
-Yes. Chickasaw Nation has its own government today, including elected officials and a supreme court. A nation need not be an independent country or a United States state.
+Chickasaw Nation has its own government today, including elected officials and a supreme court.
 
-Look for: Names Chickasaw Nation and its present government evidence. | Distinguishes this nation from a United States state or an independent country.
+Look for: Names Chickasaw Nation and explains its present government evidence from Card H. No separate state or independent-country comparison is required.
 
 ## s01-A3a
 
-Library west of the park; park beside Lake Monona.
+The library is northwest of the park, and the park is beside Lake Monona. Accept west of the park for the library.
 
-Look for: Scores a cultural location and an environmental relationship separately. Library, park and street are explicitly invented.
+Look for: Gives a supported relationship locating the library relative to the park.; Gives a supported relationship locating the park relative to Lake Monona. Accept equivalent mapped relationships and a labeled drawing.
 
 ## s01-A3b
 
@@ -91,9 +91,9 @@ Look for: Score source-linked evidence and the two links only. Do not award the 
 
 ## s01-A4c
 
-A river researcher asks where the Mackenzie River reaches the ocean and uses C. Accept a different supported reader/question/map combination.
+A landform researcher asks where the Chihuahuan Desert lies. C locates it for comparing physical regions. Accept another supported reader, question, map and benefit.
 
-Look for: Names another reader with a different defensible question.; Links the needed map to that reader's purpose; no personal disclosure.
+Look for: Explains why an answer to a different question matters to another reader.; Links a needed map and its relevant information to that reader's purpose; no personal disclosure.
 
 ## s01-A2a-outline
 
@@ -109,9 +109,9 @@ Look for: Explains county within this example state; does not imply every countr
 
 ## s01-A2b-province
 
-A province is a major division of Canada.
+Manitoba is a division within Canada. D's gray province area lies inside Canada's country boundary.
 
-Look for: Distinguishes Canadian division from independent country.
+Look for: Applies the province term to the mapped Manitoba division within Canada, rather than copying a definition. Accept equivalent supported wording.
 
 ## s01-A2c-read
 

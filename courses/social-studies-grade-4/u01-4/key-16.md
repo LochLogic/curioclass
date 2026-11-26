@@ -25,9 +25,9 @@ Look for: Score only the privately assigned symbol or direction component. Use i
 
 ## s01-P16-2
 
-6 centimeters, or one and a half 4-centimeter bars: 112 + 56 = 168 kilometers.
+9 centimeters, or one and a half 6-centimeter bars: 104 + 52 = 156 kilometers.
 
-Look for: Measures a 6-centimeter strip and links one whole bar and a half to 168 kilometers.
+Look for: Constructs a 9-centimeter strip at actual size.; Links one whole 104-kilometer bar and its half to 156 kilometers.
 
 ## s01-P16-3
 

@@ -4,7 +4,7 @@ course: social-studies-grade-4
 unit: 1.4
 version: draft 2, not yet taught
 credit: ours
-teacher_note: Keep unseen until day 15. Give with D, its original a-d index and the assessment form. The new lookup case uses seven locations, not the earlier division-record corrections.
+teacher_note: Reference only on day 15. The scored location table uses D and its four reserved a-d places. Do not score e-g: these countries and Nunavut appeared in teaching.
 ---
 # D supplement: country and territory locations
 
