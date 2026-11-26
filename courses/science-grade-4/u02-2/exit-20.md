@@ -8,15 +8,13 @@ credit: ours
 
 # Day 20 exit ticket
 
-Invented for practice. This lamp is dark. Complete the drawing with an energy-path caption.
+Invented for practice. Cell plus joins lamp terminal 1. Lamp terminal 2 and cell minus are unjoined. Draw the missing connection with an energy-path caption.
 
 ```text
-cell (+) ---------- (lamp) free terminal
-cell (-) free terminal
+ cell plus  o---------o lamp terminal 1
+ cell minus o         o lamp terminal 2
 ```
 
 Response: __________________________________
-
-________________________________________________
 
 ________________________________________________

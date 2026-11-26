@@ -6,22 +6,23 @@ version: draft
 credit: ours
 ---
 
-# Day 37 independent source explanation
+# Day 37 independent model
 
-Name: ____  Day: 37
+Name: ____
 
-Own work, no help, no feedback, no repair.
+Invented for practice. An unnamed river facility supplies lighting. After a passage is added, some fish travel upstream. Flooded habitat remains. Use both sources to revise its energy-and-effects model, showing the improvement and remaining effects.
 
-Invented for practice. An unnamed river facility supplies lighting. After a passage is added, some fish travel upstream. Flooded habitat remains. Combine both sources to explain its energy use and environmental effects. Revise its model to show the improvement and what remains.
+| Model component | My supported labels and arrows |
+|---|---|
+| Natural origin and renewal | |
+| Technology and lighting need | |
+| Two environmental effects | |
+| Improvement and remaining effect | |
 
-## My explanation and revised model
+Source A contributes: __________________________________
 
-Labels: natural origin; need; renewal; technology; two effects; changed effect; remaining effect; sources.
+Source B contributes: __________________________________
 
-________________________________________________
-
-________________________________________________
-
-________________________________________________
+Model space: __________________________________
 
 ________________________________________________

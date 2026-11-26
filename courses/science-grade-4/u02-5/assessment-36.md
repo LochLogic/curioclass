@@ -8,7 +8,7 @@ credit: ours
 
 # Day 36 independent evidence
 
-Name: ____  Day: 36
+Name: ____
 
 Own work, no help, no feedback, no repair. Record unclear when needed.
 
@@ -18,11 +18,15 @@ At the sound station, record one observation with its evidence-linked energy-pat
 
 Response: __________________________________
 
+________________________________________________
+
 ## Light
 
 At the light station, record one observation with its evidence-linked energy-path explanation.
 
 Response: __________________________________
+
+________________________________________________
 
 ## Heat
 
@@ -30,15 +34,27 @@ At the heat station, record one observation with its evidence-linked energy-path
 
 Response: __________________________________
 
+________________________________________________
+
 ## Current
 
 At the current station, record one observation with its evidence-linked energy-path explanation.
 
 Response: __________________________________
 
-## New generator record
+________________________________________________
 
-Invented for practice. A pull-cord turns a generator powering a marker lamp. The signal must light on every pull. Keep the listed parts and one box. Two failed pulls coincide with a joint opening. Explain conversion and a justified improvement within these limits, including a retest prediction.
+## 2a. Generator path
+
+Invented for practice. A pull-cord turns a generator powering a marker lamp. Parts: cord, generator, leads, lamp, tape and one box. The leads join both generator terminals through the lamp. The signal must light on every pull. Two failed pulls coincide with a joint opening. It lights on every other pull. Explain how pulling supplies energy for the light.
+
+Response: __________________________________
+
+________________________________________________
+
+## 2b. Refinement
+
+Use the pull-cord record and listed parts. Recommend a failure-based refinement with a matching retest prediction.
 
 Response: __________________________________
 
@@ -48,6 +64,6 @@ ________________________________________________
 
 Locate your revised personal design evidence for the four labeled components.
 
-Plan: ____  Criterion/limits: ____
+Response: __________________________________
 
-Tests: ____  Refinement/retest: ____
+________________________________________________

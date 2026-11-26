@@ -8,7 +8,7 @@ credit: ours
 
 # Day 17 exit ticket
 
-Invented for practice. A speaker sounds beside paper fringes. Record A: fringes move on the shared board. Record B: separate supports; fringes move during sound, remaining still during silence. Explain which record better supports sound transfer across the gap.
+Invented for practice. A speaker sounds beside a sound recorder. Record A: sound detected; a rod joins the supports. Record B: separate supports; sound detected only while the speaker sounds. Explain which record better supports sound transfer across the gap.
 
 Response: __________________________________
 

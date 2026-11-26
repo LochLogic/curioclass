@@ -16,4 +16,4 @@ Another design slides a contact. A card link pulls it into contact when the lid 
 
 Both designs convert stored energy into sound. A failed connection interrupts current. Tests tell whether the signal works at our agreed point.
 
-Source: [Batteries, circuits, and transformers](https://www.eia.gov/energyexplained/electricity/batteries-circuits-and-transformers.php), circuits. Federal energy information, public domain; read 2026-11-23. Original mechanism designs.
+Source: [Batteries, circuits, and transformers](https://www.eia.gov/energyexplained/electricity/batteries-circuits-and-transformers.php), circuits. Federal energy information, public domain; read 2026-11-25; reopened 2026-11-26. Original mechanism designs.

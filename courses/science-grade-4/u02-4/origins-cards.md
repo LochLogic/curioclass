@@ -21,4 +21,4 @@ Cut apart. Sort each detail: natural origin or made carrier.
 
 Energy source: where useful energy comes from. Information source: a card or page that tells you something.
 
-Source: [Sources of energy](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php), source categories. U.S. Energy Information Administration, public domain. Original summary; read 2026-11-23.
+Source: [Sources of energy](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php), source categories. U.S. Energy Information Administration, public domain. Original summary; read 2026-11-25; reopened 2026-11-26.

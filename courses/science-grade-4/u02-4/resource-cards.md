@@ -22,8 +22,8 @@ Cut apart. Add each source location to your notes.
 
 Renewable means naturally replenished. Nonrenewable supplies are not replaced on human timescales. A turbine has blades turned by flowing water or air. It can turn a generator.
 
-Source: [Sources of energy](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php), resource lists. U.S. Energy Information Administration, public domain. Read 2026-11-23.
+Source: [Sources of energy](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php), resource lists. U.S. Energy Information Administration, public domain. Read 2026-11-25; reopened 2026-11-26.
 
-Source: [Electricity and the environment](https://www.eia.gov/energyexplained/electricity/electricity-and-the-environment.php), Nuclear power plants. U.S. Energy Information Administration, public domain. Read 2026-11-23.
+Source: [Electricity and the environment](https://www.eia.gov/energyexplained/electricity/electricity-and-the-environment.php), Nuclear power plants. U.S. Energy Information Administration, public domain. Read 2026-11-25; reopened 2026-11-26.
 
-Source: [How electricity is generated](https://www.eia.gov/energyexplained/electricity/how-electricity-is-generated.php), Turbine driven generators. U.S. Energy Information Administration, public domain. Read 2026-11-23.
+Source: [How electricity is generated](https://www.eia.gov/energyexplained/electricity/how-electricity-is-generated.php), Turbine driven generators. U.S. Energy Information Administration, public domain. Read 2026-11-25; reopened 2026-11-26.

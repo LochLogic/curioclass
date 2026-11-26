@@ -12,4 +12,4 @@ credit: ours
 
 Coal stores energy. Burning it at a generating plant can supply electricity for lighting.
 
-Source: [What is energy?](https://www.eia.gov/energyexplained/what-is-energy/), energy conversion. U.S. Energy Information Administration, public domain. Original summary; read 2026-11-23.
+Source: [What is energy?](https://www.eia.gov/energyexplained/what-is-energy/), energy conversion. U.S. Energy Information Administration, public domain. Original summary; read 2026-11-25; reopened 2026-11-26.

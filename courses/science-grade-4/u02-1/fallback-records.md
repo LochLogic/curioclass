@@ -10,6 +10,7 @@ credit: ours
 
 TEACHER ONLY. Show only the needed teaching row, never before its day. Say and print "Invented for practice" with any supplied row.
 
+- K, day 16: handle turns; light appears. No after-stop observation is supplied.
 - D, day 17: silence, receiver still; gentle taps, receiver moving; silence, still. Separate unobstructed supports.
 - S, day 18: matching patches start 22 degrees Celsius; shade finishes 23, sunlight 27. Whole-degree records. No partly screened temperature is supplied.
 - H, day 19: hand-held spoon 20 to 23 degrees Celsius; untouched spoon 20 to 20. No spoon-to-spoon contact.

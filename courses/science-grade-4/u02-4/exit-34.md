@@ -6,11 +6,11 @@ version: draft
 credit: ours
 ---
 
-# Day 34 exit ticket
+# Day 34 graph exit
 
-Invented for practice. Regional chart: gas six shares, wind three, sunlight one. Claim: all this electricity uses resources with no environmental effects. Draw an ordered picture graph with a key. Use the chart and wind-effects source to judge the claim.
+Draw an ordered bar graph with a key for this invented generation record. Gas: four shares; sunlight: four shares; wind: two shares. One grid square represents one share.
 
-Response: __________________________________
+Graph space: __________________________________
 
 ________________________________________________
 

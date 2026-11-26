@@ -8,22 +8,25 @@ credit: ours
 
 # Colorado 2024 generation record
 
-## Prepared state example
+This describes Colorado generation in 2024, not today or every household.
+It is an example, not a claim about our school's location.
 
-This describes Colorado generation in 2024, not today or every household. It is an example, not a claim about our school's location.
-
-Graph key: one square represents one rounded share out of ten.
-
-| Resource | Completed ordered graph |
+| Resource | Rounded shares out of ten |
 |---|---|
-| Natural gas | □ □ □ |
-| Coal | □ □ □ |
-| Wind | □ □ □ |
-| Sunlight | □ |
-| Water and remaining sources | Zero rounded shares |
+| Natural gas | 3 |
+| Coal | 3 |
+| Wind | 3 |
+| Sunlight | 1 |
+| Water and remaining sources | 0 |
 
 Zero rounded shares does not mean absent.
+Draw an ordered picture graph with a key.
+Use one square per share. Keep tied rows in the listed order.
 
-Build an unordered strip using ten counters. Read this completed graph; do not draw another ordered graph today.
+Graph space: __________________________________
 
-Source: [Colorado Electricity Profile 2024, table 5](https://www.eia.gov/electricity/state/xls/SEP%20Tables%20for%20CO.xlsx), total electric power industry, 2024 column. U.S. Energy Information Administration, public domain. Original summary; read 2026-11-23.
+________________________________________________
+
+Source: [Colorado Electricity Profile 2024, table 5](https://www.eia.gov/electricity/state/xls/SEP%20Tables%20for%20CO.xlsx).
+Total electric industry, 2024 column. Federal energy information, public domain.
+Read 2026-11-25; reopened 2026-11-26.

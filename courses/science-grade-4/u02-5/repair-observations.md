@@ -12,6 +12,8 @@ Work only on assigned letters. Each move takes five minutes. Use familiar record
 
 ## G
 
+Correct idea: Separate supports reduce the competing contact path.
+
 Claim to reconsider: Shared supports establish the air path.
 
 Use the familiar unobstructed drum record with separate supports and silence.
@@ -21,6 +23,8 @@ Evidence I found: __________________________________
 My revised claim: __________________________________
 
 ## H
+
+Correct idea: Compare readings and exposure, rather than appearance alone.
 
 Claim to reconsider: Dark appearance establishes greater warmth.
 

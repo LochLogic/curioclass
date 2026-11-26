@@ -12,6 +12,8 @@ Work only on assigned letters. Each move takes five minutes. Use familiar record
 
 ## C
 
+Correct idea: Success needs a stated criterion and limits.
+
 Claim to reconsider: Any attractive device succeeds.
 
 Find the criterion and limits on your own design statement.
@@ -21,6 +23,8 @@ Evidence I found: __________________________________
 My revised claim: __________________________________
 
 ## D
+
+Correct idea: Comparable original and retest evidence supports improvement.
 
 Claim to reconsider: Preference proves improvement.
 

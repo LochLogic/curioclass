@@ -10,14 +10,6 @@ credit: ours
 
 Invented for practice. A lamp loop has an uncut wire. A switch joins two points on that wire. The lamp stays lit when the switch opens. Explain this result with a corrected switch drawing.
 
-```text
-cell (+) -- lamp -- o===========o -- cell (-)
-                   |           |
-                   +--switch---+
-```
-
-The equals signs show the uncut wire. The cell connects its terminals internally.
-
 Response: __________________________________
 
 ________________________________________________

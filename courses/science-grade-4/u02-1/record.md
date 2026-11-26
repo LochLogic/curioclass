@@ -6,11 +6,11 @@ version: draft
 credit: ours
 ---
 
-# Section 2.1 formative record
+# Unit 2 formative record
 
 Use only shown, shown with help, or not yet seen for each look-for. Blank/unrelated work gets a conference, not an error letter. Absence stays not yet seen with its date. Add error letters beside a category, never in place of it. Many means more than ten of thirty.
 
-Daily look-fors come from teacher-key.md. Record one category per named component on a dated copy. Circle the rotating six; public talk is not a judged item. Papers from everyone supply the independent look. Add dates and preserve originals after revision. Assessment points belong only on assessment-record.md.
+Daily look-fors come from each section's private teacher-key.md. Record one category per named component on a dated copy. Circle the rotating six; public talk is not a judged item. Papers from everyone supply the independent look. Add dates and preserve originals after revision. Assessment points belong only on assessment-record.md.
 
 Day: ____  Component: ____
 

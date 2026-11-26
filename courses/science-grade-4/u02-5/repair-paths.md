@@ -12,6 +12,8 @@ Work only on assigned letters. Each move takes five minutes. Use familiar record
 
 ## A
 
+Correct idea: A source supplies energy that reaches an output.
+
 Claim to reconsider: Energy appears without input.
 
 Trace input to output on the familiar crank drawing.
@@ -22,6 +24,8 @@ My revised claim: __________________________________
 
 ## B
 
+Correct idea: A complete path joins both terminals through the load.
+
 Claim to reconsider: One lead completes the loop.
 
 Trace both terminals through the load on a complete familiar circuit.
@@ -31,6 +35,8 @@ Evidence I found: __________________________________
 My revised claim: __________________________________
 
 ## L
+
+Correct idea: A switch controls a path when it opens a gap.
 
 Claim to reconsider: An intact wire is stopped by a parallel switch.
 

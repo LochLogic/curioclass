@@ -10,7 +10,7 @@ credit: ours
 
 Name: ____
 
-Teacher returns this before day 38 revision.
+Read this before day 38 revision.
 
 Component already supported: __________________________________
 
