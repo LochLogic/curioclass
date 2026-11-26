@@ -16,7 +16,7 @@ Read: Bring these groups together to show how many altogether.
 
 Look for: Both groups, six.
 
-Four striped and two plain large paper corks beside an empty mat. "Bring these groups together to show how many altogether." Everyone moves pieces and traces/dots the collection; six give totals. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Independent loose-group combination on blank paper; practice follows supplied movement paths and repairs already-combined layouts, never independently combines on a blank mat or uses corks.
+Four striped and two plain large paper corks beside an empty mat. "Bring these groups together to show how many altogether." Everyone moves pieces and traces/dots the collection; six give totals. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Independent loose-group combination on blank paper; practice follows supplied movement paths and repairs already-combined layouts, never independently combines on a blank mat or uses corks.
 
 Shown: six traces, "Six altogether." | Not yet seen: Only the two plain pieces brought (B).
 
@@ -28,7 +28,7 @@ Read: Tell how many animals there are altogether.
 
 Look for: Nine, both groups.
 
-Three fox pictures and six owl pictures, separate groups. "Tell how many animals there are altogether." All dot the whole on a blank answer panel; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Whole across separate animal groups without intermediate totals; practice corrects supplied classroom-object totals on already-combined mats, never separated animal groups/blank total panels.
+Three fox pictures and six owl pictures, separate groups. "Tell how many animals there are altogether." All dot the whole on a blank answer panel; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Whole across separate animal groups without intermediate totals; practice corrects supplied classroom-object totals on already-combined mats, never separated animal groups/blank total panels.
 
 Shown: nine dots, "Nine." | Not yet seen: Eight with one animal visibly skipped (A).
 
@@ -40,7 +40,7 @@ Read: Find how many boots altogether without missing any.
 
 Look for: Eight, each picture once.
 
-One boot picture and seven scattered boot pictures, no route. "Find how many boots altogether without missing any." All mark a self-chosen route; hear six counts. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Independently devise a route across scattered groups; practice follows adult-supplied routes and repairs a supplied missing tick, never invents a route or uses boots.
+One boot picture and seven scattered boot pictures, no route. "Find how many boots altogether without missing any." All mark a self-chosen route; hear six counts. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Independently devise a route across scattered groups; practice follows adult-supplied routes and repairs a supplied missing tick, never invents a route or uses boots.
 
 Shown: eight matched ticks and count eight. | Not yet seen: Seven with one boot untouched (A).
 
@@ -52,7 +52,7 @@ Read: Show these two sound groups put together.
 
 Look for: Eight units, both bursts.
 
-Two quiet chime sounds, pause, then six; repeat identically if needed. "Show these two sound groups put together." All act with paper disks or fingers and retain paper dots; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Reconstruct heard bursts independently as action/paper trace; practice moves visible squares jointly or corrects supplied clap records, never reconstructs heard bursts. Quiet mouth sounds/visible beats or tactile taps replace a chime.
+Two quiet chime sounds, pause, then six; repeat identically if needed. "Show these two sound groups put together." All act with paper disks or fingers and retain paper dots; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Reconstruct heard bursts independently as action/paper trace; practice moves visible squares jointly or corrects supplied clap records, never reconstructs heard bursts. Quiet mouth sounds/visible beats or tactile taps replace a chime.
 
 Shown: two disks joined by six, eight dots. | Not yet seen: Only the six incoming sounds represented (B).
 

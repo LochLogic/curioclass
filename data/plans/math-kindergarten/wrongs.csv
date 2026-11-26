@@ -754,10 +754,8 @@ s04-K64-model,Only incoming four retained.,,,B,Observed original three excluded.
 s04-P64-shape,Rejects square solely because it stands on a corner.,,,B,Unit 3 error B: orientation controls name; distinct from unit 4 group error B.
 s04-F65-B,Only incoming group retained.,,,B,Observed starting group excluded; three alone does not establish cause.
 s04-W65,Four dots with fifth square visibly skipped.,,,A,Observed omission; distinguish from unit 4 error B.
-s04-P65-route,Five visits with one square untouched.,,,A,Observed skipped square.
 s04-P65-shape,Rejects square solely because turned.,,,B,"Unit 3 orientation error, not unit 4 exclusion error."
 s04-F66-A,One square remains untouched.,,,A,"Omission observed, not inferred from number alone."
-s04-P66-mix,"Six visits, final square untouched.",,,A,Visible omitted visit.
 s04-K67-action,Only arriving three retained.,,,B,Observed starting two excluded.
 s04-K67-sound,Only three units with one visible dot skipped.,,,A,"Visible omission, distinct from exclusion of a whole burst."
 s04-F67-B,Only three arrivals represented.,,,B,Observed first group excluded.
@@ -1973,3 +1971,13 @@ s03-F2-57-2,Too thin to be a triangle.,,,C,Assign this one letter only from the 
 s03-F2-57-3,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
 s03-P45-positions,Moves the circle below the cup.,,,J,Assign only when the placement is observed from the fixed viewer after the one spoken command; never infer from unheard language.
 s03-P45-position-below,Moves the circle above the cup.,,,J,Assign only when the placement is observed from the fixed viewer after the one spoken command; never infer from unheard language.
+s04-P65-route,"Four visits, one square untouched.",,,A,Error A only when the missing object visit is observed; a wrong count alone does not establish its cause.
+s04-P66-mix,"Seven visits, one square untouched.",,,A,Error A only when the missing object visit is observed; a wrong count alone does not establish its cause.
+s04-R64-count,Skips 5 in the spoken sequence.,,,x,"A counting-word sequence gap, not evidence for a unit 4 operation-error letter. Unscored rehearsal; do not classify an unheard child from chorus speech."
+s04-R64-start,Skips 7 in the spoken sequence.,,,x,"A counting-word sequence gap, not evidence for a unit 4 operation-error letter. Unscored rehearsal; do not classify an unheard child from chorus speech."
+s04-R65-count,Skips 5 in the spoken sequence.,,,x,"A counting-word sequence gap, not evidence for a unit 4 operation-error letter. Unscored rehearsal; do not classify an unheard child from chorus speech."
+s04-R65-start,Skips 7 in the spoken sequence.,,,x,"A counting-word sequence gap, not evidence for a unit 4 operation-error letter. Unscored rehearsal; do not classify an unheard child from chorus speech."
+s04-R66-count,Skips 5 in the spoken sequence.,,,x,"A counting-word sequence gap, not evidence for a unit 4 operation-error letter. Unscored rehearsal; do not classify an unheard child from chorus speech."
+s04-R66-start,Skips 7 in the spoken sequence.,,,x,"A counting-word sequence gap, not evidence for a unit 4 operation-error letter. Unscored rehearsal; do not classify an unheard child from chorus speech."
+s04-R67-count,Skips 5 in the spoken sequence.,,,x,"A counting-word sequence gap, not evidence for a unit 4 operation-error letter. Unscored rehearsal; do not classify an unheard child from chorus speech."
+s04-R67-start,Skips 7 in the spoken sequence.,,,x,"A counting-word sequence gap, not evidence for a unit 4 operation-error letter. Unscored rehearsal; do not classify an unheard child from chorus speech."

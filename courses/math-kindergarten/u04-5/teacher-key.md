@@ -16,7 +16,7 @@ Read: Tell what happens when no cups join this group.
 
 Look for: Six because nothing joins.
 
-Six cup pictures with empty arriving-group box. "Tell what happens when no cups join this group." All leave resulting-quantity marks; hear six explanations. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Independent explanation of unchanged quantity for a fresh group; practice corrects supplied four-plus-zero/four-plus-one records, never independently explains a fresh unchanged group or uses cups. One is rehearsed, not a second exit ask.
+Six cup pictures with empty arriving-group box. "Tell what happens when no cups join this group." All leave resulting-quantity marks; hear six explanations. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Independent explanation of unchanged quantity for a fresh group; practice corrects supplied four-plus-zero/four-plus-one records, never independently explains a fresh unchanged group or uses cups. One is rehearsed, not a second exit ask.
 
 Shown: six dots, "Still six, no new cups." | Not yet seen: Seven with an invented arrival (F).
 
@@ -28,7 +28,7 @@ Read: Tell a story for this card.
 
 Look for: One actor, nine first, five removed, question about remaining four.
 
-Read bare expression 9 - 5 beside a blank scene. "Tell a story for this card." All draw reminders; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Independently create story from expression; practice interprets adult-told stories beside complete equations, never creates whole stories from expressions or uses trains. Both equation orders are practiced, not a second exit ask.
+Read bare expression 9 - 5 beside a blank scene. "Tell a story for this card." All draw reminders; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Independently create story from expression; practice interprets adult-told stories beside complete equations, never creates whole stories from expressions or uses trains. Both equation orders are practiced, not a second exit ask.
 
 Shown: "Rin has nine trains, parks five; how many still moving?" with four shown. | Not yet seen: Joining to fourteen (C).
 

@@ -28,7 +28,7 @@ Read: Tell a joining story for these pictures.
 
 Look for: Five first, two join, seven now.
 
-Silent toy-boat panels show five in play and Rin bringing two more. "Tell a joining story for these pictures." All make paper action marks independently, then enact for partners; teacher hears six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Independently narrate/enact a silent joining scene with a partner; practice supplies a missing action in adult-started square stories, never creates complete stories from silent panels or uses boats.
+Silent toy-boat panels show five in play and Rin bringing two more. "Tell a joining story for these pictures." All make paper action marks independently, then enact for partners; teacher hears six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Independently narrate/enact a silent joining scene with a partner; practice supplies a missing action in adult-started square stories, never creates complete stories from silent panels or uses boats.
 
 Shown: "Rin had five boats, brought two, seven now." | Not yet seen: Counts just two arrivals as the whole (B).
 
@@ -40,7 +40,7 @@ Read: Tell this story back.
 
 Look for: Six first, two joining, whole-question, in order.
 
-Read: "Rin puts six puppets on a stage. Rin adds two puppets. How many now?" Ask: "Tell this story back." All draw sequence reminders; hear six before any solving. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Retell a complete unseen heard story before solving; practice predicts missing events with adult cues or finishes partial retellings, never retells an entire unseen story or uses puppets.
+Read: "Rin puts six puppets on a stage. Rin adds two puppets. How many now?" Ask: "Tell this story back." All draw sequence reminders; hear six before any solving. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Retell a complete unseen heard story before solving; practice predicts missing events with adult cues or finishes partial retellings, never retells an entire unseen story or uses puppets.
 
 Shown: "Six puppets, two more, how many now?" Eight is a later solution, not a second exit ask. | Not yet seen: Retells only two arrivals as the whole (B).
 
@@ -48,11 +48,11 @@ Wrong ideas: Retells only two arrivals as the whole (B). (B). Code only when the
 
 ## s04-X71
 
-Read: Show this story as you tell it back.
+Read: Tell this story back using these pieces.
 
 Look for: Nine first, six inside, three outside.
 
-Read: "Rin has nine trucks outside and parks six inside. How many stay outside?" Ask: "Show this story as you tell it back." All move counters across paper regions and trace; hear six retell. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Independent retelling coordinated with object/location action; practice follows adult narration event by event or repairs partial cues, never independently retells while moving or uses trucks.
+Read: "Rin has nine trucks outside and parks six inside. How many stay outside?" Ask: "Tell this story back using these pieces." All move counters across paper regions and trace; hear six retell. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Independent retelling coordinated with object/location action; practice follows adult narration event by event or repairs partial cues, never independently retells while moving or uses trucks.
 
 Shown: three traced outside, faithful retelling. | Not yet seen: Six reported outside (E); nine joined by six (C).
 

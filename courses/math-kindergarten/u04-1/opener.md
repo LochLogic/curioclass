@@ -14,7 +14,7 @@ Joining preserves every member of both groups. Count each object once; the final
 
 All totals and initial quantities stay within ten. No comparison problems, unknown-position equations, required counting on or algorithm. Both-addends-unknown work continues in unit 5; fluent within-five recall belongs to unit 8. Read all print aloud; children use pictures, objects, gestures, usual communication methods and paper marks, with no independent reading required.
 
-Review the intended earlier-unit total, altogether, zero, one more and optional joined 5-frames by demonstrating them afresh as needed. Earlier ledger entries include plans, not proof of teaching. Review Partner turns, Counting centers, Paper count-dot record and Return and repair with fresh square cases. Never use an earlier reserved check picture as a model.
+Review total and altogether from day 19, zero and none from day 30, and one more from day 36. Review the day 26 model: Five occupied cells and five-and-some on joined 5-frames. Demonstrate the familiar move again when needed. Review Partner turns, Counting centers, Paper count-dot record and Return and repair with fresh square cases. Never use an earlier reserved check picture as a model.
 
 ## Teach, hear and hand back
 
@@ -22,7 +22,7 @@ Practice uses supplied movement paths, already-started records or joint correcti
 
 Fifteen partner pairs work at the same time, 45 seconds each then swap. Hear at most two public volunteers inside a teaching block. Each exit uses eight minutes: 3.5 reading/concurrent marking/collection and six 45-second turns. All thirty children leave their own paper marks; only six are heard. Follow record.md for roster dates and pending components. No timer or ranking.
 
-Return paper in the next named Return and repair block, ten minutes through day 78, five on days 79 to 82. Day 83 uses existing written feedback in Finish and revise, never reteaches. More than ten showing one matching error gets one class repair; otherwise one group while others correct supplied paper. Choose one priority letter; no simultaneous extra teacher group. Practice feedback shares that allocation. Do not replay a held check case with an answer supplied.
+Return paper in the next named Return and repair block, ten minutes through day 78, five on days 79 to 82. Day 83 uses existing written feedback in Finish and revise, never reteaches. More than ten showing one matching error gets one class repair; otherwise one group while others correct supplied paper. Choose one priority letter; no simultaneous extra teacher group. Return practice and exit feedback together in that allocation; one return does not create another teacher group. Do not replay a held check case with an answer supplied.
 
 ## Error letters, in practice
 
@@ -40,4 +40,4 @@ F2 belongs to u04-3; F1 to u04-4. Collect day 79 after notation teaching: ten co
 
 For one child use up to thirty minutes: count 3, demonstrate/correct 7, adult partner work 7, repair 5, paper exit and conversation 8. Split sittings or skip repeated practice as needed. On day 79 replace repeated work with the eighteen-minute paper packet after the idea has been taught. On days 80 to 82 fit a three-minute four-ask conference and five-minute revision by replacing repeated work. Day 83 uses familiar work 5, revise 5, record review 5, independent feedback application 10, close/tidy 5. Never rush, add a score or request household reports.
 
-Day 64 includes Hook 8, Oral count 5, Retrieval 5, Model 7, Connected work 5, Centers and response 22, Exit ticket 8. Unit 3 response uses ten Centers minutes on days 64/65; optional unit 2 retrieval repair on day 64 uses at most five other Centers minutes, with a fresh day 65 Oral count retry.
+Day 64 includes Warm-up: Oral count 5, Hook 8, Retrieval 5, Model 7, Connected work 5, Centers and response 22, Exit ticket 8. Unit 3 response uses ten Centers minutes on days 64/65; optional unit 2 retrieval repair on day 64 uses at most five other Centers minutes, with a fresh day 65 Oral count retry.

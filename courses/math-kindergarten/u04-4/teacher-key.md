@@ -16,7 +16,7 @@ Read: Tell a story that asks how many boxes altogether.
 
 Look for: Both groups, total-unknown question, ten if solved.
 
-Two closed-box pictures and eight open-box pictures. "Tell a story that asks how many boxes altogether." All draw reminders independently, then tell partners; teacher hears six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Create a whole total-unknown story from pictures; practice completes an adult-started object-story question, never creates a whole picture-prompt story or uses boxes. Unheard stories stay pending.
+Two closed-box pictures and eight open-box pictures. "Tell a story that asks how many boxes altogether." All draw reminders independently, then tell partners; teacher hears six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Create a whole total-unknown story from pictures; practice completes an adult-started object-story question, never creates a whole picture-prompt story or uses boxes. Unheard story language is not yet seen.
 
 Shown: "Rin has two closed boxes and eight open boxes. How many boxes altogether?" | Not yet seen: Treats only eight open boxes as the whole (B).
 
@@ -28,7 +28,7 @@ Read: Mark the action that fits this card.
 
 Look for: Two first, five join, seven now.
 
-Read card 2 + 5. Badge scenes: Rin brings five to two; takes five from seven; leaves two and keeps five unused. "Mark the action that fits this card." All indicate incoming pieces/action in first scene; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Expression-to-action recognition with positive action evidence; practice builds/corrects an adult-started action then writes a sign, never selects finished actions from expressions or uses badges.
+Read card 2 + 5. Badge scenes: Rin brings five to two; takes five from seven; leaves two and keeps five unused. "Mark the action that fits this card." All indicate incoming pieces/action in first scene; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Expression-to-action recognition with positive action evidence; practice builds/corrects an adult-started action then writes a sign, never selects finished actions from expressions or uses badges.
 
 Shown: first scene and incoming group marked. | Not yet seen: Removal selected as plus (H); incoming five treated as whole (B).
 
@@ -40,7 +40,7 @@ Read: Mark the objects that tell this equation.
 
 Look for: Nine total, seven/two parts, accepts total-left.
 
-Read 9 = 7 + 2, "nine is the same quantity as seven plus two." Fan mats all total nine, partitioned seven/two, six/three, five/four. "Mark the objects that tell this equation." All indicate correct mat/parts; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Spoken total-left equation to existing objects, all choices same total so counting/elimination alone is insufficient; practice jointly builds/corrects quantities beside equations, never selects complete object mats, seven/two partitions or fans.
+Read 9 = 7 + 2, "nine is the same quantity as seven plus two." Fan mats all total nine, partitioned seven/two, six/three, five/four. "Mark the objects that tell this equation." All indicate correct mat/parts; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Spoken total-left equation to existing objects, all choices same total so counting/elimination alone is insufficient; practice jointly builds/corrects quantities beside equations, never selects complete object mats, seven/two partitions or fans.
 
 Shown: correct mat, both groups marked. | Not yet seen: Refuses because nine comes first (D); marks only two as whole (B).
 
@@ -52,7 +52,7 @@ Read: Show how to work out this card.
 
 Look for: Ten first, two removed, eight remain.
 
-Bare card 10 - 2, blank paper and loose counters. Read "ten minus two." "Show how to work out this card." All build and trace/draw; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Unheard reasons remain pending. | Shape: Independently generate a model from a bare expression; practice checks/corrects supplied completed models beside known cards, never starts from a bare expression/blank model or uses 10 - 2.
+Bare card 10 - 2, blank paper and loose counters. Read "ten minus two." "Show how to work out this card." All build and trace/draw; hear six. | Every child retains paper marks; hear only roster six, one 45-second turn each. Use paper/action evidence only for the components it shows. Unheard language is not yet seen; keep its follow-up pending. | Shape: Independently generate a model from a bare expression; practice checks/corrects supplied completed models beside known cards, never starts from a bare expression/blank model or uses 10 - 2.
 
 Shown: ten marks, two crossed, eight ringed. | Not yet seen: Adds two, twelve (C); reports removed two (E).
 
@@ -64,7 +64,7 @@ Read: Mark this joining picture's expression.
 
 Look for: 3 + 5.
 
-Three tiles, five incoming. Read choices 3 + 5; 9 - 4; 3 - 5; 9 + 4 evenly. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Complete action-picture to expression or all matching true equations, both orders; reserved tile case.
+Three tiles, five incoming. Read choices 3 + 5; 9 - 4; 3 - 5; 9 + 4 evenly. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Select the expression for the complete joining picture, reserving three/five tiles.
 
 Shown: 3 + 5 marked. | Not yet seen: 3 - 5 for incoming pieces.
 
@@ -76,7 +76,7 @@ Read: Join this joining picture to every matching equation.
 
 Look for: 3 + 5 = 8 and 8 = 3 + 5.
 
-Use same joining picture. Read choices 3 + 5 = 8; 8 = 3 + 5; 9 - 4 = 5; 5 = 9 - 4; 9 - 4 = 4 evenly. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Complete action-picture to expression or all matching true equations, both orders; reserved tile case.
+Use same joining picture. Read choices 3 + 5 = 8; 8 = 3 + 5; 9 - 4 = 5; 5 = 9 - 4; 9 - 4 = 4 evenly. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Connect that joining picture to every true equation, including both orders.
 
 Shown: Both eight-equations linked. | Not yet seen: Rejects 8 = 3 + 5 solely for order.
 
@@ -88,7 +88,7 @@ Read: Mark this taking-away picture's expression.
 
 Look for: 9 - 4.
 
-Nine original tiles in a row; left four bracketed and moved aside. All nine remain visible across regions. Same four expression choices. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Complete action-picture to expression or all matching true equations, both orders; reserved tile case.
+Nine original tiles in a row; left four bracketed and moved aside. All nine remain visible across regions. Same four expression choices. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Select the expression for the complete removal picture, reserving nine/four tiles.
 
 Shown: 9 - 4 marked. | Not yet seen: 9 + 4 for removal.
 
@@ -100,7 +100,7 @@ Read: Join this taking-away picture to every matching equation.
 
 Look for: 9 - 4 = 5 and 5 = 9 - 4.
 
-Same removal picture and five equation choices as joining picture. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Complete action-picture to expression or all matching true equations, both orders; reserved tile case.
+Same removal picture and five equation choices as joining picture. | Paper collected once day 79; feedback/revision before day 83 scoring. | Shape: Connect that removal picture to every true equation, including both orders.
 
 Shown: Both five-equations linked. | Not yet seen: 9 - 4 = 4 because four moved.
 
