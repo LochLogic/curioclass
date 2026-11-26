@@ -13,9 +13,9 @@ Keep this key off student pages and displays. Use shown, shown with help, not ye
 
 ## s02-X37
 
-Exactly one square attached to the five-square tower; six squares outlined.
+A six-square tower, made by adding one square to the five-square tower or drawing its six-square successor.
 
-Shown: Exactly one square attached to the five-square tower; six squares outlined. | Not yet seen: the requested action is incomplete or the quantity/category is incorrect. Record the observed action before assigning a letter.
+Shown: Five original squares with one added, or a drawn six-square successor. | Not yet seen: Adds one but spontaneously says the total stayed five (H). A paper tower alone does not establish the without-recounting strategy.
 
 Observed errors: H: Adds one but says total stayed five..
 
@@ -29,9 +29,9 @@ Observed errors: H: Still four after one joins..
 
 ## s02-X38
 
-8 indicated with quantity or counting-order evidence.
+8 indicated as the greater number.
 
-Shown: 8 indicated with quantity or counting-order evidence. | Not yet seen: Represents both correctly but calls eight fewer. (I).
+Shown: 8 clearly indicated, with or without optional quantity evidence. | Not yet seen: Represents both correctly but spontaneously calls eight fewer (I). A wrong choice alone does not diagnose I.
 
 Observed errors: I: Represents both correctly but calls eight fewer..
 

@@ -29,9 +29,9 @@ Observed errors: N: Rings have more because their pictures are bigger..
 
 ## s02-X22
 
-One of the seven crayons marked as extra.
+Six unique cross-row links; one of the seven crayons has no partner.
 
-Shown: One of the seven crayons marked as extra. | Not yet seen: Skips a crayon during observed matching. (K).
+Shown: Six unique cross-row links with one lower crayon unmatched. | Not yet seen: Skips a crayon during observed matching (K).
 
 Observed errors: K: Skips a crayon during observed matching..
 

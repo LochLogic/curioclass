@@ -13,9 +13,9 @@ Keep this key off student pages and displays. Use shown, shown with help, not ye
 
 ## s02-X34
 
-The 0 card attached and outlined beside the empty bowl.
+0 beside the empty bowl, written or placed as a numeral card.
 
-Shown: The 0 card attached and outlined beside the empty bowl. | Not yet seen: the requested action is incomplete or the quantity/category is incorrect. Record the observed action before assigning a letter.
+Shown: Written 0 beside the bowl, or the 0 card placed there. | Not yet seen: Labels the empty bowl 1 (E). Record formation support separately.
 
 Observed errors: E: Labels empty bowl 1..
 

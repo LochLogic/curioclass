@@ -47,9 +47,9 @@ Observed errors: B: Wide row called more..
 
 Nine-to-nine peg pair with nine unique links.
 
-Shown: Nine-to-nine peg pair with nine unique links. | Not yet seen: Selects unequal pair because rows span equal space. (B).
+Shown: Nine-to-nine peg pair with nine unique links. | Not yet seen: Calls six and eight equal because their frame outlines have the same size (B).
 
-Observed errors: B: Selects unequal pair because rows span equal space..
+Observed errors: B: Calls six and eight equal because their frame outlines have the same size..
 
 ## s02-O27
 
