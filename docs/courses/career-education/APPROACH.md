@@ -9,7 +9,7 @@ the lens (docs/agents/lenses/career-education.md) and the standard (STANDARD.md)
 | Shared kind | In career education | What it looks like |
 |---|---|---|
 | Understanding | Explore day | A field, a job or a part of the self studied from a source: a job profile with dated data, a worker's account, an inventory used as reflection |
-| Fluency | Skill day | A career task taught with a model and practiced with feedback: a resume section, an interview answer, an email to an employer, reading a pay table |
+| Understanding on first teaching, Fluency after | Skill day | A career task taught with a model and practiced with feedback (its first teaching is Understanding, docs/GLOSSARY.md "teaching day"): a resume section, an interview answer, an email to an employer, reading a pay table |
 | Application | Field task day or plan day | A task a field does, decided and defended with data; or the personal plan revised with what the unit found |
 | Check | Assessment day | The end-of-unit assessment: a demonstration or plan piece scored on a rubric, plus a few short items on reading data |
 | Respond | Respond day | Revision of the piece from rubric feedback |
@@ -116,7 +116,7 @@ cited, and the course page says so. Each frame may change these numbers with a r
 
 Read: the 2024 cluster framework and practices (a state's reproduction of the practices; the publisher's own page did
 not answer); the 2024 career development guidelines in text (2026-11-20 and 2026-11-21; NCDA's terms read 2026-11-21, STANDARD.md section 2); the base-text scout's
-data sources (public domain labour statistics, CC BY occupational data). No claim of effect is made for any course.
+data sources (public domain labor statistics, CC BY occupational data). No claim of effect is made for any course.
 
 ## Questions in this draft
 

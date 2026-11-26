@@ -13,7 +13,7 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
 | Owed | State | Where |
 |---|---|---|
 | Relabel the file to the second edition (2025) | Done 2026-11-11 (label in the header); edition confirmed at source 2026-11-16 | data/standards/aasl-2018.txt |
-| Open the continuum's grade lists | Done: grades 3 to 5 read in full 2026-11-16; PK to 2, 6 to 8 and 9 to 12 read in full 2026-11-21 (downloaded with Cory's yes, Desk q-fix-library-1) | Section 2 |
+| Open the continuum's grade lists | Done: grades 3 to 5 read in full 2026-11-16 from the web (no copy in the source store); PK to 2, 6 to 8 and 9 to 12 read in full 2026-11-21 (downloaded with Cory's yes, Desk q-fix-library-1) | Section 2 |
 | Our own words for the 68 | Done 2026-11-21 against the second edition chart | data/standards/aasl-words.txt |
 | Progression gate support | Done 2026-11-21: library entry in scripts/progression.py, data/progressions/library-excluded.csv (five ids), data/progressions/library.csv (98 rows, read cold 2026-11-21, docs/reviews/progression-library-2026-11-21.md) | Sections 3 and 4 |
 | Catalog | Done 2026-11-21: eight course rows in data/courses.csv, grade_subjects.csv and modules.csv (Cory, 2026-11-21, Desk q-fix-library-1); scripts/course_status.py counts them | Section 3 |

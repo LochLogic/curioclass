@@ -16,7 +16,7 @@ library.
 | Understanding | Show-me day | A skill modeled on the host task: the teacher thinks aloud through a search, a lateral check or a citation |
 | Fluency | Practice day | Short, varied tries of the skill with feedback: three claims checked laterally, five sources cited |
 | Application | Inquiry day | Students run part of the cycle on the host task themselves: question, search, judge, note, make, share |
-| Check | Assessment day | A search, judgement or citation actually done on a new case, scored on a short rubric, plus a few items |
+| Check | Assessment day | A search, judgment or citation actually done on a new case, scored on a short rubric, plus a few items |
 | Respond | Respond day | The product or notes revised from feedback |
 
 A unit runs at least one full inquiry cycle on its host task, with the product shared. Each unit names the kind of
@@ -29,7 +29,7 @@ sequence records both.
 
 - **Show-me and practice days:** an exit ticket that asks the student to do the skill once on a new case (check a
   claim and say what other sources said; fix a citation), with error letters for the usual slips.
-- **Inquiry days:** the working notes (question, search terms tried, sources with a judgement line each).
+- **Inquiry days:** the working notes (question, search terms tried, sources with a judgment line each).
 - **K to 2:** the teacher's observation of one named skill per child, on a class checklist kept by the teacher and
   thrown away at the end of the unit, plus a drawing or a spoken answer.
 - **Once a unit, a self-check** (the cycle's reflect step; bar C8): after the product is shared, the student rates
@@ -45,7 +45,7 @@ sequence records both.
   leans on, from its `cross_subject`); leads to; comes back in.
 - Unit field 4 (readiness): one short item on the skill the unit builds on (find the maker of a page; name a
   source's kind); the ten-minute reteach is the earlier unit's show-me case.
-- Unit field 5 (end-of-unit assessment): a search, a judgement or a citation actually done on a new case, scored on
+- Unit field 5 (end-of-unit assessment): a search, a judgment or a citation actually done on a new case, scored on
   a short rubric, plus a few items. Never a quiz on the names of the steps alone.
 - Unit field 6 (error register): the usual slips (trusting the look of a page, staying on the page to judge it,
   copying instead of noting, a citation missing its date or maker).
@@ -76,11 +76,11 @@ sequence records both.
 - Section field 6: the kind of day in library's words; a day opens with one earlier skill tried on a short case or
   a source prompt, five minutes at most; a new skill is shown on a show-me day before students try it (rule 13).
 - Section field 7 (talk and writing): a search-aloud routine (one student types or points, one says what they see,
-  one records), and sentence frames for a judgement ("I trust this less because...").
+  one records), and sentence frames for a judgment ("I trust this less because...").
 - Section field 8 (practice that returns): one earlier skill, named, tried once on a new case.
 - Section field 9 (supports): English learners (C11): the unit's six to eight words (source, claim, search, cite and
   the like, whose everyday meanings differ) taught with a picture and a frame, and a key line that says a sound
-  judgement given in the home language or by pointing is a language gap, a wrong move is a content gap; access: the
+  judgment given in the home language or by pointing is a language gap, a wrong move is a content gap; access: the
   print path and read-aloud pages; check accommodations: the exit ticket read aloud, answered orally, by pointing on
   the printed set or with a scribe; reading load: source texts at the grade's level or read aloud, with a shorter
   source set for students who read below it; extension: the same skill on a harder case, never the next grade's.
@@ -157,7 +157,7 @@ the rest on 2026-11-21; STANDARD.md section 2); the open lessons named in the ba
 (docs/reviews/library-open-material-2026-11-16.md). No claim of effect is made for any course, and none has been
 tried with children; each course has a one-page logic model on its course page (C16).
 
-## Questions in this draft
+## Settled questions
 
 - Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade K to 5, one for 6 to 8, one
   for 9 to 12; the online-reasoning lessons and the web-literacy book are partial bases for 6 to 12 (STANDARD.md

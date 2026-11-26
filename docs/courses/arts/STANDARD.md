@@ -34,10 +34,9 @@ approach page is docs/courses/arts/APPROACH.md (approved 2026-11-20, Desk q-prew
   (Pr4 to Pr6), responding (Re7 to Re9), connecting (Cn10, Cn11). The bar asks for all four processes in every
   course (criterion 1).
 - scripts/standards.py checks NCAS codes by a closed pattern on discipline, process and anchor, and accepts the
-  strand letter and the grade or level (read 2026-11-19). It does not check that an id exists in the file.
-  The standards gate that checks a plan's ids against the file's lines is a worker's job, owed (data/plans/later.csv);
-  until it exists, each scope and sequence states its id count
-  against the table in section 3.2 and a reader spot-checks ten.
+  strand letter and the grade or level (read 2026-11-19), and checks every NCAS id against the id file (data/plans/
+  later.csv L83, done 2026-11-21). Each scope and sequence still states its id count against the table in section
+  3.2, and a reader checks that each id's meaning is taught, which the script cannot see.
 - Music is loaded for pre-kindergarten to grade 8 general music and for the high school composition and theory
   strand (63 ids, loaded 2026-11-21; Cory, Desk q-fix-arts-1 and q-fix-downloads-1), as section 3.3 says.
 
@@ -191,11 +190,12 @@ each from the association's opportunity-to-learn standards:
 | Discipline | Recommended weekly time, K to 8 | Our gap (80 minutes a week; 40 on the short path) | Source |
 |---|---|---|---|
 | Dance | K to 2: at least 60 minutes (90 at the quality level); 3 to 5 and 6 to 8: at least 90 minutes | K to 2: 20 minutes over the 60 (20 short of it on the short path) and 10 short of the 90; 3 to 8: 10 minutes short (50 on the short path) | dance educators' association, opportunity-to-learn standards, 2017 revision, posted on nationalartsstandards.org |
-| Visual arts and media arts | No figure: the standards ask for regular weekly time enough for the basic program, with no minutes named | none to state | visual arts educators' association, opportunity-to-learn standards for visual and media arts, 2025 posting on arteducators.org |
+| Visual arts, K to 5 | At least 50 minutes weekly through the year, taught by a certified visual arts educator | 30 minutes over (10 short on the short path) | visual arts educators' association, checklist for elementary visual arts education, 2025 posting on arteducators.org, pages 3 and 4 (read 2026-11-25) |
+| Visual arts 6 to 8, and media arts | Pending(docs/reviews/frame-visual-arts-grades-k-to-2-fixes-2026-11-25.md#Left for the lead): the association's middle school checklist and its media arts lines are read at source before their frames; the 2026-11-21 read missed the elementary figure | none stated until read | visual arts educators' association, opportunity-to-learn checklists, 2025 posting on arteducators.org |
 | Music | General music, basic level: at least 90 minutes in each of K to 2, 3 to 5 and 6 to 8 | 10 minutes short (50 on the short path) | music educators' association, National Opportunity to Learn Standards, 2020, on nafme.org (read in a browser 2026-11-21, nothing saved) |
 | Theater | No figure: the theater association has no page giving one | none to state | none found |
 
-The course pages carry the dance and music rows' figures and gaps; visual arts, media arts and theater name none, since their associations give no minutes.
+The course pages carry the dance, music and visual arts K to 5 rows' figures and gaps; theater names none, since its association gives no minutes.
 
 On the 32-session path each unit keeps four things, in this order and no fewer: the demonstration with a step card,
 opened by the look or listen at a work that carries the unit's response to another artist's work and its

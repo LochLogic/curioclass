@@ -26,7 +26,7 @@ where one is needed this page recommends and says so.
 - **Which:** 2026 CSTA PK-12 Computer Science Standards, Computer Science Teachers Association, published summer
   2026, DOI 10.1145/3820482. It replaces the 2017 CSTA standards. Checked at source 2026-11-16: the PDF behind
   csteachers.org/2026-csta-pk-12-computer-science-standards/ (218 pages).
-- **Shape:** three parts. Concepts are the content and the organising frame: Algorithms and Design (ALG),
+- **Shape:** three parts. Concepts are the content and the organizing frame: Algorithms and Design (ALG),
   Programming (PRO), Data and Analysis (DAT), Systems and Security (SYS), Computing and Society (SOC). Artificial
   intelligence has no concept of its own; it is spread across all five. Twelve practices in four groups (Ethics and
   Social Responsibility, Inclusive Collaboration, Computational Thinking, Human-Centered Design) say what students
@@ -70,7 +70,7 @@ where one is needed this page recommends and says so.
 | PRO | VD | Variables and data storage | How a program holds, changes and organizes values |
 | PRO | RD | Reading and documenting | Reading, explaining and commenting code |
 | PRO | TR | Testing and refining | Testing, debugging and improving a program |
-| DAT | DC | Data collection and preparation | Gathering, organising, checking and cleaning data |
+| DAT | DC | Data collection and preparation | Gathering, organizing, checking and cleaning data |
 | DAT | DI | Data investigation | Asking a question of data, finding patterns, showing results |
 | DAT | IM | Impacts of data science | How collecting and using data affects people |
 | SYS | HW | Hardware and software | The parts of a computing system and how they work together |
@@ -129,7 +129,10 @@ weak in the progression, not re-taught.
 curriculum (scout: docs/reviews/computer-science-open-material-2026-11-16.md) is a partial base for grades K to 8.
 Each unit taken from it is checked unit by unit for third-party material (anything not under the base's own license
 is left out), and is rephrased for an American audience when needed (spelling, money, place names, school years).
-Its source goes in the day's credit; no company name appears in student, teacher or family copy.
+Its source goes in the day's credit; no company name appears in student, teacher or family copy. The edition the
+frames map is the archived Teach Computing Curriculum (raspberrypi.org/curriculum/archived, resources dated 2023, no
+longer maintained by its publisher); England's current lessons, on Oak National Academy, differ by unit, so a frame
+that adapts a current unit names it as such (docs/sources/BASE-TEXTS.md).
 
 **Specialty standards.** The four high school courses teach all 46 Foundational ids between them. A unit may also claim an S1 id when
 its task already does what the S1 statement and boundary ask (for example a unit that trains and tests a classifier

@@ -1,7 +1,7 @@
 # The Curio Class approach to teaching English language development
 
-**Approved by Cory 2026-11-21 (Desk q-prework-open-2). Written 2026-11-16, read cold 2026-11-20 (docs/reviews/prework-eld-read-2026-11-20.md) and fixed; second-model read fixed 2026-11-21 (docs/reviews/prework-eld-fixes-2026-11-20.md).** Short by design. Building waits until C11 is proven in the core courses
-([STANDARD.md](STANDARD.md), section 6). It fills the subject slots of the unit plan and the section plan
+**Approved by Cory 2026-11-21 (Desk q-prework-open-2). Written 2026-11-16, read cold 2026-11-20 (docs/reviews/prework-eld-read-2026-11-20.md) and fixed; second-model read fixed 2026-11-21 (docs/reviews/prework-eld-fixes-2026-11-20.md).** Short by design. The band frames are written now (Cory, 2026-11-25); the scope and sequence, unit plans and days
+wait until C11 is proven in the core courses ([STANDARD.md](STANDARD.md), section 6). It fills the subject slots of the unit plan and the section plan
 (docs/courses/UNIT-PLAN.md) for ELD. The lens is docs/agents/lenses/eld.md.
 
 ## What a good ELD lesson does

@@ -4,15 +4,16 @@
 
 Written 2026-11-16 as the pre-work owed for English language development (docs/ADOPTION-BAR-SUBJECTS.md, "Before a
 scope and sequence in this subject", the ELD row), in the shape of docs/courses/social-studies/STANDARD.md. Core
-subjects come first. **Building waits until C11 (English learner supports inside the lesson) is proven in the core
-courses** (the owed row): nothing here starts a frame or a scope and sequence. Supports for English learners inside
+subjects come first. **The four band frames are written now** (Cory, 2026-11-25, frames only); **the scope and
+sequence, unit plans and days wait until C11 (English learner supports inside the lesson) is proven in the core
+courses** (the owed row, section 6). Supports for English learners inside
 every other course are C11, not this course (bar part 10).
 
 | Owed row (ADOPTION-BAR-SUBJECTS) | State | Where |
 |---|---|---|
 | Read the California map in full | Done: all five categories read end to end (2026-11-16); what it adds to bar part 10 is in section 4 | Section 4 |
 | Open the WIDA rubric file | Done 2026-11-16: the PRIME 2020 rubric and workbook, requested by Cory, read in full; bar part 10 firmed from it | docs/RUBRIC-ELD.md |
-| Build after C11 is proven in core courses | Recorded as the gate, with its test (settled 2026-11-16) | Section 6 |
+| Build after C11 is proven in core courses | Recorded as the gate, with its test (settled 2026-11-16); frames lifted out of it (Cory, 2026-11-25) | Section 6 |
 | Approach page (all ten subjects) | Approved by Cory 2026-11-21 (Desk q-prework-open-2) | docs/courses/eld/APPROACH.md |
 | Base text scout, lens | Done | docs/reviews/eld-open-material-2026-11-16.md; docs/agents/lenses/eld.md |
 | How ELD leans on the ELA progression | Recorded | Section 5 |
@@ -66,8 +67,9 @@ every other course are C11, not this course (bar part 10).
   placement test and keeps no scores. The course page says that Curio Class's period is the protected core of a
   student's English language development, not a replacement for the school's own program or for more time where a
   state or district asks for it (APPROACH.md, "Pacing").
-- **Grain.** Each band course is written as one frame per grade year, 13 frames in all, each of 160 days at the
-  band's minutes. A frame takes its host units from that grade's own core courses. A mixed-grade group uses the frame
+- **Grain.** Each band course is one frame file with a part per grade year (13 year parts in all, each of 160
+  days at the band's minutes, its own units, end-of-unit assessments and two course-level checks); each year's part
+  is that grade year's frame, and the scope and sequence is written one year at a time. A frame takes its host units from that grade's own core courses. A mixed-grade group uses the frame
   of its youngest grade, and the teacher page says so.
 - **Ownership** (settled by the expert reader, 2026-11-20, ours, untested). The ELD progression covers all 104 ids in
   data/standards/wida-2020.txt in 56 owned rows: 8 SI rows, one id each, and 48 content rows, each naming the
@@ -85,7 +87,7 @@ every other course are C11, not this course (bar part 10).
   Inform in K and 1 only. A student moves to entry points 1 and 2 when the teacher judges the strand's
   look-fors "seen" on two days in a row, or on the school's own check where there is one.
 
-## 3. How the course is built (for the frames, after the gate)
+## 3. How the course is built (the frames)
 
 - **Language through content.** Each unit takes its content from a core unit the same grade is studying that month
   (a science investigation, a social studies inquiry, a math task, an ELA text). The ELD unit teaches the language
@@ -154,7 +156,8 @@ supports (C11) stay in ELA; ELD adds the protected time and the direct teaching 
 
 The owed row says ELD is built after C11 is proven in the core courses. Settled 2026-11-16 (Cory, Desk card
 q-later-sel-eld): C11 is proven when it passes, with no fail, in the probe and guard units of at least two core
-subjects, one of them ELA. Until then, ELD work is limited to this page, the lens and the scout.
+subjects, one of them ELA. The course frames are written before it (Cory, 2026-11-25, DESK-ANSWERS on after-core
+frames); the scope and sequence, unit plans, days and newcomer strand wait for it.
 
 ## 7. Left out, and why
 
