@@ -1872,7 +1872,7 @@ social-studies-grade-4,u02-1,,term,"context: where, when and for whom a source w
 social-studies-grade-4,u02-1,,case,"2010 equipment notice to caretakers, invented metadata/context teaching case","Teaching only, current plan preserves separate component work; never an exit.",planned,
 social-studies-grade-4,u02-1,,model,"blank maker/date/kind/audience/detail/reason log, demonstrated on day 22","Mechanics precede application on 23; completed entries withdrawn, headings retained.",planned,
 social-studies-grade-4,u02-1,,case,Exit Lake Use question and Exit School Travel 1995 leaflet,Reserved E18/E20; no complementary-kind or then/now judgment in practice.,planned,
-social-studies-grade-4,u02-2,,term,"population (how many people live in a place, from a dated count or estimate)",review of social-studies-grade-3 u07-1 day 145,planned,yes
+social-studies-grade-4,u02-2,23,term,"population (how many people live in a place, from a dated count or estimate)",review of social-studies-grade-3 u07-1 day 145,written,yes
 social-studies-grade-4,u02-2,,term,natural resource (something from nature that people use),review of social-studies-grade-3 u03-1 day 50,planned,yes
 social-studies-grade-4,u02-2,,term,historic landmark (a place the town remembers because of its past),review of social-studies-grade-3 u01-3 day 9,planned,yes
 social-studies-grade-4,u02-2,,term,"industry (all the work that gets or makes one kind of thing, such as fishing)",review of social-studies-grade-3 u05-7 day 113,planned,yes
@@ -1880,9 +1880,9 @@ social-studies-grade-4,u02-2,,term,"goods and services (a thing you can hold, wo
 social-studies-grade-4,u02-2,,term,"cultural feature (something people make, learn or do)",review of social-studies-grade-4 u01-2 day 7,planned,yes
 social-studies-grade-4,u02-2,,term,"environmental feature (land, water, weather)",review of social-studies-grade-4 u01-2 day 7,planned,yes
 social-studies-grade-4,u02-2,,model,"source-sourcing: maker, date, audience, purpose",review of social-studies-grade-3 u06-1 day 126,planned,
-social-studies-grade-4,u02-2,,term,Parliament: the lawmaking institution named in the Canadian source,Day 24 student gloss; real government source-date handoff in plan field 11.,planned,yes
-social-studies-grade-4,u02-2,,term,confidence: support to continue governing,"Day 24, read before the exit; stable institutional relationship, no current leaders.",planned,yes
-social-studies-grade-4,u02-2,,term,court: institution that interprets law and resolves disputes,"Day 24 student gloss; compare functions, not current judicial selection.",planned,yes
+social-studies-grade-4,u02-2,24,term,Parliament: the lawmaking institution named in the Canadian source,Day 24 student gloss; real government source-date handoff in plan field 11.; Canadian office word defined and used in source-linked table cells.,written,yes
+social-studies-grade-4,u02-2,24,term,confidence: support to continue governing,"Day 24, read before the exit; stable institutional relationship, no current leaders.; Canadian source word defined before use; comparison card stays hidden until the exit.",written,yes
+social-studies-grade-4,u02-2,24,term,court: institution that interprets law and resolves disputes,"Day 24 student gloss; compare functions, not current judicial selection.; Function defined in the office sources and used in individual table cells.",written,yes
 social-studies-grade-4,u02-2,,term,sawmill: a place where wood is cut into lumber,"Day 26 student gloss; federal study fallback opened 2026-11-25, source row to settle.",planned,yes
 social-studies-grade-4,u02-2,,term,agriculture: work growing crops and raising animals,Day 26 student gloss; water-use source browser check remains.,planned,yes
 social-studies-grade-4,u02-2,,case,"First Nations with Haida Nation, Inuit, and Métis present-day introductions",Named own-organization accounts; Métis-owned museum fallback replaces blocked council language page; no made-up Native people.,planned,
@@ -2237,3 +2237,9 @@ social-studies-grade-4,u01-4,14,skill,critique mismatched map/detail links in su
 social-studies-grade-4,u01-4,14,case,Link Card A and Link Card B mismatched map details,New critique cards using retained teaching Maps A/B; Park Maps held for independent exit.,written,
 social-studies-grade-4,u01-4,15,none,"assessment day for unit 1, no new teaching",Independent paper components on unseen sources; general references only.,written,
 social-studies-grade-4,u01-4,16,none,"response day for unit 1, one priority component retry",review of social-studies-grade-4 u01-1 days 1 to 4; u01-2 days 5 to 8; u01-3 days 9 to 11; u01-4 days 12 to 14,written,
+social-studies-grade-4,u02-2,23,term,language: a way people communicate,Defined and used in the people/language notes; each named language stays within its source scope.,written,yes
+social-studies-grade-4,u02-2,24,term,prime minister: leads the government,review of social-studies-grade-2 u04-1 day 50,written,yes
+social-studies-grade-4,u02-2,24,term,president at country government level,review of social-studies-grade-3 u02-2 day 28,written,yes
+social-studies-grade-4,u02-2,24,term,executive: carrying out laws,Definition already printed on the student page and applied to office functions.,written,yes
+social-studies-grade-4,u02-2,24,term,constitutional monarchy: a constitutional system with a monarch,Meaning supplied while reading the Canadian office record; used in the form cell.,written,yes
+social-studies-grade-4,u02-2,24,term,parliamentary democracy: government depends on the elected House's support,Meaning supplied while reading the Canadian office record; no completed comparison model.,written,yes
