@@ -171,8 +171,7 @@ meets STANDARD.md section 2 ("one frame per grade year").
 ### Picked up from the course before
 
 Grade 6 picks up the grade 5 rows of English Language Development, grades 3 to 5
-(Pending(docs/courses/english-language-development-grades-3-to-5/frame.md): that frame's grade 5 unit numbers are
-cited here when it lands; the seam follows data/progressions/eld.csv, where each grade 5 row's hands_on names its
+(its grade 5 units 18 to 25; the seam follows data/progressions/eld.csv, where each grade 5 row's hands_on names its
 grade 6 row). Grade 5 is the owner year of cluster 4-5 and grade 4 of SI 4-12, so every grade 6 row builds on owned work.
 
 | Course before hands on | Row that picks it up | Unit here | What grade 6 does with it |
