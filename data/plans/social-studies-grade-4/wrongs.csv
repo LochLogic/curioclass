@@ -358,7 +358,6 @@ s02-P31-R,Signs.,,,x,Cold-solved against supplied case; content separate from gr
 s02-K31-K,Canada imports wheat.,,,D,Cold-solved against supplied case; content separate from grammar.
 s02-K31-Kb,Canada exports vegetables.,,,D,Cold-solved against supplied case; content separate from grammar.
 s02-P31-B,Numbers of workers.,,,D,Cold-solved against supplied case; content separate from grammar.
-s02-P32-R2,Candles and wax.,,,E,Cold-solved against supplied case; content separate from grammar.
 s02-P32-R,Town Beck.,,,D,Cold-solved against supplied case; content separate from grammar.
 s02-K32-K,Everyone in Canada gets more work.,,,F,Cold-solved against supplied case; content separate from grammar.
 s02-P33-F,A large national total brings orders.,,,D,Cold-solved against supplied case; content separate from grammar.
@@ -368,7 +367,6 @@ s02-P33-B,A large total proves its loss.,,,D,Cold-solved against supplied case; 
 s02-P33,The national goods total proves this farm sells less.,,,D,A national value does not establish the invented farm buyer switch; use the case record.
 s02-P30-R,"The circle means paint, according to the chart.",,,D,Contradicts the supplied symbol key; the chart says tape.
 s02-P30a,Nothing crosses.,,,x,Cold-checked against the printed stimulus and the complete item key.
-s02-P30b,The cocoa.,,,x,Cold-checked against the printed stimulus and the complete item key.
 s02-P30,Paper is the buyer.,,,x,Cold-checked against the printed stimulus and the complete item key.
 s02-P31,The arrowhead is the origin.,,,D,Cold-checked against the printed stimulus and the complete item key.
 s02-P32,All groups gain alike.,,,F,Cold-checked against the printed stimulus and the complete item key.
@@ -1499,3 +1497,9 @@ s02-P38c-E,Paper and envelopes.,,,E,Anticipated error in the assigned fresh comp
 s02-P38c-O,The makers produce every input themselves.,,,O,Anticipated error in the assigned fresh component; use the single named look-for.
 s02-P38d-H,It is good because it is short.,,,H,Anticipated error in the assigned fresh component; use the single named look-for.
 s02-P38d-P,Only our teacher needs these records.,,,P,Anticipated error in the assigned fresh component; use the single named look-for.
+s02-P30b,The price of paper.,,,x,The price is not the next-best choice given up; chalk is. Cold-answered from the printed made-up choice.
+s02-P32-R2,Yarn.,,,E,"Names only goods, omitting the receiving-country viewpoint. Cold answer: import, because yarn comes in."
+s02-P32-R2,Export: yarn goes out.,,,D,Reverses the receiving-country viewpoint; the record states yarn arrives from another country.
+s02-X33,All sellers gain.,,,F,The record shifts purchases toward repairs and away from replacement sellers; this sample wrongly gives every seller the same gain.
+s02-P31,Arrowhead marks origin.,,,D,"Cold-checked from the supplied map key: the tail is the origin, not the arrowhead."
+s02-P32,All change alike.,,,F,"The separately supplied group cards show distinct purchase, price and order changes, not one uniform effect."
