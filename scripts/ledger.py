@@ -483,18 +483,19 @@ def gate(subject, course, first, last):
     if missing:
         sys.exit('ledger gate: days not in days.csv of %s: %s' % (course, ','.join(map(str, missing[:10]))))
     secs = {dm[d] for d in range(a, b + 1)}
+    shown = ','.join(sorted(x or 'course-level' for x in secs))  # check days (unit C) carry no section
     rs = rows(subject)
     mine = [r for r in rs if r['course'] == course and
             ((r['day'] and a <= int(r['day']) <= b) or (not r['day'] and r['where'] in secs))]
     if not mine:
-        print('gate closed: %s days %d-%d have no ledger rows (sections %s not seeded)' % (course, a, b, ','.join(sorted(secs))))
+        print('gate closed: %s days %d-%d have no ledger rows (sections %s not seeded)' % (course, a, b, shown))
         return 1
     ix = index(rs)
     seen, blockers = set(), []
     for r in mine:
         for t in citations(subject, course, r['note']):
             own = t['course'] == course and (t['where'] in secs or (
-                t['where'] is None and t['unit'] is not None and any(s.startswith('u%02d-' % t['unit']) for s in secs)))
+                t['where'] is None and t['unit'] is not None and any(s and s.startswith('u%02d-' % t['unit']) for s in secs)))
             if own:
                 continue
             st, _ = resolve(t, ix)
@@ -506,7 +507,7 @@ def gate(subject, course, first, last):
         print('\n'.join(blockers))
         print('gate closed: %s days %d-%d, %d blockers' % (course, a, b, len(blockers)))
         return 1
-    print('gate open: %s days %d-%d (%d rows, sections %s)' % (course, a, b, len(mine), ','.join(sorted(secs))))
+    print('gate open: %s days %d-%d (%d rows, sections %s)' % (course, a, b, len(mine), shown))
     return 0
 
 
