@@ -186,7 +186,7 @@ All three match the frame and data/plans/calendar.csv. CALENDAR.md's named targe
 The year is 160 days of 50 minutes. Two shorter routes keep every owned code, skill and assessment, every contrasting account and every required performance; the unit plans check them against real minutes, so neither is yet shown to fit.
 
 - **45-minute periods, same 160 days.** Each teaching day keeps its source work, its product and its exit ticket, and uses the shorter excerpt of each source and trims the second worked example or the whole-class share; assessment and respond days stay whole, and no day drops its second account of a contested event.
-- **About 154 days.** These days fold into a neighbour, because each code or skill they carry is taught on another day too: 12 (planning the answer, into 13), 17 (the cause chain, into 16), 24 (the unit 2 claim, into 23 and 25), 67 (the democracy comparison, into 66), 105 (the Cold War claim, into 104 and 106), and 119 (the means-of-change claim, into 118).
+- **About 154 days.** These days fold into a neighbor, because each code or skill they carry is taught on another day too: 12 (planning the answer, into 13), 17 (the cause chain, into 16), 24 (the unit 2 claim, into 23 and 25), 67 (the democracy comparison, into 66), 105 (the Cold War claim, into 104 and 106), and 119 (the means-of-change claim, into 118).
 
 ## For the lead
 

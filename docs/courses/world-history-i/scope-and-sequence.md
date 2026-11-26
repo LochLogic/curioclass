@@ -187,7 +187,7 @@ All three sit on CALENDAR.md's target weeks. Grades 9 to 12 have no stagger rule
 The year is 160 days of 50 minutes. Two shorter routes keep every owned code, skill and assessment; the unit plans check them against real minutes, so neither is yet shown to fit.
 
 - **45-minute periods, same 160 days.** Each teaching day keeps its source work, its product and its exit ticket, and trims the second worked example or the whole-class share; assessment and respond days stay whole.
-- **About 154 days.** These days fold into a neighbour, because each code or skill they carry is taught on another day too: 2 (Han and Rome, into 3), 25 (diffusion reasoning, into 24 and 29), 44 (the discussion, into 41), 105 (pamphlets as persuasion, into 104 and 106), 127 (shared investment, into 126), 134 (the discussion, into 135), and the second respond day after the year-end check (160, into 159).
+- **About 154 days.** These days fold into a neighbor, because each code or skill they carry is taught on another day too: 2 (Han and Rome, into 3), 25 (diffusion reasoning, into 24 and 29), 44 (the discussion, into 41), 105 (pamphlets as persuasion, into 104 and 106), 127 (shared investment, into 126), 134 (the discussion, into 135), and the second respond day after the year-end check (160, into 159).
 
 ## For the lead
 

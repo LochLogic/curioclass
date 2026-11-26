@@ -168,7 +168,7 @@ and each bridge below is theirs:
 | Other subject, grade | Their need | Grade 3 unit that teaches it (about which days) | If they come first |
 |---|---|---|---|
 | Science grade 3 | 3.MD.B.3, scaled picture and bar graphs (s3-weather-data, s3-inherited-traits; m3-scaled-graphs leans on 3-ESS2-1) | Unit 1 (days 1 to 22) | No timing bridge needed for the graph-using science unit 3 (school days 47 to 73). Weather analysis is science unit 6 (school days 123 to 147); math uses supplied data earlier. |
-| Science grade 3 | 3.MD.B.4, measuring to the half and quarter inch (s3-motion-patterns, s3-environment-traits; m3-line-plots leans on 3-PS2-2) | Unit 7 (days 117 to 133) | Science measures in whole inches or whole centimetres (2.MD.A.1) until unit 7; halves and quarters after it (science frame, units 1 and 3) |
+| Science grade 3 | 3.MD.B.4, measuring to the half and quarter inch (s3-motion-patterns, s3-environment-traits; m3-line-plots leans on 3-PS2-2) | Unit 7 (days 117 to 133) | Science measures in whole inches or whole centimeters (2.MD.A.1) until unit 7; halves and quarters after it (science frame, units 1 and 3) |
 | Science grade 3 | 3.MD.A.2, masses in grams (s3-design-problem) | Unit 7 (days 117 to 133) | Science counts an equal unit (washers held) with no grams until unit 7 (science frame, unit 2) |
 | Social studies grade 3 | 3.NBT.A.2, adding and subtracting within 1,000 (ss3-money-saving, its unit 3, about days 49 to 68) | Unit 3 (days 39 to 59) | The social studies frame keeps sums within 100 until then |
 

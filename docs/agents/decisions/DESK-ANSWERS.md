@@ -1991,3 +1991,26 @@ course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN
   selector parts (`file:`, `grade:`, `strand:`). Each subject runs stage 3 as the core did: a pilot frame, the expert
   and second-model reads, one fix pass, then the rest. Personal finance gets no frame: it has no progression rows,
   since Economics teaches it (settled 2026-11-14); its catalog row waits on L90.
+
+## 2026-11-26: after-core frame fix-pass rules, recorded by the lead
+
+None of these is a call of Cory's: each is a rule an after-core frame fix pass settled from its reads, logged here
+because the reviews say a log line is owed. Cory's open questions from the same passes stay on the Desk.
+- **Media arts connecting ids swapped back to their meanings** (media arts frame fix pass, 2026-11-25; expert read
+  m1, docs/reviews/frame-media-arts-grades-k-to-12-2026-11-25.md): MA:Cn10 is the student's own experience and
+  MA:Cn11 society, culture and history, as in the other four arts, checked at the California standards page for
+  MA:Cn10 grade 3. The words-file lines, the arts.csv rows and all four media arts frames were corrected; the
+  words-file header records it, and a words read now checks each id's meaning against a source page, not only its
+  wording (data/standards/ncas-performance-standards-words.txt).
+- **One set of card words across SEL, health and PE** (SEL K to 2 and 3 to 12 fix passes, 2026-11-25): the
+  calm-down, I-statement, refusal, goal steps and talk turn cards have one wording per band, kept in SEL STANDARD
+  section 7 ("Shared steps") and quoted word for word by every frame. The I-statement is "I feel ___ when ___. I need
+  ___." in K to 2 ("I need" is the request; health kindergarten's words), adds "because" from grade 3, and adds the
+  check-back "Does that work for you?" as a fifth part in 9 to 12. Why: a child meets one card in every course.
+- **Leave-out bridge** (SEL fix passes, 2026-11-25; SEL STANDARD section 5 item 6): where a later unit uses a card a
+  left-out unit made, that unit teaches the card's one-step form in its first ten minutes and claims none of the
+  left-out unit's sub-skills.
+- **Settled cases and partner roles in SEL** (SEL 3 to 12 fix pass, 2026-11-25): no settled court or history case
+  repeats within a band (Brown v. Board left 6 to 8; it stays in 3 to 5 and returns in 9 to 12 at new depth), and
+  each case carries its community's own account beside an archive page; a partner never plays an unkind, pushing or
+  abusive part (the teacher or a scene card supplies the words and the partner coaches).

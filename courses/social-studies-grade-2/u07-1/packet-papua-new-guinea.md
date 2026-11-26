@@ -17,7 +17,7 @@ Credit strip: "Made by Curio Class, 2026, from Natural Earth public domain map d
 
 ## Land and Work page
 
-**Land and water.** Papua New Guinea has a mountain middle with a high, crowded Highlands region. Mount Wilhelm, at 4,509 metres, is the highest peak.
+**Land and water.** Papua New Guinea has a mountain middle with a high, crowded Highlands region. Mount Wilhelm, at 4,509 meters, is the highest peak.
 
 **Work.** The country sells coffee, logs and palm oil to other countries. Port Moresby is the capital, and the National Parliament is there.
 

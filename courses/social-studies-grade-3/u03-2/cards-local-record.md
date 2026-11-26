@@ -11,7 +11,7 @@ Print "made up, for practice" on both cards. Replace them, or add cards, from tw
 
 ## Card 1: Finch Street Bakery (made up)
 
-Made by Curio Class, 2026. Finch Street Bakery bakes bread from flour and sells it to neighbours. It uses an oven, a mixer and what its bakers learned.
+Made by Curio Class, 2026. Finch Street Bakery bakes bread from flour and sells it to neighbors. It uses an oven, a mixer and what its bakers learned.
 
 ## Card 2: Alder Bike Stand (made up)
 

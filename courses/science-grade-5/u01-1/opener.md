@@ -35,7 +35,7 @@ Wrong answers are voiced by "someone might say", never by a named child.
 
 ## Supplies for the section
 
-Ball, hand pump and one needle, tray, gram-reading kitchen scale, eyewear, large blocks, potting soil, trays, needle-free syringes, dot panels, shadow stick, chalk, metre stick, pots, bean seeds, water, a capped plastic bottle with only air in it, and the printed sheets in this folder. Safety: the teacher alone attaches the pump needle and stays below the pressure printed on the ball. The ball stays in a tray. Syringes have no needle and are never aimed at a face. Never look at the sun. Check plant and mold allergies before soil. Wash hands after soil and chalk.
+Ball, hand pump and one needle, tray, gram-reading kitchen scale, eyewear, large blocks, potting soil, trays, needle-free syringes, dot panels, shadow stick, chalk, meter stick, pots, bean seeds, water, a capped plastic bottle with only air in it, and the printed sheets in this folder. Safety: the teacher alone attaches the pump needle and stays below the pressure printed on the ball. The ball stays in a tray. Syringes have no needle and are never aimed at a face. Never look at the sun. Check plant and mold allergies before soil. Wash hands after soil and chalk.
 
 ## A room with nothing
 

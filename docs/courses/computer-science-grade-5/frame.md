@@ -355,7 +355,7 @@ never a kept lesson.
 | Data and information: Introduction to spreadsheets | 3 What's the formula?; 4 Calculate and duplicate; 5 Event planning; 6 Presenting data | None | | All four left out: formulas, cost planning and charts go past E5-DAT-DC-09's boundary (no analysis or visualization asked) and use money and math this course does not teach; outside bar C1's 10 percent if kept |
 | Programming B: Sensing movement | 5 Designing a step counter | Unit 2, session 1 | The step counter's rules as the anchor flowchart, on paper | Lessons 1 to 4 and 6 (the board, its inputs and making the counter): need a microcontroller board, optional in STANDARD.md section 5; left out, with the board named for a later optional unit |
 | Creating media: Web page creation | Lessons 1 to 6 | None | | All six left out: no E5 id at this depth, depends on a web-page tool |
-| Creating media: 3D modelling | Lessons 1 to 6 | None | | All six left out: no CSTA id, depends on a modeling app |
+| Creating media: 3D modeling | Lessons 1 to 6 | None | | All six left out: no CSTA id, depends on a modeling app |
 
 Units 1 (sessions 1 and 2), 2 (session 3), 3 (sessions 3 and 4), 4 (sessions 2 to 5) and 5 (sessions 1 and 3) are
 our own: the partial base has no four-part system role-play, no network-parts unit at this age, no confidentiality,

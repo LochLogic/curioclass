@@ -2,6 +2,7 @@
 
     python -X utf8 scripts/us_spelling.py --dry-run [--course <course>]   counts per word and file, writes nothing
     python -X utf8 scripts/us_spelling.py [--course <course>]             writes
+    --skip <course,course>   leaves those courses out (lanes running on them)
 
 Fixes the UK spellings in WORDS, and only those, in what Curio Class writes itself:
 - docs/courses/<course>/**/*.md and courses/<course>/**/*.md (skeletons are generated and skipped);
@@ -26,13 +27,36 @@ import safe_write  # noqa: E402
 
 WORDS = {'labelled': 'labeled', 'licence': 'license', 'practise': 'practice', 'recognise': 'recognize',
          'practised': 'practiced', 'practises': 'practices', 'modelled': 'modeled', 'modelling': 'modeling',
-         'colour': 'color'}
+         'colour': 'color',
+         # L123 (2026-11-26): the other UK spellings written plan prose still held
+         'centimetre': 'centimeter', 'centimetres': 'centimeters', 'millimetre': 'millimeter',
+         'millimetres': 'millimeters', 'metre': 'meter', 'metres': 'meters', 'kilometre': 'kilometer',
+         'kilometres': 'kilometers', 'litre': 'liter', 'litres': 'liters', 'millilitre': 'milliliter',
+         'millilitres': 'milliliters', 'mould': 'mold', 'moulds': 'molds', 'behaviour': 'behavior',
+         'behaviours': 'behaviors', 'favourite': 'favorite', 'favourites': 'favorites', 'colours': 'colors',
+         'coloured': 'colored', 'organise': 'organize', 'organised': 'organized', 'organising': 'organizing',
+         'recognised': 'recognized', 'recognising': 'recognizing', 'analyse': 'analyze', 'analysed': 'analyzed',
+         'neighbour': 'neighbor', 'neighbours': 'neighbors', 'labelling': 'labeling', 'practising': 'practicing'}
 WORD = re.compile(r'(?<!\w)(' + '|'.join(sorted(WORDS, key=len, reverse=True)) + r')(?!\w)', re.I)
 PATHLIKE = r'[\w.-]*-[\w.-]*/[\w./-]*|[\w./-]*/[\w.]*-[\w./-]*'   # a/b-c or a-b/c: a folder or slug, not prose
 KEEP = re.compile(r'Government Licence', re.I)
+
+
+def _file_stems():
+    """Names of course files that hold a WORDS spelling (script-in-colours-day-124): a bare reference to one is a
+    name, not prose (L123, 2026-11-26: the sweep had renamed two such references)."""
+    out = set()
+    for p in (ROOT / 'courses').rglob('*.md'):
+        if WORD.search(p.stem):
+            out.add(re.escape(p.stem))
+    return out
+
+
+STEMS = _file_stems()
 PROTECT = re.compile(r'"[^"\n]*"|“[^”\n]*”|`[^`\n]*`|\[\[[^\]\n]*\]\]|\]\([^)\n]*\)|https?://\S+|'
                      r'<[^>\n]*>|[\w./-]+\.(?:md|csv|pdf|png|svg|jpe?g|html|json|txt)\b|' + PATHLIKE + '|' +
-                     KEEP.pattern, re.I)
+                     KEEP.pattern + ''.join(r'|(?<![\w-])' + x + r'(?![\w-])' for x in sorted(STEMS, key=len, reverse=True)),
+                     re.I)
 SKIP_COLS = {'sources.csv': {'title', 'citation', 'url'}, '': {'url', 'text_ref'}}   # sources.csv names real works
 SKIP_KINDS = {'never-touch', 'state', 'blind', 'generated-ignored', 'generated'}
 
@@ -118,6 +142,8 @@ def courses():
 def main(a):
     dry = '--dry-run' in a
     scope = [a[a.index('--course') + 1]] if '--course' in a else courses()
+    skip = set(a[a.index('--skip') + 1].split(',')) if '--skip' in a else set()   # courses another worker holds
+    scope = [c for c in scope if c not in skip]
     total, files = {}, 0
     groups = [targets(c) for c in scope] + ([] if '--course' in a else [shared_targets(set(courses()))])
     for g in groups:

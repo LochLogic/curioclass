@@ -7,7 +7,7 @@ credit: ours
 ---
 # Review plan page (day 101)
 
-Print one for each child, one side, with no frame beyond these labels. It is the only guide after day 101. The review model and its four colours stay on the desk.
+Print one for each child, one side, with no frame beyond these labels. It is the only guide after day 101. The review model and its four colors stay on the desk.
 
 - Series title and the two book titles: ____________________
 - My opinion, in one sentence: ____________________

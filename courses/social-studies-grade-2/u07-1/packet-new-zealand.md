@@ -17,7 +17,7 @@ Credit strip: "Made by Curio Class, 2026, from Natural Earth public domain map d
 
 ## Land and Work page
 
-**Land and water.** New Zealand has a North Island and a South Island. The Tasman Sea lies between New Zealand and Australia. Aoraki/Mount Cook, the highest mountain, is in the middle of the South Island. Its park has 19 peaks over 3,000 metres.
+**Land and water.** New Zealand has a North Island and a South Island. The Tasman Sea lies between New Zealand and Australia. Aoraki/Mount Cook, the highest mountain, is in the middle of the South Island. Its park has 19 peaks over 3,000 meters.
 
 **Work.** Farms make dairy foods, beef and sheep meat to sell to other countries. Kiwifruit and wood from forests are sold abroad too.
 
@@ -47,7 +47,7 @@ A simple line drawing (illustration) of a village under a clear night sky, ringe
 | Map | Wellington capital square | 84NZ5 | WEAK: tourism page places Parliament and the Beehive in Wellington and mentions the city's 'evolution as the capital'; no page read states 'Wellington is the capital' in one plain sentence. Stronger page wanted (Te Ara and Stats NZ blocked automated reading). |
 | Land and water | North Island and South Island | 84NZ6 | Stats NZ headline names the North Island and the South Island (page body would not load, headline only). Also 84NZ3 says 'central South Island'. WEAK. |
 | Land and water | Highest mountain in the middle of the South Island | 84NZ3 | Park is in the central South Island; includes New Zealand's highest mountain. |
-| Land and water | 19 peaks over 3,000 metres | 84NZ3 | Park has 19 peaks over 3,000 metres. |
+| Land and water | 19 peaks over 3,000 meters | 84NZ3 | Park has 19 peaks over 3,000 meters. |
 | Work | Dairy, beef, sheep meat sold abroad | 84NZ4 | Year to March 2025 exports: dairy $26.2 billion, beef $4.7 billion, sheep meat $3.9 billion. |
 | Work | Kiwifruit and wood from forests sold abroad | 84NZ4 | Kiwifruit exports $3.7 billion; forestry exports $6 billion, logs the largest part. |
 | Cities and towns | Wellington is the capital (see WEAK note) | 84NZ5 | See map row. |

@@ -25,7 +25,7 @@ Ask 2: Meeting Records Card. Why is that record primary?
 
 ## Day 74: Snow Records Card
 
-Record 1 is a note. A neighbour wrote it on the morning the snow fell. Record 2 is a town weather history. It is in an old, worn book.
+Record 1 is a note. A neighbor wrote it on the morning the snow fell. Record 2 is a town weather history. It is in an old, worn book.
 
 Ask 1: Snow Records Card, invented. Which record is firsthand for that snowfall?
 Ask 2: Snow Records Card. Why is it firsthand?

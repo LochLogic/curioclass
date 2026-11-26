@@ -62,7 +62,7 @@ data/plans/world-history-i/sources.csv. The day 45 packet is reserved: do not sh
   it, then use its substitute: "blacks" and "negroes", the people of Mali; "Negrolands", the lands of Mali;
   "slaves", enslaved people; "Tartars" (outsiders' name for the Mongols), the Mongols.
 - **Slavery named plainly.** Sources A and P1 show enslaved people: armed men at the court and salt miners at
-  Taghaza. Source C records raids on inland neighbours; raids like these often took captives, but the passage does
+  Taghaza. Source C records raids on inland neighbors; raids like these often took captives, but the passage does
   not say so. Never treat people as one more good; their own voices do not survive here.
 - **Conquest named plainly.** Source E records the killing of women, men and children. Read it once, without
   dramatic reading, and give no death total the sources do not support.

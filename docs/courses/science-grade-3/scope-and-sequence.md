@@ -143,7 +143,7 @@ These decisions use every grade 3 subject's unit/check rows in `data/plans/calen
 
 | Lean | Availability and recorded response |
 |---|---|
-| Math 3.MD.B.4, finer length measurement | Math unit 7, school days 117 to 133, follows science units 1 and 3. Whole-inch or whole-centimetre bridge on days 9, 12, 19, 44 and 48; no finer length demand in either unit. |
+| Math 3.MD.B.4, finer length measurement | Math unit 7, school days 117 to 133, follows science units 1 and 3. Whole-inch or whole-centimeter bridge on days 9, 12, 19, 44 and 48; no finer length demand in either unit. |
 | Math 3.MD.A.2, grams | Same later math unit. Day 26 counts equal washers as the holding criterion; no grams in unit 2. |
 | Math 3.MD.B.3, scaled graphs | Math unit 1 ends school day 22, before science units 3, 4 and 6. Days 44, 61 and 100 name that availability; earlier motion uses tables, not a premature scaled-graph demand. |
 | ELA SL.3.1 | ELA unit 1, school days 1 to 39, overlaps science unit 2. Day 17 teaches its own listen/build/ask question-board routine. |
@@ -183,7 +183,7 @@ There is no base text for this course. The work is original. source-map.csv hold
 
 For a shorter period, retain the question, firsthand evidence or clearly labeled substitute, model revision and exit ticket. Use one shared apparatus and prearranged records, read short texts aloud with diagrams and move copying/decoration out of the core time. Reserve care and weather minutes inside the day, shorten duplicate reports rather than inquiry, and split a two-day assessment's work across its existing two meetings. Do not shorten safety controls or silently substitute a fact quiz for a performance. The following folds give a 110-meeting year without changing any assessment, readiness, response or owned-part coverage in the 120-day master CSV.
 
-| Fold this unassessed day | Into | Work retained in the neighbour | Minutes inside neighbour | Minutes saved |
+| Fold this unassessed day | Into | Work retained in the neighbor | Minutes inside neighbor | Minutes saved |
 |---|---|---|---|---|
 | 5 | 4 | New force-arrow case and section exit ticket after the box test | 10, replacing repeated reports | 45 |
 | 22 | 21 | Question sorting and model revision from magnet evidence | 10, replacing duplicate interaction reports | 45 |
@@ -196,7 +196,7 @@ For a shorter period, retain the question, firsthand evidence or clearly labeled
 | 102 | 101 | Contrasting seasonal record, revised claim and section exit ticket | 10, replacing repeated seasonal presentations | 45 |
 | 113 | 114 | Consensus weather/climate/hazard explanation | 10, replacing repeated reports | 45 |
 
-Ten folds save 450 minutes from the frame's 120 x 45 = 5,400 minutes, leaving 110 meetings and 4,950 minutes. Each combined neighbour stays within 45 minutes by the stated replacement, with routine care/log time retained. All folded days are unassessed and none is an only occurrence of an owned part. Days 13, 29 and 74 stay: day 14 now assesses motion, day 29 holds pollination, and day 75 now assesses variation. Use each fold as one combined period, preserving reasoning and the section exit ticket. Reassign its routine observation to another meeting in the same school week, or use an adult entry; no weather or organism data are invented. Keep checks in their target school weeks, using the saved meetings as gaps inside the units' calendar spans rather than advancing later units. Ten fewer meetings alone do not implement the frame's separate 90-meeting, three-per-week adoption route. That route requires another 20 named folds and a rescheduled calendar at unit-plan stage; this scope and sequence does not claim to have demonstrated that compression.
+Ten folds save 450 minutes from the frame's 120 x 45 = 5,400 minutes, leaving 110 meetings and 4,950 minutes. Each combined neighbor stays within 45 minutes by the stated replacement, with routine care/log time retained. All folded days are unassessed and none is an only occurrence of an owned part. Days 13, 29 and 74 stay: day 14 now assesses motion, day 29 holds pollination, and day 75 now assesses variation. Use each fold as one combined period, preserving reasoning and the section exit ticket. Reassign its routine observation to another meeting in the same school week, or use an adult entry; no weather or organism data are invented. Keep checks in their target school weeks, using the saved meetings as gaps inside the units' calendar spans rather than advancing later units. Ten fewer meetings alone do not implement the frame's separate 90-meeting, three-per-week adoption route. That route requires another 20 named folds and a rescheduled calendar at unit-plan stage; this scope and sequence does not claim to have demonstrated that compression.
 
 ## Remaining planning limits
 

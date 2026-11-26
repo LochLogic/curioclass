@@ -26,7 +26,7 @@ AG is counting two details from one maker as two sources. AH is saying a questio
 
 ## Supplies
 
-The question board, the blank claim frame (blank-day118-claim-sheet.md), the paper timeline strips, coloured pencils, the dossiers (packet-day120.md), the key (key-day120.md), the written moves (written-moves-day121.md), and the fresh cases (cards-day121-fresh.md). Cards: cards-day117-sources.md. Exit cards: cards-exits-117-119.md. Keys: key-exits-117-121.md. No tool.
+The question board, the blank claim frame (blank-day118-claim-sheet.md), the paper timeline strips, colored pencils, the dossiers (packet-day120.md), the key (key-day120.md), the written moves (written-moves-day121.md), and the fresh cases (cards-day121-fresh.md). Cards: cards-day117-sources.md. Exit cards: cards-exits-117-119.md. Keys: key-exits-117-121.md. No tool.
 
 ## A room with nothing
 

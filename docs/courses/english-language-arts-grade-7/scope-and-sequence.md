@@ -256,7 +256,7 @@ The 40-minute route protects the original anchor, response, one feedback action,
 
 For ten fewer meetings, use these folds. Each frees one whole meeting: **50 minutes on the frame's period or 40 on the shorter period**. Savings are net: retain the small task in the receiver by replacing equal minutes of duplicate practice/polishing, never extending the period. No assessment, response block or sole-teaching part is cut. Keep every novella word, distributing reading from folded days 8, 10 and 14 across retained reading blocks and existing days 16 to 20 core before narrative planning. Move installment deadlines only inside their assessment completion boundaries. Check the actual manuscript against the reduced allocation before using folds with the no-home route.
 
-| Fold day into neighbour | Retained work and equal-time replacement inside receiver | Minutes saved, 50 / 40-minute period |
+| Fold day into neighbor | Retained work and equal-time replacement inside receiver | Minutes saved, 50 / 40-minute period |
 |---|---|---|
 | 8 into 7 | 6-minute coordinate-adjective/spelling model in viewpoint paragraph, replaces second comparison example | 50 / 40 |
 | 10 into 11 | 5-minute objective summary/log and 4-minute partner reread, replaces duplicate theme practice; complete flagged oral records in existing reading blocks | 50 / 40 |

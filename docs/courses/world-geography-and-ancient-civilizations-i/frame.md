@@ -64,7 +64,7 @@ Course `world-geography-and-ancient-civilizations-i` (catalogue id `world-geo-6`
   council and Taino organizations' pages); unit 11 (Maya, Quechua and Aymara peoples: their own organizations' pages
   and Maya and Andean scholars).
 - **Paper path.** Every source, map, data set and task has a printed version; no day needs a device, an internet
-  connection or a student account. Unit 9's electronic map has its paper path (the same keyed map traced and coloured
+  connection or a student account. Unit 9's electronic map has its paper path (the same keyed map traced and colored
   by hand); where a unit uses an online map or archive, the teacher prints the pages from it.
 - **Literacy standards (also met).** The unit work also meets these Common Core literacy standards for history and
   social studies (data/standards/ccss-literacy-6-12.txt; the rows' notes name them), with no added days: unit 1:

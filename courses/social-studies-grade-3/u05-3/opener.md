@@ -15,7 +15,7 @@ Three days of 40 minutes. Day 97: St. Augustine, 1565, placed on the strip, with
 
 - **Who answered to whom.** A leader card has name, nation, role, decision, interest and who each answered to. A box stays blank when the source is silent; say so aloud. This is a lesson: a card is only as full as the record.
 - **St. Augustine.** On 8 September 1565 Pedro Menendez de Aviles and 800 Spanish settlers founded it (sources.csv U5B). The Spanish settled at Seloy, a Timucua town, from September 1565 to May 1566, and turned its council house into a fort (U5A). Say "Timucua" by that name. No Timucua leader is on the page for Seloy, so none is named; no Timucua decision is taught.
-- **Jamestown.** James Fort was founded in 1607 by the Virginia Company (U5L). Wahunsonacock (called Powhatan) led about thirty groups; the Pamunkey were one of six core tribes of Tsenacomoco (U5C). The Pamunkey Indian Tribe was recognised by the United States in 2015 as a sovereign nation and lives on its reservation today (U5D). Say it in the present tense.
+- **Jamestown.** James Fort was founded in 1607 by the Virginia Company (U5L). Wahunsonacock (called Powhatan) led about thirty groups; the Pamunkey were one of six core tribes of Tsenacomoco (U5C). The Pamunkey Indian Tribe was recognized by the United States in 2015 as a sovereign nation and lives on its reservation today (U5D). Say it in the present tense.
 - **The 1622 war.** A second war began in 1622 (U5C). A 1646 treaty ended the third (U5C). The Waterhouse report of 1622 is only a label card: the Virginia Company's official response to the attack, meant to reassure investors and migrants (U5O). No passage of it was read.
 - **Sourcing, again.** Who made it, when, why. The war is named plainly. No role play.
 

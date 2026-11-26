@@ -378,9 +378,8 @@ fractions and percent only, taught in earlier grades; no statistics beyond readi
 
 1. **Bridge and review units with an empty Skills cell.** STANDARD.md 3.2 makes the Level 1 bridge and the Level 2
    and 3 reviews units of their own (units 1, 6 and 11 here), which own no row; their Skills cell is empty and their
-   Owned standards cell says None, which `frame.py check` reads. Pick: frame-write's after-core section adds one line,
-   "a bridge or review unit that owns no row leaves Skills empty and says None in Owned standards", so the other four
-   arts 9 to 12 frames do the same.
+   Owned standards cell says None, which `frame.py check` reads. Done 2026-11-26: frame-write's after-core section
+   now says so, for every arts 9 to 12 frame.
 2. **Row change (one, below).** ma-g9-ideas's note says the bridge is "the first unit"; it is unit 1, before the
    row's own unit 3.
 3. **After-core check weeks.** Checks sit in week 16 (mid-year) and week 32 (finals) in every level. Grades 9 to 12

@@ -4,7 +4,7 @@
 
 Requested by [unit 1](s01.md), field 8. Key tool, spec only; does not exist yet. Days 13 and 14 each use ten minutes to show why. It represents collisions too brief or energetic to reproduce safely in class.
 
-1. Let learners vary mass while fixing speed, then speed while fixing mass. State kilograms, metres per second and joules on every relevant display.
+1. Let learners vary mass while fixing speed, then speed while fixing mass. State kilograms, meters per second and joules on every relevant display.
 2. Show separate kinetic-energy graphs with labeled axes, equal input intervals and the fixed variable stated. Display idealized calculated data as model output, not measurements. Use proportional mass and square-speed relationships without requiring a formula derivation or function notation.
 3. Slow the representation of contact. Put equal opposing contact-force arrows on separate objects. Distinguish force from energy and deformation from damage. Do not imply that equal forces cause equal motion changes or equal damage.
 4. Require a prediction, a changed input, recorded output and a revised explanation. Keep student choices visible on a printable record. Provide keyboard control, direct numeric entry and non-color labels.

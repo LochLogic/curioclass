@@ -7,7 +7,7 @@ credit: ours
 ---
 # View label sheet (day 133, used again on 134 and 136)
 
-Print one for each child, one side. The class uses three colours or three marks: C for character, N for narrator, W for writer, Me for the reader.
+Print one for each child, one side. The class uses three colors or three marks: C for character, N for narrator, W for writer, Me for the reader.
 
 | Who says it | The words | Where the page says so |
 |---|---|---|

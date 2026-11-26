@@ -31,4 +31,4 @@ Each day is 120 minutes in two blocks of 60. Day 83 is a check day: nothing new 
 
 ## Marking
 
-Shown, shown with help, not yet seen, and the two pencil colours on the check card. No reteaching happens on day 83; day 84 is where the marking is used.
+Shown, shown with help, not yet seen, and the two pencil colors on the check card. No reteaching happens on day 83; day 84 is where the marking is used.

@@ -150,7 +150,7 @@ The catalogue's status is reported, not certified by this record. All 35 rights_
 | g12-u7-02; Plessy v. Ferguson (with Harlan's dissent); US Supreme Court | anchor | on file | 109/110; 112 to 115 | Legal reasoning; majority against dissent; opinion structure. |
 | g12-u7-03; Brown v. Board of Education; US Supreme Court | paired | on file | 110; 112 to 115 | Legal reasoning; majority against dissent; opinion structure. |
 | g12-u7-04; Tinker v. Des Moines (with Black's dissent); US Supreme Court | anchor | on file | 111/112; 114/116 | Legal reasoning; majority against dissent; opinion structure. |
-| g12-u7-05; Appeal to the Coloured Citizens of the World; David Walker | paired | on file | 106, Appeal against Declaration | Answers the Declaration in its own words. |
+| g12-u7-05; Appeal to the Colored Citizens of the World; David Walker | paired | on file | 106, Appeal against Declaration | Answers the Declaration in its own words. |
 | g12-u7-06; Fourteenth Amendment; US Congress | paired | on file | 107, whole; 110 | Equal protection against the Bill of Rights. |
 | g12-u7-07; Mahanoy Area School District v. B. L.; US Supreme Court | paired | on file | 113 facts only; 116 ruling excerpt | Read after the mock opinion is written. |
 | g12-u8-01; Research sources chosen by each student (at least eight, three primary); various | paired | to choose | 125/126 short set; 127 to 159 sustained set | Each source's strengths and limits. |

@@ -86,6 +86,9 @@ review).
 
 ## 3. The sequence per grade
 
+Unit numbers: data/progressions/sel.csv notes number units within the year (unit 1 to 6 of each grade); the band
+frames number units through the band (grade 7's first unit is unit 7 in the 6 to 8 frame), with the year beside it.
+
 The draft year for each grade. The theme sets the year's angle, so no two years of a band run alike. Each unit lists
 the sub-skills it teaches first that year; every later unit brings earlier sub-skills back in practice (C7). In
 every grade all 40 sub-skills are taught once and only once as a unit's own. No unit teaches more than eight
@@ -116,7 +119,7 @@ scripts/progression.py checks this form (MULTI_OWNER: one owner per id in each o
 supported SEL since 2026-11-21, and data/progressions/sel.csv passes it.
 
 How each competency is practiced (bar item 5): self-management and relationship skills by doing (rehearsing a
-calming routine, acting out an invented hard moment, practising an I-statement with a partner); self-awareness,
+calming routine, acting out an invented hard moment, practicing an I-statement with a partner); self-awareness,
 social awareness and decision-making by reflection and talk (a private journal, partner talk about a scenario, a
 choice weighed in writing).
 
@@ -157,7 +160,7 @@ Placement notes, by sub-skill, where the grade matters most:
   cases; SO8 is how a school's or a town's rules and signs shape what people do. Grade 7 ("Snap judgments") and grade 10 ("Culture and respect") are their main years.
 - **SA8 (ability grows)** is taught as "practice and help make you better", never as a promise that belief alone
   raises grades: the evidence for short mindset lessons is mixed (lens, sources; from memory).
-- **SO8 (systems shape behaviour)** starts as "why our class has rules" and grows to media and online norms in grade
+- **SO8 (systems shape behavior)** starts as "why our class has rules" and grows to media and online norms in grade
   6 and to communities and systems in grade 12.
 - **RS6 (saying no to pressure)** is taught as a skill on invented cases. The topics where pressure matters most in
   6 to 12 (substances, sex, dating violence) are health's; SEL rehearses the refusal skill and points to the health
@@ -190,7 +193,7 @@ Durlak and others 2011 and Cipriano and others 2023 (abstracts only), Oregon's t
 | 24 | SAFE: sequenced, active, focused, explicit | 4, 5, 6 | Covered |
 | 24 | Lower rating for missing competencies, band-only lessons, too little practice | Fails if | Covered |
 | 25 | Settings rated (classroom, school, family, community) as minimal, adequate or extensive | 7 (in part) | Gap B |
-| 25 | Number of sessions a year reported; tools to monitor implementation and student behaviour | none | Gap C |
+| 25 | Number of sessions a year reported; tools to monitor implementation and student behavior | none | Gap C |
 | 26 to 30 | Equity strategies: translation beyond English; students as agents of change; understanding context and working with bias (adult side) | none | Gap D |
 | 27 to 29, 31 to 34 | Adult SEL and training: active, modeled, with feedback, building adults' own competencies | none | Gap E |
 | 35 | Final rating is the lower of evidence and design | 8, "Unsupported" | Stated; the evidence half is unmet by design |
@@ -208,7 +211,7 @@ ADOPTION-BAR-SUBJECTS part 9 (items 9 to 13).
 - **C. Sessions and monitoring.** Addition: the scope and sequence states sessions a year (it will, section 2). For
   monitoring, promise 2 rules out tracking students; a paper fidelity checklist for the teacher (did the session
   run as planned, which part was cut) and the class record sheet of skill checks meet the purpose without
-  student data. Behaviour ratings of individual children are not collected; the class sheet marks a step seen on one named day, not the child.
+  student data. Behavior ratings of individual children are not collected; the class sheet marks a step seen on one named day, not the child.
 - **D. Equity strategies.** Translation: family notes in English and Spanish; student pages English only for now
   (section 2). Students as agents of change: under the values rule, SEL
   gives student voice in class and school life (class norms, a school improvement the class proposes and carries
@@ -302,6 +305,16 @@ Applied to SEL:
   Refusal second push: say it again, move away, tell (health's boundary steps). Goal steps card: my goal and one step;
   then a helper and a check; then a changed step; used by health's goal plans and PE's goal cycles. Talk turn card:
   its two steps open health's listening card. Changes on the health and PE side are the lead's.
+  Grades 6 to 8 (as the frame quotes them): calm-down steps grow to five, "stop, breathe, name it, choose, go on"
+  (choose is choosing a tool from a menu of four, matched to settings); the talk turn card adds a first step, choose
+  how to talk (in person, a call or a message); the I-statement keeps four parts, "I feel ___ when ___ because ___. I
+  need ___."; the goal steps card has four steps (goal, steps, block and plan, check); refusal adds three options (a
+  plain no, a no with a reason, a way out of the place), chosen to fit the place. Grades 9 to 12: the I-statement adds a
+  check-back as a fifth part, "I feel ___ when ___ because ___. I need ___. Does that work for you?" ("I need ___" is
+  the request); the calm-down steps become a coping plan (the five steps, a tool for each of three settings, a back-up
+  tool and a review date); the talk turn card adds a last step (check what landed, plan the next talk); the goal steps
+  card becomes a designed plan (the goal, dated steps, the trade-off accepted, a check date, a verdict); the refusal
+  options add the plan made ahead, the ally and the second push.
 - **ELA (data/progressions/ela.csv).** The discussion rows (ek-discussion to e5-discussion, e6-collab-discussion to
   e8-collab-discussion, e9-sl-discussion, e10-sl-seminar, e11-seminar and e12-seminar) carry turn-taking, listening and building on
   others' ideas. SEL's RS1 uses the same norms and words, so a class meets one set of talk rules.

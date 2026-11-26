@@ -82,7 +82,7 @@ explain includes the teacher note for any sensitive ground the section touches (
 - **Baseline and growth**: the unit's first skill day has a short watch of the unit's main cue for the whole class
   in rotating groups, marked met, partly or not yet. The Check day repeats the same cue, so each student has two
   marks and the growth is the change.
-- **Conduct** is marked against the unit's stated behaviours (taking turns, using equipment safely, helping a
+- **Conduct** is marked against the unit's stated behaviors (taking turns, using equipment safely, helping a
   partner), taken from the S3 indicators, never against dress, attendance or effort alone.
 - **Fitness**: when fitness is measured, the student keeps their own record, on paper or on their own device
   only, and sets a goal. Results are private and never graded.

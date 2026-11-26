@@ -33,11 +33,11 @@ Two words on the wall: democratic principle (an idea about how a people's govern
 - everyone is equal
 - the people agree
 - telling the truth to the council
-- helping a neighbour carry a ladder
+- helping a neighbor carry a ladder
 - power comes from the people
 - listening before deciding
 
-Principles: everyone is equal, the people agree, power comes from the people. Virtues: telling the truth, helping a neighbour, listening before deciding. Item: [[s06-P127b]].
+Principles: everyone is equal, the people agree, power comes from the people. Virtues: telling the truth, helping a neighbor, listening before deciding. Item: [[s06-P127b]].
 
 ## Claim line
 

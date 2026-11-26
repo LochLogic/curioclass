@@ -144,7 +144,7 @@ Both sit on CALENDAR.md's target weeks (16, 29). The grade's other checks: math 
 The year is 160 days of about 40 minutes. Two shorter routes keep every owned code, skill and assessment, every observation note and every respond day; the unit plans check them against real minutes, so neither is yet shown to fit.
 
 - **30 to 35-minute lessons, same 160 days.** Each teaching day keeps its source, its task and its exit ticket, and trims the second worked example and the whole-class share; a gathering or review day shortens its practice round; assessment and respond days stay whole.
-- **About 151 days.** The nine days marked "compressible (shorter block)" fold into a neighbour, the work moving with them (see the year at a glance): 3 (the treaties, into 2), 8 (founder research, into 7), 18 (legality and ownership, into 16), 40, 56 and 152 (gathering days, each into its claim day), 53 (the Articles' weaknesses, into 52), 70 (the provisions, into 69) and 82 (Adams, into 81 as a paired profile). No readiness, assessment or respond day folds.
+- **About 151 days.** The nine days marked "compressible (shorter block)" fold into a neighbor, the work moving with them (see the year at a glance): 3 (the treaties, into 2), 8 (founder research, into 7), 18 (legality and ownership, into 16), 40, 56 and 152 (gathering days, each into its claim day), 53 (the Articles' weaknesses, into 52), 70 (the provisions, into 69) and 82 (Adams, into 81 as a paired profile). No readiness, assessment or respond day folds.
 
 ## For the lead
 

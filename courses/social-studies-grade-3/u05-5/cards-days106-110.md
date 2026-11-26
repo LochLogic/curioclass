@@ -11,7 +11,7 @@ Print "made up, for practice" on invented cards. Read every line aloud once.
 
 ## Day 106 repair
 
-K (5 minutes): two made-up colony bands on the wall strip, Colony T 1590 to 1640 and Colony U 1620 to 1650. Pairs say which was there when the second began. Response: each child fixes the one cell the teacher's note names, in coloured pencil.
+K (5 minutes): two made-up colony bands on the wall strip, Colony T 1590 to 1640 and Colony U 1620 to 1650. Pairs say which was there when the second began. Response: each child fixes the one cell the teacher's note names, in colored pencil.
 
 ## Why Puritans came
 

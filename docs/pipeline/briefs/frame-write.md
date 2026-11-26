@@ -222,7 +222,9 @@ use this brief with these changes. Their own pages outrank the core lessons abov
   science "Practices and concept areas", career education "Practices", ELD "Host unit and key language uses", library
   "Inquiry phases".
 - **Owned standards cell:** a unit that owns no code (a carry-only or removable sensitive unit) says `None`; the
-  check reads `None` and an empty cell alike.
+  check reads `None` and an empty cell alike. A bridge or review unit that owns no row (the high school arts Level 1
+  bridge and Level 2 and 3 reviews, arts STANDARD.md 3.2) leaves Skills empty and says `None` in Owned standards
+  (lead 2026-11-26, from the media arts 9 to 12 frame).
 - **A course-level check right after a unit** is that unit's end-of-unit assessment when it covers the unit, as in
   the core frames; say so in the unit's row and the check's "What it checks" cell. Units not followed by a check end
   in their own end-of-unit assessment.

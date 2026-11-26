@@ -101,7 +101,7 @@ Course `science-grade-1` (catalogue id `science-k5`), grade 1. Draft frame, revi
 | s1-sky-patterns | 1 | s3-motion-patterns (grade 3); s5-shadows-sky (grade 5) | Motion that repeats, measured; shadows and day length graphed |
 | s1-parts-mimic: parts that meet needs, structure-function | 2 | s2-plant-needs-test; s2-seed-pollinator-model; s2-habitat-diversity (grade 2); s3-variation-advantage (grade 3); s4-structures-function; s4-senses-brain (grade 4) | The plant needs it keeps in use are tested; a model copies an animal's job; parts and needs explain who lives where; later, inside structures and senses |
 | s1-sketch-shape: the planned sketch | 2 | s2-compare-designs; s2-best-material (grade 2) | Two designs compared by test data; material as well as shape fits the job |
-| s1-like-parents: the measured claim | 3 | s2-heat-cool-change (grade 2, practice link); s3-inherited-traits (grade 3) | The argument from evidence about changes; traits from parents analysed in data |
+| s1-like-parents: the measured claim | 3 | s2-heat-cool-change (grade 2, practice link); s3-inherited-traits (grade 3) | The argument from evidence about changes; traits from parents analyzed in data |
 | s1-sound-vibrates | 4 | s4-wave-model (grade 4) | Waves described by their patterns |
 | s1-see-with-light: the written account | 5 | s2-pieces-new-object (grade 2); s4-light-eye (grade 4) | An evidence-based account of pieces made into a new object; light entering the eye |
 | s1-light-materials: a test that keeps one thing the same | 5 | s2-material-properties; s2-plant-needs-test (grade 2); s4-light-eye (grade 4) | Whether light passes through as one property to sort by; a fair test of plant needs |

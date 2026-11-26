@@ -164,7 +164,7 @@ All three match the frame and data/plans/calendar.csv. CALENDAR.md's named targe
 The year is 160 days of 50 minutes. Two shorter routes keep every owned code, skill and assessment, every readiness check, all three argument cycles, the research portfolio's eight sources and the shared paper's milestones, and the history path for a school without ELA 11; the unit plans check them against real minutes, so neither is yet shown to fit.
 
 - **45-minute periods, same 160 days.** Each teaching day keeps its source work, its product and its exit ticket, and uses the shorter excerpt of each source, trims the second worked example and shortens the whole-class share; drafting days keep their full writing time and lose the opening model instead; assessment and respond days stay whole, and no day drops its second account of a contested event.
-- **About 155 days.** These days fold into a neighbour, because each code they carry is taught on another day too: 8 (the Tea and Intolerable Acts, into 7 and 9), 27 (the journalism survey, into 28, the chosen case), 44 (the map sequence, into 40 and 45), 115 (the industry chain, into 120's claim), and 119 (photographs and interviews, into 116 to 118).
+- **About 155 days.** These days fold into a neighbor, because each code they carry is taught on another day too: 8 (the Tea and Intolerable Acts, into 7 and 9), 27 (the journalism survey, into 28, the chosen case), 44 (the map sequence, into 40 and 45), 115 (the industry chain, into 120's claim), and 119 (photographs and interviews, into 116 to 118).
 
 ## For the lead
 

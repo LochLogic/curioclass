@@ -11,7 +11,7 @@ Print "invented for practice" in small letters at the bottom of each card.
 
 ## Day 65: Greengrocer and Depot cards
 
-Greengrocer (made up): neighbours come each day to buy plums the shop gets from a farm. Bus Depot (made up): it has ticket booths where riders buy tickets and a place to wait.
+Greengrocer (made up): neighbors come each day to buy plums the shop gets from a farm. Bus Depot (made up): it has ticket booths where riders buy tickets and a place to wait.
 
 Greengrocer and Depot cards, invented. Write a claim: how does a town get what it needs? Use a detail from each card.
 

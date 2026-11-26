@@ -26,7 +26,7 @@ Day 102 closes the cycle 17 foundations check with a written fifteen minutes. Da
 
 - A fact taken from the wrong card, or from neither (AE, E).
 - A fact stated with no link to the next flower (B), or one the source does not give (C).
-- A word copied from a neighbour or kept after a look at the entry (J, Y).
+- A word copied from a neighbor or kept after a look at the entry (J, Y).
 - An ending ending the paragraph with no why (G).
 
 ## Marking

@@ -27,7 +27,7 @@ Health (NHES) and physical education (SHAPE) indicators are span-coded (S1.5.2: 
 grade of the span, the grade where it is first fully met, and ~CODE in the span's other grades (added 2026-11-19);
 a physical education span 12 indicator is owned only in grade 9 or 10.
 The later subjects (added 2026-11-21): SEL ids are owned once in each of grades 2, 5, 8 and 12 and may be ~ in any
-grade; an ELD id is owned by its cluster's last grade (K, 1, 3, 5, 8, 12) and ~ in the cluster's other grades, SI K-3
+grade, and so are the three AASL ids library places in SEL (SEL_AASL, added 2026-11-26); an ELD id is owned by its cluster's last grade (K, 1, 3, 5, 8, 12) and ~ in the cluster's other grades, SI K-3
 owned in 3 and SI 4-12 owned in 4 (~ in 5 to 12); library and career education ids carry no grade (one owner, any
 grade). Computer science takes only the eight listed Specialty I ids, each in its own grade. A standards file id is
 the whole first tab-separated field, spaces included.
@@ -98,6 +98,9 @@ ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela':
           'spanish': ['actfl-wrs.txt', 'spanish-strands.txt']}
 # subjects whose ids are owned once in each of several grades (SEL: once per band, at its last grade)
 MULTI_OWNER = {'sel': ['2', '5', '8', '12']}
+# AASL ids accepted for SEL (added 2026-11-26): library places these three in SEL (library STANDARD.md section 4,
+# Desk q-fix-library-1; library-excluded.csv). Owned like a CASEL id, once in each of the SEL owner grades.
+SEL_AASL = {'AASL.V.D.1', 'AASL.V.D.2', 'AASL.III.D.2'}
 # computer science Specialty I: only these eight, each in its own grade (computer science STANDARD.md, Specialty)
 CS_S1 = {'S1-AIN-DD-02': '11', 'S1-DSC-VZ-11': '11', 'S1-CYB-TS-08': '11', 'S1-SWD-TR-07': '11',
          'S1-AIN-HR-09': '12', 'S1-DSC-PP-13': '12', 'S1-SWD-PP-08': '12', 'S1-SWD-UX-05': '12'}
@@ -149,7 +152,7 @@ def code_grades(subject, code):
         return None
     if subject == 'sel':
         # CASEL.Self-Awareness.3: owned once per band at its last grade, ~ in any grade (sel STANDARD.md, Ownership)
-        return (MULTI_OWNER['sel'], GRADES) if code.startswith('CASEL.') else None
+        return (MULTI_OWNER['sel'], GRADES) if code.startswith('CASEL.') or code in SEL_AASL else None
     if subject == 'eld':
         # WIDA.ELD-LA.2-3.Inform.Expressive: owned by the cluster's last grade, ~ in its other grades
         p = code.split('.')
@@ -269,6 +272,8 @@ def check(subject):
     G, OI, unit = (LEVELS, LI, 'level') if lvl else (GRADES, GI, 'grade')
     absent = []
     known = std_codes(subject, absent)
+    if subject == 'sel':
+        known |= SEL_AASL
     for f in absent:
         notes.append('data/standards/%s not written yet: its codes are not checked' % f)
     by_id, grade_of = {}, {}
@@ -368,7 +373,10 @@ def check(subject):
             for (code, g), sids in sorted(per.items()):
                 if len(sids) > 1:
                     fails.append('%s owned twice in grade %s (%s)' % (code, g, ', '.join(sids)))
-            for code in anchor:
+            for code in anchor + (sorted(SEL_AASL) if subject == 'sel' else []):
+                if code in SEL_AASL and code not in owners:
+                    fails.append('%s (placed in SEL by library) named by no skill' % code)
+                    continue
                 if code in excl or code not in owners:
                     continue  # excluded, or already failed as named by no skill
                 gap = [g for g in want if g not in owners[code]]

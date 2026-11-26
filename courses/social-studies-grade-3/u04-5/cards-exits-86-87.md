@@ -22,7 +22,7 @@ Print "made up, for practice" in small letters on the made-up cards. Plain black
    ::::  = the town's land
 ```
 
-**Card B. A museum account, made up.** The Reed River Museum says Reed River town teaches river travel to its neighbours. Every summer visitors learn from the town's own guides.
+**Card B. A museum account, made up.** The Reed River Museum says Reed River town teaches river travel to its neighbors. Every summer visitors learn from the town's own guides.
 
 Ask 1: Reed River cards, invented. Write a claim about how the town uses its river.
 Ask 2: Reed River cards. Give one detail from card A that supports your claim.

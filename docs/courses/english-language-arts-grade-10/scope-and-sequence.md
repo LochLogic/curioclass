@@ -153,7 +153,7 @@ These special windows override the ordinary pattern and the 50-minute notes:
 | 156 | 25 cold story/tasks, 15 first independent argument reading |
 | 157 | 10 brief items, 30 integrated analytic essay |
 
-A year ten days shorter folds these ten unassessed meetings into neighbours. Original day numbers remain reference labels. Every row saves one 50-minute meeting, 500 minutes total: 8,000 to 7,500 minutes and 160 to 150 days against the frame. On a 40-minute calendar the same ten meetings save 400 minutes, 6,400 to 6,000; this arithmetic does not establish simultaneous reading-load fit. Below, receiving-day budgets are for the 50-minute shorter-year route; every stated total includes the folded work, not an extra period.
+A year ten days shorter folds these ten unassessed meetings into neighbors. Original day numbers remain reference labels. Every row saves one 50-minute meeting, 500 minutes total: 8,000 to 7,500 minutes and 160 to 150 days against the frame. On a 40-minute calendar the same ten meetings save 400 minutes, 6,400 to 6,000; this arithmetic does not establish simultaneous reading-load fit. Below, receiving-day budgets are for the 50-minute shorter-year route; every stated total includes the folded work, not an extra period.
 
 | Fold-in day | Work and receiving-day budget | Minutes saved |
 |---|---|---|

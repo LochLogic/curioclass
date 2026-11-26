@@ -173,7 +173,7 @@ grade 9 to 11 history courses carry its source and argument skills.
 |---|---|---|---|---|
 | 1 (mid-year) | 3 | 2 | 2 | Units 1 to 3: an unseen founding-era source sourced and used, a claim weighed against a counterclaim, the branches and their checks applied to an unseen founding-era case from units 1 or 2 (unit 3 was assessed two days before) |
 | 2 (mid-year) | 6 | 2 | 2 | Units 1 to 6, weighted to 4 to 6: election information sourced, a civic value tension explained from more than one view, a constitutional change from unit 4 (the 22nd Amendment) explained from an unseen document, a short argument from an unseen excerpt of a unit 3 opinion (unit 6 was assessed two days before) |
-| 3 (year-end) | 9 | 2 | 2 | The year before the action unit: federal, state and local powers applied to an unseen problem, a budget trade-off, an unseen editorial analysed for claims and credibility and lateral reading of an unseen claim, each on a unit 7 or 8 topic (unit 9 was assessed two days before), and an argument from an unseen opinion excerpt, with the counterclaim named and answered |
+| 3 (year-end) | 9 | 2 | 2 | The year before the action unit: federal, state and local powers applied to an unseen problem, a budget trade-off, an unseen editorial analyzed for claims and credibility and lateral reading of an unseen claim, each on a unit 7 or 8 topic (unit 9 was assessed two days before), and an argument from an unseen opinion excerpt, with the counterclaim named and answered |
 
 ## Cross-subject
 

@@ -5,7 +5,7 @@ unit: 4.3
 version: draft, not yet taught
 credit: ours
 ---
-# The poem and the song in two colours (days 126, 127 and 128)
+# The poem and the song in two colors (days 126, 127 and 128)
 
 Layout only; the words are the text g2-u4-06 (06-a Room for Wings and 06-b The Garden Refrain), printed unchanged.
 

@@ -100,7 +100,7 @@ Days 45/46 assess 2-PS1-3 through an unfamiliar reassembly begun on 45, finished
 
 Days 48 to 56, weeks 16 to 19. Pale grass under a board motivates two separate single-factor comparisons against light plus water. Eighteen pre-grown matched seedlings supply six groups' control/dark/dry conditions on day 49, school day 81. Dated observations on days 50 and 52, school days 83 and 86, lead to fairness and the second record on day 53: height alone can mislead when a tall plant is pale/weak. Final observation on day 55, school day 91, is ten school days and two weekends after setup. Adult care between meetings adds no student lesson. A single-date bar graph never becomes a connected time graph.
 
-Days 54/55 assess 2-LS2-1 using the class seedling cups, trays, centimeter rulers and fitted splash goggles. Observe half the children each day, with every child's identified planning, measuring and dated data contribution from days 49/50/52/54/55 forming one conducting record. A fresh framed single-factor plan and interpretation check BOTH sunlight and water needs, each against the healthy control, using cause/effect. Generic class participation is insufficient. Day 56 responds. Retrieve grade 1 parts/light-test/chart teaching and plant needs on day 48. Candidate: **drop** the cooler fourth treatment, zero days; keep a child's temperature question without another study. Use untreated seedlings, wash hands, discard mould adult-only and restore treatment plants after observation.
+Days 54/55 assess 2-LS2-1 using the class seedling cups, trays, centimeter rulers and fitted splash goggles. Observe half the children each day, with every child's identified planning, measuring and dated data contribution from days 49/50/52/54/55 forming one conducting record. A fresh framed single-factor plan and interpretation check BOTH sunlight and water needs, each against the healthy control, using cause/effect. Generic class participation is insufficient. Day 56 responds. Retrieve grade 1 parts/light-test/chart teaching and plant needs on day 48. Candidate: **drop** the cooler fourth treatment, zero days; keep a child's temperature question without another study. Use untreated seedlings, wash hands, discard mold adult-only and restore treatment plants after observation.
 
 ## Unit 6. Seeds and pollinators
 
@@ -124,9 +124,9 @@ The primary dimensions are traced to `data/standards/ngss-pe-dimensions.csv`; th
 | 2-ESS2-3 | Obtain source information on where water occurs and solid/liquid states; patterns | 6/7 | 8 source choice and combined information |
 | 2-ESS1-1 | Several-source explanation of fast/slow Earth events; stability/change, no numerical durations | 11 to 15 | 23 unfamiliar explanation |
 | 2-ESS2-1 | Compare several designs slowing wind/water land change; tests, stability/change and effects of designed protection | 16 to 22 | 24 solution comparison |
-| K-2-ETS1-3 | Analyse two objects' results for the same problem; each strength and weakness | 16 to 22 | 25 matched-data judgment |
+| K-2-ETS1-3 | Analyze two objects' results for the same problem; each strength and weakness | 16 to 22 | 25 matched-data judgment |
 | 2-PS1-1 | Collaboratively plan/conduct observable-property tests; sorting, temperature-dependent solid/liquid properties and patterns | 27 to 30 | 36 action/plan and paper record |
-| 2-PS1-2 | Analyse tests for fitness to purpose; cause/effect, length-only numbers, natural materials in designed objects | 30 to 35 | 37 new-purpose argument |
+| 2-PS1-2 | Analyze tests for fitness to purpose; cause/effect, length-only numbers, natural materials in designed objects | 30 to 35 | 37 new-purpose argument |
 | 2-PS1-3 | Observed account of same pieces/new whole, material properties fitting use; pieces join/separate | 39 to 41/45 anchor return | 45/46 reassembly and account |
 | 2-PS1-4 | Argue from heating/cooling and attempted returns for reversible/lasting change; cause/effect | 42 to 44 | 46 framed argument |
 | 2-LS2-1 | Plan/conduct separate sunlight/water tests with one factor varied; cause/effect | 48 to 53 | Identified longitudinal record and 54/55 individual transfer |
@@ -167,9 +167,9 @@ For 25 to 30 minute periods, keep the hook, essential teaching, safety and a chi
 
 For the shorter mid-year check, keep the two check days and sample fewer previously taught codes: day 57 retains only 2-ESS2-3 (15 minutes) and carries other unit records unchanged; day 58 retains K-2-ETS1-3 and 2-PS1-2 as one fifteen-minute matched-data/purpose task. Each has ten minutes directions/record completion. For year-end, day 74 retains the full 2-PS1-4 argument in fifteen minutes plus ten minutes directions; day 75 keeps all six plant-action groups at three minutes each plus seven minutes set-up/record completion, with plans prepared on day 74 alongside its written argument. Carry other unit records unchanged and list only the sampled codes in that shorter version. No owned part is removed from its unit assessment. Later unit plans must time the actual items before treating these minute budgets as verified task timing.
 
-A school year ten days shorter still has 150 school days, beyond this course's school day 140 finish. If ten science meetings are lost, the following ten unassessed second cases fold into neighbours, leaving 66 meetings from the frame's 76. At the 35-minute baseline each fold saves one 35-minute meeting, 350 minutes in total (400 at 40-minute meetings). Six or eight essential minutes move inside the neighbour by replacing repeated presentations/trials; the evidence, question and model revision stay.
+A school year ten days shorter still has 150 school days, beyond this course's school day 140 finish. If ten science meetings are lost, the following ten unassessed second cases fold into neighbors, leaving 66 meetings from the frame's 76. At the 35-minute baseline each fold saves one 35-minute meeting, 350 minutes in total (400 at 40-minute meetings). Six or eight essential minutes move inside the neighbor by replacing repeated presentations/trials; the evidence, question and model revision stay.
 
-| Fold-in day | Neighbour | Essential work preserved | Minutes inside neighbour | Meeting minutes saved |
+| Fold-in day | Neighbor | Essential work preserved | Minutes inside neighbor | Meeting minutes saved |
 |---|---|---|---|---|
 | 5 | 3 | Contrasting coastal/inland pattern case | 6 | 35 to 40 |
 | 13 | 12 | Second sudden-flood place and source comparison | 6 | 35 to 40 |

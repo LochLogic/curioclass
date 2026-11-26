@@ -93,7 +93,7 @@ Search only; nothing downloaded; links in section 7.
   Structure and license not seen (not checked).
 - **State ASL second-language standards built on the World-Readiness Standards.** Indiana's 2026 Academic Standards
   for World Languages: ASL (K-12 and secondary versions), Massachusetts's ASL framework quick-reference (both found by
-  search; not opened in full). They organise by the five goal areas and grade bands (Indiana K-2, 3-5, 6-8, 9-10, 11-12).
+  search; not opened in full). They organize by the five goal areas and grade bands (Indiana K-2, 3-5, 6-8, 9-10, 11-12).
   This shows the World-Readiness frame is the working standard for ASL as a second language in the United States.
 - **Our reading.** For ASL as a second language use the same standards file as Spanish (the 2015 interpersonal mode text
   itself says "signed"), the ACTFL level scale (ACTFL has applied its guidelines to ASL; from memory, not checked) and

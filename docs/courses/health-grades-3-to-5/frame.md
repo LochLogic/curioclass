@@ -236,8 +236,8 @@ Threads that end inside the band with no later row (their skills return inside o
 (returns in g6-phw-habits-for-each-part through g5-pa-habit-practice), g3-fn-food-groups, g3-s-stay-safe-places,
 g3-aod-medicine-rules (alcohol returns in g5-aod-refuse-alcohol-drugs), g4-meh-help-with-feelings,
 and g4-phw-goal-helps-and-blocks. g5-fn-claims-that-hurt and g5-s-online-safety are settled (expert read
-2026-11-25) to hand on to g7-fn-judge-claims and g7-s-online-boundaries in grade 7 (Handed on, below); their
-hands_on and assumes cells are the lead's to apply, so the progression still shows them ending. Every other pair
+2026-11-25) to hand on to g7-fn-judge-claims and g7-s-online-boundaries in grade 7 (Handed on, below); the
+progression's hands_on and assumes cells carry both handoffs (applied 2026-11-26). Every other pair
 above is answered at both ends in data/progressions/health.csv (checked by script, 2026-11-25).
 
 ### Handed on to Health, grades 6 to 8
@@ -427,6 +427,5 @@ and 3 mathematics teach) and ticking a four-week log; no percent, rate, serving 
    span (STANDARD.md section 3); no download or sign-in is needed (CDC pages are free). No page was fetched for this
    frame, so no browser check is listed; the links in Safety and Sensitivity reads are named from memory and opened
    at the safety and expert reads. The expert read (2026-11-25) opened the CDC children's physical activity guidelines
-   page (dated 2025-12-04) for unit 1. The NHES.S1.5.4 description in data/standards/nhes-2024.txt reads "show" where
-   the indicator asks students to explain ways to carry out healthy behaviors, including how people manage health
-   conditions; that file is the lead's.
+   page (dated 2025-12-04) for unit 1. The NHES.S1.5.4 description in data/standards/nhes-2024.txt now says
+   "explain", with managing a health condition (fixed 2026-11-26).

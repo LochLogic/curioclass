@@ -61,7 +61,7 @@ s01-E18,Everything is new.,,,R,one change taken to end everything before
 s01-E18b,The pond is gone.,,,R,a new feature taken to erase the old one
 s01-E19,The ramp was built for wheelchairs and everyone uses it.,,,G,a reason and a use the sources cannot tell
 s01-E19b,The map and the photograph say it.,,,K,sources named with no detail from either
-s01-E20,My favourite color.,,,O,an unrelated preference given as a needed fact
+s01-E20,My favorite color.,,,O,an unrelated preference given as a needed fact
 s01-E20b,North.,,,J,a map direction taken as an opinion
 s01-E21,The map proves the town began for the market.,,,G,a map taken to prove the reason
 s01-E21b,A and B prove it.,,,K,sources named with no detail
@@ -71,7 +71,7 @@ s01-Q1,The red mark is circled.,,,B,a mark picked by color and not by the legend
 s01-Q1b,Up is north.,,,C,the top of the page taken as north
 s01-Q1c,About 9 steps.,,,D,bars read as footsteps
 s01-Q2,"Entrance A3, pond A1, pavilion C1.",,,L,rows or positions reversed
-s01-Q2b,A key of three colours with no words.,,,B,color alone as the meaning
+s01-Q2b,A key of three colors with no words.,,,B,color alone as the meaning
 s01-Q2c,No arrow is drawn.,,,C,direction left to chance
 s01-Q2d,A bar marked 15 steps.,,,D,a ground distance read as footsteps
 s01-Q2e,Map.,,,,a title that does not name the place
@@ -114,9 +114,9 @@ s01-Q9d,P2 says it.,,,K,a title with no detail
 s01-Q10,I do.,,,O,no other person named
 s01-Q10b,I like it.,,,O,a liking and no use
 s01-Q11,North could be south if I want.,,,J,a map direction taken as an opinion
-s01-Q12,What is my favourite color?,,,O,an unrelated question
+s01-Q12,What is my favorite color?,,,O,an unrelated question
 s01-Q12b,We need crayons.,,,O,an unrelated need
-s01-Q12c,Favourite color.,,,O,an unrelated preference
+s01-Q12c,Favorite color.,,,O,an unrelated preference
 s01-Q13,It helps because it helps.,,,O,a question named as a question with no link
 s01-R16,The stream made it; people did not change anything.,,,Q,the land taken as unchanged by people
 s01-R16,"Bridge, stream, people.",,,P,a list with no action
@@ -133,8 +133,8 @@ s01-P18,Everything is new now.,,,R,one change taken to end everything before
 s01-P18b,Nothing was here.,,,I,a blank place taken as empty land
 s01-P19,I think people arrive by bus because the map and the photograph say so.,,,K,sources named with no detail from either
 s01-P19,"I think the bus is always late, because people are waiting.",,,G,a claim past what the pair shows
-s01-P20,What is my favourite color?,,,O,an unrelated question given as a supporting question
-s01-P20b,My favourite food and a pencil.,,,O,unrelated things given as needed facts
+s01-P20,What is my favorite color?,,,O,an unrelated question given as a supporting question
+s01-P20b,My favorite food and a pencil.,,,O,unrelated things given as needed facts
 s01-P20c,North.,,,J,a map direction taken as a word with two readings
 s01-P20d,Help could mean whatever I like.,,,J,a reading with nothing to check it against
 s01-P20e,Knowing the map helps because it is a map.,,,K,a source named with no detail
@@ -300,7 +300,7 @@ s02-Q6,Every state adopted it in 1780.,,,R,one state year taken for every state
 s02-Q6b,You must earn the right.,,,M,a right taken as a prize for obeying
 s02-Q7,The governor does everything.,,,A,one leader taken to do every job
 s02-Q7b,Nobody wrote it; it was always there.,,,AD,a plan taken to have no makers
-s02-Q8,My favourite person should decide.,,,V,a liking in place of evidence
+s02-Q8,My favorite person should decide.,,,V,a liking in place of evidence
 s02-Q8b,"Local record, Class record.",,,J,two titles with no details
 s02-Q9,A right is a prize for obeying.,,,M,a right taken as a prize
 s02-Q10,One pair for every setting.,,,Z,one pair for all five

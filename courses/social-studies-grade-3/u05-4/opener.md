@@ -25,7 +25,7 @@ AF is giving one reason for everyone on the ship. M is calling everyone on the s
 
 ## Supplies
 
-The wall strip with bands, the passenger sort cards, a swim-club table, the Hardship Table, the record folder, coloured pencils, the day 105 sheets. Cards: cards-days100-103.md. Exit cards: cards-exits-100-104.md. Keys: key-exits-100-104.md. Packet: packet-day105.md. Key: key-day105.md. No tool.
+The wall strip with bands, the passenger sort cards, a swim-club table, the Hardship Table, the record folder, colored pencils, the day 105 sheets. Cards: cards-days100-103.md. Exit cards: cards-exits-100-104.md. Keys: key-exits-100-104.md. Packet: packet-day105.md. Key: key-day105.md. No tool.
 
 ## A room with nothing
 

@@ -11,7 +11,7 @@ check: readiness
 
 ## Student
 
-For the teacher. This is one short page, not a test. Read the Jo Card (jo-card.md) aloud once, then read each question aloud once. Every child answers on the page by writing a few words or labelling a drawing. A child who prefers may answer at the side table. Note on the record sheet what each child did and what help was used. Give no score and no grade. It is asked on day 1 in the last ten minutes, after the hook and the retrieval question.
+For the teacher. This is one short page, not a test. Read the Jo Card (jo-card.md) aloud once, then read each question aloud once. Every child answers on the page by writing a few words or labeling a drawing. A child who prefers may answer at the side table. Note on the record sheet what each child did and what help was used. Give no score and no grade. It is asked on day 1 in the last ten minutes, after the hook and the retrieval question.
 
 ## Items
 

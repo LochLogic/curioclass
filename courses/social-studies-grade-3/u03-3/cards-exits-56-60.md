@@ -32,7 +32,7 @@ Ask 2: Canoe Card. What might the penalty make a renter do?
 
 ## Day 59: Two cards
 
-Sedge Credit Union Card, invented. Sedge Credit Union lets the neighbours who joined it save and borrow. Tern Insurance Card, invented. Tern collects a fee from many people.
+Sedge Credit Union Card, invented. Sedge Credit Union lets the neighbors who joined it save and borrow. Tern Insurance Card, invented. Tern collects a fee from many people.
 
 Ask 1: Sedge Credit Union Card, invented. Who owns Sedge Credit Union?
 Ask 2: Tern Insurance Card. What does Tern do with the money people pay?

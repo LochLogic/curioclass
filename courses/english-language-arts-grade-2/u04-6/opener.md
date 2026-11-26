@@ -16,7 +16,7 @@ For five days the class writes one short opinion about a pollinator garden from 
 - Day 142: a fresh model, a revision after a note, a short exit.
 
 ## The ideas at an adult's level
-An opinion has five parts: a topic, a statement of what we think, reasons, a link word that joins a reason to the opinion, and an ending. Exact words are near neighbours that differ in strength or manner (a sip is smaller than a gulp). Revision changes an idea; editing fixes a convention.
+An opinion has five parts: a topic, a statement of what we think, reasons, a link word that joins a reason to the opinion, and an ending. Exact words are near neighbors that differ in strength or manner (a sip is smaller than a gulp). Revision changes an idea; editing fixes a convention.
 
 ## The errors in plain words
 - Near words treated as the same (a quiet step and a heavy step called one thing).

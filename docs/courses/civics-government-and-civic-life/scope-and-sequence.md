@@ -99,7 +99,7 @@ Arc: three protest days, two group days, two policy days, a comparison day, the 
 
 Arc: two press freedom days, five news literacy days, four editorial days, the compelling question, then assessment and respond. No outlet is named as trusted or untrusted in student copy.
 
-- End-of-unit assessment, day 143: press freedom and competing views, the four news forms' purposes told apart, digital news's and social media's benefits and challenges, an unseen claim read laterally, and an unseen editorial analysed. Respond day 144.
+- End-of-unit assessment, day 143: press freedom and competing views, the four news forms' purposes told apart, digital news's and social media's benefits and challenges, an unseen claim read laterally, and an unseen editorial analyzed. Respond day 144.
 - Candidate cells: none in the frame.
 
 ## Course-level check 3 (days 145 to 148, weeks 29 to 30)
@@ -112,7 +112,7 @@ Check days 145 and 146 (weeks 29 to 30, CALENDAR.md's target), respond days 147 
 
 Arc: five days to the choice of action (149 to 153), the end-of-unit assessment on day 154, its respond day 155, building the class's shared proposal on 156, rehearsal on 157, the presentation on 158, follow-up 159 and the look-back on day 160, the year's last day. Assessing before the build lets the respond day improve the one product it can, and puts rehearsal next to the presentation. Where the booked audience needs day 157, build and rehearse share day 156 and the presentation moves to 157. The class chooses the problem and the action; the course never picks a side.
 
-- End-of-unit assessment, day 154: an unseen local problem analysed at three levels, through two disciplines and over time, its levers weighed and two procedures compared. The teacher's record of the day 151 deliberation counts for D2.Civ.7, and the presentation and follow-up (158, 159) for D4.3 and D4.8. Respond day 155.
+- End-of-unit assessment, day 154: an unseen local problem analyzed at three levels, through two disciplines and over time, its levers weighed and two procedures compared. The teacher's record of the day 151 deliberation counts for D2.Civ.7, and the presentation and follow-up (158, 159) for D4.3 and D4.8. Respond day 155.
 - Candidate cells: none in the frame.
 
 ## Course-level checks

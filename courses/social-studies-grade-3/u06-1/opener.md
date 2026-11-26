@@ -26,7 +26,7 @@ A is thinking a school chair is a national symbol. B is saying "that is an eagle
 
 ## Supplies
 
-Paper, pencils, rulers, the long paper strip (1700 to 1810, one centimetre a year), source cards, the question board, a wall space for the word consent. Exit cards are in cards-exits-125-127.md; the key is in key-exits-125-127.md and is teacher only. Cards for the days are cards-day125.md, cards-repair-day126.md, cards-day126.md and cards-day127.md. The record sheet for children is record-card-day125.md.
+Paper, pencils, rulers, the long paper strip (1700 to 1810, one centimeter a year), source cards, the question board, a wall space for the word consent. Exit cards are in cards-exits-125-127.md; the key is in key-exits-125-127.md and is teacher only. Cards for the days are cards-day125.md, cards-repair-day126.md, cards-day126.md and cards-day127.md. The record sheet for children is record-card-day125.md.
 
 ## A room with nothing
 

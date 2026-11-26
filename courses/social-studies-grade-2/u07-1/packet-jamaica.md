@@ -56,6 +56,6 @@ Illustration: a simple line drawing of blue hills above a harbor town with boats
 | People | Founding date and coast line cut | none | tourism page only; cut 2026-11-21 |
 | People | English is the official language | 84JM1 | English official language of government and education |
 | People | Many speak Jamaican Patois; many use both | 84JM1 | Patois widely spoken; most use both |
-| People | Ackee and saltfish is a favorite dish in Jamaica | 84JM2 | The Jamaica Information Service calls ackee and saltfish the favourite dish. |
+| People | Ackee and saltfish is a favorite dish in Jamaica | 84JM2 | The Jamaica Information Service calls ackee and saltfish the favorite dish. |
 
 <!-- TEACHER-ONLY BLOCK: ends -->

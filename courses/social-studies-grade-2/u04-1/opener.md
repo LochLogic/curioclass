@@ -26,7 +26,7 @@ Each day opens with a repair or a retrieval, then a short teaching part, a part 
 
 ## The errors, in plain words
 
-Pip says each wrong idea once and the right idea is said beside it: Africa is a country (A, day 48); the map with more colours shows the borders (B, day 48); a flag makes a place a country (C, day 49); every leader is chosen by voting (D, day 50); Japan's emperor runs the government (M, day 50); the government has a school, with no purpose (N, day 50); everyone in Japan does one thing (E, day 51); a missing date can be guessed (P, day 51); a printed opinion is a fact (Q, day 51); I think it because I like it (K, day 51).
+Pip says each wrong idea once and the right idea is said beside it: Africa is a country (A, day 48); the map with more colors shows the borders (B, day 48); a flag makes a place a country (C, day 49); every leader is chosen by voting (D, day 50); Japan's emperor runs the government (M, day 50); the government has a school, with no purpose (N, day 50); everyone in Japan does one thing (E, day 51); a missing date can be guessed (P, day 51); a printed opinion is a fact (Q, day 51); I think it because I like it (K, day 51).
 
 ## Supplies for the section
 

@@ -26,7 +26,7 @@ K is thinking a new colony replaced an older one at once. N is giving one cause 
 
 ## Supplies
 
-The wall strip and bands, cause chart, leader record cards, hardship records, Work Terms Table, continuity chart, stop cards, coloured pencils. Cards: cards-days106-110.md. Exit cards: cards-exits-106-110.md. Keys: key-exits-106-110.md. No tool.
+The wall strip and bands, cause chart, leader record cards, hardship records, Work Terms Table, continuity chart, stop cards, colored pencils. Cards: cards-days106-110.md. Exit cards: cards-exits-106-110.md. Keys: key-exits-106-110.md. No tool.
 
 ## A room with nothing
 

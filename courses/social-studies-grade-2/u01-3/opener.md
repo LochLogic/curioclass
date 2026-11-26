@@ -13,7 +13,7 @@ Four days, 9 to 12, of about 35 minutes. Day 9 shows that a round skin cannot li
 
 ## How the days run
 
-Day 9: a repair, the hook and the shell, pairs with cups, the question board, the exit. Day 10: a warm-up repair, the Mercator card beside the globe, pairs with cut-outs, the exit. Day 11: a retrieval warm-up, the Peters card, claim and because, partners with a different purpose, the question board, the exit. Day 12: two repairs, a model outline, pairs labelling, the exit. Every exit has a mark and a spoken part from the rotating six.
+Day 9: a repair, the hook and the shell, pairs with cups, the question board, the exit. Day 10: a warm-up repair, the Mercator card beside the globe, pairs with cut-outs, the exit. Day 11: a retrieval warm-up, the Peters card, claim and because, partners with a different purpose, the question board, the exit. Day 12: two repairs, a model outline, pairs labeling, the exit. Every exit has a mark and a spoken part from the rotating six.
 
 ## The ideas, at an adult's level
 

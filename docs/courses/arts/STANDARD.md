@@ -185,17 +185,26 @@ National time figures (Cory, 2026-11-21, Desk q-fix-arts-1): each K to 8 course 
 association's recommended weekly time, read at source on the association's own site (a downloaded file is allowed,
 Cory, 2026-11-21, Desk q-fix-downloads-1), and our gap (80 minutes a week, 40 on the short path), as health and
 physical education do, so a school can add time. A figure not read at source stays off the page. Read 2026-11-21,
-each from the association's opportunity-to-learn standards:
+each from the association's opportunity-to-learn standards, and later where a row gives another date:
 
 | Discipline | Recommended weekly time, K to 8 | Our gap (80 minutes a week; 40 on the short path) | Source |
 |---|---|---|---|
 | Dance | K to 2: at least 60 minutes (90 at the quality level); 3 to 5 and 6 to 8: at least 90 minutes | K to 2: 20 minutes over the 60 (20 short of it on the short path) and 10 short of the 90; 3 to 8: 10 minutes short (50 on the short path) | dance educators' association, opportunity-to-learn standards, 2017 revision, posted on nationalartsstandards.org |
 | Visual arts, K to 5 | At least 50 minutes weekly through the year, taught by a certified visual arts educator | 30 minutes over (10 short on the short path) | visual arts educators' association, checklist for elementary visual arts education, 2025 posting on arteducators.org, pages 3 and 4 (read 2026-11-25) |
-| Visual arts 6 to 8, and media arts | Pending(docs/reviews/frame-visual-arts-grades-k-to-2-fixes-2026-11-25.md#Left for the lead): the association's middle school checklist and its media arts lines are read at source before their frames; the 2026-11-21 read missed the elementary figure | none stated until read | visual arts educators' association, opportunity-to-learn checklists, 2025 posting on arteducators.org |
+| Visual arts 6 to 8 | No weekly minimum in minutes; several scheduling patterns allowed | none stated (no minute figure to compare) | visual arts educators' association, middle school opportunity-to-learn checklist, 2025 posting on arteducators.org (read at source by the second-model read, 2026-11-25) |
+| Media arts | No separate media arts weekly minimum in the association's elementary or middle school checklists or its general PreK to 12 program standards (the elementary 50 minutes is a visual arts figure) | none stated | visual and media arts educators' association, the same checklists and program standards on arteducators.org (read at source by the second-model reads, 2026-11-25) |
 | Music | General music, basic level: at least 90 minutes in each of K to 2, 3 to 5 and 6 to 8 | 10 minutes short (50 on the short path) | music educators' association, National Opportunity to Learn Standards, 2020, on nafme.org (read in a browser 2026-11-21, nothing saved) |
-| Theater | No figure: the theater association has no page giving one | none to state | none found |
+| Theater | K to 5: no weekly-time figure verified (the opportunity-to-learn standards address grades 6 to 12); 6 to 8: at least 45 minutes of theater instruction in the school day for at least one semester each year, not stated as daily | K to 5: none to state; 6 to 8: read as 45 minutes a day over an 80-day semester (an assumption, so labeled), 60 hours against our 42 hours 40 minutes a year, 17 hours 20 minutes short (38 hours 40 minutes on the once-a-week path) | theater educators' association, opportunity-to-learn standards, 2016 (2022 posting on schooltheatre.org, PDF page 10; read at source by the second-model read, 2026-11-25) |
 
-The course pages carry the dance, music and visual arts K to 5 rows' figures and gaps; theater names none, since its association gives no minutes.
+High school levels give 225 minutes a week (five 45-minute periods; the 80-day short path keeps the week and halves the year):
+
+| Discipline | Recommended time, high school | Ours against it | Source |
+|---|---|---|---|
+| Music (composition and theory) | The same schedule as other academic subjects in the school; no minute figure | none to state | music educators' association, National Opportunity to Learn Standards, 2020 (nafme.org, NAfME-Opportunity-to-Learn-Standards-2020.pdf, printed page 19; read at source by the second-model read, 2026-11-25) |
+| Visual arts | Regular instruction on a par with other academic subjects; semester and other schedules allowed; no numeric minimum | none to state | visual arts educators' association, high school opportunity-to-learn checklist, 2025 posting on arteducators.org (read at source by the second-model read, 2026-11-25) |
+| Dance | Proficient and Accomplished: 60 to 90 minutes at least three times a week (180 to 270 minutes); Advanced: a typical 90-minute class | 225 minutes a week sits inside 180 to 270, in periods shorter than 60 to 90 minutes | dance educators' association, opportunity-to-learn standards, 2017 revision, posted on nationalartsstandards.org (read 2026-11-26) |
+
+Each course frame's Days bullet states its row's figure and gap; where no minute figure was found, no gap is stated. Theater and media arts high school rows are not read yet.
 
 On the 32-session path each unit keeps four things, in this order and no fewer: the demonstration with a step card,
 opened by the look or listen at a work that carries the unit's response to another artist's work and its

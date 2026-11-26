@@ -16,7 +16,7 @@ One for each pair. Two maps on one sheet. Maps are redrawn by Curio Class in 202
 
 ## Political map
 
-**Picture:** The same crop. Title: "Tanzania, countries". Tanzania in one shade, its neighbours in other shades and unnamed. A dashed line is the border. A star for the capital, Dodoma. Key: a dashed line is a border, a star is a capital, a shade is one country.
+**Picture:** The same crop. Title: "Tanzania, countries". Tanzania in one shade, its neighbors in other shades and unnamed. A dashed line is the border. A star for the capital, Dodoma. Key: a dashed line is a border, a star is a capital, a shade is one country.
 **Say:** "Box the country. Tell your partner which key line told you."
 
 ## Key (teacher)

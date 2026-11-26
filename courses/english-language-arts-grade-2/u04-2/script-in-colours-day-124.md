@@ -5,7 +5,7 @@ unit: 4.2
 version: draft, not yet taught
 credit: ours
 ---
-# The tale in colours (days 124, 125 and 129)
+# The tale in colors (days 124, 125 and 129)
 
 Layout only; the words are the text g2-u4-04, printed unchanged.
 

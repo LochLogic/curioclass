@@ -194,7 +194,7 @@ The frame remains 120 minutes. A 100-minute shorter-period contingency gives top
 
 A 100-minute course assessment day has 15 individual readings at three minutes (45), three oral groups at three minutes (9), written spelling/missing forms (10), independent topic tasks (30), transitions (6), total 100. The second day hears the other 15 children and three groups. Shorter passages at the same demand retain prose, poem and information and successive reading. If full evidence takes longer, keep the normal 120-minute window. Unit observation days retain the 30-minute foundations cohort, topic prompts and response by trimming rehearsals. On 33/75/119/157 collection ends before the midpoint and the last 20 minutes remain response. No permanent frame-time change is made.
 
-For a year ten days short, fold these ten unassessed days into their neighbours. Replace duplicate rehearsal in the receiving topic block and combine repeated foundations practice while retaining both explicit moves and all letter forms. None is a reserved observation, assessment or cycle-end sample. Days 27 and 153 now carry observations, so replace their former folds with 24 and 143.
+For a year ten days short, fold these ten unassessed days into their neighbors. Replace duplicate rehearsal in the receiving topic block and combine repeated foundations practice while retaining both explicit moves and all letter forms. None is a reserved observation, assessment or cycle-end sample. Days 27 and 153 now carry observations, so replace their former folds with 24 and 143.
 
 | Fold-in day | Receiving day | Work kept inside the receiving day's blocks | Minutes saved |
 |---|---|---|---|

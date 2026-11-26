@@ -11,7 +11,7 @@ Print "invented for practice" in small letters at the bottom of each card. Plain
 
 ## Day 1: Sign Card
 
-Rae lives by the old bridge. People walked past it and did not know its stories. Rae asked the neighbours for the bridge's stories and put them on a sign at the bridge. After the sign went up, visitors stopped to read.
+Rae lives by the old bridge. People walked past it and did not know its stories. Rae asked the neighbors for the bridge's stories and put them on a sign at the bridge. After the sign went up, visitors stopped to read.
 
 Ask: What did Rae do about the old bridge? What changed at the old bridge after the sign went up?
 

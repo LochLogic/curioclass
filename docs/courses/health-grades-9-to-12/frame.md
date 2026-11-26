@@ -322,7 +322,8 @@ rates and percents in units 2, 3, 11 and 12, unit prices in unit 14, counts and 
    2's goal steps plan page", but SEL unit 2 is Stress and coping (the goal steps live in SEL unit 6, weeks 27 to 31),
    and PE 9 to 12 points to docs/plans/calendar.csv where the file is data/plans/calendar.csv. The NHES own-words
    lines for NHES.S1.12.7 (benefits apart from supports), NHES.S1.12.8 (confidence, likelihood and seriousness) and
-   NHES.S3.12.2 to NHES.S3.12.4 (information, products and services) in data/standards/nhes-2024.txt are the lead's.
+   NHES.S3.12.2 to NHES.S3.12.4 (information, products and services) in data/standards/nhes-2024.txt were fixed
+   2026-11-26.
 5. **Supplies ceiling (money, Cory's).** $68 printing for a class of 30 a semester, $113 with the optional no-cook
    demonstration. Pick: $70 a semester, the demonstration outside it.
 6. **Sources named from memory.** No page was opened for this frame (no fetch); the Codex read (2026-11-25) opened

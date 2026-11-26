@@ -218,8 +218,7 @@ frame's Handed on table.
 
 Two grade 5 rows hand on to grade 7 rows (settled by the expert read, 2026-11-25): g5-fn-claims-that-hurt (fads,
 judged in g7-fn-judge-claims, unit 13) and g5-s-online-safety (online safety, carried by g7-s-online-boundaries,
-unit 14), each with a readiness check before its unit. The hands_on and assumes cells are the lead's to apply (For
-the lead 4).
+unit 14), each with a readiness check before its unit. The hands_on and assumes cells carry both (applied 2026-11-26).
 
 ### Within the band: grade 6 to grade 7
 
@@ -467,26 +466,23 @@ comparing two given figures, all taught in math by the unit that uses them or ea
 1. **Dose (pick: 48 lessons a year of 45 minutes, three every two weeks).** APPROACH.md says about 45; 48 gives a
    fixed rhythm a school can timetable and puts the checks on weeks 17 and 32. A school that adds time (the
    national figure is 80 hours a year; this is 36) adds lessons to extend units, never a new unit.
-2. **After-core checks.** Health's mid-year check is school day 84 (week 17) in each grade, and PE 6 to 8's mid-year
-   check ranges overlap that day in grades 6, 7 and 8 (`frame.py calendar`, 2026-11-25). Pick: keep health's day
-   pending the lead's one calendar pass; moving PE is the cheaper choice (PE 6 to 8 For the lead 6 offers weeks 19 to
-   21 in grades 6 and 7 and weeks 19 and 21 to 23 in grade 8), since health's day can move only if its unit
-   boundaries shift. Week 32 year-end sharing is permitted (finals week).
+2. **After-core checks (settled 2026-11-26).** Health's mid-year check stays on school day 84 (week 17) in each
+   grade; the lead's calendar pass pinned PE 6 to 8's mid-year checks off school days 82 to 84 (PE 6 to 8 Course-level
+   checks), so `frame.py calendar` shows no clash. Week 32 year-end sharing is permitted (finals week).
 3. **Row change made: g6-pa-habits-supports-barriers** gains `~NHES.S6.8.2` and one note sentence (the class
    activity goal set alone, with help or as a group), so standard 6 is practiced in two topics with the sensitive
    rows out, as the K to 2 pilot did for its physical activity row. Pick: add the same count note to STANDARD.md
    section 4 with the pilot's For the lead 4.
-4. **Two grade 5 handoffs (settled by the expert read, 2026-11-25; the cells are the lead's).** In health.csv,
+4. **Two grade 5 handoffs (settled by the expert read, 2026-11-25; done 2026-11-26).** In health.csv,
    g5-fn-claims-that-hurt hands_on `g7-fn-judge-claims` and g7-fn-judge-claims assumes adds it; g5-s-online-safety
    hands_on `g7-s-online-boundaries` and g7-s-online-boundaries assumes adds it. This frame already places the two
    readiness checks (last ten minutes of units 12 and 13) and the 3 to 5 frame names the handoff.
 5. **g6-pa-habits-supports-barriers lean wording.** Its cross_subject says "after the grade 6 statistics unit", but
    math grade 6 unit 8 runs days 142 to 157, after this course's grade 6 goal unit. Pick: change it to
    "math:6.SP.B.5 (summarize a behavior log; health reads counts only when math is later)".
-6. **SEL and PE sides.** Both frames have landed and are cited above by band unit number and week. Lead items on
-   their side: PE 6 to 8's cue lines (units 12 and the g7-manage-feelings seam) use "stop, breathe, name it, pick a
-   tool, go on"; the settled card is "stop, breathe, name it, choose, go on" (SEL expert read m3). PE 6 to 8's
-   g8-goals-obstacles seam can add "one goal sheet where both run".
+6. **SEL and PE sides (done 2026-11-26).** Both frames have landed and are cited above by band unit number and
+   week. PE 6 to 8's cue lines use the settled card, "stop, breathe, name it, choose, go on" (SEL expert read m3), and
+   its g8-goals-obstacles seam says the student keeps one goal sheet where both run.
 7. **Browser check.** The national highway traffic safety agency's car seat page returned 403 to the K to 2
    reader's fetcher, so its bicycle, impaired driving and back-seat (unit 12, under 13) pages named here are marked
    browser check; the safety read opens them in Claude in Chrome.

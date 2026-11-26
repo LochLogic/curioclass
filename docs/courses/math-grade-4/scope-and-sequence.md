@@ -211,7 +211,7 @@ Day 100 has its own 45-minute budget: five warm-up, five facts sample, eight res
 
 For a year about ten days short, the following are the ten named fold-ins. Each is unassessed consolidation, not a first teaching of an owned part. Transfer its work as indicated within the receiving lesson's practice time, replacing repeated items. The full 160-day CSV remains the reference schedule; a school using this 150-meeting path renumbers its local days and weeks, preserves assessment/response order and staggers course-level checks across subjects locally. Do not claim the original week numbers for that shorter calendar.
 
-| Fold day into neighbour | Minutes saved | Work preserved and replacement |
+| Fold day into neighbor | Minutes saved | Work preserved and replacement |
 |---|---:|---|
 | 6 into 4 | 60 | One mixed factor-pair/multiple practice set replaces a repeated grouping problem; exhaustive pairs and prime/composite decisions were introduced on days 2 and 3. |
 | 17 into 18 | 60 | One multiples-based equivalence example precedes the factors example; replace the second repeated card round and connect both to cutting parts. |
@@ -224,7 +224,7 @@ For a year about ten days short, the following are the ten named fold-ins. Each 
 | 99 into 98 | 60 | One numerical given-rule pattern replaces a repeated visual-pattern extension; retain an unstated-feature explanation for both number and shape patterns. |
 | 106 into 107 | 60 | One two-digit-by-two-digit partial-product record replaces a second shortened-record example; both digit-size cases and the model-to-record connection remain. |
 
-The ten fold-ins save 600 minutes, ten 60-minute meetings against the frame's 160 days (9,600 minutes), leaving 150 meetings (9,000 minutes). Each receiving day replaces duplicate practice with the named work; these are net meeting savings, not a request to add a full extra lesson to its neighbour.
+The ten fold-ins save 600 minutes, ten 60-minute meetings against the frame's 160 days (9,600 minutes), leaving 150 meetings (9,000 minutes). Each receiving day replaces duplicate practice with the named work; these are net meeting savings, not a request to add a full extra lesson to its neighbor.
 
 None of the fold-ins is a readiness, end-of-unit or course-level check, a saved assessment product, a response day or an original day added for a weak handoff. A shorter period and a shorter year together are a higher load; preserve the required representation and evidence rather than adding homework or assuming a digital tool.
 
