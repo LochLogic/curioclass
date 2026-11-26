@@ -8,7 +8,7 @@ credit: ours
 
 # Day 27 exit ticket
 
-Invented for practice. A flap signal fails when its contacts miss. Partners suggest wider contacts or brighter paint. Recommend a refinement using failure evidence and the energy path.
+Invented paper record. A cell-powered toy fan has a complete circuit. In each failed trial, a card guard touches and stops the blades. The guard must stay attached. Available: card, tape, cell holder, leads and fan. Recommend a safe refinement using the failure evidence and energy path.
 
 Response: __________________________________
 

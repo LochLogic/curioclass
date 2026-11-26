@@ -32,9 +32,11 @@ Wrong G: A proves the air path because the rod joins both supports.
 
 ## s02-X18
 
-Light reaches the sunlit patch; opaque shade blocks the direct path; some light passes the screen. The matching sunlit patch warms five degrees versus one in shade from equal starts. This supports sunlight transfer; screened warming is unknown.
+Sunlight is redirected by the flat mirror to the tile. The matching timed records show warming only when that light reaches it, supporting energy transfer by light. The opaque card blocks the beam. Some light passes the screen, but warming there is unknown.
 
-Wrong H: The brighter-looking patch must be warmer without checking readings.
+Paper reasoning only; do not reproduce this case with sunlight.
+
+Wrong H: The screen makes the tile warmer for certain, without a temperature record.
 
 ## s02-X19
 

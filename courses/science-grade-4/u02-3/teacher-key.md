@@ -32,19 +32,21 @@ Wrong C: We need no rule for success.
 
 ## s02-X27
 
-Wider contacts may join when the flap opens, maintaining the complete current path through both cell terminals and buzzer. Stored cell energy is transferred to sound. Missed contacts explain this choice; paint does not address the break. A retest prediction is welcome but not required by the stem.
+Disconnect the cell before any adjustment. Reshape and tape the attached guard clear of the blades, or give another feasible safe clearance repair using the listed parts. The repeated blade jams justify this change. The complete circuit transfers stored cell energy through current to fan motion. Keep the guard; do not guarantee success.
 
-Wrong D: Paint improves the signal because I prefer its color, without test evidence.
+Paper case only. No fan activity or added equipment. A retest prediction is optional.
+
+Wrong D: Painting the guard my favorite color fixes the jam without failure evidence.
 
 ## s02-X28
 
-No: listening point changed. Retest refined device five openings at the original doorway with matching parts/opening method. Record all outcomes and contact conditions, then compare doorway results.
+The trials do not isolate pad improvement because both pad and cell changed. Compare original and wider pads using the same working cell, seven matching presses, and the same setup and observation point. Record all outcomes before judging improvement.
 
-Wrong D: More detections prove improvement even though conditions changed.
+Wrong D: More lights prove pad improvement even though the cell changed.
 
 ## s02-X29
 
-Add five retest rows using the original observation point, parts and opening method. Include outcome and lead-condition columns. Leave results blank and label them not yet collected. The improvement claim is unproved until comparable results exist.
+Add six retest rows at the original desk point using the same cell, lamp and tilt method. Include light/dark/unclear and switch-state columns. Leave outcomes blank, labeled not yet collected. Moving the switch does not itself prove improvement.
 
 Wrong D: The improvement claim needs no test evidence.
 

@@ -8,7 +8,7 @@ credit: ours
 
 # Day 18 exit ticket
 
-Invented for practice. Both patches start at 21 degrees Celsius. Pale patch in sunlight: 26 degrees; matching pale patch in shade: 22 degrees. A screen lets some light through; its patch has no temperature reading. Draw lit, blocked and partly transmitted paths with a warming-evidence caption.
+Invented paper record. A flat mirror redirects sunlight onto a tile. Matching timed records show warming only while the reflected beam reaches the tile. An opaque card blocks that beam. A screen passes some light; its tile temperature is unrecorded. Draw the three paths with a caption using the warming evidence.
 
 Response: __________________________________
 

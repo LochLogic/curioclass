@@ -8,15 +8,15 @@ credit: ours
 
 # Day 29 exit ticket
 
-Invented for practice. A case-opening signal claims improvement after securing a loose lead. Original desk test: sound, silence, sound, silence, sound. The lead was loose on both silent openings. Parts and opening method stay the same. The drawing shows both cell terminals joined through the buzzer and secured lead. Add a matching retest table, leaving uncollected results blank.
+Invented for practice. A tilt lamp claims improvement after moving its switch. Original desk tilts: light, dark, dark, light, dark, light. The switch stayed open during each dark tilt. Cell, lamp and tilt method stay the same. The revised drawing shows the switch closing at the target tilt. Add a matching retest table, leaving uncollected results blank.
 
-| Original opening | First | Second | Third | Fourth | Fifth |
-|---|---|---|---|---|---|
-| Signal | Sound | Silence | Sound | Silence | Sound |
-| Lead | Joined | Loose | Joined | Loose | Joined |
+| Original tilt | First | Second | Third | Fourth | Fifth | Sixth |
+|---|---|---|---|---|---|---|
+| Lamp | Light | Dark | Dark | Light | Dark | Light |
+| Switch | Closed | Open | Open | Closed | Open | Closed |
 
 ```text
-cell plus --- secured lead --- buzzer --- cell minus
+cell plus --- moved switch --- lamp --- cell minus
 ```
 
 Response: __________________________________

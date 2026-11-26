@@ -46,7 +46,7 @@ ________________________________________________
 
 ## 2a. Generator path
 
-Invented for practice. A pull-cord turns a generator powering a marker lamp. Parts: cord, generator, leads, lamp, tape and one box. The leads join both generator terminals through the lamp. The signal must light on every pull. Two failed pulls coincide with a joint opening. It lights on every other pull. Explain how pulling supplies energy for the light.
+Invented for practice. A pull-cord turns a generator powering a marker lamp. Parts: cord, generator, leads, lamp, tape and one box. The leads join both generator terminals through the lamp. The signal must light on every pull. In eight matching pulls, two failures coincide with a joint opening. It lights on all remaining pulls. Explain how pulling supplies energy for the light.
 
 Response: __________________________________
 

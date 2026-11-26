@@ -104,9 +104,9 @@ s02-X23,The generator creates energy without an input.,,,A,Use the evidence and 
 s02-X24,Any attractive alarm succeeds without a success rule.,,,C,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
 s02-X25,One lead completes the circuit.,,,B,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
 s02-X26,We need no rule for success.,,,C,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
-s02-X27,"Paint improves the signal because I prefer its color, without test evidence.",,,D,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
-s02-X28,More detections prove improvement even though conditions changed.,,,D,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
-s02-X29,The improvement claim needs no test evidence.,,,D,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X27,Painting the guard my favorite color fixes the jam without failure evidence.,,,D,Preference does not address the recorded blade jam. Accept a feasible safe guard-clearance change with an energy-based reason.
+s02-X28,More lights prove pad improvement even though the cell changed.,,,D,Pad and cell changed together. Compare both pads under one working cell and matching presses.
+s02-X29,The improvement claim needs no test evidence.,,,D,Require a comparable six-tilt record; a revised switch drawing alone supplies no retest outcomes.
 s02-X30,The manufactured battery is the natural resource.,,,I,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
 s02-X31,Natural gas is replenished within human lifetimes.,,,J,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
 s02-X32,Burning fuel releases no air pollutants.,,,K,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
@@ -738,5 +738,5 @@ s02-X20-wire,One terminal is enough.,,,B,"Record the observed misconception only
 s02-X25-build,One terminal is enough.,,,B,"Record the observed misconception only. Unavailable equipment or an absent turn is an evidence gap, not this error."
 s02-X28-retest,A preferred change needs no retest.,,,D,"Record the observed misconception only. Unavailable equipment or an absent turn is an evidence gap, not this error."
 s02-E2b,My preferred change needs no retest.,,,D,Preference does not replace failure evidence and a comparable retest.
-s02-X18,The brighter-looking patch must be warmer without checking readings.,,,H,Appearance alone is insufficient; use equal starting readings and matched pale patches. H diagnoses unsupported warming claims.
+s02-X18,"The screen makes the tile warmer for certain, without a temperature record.",,,H,Some transmitted light does not supply a missing warming observation; retain unknown warming.
 s02-X34-graph,Wind has four shares.,,,x,The invented record gives wind two shares. Confer on matching each bar to its label and count; do not diagnose a science misconception from this graph error.

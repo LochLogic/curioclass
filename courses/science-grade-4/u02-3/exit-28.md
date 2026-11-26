@@ -8,7 +8,7 @@ credit: ours
 
 # Day 28 exit ticket
 
-Invented for practice. Wider contact: five signals in five openings beside the box. Original contact: two in five at the doorway. Explain whether this establishes improvement against the doorway rule, including a needed retest.
+Invented for practice. A pressure-pad lamp should light at each press. Wider pad: six lights in seven presses with a fresh cell. Original pad: four lights in seven presses with an older cell. Explain whether this proves improvement, including a needed retest.
 
 Response: __________________________________
 

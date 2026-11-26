@@ -20,7 +20,7 @@ Wrong B: One lead from one terminal completes the path.
 
 ## s02-X21
 
-Draw a complete loop through both cell terminals and the target buzzer. Silence the nearby buzzer; compare target sound with its path complete and interrupted. Require the control; hearing nearby sound proves no target path.
+Draw a complete loop through both cell terminals and the target buzzer. Silence the nearby buzzer; compare target sound with its path complete and interrupted. Hearing sound near another sounding buzzer cannot establish the target current path.
 
 Wrong B: One lead is enough to power this buzzer.
 

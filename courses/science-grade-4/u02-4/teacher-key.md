@@ -32,7 +32,7 @@ Wrong K: Burning fuel releases no air pollutants.
 
 ## s02-X33
 
-A connects wind motion, generator and electricity/light. B identifies blade noise and component-production effects. Matched invented trials support reduced noise, not fewer collisions. Component-production effects remain; bird outcomes come from the invented record.
+A explains wind motion turning a generator to supply electricity for clinic lighting. B identifies blade noise as an environmental effect. The matched invented trials support reduced noise; bird collisions remain unchanged in that record. Accept these source contributions and the remaining bird effect without requiring component-production effects.
 
 Wrong F: This improvement removes every environmental effect.
 

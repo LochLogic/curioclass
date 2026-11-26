@@ -76,8 +76,9 @@ Use the existing single 28-point assessment record and original component criter
 
 ## s02-E2b
 
-Secure the opening joint with the existing tape. The two failures match the joint opening. Predict fewer failures during the same number of matching pulls, then retest; improvement is not guaranteed.
+Recommend securing the opening joint with the listed tape. Both failed pulls coincide with that joint opening. Predict fewer than two failures in eight comparable pulls, without guaranteeing improvement. Propose the matching retest; no live retest is required by this paper item.
 
-Two points: cite the matching failure evidence; propose a feasible change within listed parts/one box with a comparable retest prediction.
+Two points: cite the matching failure evidence; propose a feasible change within listed parts/one box with a comparable eight-pull retest prediction. Do not require performing an additional retest.
 
 Wrong D: My preferred change needs no retest.
+
