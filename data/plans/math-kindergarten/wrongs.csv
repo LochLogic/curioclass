@@ -1971,3 +1971,5 @@ s03-F2-56-2,Too thin to be a triangle.,,,C,Assign this one letter only from the 
 s03-F2-56-3,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
 s03-F2-57-2,Too thin to be a triangle.,,,C,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
 s03-F2-57-3,Cannot be a square because it is turned.,,,B,Assign this one letter only from the indicated component action or words actually observed; keep unmatched responses verbatim.
+s03-P45-positions,Moves the circle below the cup.,,,J,Assign only when the placement is observed from the fixed viewer after the one spoken command; never infer from unheard language.
+s03-P45-position-below,Moves the circle above the cup.,,,J,Assign only when the placement is observed from the fixed viewer after the one spoken command; never infer from unheard language.
