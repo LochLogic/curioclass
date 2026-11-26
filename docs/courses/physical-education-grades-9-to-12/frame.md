@@ -200,8 +200,8 @@ year (9, 10, 11, 12); grades 9 and 10 stand for the review tool's level 1 and gr
 ### Picked up from Physical Education, grades 6 to 8
 
 Taken from the rows' assumes and data/progressions/physical-education-edges.md ("6-8 to 9-12"). The grades 6 to 8
-frame is being written beside this one, so its unit numbers are not cited here:
-Pending(docs/courses/physical-education-grades-6-to-8/frame.md): the grades 6 to 8 unit that last teaches each row.
+frame teaches grade 6 rows in its units 1 to 7, grade 7 rows in units 8 to 14 and grade 8 rows in units 15 to 22;
+each retrieval task and readiness check names the unit that last taught its row from that frame's Units table.
 Grade 8 rows open as retrieval tasks in grade 9; grade 6 and 7 rows, and grade 8 rows first used again in grade 10,
 get readiness checks (lesson 16).
 
