@@ -1,6 +1,7 @@
-"""The 12 end-goal tests as numbers (docs/CONSOLIDATION-PLAN.md, "What each word means"; consolidation 4.J).
+"""The 16 end-goal tests as numbers (docs/CONSOLIDATION-PLAN.md, "What each word means"; consolidation 4.J; 13 to 16 from
+the pedagogy-architecture review, change 14).
 
-    python -X utf8 scripts/goal_tests.py            print the 12 counts
+    python -X utf8 scripts/goal_tests.py            print the 16 counts
     python -X utf8 scripts/goal_tests.py --write    also write today's counts to data/plans/goal-tests.csv
 
 gate.py runs it with --write after `--all --save`. data/plans/goal-tests.csv (test, name, count, target, detail, date)
@@ -99,7 +100,75 @@ def tests():
         'with no retire row' % len(ids.retired()))
     orph = index.r_orphans(ix)
     add(12, 'nothing orphaned', len(orph), 0, 'orphans report lines')
+    # 13 to 16: the curriculum goal tests (pedagogy-architecture review change 14, later.csv L141)
+    gaps, units = unassessed_codes()
+    add(13, 'every owned code assessed', len(gaps), 0,
+        'frame Owned standards codes with no end item (items.csv check end) citing the code, a lettered part or its '
+        'parent, over the %d units that have end items so far' % units)
+    od = [r for r in index.rows_of(ROOT / 'data' / 'plans' / 'defects.csv') if r.get('status') == 'open']
+    add(14, 'no open alignment defects', sum(1 for r in od if r.get('kind') == 'alignment'), 0,
+        'open kind-alignment rows in data/plans/defects.csv (plan.py defect); %d open rows of every kind' % len(od))
+    import contextlib
+    import io
+    import ledger
+    tal = {}
+    for s in ('math', 'ela', 'science', 'social-studies'):
+        with contextlib.redirect_stdout(io.StringIO()):
+            tal[s] = ledger.recheck_tally(s)[0]
+    add(15, 'every review claim matches', sum(t['unmatched'] for t in tal.values()), 0,
+        'ledger recheck citations that match no item or day row (ledger.recheck_tally, four core subjects; '
+        '%d citations, %d flagged in all)' % (sum(t['citations'] for t in tal.values()),
+                                              sum(t['flagged'] for t in tal.values())))
+    below, total = days_below_read()
+    add(16, 'every day read at grade close', below, 0,
+        'day files whose version line has no "grade read" or "signed off" (day_version.py), of %d' % total)
     return out
+
+
+def unassessed_codes():
+    """[(course, unit, code)] for each owned code (frame Units table, Owned standards, ~ codes left out) of a unit
+    with at least one end item, where no end item of the course cites the code, a lettered part of it or its parent."""
+    import frame
+    import index
+    with open(ROOT / 'data' / 'plans' / 'course-list.csv', encoding='utf-8', newline='') as f:
+        ids = [r['id'] for r in csv.DictReader(f)]
+    gaps, units = [], 0
+    for c in ids:
+        if c in index.PILOT or not (ROOT / 'docs' / 'courses' / c / 'frame.md').exists():
+            continue
+        ends = [r for r in index.rows_of(ROOT / 'data' / 'plans' / c / 'items.csv') if r.get('check') == 'end']
+        if not ends:
+            continue
+        cited = {x.strip().lstrip('~') for r in ends for x in frame.split_codes(r.get('code'))}
+        have = {(r.get('stretch') or '').strip() for r in ends}
+        for u in frame.parse(c)['table']:
+            n = (u.get('#') or '').strip()
+            if n not in have:
+                continue
+            units += 1
+            cell = (u.get('Owned standards') or '').replace('`', '')
+            for code in frame.split_codes(cell):
+                if code.startswith('~') or code.lower() in ('none', 'none owned'):
+                    continue
+                part = any(x.startswith(code) and x[len(code):].isalpha() and x[len(code):].islower() for x in cited)
+                parent = code[-1:].islower() and code[:-1] in cited
+                if code not in cited and not part and not parent:
+                    gaps.append((c, n, code))
+    return gaps, units
+
+
+def days_below_read():
+    """(day files whose version line has no grade read and no signed off date, all day files), over every course."""
+    import day_version as dv
+    below = total = 0
+    for d in sorted(p for p in (ROOT / 'courses').iterdir() if p.is_dir()):
+        for f in dv.day_files(d.name):
+            total += 1
+            m = dv.LINE.search(f.read_text(encoding='utf-8')[:3000])
+            p = dv.parse(m.group(1)) if m else {}
+            if not (p.get('read') or p.get('signed')):
+                below += 1
+    return below, total
 
 
 def write(rows):

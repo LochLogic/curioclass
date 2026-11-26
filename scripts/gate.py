@@ -288,7 +288,7 @@ def main(a):
     else:
         raw, summary = RAW / ('now-' + key), None
     run(scope, raw, pats, summary)
-    if scope[0] == 'all' and summary and not pats:   # a saved full run records the 12 end-goal tests (4.J)
+    if scope[0] == 'all' and summary and not pats:   # a saved full run records the 16 end-goal tests (4.J)
         subprocess.run([sys.executable, '-X', 'utf8', str(ROOT / 'scripts' / 'goal_tests.py'), '--write'], cwd=ROOT)
     base = RAW / ('base-' + key)
     if scope[0] == 'course':

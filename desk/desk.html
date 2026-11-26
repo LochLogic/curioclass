@@ -398,7 +398,7 @@ details.oldview summary{cursor:pointer;font:700 15px var(--body);color:var(--mut
     <div class="cm" id="cmlist"></div>
   </section>
   <section class="site" id="health" aria-label="Health of the build">
-    <div class="shead"><div><h2>Health of the build</h2><p class="sub">The 12 end-goal tests from the last full gate, known misses kept on file, and what is waiting.</p></div></div>
+    <div class="shead"><div><h2>Health of the build</h2><p class="sub">The 16 end-goal tests from the last full gate, known misses kept on file, and what is waiting.</p></div></div>
     <div class="hfacts tally" id="hfacts"></div>
     <div class="hgrid" id="hgrid"></div>
     <div><h3 class="sh3">Quality <span class="sub" style="font-weight:500">what readers found, beside what the gates find</span></h3><div class="qgrid" id="hqual"></div></div>
@@ -876,7 +876,7 @@ details.oldview summary{cursor:pointer;font:700 15px var(--body);color:var(--mut
     }
     return box;
   }
-  // health: the 12 end-goal tests (latest gate), known misses on file, what is waiting
+  // health: the 16 end-goal tests (latest gate), known misses on file, what is waiting
   function healthRender(h, later) {
     const g = h.goals || [], last = g.reduce((a, r) => r.date > a ? r.date : a, ''), cur = g.filter(r => r.date === last);
     const grid = $('hgrid'); grid.replaceChildren();
