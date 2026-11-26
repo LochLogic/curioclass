@@ -129,3 +129,80 @@ The one external key check used an opened [dictionary entry for impatient](https
 Required initial command: `python -X utf8 scripts/gate.py --course english-language-arts-grade-4`. It exited 1 with `PermissionError: [WinError 5] Access is denied` while launching a child through `subprocess.run` in gate.py line 150. It produced no rule counts or new baseline-comparison lines. This was a process failure, not an exit-2 missing-baseline result; no baseline was manually stored. The course checks could not be judged. No build was run.
 
 An empty `build/gates/now-english-language-arts-grade-4/` folder is present after the failed gate. It was left in place. Only this report was deliberately written; the required gate created or used its own output location. No final gate certification is claimed.
+
+## Fixes applied (2026-11-25)
+
+Job 021, executed 2026-11-26 against kit 14. Status counts refer to complete finding rows, including their owning-stage work: applied 2, rejected 0, partly 44. All findings were confirmed; none was rejected. A partial status means the permitted section correction is made or retained, while the named owning-stage repair remains. Changed 28 section plans and 75 unique ledger notes through the existing locked note command. No unit plan, kit, source/text registry, generated table or day file was edited.
+
+FIRM left: 8, findings 1 to 8, all with unit-plan or text-owner work remaining. Section-only FIRM finding 9 is resolved. The explicit C1/text/allusion holds are incomplete coverage, not certification. Item-level choices include attraction as the reserved replacement spelling, independently keyed components, and named collections inside existing minutes. Every one of the 153 section days still totals 90 minutes.
+
+1. **partly**: Retained u02-5's counted 45-minute day 68 discussion. The contradictory s02 ten-minute/D75 instructions remain with the unit-plan owner.
+2. **partly**: Retained u03-4's 45-minute discussion and u03-8's 25-minute decoding plus five-minute spelling allocation. The s03 administration still needs correction.
+3. **partly**: Retained u04-6's thirty 45-second H2 turns plus 2.5 handover minutes, 25 total. The s04 ten-minute allocation remains wrong.
+4. **partly**: u02-1 overrides D44m with protection/attraction and exact keys, reserving attraction from all earlier instruction/captions. Filtered ledger query found no earlier attraction case. Photograph is reference/root review, not cold evidence. The unit spelling bank still needs the replacement.
+5. **partly**: u04-2 now blocks C1 as cold evidence because its central procedure was taught on 120. Text owner must replace/register the later account and participant pair and their keys; no substitute core text was invented.
+6. **partly**: u04-5 E1 asks for a supported message without naming preservation. Its 40 minutes now separate a 35-minute message essay and five-minute neutral summary with independent records. u04-4 accepts alternative supported messages. Unit E1 cue/key still needs replacement.
+7. **partly**: Removed Herculean and many hands make light work from cold A3/D2 judgment in u04-1/u04-3/u04-4. Earlier uses remain honestly identified as review. Fresh allusion/adage applications and registered text are pending the text owner; unit banks remain unresolved.
+8. **partly**: Kept the already-correct u04-1 eager/keen/reluctant/impatient key, with no required irritation. Both unit A5 keys still need correction.
+9. **applied**: u01-2/u01-3 carry claims say planned only for the corrected three-role design and independently explain facilitator, evidence-finder and questioner. Written discussion moves remain review.
+10. **partly**: u01-1 X03 is inference only, X04 image meaning only. Separate X03b summary and R04-rhythm have solved keys, records, actual Skills/Independent reading minutes and return routes. Unit goals/items still need alignment.
+11. **partly**: u01-2 X06 is metaphor only; X06c is a separately recorded Independent reading collection. D9 action/inference/theme/summary each have independent stems, keys and records within the original allocations. Unit bank remains to align.
+12. **partly**: u01-3 D13a-stated and D13a-infer each use two of the existing four minutes, with independent keys and records. D13b and the sitting total are unchanged. Unit bank still needs matching components.
+13. **partly**: u01-5 X18 classifies supplied claims; separate R19-inference uses Partner rereading. X22 analyzes structure; C22-fragment is separately collected in Sentence control. Goals, Shapes, keys and handoffs agree. Unit rows remain to align.
+14. **partly**: u01-6 X23 produces one introduction, with an unjudged plan. X26 produces one close; R26-relevance has separate Independent reading minutes, key and return. Removed stale two-part handoff wording; unit rows remain to align.
+15. **partly**: u01-7 D30a-product uses 35 minutes and D30a-process five, with a separate one-ask explanation and record. The unit bank still bundles them.
+16. **partly**: u01-8 splits D34 revision/process, action/inference and oral/staging; D35 theme/summary, each comparison and antonym/degree; D36 fact/inference. Distinct stems, keys and records share the original totals. Unit bank remains to align.
+17. **partly**: u02-1 X42 is mechanism only; R42-organization has separate Partner rereading minutes/key. D44 fact/inference, idea/summary, each definition, sense choice and each lookup have separate components within original minutes. Unit bank remains to align.
+18. **partly**: u02-2 D48a now has five two-minute arrow/scale/count/contribution items; D48b has separate four-minute idea and summary items. Solved keys include three scenes per block and 21 versus 12, nine more. Unit bank remains to align.
+19. **partly**: u02-3 X55 categorizes only, with separate R55-source. D56 questions and each body/setting/protection answer have separate records in twelve minutes; sense and print/digital lookups are split in four. Unit bank remains to align.
+20. **partly**: u02-4 X61 is paper quotation punctuation only. C61-spelling has separate Word work minutes; keyboarding uses the already-counted full-page sitting and actual device record. Unit goal/item still needs correction.
+21. **partly**: u02-6 X71 punctuates speech only. R71-purpose has its own source-based key, Independent reading minutes, record and return route. Corrected daily goal; unit goal/item remains to align.
+22. **partly**: u02-7 D74c separates supported idea, four minutes, from neutral summary, two. D74e has one minute per contextual meaning and separate keys/records. Unit bank remains to align.
+23. **partly**: u03-1 X81 timeline contribution, X82 causal order, X84 research question and X85 allusion each ask one thing. Separate gist/display/category/theme records fit named reading parts; daily goals agree. Unit map remains to align.
+24. **partly**: u03-2 X87 source limit, X89 organization comparison and X90 integrated gain/cost each ask one thing. Idea/source/question have separate records and real slots; R90 uses already-released day 89 sources. Unit map remains to align.
+25. **partly**: u03-3 X95 is performance mismatch only. C95-ownership uses a different map/basket sentence and two existing Word work minutes, with its own key and record. Unit map remains to align.
+26. **partly**: u03-4 X100 compares narration only. R101-decision uses the released scene 7 ending in day 101 Independent reading, separately recorded and returned on 102. Corrected daily goal; unit map remains to align.
+27. **partly**: u03-5 X102 is one supported trial-pattern comparison; X103 applies the taught Herculean reference to the first-read Momotaro quarrel, not the familiar Atlas case; X104 is one financing comparison. Summary/pattern evidence is separate. Unit map remains to align.
+28. **applied**: u03-6 X105 repairs reason groups only; R105-opinion is separately collected. X107 composes one introduction; R107-notes is independent prior evidence in Own evidence folder. Solved keys, Shapes, actual slots and ledger notes now agree.
+29. **partly**: u03-7 X114 revises one ending. R114-question is recorded from each child's existing first critique turn, without an added turn or rotation. Keys and record are separate; unit map remains to align.
+30. **partly**: u03-8 D115 punctuation/explanation and phrase/modifier outputs are separate items/records within five/four minutes. X118 revises one sentence; publication is actual separate evidence and next-day notes are unjudged preparation. Unit bank remains to align.
+31. **partly**: u04-1 A1 action/inference and A3 word/idiom have separate stems/keys/records; repeated allusion is pending replacement. X120 asks the unanswered question; X121 gives one character interpretation. Time evidence is separate. Unit bank remains to align.
+32. **partly**: u04-2 X125 summary, X126 claim, X127 source comparison and X128 evidence-based qualification each ask one thing. Other constructs have separate records/slots; X127 and its language record remain held for text registration. Unit map remains to align.
+33. **partly**: u04-3 X134 explains a theme only. Existing pair comments and the final paper minutes collect the actual listening reflection separately, with its own prompt/key/record. Unit map remains to align.
+34. **partly**: u04-4 D1 has independent change/inference/theme/summary items within eighteen minutes; D2 meanings are separate within sixteen, with repeated cold expressions removed and replacements pending. X139 introduction and X141 theme are single products; plan/close remain unjudged. Unit bank remains to align.
+35. **partly**: u04-5 X143 is one attributed note, X144 one supported integration, X145 one visitor-facing report. R143-question and actual R145-register use separate named records; register uses an already released paragraph. Unit map remains to align.
+36. **partly**: u04-6 X148 analyzes support only; X150 produces one linked body sentence. Language-effect/close records have separate existing minutes and keys. These fixed reading stimuli remain held pending registration; unit map remains to align.
+37. **partly**: u04-7 X154 analyzes organization only; R154-register has its own key/record in the final two Partner rereading minutes. Both remain held with the unregistered fixed pair; unit map remains to align.
+38. **partly**: u04-2 explicitly holds X127 day writing and does not count reading dependence until the exact notices selection is stored/registered. Text/data write is outside this job; the missing row/location remains for the lead.
+39. **partly**: u04-4 explicitly holds X138 day writing and reading-dependence claims pending the exact paragraph's storage/registration. No core paragraph was assigned to the day writer; text/data handoff remains.
+40. **partly**: u04-6 explicitly holds X148/X149/X150 pending complete manuscript locations, registry rows, boundaries and aligned item references/keys. Reading dependence is not counted while held; text/data handoff remains.
+41. **partly**: u04-7 explicitly holds the complete Source Display release/note pair and both records pending storage/registration with stable boundaries. No replacement core text was invented; text/data handoff remains.
+42. **partly**: Kept one three-status scale per section component and separate records. The conflicting numerical unit scales and routing thresholds in all four unit plans remain for the unit-plan owner.
+43. **partly**: u02-1/u02-2 now independently explain only facilitator/evidence-finder/questioner, planned only; answering/reflection belong to everyone. The day-33 five-role ledger note is superseded through ledger.py. Two identical blank-day five-role rows cannot be distinguished by the day-only note command and remain a lead tooling handoff.
+44. **partly**: Retained section replacements The Last Token/Two Ways to Find a Poem, Roman-tale-about-a-Greek-hero provenance and the fresh Friday companion. The unit banks, full keys and dependent data still need reconciliation by their owner.
+45. **partly**: Retained photograph/photography as a stress shift and nation/national as a nonshift in the sections. The stale generated unit fact must be regenerated by the owner, not hand-edited.
+46. **partly**: Confirmed the listed UK spellings in s03's adapted retellings. They are outside the permitted section-plan edits; the unit/text owner must use traveling, fulfill, marvelous, traveler, quarreled, quarreling and travelers in owning copies.
+
+### For the lead
+
+- **Unit-plan stage, findings 1 to 3:** adopt the already-counted 68/99 discussions, 119 decoding/spelling and 152 H2 schedules; update every shared allocation, including D75 references.
+- **Unit-plan and text stages, findings 4 to 8:** update D44 spelling to protection/attraction; replace C1's repeated central explanation; remove E1's answer cue and accept supported messages; replace repeated A3/D2 allusion/adage applications; correct both impatient keys. Cold allusion/adage evidence remains pending, not silently dropped as completed coverage.
+- **Unit-plan stage, findings 10 to 27 and 29 to 37:** propagate the corrected section asks, component IDs, source boundaries, keys, goals, record columns and fixed shared minutes into banks/maps and subsequent plan data. Keep separate evidence collections distinct from exits; own parallel drafts stay unjudged.
+- **Unit-plan/text-data stages, findings 38 to 41:** store/register X127, X138, X148, X149, X150 and X154 at complete stable manuscript locations before skeleton/day writing; align needs_text and keys. Their holds remain active. Do not commission these core readings from the day writer.
+- **Unit-plan stage, findings 42 and 44:** replace all numerical scales/triggers with the section three-status scale; align the companion banks and provenance to the already-correct section choices, including Friday's full E1 key.
+- **Unit-plan/generated-data and text stages, findings 45 to 46:** regenerate the stale day-26 unit fact; fix US spelling in the owned retellings/manuscripts, preserving genuine source titles/quotations.
+- **Ledger tooling, finding 43:** ledger.py note currently matches course + day + full entry, not section. The identical blank-day five-role entries in u02-1/u02-2 match twice, so the safe command refuses them. Mark them superseded after the owner supplies an unambiguous note operation. Fourteen older duplicate case/text notes were likewise left untouched; they already point to superseding section tasks, whose current unique notes were updated. The skipped full keys are recorded in the job's own scratch folder.
+
+### Checks before and after
+
+| Check | Before | After | New failures |
+|---|---|---|---|
+| Course gate | Process failure, exit 1, WinError 5 at child launch | Same process failure | Unavailable; no rule counts or baseline-comparison lines emitted |
+| Filtered unitplan check | 4 failures in s01.md; all 30 sections pass | Same 4 failures; all 30 sections pass | 0 |
+| Ledger check ela | 10,797 rows, 0 problems | 10,797 rows, 0 problems | 0 |
+| Citation advisory | 28 planned-only, 2 unmatched | 28 planned-only, 2 unmatched | 0 |
+
+The four existing unit-plan failures name observation days 7/29 and missing RL.4.4/RF.4.3a code cells. They are outside the permitted section edits. No full gate certification is claimed, and no baseline was manually stored. No new gate comparison lines were printed because the process failed before comparison. No build was run.
+
+Additional scoped validation: all 153 section day totals are 90; no em dash or TODO(writer) remains in the section plans; every Ask sentence is at most 15 words; all 75 intended unique ledger notes match their saved values. No new source fact was introduced. Browser check: none added. The existing empty build/gates/now-english-language-arts-grade-4/ folder remains present and was left alone. Helper scripts and the skipped-note record remain only in _scratch/l87/tmp/english-language-arts-grade-4-plan-fix-grade/ for the lead to clear.
+
