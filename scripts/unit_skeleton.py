@@ -168,7 +168,15 @@ def unit_days(course, unit):
 
 
 def split_list(s):
-    return [x.strip() for x in re.split(r'\s*[;,]\s*', s or '') if x.strip()]
+    # a career cluster code ("CTE.Career Clusters.Arts, Entertainment, & Design...") holds commas: a piece that
+    # starts with CTE. stays whole (career pathways read, 2026-11-25)
+    out = []
+    for piece in (s or '').split(';'):
+        if piece.strip().lstrip('~').startswith('CTE.'):
+            out.append(piece.strip())
+        else:
+            out += [x.strip() for x in re.split(r'\s*,\s*', piece) if x.strip()]
+    return out
 
 
 _STD = {}

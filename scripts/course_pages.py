@@ -284,10 +284,17 @@ def split_unit_cell(cell):
 
 def codes(cell):
     out = []
-    for c in re.split(r'[;,]', re.sub(r'\([^()]*\)', '', plain(cell))):
-        c = c.strip().lstrip('~').strip()
-        if c and re.match(r'^[A-Za-z0-9][\w.\-]*$', c) and not SKILL_RE.fullmatch(c):
-            out.append(c)
+    for piece in plain(cell).split(';'):
+        # a career cluster code holds spaces, commas, & and parentheses ("CTE.Career Clusters.Arts, Entertainment,
+        # & Design.Fine Arts"): kept whole (career pathways read, 2026-11-25); other codes split as before
+        whole = piece.strip().lstrip('~').strip()
+        if whole.startswith('CTE.'):
+            out.append(whole)
+            continue
+        for c in re.split(r'[;,]', re.sub(r'\([^()]*\)', '', piece)):
+            c = c.strip().lstrip('~').strip()
+            if c and re.match(r'^[A-Za-z0-9][\w.\-]*$', c) and not SKILL_RE.fullmatch(c):
+                out.append(c)
     return list(dict.fromkeys(out))
 
 
