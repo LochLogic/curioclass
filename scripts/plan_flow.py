@@ -93,7 +93,16 @@ def sname(n): return SHORT.get(n, n)
 
 def prog_default(name, g):
     return 'e' if name == 'Math' and g in ('3', '4', '5') else '.'
-def frame_default(c): return 'e' if c.get('days_total') else '.'
+def frame_default(c):
+    """A frame's state when flow-status.csv has no row for it: on file (e) once docs/courses/<course>/frame.md exists
+    or the course has days, else not started. A frame on file with no row is reported (2026-11-26: 59 finished
+    after-core frames showed as not started because their rows were never written)."""
+    if os.path.exists(os.path.join(ROOT, 'docs', 'courses', fid(c), 'frame.md')):
+        if ('frame:' + fid(c)) not in led:
+            print('plan_flow: frame on file with no flow-status row: frame:%s (add its row once it is read and fixed)' % fid(c),
+                  file=sys.stderr)
+        return 'e'
+    return 'e' if c.get('days_total') else '.'
 
 def day_files(c):
     """Day numbers written for a course: courses/<course>/u*/dNNN.md."""
@@ -133,7 +142,7 @@ lanes3.append(dict(title='Checks', nodes=[N('b1:review', 'Whole-structure review
                                           N('b1:pages', 'Course pages from the frames'), N('baseline1', 'Baseline 1: frames reviewed')]))
 lanes3.append(dict(title='Gate: owner approves the baseline', nodes=[N(f'gate3:{slug(n)}', sname(n)) for n in SUBJ_ORDER]))
 for i, t, cs, pre in AFTER:
-    lanes3.append(dict(title=t + ' frames', faint=True, nodes=[N(f'frame:{fid(c)}', c['title']) for c in cs]))
+    lanes3.append(dict(title=t + ' frames', faint=True, nodes=[N(f'frame:{fid(c)}', c['title'], frame_default(c)) for c in cs]))
     lanes3.append(dict(title=t + ' scopes and sequences', faint=True, nodes=[N(f'ss:{fid(c)}', c['title']) for c in cs]
                        + [N(f'ss-review:{i}', 'Review')]))
     lanes3.append(dict(title=t + ': gate', faint=True, nodes=[N(f'gate3:{i}', 'Owner approves the baseline')]))
