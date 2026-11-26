@@ -31,7 +31,7 @@ s01-W5,One piece counted twice.,,,B,Revisits an object.
 s01-H5,No choice yet.,,,x,Offer handling time and point to familiar materials.
 s01-K5-1,Says a total without indicating pieces.,,,x,The total supplies no observable pairing evidence.
 s01-P5-1,One piece omitted.,,,A,One object has no counting word.
-s01-P5-2,Because I like it.,,,x,Preference alone gives no tracking reason.
+s01-P5-2,Leaves the puppet's missed block untouched.,,,A,The supplied omission remains; observe the untouched block rather than diagnose from a final total.
 s01-F5,Last square remains untouched.,,,A,An object is still omitted.
 s01-X5,Marks the heap tray.,,,x,A hidden leaf edge makes tracking difficult; selection alone cannot diagnose error A.
 s01-X5,Marks the overlapping tray.,,,x,"Leaves overlap within compartments, making a skip or repeat easier; selection alone cannot diagnose error B."
