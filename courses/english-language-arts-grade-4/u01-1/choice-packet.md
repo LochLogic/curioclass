@@ -9,38 +9,38 @@ credit: ours
 
 ## Day 1: inspect separate turns
 
-[[s01-P1-1]]
+Which question names a sound from the revision? Choices: Why did the latch clack? Or: Why did thunder roar?
 
 Choice: ____________________
 
-[[s01-P1-2]]
+Which reply quotes the gate revision? Choices: Clacked twice. Or: Creaked all night.
 
 Choice: ____________________
 
-[[s01-P1-3]]
+Which reflection matches the revision? Choices: Now I hear two clacks. Or: Now I hear silence.
 
 Choice: ____________________
 
 ## Day 2: locate and inspect
 
-[[s01-K2-1]]
+Match the claim about reluctance to September 11: held wrist or brother boots.
 
 Match: ____________________
 
-[[s01-P2-2]]
+Check this log against September 4. September 4; notebook; hear a sound; latch squealed. Which field needs fixing?
 
 Field: ____________________
 
 ## Day 3: sort separate details
 
-[[s01-P3-2]]
+Repair this order: apology; unwanted entry; removal. Remove the opinion: I like notebooks.
 
 Order: ____________________
 
-[[s01-P3-3]]
+Match these labels: Leila says no; Ben crosses out the entry. Use words or action.
 
 Labels: ____________________
 
-[[s01-P3-4]]
+Delete the invented event: Ben removes the entry. A teacher orders Leila to share.
 
 Delete: ____________________

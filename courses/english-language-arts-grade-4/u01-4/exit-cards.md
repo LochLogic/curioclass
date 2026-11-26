@@ -5,16 +5,15 @@ unit: 1.4
 version: draft, not yet taught
 credit: ours
 exit: half
+teacher_note: Print only the current day as a half slip. Use separate reading copies, with reserved passages released only at collection.
 ---
 # Section 1.4 independent exit cards
-
-Keep each day separate. Open only at its independent response time.
 
 ## Day 14
 
 Name: ____________________    Date: ____________________
 
-[[s01-X14]]
+Write an evidence note explaining what sparked Ben's revision.
 
 Response: ________________________________________
 
@@ -24,7 +23,7 @@ __________________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-X15]]
+Explain how Ben's writing problem changes by the ending, using a detail.
 
 Response: ________________________________________
 
@@ -34,7 +33,7 @@ __________________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-X16]]
+Plan a paragraph explaining Ben's changing observations for a reader unfamiliar with him.
 
 Response: ________________________________________
 

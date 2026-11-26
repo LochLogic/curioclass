@@ -9,30 +9,30 @@ credit: ours
 
 ## Day 14
 
-[[s01-P14-1]]
+Delete the unsupported March 4 note: Ben keeps earlier drafts; every draft is destroyed.
 
 My choice or repair: ________________________________________
 
-[[s01-P14-2]]
+Replace things in the sign model with a more precise noun.
 
 My choice or repair: ________________________________________
 
 ## Day 15
 
-[[s01-P15-1]]
+Choose a related sign ending: Help visitors read. Or: My lunch is cold.
 
 My choice or repair: ________________________________________
 
-[[s01-P15-2]]
+Match Ben choosing pages to action or total disappearance of grief.
 
 My choice or repair: ________________________________________
 
 ## Day 16
 
-[[s01-P16-1]]
+Find the misplaced detail: poem-card cover; sign instructions; lunch temperature.
 
 My choice or repair: ________________________________________
 
-[[s01-P16-2]]
+Order these folder labels: revision; plan; feedback; draft.
 
 My choice or repair: ________________________________________

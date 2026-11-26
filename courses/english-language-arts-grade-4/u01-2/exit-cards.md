@@ -5,16 +5,15 @@ unit: 1.2
 version: draft, not yet taught
 credit: ours
 exit: half
+teacher_note: Print only the current day as a half slip. Use separate reading copies, with reserved passages released only at collection.
 ---
 # Section 1.2 independent exit cards
-
-Keep each day separate. Open only at its independent response time.
 
 ## Day 5
 
 Name: ____________________    Date: ____________________
 
-[[s01-X05]]
+Compare the poem and Ben's response, using one detail from each.
 
 Response: ________________________________________
 
@@ -24,21 +23,7 @@ __________________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-X06]]
-
-Response: ________________________________________
-
-__________________________________________________
-
-[[s01-X06b]]
-
-Response: ________________________________________
-
-__________________________________________________
-
-### Student-page Exit box
-
-[[s01-X06c]]
+Explain the classroom-pocket comparison here.
 
 Response: ________________________________________
 
@@ -48,7 +33,7 @@ __________________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-X07]]
+Explain 'practice makes perfect' using Omar's attempts and the advice he receives.
 
 Response: ________________________________________
 
@@ -58,7 +43,7 @@ __________________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-X08]]
+Compare how these endings present the moment, using a feature from each form.
 
 Response: ________________________________________
 

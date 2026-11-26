@@ -9,30 +9,30 @@ credit: ours
 
 ## Day 10
 
-[[s01-P10-1]]
+A peer says, "Rest matters." Choose a linked question. Choices: Which words show rest? Or: What is for lunch?
 
 My choice or repair: ________________________________________
 
-[[s01-P10-2]]
+A peer notices Omar's crossed-out lines. Choose: Now I notice his drafts; lunch matters.
 
 My choice or repair: ________________________________________
 
 ## Day 11
 
-[[s01-P11-1]]
+Delete the invented February 3 claim: two visitors added drawings; every visitor wrote a poem.
 
 My choice or repair: ________________________________________
 
-[[s01-P11-2]]
+Fix this claim: Third-person narrators can never reveal thoughts.
 
 My choice or repair: ________________________________________
 
 ## Day 12
 
-[[s01-P12-1]]
+Label this fragment as action or setting: Ben arranges quiet reading.
 
 My choice or repair: ________________________________________
 
-[[s01-P12-2]]
+Choose the reply to Which space?: The window table; I like lunch.
 
 My choice or repair: ________________________________________

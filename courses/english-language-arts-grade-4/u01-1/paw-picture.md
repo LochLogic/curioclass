@@ -15,7 +15,7 @@ credit: ours
 <circle cx="195" cy="90" r="12"/><circle cx="222" cy="106" r="12"/>
 </svg>
 
-[[s01-R3]]
+The drawing shows a paw mark on a page. Locate words that support it.
 
 Words I located: ________________________________________
 

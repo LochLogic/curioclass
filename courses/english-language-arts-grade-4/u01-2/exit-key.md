@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: opener
 course: english-language-arts-grade-4
 unit: 1.2
 version: draft, not yet taught
@@ -7,122 +7,78 @@ credit: ours
 ---
 # Section 1.2 exit answer key
 
-Teacher only. Keep this answer key separate from student pages and cards.
-Accept defensible alternatives supported by actual text. Record language and access support separately.
-These illustrations are never teaching models for held responses.
+Teacher only. Keep this key separate from student pages.
+Accept other defensible responses supported by the actual text.
+Use shown, shown with help, or not yet seen for every component.
+A blank means no observation. Record support and dates.
+Never use these completed responses as practice models.
 
 ## s01-X05
 
-Text: g4-u1-x05; whole original exit companion; registration missing
+Text: g4-u1-02 g4-u1-01; Whole Stopping by Woods on a Snowy Evening; Part 3 whole November 3: The rider in the woods
 
-Prompt: A sock on the line
-fills with a breeze.
-One empty foot
-kicks at the trees.
+Prompt: Compare the poem and Ben's response, using one detail from each.
 
-I watched our curtain lift. I wrote that our room was breathing.
-The sock poem made still things move for me.
+Answer: The rider pauses at the woods but recalls promises. Ben connects the clock-window delay with Grandma waiting on the cold bench; rereading makes the return feel weightier. Other grounded comparisons work.
 
-Compare two details showing how the journal response uses the poem.
+Look for: The rider pauses at the woods but recalls promises. Ben connects the clock-window delay with Grandma waiting on the cold bench; rereading makes the return feel weightier. Other grounded comparisons work. | Accept other supported responses. | Shape: located source-to-response comparison
 
-Answer: Both show ordinary cloth moving in air. Kicking and breathing imagine the objects as living.
+Samples: The rider pauses at the woods but recalls promises. Ben connects the clock-window delay with Grandma waiting on the cold bench; rereading makes the return feel weightier. Other grounded comparisons work. | Frost names a village party that Ben attends.
 
-Look for: two accurate paired details | connection between reading and writing
-
-Samples: The sock kicks; the room breathes. Air moves cloth in both. | The boy copies a real tree into his room.
-
-Wrong: The boy copies a real tree into his room. (O). Assign only for this demonstrated fault; missing work needs evidence.
+Wrong: Frost names a village party that Ben attends. (O).
 
 ## s01-X06
 
-Text: g4-u1-x06; whole original exit companion; registration missing
+Text: g4-u1-01; Part 3, November 12, from Then I tried a pocket through full of things we had nearly lost; later commentary covered
 
-Prompt: The bench is an island.
-Our coats spread like sails.
-The yard was quiet,
-then hushed by snow.
+Prompt: Explain the classroom-pocket comparison here.
 
-Explain the bench comparison in this scene.
+Answer: The box keeps nearly lost classroom observations close and available, as a pocket holds things nearby.
 
-Answer: The bench is imagined as an isolated place within the yard.
+Look for: The box keeps nearly lost classroom observations close and available, as a pocket holds things nearby. | Accept other supported responses. | Shape: one contextual metaphor explanation
 
-Look for: island-like separate place | nonliteral contextual meaning
+Samples: The box keeps nearly lost classroom observations close and available, as a pocket holds things nearby. | The whole classroom fits inside real trousers.
 
-Samples: The bench seems alone in the yard, like an island. | They sail a real island.
-
-Wrong: They sail a real island. (Y). Assign only for this demonstrated fault; missing work needs evidence.
-
-## s01-X06b
-
-Text: g4-u1-x06; whole original exit companion; registration missing
-
-Prompt: Use the bench poem.
-
-Explain the coats comparison in this scene.
-
-Answer: The spread coats resemble the broad shape of sails.
-
-Look for: spread coats linked to sails | no actual voyage
-
-Samples: The spread coats look broad like sails. | The coats carry real sailors.
-
-Wrong: The coats carry real sailors. (Y). Assign only for this demonstrated fault; missing work needs evidence.
-
-## s01-X06c
-
-Text: g4-u1-x06; whole original exit companion; registration missing
-
-Prompt: Use the bench poem. The comparison word is noisy.
-
-Relate quiet, hushed, and noisy in this scene.
-
-Answer: Quiet and hushed are near-synonyms; hushed suggests deeper or newly settled quiet. Noisy is an antonym.
-
-Look for: near-synonyms with a supported nuance | noisy as opposite
-
-Samples: Hushed feels quieter after snow. Noisy means the opposite. | Noisy means quiet.
-
-Wrong: Noisy means quiet. (AA). Assign only for this demonstrated fault; missing work needs evidence.
-
-Wrong: Quiet and hushed always have identical force. (AJ). Erases the contextual difference in degree or effect.
+Wrong: The whole classroom fits inside real trousers. (Y).
 
 ## s01-X07
 
-Text: g4-u1-x07; whole original exit companion; registration missing
+Text: g4-u1-01; Part 4, whole December 13: A saying with a crack
 
-Prompt: When the paper bridge sagged, I said, 'Let's call it a day.'
-We stored our tools. Tomorrow we would try a stronger fold.
+Prompt: Explain 'practice makes perfect' using Omar's attempts and the advice he receives.
 
-Explain 'call it a day' using the boy's actions.
+Answer: Changing to a light circle improves his O. Repetition alone did not help when he pressed harder; the saying offers guidance rather than guaranteeing perfection.
 
-Answer: Stop working for now; tools are stored and work resumes tomorrow.
+Look for: Changing to a light circle improves his O. Repetition alone did not help when he pressed harder; the saying offers guidance rather than guaranteeing perfection. | Accept other supported responses. | Shape: one saying explained through context
 
-Look for: conventional meaning | action as context
+Samples: Changing to a light circle improves his O. Repetition alone did not help when he pressed harder; the saying offers guidance rather than guaranteeing perfection. | Each attempt must already be perfect.
 
-Samples: It means stop for now. He stores tools until tomorrow. | He names the bridge Day.
-
-Wrong: He names the bridge Day. (Z). Assign only for this demonstrated fault; missing work needs evidence.
+Wrong: Each attempt must already be perfect. (Z).
 
 ## s01-X08
 
-Text: g4-u1-x08; whole original exit companion; registration missing
+Text: g4-u1-08 g4-u1-09; The Missing Line: both prose paragraph 3 endings; verse from I turn my page onward; scene from Ben lifts the poem onward
 
-Prompt: Prose: We missed the bell. I saw Theo running. "Wait!" I called.
+Prompt: Compare how these endings present the moment, using a feature from each form.
 
-Verse:
-Bell gone.
-Steps fly.
-Wait, Theo,
-wait!
+Answer: Prose tells the result in sentences. Verse separates writing, lifting and smiling into lines. Drama brackets the lift and smile and labels speech.
 
-Scene: Cast: Iris and Theo. Setting: doorway. [Theo runs. Iris calls.] IRIS: Wait!
+Look for: Prose tells the result in sentences. Verse separates writing, lifting and smiling into lines. Drama brackets the lift and smile and labels speech. | Accept other supported responses. | Shape: located three-form comparison of reserved endings
 
-Compare how these versions present the moment, using one feature from each.
+Samples: Prose tells the result in sentences. Verse separates writing, lifting and smiling into lines. Drama brackets the lift and smile and labels speech. | All three are poems because the cards are narrow.
 
-Answer: Prose narrates in sentences. Verse uses breaks and repeated wait for urgency. Scene labels cast, setting, dialogue and actions.
+Wrong: All three are poems because the cards are narrow. (E).
 
-Look for: one actual feature per form | comparison of presentation
+## s01-X06c
 
-Samples: Prose tells events in sentences. Verse repeats wait. The scene labels actors and actions. | Small cards make them all poems.
+Text: g4-u1-01; Part 3, November 12 pocket commentary after X06; separate two-minute Independent reading collection
 
-Wrong: Small cards make them all poems. (E). Assign only for this demonstrated fault; missing work needs evidence.
+Prompt: Explain how near and distant relate to close here.
+
+Answer: Near resembles close; distant opposes it. Close means familiar or personally near here, rather than shut.
+
+Look for: Near resembles close; distant opposes it. Close means familiar or personally near here, rather than shut. | Accept other supported responses. | Shape: one contextual word-relationship explanation
+
+Samples: Near resembles close; distant opposes it. Close means familiar or personally near here, rather than shut. | Distant means close; near means far away.
+
+Wrong: Distant means close; near means far away. (AA).

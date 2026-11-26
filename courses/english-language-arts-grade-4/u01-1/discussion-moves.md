@@ -14,8 +14,8 @@ Mark a detail. Listen. Ask for detail. Link. Explain what became clearer.
 Facilitator: invite the next speaker.
 Evidence-finder: locate the requested words.
 Questioner: ask a specific follow-up.
-Responder: answer the question with a detail.
-Reviewer: name an idea heard and what became clearer.
+Everyone answers questions and explains what listening made clearer.
+These are shared moves, not additional roles.
 
 You may pass and speak privately with the teacher.
 

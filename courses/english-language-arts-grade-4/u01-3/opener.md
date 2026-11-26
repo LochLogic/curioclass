@@ -20,11 +20,11 @@ uses thoughts, words and actions with setting and a turning event, rather than a
 Use choice-cards.md, source-labels.md and role-feedback.md with the carried log, moves chart and story map.
 Withdraw filled maps for independent writing. Keep answer keys separate.
 Day 10 uses ten Return and repair minutes for the earlier written check, not another Opening group.
-Teacher hears children 19 to 24 in twelve Choice workshop minutes, then six different
-children at forty-five seconds each in the exit. Paper accounts never prove unheard speech. Hear the same shell-source turns
+Teacher hears six pairs selected for missing components in twelve Choice workshop minutes, then six
+children at forty-five seconds each in the exit. Paper accounts never prove unheard speech. Hear the same January 9 source turns
 for children 1 to 12 on day 11 and 13 to 24 on day 15.
 Each window replaces optional conferences in nine Independent reading minutes.
-Day 12 revises written role feedback; its linked exchanges reach children 25 to 30 in twelve minutes.
+Day 12 revises written role feedback; six pairs selected for missing components use twelve minutes.
 
 Day 13 first reads the new checkpoint entry. It compares a familiar baseline without claiming
 both sources are cold. Six groups of five minutes allow one forty-five-second contribution each;
@@ -81,3 +81,11 @@ Hand-copy current short cards when printing is unavailable. Enlarge or use tacti
 Keep original text punctuation and line breaks. No digital tool is required.
 At home use thirty to forty minutes: retrieve, read together, inspect one choice,
 respond privately, reread. Keep dated work and supports without scores.
+
+## Reading reservations
+
+January 9 first appears at day 10 Exit exchange. January 13 follows during Independent reading.
+February 6 first appears at day 11's exit. February 21 waits until day 12's exit.
+Never use those entries as earlier choice-card examples. N13 first appears day 13.
+Day 10's paper preparation and reflection are on discussion-preparation.md.
+X10 records actual speech only, including a response to the partner.

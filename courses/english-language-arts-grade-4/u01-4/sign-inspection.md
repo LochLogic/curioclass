@@ -17,15 +17,15 @@ Draft label: These things help.
 Written feedback label: Name what helps the visitor.
 Revision label: The return instruction helps the next visitor find a card.
 
-[[s01-P14-2]]
+Replace things in the sign model with a more precise noun.
 
 My replacement: ________________________________________
 
-[[s01-P15-1]]
+Choose a related sign ending: Help visitors read. Or: My lunch is cold.
 
 My choice: ________________________________________
 
-[[s01-P16-1]]
+Find the misplaced detail: poem-card cover; sign instructions; lunch temperature.
 
 Misplaced detail: ________________________________________
 

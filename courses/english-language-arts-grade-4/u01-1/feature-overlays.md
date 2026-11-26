@@ -14,19 +14,19 @@ Place a blank strip beside the taught poem.
 | __________ | __________ | __________ | __________ |
 | __________ | __________ | __________ | __________ |
 
-[[s01-K4-1]]
+Mark one break that divides a word in Williams's poem.
 
 Mark: ____________________
 
-[[s01-P4-2]]
+Underline the two color words in Williams's poem.
 
 Words: ____________________
 
-[[s01-P4-3]]
+Mark the short second line in each pair. Count the words in those lines.
 
 Count: ____________________
 
-[[s01-P4-4]]
+Match complaint in the gate revision: a human voice, or an imagined name for noise.
 
 Match: ____________________
 

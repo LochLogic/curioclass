@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: opener
 course: english-language-arts-grade-4
 unit: 1.1
 version: draft, not yet taught
@@ -23,13 +23,13 @@ Fall diagnostic: children 1 to 9 on day 1, 10 to 16 on day 2,
 17 to 25 on day 3, 26 to 30 on day 4. Two minutes each includes
 meaning, whole-word analysis and a short successive reading. Ungraded; no second screen.
 
-Role samples: children 1 to 6 on day 1, 7 to 12 on day 4,
-13 to 18 on day 8, 19 to 24 on day 10, 25 to 30 on day 12.
-Each linked exchange takes two minutes. Give dated written component feedback.
+Role samples: children 1 to 12 on day 1, 13 to 24 on day 4, and 25 to 30 on day 8.
+Day 10 and day 12 hear six pairs selected for missing components, twelve minutes each.
+Each two-child linked exchange takes two minutes, about 45 seconds per child plus follow-up. Give dated written component feedback.
 Day 10's exit samples children 25 to 30 at 45 seconds each.
 Hear children 1 to 12 on day 11 and 13 to 24 on day 15.
 Each window uses nine Independent reading minutes, replacing optional conferences.
-Use the actual retained shell source and notes, then give private written feedback.
+Use the actual retained January 9 source and notes, then give private written feedback.
 Paper notes cannot prove speech. Retain actual question, answer, role, linked comment and reflection separately.
 
 D13c: six groups of five minutes; five 45-second contributions leave 75 seconds

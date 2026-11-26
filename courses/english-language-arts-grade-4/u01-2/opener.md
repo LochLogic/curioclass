@@ -15,14 +15,14 @@ A simile uses an explicit comparison such as like; a metaphor presents one thing
 Both need context. Near-synonyms can differ in force. A conventional expression's meaning
 comes from its use, not the literal meanings of all its words. Category names can overlap.
 
-Day 8 reads the three whole taught tellings and scene. Perform the exact on-file oral
+Day 8 reads earlier portions first, then releases and performs the reserved endings after the exit. Perform the exact on-file oral
 reading and stage the printed directions. Teacher-operated paper figures replace missing audio.
 Use only floor-level seating and soft taps; nobody must act. The transcript alone cannot prove performance.
 
 Use choice-cards.md, feature-labels.md, meaning-feedback.md, the carried log/roles/wall,
 and separate complete reading copies. Print only the current day of each sheet.
-Keep choice-key.md and exit-key.md teacher-only. Half slips hold two day 6 comparison items;
-its third judged paper item is the student-page Exit box. Return it with the other work.
+Keep choice-key.md and exit-key.md teacher-only. Day 6 has one pocket-comparison exit. Its separate relationship Exit box uses two Independent reading minutes.
+The old extra simile explanation is now an isolated comparison-label choice, not another exit.
 
 A/O: match claims to actual words. B/C: remove topic-only labels and personal opinions.
 E: locate structural features separately. F: distinguish author from telling voice.
@@ -79,3 +79,12 @@ Hand-copy current short cards when printing is unavailable. Enlarge or use tacti
 Keep original text punctuation and line breaks. No digital tool is required.
 At home use thirty to forty minutes: retrieve, read together, inspect one choice,
 respond privately, reread. Keep dated work and supports without scores.
+
+## Reading reservations
+
+Keep November 3 and November 1 for day 5's collection sequence.
+Keep November 12's pocket passage and all later commentary covered until day 6's exit.
+After X06, finish the commentary and collect the separate relationship response.
+Keep December 13 for day 7's exit; practice uses December 2 and 9 only.
+Day 8 reserves both third prose paragraphs, the last verse stanza and the scene's ending.
+Keep N9/P9/S9 unavailable until day 9. Read each assigned part completely after its reservations release.

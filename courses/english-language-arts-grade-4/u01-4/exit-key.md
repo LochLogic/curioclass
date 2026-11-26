@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: opener
 course: english-language-arts-grade-4
 unit: 1.4
 version: draft, not yet taught
@@ -7,60 +7,50 @@ credit: ours
 ---
 # Section 1.4 exit answer key
 
-Teacher only. Keep this answer key separate from student pages and cards.
-Accept defensible alternatives supported by actual text. Record language and access support separately.
-These illustrations are never teaching models for held responses.
+Teacher only. Keep this key separate from student pages.
+Accept other defensible responses supported by the actual text.
+Use shown, shown with help, or not yet seen for every component.
+A blank means no observation. Record support and dates.
+Never use these completed responses as practice models.
 
 ## s01-X14
 
-Text: g4-u1-x14; whole original exit companion; registration missing
+Text: g4-u1-01; Part 7, whole March 11: The hallway light again
 
-Prompt: I found three chalk circles where yesterday's hopscotch had been.
-A shoe crossed them. I began a poem about games that leave traces.
+Prompt: Write an evidence note explaining what sparked Ben's revision.
 
-Write an evidence note explaining what sparked this boy's poem.
+Answer: He returns to the actual light and notices an untied lace and paper leaf. Those remaining things replace the ending telling readers to feel brave.
 
-Answer: The remaining circles suggest traces of the game; noticing them sparks a poem about traces.
+Look for: He returns to the actual light and notices an untied lace and paper leaf. Those remaining things replace the ending telling readers to feel brave. | Accept other supported responses. | Shape: source-linked inspiration and revision note
 
-Look for: actual chalk detail | connection from observation to writing
+Samples: He returns to the actual light and notices an untied lace and paper leaf. Those remaining things replace the ending telling readers to feel brave. | A publisher orders a new ending.
 
-Samples: The circles remain after the game. They spark his poem about traces. | His teacher demands rhymes.
-
-Wrong: His teacher demands rhymes. (O). Assign only for this demonstrated fault; missing work needs evidence.
+Wrong: A publisher orders a new ending. (O).
 
 ## s01-X15
 
-Text: g4-u1-x15; whole original exit companion; registration missing
+Text: g4-u1-01; Part 8, whole June 16: Dear Ms. Ortiz
 
-Prompt: Mara planned a puppet show. The cloth screen tore.
-She held the puppets above a desk instead. The audience stayed for the ending.
-Mara folded the torn screen for mending.
+Prompt: Explain how Ben's writing problem changes by the ending, using a detail.
 
-Explain how Mara resolves the problem, using a detail.
+Answer: He chooses his next page, shares prepared work, holds the notebook open and dates a blank page. Early reluctance gives way to continued noticing and writing.
 
-Answer: Using a desk lets the show finish. The audience stays. The torn screen still needs mending.
+Look for: He chooses his next page, shares prepared work, holds the notebook open and dates a blank page. Early reluctance gives way to continued noticing and writing. | Accept other supported responses. | Shape: resolution explanation with evidence
 
-Look for: problem and effective response | actual outcome, without pretending screen is fixed
+Samples: He chooses his next page, shares prepared work, holds the notebook open and dates a blank page. Early reluctance gives way to continued noticing and writing. | He throws away his notebook.
 
-Samples: She uses the desk, and the audience stays. The show finishes despite the tear. | Mara cancels the show.
-
-Wrong: Mara cancels the show. (O). Assign only for this demonstrated fault; missing work needs evidence.
+Wrong: He throws away his notebook. (O).
 
 ## s01-X16
 
-Text: g4-u1-x16; whole original exit companion; registration missing
+Text: g4-u1-01; Part 1 September 15 and Part 8 May 6, already taught; new writing purpose and source pairing
 
-Prompt: a. Eli heard a loose windowpane rattle.
-b. His poem repeats the sound in short lines.
-c. Eli put a blue pencil beside his notebook.
-d. He paused the poem where the rattling stopped.
+Prompt: Plan a paragraph explaining Ben's changing observations for a reader unfamiliar with him.
 
-Plan a paragraph about Eli's inspiration for an unfamiliar reader.
+Answer: Introduce Ben and his observations. Group Tansy's specific habits and the visitor's tired-wheel image. Select accurate details and plan a related close; no invented causal connection is required.
 
-Answer: Introduce Eli/window sound; a supplies spark, b repetition, d pause. Close on listening shaping writing. Exclude c unless relevance is defended.
+Look for: Introduce Ben and his observations. Group Tansy's specific habits and the visitor's tired-wheel image. Select accurate details and plan a related close; no invented causal connection is required. | Accept other supported responses. | Shape: choose and organize evidence for an unfamiliar reader
 
-Look for: topic for unfamiliar reader | relevant selected evidence | coherent grouped order and related close
+Samples: Introduce Ben and his observations. Group Tansy's specific habits and the visitor's tired-wheel image. Select accurate details and plan a related close; no invented causal connection is required. | Tansy, truck, lunch, prize: one unsorted list.
 
-Samples: Topic: window sound inspires Eli. Use a, b, d for hearing, repetition, pause. Close on listening. | Copy a, b, c, d without a topic or grouping.
-
-Wrong: Copy a, b, c, d without a topic or grouping. (N). Assign only for this demonstrated fault; missing work needs evidence.
+Wrong: Tansy, truck, lunch, prize: one unsorted list. (N).

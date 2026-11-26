@@ -5,24 +5,21 @@ unit: 1.3
 version: draft, not yet taught
 credit: ours
 exit: half
+teacher_note: Print only the current day as a half slip. Use separate reading copies, with reserved passages released only at collection.
 ---
 # Section 1.3 independent exit cards
-
-Keep each day separate. Open only at its independent response time.
 
 ## Day 10
 
 Name: ____________________    Date: ____________________
 
-Read the source during the one-minute preparation. Then take your spoken turn.
-
-[[s01-X10]]
+Discuss what inspires Ben's writing, using a prepared detail and a response to a partner.
 
 ## Day 11
 
 Name: ____________________    Date: ____________________
 
-[[s01-X11]]
+Compare the rehearsal tellings and what each narrator lets you know.
 
 Response: ________________________________________
 
@@ -32,7 +29,7 @@ __________________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-X12]]
+Prepare a description of Ben's changed organizing idea, using thoughts, actions, and classroom details.
 
 Response: ________________________________________
 

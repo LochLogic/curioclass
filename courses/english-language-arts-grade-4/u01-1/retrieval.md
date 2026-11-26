@@ -12,24 +12,24 @@ They are not a readiness check. Keep dated samples for next-day support.
 
 ## Day 1
 
-[[s01-R1]]
+Who speaks in September 4? Point to a pronoun that shows this.
 
-[[s01-R2]]
+Read notebook and clacking. Mark their parts. Write one complete sentence about the gate.
 
 Response: ________________________________________
 
 ## Day 2
 
-Use the separate paw picture and [[s01-R3]].
+Use the separate paw picture and The drawing shows a paw mark on a page. Locate words that support it..
 
 ## Day 3
 
-[[s01-R4]]
+Order these actions: asks permission; writes about Leila; removes the entry. Choose a message. Choices: A good line permits sharing anything. Or: Ask before sharing someone else's worry.
 
 My order and message: ________________________________________
 
 ## Day 4
 
-[[s01-R5]]
+Find part 2's beginning and ending using these labels. Labels: reads Williams; asks permission; packs lunch. Fix this practice sentence: ben reads.
 
 My correction: ________________________________________

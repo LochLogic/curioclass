@@ -19,7 +19,7 @@ and closes on the explanation. Inspect one weakness in a fictional display-sign 
 Do not demonstrate a complete inspiration paragraph or judge the child's own parallel draft.
 
 Use sign-inspection.md, choice-cards.md, pattern-probe.md and writing-feedback.md.
-Day 15 hears the remaining day 10 shell-source turns, children 13 to 24,
+Day 15 hears the remaining day 10 January 9 source turns, children 13 to 24,
 in nine Independent reading minutes instead of optional conferences.
 Keep pattern-key.md and the choice/exit keys teacher-only. The sign model is removed
 before day 17. The earlier checkpoint entries are reserved for assessments and individual correction,
@@ -83,3 +83,13 @@ Hand-copy current short cards when printing is unavailable. Enlarge or use tacti
 Keep original text punctuation and line breaks. No digital tool is required.
 At home use thirty to forty minutes: retrieve, read together, inspect one choice,
 respond privately, reread. Keep dated work and supports without scores.
+
+## Reading reservations
+
+March 11 waits until day 14's exit. June 16 waits until day 15's exit.
+Day 16's independent plan pairs September 15 with May 6 for a new writing purpose.
+Keep this pair off today's practice. Use January 17 or February 14 for private, unjudged planning.
+The sign inspection is a self-contained task sheet, not an additional core reading.
+
+The remaining word-probe oral groups use the dated schedule in pattern-key.md.
+Day 16 uses five Independent reading minutes instead of optional conferences.

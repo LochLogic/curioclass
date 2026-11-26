@@ -12,43 +12,43 @@ Reading copies are separate. Sources stay open during responses.
 
 ## Day 9
 
-[[s01-A09a-action]]
+Explain one explicit action in The Tray, using its line.
 
 __________________________________________________
 
-[[s01-A09a-infer]]
+Infer a feeling in The Tray, using a different detail.
 
 __________________________________________________
 
-[[s01-A09b-theme]]
+State a theme of The Tray supported by two details.
 
 __________________________________________________
 
-[[s01-A09b-summary]]
+Summarize the important events in The Tray.
 
 __________________________________________________
 
-[[s01-A09c]]
+Compare N9, P9, and S9 using their structural features.
 
 __________________________________________________
 
 __________________________________________________
 
-[[s01-A09d]]
+Explain how your chosen detail supports your inference about The Tray.
 
 __________________________________________________
 
 ## Day 13
 
-[[s01-A13a-stated]]
+Explain Ben's stated request using its entry.
 
 __________________________________________________
 
-[[s01-A13a-infer]]
+Explain what Ben's request suggests about his confidence, using both entries.
 
 __________________________________________________
 
-[[s01-A13b]]
+Describe Ben, his classroom, and a turning event using several details.
 
 __________________________________________________
 
@@ -61,6 +61,7 @@ What became clearer: ____________________
 
 ## Day 17
 
-[[s01-A17-topic]]
+Explain what inspires Ben's writing for someone unfamiliar with his notebook.
+Write one paragraph using details from both entries.
 
 Use separate lined paper. Keep your first version and later revision together.

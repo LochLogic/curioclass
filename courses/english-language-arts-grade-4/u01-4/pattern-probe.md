@@ -4,6 +4,7 @@ course: english-language-arts-grade-4
 unit: 1.4
 version: draft, not yet taught
 credit: ours
+teacher_note: Hear five assigned oral samples across the existing ten-minute Word work block. Paper cannot prove decoding. Collect remaining oral evidence only in existing rotations.
 ---
 # Familiar word parts
 
@@ -15,17 +16,15 @@ carefully
 
 After returning, I placed the torn page carefully beside my notebook.
 
-[[s01-P14-probe-paper]]
+Mark familiar parts in returning and carefully.
 
 My parts: ________________________________________
 
 ## Written feedback and a later correction
 
-Teacher note: ________________________________________
+Written feedback: ________________________________________
 
 Later date: ____________________
 
 My correction: ________________________________________
 
-Teacher listens to five assigned children across the existing word block.
-Paper marks are not a record of spoken decoding.

@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: opener
 course: english-language-arts-grade-4
 unit: 1.1
 version: draft, not yet taught
@@ -7,112 +7,88 @@ credit: ours
 ---
 # Unit 1 assessment administration
 
-Teacher only. Use the item ids below to generate current student prompts. Do not print component
-audit rows as new work. Every component uses the record sheet's single descriptive scale.
-Read the complete named text, not a summary. Keep future companions out of advance copies.
-Use the exact cold text and fixed performance. All questions are original.
+Teacher only. Print student prompts, not audit-only component rows.
+Keep all future sources covered. Use one scale on record.md: shown, shown with help, not yet seen.
+Missing observations stay blank. Record actual dates, words and access support.
+First attempts receive written feedback. Score only the retained eligible later revision.
 
-Collection minutes: day 9 has 10 directions, 35 written response, 15 feedback;
-day 13 has 5 launch, 10 writing, 30 sequential discussion, 15 feedback;
-day 17 has 10 launch, 35 writing, 15 feedback. Each also has thirty skills minutes.
-Split prompts divide the original allocation, never add minutes. No answer teaching during feedback.
-Retain first attempt, written note and later independent revision; see record.md for dates.
+Day 9: ten minutes directions, thirty-five written responses, fifteen written feedback.
+Within the response: action four, inference four, theme five, summary five, forms twelve, evidence five.
+Use only N9/P9/S9, first distributed today. Later independent revision is day 10; judgment day 11.
 
-Days 27/30/34 collect eligible revisions. Day 36 scores the retained essay/convention/presentation
-records with no new writing sitting. Day 38's prepared presentation takes one minute each,
-thirty minutes total; at most six missing discussion components use forty-five seconds each
-inside ten discussion minutes. Reuse actual eligible observations, never infer them from paper.
+Day 13: launch five, writing ten, discussion thirty, feedback fifteen.
+Writing: stated request two, confidence inference two, connected description six.
+Use N13 first today and the familiar N9 baseline. Remove the supplied story map.
+Hear six groups of five minutes: one 45-second contribution per child, 75 seconds for missing exchanges.
+Reuse actual earlier components, written feedback and revised preparation. Paper cannot prove speech.
+Revise writing day 14 and judge day 15. Finalize eligible oral components day 14.
 
-Day 29 probe: give the two reserved printed words and sentence only on day 29.
-The full sentence is printed in the teacher-only assessment key. Hear five assigned children
-within the existing Word work block. Others' decoding remains pending until an existing rotation.
-Do not dictate a word the class has not been taught as a dictation task.
+Day 17: launch ten, one paragraph thirty-five, written feedback fifteen.
+Topic/grouping eight, development ten, links six, precision five, close six share the sitting.
+Use N9/N13 for the new unfamiliar-reader task. Revise day 18; judge day 19.
+Each day also has the thirty-minute skills block. No reteaching during assessment feedback.
 
-Day 34: use only The Last Token, g4-u1-lt, whole, with its fixed teacher-only reading/staging.
-It replaces the old companion. No prior rehearsal of this case or its deliberate staging difference.
-Day 35: use the complete reserved Dust of Snow from g4-u1-02, preserving two stanzas,
-and the complete reserved The Lunch Table from g4-u1-01. Number that story's three paragraphs
-at the starts The folded, Lend a hand, and Before I lifted, without changing the wording.
-Day 36: use Two Ways to Find a Poem, g4-u1-tw, whole. It replaces the old biography check.
+Day 27 retains the essay revision and earlier convention slips: forty minutes total.
+Feedback was day 26; score the retained revision day 36. Never score new feedback immediately.
+Day 29 hears five assigned word-probe readers within Word work; others await existing rotations.
+Day 30: poem revision thirty-five, process explanation five. Earlier feedback is day 29; judge day 31.
+Day 34: The Last Token twenty, presentation revision twenty, process explanation five, feedback fifteen.
+Use the text's fixed live reading/staging. Two paper figures replace recording; acting is optional.
+Keep teacher performance directions separate from student reading copies.
+Day 35: Dust of Snow and The Lunch Table share twenty-five written-response minutes.
+Use the whole poem and all three story paragraphs, preserving punctuation and line breaks.
+Day 36: Two Ways to Find a Poem, fifteen minutes. Judge eligible retained essay records separately.
+Days 34 to 36 reading receives written feedback on collection, independent revision 37, judgment 38.
+Days 35/36 divide one reading window: fifteen children each at two minutes in the skills block.
+Day 38: one prepared minute per child, thirty minutes total. Retain the actual visual and source link.
+The ten-minute discussion collects at most six missing 45-second components; reuse eligible earlier evidence.
+The breadth record audits dated work only, with no new sitting or fabricated dates.
 
-The lower-grade lunch/napkin ledger note differs from its current day 5 item,
-which uses a loud truck and a quiet bench. This unit's table-setting story tests
-figurative and conventional meanings in a different whole case. Keep it reserved.
-The day 3 fallen-tower exit was replaced with the original paint-and-cloth poem
-to avoid the lower-grade fallen-tower assessment case.
-Original exit companions and the sign model still need their own shared text-register rows.
-Their exact copy is in the scoped shared pieces; do not misattribute them to the anchor.
-No alternate core text is invented by a day writer.
+Print only the named registered reading, never a manuscript containing future companions.
+Reading and staging are included in the stated assessment minutes.
+Assessment papers return privately for independent revision, never as class practice examples.
+Use separate lined paper where needed; the source reading copies are separate from the task sheet.
 
-## Day 7 data
+## Day 7 records
 
 s01-A07-meaning.
 
-## Day 9 data
+## Day 9 records
 
 s01-A09a-action; s01-A09a-infer; s01-A09b-theme; s01-A09b-summary; s01-A09c; s01-A09d; s01-A09-RF-purpose; s01-A09-RF-phrasing; s01-A09-RF-confirm.
 
-## Day 13 data
+## Day 13 records
 
 s01-A13a-stated; s01-A13a-infer; s01-A13b; s01-A13b-evidence; s01-A13c-prep; s01-A13c-turn; s01-A13c-role; s01-A13c-question; s01-A13c-answer; s01-A13c-link; s01-A13c-review.
 
-## Day 17 data
+## Day 17 records
 
 s01-A17-RF-purpose; s01-A17-RF-phrasing; s01-A17-RF-confirm; s01-A17-topic; s01-A17-groups; s01-A17-develop; s01-A17-links; s01-A17-precise; s01-A17-close; s01-A17-audience; s01-A17-evidence.
 
-## Day 27 data
+## Day 27 records
 
 s01-A27-RF-purpose; s01-A27-RF-phrasing; s01-A27-RF-confirm; s01-A27-topic; s01-A27-groups; s01-A27-develop; s01-A27-links; s01-A27-precise; s01-A27-close; s01-A27-audience; s01-A27-process; s01-A27-sentence; s01-A27-fragment; s01-A27-runon; s01-A27-name; s01-A27-opening; s01-A27-speech-comma; s01-A27-speech-marks; s01-A27-quote-comma; s01-A27-quote-marks; s01-A27-reference; s01-A27-spelling.
 
-## Day 29 data
+## Day 29 records
 
 s01-A29-word.
 
-## Day 30 data
+## Day 30 records
 
-s01-A30-revise; s01-A30-audience.
+s01-A30-revise; s01-A30-audience; s01-A30-process.
 
-## Day 34 data
+## Day 34 records
 
-s01-A34-RF-purpose; s01-A34-RF-phrasing; s01-A34-RF-confirm; s01-A34a; s01-A34b-action; s01-A34b-infer; s01-A34b-form; s01-A34b-narrate; s01-A34b-oral; s01-A34b-stage; s01-A34b-evidence.
+s01-A34-RF-purpose; s01-A34-RF-phrasing; s01-A34-RF-confirm; s01-A34a; s01-A34b-action; s01-A34b-infer; s01-A34b-form; s01-A34b-narrate; s01-A34b-oral; s01-A34b-stage; s01-A34b-evidence; s01-A34a-process.
 
-## Day 35 data
+## Day 35 records
 
 s01-A35-RF-purpose; s01-A35-RF-phrasing; s01-A35-RF-confirm; s01-A35-theme; s01-A35-summary; s01-A35-depth; s01-A35-napkin; s01-A35-table; s01-A35-help; s01-A35-many; s01-A35-safe; s01-A35-opposite; s01-A35-degree; s01-A35-range.
 
-## Day 36 data
+## Day 36 records
 
 s01-A36-RF-purpose; s01-A36-RF-phrasing; s01-A36-RF-confirm; s01-A36b-topic; s01-A36b-groups; s01-A36b-develop; s01-A36b-links; s01-A36b-precise; s01-A36b-close; s01-A36b-audience; s01-A36b-process; s01-A36b-sentence; s01-A36b-fragment; s01-A36b-runon; s01-A36b-name; s01-A36b-opening; s01-A36b-speech-comma; s01-A36b-speech-marks; s01-A36b-quote-comma; s01-A36b-quote-marks; s01-A36b-reference; s01-A36b-spelling; s01-A36a-fact; s01-A36a-infer; s01-A36a-sentence.
 
-## Day 38 data
+## Day 38 records
 
 s01-A38b-prep; s01-A38b-turn; s01-A38b-role; s01-A38b-question; s01-A38b-answer; s01-A38b-link; s01-A38b-review; s01-A38a-report; s01-A38a-pace; s01-A38a-clear; s01-A38a-visual; s01-A38c.
-
-## Data handoff for the answer-key read
-
-The unit is ready for the answer-key read. Day release still needs these shared text records:
-`g4-u1-x02`, `g4-u1-x03`, `g4-u1-x04`, `g4-u1-x05`, `g4-u1-x06`, `g4-u1-x07`,
-`g4-u1-x08`, `g4-u1-x10`, `g4-u1-x11`, `g4-u1-x12`, `g4-u1-x14`, `g4-u1-x15`,
-`g4-u1-x16` and `g4-u1-sign`. Exit stimuli remain exactly in items.csv and their scoped cards.
-The sign is in u01-4/sign-inspection.md. The shared text registry was not edited.
-
-Text-owner point: March 4 says Dad moved the chair. January 9/13 instead says Dad
-moved the bowl and Ben moved his chair. Avoid requiring the conflicting actor claim.
-The core manuscript is outside this data job's edit scope.
-
-The sentence-length check found no item stem sentence above fifteen words.
-Each end-bearing day reserves an assess value; every exit and end component has
-look-fors, samples and separately lettered wrong answers. Student practice sheets
-contain no literal reserved checkpoint, probe or final-reading case.
-
-The unit-plan gate reports four observation-table failures in the immutable unit plan:
-day 7 lacks numbered RL.4.4 and RF.4.3a rows; day 29 lacks the same two rows.
-The observation gate expects every teaching code on those days in the numbered table,
-although only a retained component is being collected. Preserve the teaching codes.
-The required plan filter cannot run without awk. The lesson gate cannot import markdown.
-The runner must run those gates in its configured environment.
-
-No factual claim was cut for want of an opened source. No browser checks remain.
-No readiness sheet is needed: this unit specifies retrieval rather than readiness.
-All original practice pieces use separate taught cases. Half-sheet exits and the
-separate Exit boxes retain their own receiving-day hand-back rows.

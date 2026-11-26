@@ -5,16 +5,15 @@ unit: 1.1
 version: draft, not yet taught
 credit: ours
 exit: half
+teacher_note: Print only the current day as a half slip. Use separate reading copies, with reserved passages released only at collection.
 ---
 # Section 1.1 independent exit cards
-
-Keep each day separate. Open only at its independent response time.
 
 ## Day 1
 
 Name: ____________________    Date: ____________________
 
-[[s01-X01]]
+A paper kite is caught in a fence. Describe it for someone who cannot see it.
 
 Response: ________________________________________
 
@@ -24,7 +23,7 @@ __________________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-X02]]
+Explain Ben's thought about his unfinished notebook, using a detail.
 
 Response: ________________________________________
 
@@ -34,13 +33,7 @@ __________________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-X03]]
-
-Response: ________________________________________
-
-__________________________________________________
-
-[[s01-X03b]]
+Infer Ben's feeling about visitors adding writing, using a detail.
 
 Response: ________________________________________
 
@@ -50,15 +43,7 @@ __________________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-X04]]
-
-Response: ________________________________________
-
-__________________________________________________
-
-### Student-page Exit box
-
-[[s01-P4-X1]]
+Explain the door's imagined character in these lines.
 
 Response: ________________________________________
 

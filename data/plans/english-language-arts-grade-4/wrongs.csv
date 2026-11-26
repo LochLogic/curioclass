@@ -19,8 +19,6 @@ s01-P2-4,Copies a phrase absent from September 15.,,,x,"Misses the located text 
 s01-P2-5,Finish faster regardless of meaning.,,,I,Observed response misses this task: Reread these 32 words twice each with the partner. Respect the sentence sense across lines; self-correct after checking letters. Accept any useful phrasing feedback tied to the words.
 s01-P2-6,Skips a chunk in volcanic.,,,H,"Observed response misses this task: One hand stays on his notebook; the other holds its wrist. Decode vol/can/ic, attending to all chunks. Record actual reading, meaning, self-correction and support; diagnostic only."
 s01-P2-7,notebok stays unchanged after checking.,,,AL,Observed response misses this task: cab/in has closed syllables; ho/tel begins with an open syllable. Add the missing second o: notebook.
-s01-X02,He hates writing because stones are hard.,,,A,Observed response misses this task: Changing smooth to rough suggests that he wants the words to match the texture. Accept other interpretations grounded in the printed detail.
-s01-X02,His teacher ordered him to use rough.,,,O,Invents a teacher command absent from the journal.
 s01-P3-1,Follows a printed teacher order.,,,O,Observed response misses this task: Notices something useful matches his decision to keep the mark. No printed teacher order tells him to keep it.
 s01-R4,Privacy.,,,B,A topic word replaces the supported message.
 s01-K3-1,Always ignores her.,,,D,Observed response misses this task: Respects her choice matches asking whether she wants her name on the drawing.
@@ -30,7 +28,6 @@ s01-P3-4,Keep the invented teacher command to share.,,,O,Observed response misse
 s01-P3-5,A private family experience must be shared.,,,x,Observed response misses this task: A dated private notice or labeled sketch; unjudged folder work.
 s01-P3-6,Skips a syllable in magnetic.,,,H,"Observed response misses this task: Ben says he should have asked, will not use the entry, and Leila need not help. Decode mag/net/ic completely; reread with meaning. Record actual reading and support, diagnostic only."
 s01-P3-7,mu has a short u; bas is an open syllable.,,,H,Observed response misses this task: mu/sic begins with an open syllable; bas/ket uses closed syllables. Compare every letter in notebook and correct any mismatch.
-s01-X03,Happy because everyone loves painting.,,,A,A general claim about painters does not use a poem detail.
 s01-P4-1,Eager to perform for everyone.,,,A,Observed response misses this task: Unsure about sharing matches his hands holding still; eager to perform conflicts with the action.
 s01-K4-1,white / chickens divides a single word.,,,E,Observed response misses this task: wheel / barrow or rain / water are breaks dividing compound words. Preserve printed line endings.
 s01-P4-2,green and yellow.,,,x,Observed response misses this task: red and white. These words contribute visible color; do not add an unprinted load or setting.
@@ -43,25 +40,7 @@ s01-P4-7,Skips a chunk in Atlantic.,,,H,"Observed response misses this task: Whi
 s01-P4-8,tu uses a short u; rabbit has one syllable.,,,H,Observed response misses this task: tu/lip begins with an open syllable; rab/bit uses closed syllables. Compare latch letter by letter.
 s01-P4-9,Race without checking meaning.,,,I,"Observed response misses this task: Read for meaning, accurate words and expression, self-correcting from letters and context. Different suitable phrasing is acceptable; no speed target."
 s01-P4-10,Adds an invented detail absent from the chosen text.,,,x,Misses the located text detail: A dated log connects the reading choice to a purpose and includes an actual located detail from a taught notebook entry or Williams profile.
-s01-X04,Only short print makes it a poem.,,,E,"Observed response misses this task: Tap and drip suggest repeated striking sounds, such as rain on the lid and gutter. Their repeated three-part pattern creates a beat. Sings and rings suggest sounds, not literal voices. Accept other supported sound interpretations."
-s01-X04,The lid has a singing mouth.,,,Y,Treats the figurative sound description as a literal voice.
-s01-P4-X1,Every line must be read with the same long pause.,,,E,Imposes one pause rule without connecting a specific ending to its effect.
-s01-X03b,I like painting.,,,C,A personal preference replaces the event sequence.
-s01-X05,The boy copies a real tree into his room.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X06,They sail a real island.,,,Y,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X06b,The coats carry real sailors.,,,Y,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X06c,Noisy means quiet.,,,AA,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X06c,Quiet and hushed always have identical force.,,,AJ,Erases the contextual difference in degree or effect.
-s01-X07,He names the bridge Day.,,,Z,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A07-meaning,A real bird lives inside a person.,,,Y,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X08,Small cards make them all poems.,,,E,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X10,My lunch was good.,,,L,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X10,His teacher ordered the shell poem.,,,O,Invents a command.
-s01-X11,Raj must be the real author because it says I.,,,F,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X12,Nia is patient.,,,D,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X14,His teacher demands rhymes.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X15,Mara cancels the show.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
-s01-X16,"Copy a, b, c, d without a topic or grouping.",,,N,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A09a-action,Ben wins a prize.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A09a-infer,He is proud because he wins.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A09b-theme,Seeds.,,,B,Assign only for this demonstrated fault; missing work needs evidence.
@@ -184,18 +163,12 @@ s01-P5-1,The promise is to attend a party.,,,O,Use only for the actual fault sho
 s01-P5-2,The notebook heading.,,,E,Use only for the actual fault shown.
 s01-P6-1,The bird is a literal heart.,,,Y,Use only for the actual fault shown.
 s01-P6-2,Both always have identical strength.,,,AJ,Use only for the actual fault shown.
-s01-P6-3,Ben tries pocket.,,,C,Use only for the actual fault shown.
 s01-P7-1,drawing a square,,,Z,Use only for the actual fault shown.
-s01-P7-2,It has real feathers.,,,Y,Use only for the actual fault shown.
 s01-P8-1,Ben,,,F,Use only for the actual fault shown.
 s01-P8-2,Mina takes the page.,,,G,Use only for the actual fault shown.
 s01-P10-1,What is for lunch?,,,L,Use only for the actual fault shown.
-s01-P10-2,My answer is best.,,,M,Use only for the actual fault shown.
-s01-P11-1,Mina worries about shelf height.,,,O,Use only for the actual fault shown.
 s01-P11-2,Every third-person story hides all thoughts.,,,x,False universal claim about narrator access; does not by itself show narrator/author confusion.
 s01-P12-1,setting,,,D,Use only for the actual fault shown.
-s01-P12-2,I like lunch.,,,AI,Use only for the actual fault shown.
-s01-P14-1,Ben keeps private notes.,,,O,Use only for the actual fault shown.
 s01-P14-2,stuff,,,Q,Use only for the actual fault shown.
 s01-P15-1,My lunch is cold.,,,R,Use only for the actual fault shown.
 s01-P15-2,total disappearance of grief,,,O,The claim invents an outcome; choosing a page does not erase grief.
@@ -214,8 +187,6 @@ s01-P5-6,A copied complete comparison submitted for a grade.,,,x,Use only for th
 s01-P5-7,Read raincoat as ran cot without checking.,,,H,Use only for the demonstrated fault; accept other grounded answers.
 s01-P5-8,A title alone proves complete understanding.,,,x,Use only for the demonstrated fault; accept other grounded answers.
 s01-P6-4,The class has actual treasure in a chest.,,,Y,Use only for the demonstrated fault; accept other grounded answers.
-s01-K6-1,Trousers.,,,Y,Use only for the demonstrated fault; accept other grounded answers.
-s01-P6-5,Sailing for treasure.,,,Y,Use only for the demonstrated fault; accept other grounded answers.
 s01-P6-6,Cross out the sentence about joy.,,,C,Use only for the demonstrated fault; accept other grounded answers.
 s01-P6-7,Delighted is opposite.,,,AA,Use only for the demonstrated fault; accept other grounded answers.
 s01-P6-8,Only recopy the same opinion neatly.,,,S,Use only for the demonstrated fault; accept other grounded answers.
@@ -305,7 +276,6 @@ s01-P5-R1,Tap each letter as a beat.,,,E,Use only for the actual demonstrated fa
 s01-P6-11,An adult supplies a complete summary to copy.,,,x,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P7-3,Real cooking.,,,Z,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P7-4,The classroom is inside real trousers.,,,Y,Use only for the actual demonstrated fault; accept supported alternatives.
-s01-P7-5,Every try must succeed.,,,Z,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P7-6,A copied assessment response.,,,x,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P7-7,Read raincoat as ran cot.,,,H,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P7-8,Rush every line without regard to sentence sense.,,,I,Use only for the actual demonstrated fault; accept supported alternatives.
@@ -314,7 +284,6 @@ s01-P7-10,Delighted is the opposite.,,,AA,Use only for the actual demonstrated f
 s01-P8-3,Reader's opinion.,,,F,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-K8-1,Place.,,,E,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P8-4,Heavy steps.,,,G,Use only for the actual demonstrated fault; accept supported alternatives.
-s01-P8-5,Paper size decides the labels.,,,E,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P8-6,A supplied complete comparison to copy.,,,x,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P8-7,Read sunset as sunseat without checking.,,,H,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P8-8,Log a reserved companion as familiar reading.,,,x,Use only for the actual demonstrated fault; accept supported alternatives.
@@ -376,9 +345,6 @@ s01-P16-6,invita-tion; two syllables.,,,H,Assign only for this demonstrated faul
 s01-P16-7,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
 s01-P17-1,carefuly,,,AL,Assign only for this demonstrated fault; missing work remains unobserved.
 s01-P17-2,nora folds Paper.,,,x,Assign only for this demonstrated fault; missing work remains unobserved.
-s01-X14,He likes games.,,,A,No located chalk detail supports this general claim.
-s01-X15,Puppets are my favorite.,,,C,Personal preference replaces a text-based explanation.
-s01-X15,She repairs the screen before the show.,,,O,Invents a repair; the screen is still folded for mending.
 s01-P15-6,some stuff,,,Q,Assign only for this demonstrated fault; missing work remains unobserved.
 s01-P16-8,Cooks; entertainment; recipe.,,,x,Assign only for this demonstrated fault; missing work remains unobserved.
 s01-P16-9,Group B: cover and lunch.,,,N,Assign only for this demonstrated fault; missing work remains unobserved.
@@ -469,3 +435,32 @@ s01-F37-degree,"Pleased, unhappy, delighted.",,,AA,Separates opposed feeling fro
 s01-F37-degree,"Unhappy, delighted, pleased.",,,AJ,Separates opposed feeling from degree within positive feelings.
 s01-W37-review,Skips a printed part.,,,H,Cold-solved root review or feedback-priority contrast.
 s01-R37-priority,Choose a change unrelated to the written note.,,,S,Cold-solved root review or feedback-priority contrast.
+s01-X02,He hates every book.,,,A,One observed fault; no error diagnosis from missing evidence.
+s01-X03,He is bored because all notebooks are boring.,,,A,One observed fault; no error diagnosis from missing evidence.
+s01-X03b,I like cats.,,,C,One observed fault; no error diagnosis from missing evidence.
+s01-X04,The door speaks with a real mouth.,,,Y,One observed fault; no error diagnosis from missing evidence.
+s01-P4-X1,Every line requires an identical long pause.,,,E,One observed fault; no error diagnosis from missing evidence.
+s01-X05,Frost names a village party that Ben attends.,,,O,One observed fault; no error diagnosis from missing evidence.
+s01-X06,The whole classroom fits inside real trousers.,,,Y,One observed fault; no error diagnosis from missing evidence.
+s01-X06c,Distant means close; near means far away.,,,AA,One observed fault; no error diagnosis from missing evidence.
+s01-X07,Each attempt must already be perfect.,,,Z,One observed fault; no error diagnosis from missing evidence.
+s01-X08,All three are poems because the cards are narrow.,,,E,One observed fault; no error diagnosis from missing evidence.
+s01-X10,Hughes describes Ben's actual kitchen.,,,O,One observed fault; no error diagnosis from missing evidence.
+s01-X11,Ben is the real author because the telling uses I.,,,F,One observed fault; no error diagnosis from missing evidence.
+s01-X12,He is clever.,,,D,One observed fault; no error diagnosis from missing evidence.
+s01-X14,A publisher orders a new ending.,,,O,One observed fault; no error diagnosis from missing evidence.
+s01-X15,He throws away his notebook.,,,O,One observed fault; no error diagnosis from missing evidence.
+s01-X16,"Tansy, truck, lunch, prize: one unsorted list.",,,N,One observed fault; no error diagnosis from missing evidence.
+s01-X06b,A real ship.,,,O,One observed fault; no error diagnosis from missing evidence.
+s01-K6-1,Stage direction.,,,E,One observed fault; no error diagnosis from missing evidence.
+s01-P6-5,A sea voyage.,,,Y,One observed fault; no error diagnosis from missing evidence.
+s01-P7-5,Draw a real square.,,,Z,One observed fault; no error diagnosis from missing evidence.
+s01-P10-2,Lunch matters.,,,M,One observed fault; no error diagnosis from missing evidence.
+s01-P11-1,Delete two visitors added drawings.,,,O,One observed fault; no error diagnosis from missing evidence.
+s01-P12-2,I like lunch.,,,AI,One observed fault; no error diagnosis from missing evidence.
+s01-P14-1,Delete Ben keeps earlier drafts.,,,O,One observed fault; no error diagnosis from missing evidence.
+s01-P8-5,The verse line is a prose paragraph.,,,E,One observed fault; no error diagnosis from missing evidence.
+s01-P6-3,Remove Ben tries a window.,,,C,One observed fault; no error diagnosis from missing evidence.
+s01-A30-process,I copied the same words in green.,,,S,Neat recopying alone does not explain a substantive response to feedback.
+s01-A34a-process,I copied the same words in green.,,,S,Neat recopying alone does not explain a substantive response to feedback.
+s01-P7-2,rainbow shell,,,x,"This is the comparison in line 5, rather than the specified line 3; diagnose the location error only."

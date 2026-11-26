@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: opener
 course: english-language-arts-grade-4
 unit: 1.3
 version: draft, not yet taught
@@ -7,63 +7,50 @@ credit: ours
 ---
 # Section 1.3 exit answer key
 
-Teacher only. Keep this answer key separate from student pages and cards.
-Accept defensible alternatives supported by actual text. Record language and access support separately.
-These illustrations are never teaching models for held responses.
+Teacher only. Keep this key separate from student pages.
+Accept other defensible responses supported by the actual text.
+Use shown, shown with help, or not yet seen for every component.
+A blank means no observation. Record support and dates.
+Never use these completed responses as practice models.
 
 ## s01-X10
 
-Text: g4-u1-x10; whole original exit companion; registration missing
+Text: g4-u1-01 g4-u1-04; Part 5, whole January 9: A dancer on the page; whole Dream Variation
 
-Prompt: I held a cracked shell. Its narrow grooves stayed pale under sand.
-I rubbed a groove. Then I wrote about paths a hand could follow.
+Prompt: Discuss what inspires Ben's writing, using a prepared detail and a response to a partner.
 
-Discuss what inspires this boy's writing, using your prepared detail.
+Answer: Hughes's movement and rest help Ben notice the kitchen chair and room for movement. Use located evidence and respond to the actual partner.
 
-Answer: Touching grooves inspires imagined hand-followed paths. Rubbing and hand details support the connection.
+Look for: Shape: prepared source-based live exchange. | Hear children 25 to 30 on day 10, 1 to 12 on day 11, 13 to 24 on day 15. | About 45 seconds per child; record a source detail and an actual response to the partner. | Paper preparation and reflection are separate, never oral evidence.
 
-Look for: one-minute preparation | relevant actual spoken contribution | teacher hears children 25 to 30 at 45 seconds each; remaining oral components day 13 | paper is not speech
+Samples: Hughes's movement and rest help Ben notice the kitchen chair and room for movement. Use located evidence and respond to the actual partner. | Hughes describes Ben's actual kitchen.
 
-Samples: The groove gives him an idea for paths a hand could follow. | My lunch was good.
-
-Wrong: My lunch was good. (L). Assign only for this demonstrated fault; missing work needs evidence.
-
-Wrong: His teacher ordered the shell poem. (O). Invents a command.
+Wrong: Hughes describes Ben's actual kitchen. (O).
 
 ## s01-X11
 
-Text: g4-u1-x11; whole original exit companion; registration missing
+Text: g4-u1-01; Part 6, whole February 6: The other telling
 
-Prompt: First person: I kept the map to myself. Then Sima asked to help.
-I passed it over, relieved.
+Prompt: Compare the rehearsal tellings and what each narrator lets you know.
 
-Third person: Raj kept the map close.
-Sima asked to help because she enjoyed finding routes. He passed it over.
+Answer: Both place Ben beside the box. His first-person telling reveals his worry and shaking fingers; the third-person trial reports outward actions. Mina's concern is learned by asking.
 
-Compare the boy's change and the narrators' knowledge in these tellings.
+Look for: Both place Ben beside the box. His first-person telling reveals his worry and shaking fingers; the third-person trial reports outward actions. Mina's concern is learned by asking. | Accept other supported responses. | Shape: compare two tellings and their access to information
 
-Answer: Both show keeping then sharing. First person states his relief; third person gives Sima's reason, not his feeling. Third person can reveal thoughts.
+Samples: Both place Ben beside the box. His first-person telling reveals his worry and shaking fingers; the third-person trial reports outward actions. Mina's concern is learned by asking. | Ben is the real author because the telling uses I.
 
-Look for: shared change | accurate difference in information with details
-
-Samples: Both show sharing. The first tells his relief; the third tells Sima's reason. | Raj must be the real author because it says I.
-
-Wrong: Raj must be the real author because it says I. (F). Assign only for this demonstrated fault; missing work needs evidence.
+Wrong: Ben is the real author because the telling uses I. (F).
 
 ## s01-X12
 
-Text: g4-u1-x12; whole original exit companion; registration missing
+Text: g4-u1-01; Part 6, whole February 21: What the shelf held
 
-Prompt: In the empty hall, Nia tapped a cardboard tube.
-She frowned, turned it, and tapped again. A low note sounded.
-Nia grinned and carried the tube to the music table.
+Prompt: Prepare a description of Ben's changed organizing idea, using thoughts, actions, and classroom details.
 
-Prepare discussion notes about Nia, the hall, and the turning event.
+Answer: Ben wants an impressive count. Mina's question shifts attention to each card's value; they sort by places, allow overlap, and replace the sign's total with places.
 
-Answer: Trying after frowning suggests persistence. Empty hall/music table locate setting. The low note changes frown to grin.
+Look for: Ben wants an impressive count. Mina's question shifts attention to each card's value; they sort by places, allow overlap, and replace the sign's total with places. | Accept other supported responses. | Shape: connected character, setting and event preparation
 
-Look for: several actual actions | setting | connected turning event; other supported traits work
+Samples: Ben wants an impressive count. Mina's question shifts attention to each card's value; they sort by places, allow overlap, and replace the sign's total with places. | He is clever.
 
-Samples: Nia keeps trying: she turns and taps again. The low note changes her frown. | Nia is patient.
-
-Wrong: Nia is patient. (D). Assign only for this demonstrated fault; missing work needs evidence.
+Wrong: He is clever. (D).

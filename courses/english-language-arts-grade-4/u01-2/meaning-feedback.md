@@ -11,7 +11,7 @@ Name: ____________________
 
 ## Day 7
 
-[[s01-A07-meaning]]
+What does thing with feathers suggest in Hope?
 
 My first response: ________________________________________
 

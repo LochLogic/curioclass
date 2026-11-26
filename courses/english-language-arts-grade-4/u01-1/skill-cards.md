@@ -9,25 +9,25 @@ credit: ours
 
 ## Day 1
 
-[[s01-P1-6]]
+Read sunset and robot. Mark their syllables. Check the spelling of latch in the reference.
 
 Chunks and correction: ________________________________________
 
 ## Day 2
 
-[[s01-P2-7]]
+Read cabin and hotel. Mark their syllables. Check notebok against notebook. Correct it.
 
 Chunks and correction: ________________________________________
 
 ## Day 3
 
-[[s01-P3-7]]
+Read music and basket. Mark syllables. Check the spelling of notebook against the reference.
 
 Chunks and correction: ________________________________________
 
 ## Day 4
 
-[[s01-P4-8]]
+Read tulip and rabbit. Mark syllables. Check the spelling of latch against the reference.
 
 Chunks and correction: ________________________________________
 

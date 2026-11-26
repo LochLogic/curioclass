@@ -7,7 +7,8 @@ credit: ours
 ---
 # Separate source labels
 
-Use taught February entries and the taught comparison story only.
+Use February 3 on day 11 and February 10 on day 12.
+Use earlier comparison-story portions only.
 
 Name: ____________________    Date: ____________________
 
@@ -21,10 +22,10 @@ Name: ____________________    Date: ____________________
 
 Keep the labels separate. Do not compose a complete character portrait here.
 
-[[s01-P11-1]]
+Delete the invented February 3 claim: two visitors added drawings; every visitor wrote a poem.
 
 My deletion: ________________________________________
 
-[[s01-P12-1]]
+Label this fragment as action or setting: Ben arranges quiet reading.
 
 My label: ________________________________________

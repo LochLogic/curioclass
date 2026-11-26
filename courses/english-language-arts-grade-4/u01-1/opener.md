@@ -10,7 +10,7 @@ credit: ours
 ## What the section does
 
 Read the gate draft/revision for the hook, then complete notebook parts 1 and 2
-on days 2 and 3. Day 4 reads the whole short Williams poem. A precise image gives
+across days 2 to 4. Day 4 reads the whole short Williams poem. A precise image gives
 a reader a particular subject; an inference stays limited by actual words and actions.
 A line break can focus attention without demanding a fixed pause. Free verse needs no regular meter.
 
@@ -75,3 +75,15 @@ Hand-copy current short cards when printing is unavailable. Enlarge or use tacti
 Keep original text punctuation and line breaks. No digital tool is required.
 At home use thirty to forty minutes: retrieve, read together, inspect one choice,
 respond privately, reread. Keep dated work and supports without scores.
+
+## Reserved passages
+
+Day 1 uses September 4's gate draft and revision only.
+Day 2 keeps September 20 for its exit. Day 3 keeps October 9 for its exit
+and October 5 for day 4. Day 4 releases October 5's opening poem for X04;
+its commentary follows collection. The separate rhythm response uses two Independent reading minutes.
+The day 3 summary uses the final three Skills minutes, after the exit.
+Use extra-records.md for these paper responses, not a spoken substitute.
+Role listening: six pairs on day 1, children 1 to 12; six pairs on day 4,
+children 13 to 24. Day 8 reaches children 25 to 30 in three pairs.
+Each pair has two minutes. Retain actual speech separately from the paper role notes.

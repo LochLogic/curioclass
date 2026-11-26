@@ -14,13 +14,13 @@ Use only the taught Frost poem.
 | Label to cut apart | Located words or line number |
 |---|---|
 | verse line | ____________________ |
-| rhythm: a pattern of sound and movement | ____________________ |
+| rhythm: a pattern of sounds and stresses | ____________________ |
 | meter: a recurring stress pattern | ____________________ |
 | repeated ending | ____________________ |
 
 ## Day 6
 
-Use the taught Rossetti poem and November 12 entry.
+Use Rossetti and November 12 before the pocket passage.
 
 | Labels to cut apart | My match or order |
 |---|---|
@@ -28,11 +28,11 @@ Use the taught Rossetti poem and November 12 entry.
 | glad; delighted | ____________________ |
 | sad | ____________________ |
 
-[[s01-P6-2]]
+Order glad and delighted from weaker to stronger happiness.
 
 My order: ____________________
 
-[[s01-P6-7]]
+Choose glad's opposite: sad; delighted.
 
 My choice: ____________________
 
@@ -44,14 +44,12 @@ Use December's taught sayings. Match one label at a time.
 |---|---|
 | back to square one | ____________________ |
 | all my eggs in one basket | ____________________ |
-| practice makes perfect | ____________________ |
 
-Labels: beginning again; depending on one plan; improvement through practice.
-Sayings do not promise that every attempt succeeds.
+Labels: beginning again; depending on one plan.
 
 ## Day 8
 
-Use only The Missing Line and its taught scene.
+Use only earlier portions of The Missing Line and its scene. Keep all endings covered.
 
 | Feature labels to cut apart | Text location |
 |---|---|
