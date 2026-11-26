@@ -1,0 +1,372 @@
+# Course frame: Library and Research Skills, grades 6 to 8
+
+Course `library-and-research-skills-grades-6-to-8` (catalog id `library-6-8`), grades 6, 7 and 8, one course across three school years. Draft frame, 2026-11-25; the scope and sequence sets the days later, one year at a time.
+
+## The course in brief
+
+- **Units.** 9, three a school year (units 1 to 3 in grade 6, 4 to 6 in grade 7, 7 to 9 in grade 8), each unit one
+  full inquiry cycle (ask, find, judge, use, share, reflect) on a host question, in the order a middle school
+  researcher needs the moves: in grade 6 plan the search and keep honest notes, then leave the page to judge a
+  source, then build a product as a team; in grade 7 search with filters and check hard cases, then weigh sources that
+  disagree and cite them in one style, then add to a class page and use criticism; in grade 8 test one's own
+  expectation against several views, then compare group-written sites and weigh fair use, then judge the news and
+  make the band's full research product with a mixed team.
+- **Days.** 54: 18 a year for three years. Each year: 14 in units, 2 course-level check days (a mid-year and a
+  year-end check) and 2 respond days (one after each check). One session of about 45 minutes, about one session every
+  two weeks across the 32 teaching weeks of each school year (APPROACH.md, Pacing and dose: 18 sessions a year of 45
+  minutes, about 13.5 hours a year and 40.5 hours across the band; Cory kept these 2026-11-21). The 45 minutes hold
+  getting folders and any devices out, the session, and putting them away and collecting work: a lesson plan budgets
+  about 3 minutes at each end, so about 40 working minutes, and every assessment below is costed against those 40.
+  Load: grade 6 owns 8 rows, grade 7 8 and grade 8 7, so each year's 14 unit days go to its units by load: the first
+  unit of each year carries two or three rows that share one host question and gets 4 or 5 days; the second carries
+  two or three and gets 4 or 5; the third holds the year's team product (draft, written feedback and revision counted
+  in its days) and gets 4 to 6. Each unit's days include its end-of-unit assessment, except that the second and third
+  units of each year end in a course-level check that is their end-of-unit assessment (After-core courses rule; said
+  in each unit row and check row). No unit is over 25 days, so no mid-unit assessment. These are course days: the
+  calendar spreads each year's 18 over its 32 weeks, so a year's course day k falls in week 2, 4, 6, 8, 9, 11, 13, 15,
+  16, 18, 20, 22, 24, 25, 27, 29, 31 and 32 for k = 1 to 18, and the scope and sequence places them on school days.
+- **Day kinds.** In library's words (APPROACH.md, The kinds of day; docs/GLOSSARY.md, teaching day): Understanding is
+  the show-me day (the teacher thinks aloud through a search, a lateral check, a citation or a fair use weighing on an
+  invented case, holding the unit's skill card); Fluency is the practice day (short, varied tries of the same move on
+  new cases with feedback: three claims checked laterally, five sources cited, four uses weighed); Application is the
+  inquiry day (students run part of the cycle on the host question, keep the research log and build the product). At
+  this dose most days are mixed: a show-me of one move followed by practice of the move shown the day before, so a
+  unit plan names each day by its main kind and gives the minutes of each part. Fluency is the second half of most
+  days plus the five-minute opening retrieval. Every unit's day 1 is a show-me day with the hook and the compelling
+  question.
+- **Standard.** AASL National School Library Standards, second edition, learner framework (ids and our own words
+  only, data/standards/aasl-words.txt; never the competency text, and no claim of alignment approved by anyone).
+  Ownership rule (STANDARD.md section 3): an id is owned once, in the school year where it is first checked alone; the
+  course keeps a row per school year. This course owns 19 ids (grade 6: I.D.1, VI.A.3, II.A.2, IV.C.1, III.A.2,
+  III.B.1, V.B.2; grade 7: II.B.2, II.C.1, IV.C.2, III.C.1, V.D.3, V.C.3; grade 8: V.A.2, IV.B.2, IV.C.3, VI.B.1,
+  II.B.1, III.B.2), each in its unit's Owned standards, and carries the rest as `~`, each named in its unit's What
+  students learn as review of an earlier owner or as begun here with its later owner. Skills: the 23 progression rows,
+  each in one unit. Check set: the Empire State Information Fluency Continuum, 6 to 8 band file, columns 6, 7 and 8 and
+  their bold priority skills (read cell by cell for this frame, later.csv L103; result in the Check set read bullet);
+  the "Check set adds" cells name what each unit plan should weigh from it. Values: in 6 to 12, cases are invented or
+  chosen evenly across views; hoax and hate pages are described or invented, never reproduced (APPROACH.md, Sensitive
+  ground, item 1).
+- **Base text.** A partial base: the CC BY 4.0 items of the Civic Online Reasoning lessons (Digital Inquiry Group;
+  scout docs/reviews/library-open-material-2026-11-16.md, settled by Cory 2026-11-16), for the lateral reading, click
+  restraint, news and opinion, photo and claim-checking days of units 2, 4 and 9 (Source map, below). Only CC BY
+  items are adapted, in our voice, with the item's credit on the day, each item's license re-read at source when it is
+  first adapted, every live page replaced by an invented page or a dated capture of our own, and no group, platform
+  or product named on a student, teacher or family page. Everything else is Curio Class's own: each unit's invented
+  pages, results pages and "what others say" cards, the stand-alone source sets, the skill cards and the research
+  log. No day needs a paid source, a database account or a library visit (no library access is assumed; Cory,
+  2026-11-11).
+- **Host tasks.** Every unit runs its cycle on a host task from a grade 6, 7 or 8 core course, named by its row id
+  and course days for the teacher to schedule against, and carries a stand-alone host question of its own (an
+  invented question with a closed Curio Class source set) so the unit runs when no core task is in step or at home
+  (APPROACH.md). The scope and sequence records both. At one session every two weeks, the host is the research task
+  the class is doing in that course in those weeks; the library session teaches the move and the core course's own
+  days carry most of the reading.
+- **The inquiry arc.** Each unit opens with its compelling question and closes with the share step and the self-check:
+  the student rates their own use of the skill card's steps and names one thing to do differently next time
+  (APPROACH.md, the form of daily evidence; it also meets the continuum's 6 to 8 reflect cells on one's strengths and
+  goals). The research log is one notebook kept across the three years: question chains, search plans, source lines,
+  note cards, version and response logs. Grade 8's unit 9 runs the whole cycle with the least help in the band.
+- **Readiness and retrieval.** Grade 6 rows assume library grade 5 rows (one year back, so a retrieval task by
+  lesson 16's count). Library is not a core course and a school may not run grade 5 (lesson 32), so in grade 6 each
+  assumed grade 5 row is given as a ten-minute readiness check before its unit opens, and a class that shows the move
+  missing gets the ten-minute reteach from library grade 5's show-me case on the next day: unit 1's in the last ten
+  minutes of day 1, after the hook; unit 2's in the last ten minutes of unit 1's last day; unit 3's in the last ten
+  minutes of the mid-year respond day. Grade 7 and 8 rows assume this course's rows of the year before or earlier the
+  same year, so each opens as a five-minute retrieval task at the start of the unit's day 2 (day 1 stays clean for the
+  hook and the question). Each unit row names its items.
+- **Evidence.** Daily: an exit ticket that asks the student to do the skill once on a new case, with error letters
+  for the usual slips, on show-me and practice days; the research log on inquiry days (APPROACH.md). End-of-unit
+  assessment: a sitting of about 30 to 35 minutes on an unseen invented case (a search planned, a page judged, a
+  source cited, a use weighed), scored on a short teacher-judged rubric, plus a few one-answer items, taken without
+  the skill card; and, in each year's third unit and in unit 9, a product scored after its draft day, written feedback
+  and revision, all counted in the unit's days. No score comes from a day a move is first shown. The first unit of each
+  year ends in its own sitting; its respond step is the opening five minutes of the next unit's day 2 (each student
+  fixes the item the error letters marked) and a place in the mid-year respond day's groups, since a full respond day
+  would take a fifth of a unit at this dose. The second and third units end in the course-level checks. The respond
+  days' groups come from the class record sheet by the rubric step missed (APPROACH.md, unit field 7).
+- **Reading level.** Source texts at grade 6, 7 or 8 level or read aloud, with a shorter source set for a student who
+  reads below it (APPROACH.md, section field 9); invented pages are short (one screen or one printed page).
+- **Paper path.** Every day runs on paper: printed invented pages and results pages, printed "what others say" cards
+  for lateral checks, printed dated captures of a group-written encyclopedia article with its references and edit
+  history, a paper class page on the wall for unit 6, the research log notebook, and paper response logs. No day needs
+  a device, an internet connection or a student account.
+- **Devices.** None required. Where a school has them, pairs share one device on inquiry days for a closed set or a
+  teacher-checked list, under the school's own use rules and the stop rule (close the page, tell the adult, no blame);
+  one projector may show the invented page. No owned code needs technology: III.B.1 (a fitting way for a team to share
+  files) is met by a passed folder or a notebook as fully as by a school-provided shared document; IV.C.1, IV.C.2 and
+  IV.C.3 (group-written sites) are met on printed captures and the paper class page; VI.A.3 lateral checks on printed
+  cards. A paper-path student meets every part in full.
+- **Safety read.** No hands-on materials beyond paper and shared devices, no field work and no trip, so no laboratory
+  or field guide applies. The screen-safety side is the stop rule and the privacy rule (no student types a name,
+  school, place or photo into a search or a site; APPROACH.md, Sensitive ground, items 2 and 3), checked by the
+  sensitivity read on every plan with an open-search inquiry day.
+- **Sensitivity reads.** Every unit gets the fresh sensitivity agent's read (docs/pipeline/briefs/sensitivity-read.md,
+  kind `sensitivity`) on its case set at the unit plan and again at the days; no outside human reader is planned
+  (Cory, 2026-11-14). What the agent studies first, for every unit: APPROACH.md "Sensitive ground" items 1 (cases
+  evenly across views), 2 (the stop rule), 3 (privacy), 4 (honest use without shaming), 5 (whose voices a source set
+  shows, C12) and 7 (machine-made content); item 6 (copyright and fair use as general guidance) for units 8 and 9,
+  where the `rights` read also applies; item 8 (asking people) for unit 6's class survey and unit 9's partner-class
+  exchange. Units naming communities, with their own sources, are marked in the last Units column: unit 1 (peoples of
+  Western Asia and North Africa, if the social studies host is used), unit 3 (people affected by natural hazards),
+  unit 4 (families of the 1930s Plains, if the ELA host is used) and unit 6 (students who face food insecurity).
+- **Supplies and cost.** Printing at about 5 cents a page (ours, provisional) for a class of 30, with a research log
+  notebook per student (about $1, bought once in grade 6 and kept to grade 8, about $30): unit 1 about $9, unit 2 about
+  $12, unit 3 about $6 plus poster paper about $5, unit 4 about $9, unit 5 about $9, unit 6 about $6 plus a roll of
+  wall paper about $8, unit 7 about $8, unit 8 about $9, unit 9 about $12 plus poster paper about $5; about $30 a year
+  in printing and $30 once for the notebooks. Each year's checks add about $5 of printing.
+- **Check set read (L103, 2026-11-25).** The 6 to 8 band file, columns 6, 7 and 8 and the priority boxes, every
+  indicator row of the four anchor standards (S:\CurioClass-sources\library\aasl-2026-11-21\esifc-6-8\esifc-priority-6-8.docx,
+  read as text with `python -I` by an extractor kept outside that folder, ids and meanings only, nothing copied).
+  Met by the rows, in our words: key words from background reading and a plan before searching (g6-search-strategy);
+  new questions from what was found (g6-keep-questioning, the reflect cells in every column); notes kept apart as
+  paraphrase, quotation and one's own thinking (g6-quote-paraphrase; the grade 8 reflective-notes cell is met a grade
+  early); checking a source's authority, accuracy and fit by reading laterally and fact-checking
+  (g6-lateral-reading, g7-lateral-hard-cases, g8-news-lateral); a source's point of view and what it leaves out
+  (g6-point-of-view; the grade 7 cell met a grade early); an argument's evidence weighed and conclusions drawn across
+  sources, and misinformation and one's own assumptions challenged by seeking other views (g7-sources-disagree);
+  stating an opinion in a discussion and backing it with a source (g7-evidence-discussion); curating and sharing good
+  sources with classmates (g7-class-wiki); citing every source in a set style (g6-quote-paraphrase cites each card's
+  source, one set style in grade 7 with ELA, g7-citation-style); revision from self, teacher and peer feedback
+  (g7-feedback-loop); a balance of diverse perspectives (g8-multiple-views-gather); misconceptions found and ideas
+  revised (g8-test-assumptions); fair use in making and sharing (g8-fair-use-basics); collaboration that builds on
+  others' ideas, with diverse groups, toward a product for a real audience (g6-team-product, g8-diverse-team,
+  g8-research-product); several ways to present findings (g6-make-and-improve). Differences, each with a row change
+  (Row changes, For the lead item 1): the grade 6 online-catalog cell (met in grades 2 to 4; no library access is
+  assumed) on g6-search-strategy; the grade 7 cell on a site's own navigation, and the grade 8 cell on subject
+  headings, which the progression otherwise first reaches in grade 10 (two grades late), on g7-search-results; the
+  grade 7 cell on not spreading misinformation on social media on g7-lateral-hard-cases; the grade 8 cell on checking
+  methods by kind of source (a blog, a post, a viral video) on g8-news-lateral; the grade 8 cell on one's own point of
+  view shaping how information is read on g8-test-assumptions (its fuller form stays in g10-own-lens); the grade 8
+  cell on refining questions by the kind of information each asks for on g8-research-product. Met one grade off
+  without a row change: sorting questions into fact, unanswerable and inquiry questions (grade 6 cell, g5-research-or-guess);
+  a working thesis from what is known (grade 7 cell, g8-test-assumptions); a manageable topic (grade 8 cell,
+  g9-research-question-design); formats including subscription databases (grade 8 cell; free databases in
+  g9-databases-operators, no paid database assumed). Met without a row: the reflect cells on a good product, one's
+  strengths and goals, and one's experience of the inquiry (the self-check, never scored for feeling); the acceptable
+  use and internet safety cells (the stop rule, the privacy rule and the school's own use rules on every device day).
+  Left out, with their owners: the design thinking standard (science and computer science, STANDARD.md section 4;
+  g6-make-and-improve keeps only trial and error on a made product); literature discussion, reading goals,
+  organizational patterns in writing, inference, argument writing with counterclaims, public speaking and the
+  language of media (ELA, STANDARD.md section 4; social studies ss8-news-literacy for media claims); digital footprint
+  (computer science, g6-data-about-people and g7-personal-data); future and career exploration (career education);
+  the social and emotional growth cells and the leadership cell (SEL). Beyond the band file: machine-made text and
+  images checked as any source (g7-lateral-hard-cases) and the group-written site rows (g6-group-wiki,
+  g7-class-wiki, g8-compare-wikis). After the row changes, no row is two or more grades from its cell.
+
+## Seams
+
+### Picked up from Library and Research Skills, grade 5
+
+| Grade 5 row (what it hands on) | Grade 6 row that picks it up | Unit here | How it opens |
+|---|---|---|---|
+| g5-research-or-guess: sorting questions into researchable, opinion and needs-data, and rewriting an opinion question | g6-keep-questioning | 1 | Readiness check, last ten minutes of day 1: sort four questions and rewrite one |
+| g5-search-log-look-back: a search log with a next-step line | g6-keep-questioning | 1 | The same readiness check: one next-step line from a given log |
+| g5-search-revise: changing a query (narrower, broader, synonym, exact phrase), reading the source name, skipping ads (search-plan) | g6-search-strategy | 1 | The same readiness check: fix one poor query |
+| g5-bibliography: a bibliography to a model, print, video and web (citation) | g6-quote-paraphrase | 1 | The same readiness check: one entry built to the model |
+| g5-first-lateral-check: leaving an unfamiliar page to see who is behind it (lateral-reading) | g6-lateral-reading | 2 | Readiness check, last ten minutes of unit 1's last day |
+| g5-evidence-notes: answer-only notes marking where three sources agree and differ | g6-point-of-view | 2 | The same readiness check |
+| g5-choose-sources: weighing sources for relevance, date and level, with a group-written encyclopedia as a starting map | g6-group-wiki | 2 | The same readiness check |
+| g5-group-inquiry: a group splitting a question and pooling findings | g6-team-product | 3 | Readiness check, last ten minutes of the mid-year respond day |
+| g5-share-real-audience: a revised product shared with real people (research-cycle) | g6-team-product; g6-make-and-improve | 3 | The same readiness check |
+
+Every grade 5 row hands on to a grade 6 row here, and each grade 6 row's assumes names it back. A class that did not
+take library grade 5 gets each ten-minute reteach from grade 5's show-me case on the unit's next day. The grade 5 frame's handoff table matches this one row for row: g5-research-or-guess, g5-search-log-look-back and g5-search-revise are its unit 1, g5-choose-sources and g5-first-lateral-check its unit 2, g5-evidence-notes and g5-bibliography its unit 3, g5-group-inquiry and g5-share-real-audience its unit 4; each reteach comes from that unit's show-me case.
+
+### Within the band
+
+| Row (year before) | Row that picks it up | Units |
+|---|---|---|
+| g6-search-strategy | g7-search-results | 1 to 4 |
+| g6-lateral-reading | g7-lateral-hard-cases | 2 to 4 |
+| g6-point-of-view | g7-sources-disagree; g7-evidence-discussion | 2 to 5 |
+| g6-keep-questioning | g7-evidence-discussion | 1 to 5 |
+| g6-quote-paraphrase | g7-citation-style | 1 to 5 |
+| g6-group-wiki | g7-class-wiki | 2 to 6 |
+| g6-team-product | g7-feedback-loop; g7-group-solutions | 3 to 6 |
+| g6-make-and-improve | g7-feedback-loop | 3 to 6 |
+| g7-sources-disagree; g7-search-results | g8-multiple-views-gather | 5 and 4 to 7 |
+| g7-evidence-discussion | g8-test-assumptions | 5 to 7 |
+| g7-class-wiki | g8-compare-wikis | 6 to 8 |
+| g7-citation-style | g8-fair-use-basics | 5 to 8 |
+| g7-lateral-hard-cases | g8-news-lateral | 4 to 9 |
+| g7-group-solutions | g8-diverse-team | 6 to 9 |
+| g7-feedback-loop | g8-research-product | 6 to 9 |
+
+### Handed on to Library and Research Skills, grades 9 to 12
+
+| This course hands on | Unit here | Grade 9 row that picks it up | What grade 9 does with it |
+|---|---|---|---|
+| g8-test-assumptions: an expectation tested against findings, with an honest update (research-cycle) | 7 | g9-research-question-design | A research question kept over several weeks and rounds of searching |
+| g8-research-product: the full cycle with the least help, a product shared and comments answered | 9 | g9-research-question-design | The same, with the question designed by the student inside a set topic |
+| g8-multiple-views-gather: a search plan that gathers several views on purpose (search-plan) | 7 | g9-databases-operators; g9-fair-sides | Operators and filters in a free or invented database; each view stated at its strongest |
+| g8-news-lateral: news items checked laterally, report from opinion, a claim traced upstream (lateral-reading) | 9 | g9-lateral-method | The fast routine (stop, investigate, better coverage, trace) on hard cases |
+| g8-compare-wikis: differences among group-written sites traced to their references | 8 | g9-source-log | An annotated source log rechecked as the question shifts |
+| g8-fair-use-basics: the four fair use questions and a safer path (citation) | 8 | g9-open-licenses | Licenses, remix, a permission request, fair use on harder cases |
+| g8-diverse-team: change from a teammate's view and from another class's findings | 9 | g9-group-shapes-solution | A decision memo whose choice follows from the group's findings |
+
+Every grade 8 row hands on to a grade 9 row, and each grade 9 row's assumes names it back. Grade 9 rows open as
+retrieval tasks (one year back). Pending(docs/courses/library-and-research-skills-grades-9-to-12/frame.md): built from the progression rows; once the 9 to 12 frame is written, its unit numbers are cited here.
+
+## Models carried
+
+| Model | Where it comes from | Introduced or first used here | Used again here |
+|---|---|---|---|
+| research-cycle | Library kindergarten (k-class-inquiry), carried every year to grade 5 (g5-share-real-audience, model_out) | Unit 1, run in full on its host question (g6-keep-questioning, model_in and model_out) | Every unit runs the whole cycle once; it is named in the rows of units 3 (g6-make-and-improve), 6 (g7-feedback-loop), 7 (g8-test-assumptions) and 9 (g8-research-product) |
+| search-plan | Library grade 3 (g3-key-words), carried to grade 5 (g5-search-revise) | Unit 1 (g6-search-strategy): the plan before typing, with the choice among results | Unit 4 (g7-search-results: filters and reference works), unit 7 (g8-multiple-views-gather: a plan for views) |
+| citation | Library grade 2 credit line, carried to grade 5 (g5-bibliography) | Unit 1 (g6-quote-paraphrase): note cards with source and page | Unit 5 (g7-citation-style: one set style), unit 8 (g8-fair-use-basics) |
+| lateral-reading | Library grade 5 (g5-first-lateral-check, model_out) | Unit 2 (g6-lateral-reading): the method, with going upstream; also used by g6-group-wiki in the same unit | Unit 4 (g7-lateral-hard-cases), unit 9 (g8-news-lateral) |
+
+All four models go on to grade 9 (g9-research-question-design, g9-databases-operators, g9-open-licenses,
+g9-lateral-method).
+
+## Units
+
+| # | Year | Unit and compelling question | Days | Skills | Owned standards | Inquiry phases | What students learn | Why this unit, here | Check set adds | Sensitive topics and teacher notes |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 6 | Plan it, note it, ask again. *How do researchers find what they need, keep it honest, and know what to ask next?* | 5 | g6-search-strategy; g6-keep-questioning; g6-quote-paraphrase | AASL.I.D.1 | Connect (key words), wonder, investigate (search, notes), reflect | Planning a search before typing: key terms and synonyms, an exact phrase in quotation marks, which kind of source to try first, then choosing among results by the snippet and the source name (g6-search-strategy; carries IV.B.1, owned by g4-search-more-kinds, grade 4, and IV.A.3, owned by g5-choose-sources, grade 5, as review). Note cards that keep paraphrase, quotation (in marks, word for word) and the student's own thinking apart, each with the source and page, and fixing a sentence copied without marks (g6-quote-paraphrase; carries VI.B.2, owned by g2-credit-line, grade 2, as review; begun here, owned later: VI.B.1, owned by g8-fair-use-basics, grade 8, unit 8). When the question is answered, writing the new questions the answer raised and picking one to chase, a question chain in the research log (AASL.I.D.1, owned here: "Keep asking new questions after one answer is found"; carries I.B.2, owned by g4-narrow-and-plan, grade 4, as review). Out: filters and reference works (unit 4); one set citation style (unit 5); databases and operators (grade 9). Readiness check (last ten minutes of day 1): the grade 5 rows in Seams. Days: show-me (hook, the question, the search plan; the question chain modeled on the hook's case), show-me and practice (note cards; the search plan practiced on an invented results page), inquiry (search and note cards on the host question; skill card withdrawn), inquiry (findings shared in groups of four, each student's question chain written and one follow-up picked; self-check), end-of-unit assessment. Skill card: "plan the words, pick by the source, mark the quote, ask the next question". End-of-unit evidence (sitting, about 30 minutes for the class at once, then the unit 2 readiness check): for an unseen question, a search plan and the choice of two of six invented results with a reason (g6-search-strategy); one quotation card and one paraphrase card from a short source with source and page, and one copied sentence fixed (g6-quote-paraphrase); a chain of three follow-up questions that grow from a given finding (g6-keep-questioning). Respond: the opening five minutes of unit 2's day 2 and the mid-year respond day's groups. Tools: the invented results pages, note card templates, the research log (Curio Class writes the results pages, the stand-alone source set and the card). Host: why people settle by rivers, coasts and oases, ss6-mena-settlement in social studies grade 6 unit 3 (days 26 to 38); stand-alone: "How did people keep food from spoiling before refrigerators?" with a closed set of five short invented sources | The band opens with the search plan and honest notes because every later unit searches and notes; the question chain comes with them because it is what an answered search leads to, and it sets up the question every later unit opens with. The search plan model and the citation model arrive from grade 5 here | Candidate: the continuum's grade 6 connect cell on key words from background reading, as the first step of the search plan; its grade 6 notetaking cell (several note forms), as a choice of card layouts; its grade 6 cell on topics of passion within a study, at the question chain | Honest use without shaming (Sensitive ground, item 4): a copied sentence is fixed with the student privately, never shown to the class as an example of a student's work; the practice copy is invented. The social studies host draws only on the physical geography of the region; the sensitivity read checks that the source set shows the region's own sources and voices (C12). The stand-alone case keeps to methods (salting, drying, cold cellars) with no question about food at home |
+| 2 | 6 | Leave the page. *How can we tell whether a page deserves our trust?* | 5 | g6-lateral-reading; g6-point-of-view; g6-group-wiki | AASL.VI.A.3; AASL.II.A.2; AASL.IV.C.1 | Investigate (judging sources and evidence), construct, express, reflect | Lateral reading as the method for judging a source: leave the page, see what other sources say about its maker and its claim, and go upstream to the original of a statistic, quote or photo, then judge whether the information is accurate, fair in its context and fit for the task (AASL.VI.A.3, owned here: "Judge whether information is accurate, fair in its context and fit for the task"; carries IV.B.3, owned by g5-first-lateral-check, grade 5, as review). The point of view a source takes (word choice, what is left out, who paid for it), weighed before agreeing, in an "I trust this less because..." or "This fits because..." line (AASL.II.A.2, owned here; begun here, owned later: II.B.2, owned by g7-sources-disagree, grade 7, unit 5). Using a group-written online encyclopedia well: how its editing works, its references and edit history on a dated capture or invented copy, and using it as a map to better sources, not the final source (AASL.IV.C.1, owned here). The method, not a checklist of the page's looks (bar part 11, item 3): a polished invented page fails the lateral check and a plain one passes. Out: photos without context, unsourced statistics and machine-made content (unit 4); news (unit 9). Opening retrieval (day 2): fix the item missed in unit 1's sitting. Days: show-me (hook: two invented pages on one claim, one polished and wrong; the question; lateral reading and going upstream), show-me and practice (point of view; three claims checked laterally on "what others say" cards), show-me and practice (the group-written article's references and history; point-of-view lines on two sources), inquiry (judge the host question's sources: a lateral line, a point-of-view line and one article judged for each student's source list; card withdrawn), inquiry (pairs share their judged source lists and the class agrees on the two best sources; self-check). Skill card: "leave the page, ask who is behind it, go upstream, then judge". End-of-unit assessment: the mid-year check (course day 11), which covers this unit in full. Tools: invented pages, "what others say" cards, printed article captures (Curio Class writes them; Source map for the adapted lateral reading lessons). Host: judging the credibility of each source in ela grade 6 unit 3 (days 63 to 86) (e6-short-research), forecasting research in the same weeks; stand-alone: "Can animals or aching knees really forecast rain?" with invented pages on weather sayings | After unit 1 because judging needs sources found by a plan; before social studies uses lateral reading on news in grade 8 and in the same weeks as ELA's credibility work, so ELA's day can reuse this method (the row's either-order line). Point of view and the group-written article sit here because both are judgments of a source made by leaving it or looking behind it | Candidate: the continuum's grade 6 cells on comparing the authority, accuracy (by fact-checking) and point of view of every source, as the source list's judgment lines; its grade 6 cell on whether information is inaccurate or misleading, at the upstream step | Cases are invented or chosen evenly across views; no partisan question; a hoax page is described or invented, never reproduced (Sensitive ground, item 1). The weather sayings are folk knowledge from many places: the case treats them with respect and checks the claim, not the people who hold it. On any open-search inquiry day, the stop rule and a teacher-checked list (item 2) |
+| 3 | 6 | Build it together. *How can a team turn its research into something that helps people prepare?* | 4 | g6-team-product; g6-make-and-improve | AASL.III.A.2; AASL.III.B.1; AASL.V.B.2 | Construct (with others), express, reflect | A research team picks a fitting way to talk and share its files (a school-provided shared document, a folder, a notebook passed round), says which tool, why it fits and who holds what, and uses it over the unit (AASL.III.B.1, owned here: "Pick a fitting way to talk and share files with a research team"); the team builds an idea together that no member had alone, recording on a team sheet where each part came from (AASL.III.A.2, owned here). Each student chooses what the team's product needs from them (a label set, a one-page explainer, a map, a short spoken explainer) and keeps going through trial and error, recording each version and what changed in a version log (AASL.V.B.2, owned here; carries I.B.3, owned by g3-make-product, grade 3, as review); this uses the try-and-improve habit of science grade 5 (s5-design-test) without criteria, constraints or fair tests, which stay in science. Readiness check (last ten minutes of the mid-year respond day): the grade 5 group and audience rows. Opening retrieval (day 2): the try-and-improve habit from science grade 5, one line on what a test of a version shows. Out: answering readers' comments in a response log (unit 6); a mixed-view team and another class (unit 9). Days: show-me (hook, the question, the team sharing plan and the version log), inquiry (teams research the host question, sharing plan in use, version 1 with the team sheet; card withdrawn), inquiry (version 1 tried on a reader from another team, written teacher feedback, version 2 begun), inquiry (revision finished; the product shared with a younger class or at a display; self-check). Skill card: "share the plan, mark who added what, try it, change it, log it". End-of-unit assessment: the year-end check (course day 17), which scores this unit's sharing plan and version log from the unit's work after the feedback and revision days, and holds the written item on the team's new idea. Tools: the team sheet, the version log, the sharing plan card (Curio Class writes them and the stand-alone source set). Host: hazard warning signs and preparing for them, s6-hazard-forecast in science grade 6 unit 5 (days 116 to 135); stand-alone: "What should a younger class know to get ready for a big storm?" with a closed set of six invented preparedness sources | Last in grade 6 because it gathers the year: a planned search and honest notes (unit 1) and judged sources (unit 2) are what a team brings to build on; the made product and its shared audience close the year's cycle and hand on to grade 7's feedback loop | Candidate: the continuum's grade 6 cells on building on others' ideas and on encouraging team members to share, at the team sheet; its grade 6 express cell on presenting conclusions in several ways, at the product choice; its grade 6 cell on drafting for the audience | Natural hazards (Sensitive ground; sensitivity read): some students have lived through a storm, flood, fire or earthquake, or have family who have. The case is preparing, not disaster stories: no images of injury, and a student may choose a hazard that does not touch them. The teacher page says what the adult does if a student tells of a frightening experience (health's steps, APPROACH.md section field 1). Teams are mixed by the teacher, never by background; only school-provided tools; no student shares contact details |
+| 4 | 7 | Search smarter, check the hard cases. *How can we find good sources fast and check things that look true?* | 4 | g7-search-results; g7-lateral-hard-cases | None | Connect (background), investigate (search and judging), reflect | Filters (date, kind of source), a reference work for background before the open web, a site's own menus and search box, a subject heading followed to related items, and a choice rule for which three results to open (g7-search-results; carries IV.B.1, owned by g4-search-more-kinds, grade 4, and IV.A.3, owned by g5-choose-sources, grade 5, as review). Lateral reading on harder invented cases: a photo whose context was lost, a statistic quoted without a source, and machine-made text or images (invented or a dated capture), each checked the same way as any source (who made it, what it cites, what others say), and a post shared only after it is checked (g7-lateral-hard-cases; carries VI.A.3, owned by g6-lateral-reading, grade 6, and IV.B.3, owned by g5-first-lateral-check, grade 5, as review). Out: how machine-made text tools work (computer science); judging the use of such tools in one's own work (grade 10). Opening retrieval (day 2): one lateral check on a short invented page (g6-lateral-reading) and one search plan line (g6-search-strategy). Days: show-me (hook: a famous-looking photo with a wrong caption; the question; filters, the reference work and the choice rule), show-me and practice (the hard cases; filtered searches on an invented results page), inquiry (the host question: background from a reference work, a filtered search, and one hard case checked; card withdrawn; findings shared in groups and the self-check in the last ten minutes), end-of-unit assessment. Skill card: "background first, filter, pick three, then check the photo, the number and the maker". End-of-unit evidence (sitting, about 35 minutes): for an unseen question, a filtered search plan with a reference work named and three results chosen by the rule (g7-search-results); an unseen photo, statistic and machine-made paragraph, each checked with what was found upstream and a share-or-not line (g7-lateral-hard-cases). Respond: the opening five minutes of unit 5's day 2 and the mid-year respond day's groups. Tools: invented results pages with filters, printed reference entries, the hard-case set (Curio Class writes them; Source map for the adapted photo and claim lessons). Host: the Dust Bowl feature and film, e7-central-ideas-develop in ela grade 7 unit 2 (days 31 to 56): a 1930s photo checked for its context; stand-alone: "How much water does it really take to make one cotton T-shirt?", a much-repeated number traced upstream | First in grade 7 because the year's comparing (unit 5) and contributing (unit 6) both need fast background and a checked set; the hard cases build straight on grade 6's method a year later, before ELA and social studies lean on it | Candidate: the continuum's grade 7 cells on fact-checking information on websites and social media, at the share-or-not line; its grade 7 visual literacy cell on drawing meaning from a photo or chart, at the photo case; its grade 7 cell on using online encyclopedias and directories for background | Machine-made content (Sensitive ground, item 7): no claim that any tool is reliable or unreliable; the check is the same as for any source; no student uses a tool or needs an account. If the ELA host is used, the photo shows hardship on the 1930s Plains: the case asks about the photo's context and maker, never mocks the people in it; the sensitivity read checks it against the ELA unit's own sources |
+| 5 | 7 | When sources disagree. *Who should get the credit, when sources tell the story differently?* | 5 | g7-sources-disagree; g7-evidence-discussion; g7-citation-style | AASL.II.B.2; AASL.II.C.1 | Investigate (comparing sources), construct (conclusions), express (discussion, citation), reflect | Comparing how three or more sources with different views treat one question, in a table (the claim, the evidence, the maker, what each leaves out), then saying what a careful reader concludes (AASL.II.B.2, owned here: "Compare how several sources with different views treat the same question"; begun here, owned later: IV.B.2, owned by g8-multiple-views-gather, grade 8, unit 7). A research discussion where every claim points to a source ("my source, a ... report, says...") and a challenge asks where a claim came from (AASL.II.C.1, owned here). Every source, print, video, image and web, cited in one set style in a works-cited list and pointed to in the text (g7-citation-style; carries VI.B.2, owned by g2-credit-line, grade 2, as review; begun here, owned later: VI.B.1, owned by g8-fair-use-basics, grade 8, unit 8); ELA teaches the format for writing the same year, and this unit applies it across media. Out: the four fair use questions (unit 8). Opening retrieval (day 2): a point-of-view line on a short source (g6-point-of-view). Days: show-me (hook, the question, the comparison table), show-me and practice (the citation style; a table on two short sources), show-me and practice (the sourced discussion as a short fishbowl; citations for five mixed sources), inquiry (the host question's table from three or more sources, each cited; card withdrawn), inquiry (the research discussion in groups of five, each student's sourced contributions marked on the record sheet; conclusions shared; self-check). Skill card: "table the claims, ask where it came from, cite it the same way every time". End-of-unit assessment: the mid-year check (course day 28), which covers this unit's table and citation items; the discussion is scored on day 5 on the record sheet, after its fishbowl practice on day 3. Tools: the comparison table, the works-cited model, the discussion record sheet (Curio Class writes them and the source sets). Host: who gets the credit for beating smallpox, ela grade 7 unit 3 (days 61 to 86) (e7-research-questions); stand-alone: "Who invented the light bulb?" with a closed set of four sources that credit different inventors | After unit 4 because the comparison needs a quick, checked source set; in the weeks of ELA's research and citation unit, so the citation style is applied across media while ELA teaches it for writing (the row's either-order line); and before unit 6, which needs cited sources for the class page | Candidate: the continuum's grade 7 cells on weighing an argument's supporting and refuting evidence and on combining evidence into a conclusion, at the table's last line; its grade 7 cell on recognizing others' opinions and judging their evidence with an open mind, at the discussion | Cases are invented or chosen evenly across views (Sensitive ground, item 1); a school may swap a case and keep the ids met. Credit disputes involve real people: the case weighs sources, never ranks the worth of the people. The discussion keeps to sources; no student is asked to speak for a group. Whose voices: the unit records whose work its source set shows (C12) |
+| 6 | 7 | Our class page. *How could our school waste less, and how do we make our page better with criticism?* | 5 | g7-class-wiki; g7-feedback-loop; g7-group-solutions | AASL.IV.C.2; AASL.III.C.1; AASL.V.D.3; AASL.V.C.3 | Construct (with others), express, reflect | Adding to a class group-written page (a paper wall or a closed class tool): a section with its sources, credit for others' edits it builds on, and the history of changes read (AASL.IV.C.2, owned here: "Add to a shared, group-written site with credit for others' work"). A group using its findings to come up with fresh answers to a shared, neutral school problem, listing ideas before judging them and tying each kept idea to a finding (AASL.V.C.3, owned here; carries III.A.2, owned by g6-team-product, grade 6, as review). Asking readers for comments on named parts of the page and the solution list, answering each comment in a response log (keep, change, or why not), and using a critical comment to improve the work (AASL.III.C.1 and AASL.V.D.3, owned here; carries I.C.3, owned by g4-revise-from-advice, grade 4, as review); the check scores the use of criticism, never a mood. Out: a team mixed by view and another class (unit 9). Opening retrieval (day 2): one citation in the set style (g7-citation-style, unit 5). Days: show-me (hook, the question, ideas before judging, each tied to a finding), show-me and practice (the class page: a section, sources, credit and history), show-me and inquiry (the response log shown in ten minutes; groups research, draft their sections and solution lists, and ask for comments; card withdrawn), inquiry (every comment answered in the log, written teacher feedback, the page and list revised), inquiry (the page and the best-supported ideas shared with the school office or a younger class; self-check). Skill card: "list ideas before judging, tie each to a finding, credit the edit, answer every comment". End-of-unit assessment: the year-end check (course day 35), which scores the revised page section and the response log from the unit's work and holds the written item on an idea and its finding. Tools: the paper class page (or a closed class tool), section templates, the response log (Curio Class writes them and the stand-alone data set). Host: designing a way to reduce a human impact, s7-human-impact-design in science grade 7 unit 6 (days 129 to 158); stand-alone: "How could our school cafeteria waste less food?" with an invented school-wide waste data set and four short invented sources | Last in grade 7 because it gathers the year's checked, compared and cited sources (units 4 and 5) into a page others read, and the feedback loop needs a product to answer comments on; it hands on to grade 8's team product | Candidate: the continuum's grade 7 cell on curating and sharing good sources with classmates, at the class page; its grade 7 cell on criteria for judging a product made with classmates and the teacher, at the response log; its grade 7 cell on sharing research to raise awareness of a problem | Food and meals (Sensitive ground, item 8): no student is asked what they eat, whether they get school meals or what they waste; data are the invented school-wide set or whole-school counts the school already shares, never individual. Some students face food insecurity: the case is about the system (portions, menus, timing), never about who eats what. The class page holds first names or initials only; no public site |
+| 7 | 8 | Test what you expect. *Should our school start later, and what do people who see it differently know?* | 4 | g8-test-assumptions; g8-multiple-views-gather | AASL.V.A.2; AASL.IV.B.2 | Connect (prior knowledge), wonder (a working answer), investigate (several views), construct, reflect | Before searching, writing what one expects to find; during research, marking each finding that tests that belief, and saying what one now thinks and why, with a line on how one's own first view shaped what one looked for (AASL.V.A.2, owned here: "Catch and test your own assumptions and mistaken ideas while researching"; carries I.D.1, owned by g6-keep-questioning, grade 6, as review). Planning searches on purpose to gather sources that see the question differently (an expert body, people affected, a critic) and recording in the search plan which view each brings (AASL.IV.B.2, owned here; carries IV.A.3, owned by g5-choose-sources, grade 5, as review). Out: stating each view at its strongest in a product (grade 9, g9-fair-sides); a "where I start" note on one's own lens (grade 10). Opening retrieval (day 2): the comparison table's last line on a short three-source set (g7-sources-disagree) and one filter choice (g7-search-results). Days: show-me (hook, the question, the written expectation and the marked findings), show-me and practice (the search plan for views; findings marked on a short set), inquiry (the host or stand-alone question: expectation, a plan for three views, findings marked and an honest update; card withdrawn; updates shared in groups and the self-check in the last ten minutes), end-of-unit assessment. Skill card: "write what you expect, plan for other views, mark what tests it, say what you think now". End-of-unit evidence (sitting, about 35 minutes): for an unseen question, an expectation, a search plan that names three views and the source kind for each (g8-multiple-views-gather); given six findings, those that test the expectation marked, and an honest update with its reason (g8-test-assumptions). Respond: the opening five minutes of unit 8's day 2 and the mid-year respond day's groups. Tools: the expectation card, the views search plan, the invented source sets (Curio Class writes them). Host: how an author answers conflicting viewpoints, e8-conflicting-viewpoints in ela grade 8 unit 2 (days 31 to 62); stand-alone: "Should our school start later in the morning?" with a closed set of six invented sources (a sleep researcher, a bus planner, a family, a coach, a teacher, a student) | First in grade 8 because the year's research product starts from an honest expectation and a plan for other views; it builds on grade 7's comparing (unit 5) a year later and hands the views plan to unit 9 | Candidate: the continuum's grade 8 cell on questioning prior knowledge to find misconceptions, at the expectation; its grade 8 cell on predicting answers and the perspectives likely to be found, at the search plan; its grade 8 cell on changing one's opinion when others' reasons have merit, at the update | Cases are invented or chosen evenly across views (Sensitive ground, item 1). Sleep touches health: the case uses invented sources and asks no student about their own sleep or home routine. The update is scored for following the evidence, never for which side a student ends on |
+| 8 | 8 | Compare and use fairly. *Why do sites that many people write disagree, and when may we use someone else's work?* | 4 | g8-compare-wikis; g8-fair-use-basics | AASL.IV.C.3; AASL.VI.B.1 | Investigate (comparing group-written sites), construct, express (making with others' work), reflect | With classmates, comparing what several group-written sites say on one question, listing the differences and tracing each back to the references behind it (AASL.IV.C.3, owned here: "Compare with classmates what several group-written sites say on one question"). The basics of copyright and fair use: a work is protected from the moment it is made; fair use weighs four questions (why the work is used, what kind of work it is, how much is used, whether the use takes the place of the original), and giving credit alone does not make a use fair; for invented cases students say which way each question leans and pick the safer path (a public domain or openly licensed work, a smaller part, a link instead of a copy, or asking permission) (AASL.VI.B.1, owned here; carries VI.A.2, owned by g4-honest-use, grade 4, as review). Out: reading licenses and writing a permission request (grade 9, g9-open-licenses); fair use on hard cases such as a parody or a remix (grade 9). Students weigh the questions and never rule a use permitted or lawful. Opening retrieval (day 2): one works-cited entry for an image (g7-citation-style) and one class page credit line (g7-class-wiki). Days: show-me (hook: two group-written entries that give different numbers; the question; the comparison chart traced to references), show-me and practice (the four questions on three invented uses; one more comparison), inquiry (the host or stand-alone question: pairs compare three entries and make one product page with an image chosen by the safer path and credited; card withdrawn), inquiry (pages finished, shared in groups; self-check). Skill card: "line them up, trace each difference, ask the four questions, take the safer path". End-of-unit assessment: the mid-year check (course day 45), which covers this unit in full. Tools: printed captures of invented group-written entries with references, the four-questions card, invented works for the fair use cases (Curio Class writes them). Host: the 1906 food and medicine research, e8-self-generated-research in ela grade 8 unit 3 (days 63 to 88), where period cartoons and photos are public domain and a modern image is not; stand-alone: "How tall is the tallest tree, and who measured it?" with three invented entries that differ | After unit 7 because comparing sites is the views plan turned on group-written sources; fair use sits here, before unit 9's product uses others' images and clips, and the year after the set citation style (unit 5), so students already credit and now learn credit is not enough | Candidate: the continuum's grade 8 cell on making ethical decisions about creating and sharing, remixing and using images within fair use, at the safer path; its grade 8 cell on citing what is specific to a source rather than common knowledge; its grade 8 cell on discussing copyright in safe use of technology | Copyright and fair use (Sensitive ground, item 6): general guidance, never legal advice; no claim that a use is lawful; the `rights` read applies to these days. Every case work is invented or public domain. Whose voices: the unit records whose work its source set shows (C12) |
+| 9 | 8 | Read the news, research as a team. *Which claims in the news about a local plan hold up, and what should our school know?* | 6 | g8-news-lateral; g8-diverse-team; g8-research-product | AASL.II.B.1; AASL.III.B.2 | Wonder, investigate (news and lateral reading), construct (with a mixed team and another class), express (a product for a real audience), reflect | Lateral reading applied to the news: telling a report from an opinion piece, checking the outlet laterally and tracing a claim upstream, on a news report, an opinion piece, a blog post and a viral video (g8-news-lateral; carries VI.A.3, owned by g6-lateral-reading, grade 6, as review). Working in a team mixed by each student's written first answer to the question, never by background, and linking with another class (through a teacher-run exchange, or another section, another grade or a findings set left by an earlier class) to trade findings and build on what each class knows; each student shows one change a teammate's different view made (AASL.II.B.1, owned here: "Work alongside people who see a question differently than you do") and one change the other class's findings made (AASL.III.B.2, owned here). The band's full research product: the questions sorted by the kind of information each asks for (overview, detail, cause and effect, comparison), the whole cycle with the least help, a product shared with a real audience (a younger class, families, a school group), and comments asked for and answered in a response log (g8-research-product; carries I.B.3, owned by g3-make-product, grade 3, I.C.4, owned by g5-share-real-audience, grade 5, and III.C.1, owned by g7-feedback-loop, grade 7, as review). Out: the fast lateral routine and seven sessions of lateral reading (grades 9 and 10); a decision memo (grade 9). Opening retrieval (day 2): a hard-case lateral check (g7-lateral-hard-cases) and the views plan (g8-multiple-views-gather). Days: show-me (hook: two invented news items on one local plan; the question; report or opinion, the outlet checked laterally, a claim traced; first answers written and teams formed from them), practice (four invented items checked; teams sort their questions by kind and plan subquestions and the exchange), inquiry (teams research; findings sent to the partner class through the teacher; card withdrawn), inquiry (the other class's findings received and built on; the product drafted), inquiry (comments asked for and answered in the response log; written teacher feedback; the product revised), inquiry (the product shared with the real audience; each student's change lines written; self-check). Skill card: "report or opinion, check the outlet, trace the claim, mark what changed us". End-of-unit assessment: the year-end check (course day 53), which scores the revised product and the response log from the unit's work and holds the written news item and change lines. Tools: invented news sets, the exchange sheet, the response log, poster or page templates (Curio Class writes them; Source map for the adapted news and opinion lessons). Host: news and media literacy in social studies grade 8 unit 9 (days 131 to 144) (ss8-news-literacy) and judging science claims in the news, e8-present-reasoning in ela grade 8 unit 5 (days 129 to 156); stand-alone: "Will the town's planned skate park be safe and worth what it costs?" with an invented news set across views | Last in the band because it gathers all three years: the views plan (unit 7), fair use (unit 8), the class page and feedback loop (unit 6) and the method of units 2 and 4 come together in one product; the news step comes the same year social studies teaches news, in either order, so the second course opens with a retrieval task on the first (the row's line) | Candidate: the continuum's grade 8 cells on checking methods by kind of source and on bias, persuasion and propaganda, at the news set; its grade 8 cell on a project made with others in one or two media for a real audience, at the product; its grade 8 cell on revising with self, teacher and peer feedback, at the response log | News cases are invented or chosen evenly across views; a school may swap a case and keep the ids met (Sensitive ground, item 1). Teams are mixed by first answers only; exchanges run through the teachers; no student shares contact details; the product names students by first name or initials only. A viral video is described or an invented still, never a real clip |
+
+## Course-level checks
+
+| Check | After unit | Check days | Respond days | What it checks |
+|---|---|---|---|---|
+| 1, mid-year, grade 6 | 2 | 1 | 1 | Course day 11, week 20 of grade 6. A sitting of about 35 minutes on unseen invented cases: unit 2's end-of-unit assessment (an invented page judged by a lateral check with a verdict and reason, VI.A.3; a point-of-view line on a second source, II.A.2; one group-written article judged for a question from its references and history, IV.C.1), plus unit 1 sampled on a new case (one search plan with a choice among results, one paraphrase card). Unit 1's sitting result is used only to form the respond groups. The respond day (course day 12, week 22) regroups by the rubric step missed, each student revises the item, and it ends with one fresh try and unit 3's readiness check |
+| 2, year-end, grade 6 | 3 | 1 | 1 | Course day 17, week 31 of grade 6. Unit 3's end-of-unit assessment: the team sharing plan scored on its use over the unit (III.B.1) and each student's version log (V.B.2), both from the unit's revised work, and a written item, each student explaining the team's new idea and where its parts came from (III.A.2), about 10 minutes; plus units 1 and 2 sampled on new cases in about 25 minutes (a question chain from a given finding, a lateral check with a going-upstream step). The respond day (course day 18, week 32) reteaches the gaps in groups, then the year's reflect step: each student reads back through the research log, names one strength and one goal for grade 7 (the continuum's reflect cells) and writes it in the log |
+| 3, mid-year, grade 7 | 5 | 1 | 1 | Course day 28 (year day 10), week 18 of grade 7. Unit 5's end-of-unit assessment in about 30 minutes: an unseen three-source set put in the comparison table with a careful reader's conclusion (II.B.2), and four sources of different media cited in the set style and pointed to in a short paragraph (g7-citation-style); unit 5's discussion score from its day 5 record sheet is counted here. Plus unit 4 sampled in about 8 minutes (one hard case checked, one filter choice). The respond day (course day 29, week 20) regroups by the step missed and ends with one fresh try |
+| 4, year-end, grade 7 | 6 | 1 | 1 | Course day 35 (year day 17), week 31 of grade 7. Unit 6's end-of-unit assessment: the revised class page section scored for sources and credit (IV.C.2) and the response log for an answer to every comment and one change made from a critical comment (III.C.1, V.D.3), both from the unit's work; a written item, about 10 minutes, naming an idea for an unseen school problem and the finding behind it (V.C.3); plus units 4 and 5 sampled on new cases in about 25 minutes (a filtered search plan, a short comparison table, two citations). The respond day (course day 36, week 32) reteaches the gaps, then the year's reflect step with a strength and a goal for grade 8 |
+| 5, mid-year, grade 8 | 8 | 1 | 1 | Course day 45 (year day 9), week 16 of grade 8. Unit 8's end-of-unit assessment in about 30 minutes: two unseen group-written entries compared with each difference traced to its references (IV.C.3), and the four fair use questions applied to a new case with a safer path chosen (VI.B.1); plus unit 7 sampled in about 8 minutes (an expectation and an honest update on a short new set). The respond day (course day 46, week 18) regroups by the step missed and ends with one fresh try |
+| 6, year-end, grade 8 | 9 | 1 | 1 | Course day 53 (year day 17), week 31 of grade 8. Unit 9's end-of-unit assessment: the revised research product and its response log scored from the unit's work (g8-research-product), and a written part of about 20 minutes: an unseen news set (a report, an opinion piece, a post) with the outlet checked, one claim traced and report told from opinion (g8-news-lateral), and each student's two change lines from their log (II.B.1, III.B.2); plus units 7 and 8 sampled on new cases in about 15 minutes (a views search plan, one fair use case). The respond day (course day 54, week 32) reteaches the gaps, then the band's reflect step: each student reads the three-year research log, names what grew and one goal for grade 9; the teacher passes the grade 9 teacher a class-level note of the moves to retrieve, never a per-student record |
+
+Placement: each year's checks sit on course days 11 or 10 or 9 (mid-year) and 17 (year-end), off every core check
+week of that grade in docs/courses/CALENDAR.md. Grade 6 (core weeks 12, 15, 16, 18, 22, 23, 24 and the finals week
+32): mid-year week 20, year-end week 31. Grade 7 (core weeks 9, 12, 13, 14, 22, 24 and 32): mid-year week 18, year-end
+week 31. Grade 8 (core weeks 10, 14, 15, 18, 20, 24, 25 to 26, 29 to 30 and 32): mid-year week 16, year-end week 31.
+Respond days fall in weeks 22, 20 and 18 (mid-year) and 32 (year-end); they hold no check. Clashes with other
+after-core courses are for the lead's one calendar pass (For the lead, item 3).
+
+## Cross-subject
+
+Every lean is to a grade 6, 7 or 8 core course of the same school year, so each is on the availability calendar,
+except g6-make-and-improve's lean on science grade 5 (the year before). Course days and weeks for the other courses
+are as their frames state them and data/plans/calendar.csv places them; library's weeks are those of the Days bullet.
+Library is not a core course, so no core course assumes it (lesson 32): each lean below says what this unit does on
+its own.
+
+### English language arts, grade 6
+
+| Row | Lean | Used here | Earliest the other course teaches it | If ELA teaches it later |
+|---|---|---|---|---|
+| g6-keep-questioning | e6-short-research (short research projects) | Unit 1, weeks 2 to 9 | ela grade 6 unit 3 (days 63 to 86), weeks 13 to 18: later | Unit 1 teaches the question chain itself on its own host; ELA's project meets students who already chain questions |
+| g6-search-strategy | e6-short-research (gathering information from several sources) | Unit 1, weeks 2 to 9 | ela grade 6 unit 3 (days 63 to 86): later | Unit 1 teaches the search plan itself |
+| g6-quote-paraphrase | e6-short-research (quoting or paraphrasing without plagiarism) | Unit 1, weeks 2 to 9 | ela grade 6 unit 3 (days 63 to 86): later | Unit 1 teaches quotation marks, paraphrase and the source and page itself; ELA's day then retrieves it |
+| g6-lateral-reading | e6-short-research (judging the credibility of each source) | Unit 2, weeks 11 to 18 | ela grade 6 unit 3 (days 63 to 86), weeks 13 to 18: the same weeks | Either order (the row's line): if ELA's credibility day comes first, unit 2's show-me reuses its weaker source as the invented case |
+| g6-point-of-view | e6-author-purpose (an author's point of view or purpose) | Unit 2, weeks 11 to 18 | ela grade 6 unit 2 (days 33 to 58), weeks 7 to 12: before this unit | Unit 2's second show-me day teaches word choice, what is left out and who paid for it itself |
+
+### Social studies, grade 6
+
+| Row | Lean | Used here | Earliest the other course teaches it | If social studies teaches it later |
+|---|---|---|---|---|
+| g6-keep-questioning | ss6-research-contribution (host task: researching a contribution) | Unit 1, weeks 2 to 9 | social studies grade 6 unit 8 (days 100 to 113), weeks 20 to 23: later | A host task, not a skill the unit needs: unit 1 runs on ss6-mena-settlement or its stand-alone question, and social studies' research project later meets students who chain questions |
+
+### Science, grade 5 (the year before)
+
+| Row | Lean | Used here | When the other course taught it | If a student did not have it |
+|---|---|---|---|---|
+| g6-make-and-improve | s5-design-test (testing and improving a design) | Unit 3, weeks 24 to 29 | science grade 5 unit 6 (days 100 to 117), the year before | Unit 3's day 2 opens with a retrieval line on what a test of a version shows; the try-and-improve habit is shown on day 1 without science's criteria and constraints |
+
+### English language arts, grade 7
+
+| Row | Lean | Used here | Earliest the other course teaches it | If ELA teaches it later |
+|---|---|---|---|---|
+| g7-sources-disagree | e7-author-position (how an author sets their position apart from others) | Unit 5, weeks 9 to 16 | ela grade 7 unit 4 (days 87 to 108), weeks 18 to 22: later | Unit 5 teaches the comparison table itself on its own sources |
+| g7-evidence-discussion | e7-collab-discussion (discussion drawing on evidence) | Unit 5, weeks 9 to 16 | ela grade 7 unit 1 (days 1 to 30), weeks 1 to 6: before this unit | Unit 5's day 3 fishbowl teaches the sourced discussion itself |
+| g7-citation-style | e7-research-questions (a standard format for citation) | Unit 5, weeks 9 to 16 | ela grade 7 unit 3 (days 61 to 86), weeks 13 to 18: the same weeks | Either order (the row's line): if ELA's format is not yet taught, unit 5's show-me teaches it from the model and ELA's day then retrieves it |
+| g7-feedback-loop | e7-revise-purpose-audience (revising with guidance from peers) | Unit 6, weeks 22 to 29 | ela grade 7 unit 1 (days 1 to 30): before this unit | Unit 6 shows the response log itself |
+
+### Science, grade 7
+
+| Row | Lean | Used here | Earliest the other course teaches it | If science teaches it later |
+|---|---|---|---|---|
+| g7-group-solutions | s7-human-impact-design (host task: a way to reduce a human impact) | Unit 6, weeks 22 to 29 | science grade 7 unit 6 (days 129 to 158), weeks 26 to 32: overlapping, mostly later | A host task: unit 6 runs on the cafeteria question until science's unit opens; a class in step uses science's problem |
+
+### English language arts, grade 8
+
+| Row | Lean | Used here | Earliest the other course teaches it | If ELA teaches it later |
+|---|---|---|---|---|
+| g8-multiple-views-gather | e8-conflicting-viewpoints (how an author answers conflicting viewpoints) | Unit 7, weeks 2 to 8 | ela grade 8 unit 2 (days 31 to 62), weeks 7 to 13: overlapping, mostly later | Unit 7 teaches the views plan itself on its stand-alone question |
+| g8-test-assumptions | e8-self-generated-research (research from one's own questions) | Unit 7, weeks 2 to 8 | ela grade 8 unit 3 (days 63 to 88), weeks 13 to 18: later | Unit 7 teaches the expectation and update itself; ELA's project then retrieves it |
+| g8-fair-use-basics | e8-self-generated-research (citing sources in a research project) | Unit 8, weeks 9 to 15 | ela grade 8 unit 3 (days 63 to 88), weeks 13 to 18: overlapping | Unit 8 teaches the four questions itself; citing comes from unit 5 |
+| g8-diverse-team | e8-collab-discussion (discussion with diverse partners) | Unit 9, weeks 20 to 29 | ela grade 8 unit 1 (days 1 to 30), weeks 1 to 6: before this unit | Unit 9's day 1 forms teams and sets the talk rules itself |
+| g8-research-product | e8-present-reasoning (presenting findings with sound reasoning) | Unit 9, weeks 20 to 29 | ela grade 8 unit 5 (days 129 to 156), weeks 26 to 32: overlapping, mostly later | Unit 9 shares the product with its own audience; when ELA's unit is running, its gene-news research may host the product |
+
+### Science, grade 8
+
+| Row | Lean | Used here | Earliest the other course teaches it | If science teaches it later |
+|---|---|---|---|---|
+| g8-test-assumptions | s8-human-trait-technology (host task: reliable information on a technology) | Unit 7, weeks 2 to 8 | science grade 8 unit 5 (days 105 to 131), weeks 21 to 27: later | A host task: unit 7 runs on ELA's host or its stand-alone question; in a school where science's unit comes first, it may host |
+
+### Social studies, grade 8
+
+| Row | Lean | Used here | Earliest the other course teaches it | If social studies teaches it later |
+|---|---|---|---|---|
+| g8-news-lateral | ss8-news-literacy (news and media literacy) | Unit 9, weeks 20 to 29 | social studies grade 8 unit 9 (days 131 to 144), weeks 27 to 29: later | Either order (the row's line): unit 9 teaches news checking itself, and social studies' unit opens with a retrieval task on it |
+
+Host tasks named in the Units table but not leans in the rows: ss6-mena-settlement (social studies grade 6 unit 3 (days 26 to 38))
+for unit 1, s6-hazard-forecast (science grade 6 unit 5 (days 116 to 135)) for unit 3 and e7-central-ideas-develop
+(ela grade 7 unit 2 (days 31 to 56)) for unit 4. Each unit's stand-alone question carries it when the host is not in step.
+
+## Source map
+
+The partial base is placed by item kind, from the scout's list of CC BY 4.0 Civic Online Reasoning items
+(docs/reviews/library-open-material-2026-11-16.md); the day-level data/plans/library-and-research-skills-grades-6-to-8/source-map.csv
+comes with the scope and sequence, once the items are in the source store and each license is re-read at source.
+
+| Base item kind (CC BY 4.0 only) | Unit here | Use |
+|---|---|---|
+| Intro lessons: who is behind the information, what the evidence is, what other sources say (levels 1 and 2) | 2 | Show-me day 1, adapted to invented pages |
+| Lateral reading versus vertical reading; lateral reading with an encyclopedia site | 2 | Show-me days 1 and 3 |
+| Click restraint; sponsored content; domain names | 4 | Practice day 2 (domain names only as a reason to leave the page, never as a checklist) |
+| Evaluating photos, videos and data | 4 | Show-me day 2, the hard cases |
+| News versus opinion; lateral reading with news stories and fact-checking groups; verifying claims on social media | 9 | Show-me day 1 and practice day 2 |
+| The parallel assessments | 2, 4 and 9 | Item forms for the sittings, with our own invented cases |
+
+Left out: every CC BY-NC-ND item (the main assessments, the history lessons, the professional learning sessions),
+which stay reference only; Web Literacy for Student Fact-Checkers, kept for grades 9 to 12 and as teacher background.
+
+## For the lead
+
+1. **L103 row changes (data/progressions/library.csv, notes column; append each sentence to the end of the note).**
+   The Check set read bullet gives the cells. Pick: apply all six.
+   - g6-search-strategy: append "The continuum's grade 6 cell on using an online catalog alone is met by grades 2 to 4 (g2-catalog-lookup, g4-search-more-kinds); where a school has a library, the search plan may name its catalog, and no library access is assumed."
+   - g7-search-results: append "Students also use a site's own menus and search box to find the page inside it, and follow a subject heading or category label on a catalog or reference record to related items (the continuum's grade 7 navigation cell and grade 8 subject-heading cell; grade 10 deepens subject terms in databases)."
+   - g7-lateral-hard-cases: append "A post or forwarded claim is shared only after it is checked, and students say why they would or would not pass it on (the continuum's grade 7 cell on not spreading misinformation)."
+   - g8-news-lateral: append "Cases include a news report, an opinion piece, a blog post and a viral video (described or an invented still), each checked by the same method (the continuum's grade 8 cell on methods by kind of source)."
+   - g8-test-assumptions: append "Students also say how their own first view shaped what they looked for and trusted (the continuum's grade 8 cell on one's own point of view; the fuller where-I-start note is grade 10, g10-own-lens)."
+   - g8-research-product: append "Before the search plan, students sort their research questions by the kind of information each asks for (overview, specific detail, cause and effect, comparison), the continuum's grade 8 question cell."
+2. **Load at this dose.** 23 rows in 42 unit days across the band (8, 8 and 7 rows in 14 days a year), against K's 7
+   rows in 24. The frame fits it by mixed show-me and practice days, by letting the second and third unit of each
+   year end in a course-level check (the after-core rule), and by folding the first unit's respond step into the next
+   unit's opening and the mid-year respond day. Pick: keep Cory's 18 sessions a year. If the reads find a unit short,
+   the fix is two more sessions a year (20, 60 across the band), which is a dose question for Cory, not a frame edit.
+3. **After-core check stagger in grades 6 to 8.** The checks sit off every core check week. Pick: settle any clash
+   with other after-core courses (for example career exploration's grade 8 mid-year check, week 16) in the one
+   calendar pass; this frame's checks move only then.
+4. **Grade 6 readiness checks on library grade 5 rows.** By lesson 16's count these are retrieval tasks (one year
+   back), but library grade 5 is not a core course and a school may not teach it, so grade 6 gives them as readiness
+   checks with the ten-minute reteach (lesson 32). Pick: keep; the library grade 5 frame need not change.
+5. **later.csv L103.** Grades 6 to 8 are done in this frame (the Check set read bullet), with the six row changes in
+   item 1. Pick: mark 6 to 8 done once item 1 is applied.
+
+## For Cory
+
+- **A download, when the scope and sequence starts:** the CC BY 4.0 Civic Online Reasoning items named in the Source
+  map, into S:\CurioClass-sources\library, so each item's license can be re-read and its lesson range placed. Your
+  2026-11-16 yes made them a partial base; the files themselves are not in the source store. Some may need a free
+  sign-in to download; that would be yours to do.
