@@ -9,6 +9,7 @@
 # words: added 2026-11-20. After each id, a tab and one line in Curio Class's own words (ours, not the coalition's; never quoted on a page). At most 14 words of what the student does, a bare verb phrase. Written from the free handouts above. Decided by Cory 2026-11-20 (Desk q-prework-arts-1).
 # source: https://www.nationalartsstandards.org/sites/default/files/2021-11/Music%20Theory%20and%20Composition%20Strand%20at%20a%20Glance.pdf (high school composition and theory strand, downloaded and read 2026-11-21, Cory, Desk q-fix-downloads-1)
 # words: composition and theory strand lines added 2026-11-21 in the same form and limits, written from the downloaded strand handout (the source line above); never its wording.
+# words: 2026-11-26: MU:Cr2.1.Kb added and MU:Cr2.1.Ka narrowed to choosing (the two kindergarten Cr2.1 statements, see the id file note); MU:Cr1.1.3b "chosen" corrected to "given" (the national text gives the tonality or meter), from the music frame fix pass (docs/reviews/frame-music-theater-media-arts-fixes-2026-11-26.md); the same pass restored grades 6 to 8 parts the second-model read found dropped (MU:Cr1.1.6a both AB and ABA; expressive intent in MU:Cr1.1.6a to 8a; MU:Pr4.1.6a to 8a as music to perform, with expressive qualities, technical challenges and reasons in 7a and 8a; genre, culture and period in MU:Re8.1.7a and 8a), checked against the music handout by that read; the same pass also restored high school parts (varied forms in MU:Cr2.1.C.IIb and IIIb; function in MU:Pr4.2.C.IIIa and Pr4.3.C.IIIa; form and style in MU:Pr5.1.C.IIIb).
 DA:Cr1.1.Ka	Move in response to music, pictures, objects, or other starting points.
 DA:Cr1.1.Kb	Try new ways to travel and stay in place, changing one dance element.
 DA:Cr1.1.1a	Try moves sparked by a starting point and name what inspired them.
@@ -283,8 +284,8 @@ MA:Cr2.1.6	Organize plans, mockups, and production steps, then critique them aga
 MA:Cr2.1.7	Draft and assess plans, mockups, and production steps for expressive aims and available resources.
 MA:Cr2.1.8	Structure and critique workflows and prototypes, weighing intent, resources, and presentation setting.
 MA:Cr2.1.I	Use aesthetic standards to refine plans and prototypes around inspirations, goals, and setting.
-MA:Cr2.1.II	Use your personal aesthetic to design and refine original prototypes within resource limits.
-MA:Cr2.1.III	Combine a mature aesthetic with systems knowledge to propose original frameworks within complex limits.
+MA:Cr2.1.II	Design and refine original prototypes in your aesthetic, for a presentation context, within limits.
+MA:Cr2.1.III	Join aesthetic and systems knowledge to propose, prototype and test frameworks within complex limits.
 MA:Cr3.1.Ka	Create and capture media content that expresses meaning in a project.
 MA:Cr3.1.Kb	Alter what a media piece contains or how it looks, then share results.
 MA:Cr3.1.1a	Make and record media content, assemble it, and spot principles like pattern and repetition.
@@ -421,14 +422,14 @@ MA:Re9.1.K	Share what looks appealing in media pieces and what you might change.
 MA:Re9.1.1	Name effective parts of media pieces and possible changes, thinking about viewers.
 MA:Re9.1.2	Discuss how well media pieces work and how to improve them, given context.
 MA:Re9.1.3	Name basic criteria, evaluate media pieces, and consider improvements and context.
-MA:Re9.1.4	Name and use basic criteria to judge and improve media pieces and production steps.
-MA:Re9.1.5	Set and use criteria to evaluate media pieces and production steps, giving constructive feedback.
-MA:Re9.1.6	Choose particular criteria to judge varied media pieces and production steps, giving constructive feedback.
-MA:Re9.1.7	Build your own criteria to evaluate media pieces and production steps, with constructive feedback.
+MA:Re9.1.4	Use basic criteria to judge and improve media pieces and production steps in context.
+MA:Re9.1.5	Set criteria to evaluate media pieces and production steps in context, with constructive feedback.
+MA:Re9.1.6	Choose criteria to judge media pieces and production processes in context, with constructive feedback.
+MA:Re9.1.7	Build criteria to evaluate media pieces and production processes in context, with constructive feedback.
 MA:Re9.1.8	Judge media pieces and production steps with built criteria, weighing context and goals.
-MA:Re9.1.I	Evaluate work at key production stages with identified criteria, weighing context and aims.
+MA:Re9.1.I	Evaluate work and process at key production stages with criteria, weighing context and aims.
 MA:Re9.1.II	Build well-defended evaluations through systematic, constructive critique of media pieces and production steps.
-MA:Re9.1.III	Independently build rigorous critiques of media work, seeking feedback amid layered aims.
+MA:Re9.1.III	Independently critique media work and processes rigorously, seeking feedback strategically amid competing aims.
 MA:Cn10.1.Ka	Use your own experiences and choices when making media.
 MA:Cn10.1.Kb	Share memorable media experiences.
 MA:Cn10.1.1a	Draw on your own experiences, interests, and examples when creating media pieces.
@@ -459,7 +460,7 @@ MA:Cn11.1.1a	Discuss media in daily life and how it connects you with people you
 MA:Cn11.1.1b	Use media tools and spaces appropriately, keeping safety, fair play, and rules in mind.
 MA:Cn11.1.2a	Discuss how media ideas connect to daily and cultural life, including media messages.
 MA:Cn11.1.2b	Use media tools and spaces appropriately, keeping safety, fair play, and rules in mind.
-MA:Cn11.1.3a	Name how media touches daily life, influencing values and how people act online.
+MA:Cn11.1.3a	Name how media touches daily and cultural life, shaping values and online behavior.
 MA:Cn11.1.3b	Examine media tools and spaces, using them appropriately with safety, fair play, and rules.
 MA:Cn11.1.4a	Explain, in words or media, how media ties to culture, like fantasy versus reality.
 MA:Cn11.1.4b	Examine media tools and spaces, using them with ethics and fair play.
@@ -484,15 +485,16 @@ MU:Cr1.1.1b	With little help, invent musical ideas in several tonalities and met
 MU:Cr1.1.2a	Improvise rhythm and melody patterns for a given purpose.
 MU:Cr1.1.2b	Create patterns and ideas inside a given tonality and meter.
 MU:Cr1.1.3a	Improvise rhythm and melody ideas, and describe how they fit a purpose and setting.
-MU:Cr1.1.3b	Invent rhythm and melody ideas inside a chosen tonality or meter.
+MU:Cr1.1.3b	Invent rhythm and melody ideas inside a given tonality or meter.
 MU:Cr1.1.4a	Improvise rhythm, melody, and harmony ideas, and explain how they fit purpose and setting.
 MU:Cr1.1.4b	Invent rhythm, melody, and simple accompaniment ideas inside related tonalities and meters.
 MU:Cr1.1.5a	Improvise rhythm, melody, and harmony, explaining ties to purpose and social, cultural, historical context.
 MU:Cr1.1.5b	Invent rhythm, melody, and accompaniment ideas in related tonalities and meters with easy chords.
-MU:Cr1.1.6a	Make simple rhythm, melody, and harmony phrases in AB or ABA form, expressing intent.
-MU:Cr1.1.7a	Build varied phrases over chords in AB, ABA, or variation-on-a-theme form.
-MU:Cr1.1.8a	Build phrases and accompaniments in expanded forms with intros, transitions, and codas.
-MU:Cr2.1.Ka	With help, pick favorite musical ideas and organize them with picture symbols or recording.
+MU:Cr1.1.6a	Make rhythm, melody, and harmony phrases in both AB and ABA forms, expressing intent.
+MU:Cr1.1.7a	Build varied phrases over chords in AB, ABA, or variation form, expressing intent.
+MU:Cr1.1.8a	Build phrases and accompaniments in expanded forms with intros, transitions, codas, expressing intent.
+MU:Cr2.1.Ka	With help, show and pick favorite musical ideas.
+MU:Cr2.1.Kb	With help, organize your musical ideas with picture symbols or a recording.
 MU:Cr2.1.1a	With little help, play and discuss why you chose musical ideas that express intent.
 MU:Cr2.1.1b	With little help, document your musical ideas in picture or standard notation or recordings.
 MU:Cr2.1.2a	Show and explain why you chose patterns and ideas that express your intent.
@@ -536,9 +538,9 @@ MU:Pr4.1.2a	Show and explain your interest in, knowledge of, and purpose for var
 MU:Pr4.1.3a	Show how interests, knowledge, purpose, and setting influence choosing music to perform.
 MU:Pr4.1.4a	Show how interests, knowledge, setting, and technical skill influence choosing music to perform.
 MU:Pr4.1.5a	Show how interest, knowledge, setting, and your and others' skill guide choosing performance music.
-MU:Pr4.1.6a	Use teacher criteria to pick music for a purpose or setting, explaining each pick.
-MU:Pr4.1.7a	Use shared criteria to choose contrasting music for a program and discuss why.
-MU:Pr4.1.8a	Use your own criteria to choose contrasting music for a program, explaining why.
+MU:Pr4.1.6a	Use teacher criteria to pick music to perform for a purpose, explaining each pick.
+MU:Pr4.1.7a	Pick a contrasting performance program by shared criteria; name expressive qualities, challenges, reasons.
+MU:Pr4.1.8a	Pick a contrasting performance program by your own criteria; explain expressive qualities, challenges, reasons.
 MU:Pr4.2.Ka	With help, notice high or low, loud or soft, same or different in music.
 MU:Pr4.2.1a	With little help, show beat and melody-direction knowledge in music from many cultures.
 MU:Pr4.2.1b	Read and perform rhythm patterns in picture or standard notation while studying chosen music.
@@ -632,8 +634,8 @@ MU:Re8.1.3a	Describe how performers use loudness and speed in their readings to 
 MU:Re8.1.4a	Explain how performers and you use loudness, speed, and tone to show intent.
 MU:Re8.1.5a	Explain how performers and you use loudness, speed, tone, and articulation to show intent.
 MU:Re8.1.6a	Describe your reading of how elements and expression, within genre and history, convey intent.
-MU:Re8.1.7a	Describe your reading of contrasting works, explaining how elements and expression convey intent.
-MU:Re8.1.8a	Back your reading of contrasting programs and explain how elements and expression convey intent.
+MU:Re8.1.7a	Read contrasting works: explain how elements and expression convey intent within genre, culture, era.
+MU:Re8.1.8a	Back readings of contrasting programs: how elements and expression convey intent in context.
 MU:Re9.1.Ka	With help, judge music by taste and expression.
 MU:Re9.1.1a	With little help, judge music for a purpose by taste and expression.
 MU:Re9.1.2a	Judge music for a purpose by taste and expression.
@@ -667,9 +669,9 @@ MU:Cr1.1.C.IIIa	Show several ways sound ideas can stand for long experiences or 
 MU:Cr2.1.C.Ia	Arrange sounds or short ideas into a first sketch of a mood or story.
 MU:Cr2.1.C.Ib	Describe how short ideas grow across drafts in simple forms like binary.
 MU:Cr2.1.C.IIa	Arrange many sounds into a first expressive sketch of an event, text or concept.
-MU:Cr2.1.C.IIb	Explain how ideas grow across drafts in forms like rondo or ternary.
+MU:Cr2.1.C.IIb	Explain how ideas grow across drafts in varied forms, like binary, rondo, ternary.
 MU:Cr2.1.C.IIIa	Arrange extended ideas into a first expressive sketch of an abstract idea.
-MU:Cr2.1.C.IIIb	Analyze and show how extended ideas grow across drafts in complex forms.
+MU:Cr2.1.C.IIIb	Analyze and show how extended ideas grow across drafts in varied complex forms.
 MU:Cr3.1.C.Ia	Use the teacher's criteria to judge and improve drafts toward a final version.
 MU:Cr3.1.C.IIa	Use given or own criteria to judge and improve drafts toward a final version.
 MU:Cr3.1.C.IIIa	Research and apply your own criteria to improve drafts to a final version.
@@ -684,10 +686,10 @@ MU:Pr4.1.C.IIa	Pick passages or movements in simple or moderately complex forms 
 MU:Pr4.1.C.IIIa	Pick sections, movements or whole works in complex forms that carry meaning.
 MU:Pr4.2.C.Ia	Analyze how elements and form fit style and mood, and plan rehearsal from it.
 MU:Pr4.2.C.IIa	Analyze how elements and form fit style, function and setting, then plan rehearsal.
-MU:Pr4.2.C.IIIa	Analyze elements, form and techniques against style and setting; defend rehearsal choices.
+MU:Pr4.2.C.IIIa	Analyze elements, form, techniques against style, function, setting; defend rehearsal choices.
 MU:Pr4.3.C.Ia	Interpret works from elements, style and mood, tying choices to the creator's aim.
 MU:Pr4.3.C.IIa	Interpret works from elements, style, function and setting, supporting how choices reflect intent.
-MU:Pr4.3.C.IIIa	Interpret works from form, techniques, style and setting, justifying choices against intent.
+MU:Pr4.3.C.IIIa	Interpret works from form, techniques, style, function and setting, justifying choices against intent.
 MU:Pr5.1.C.Ia	Write rehearsal plans that mark repetition and variation in the form.
 MU:Pr5.1.C.Ib	Use set criteria and feedback to name how performances carry elements, style and mood.
 MU:Pr5.1.C.Ic	Find and use ways to improve technique and expression across several works.
@@ -695,7 +697,7 @@ MU:Pr5.1.C.IIa	Write rehearsal plans naming form, repetition, variation, style a
 MU:Pr5.1.C.IIb	Use criteria and feedback to name how performances carry form, style and setting.
 MU:Pr5.1.C.IIc	Find and use ways to improve technique and expression across varied works.
 MU:Pr5.1.C.IIIa	Write rehearsal plans naming form, variation, composing techniques, style and setting.
-MU:Pr5.1.C.IIIb	Use criteria and feedback to name how performances use techniques and carry setting.
+MU:Pr5.1.C.IIIb	Use criteria and feedback to name how performances carry form, style, techniques, setting.
 MU:Pr5.1.C.IIIc	Compare and use ways to improve technique and expression across contrasting works.
 MU:Pr6.1.C.Ia	Share live or recorded performances and explain how elements carry the aim.
 MU:Pr6.1.C.Ib	Name how a composition suits its audience or setting and what that changes next.
@@ -836,7 +838,7 @@ TH:Pr4.1.8a	Try different pacing to tell the story better.
 TH:Pr4.1.8b	Use varied character goals and tactics to get past an obstacle.
 TH:Pr4.1.Ia	Examine how relationships between characters help tell the story.
 TH:Pr4.1.Ib	Let the given circumstances guide how you build a character.
-TH:Pr4.1.IIa	Discover how distinctive choices make drama work believable and lasting.
+TH:Pr4.1.IIa	Test distinctive choices that keep a drama believable and consistent throughout its performance.
 TH:Pr4.1.IIb	Name the script details, research, and director's vision that shape a character's choices.
 TH:Pr4.1.IIIa	Draw on sound research about directors' styles to shape your own directing concept.
 TH:Pr4.1.IIIb	Use several researched acting techniques to guide your character choices.
@@ -860,9 +862,9 @@ TH:Pr5.1.8a	Apply many acting techniques to grow your skill in rehearsal or perf
 TH:Pr5.1.8b	Combine varied tech elements into a design for rehearsal or production.
 TH:Pr5.1.Ia	Work on varied acting techniques to broaden your skills for rehearsal and performance.
 TH:Pr5.1.Ib	Use researched tech elements to boost the impact of a design for a production.
-TH:Pr5.1.IIa	Sharpen varied acting skills to create a believable, lasting performance.
+TH:Pr5.1.IIa	Sharpen varied acting skills to create a believable performance, sustained throughout the performance.
 TH:Pr5.1.IIb	Craft a design that conveys a production's concept, using tech parts plus research.
-TH:Pr5.1.IIIa	Pick and defend acting exercises from trustworthy sources to prepare a lasting, believable performance.
+TH:Pr5.1.IIIa	Pick and defend acting exercises from trustworthy sources to prepare a believable performance, sustained throughout the performance.
 TH:Pr5.1.IIIb	Defend your choice of tech elements, showing how the design conveys the production's concept.
 TH:Pr6.1.Ka	With help, use your voice and sounds during pretend play or guided drama.
 TH:Pr6.1.1a	With help, show feelings through movement and gestures in guided drama.
@@ -1024,7 +1026,7 @@ VA:Cr1.2.3a	Use resources, tools, and technology on hand to pursue your ideas wh
 VA:Cr1.2.4a	Set goals as a group and make artwork that matters to its makers.
 VA:Cr1.2.5a	Show and name varied ways of researching art, then pick one to begin.
 VA:Cr1.2.6a	Plan an artistic inquiry into content that matters to you, to make art.
-VA:Cr1.2.7a	Write guidelines to steer making an artwork or design toward a stated aim.
+VA:Cr1.2.7a	Set criteria a work must meet for its aim, and let them steer making.
 VA:Cr1.2.8a	As a group, shape an art inquiry into modern daily life, using current practice.
 VA:Cr1.2.Ia	Shape an art inquiry into modern daily life through current art or design practice.
 VA:Cr1.2.IIa	Select among materials and methods, old and new, to plan art and design pieces.
@@ -1093,7 +1095,7 @@ VA:Pr5.1.Ka	Explain why people keep a collection or portfolio of work.
 VA:Pr5.1.1a	Pose and answer questions about when, where, and how to ready artwork for showing.
 VA:Pr5.1.2a	Tell apart the materials or techniques used to ready artwork for display.
 VA:Pr5.1.3a	Choose an exhibit space and ready artworks, with artist notes, for display.
-VA:Pr5.1.4a	Analyze what matters when showing and guarding art in different places, times, and formats.
+VA:Pr5.1.4a	Analyze showing and protecting art indoors or out, temporary or permanent, physical or digital.
 VA:Pr5.1.5a	Argue for safe, effective materials and techniques when preparing and showing artwork.
 VA:Pr5.1.6a	Alone or in a group, draw a display plan weighing space, viewers, and layout.
 VA:Pr5.1.7a	Judge methods for readying and showing art against set standards.
@@ -1142,9 +1144,9 @@ VA:Re8.1.1a	Work out an artwork's meaning by sorting subject matter and naming f
 VA:Re8.1.2a	Find an artwork's meaning from the mood it suggests, its subject, and its form.
 VA:Re8.1.3a	Work out an artwork's meaning by studying how media build subject, form, and mood.
 VA:Re8.1.4a	Find an artwork's meaning using background facts and a look at subject, form, media.
-VA:Re8.1.5a	Find ideas and mood in an artwork by studying form, structure, context, subject, media.
+VA:Re8.1.5a	Find an artwork's ideas and mood from form, structure, context, subject, visual elements, media.
 VA:Re8.1.6a	Sort useful from unhelpful context, then study subject, form, structure, and media for meaning.
-VA:Re8.1.7a	Find an artwork's meaning by weighing its making, form, structure, context, subject, media.
+VA:Re8.1.7a	Find an artwork's ideas and mood from its making, form, structure, context, subject, media.
 VA:Re8.1.8a	Study how subject, form, structure, media, approach, and context together build messages and mood.
 VA:Re8.1.Ia	Explain an artwork's meaning, citing enough evidence from the piece and its contexts.
 VA:Re8.1.IIa	Name the kinds of background information that help in building interpretations of art.
@@ -1168,7 +1170,7 @@ VA:Cn10.1.3a	Make an artwork drawn from what you see around you.
 VA:Cn10.1.4a	Make art that shows your community's cultural traditions.
 VA:Cn10.1.5a	Use art and design vocabulary to see your world freshly through making art.
 VA:Cn10.1.6a	Gather ideas about current interests and worries that art-making could explore.
-VA:Cn10.1.7a	Alone or together, document where and when people gather for art in your community.
+VA:Cn10.1.7a	Alone or together, visually record where and when people locally make or see art.
 VA:Cn10.1.8a	Make art together that reflects on and strengthens the good side of group identity.
 VA:Cn10.1.Ia	Record how ideas grow from first sparks to fully developed ones.
 VA:Cn10.1.IIa	Observe, research, and experiment to investigate unfamiliar topics while making art.
