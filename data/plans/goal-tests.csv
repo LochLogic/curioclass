@@ -15,3 +15,19 @@ test,name,count,target,detail,date
 14,no open alignment defects,330,0,open kind-alignment rows in data/plans/defects.csv (plan.py defect); 470 open rows of every kind,2026-11-25
 15,every review claim matches,14,0,"ledger recheck citations that match no item or day row (ledger.recheck_tally, four core subjects; 14905 citations, 58 flagged in all)",2026-11-25
 16,every day read at grade close,1779,0,"day files whose version line has no ""grade read"" or ""signed off"" (day_version.py), of 2107",2026-11-25
+1,one working folder,1,1,git worktrees (the main checkout counts as one),2026-11-26
+2,every course has the same homes,0,0,index layout report lines (data/homes.csv) plus 0 home(s) a started course lacks,2026-11-26
+3,one home per fact,0,0,plans holding a stored <!-- skel --> block (the marker guard),2026-11-26
+4,no curriculum list from the tool catalog,0,0,"catalog lint lines over every script but the named tool-side set (two named exceptions, course_pages.known_standards and course_status.py placement counts, are outside the count)",2026-11-26
+5,any object found by id,0.3,<10,"seconds for uses.py word:runoff, index fresh",2026-11-26
+6,"changes run as scripts, rows through rows.py",0,0,"a convention, not a test (4.L): plan CSVs rows.py check cannot split like the csv reader (a hand edit that broke a row); how a row was written cannot be read from the file",2026-11-26
+7,one gate command,0,0,old filtered gate placeholders left in the kit and briefs,2026-11-26
+8,generated things never stored twice,0,0,tracked files data/homes.csv marks generated-ignored,2026-11-26
+9,every relation resolves,0,0,"0 misses, 0 of them new against data/index-baseline.csv",2026-11-26
+10,one status per object,125,0,"status report lines, 0 of them new against data/index-baseline.csv (flow-status rows a file contradicts; ledger and day files that disagree either way; day files with no version line; L133)",2026-11-26
+11,retired ids never reused,0,0,"0 retired ids recorded; also fails an item, day or source id that left its table since the last commit with no retire row",2026-11-26
+12,nothing orphaned,274,0,orphans report lines,2026-11-26
+13,every owned code assessed,1,0,"frame Owned standards codes with no end item (items.csv check end) citing the code, a lettered part or its parent, over the 108 units that have end items so far",2026-11-26
+14,no open alignment defects,130,0,open kind-alignment rows in data/plans/defects.csv (plan.py defect); 237 open rows of every kind,2026-11-26
+15,every review claim matches,3,0,"ledger recheck citations that match no item or day row (ledger.recheck_tally, four core subjects; 15129 citations, 33 flagged in all)",2026-11-26
+16,every day read at grade close,1779,0,"day files whose version line has no ""grade read"" or ""signed off"" (day_version.py), of 2107",2026-11-26
