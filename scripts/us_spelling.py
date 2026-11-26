@@ -36,7 +36,13 @@ WORDS = {'labelled': 'labeled', 'licence': 'license', 'practise': 'practice', 'r
          'behaviours': 'behaviors', 'favourite': 'favorite', 'favourites': 'favorites', 'colours': 'colors',
          'coloured': 'colored', 'organise': 'organize', 'organised': 'organized', 'organising': 'organizing',
          'recognised': 'recognized', 'recognising': 'recognizing', 'analyse': 'analyze', 'analysed': 'analyzed',
-         'neighbour': 'neighbor', 'neighbours': 'neighbors', 'labelling': 'labeling', 'practising': 'practicing'}
+         'neighbour': 'neighbor', 'neighbours': 'neighbors', 'labelling': 'labeling', 'practising': 'practicing',
+         'licences': 'licenses', 'centre': 'center', 'centres': 'centers', 'centred': 'centered',
+         'colouring': 'coloring', 'organises': 'organizes', 'organisation': 'organization',
+         'organisations': 'organizations', 'recognises': 'recognizes', 'analysing': 'analyzing',
+         'travelled': 'traveled', 'travelling': 'traveling', 'programme': 'program',
+         'programmes': 'programs', 'grey': 'gray'}
+NAME_WORDS = ('grey', 'centre', 'programme', 'organisation')   # capitalized, these are usually names
 WORD = re.compile(r'(?<!\w)(' + '|'.join(sorted(WORDS, key=len, reverse=True)) + r')(?!\w)', re.I)
 PATHLIKE = r'[\w.-]*-[\w.-]*/[\w./-]*|[\w./-]*/[\w.]*-[\w./-]*'   # a/b-c or a-b/c: a folder or slug, not prose
 KEEP = re.compile(r'Government Licence', re.I)
@@ -83,6 +89,8 @@ def fix(text, counts):
 def _fix_bare(s, counts):
     def rep(m):
         w = m.group(1)
+        if w[0].isupper() and w.lower().startswith(NAME_WORDS):
+            return w   # a name keeps its own spelling (Drab, Ash and Grey; Child Trauma Centre; Diploma Programme)
         counts[w.lower()] = counts.get(w.lower(), 0) + 1
         return case_like(w, WORDS[w.lower()])
     return WORD.sub(rep, s)

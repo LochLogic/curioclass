@@ -16,15 +16,23 @@ import sys
 from datetime import date
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import subjects  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 FRAMES = ROOT / 'data' / 'plans' / 'frames.csv'
 BLIND = ('math-4', 'ela-6')
 SUBJECT = {'math': 'math', 'science': 'science', 'ela': 'English', 'social-studies': 'social studies'}
 
 
+BAND_LABEL = {'k2': 'K2', '35': '35', '68': '68', '912': 'HS'}   # subjects.band_of id -> this file's block names
+
+
 def band(g):
+    """frames.csv grade ('K', '1' ... '12') -> block name, through subjects.band_of (data/bands.csv, L128); int()
+    still refuses a span such as '6-8', as before."""
     n = 0 if g == 'K' else int(g)
-    return 'K2' if n <= 2 else '35' if n <= 5 else '68' if n <= 8 else 'HS'
+    return BAND_LABEL.get(subjects.band_of('k' if n <= 0 else n), 'HS')
 
 
 STUDENT_CAP = {'K': 60, '1': 100, '2': 150}   # words a student reads; grades 3 to 5 350 (LESSON-DAY), then below

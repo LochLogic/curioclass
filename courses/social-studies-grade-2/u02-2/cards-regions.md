@@ -11,7 +11,7 @@ Every card prints "invented for practice". Plain black line drawing on white. Cr
 
 ## Three desert cards
 
-**Picture:** Red Sand Flats (red sand and a single bush), Stone Basin (grey rock and a dry streambed) and Wind Mesa (flat hill and a few grasses). Each card shows a rain gauge nearly empty.
+**Picture:** Red Sand Flats (red sand and a single bush), Stone Basin (gray rock and a dry streambed) and Wind Mesa (flat hill and a few grasses). Each card shows a rain gauge nearly empty.
 **Label:** Each place has little rain and few plants.
 
 ## Three rainforest cards

@@ -59,16 +59,16 @@ Algebra I threads usually skip Geometry and reopen here with readiness; the veri
 | alg1-quadratic-patterns (Algebra I): Build quadratic functions from growing visual patterns | Unit 5, alg2-combining-functions-models | skip, recall required |
 | geo-arcs-sectors-radians (Geometry): Derive with similarity that the length of an arc cut off by a central angle is proportional to the radius | Unit 6, alg2-unit-circle-radians | next grade, direct |
 | geo-right-triangle-trig (Geometry): Understand that, by similarity, the ratios of sides in a right triangle depend only on its acute angle, which defines sine | Unit 6, alg2-unit-circle-radians | next grade, direct |
-| geo-circle-parabola-equations (Geometry): Derive the equation of a circle with given centre and radius from the Pythagorean Theorem (the distance formula) | Unit 6, alg2-unit-circle-radians | next grade, direct |
+| geo-circle-parabola-equations (Geometry): Derive the equation of a circle with given center and radius from the Pythagorean Theorem (the distance formula) | Unit 6, alg2-unit-circle-radians | next grade, direct |
 | geo-right-triangle-trig (Geometry): Understand that, by similarity, the ratios of sides in a right triangle depend only on its acute angle, which defines sine | Unit 6, alg2-pythagorean-identity | next grade, direct |
 | alg1-graph-features-rates (Algebra I): Interpret key features of graphs and tables in context | Unit 6, alg2-trig-functions-graphs | retrieved after unit 4 teaching and assessment |
 | geo-right-triangle-trig (Geometry): Understand that, by similarity, the ratios of sides in a right triangle depend only on its acute angle, which defines sine | Unit 6, alg2-periodic-modeling | next grade, direct |
 | alg1-correlation-causation (Algebra I): Compute the correlation coefficient with technology | Unit 7, alg2-study-design-randomness | skip, recall required |
-| alg1-center-spread (Algebra I): Compare two or more data sets by centre (mean, median) and spread (interquartile range, standard deviation) | Unit 7, alg2-normal-distributions | skip, recall required |
+| alg1-center-spread (Algebra I): Compare two or more data sets by center (mean, median) and spread (interquartile range, standard deviation) | Unit 7, alg2-normal-distributions | skip, recall required |
 | alg1-data-displays (Algebra I): Represent one numerical variable with dot plots, histograms and box plots, choose the display that fits the question | Unit 7, alg2-normal-distributions | skip, recall required |
 | geo-sample-spaces-events (Geometry): Describe events as subsets of a sample space using characteristics of the outcomes, and as unions (or) | Unit 7, alg2-sample-estimates-margin | next grade, direct |
 | m7-random-samples (grade 7): IM 7.8, lessons 11 to 17 | Unit 7, alg2-sample-estimates-margin | skip, revisited |
-| alg1-center-spread (Algebra I): Compare two or more data sets by centre (mean, median) and spread (interquartile range, standard deviation) | Unit 7, alg2-experiments-significance | skip, recall required |
+| alg1-center-spread (Algebra I): Compare two or more data sets by center (mean, median) and spread (interquartile range, standard deviation) | Unit 7, alg2-experiments-significance | skip, recall required |
 
 ### Where each thread ends, and what the electives would pick up
 

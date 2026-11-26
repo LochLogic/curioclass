@@ -10,7 +10,8 @@ name), the course id prefix, and the words used in prose. Grade bands come from 
     subjects.ladder('science')         the subject's courses in teaching order (course-list.csv row order, not shelved)
     subjects.band_of('4')              '35' (a band_id of data/bands.csv; grades k, 1 ... 12)
 
-Readers: ledger.py (LADDER), coursegen.py (SUBJECTS), plan_flow.py (PFILE), front_office.py (PROG_FILE).
+Readers: ledger.py (LADDER), coursegen.py (SUBJECTS), plan_flow.py (PFILE), front_office.py (PROG_FILE),
+course_status.py and defaults.py (band_of, each with its own label table; later.csv L128).
 """
 import csv
 from functools import lru_cache

@@ -27,7 +27,7 @@ Each card is marked by every child (circle, box, write), then the spoken asks ar
 
 **Mark:** Circle where the Great Barrier Reef is. **Spoken (the six, on a new globe view, one card from the feature pack):** "Show me this feature." "Is the feature drawn land, water or ice?"
 
-## Day 20 exit card: a map centred on the Indian Ocean
+## Day 20 exit card: a map centered on the Indian Ocean
 
 **Picture:** The world with the Indian Ocean in the middle. Six shapes numbered: 1 the large water on the right, 2 the thin water on the left edge, 3 the water left of Africa, 4 the water in the middle, 5 the water across the top, 6 the water across the bottom. A north arrow in the top left. A word bank of six words: Pacific, Atlantic, Indian, Arctic, Southern, Great Lakes.
 

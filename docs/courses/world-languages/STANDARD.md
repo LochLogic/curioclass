@@ -120,7 +120,7 @@ grades take a companion is set with the catalogue rows when the pass opens (heri
 | Option | Per language | Courses, Spanish plus ASL (net of the 2 shelved rows in brackets) | Notes |
 |---|---|---|---|
 | A. Three ranges | Novice, Intermediate, Advanced; Low, Mid, High become units inside each course | 6 (+4) | Fewest courses. Each course very large, so it breaks the bar's "one course for all levels" fail only by degree. Advanced is not reachable in a K to 12 setting without immersion, so the third course would be thin. |
-| B. Four levels | Level 1 Novice Low to Mid; Level 2 Novice High; Level 3 Intermediate Low to Mid; Level 4 Intermediate High. Advanced is a stated "beyond" | 8 (+6) | Matches what most school programmes reach. Each course states a target sublevel as an exit target. |
+| B. Four levels | Level 1 Novice Low to Mid; Level 2 Novice High; Level 3 Intermediate Low to Mid; Level 4 Intermediate High. Advanced is a stated "beyond" | 8 (+6) | Matches what most school programs reach. Each course states a target sublevel as an exit target. |
 | C. Five levels | Novice Low-Mid, Novice High, Intermediate Low-Mid, Intermediate High, Advanced Low | 10 (+8) | Finest. Heaviest build. |
 | D. B plus an early-years form | Option B, with an elementary form of Level 1 and 2 (play, song, movement tasks, small texts), both targeting the same level | 8 plus 4 early-years companions (+10 net, 12 in all) | Honest about age. Most work. |
 

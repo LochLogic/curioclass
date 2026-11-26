@@ -10,7 +10,9 @@
     add --baseline to store this run as the scope's baseline (build/gates/base-<scope>/, ignored). A --course run
     stores it by itself whenever the course has nothing uncommitted, refuses --baseline on a changed course, and
     fails (exit 2) on a changed course with no baseline. A --course run prints failing counts by gate and rule and
-    only the new lines; add --verbose to list every failing line.
+    only the new lines; add --verbose to list every failing line. A --course run reads the shared gates (and the
+    subject's ledger gate) only for lines that name the course, in its counts, its --record and its compare, so
+    another course's uncommitted change is never a new line here (later.csv L135).
     add --save <name> to keep the run as build/gates/<name>/ with docs/reviews/consolidation/<name>/summary.csv
     python -X utf8 scripts/gate.py compare <a> <b>   new lines in run b against run a (folder names under build/gates)
     python -X utf8 scripts/gate.py list [--course <id> | --changed | --all]
@@ -259,13 +261,47 @@ def scope_of(a):
     raise SystemExit(__doc__)
 
 
+def own_gates(course):
+    """The gates that check only this course (plan, lesson, unitplan, lint). The subject's ledger gate and the shared
+    gates run over many courses, so a course reads only their lines that name it (later.csv L135)."""
+    return {n for n, _ in course_gates(course) if not n.startswith('ledger-')}
+
+
+def names_course(line, course):
+    """The line names the course as a whole id: 'algebra-i' is not named by 'algebra-ii' or 'algebra-i-x'."""
+    return re.search(r'(?<![a-z0-9-])%s(?![a-z0-9-])' % re.escape(course), line) is not None
+
+
+def course_view(src, dst, course):
+    """A copy of a run with the course's own gates whole and every other gate cut to its lines that name the course,
+    and only the own gates' exit codes, so course A's change never shows as a new line in course B's gate (L135)."""
+    own = own_gates(course)
+    if dst.exists():
+        shutil.rmtree(dst)
+    dst.mkdir(parents=True)
+    for f in src.glob('*.txt'):
+        text = f.read_text(encoding='utf-8')
+        if f.stem not in own:
+            text = '\n'.join(l for l in text.splitlines() if names_course(l, course))
+        (dst / f.name).write_text(text, encoding='utf-8')
+    rows = [r for r in csv.DictReader(open(src / 'summary.csv', encoding='utf-8'))] if (src / 'summary.csv').exists() \
+        else []
+    with open(dst / 'summary.csv', 'w', encoding='utf-8', newline='') as f:
+        w = csv.writer(f)
+        w.writerow(['gate', 'exit', 'last_line'])
+        w.writerows([r['gate'], r['exit'], r['last_line']] for r in rows if r['gate'] in own)
+    return dst
+
+
 def current_failures(raw, course=None):
-    """Every failing line in this run (for a course scope: what the course's own gates print)."""
+    """Every failing line in this run (for a course scope: its own gates' lines and the other gates' lines that name
+    it, so a debt.csv count moves only when the course does, L135)."""
     out = []
+    own = own_gates(course) if course else set()
     for f in sorted(raw.glob('*.txt')):
         for l in f.read_text(encoding='utf-8').splitlines():
             l = l.strip()
-            if FAILING.search(l) and (not course or f.stem.endswith(course) or course in l):
+            if FAILING.search(l) and (not course or f.stem in own or names_course(l, course)):
                 out.append('%s: %s' % (f.stem, l))
     return out
 
@@ -405,7 +441,9 @@ def course_answer(course, raw, base, pats, verbose, force_base, record=False):
     if bc != head():
         print('note: the baseline is from commit %s, HEAD is %s; lines committed since then count as new'
               % (bc[:9] or 'unknown', head()[:9]))
-    return 1 if compare_dirs(base, raw, 'gate %s against its baseline' % course, raw / 'compare.txt') else 0
+    views = RAW / ('view-' + course)          # the shared gates cut to this course's lines, both sides (L135)
+    return 1 if compare_dirs(course_view(base, views / 'base', course), course_view(raw, views / 'now', course),
+                             'gate %s against its baseline' % course, raw / 'compare.txt') else 0
 
 
 if __name__ == '__main__':

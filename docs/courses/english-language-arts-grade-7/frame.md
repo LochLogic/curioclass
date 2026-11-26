@@ -38,7 +38,7 @@ Course `english-language-arts-grade-7` (catalogue id `ela-k12`), grade 7, draft 
   placement reason) comes with the scope and sequence. Each unit's texts and their rights line are in the Units
   table's C3 column (ELA has no C3 framework; see "For the lead"). Images inside government pages are checked one by one.
 - **Reading level.** The 2012 supplement's grades 6 to 8 band (925 to 1185 on its first measure). Working split,
-  ours: grade 7 anchors centred in the middle of the band, more at its top with support (the dam-removal science reports, the
+  ours: grade 7 anchors centered in the middle of the band, more at its top with support (the dam-removal science reports, the
   smallpox articles; the paired Pericles excerpt and smallpox letters are read with full support). A poem or play rests on the qualitative judgment
   and the task. Anchors aim at about 55 percent informational. Count each anchor cluster or paired set once, excluding paired/optional reads; the settled range is 45 to 65 percent. This course has 7 informational and 5 literary sets (58.3 percent); the scope and sequence gives individual-work diagnostics too.
 - **Knowledge threads.** Thread 1, citizens and government (e7-reading-range): grade 6 read the first law codes;

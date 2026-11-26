@@ -82,7 +82,7 @@
   3. **Computing:** every sum, difference, product or quotient is done on whole numbers in the smaller unit, or on fractions with denominators 10 and 100. The answer may then be written back as a decimal.
   4. **Never in grade 4:** lining up decimal points in a written algorithm; a decimal times or divided by anything; converting a smaller unit to a larger one where the answer is a decimal (that is 5.MD.A.1).
   5. **Test for a task:** if a student could only get the answer by computing in decimal notation, the task is grade 5.
-- **Hard here:** 0.2 against 0.09, read as "2 against 9"; rewrite as 20/100 and 9/100 (Prog. p. 155 (149)). Students expect a "oneths" place, as if the point were the centre (Prog. pp. 69 to 70 (63 to 64)).
+- **Hard here:** 0.2 against 0.09, read as "2 against 9"; rewrite as 20/100 and 9/100 (Prog. p. 155 (149)). Students expect a "oneths" place, as if the point were the center (Prog. pp. 69 to 70 (63 to 64)).
 - **Earlier in this year:** units 3 and 4.
 
 ### Unit 8. Place Value to a Million (days 62 to 71; 4.NBT.A.1 to A.3)

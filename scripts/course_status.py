@@ -12,6 +12,7 @@ Run: python -X utf8 scripts/course_status.py [out.json]
 With a path, also writes the Review Desk document (then ArtifactData set stats/courses).
 """
 import csv, glob, io, json, os, re, sys, collections, datetime
+import subjects as subjects_mod   # grade bands (data/bands.csv); `subjects` below is this page's label table
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def rows(p): return list(csv.DictReader(io.open(os.path.join(ROOT, p), encoding='utf-8')))
@@ -20,7 +21,7 @@ def has(p): return os.path.exists(os.path.join(ROOT, p))
 CORE4 = ['math', 'ela', 'science', 'social-studies']
 BY_GRADE = {'math-k8', 'ela-k12', 'science-k5', 'science-ms', 'ss-k5'}
 GRADES = ['k'] + [str(i) for i in range(1, 13)]
-BAND_OF = {'k': 'k-2', '1': 'k-2', '2': 'k-2', '3': '3-5', '4': '3-5', '5': '3-5'}
+BAND_LABEL = {'k2': 'k-2', '35': '3-5', '68': '6-8', '912': '9-12'}   # subjects.band_of id -> this page's label
 BANDS = ['k-2', '3-5', '6-8', '9-12']
 PER_GRADE = {'cs-k12': GRADES}   # course id -> grades that are courses of their own
 SPLIT = re.compile(r'-(k|[1-9]|1[0-2]|k-2|3-5|6-8|9-12)$')   # a catalogue row already split by grade or band
@@ -36,8 +37,8 @@ tools = rows('docs/agents/catalog/shape/shape.csv')
 def gname(g): return 'Kindergarten' if g == 'k' else 'Grade ' + g
 def bname(b): return b.replace('k', 'K').replace('-', ' to ')
 
-def band_of(g):
-    return BAND_OF.get(g) or ('6-8' if g in ('6', '7', '8') else '9-12')
+def band_of(g):   # data/bands.csv through subjects.band_of, in this page's k-2 labels (L128)
+    return BAND_LABEL.get(subjects_mod.band_of(g), '9-12')
 def grades_of(b):
     if b in GRADES: return [b]
     lo, _, hi = b.partition('-')
@@ -62,7 +63,7 @@ def place(m):
             return 'course', f'{c}-{g}', f'{title}, {gname(g)}', (BANDS.index(band_of(g)), c, GRADES.index(g))
         if any(x in PER_GRADE[c] for x in grades_of(g)):     # a band page over per-grade courses: shared topics
             return 'shared', f'{c}-{g}', f'{title}, topics shared across grades {bname(g)}', (9, c)
-    b = BAND_OF.get(g, g)
+    b = band_of(g) if g in GRADES[:6] else g     # a grade K to 5 shows as its band; 6 and up, and spans, as they are
     if b in BANDS:
         return 'course', f'{c}-{b}', f'{title}, grades {bname(b)}', (BANDS.index(b), c)
     return 'shared', f'{c}-{b}', f'{title}, topics shared across grades {bname(b)}', (9, c)

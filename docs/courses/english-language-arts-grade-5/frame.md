@@ -70,8 +70,8 @@ Course `english-language-arts-grade-5` (catalogue id `ela-k12`), grade 5, draft 
 - **Record sheet, family note and sub-ready day.** One per base unit (three per Curio Class unit, 12 a year), since a unit here is a whole base module of seven to eight weeks; the unit stays the base module, which carries the compelling question and the performance task.
 - **Sensitivity reads.** Every unit gets the fresh sensitivity agent's read (docs/pipeline/briefs/sensitivity-read.md);
   no outside reader is planned (Cory, 2026-11-14). What it studies first, by unit: unit 1 (a father's death, a
-  family's loss of its home, farm work and forced moves) farmworker families' own organisations' published accounts,
-  federal pages on migrant and seasonal farmworkers, and a children's grief organisation's guidance on loss in
+  family's loss of its home, farm work and forced moves) farmworker families' own organizations' published accounts,
+  federal pages on migrant and seasonal farmworkers, and a children's grief organization's guidance on loss in
   stories; unit 2 (Puerto Rico, Hurricane Maria) Puerto Rican sources first (the island's own government and
   university pages, Puerto Rican writers and historians) and the federal forest pages; unit 3 (racism and
   segregation in sport, disability) the athletes' own words, a Negro Leagues history museum's pages, scholarship by

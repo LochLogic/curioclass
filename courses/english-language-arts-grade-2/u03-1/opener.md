@@ -18,7 +18,7 @@ Each day is 120 minutes in two blocks of 60. The topic block holds a short openi
 ## The ideas, at an adult's level
 
 - **Pollination moves pollen.** Pollen is a tiny powder. Pollination is moving it from one flower to another flower of the same kind. Animals, wind and water can do it. An animal that does it is a pollinator.
-- **Seeds travelling is a different thing.** Seed dispersal moves seeds. Do not let the two run together. If a child says seeds fly, say "That is a real thing; today we follow pollen."
+- **Seeds traveling is a different thing.** Seed dispersal moves seeds. Do not let the two run together. If a child says seeds fly, say "That is a real thing; today we follow pollen."
 - **Each step makes the next one possible.** Say "so" or "because" and point along the arrow. A list of steps with no link is not yet an explanation.
 - **A diagram says it with arrows.** Each arrow is one step. Read the words, then follow the arrow.
 

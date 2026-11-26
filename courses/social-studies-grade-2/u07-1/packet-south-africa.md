@@ -22,7 +22,7 @@ Made by Curio Class, 2026, from Natural Earth public domain map data and South A
 
 **Land and water.** South Africa has a coast of more than 3,000 kilometers. It runs from the Atlantic Ocean around the southern tip to the Indian Ocean. Part of the Drakensberg rises to 3,482 meters.
 
-**Work.** Mining and farming are important work. Gold and diamonds are among the goods sold to other countries. Fishing is centred on the west coast, where cold ocean water is rich in nutrients.
+**Work.** Mining and farming are important work. Gold and diamonds are among the goods sold to other countries. Fishing is centered on the west coast, where cold ocean water is rich in nutrients.
 
 Made by Curio Class, 2026, from South African government pages and the Department of International Relations, read November 2026. Where made: Curio Class. What it is for: to help us learn about land and water, and work.
 
@@ -52,7 +52,7 @@ A simple line drawing of jagged mountain peaks above grassland. (illustration)
 | Land and Work | Part of Drakensberg rises to 3,482 m | 84ZA2 | Highest point of the Great Escarpment is in the KZN Drakensberg at 3,482 m. |
 | Land and Work | Mining and farming important work | 84ZA1 | Key sectors include mining and agriculture. |
 | Land and Work | Gold and diamonds among goods sold abroad | 84ZA3 | Main exports include gold, minerals, diamonds, metals, agricultural foodstuffs. |
-| Land and Work | Fishing centred on west coast, cold nutrient-rich water | 84ZA2 | Cold west coast water is richer in oxygen and nutrients, so fishing is concentrated there. |
+| Land and Work | Fishing centered on west coast, cold nutrient-rich water | 84ZA2 | Cold west coast water is richer in oxygen and nutrients, so fishing is concentrated there. |
 | People Today | Pretoria administrative capital | 84ZA1 | Pretoria is the administrative capital. |
 | People Today | Cape Town is where Parliament sits | 84ZA3 | Cape Town is the legislative capital, where Parliament sits. |
 | People Today | Twelve official languages incl. SA Sign Language | 84ZA1 | Twelve official languages are listed, including South African Sign Language. |

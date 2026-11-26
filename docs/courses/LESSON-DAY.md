@@ -34,7 +34,9 @@ level, why this model, the error register in plain words, the supply list; 1,200
 unit** (filed in the folder of the unit's first section, as docs/courses/UNIT-PLAN.md puts them in the unit
 plan): the family note in English and Spanish (150 words at most each), the record sheet, the readiness check
 and end-of-unit assessment with their answer keys. A sheet with no preset questions (a strip sheet, a blank grid) is a
-`piece: blank`: it prints for students, its words are counted without markup, and it must fit two sides. These
+`piece: blank`: it prints for students, its words are counted without markup, and it must fit two sides. A line
+for the teacher ("Teacher:", "Key for the teacher", "Say aloud") never sits on it: it goes in the header field
+`teacher_note:`, which the day's teacher page prints under Piece notes (lesson.py fails it, L80). These
 are generated from data wherever they can be.
 
 **The arithmetic, so the size is seen.** A teaching day is at most about 1,420 words a person reads (900
@@ -175,7 +177,9 @@ later day's to pick up. **A writing day's student page gives the revision note i
 - A stem with parts prints each of (a), (b), (c) on its own line, on the page and on the ticket.
 - An exit ticket gives each sentence of its stem the room it asks for: a blank to fill is the room for its
   sentence, a "why" or "how do you know" gets two lines, a question or a "write" gets one, and a stem that says
-  show, rename or explain gives every part a line.
+  show, rename or explain gives every part a line. From grade 6 a "why" gets three lines, and so does a question
+  or a "write" that asks for a reason, a test or evidence (L80); a ticket that then outgrows its quarter page
+  sets `exit: half` and prints two to a sheet.
 - A stem holds only what the student reads: no "No drawing." or "No line given." (that goes on the teacher page),
   no quote marks round the student text, no description of the figure printed beside it.
 

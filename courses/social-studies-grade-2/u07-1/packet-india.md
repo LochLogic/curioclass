@@ -28,7 +28,7 @@ Made by Curio Class, 2026, from an Indian High Commission fact sheet and the nat
 
 ## People Today page
 
-**Cities and towns.** New Delhi is the capital. Mumbai is a centre of India's film industry.
+**Cities and towns.** New Delhi is the capital. Mumbai is a center of India's film industry.
 
 **Languages.** India's Constitution recognizes 22 languages. Hindi is an official language, and English can also be used for official work.
 
@@ -54,7 +54,7 @@ A simple line drawing of a snack seller at a stand on a busy street in Mumbai. (
 | Land and Work | Coal and iron ore found in India | 84IN1 | Natural resources listed include coal and iron ore. |
 | Land and Work | More than 80 tea gardens in Darjeeling | 84IN2 | Over 80 operational tea gardens in Darjeeling produce Darjeeling tea. |
 | People Today | New Delhi is the capital | 84IN1 | Capital: New Delhi. |
-| People Today | Mumbai a centre of the film industry | 84IN2 | Mumbai is the centre of the Indian film industry. |
-| People Today | 22 languages recognized; Hindi official; English can be used officially | 84IN1 | The Constitution recognises 22 languages; Hindi is an official language; Parliament may provide for continued use of English for official purposes. |
+| People Today | Mumbai a center of the film industry | 84IN2 | Mumbai is the center of the Indian film industry. |
+| People Today | 22 languages recognized; Hindi official; English can be used officially | 84IN1 | The Constitution recognizes 22 languages; Hindi is an official language; Parliament may provide for continued use of English for official purposes. |
 
 <!-- TEACHER-ONLY BLOCK: ends -->

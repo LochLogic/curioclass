@@ -11,7 +11,7 @@ Used as the repair for B and as pairs work. The island and both countries are in
 
 ## Map 1
 
-**Picture:** An island with the country Kelda in the north half and the country Orrin in the south half. A dashed line divides them. The north is shaded grey and the south is shaded white. Key: a dashed line is a border, grey is Kelda, white is Orrin.
+**Picture:** An island with the country Kelda in the north half and the country Orrin in the south half. A dashed line divides them. The north is shaded gray and the south is shaded white. Key: a dashed line is a border, gray is Kelda, white is Orrin.
 
 ## Map 2
 

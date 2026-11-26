@@ -7,7 +7,9 @@ Checks (each line starts with the check's name, so a gate compare shows what is 
   tools-concepts.csv, data/concepts/). Every script under scripts/ is a curriculum script except the named tool-side
   set (TOOL_SIDE below, each with its reason), so a new script is linted by default. Two named exceptions
   (EXCEPTIONS): course_pages.py `known_standards`, until the standards pages are rebuilt, and course_status.py's
-  module-level catalog placement counts (docs/CONSOLIDATION-PLAN.md test 4, close review finding 9).
+  module-level catalog placement counts (docs/CONSOLIDATION-PLAN.md test 4, close review finding 9). A curriculum
+  script that imports a TOOL_SIDE module (`import build_db`, `from catalog_maps import ...`, import_module) fails
+  too, since that module's loaders read the catalog for it (later.csv L134); lint.py itself may be imported.
 - never-touch: a changed file whose data/homes.csv kind is never-touch or state (state files change only through
   their owner script, which the lead runs).
 - generated and layout: scripts/homes.py check over the files in scope (--course: every file git would see in the
@@ -49,6 +51,13 @@ TOOL_SIDE = {
     'wordart.py': 'Word Wall pictures',
     'lint.py': 'it names the catalog files in order to look for them',
 }
+# Tool-side modules a curriculum script may import: lint.py is tool-side only because it names the catalog files.
+IMPORT_OK = {'lint.py'}
+# Imports of a tool-side module found when the import check was added (2026-11-26, later.csv L134): Supply Closet and
+# tool scripts that are not in TOOL_SIDE. Known until the lead says which of them are tool-side; any other fails.
+IMPORT_KNOWN = {('charts.py', 'check_charts'), ('refine_pack.py', 'tool_record'), ('wordpeople.py', 'check_words'),
+                ('wordpeople.py', 'wordart'), ('wordsvg.py', 'check_words'), ('worksheets.py', 'check_worksheets'),
+                ('ws_gen_propose.py', 'check_worksheets'), ('ws_generated.py', 'check_worksheets')}
 CATALOG = re.compile(r"modules\.csv|sequence\.csv|coverage\.csv|tools-concepts\.csv|data[/\\]concepts\b|"
                      r"'concepts'\)")
 # Named exceptions inside curriculum scripts: (script, function; '' = module level)
@@ -93,7 +102,30 @@ def catalog():
                 func = ''                  # back at module level
             if CATALOG.search(ln) and not ln.lstrip().startswith('#') and (name, func) not in EXCEPTIONS:
                 out.append('catalog scripts/%s:%d: a curriculum script reads a tool catalog file' % (name, i))
+            for mod in imported(ln):     # a tool-side module's loaders read the catalog for it (L134)
+                if (mod + '.py' in TOOL_SIDE and mod + '.py' not in IMPORT_OK and (name, func) not in EXCEPTIONS
+                        and (name, mod) not in IMPORT_KNOWN):
+                    out.append('catalog scripts/%s:%d: a curriculum script imports the tool-side %s.py' % (name, i, mod))
     return out
+
+
+IMPORT = re.compile(r'^\s*(?:import\s+([\w.]+(?:\s+as\s+\w+)?(?:\s*,\s*[\w.]+(?:\s+as\s+\w+)?)*)|from\s+([\w.]+)\s+import\b)')
+DYNAMIC = re.compile(r'''(?:import_module|__import__)\(\s*['"]([\w.]+)['"]''')
+
+
+def imported(ln):
+    """The top-level module names a line imports: `import a, b as c`, `from a import x`, importlib.import_module('a')
+    and __import__('a')."""
+    if ln.lstrip().startswith('#'):
+        return []
+    m = IMPORT.match(ln)
+    names = []
+    if m and m[1]:
+        names = [x.split()[0] for x in m[1].split(',')]
+    elif m:
+        names = [m[2]]
+    names += DYNAMIC.findall(ln)
+    return [x.split('.')[0] for x in names if x]
 
 
 def never(files):

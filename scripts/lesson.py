@@ -3,6 +3,9 @@
     python -X utf8 scripts/lesson.py check            every day file under courses/; exit 1 on any failure
     python -X utf8 scripts/lesson.py build [--pdf]    write the pages to build/lessons/ (--pdf also prints the
                                                       student page with Chrome and counts its sides)
+    python -X utf8 scripts/lesson.py known [<course>]  record today's hits of the blank-piece teacher-line gate and
+                                                      the grade 6 and up answer-room gate as known misses in
+                                                      data/index-baseline.csv (later.csv L80); new hits fail
 
 A day file is courses/<course>/u<unit>-<section>/d<day>.md: a header block, "## Teacher page" with fixed
 headings, then "## Student page". Questions are named by id, [[s11-P90-1]], and live in
@@ -160,6 +163,19 @@ WHEN = 'when it exists:'
 def leans(d):
     """Every outside piece the day needs; "when it exists: path" is a piece the day uses only once it is built."""
     return [x.strip() for x in d['head'].get('leans_on', '').split(';') if x.strip() and x.strip() != 'nothing']
+
+
+def piece_notes(d):
+    """'name: note' for each piece the day leans on whose header has a teacher_note: (the lines for the teacher a
+    blank piece does not print, L80)."""
+    out = []
+    for x in leans(d):
+        q = ROOT / x
+        if x.startswith('courses/') and x.endswith('.md') and q.exists() and not re.match(r'd\d{3}$', q.stem):
+            pc = parse_piece(q)
+            if pc and pc['head'].get('teacher_note'):
+                out.append('%s: %s' % (q.stem, pc['head']['teacher_note']))
+    return out
 
 
 def optional(d):
@@ -1969,11 +1985,13 @@ def cols_state(spec, k):
     return by[k] if k < len(by) else '*'
 
 
-def slip_html(h, ex, foot):
+def slip_html(h, ex, foot, band=True):
     """One exit ticket: a quarter of a sheet, four printed to a page; a header `exit: half` makes it half a sheet, two
-    to a page, for a multi-part judged exit that cannot fit a quarter (science ladder report, 2026-11-19)."""
+    to a page, for a multi-part judged exit that cannot fit a quarter (science ladder report, 2026-11-19). Its answer
+    room is sized for the course's grade (slip_pieces); band=False sizes it as before L80, for `lesson.py known`."""
+    g = grade(h.get('course', '')) if band else None
     return '<div class="slip%s"><p>Name ______________ Day %s</p>%s%s</div>' % (
-        ' half' if half_slip(h) else '', h['day'], ''.join(slip_item(k, i) for k, i in enumerate(ex)), foot)
+        ' half' if half_slip(h) else '', h['day'], ''.join(slip_item(k, i, g) for k, i in enumerate(ex)), foot)
 
 
 def half_slip(h):
@@ -1984,7 +2002,7 @@ SLIP_W, SLIP_H = 3.504, 4.75   # inches: a slip is 48% of the 7.3 in page and 4.
 SLIP_HALF_W = 7.154            # a half-sheet slip (header `exit: half`) is 98% of the page wide, two to a page
 
 
-def slip_fits(d, course, items):
+def slip_fits(d, course, items, band=True):
     """Print the day's exit ticket alone on a page the size of the slip, its height let go: more than one page
     means its content runs past the quarter page, where .slip's overflow hides it (expert, day 27: a sketch box
     pushed the credit line off). None when there is no paper ticket or no Chrome; else (fits, note)."""
@@ -2001,7 +2019,9 @@ def slip_fits(d, course, items):
     css = ('<style>@page { size: %.3fin %.2fin; margin: 0; } body { max-width: none; } .slip { width: 100%% '
            '!important; height: auto !important; margin: 0 !important; overflow: visible !important; }</style>'
            % (SLIP_HALF_W if half_slip(h) else SLIP_W, SLIP_H + 0.02))
-    put(tmp, page('check', css + slip_html(h, ex, foot), 'student'))
+    if not band:
+        tmp = tmp.with_name(tmp.stem + '-before-band.html')
+    put(tmp, page('check', css + slip_html(h, ex, foot, band), 'student'))
     note = print_sides(tmp)
     m = re.match(r'(\d+) side', note)
     return (int(m[1]) == 1, note) if m else None
@@ -2044,7 +2064,8 @@ def header_table(d, row, parts, tt, side=frozenset()):
              [('At home', 'the At home view, %s-home.html, %d minutes with one child'
                % (d['path'].stem, sum(p[0] for p in home_parts(d))))] if 'At home' in d['secs'] else []) + [
              ('Leans on', '; '.join(x for x in leans(d) if not x.lower().startswith(WHEN)) or 'nothing'),
-             ] + ([('Uses when it exists', '; '.join(optional(d)))] if optional(d) else []) + [
+             ] + ([('Uses when it exists', '; '.join(optional(d)))] if optional(d) else []) + (
+             [('Piece notes', '; '.join(piece_notes(d)))] if piece_notes(d) else []) + [
              ('Version', h['version']), ('Credit', h['credit'])]
     return '<table class="meta">%s</table>' % ''.join(
         '<tr><td>%s</td><td>%s</td></tr>' % (html.escape(a), html.escape(b)) for a, b in cells)
@@ -2764,7 +2785,7 @@ FEAT_SAY = 'Your feature may be different. Is it true of every number? Is it the
 DRAWS = re.compile(r'\b(draw|sketch|strip picture|strips)\b', re.I)
 
 
-def slip_item(k, i):
+def slip_item(k, i, g=None):
     """One exit question on the exit ticket. A stem that asks for a drawing gets a box before its lines; a teacher-judged
     exit gets a taller work box; a sentence with blanks in the stem ("Finish: __ is __ times as many as __.") prints
     as its own fill line, and when the stem ends in such frames they are the answer lines."""
@@ -2821,7 +2842,7 @@ def slip_item(k, i):
         return '<p>%d. %s</p>%s%s%s' % (k + 1, stacked(' '.join(ask)), pic, box, lines)
     # any other question keeps its sentences in order, each with its room where it is asked (unit 3 reads)
     rule = '<p>__________________________</p>'
-    out, ps = [], slip_pieces(stem(i))
+    out, ps = [], slip_pieces(stem(i), g)
     for kd, x in ps:   # the picture after the first run of sentences, a drawing box after the last
         out.append('<p>%s</p>' % stacked(x) if kd == 'p' else '<p>%s</p>' % blank(x) if kd == 'f' else rule * x)
     out[0] = out[0].replace('<p>', '<p>%d. ' % (k + 1), 1)
@@ -2835,14 +2856,20 @@ def slip_item(k, i):
 
 
 WHY = re.compile(r'\b(?:why|how do you know|how you know|explain)\b', re.I)
+# from grade 6 a part that asks for a reason, a test or evidence gets three lines (later.csv L80, science grade 7
+# expert read finding 6: grade 7 answers of 20 to 40 words ran out of a grade 4 line)
+ROOM_ASK = re.compile(r'\b(?:reasons?|tests?|evidence)\b', re.I)
+ROOM_FROM = 6
 WRITE = re.compile(r'^(?:\([a-h]\)\s*)?(?:then |so |and )?(?:write|name|find|rename)\b', re.I)
 
 
-def slip_pieces(q):
+def slip_pieces(q, g=None):
     """An exit question as pieces in its own order: ('p', text) a run of sentences, ('f', sentence) a sentence with
     blanks printed as its fill line, ('l', n) n write lines. A why or how-do-you-know sentence gets two lines, a
     question or a "Write ..." with no frame after it one; a part, (a) or (b), with no room of its own gets a line
-    (and one more when the words before the parts ask to show or rename); a question with no room at all gets two."""
+    (and one more when the words before the parts ask to show or rename); a question with no room at all gets two.
+    From grade 6 (g, the course's grade) a why sentence, or one with room that asks for a reason, a test or
+    evidence, gets three lines (L80)."""
     chunks = re.split(r'\s+(?=\([a-h]\)\s)', q.strip())
     pre = chunks[0] if len(chunks) > 1 and not re.match(r'\([a-h]\)\s', chunks[0]) else None
     work = bool(pre and re.search(r'\b(?:show|rename|explain)\b', pre, re.I))
@@ -2862,6 +2889,8 @@ def slip_pieces(q):
                 continue
             n = 2 if WHY.search(s) else 1 if (s.rstrip().endswith('?') and '__' not in nxt and not WHY.search(nxt)) \
                 or (WRITE.search(s) and '__' not in nxt) else 0
+            if n and g is not None and g >= ROOM_FROM and (n == 2 or ROOM_ASK.search(s)):
+                n = 3
             if n:
                 out.append(('p', ' '.join(para))); para = []
                 out.append(('l', n)); room = True
@@ -3393,10 +3422,98 @@ def new_piece_gates(pc):
     lab = pc['path'].relative_to(ROOT).as_posix()
     if pc['path'].name.startswith('key-') or pc['head'].get('piece') not in CHILD_PIECES:
         return []
-    return gate_key_lines(pc['body'], lab)
+    out = gate_key_lines(pc['body'], lab)
+    if pc['head'].get('piece') == 'blank':
+        out += [m for k, m in gate_teacher_lines(pc['body'], lab) if k not in known(TEACHER_REPORT)]
+    return out
+
+
+# A blank piece prints as written for students, so a line for the teacher on it reaches the child (later.csv L80,
+# science grade 7 expert read finding 13). Such a line goes in the piece's `teacher_note:` header field, which the
+# student sheet never prints and the day's teacher page shows under Piece notes. A blank to write on ("Teacher
+# note: ____") and lowercase "say aloud" inside a student prompt are not hits. A "Key:" line is gate_key_lines'.
+TEACHER_ON_SHEET = re.compile(r'(?:^|(?<=[.!?:"]\s))[\s*_>#|-]*(Teacher(?: note)?\s*:|Key for the teacher\b|'
+                              r'For the teacher\b[^:.]*:|Say aloud\b)')
+TEACHER_REPORT, ROOM_REPORT = 'lesson-teacher-lines', 'lesson-exit-room'
+
+
+def gate_teacher_lines(text, lab):
+    """[(key, line)] for each line of a blank piece that prints teacher prose, a key or Say aloud. The key (path and
+    the line's text, no line number) is what data/index-baseline.csv records for the pieces written before the gate."""
+    out = []
+    for k, ln in enumerate(text.splitlines()):
+        plain = re.sub(r'<[^>]+>', ' ', ln)
+        for m in TEACHER_ON_SHEET.finditer(plain):
+            if not re.search(r'[A-Za-z]', re.sub(r'_+', '', plain[m.end():])):
+                continue
+            said = ' '.join(plain.split())
+            out.append(('%s|%s' % (lab, said[:80]), 'teacher-on-child-page: %s:%d: a blank piece prints "%s" for '
+                        'students; move it to the header field teacher_note: ("%s")'
+                        % (lab, k + 1, m[1].rstrip(': '), said[:60])))
+            break
+    return out
+
+
+_KNOWN = {}
+
+
+def known(report):
+    """Keys data/index-baseline.csv records for one of lesson.py's reports: hits on days and pieces written before
+    the gate existed, worked off by course; `lesson.py known` rewrites them."""
+    if report not in _KNOWN:
+        import index
+        _KNOWN[report] = {k for r, k in index.baseline() if r == report}
+    return _KNOWN[report]
+
+
+def write_known(a):
+    """lesson.py known [<course>]: record today's hits of the two L80 gates as known (data/index-baseline.csv, under
+    its lock): blank pieces with teacher lines, and grade 6 and up exit tickets that fit their page with the old
+    answer room but not with the band's. With a course, only that course's keys are replaced."""
+    import csv
+    import io
+    import index
+    import safe_write
+    course = a[1] if len(a) > 1 else None
+    mine = lambda k: course is None or k.startswith('courses/%s/' % course)
+    hits = {TEACHER_REPORT: set(), ROOM_REPORT: set()}
+    for p in piece_files():
+        pc = parse_piece(p)
+        if pc and pc['head'].get('piece') == 'blank' and not p.name.startswith('key-'):
+            hits[TEACHER_REPORT] |= {k for k, _ in gate_teacher_lines(pc['body'], p.relative_to(ROOT).as_posix())}
+    for p in day_files():
+        c = p.parent.parent.name
+        if (grade(c) or 0) < ROOM_FROM:
+            continue
+        d = parse(p)
+        if d is None:
+            continue
+        items, days, _, _, _ = load(d['head'].get('course', c))
+        drow = next((x for x in days if x['day'] == d['head'].get('day')), None)
+        if not drow or drow['kind'] == 'Check':
+            continue
+        now, before = slip_fits(d, c, items), slip_fits(d, c, items, band=False)
+        if now and before and not now[0] and before[0]:
+            hits[ROOM_REPORT].add(p.relative_to(ROOT).as_posix())
+    with safe_write.lock(index.BASE):
+        rows = index.rows_of(index.BASE)
+        keep = [r for r in rows if r['report'] not in hits or not mine(r['key'])]
+        for rep_, keys in hits.items():
+            keep += [dict(report=rep_, key=k) for k in sorted(keys) if mine(k)]
+        keep.sort(key=lambda r: (r['report'], r['key']))
+        s = io.StringIO()
+        w = csv.DictWriter(s, ['report', 'key'], lineterminator='\n')
+        w.writeheader()
+        w.writerows(keep)
+        safe_write.replace(index.BASE, s.getvalue())
+    for rep_, keys in hits.items():
+        print('%s: %d known' % (rep_, len([k for k in keys if mine(k)])))
+    return 0
 
 
 def main(a):
+    if a[:1] == ['known']:
+        return write_known(a)
     if not a or a[0] not in ('check', 'build'):
         raise SystemExit(__doc__)
     bad = 0
@@ -3427,7 +3544,7 @@ def main(a):
                 fails.append('%s: the student page prints to more than two sides' % lab)
         drow = next((x for x in days if x['day'] == d['head'].get('day')), None)
         fit = slip_fits(d, c, items) if drow and drow['kind'] != 'Check' else None
-        if fit and not fit[0]:
+        if fit and not fit[0] and lab not in known(ROOM_REPORT):
             half = half_slip(d['head'])
             fails.append('%s: the exit ticket runs past its %s page (%s at %.2f by %.2f in), so its foot is cut off; '
                          'shorten it or give its box less room%s' % (

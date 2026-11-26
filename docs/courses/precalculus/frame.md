@@ -56,7 +56,7 @@ Algebra II (grade 11) is the course before and hands on most of what this course
 | geo-right-triangle-trig (Geometry): the right-triangle ratios | Unit 6, pc-oblique-triangles | retrieval (and unit 4 this year); last use grade 11, Algebra II unit 6 (day 134, through alg2-periodic-modeling) |
 | geo-transformations-coordinates (Geometry): rigid motions and dilations as coordinate rules | Unit 6, pc-vectors-geometry | retrieval; last use grade 11, Algebra II unit 5 (day 105, through alg2-transformations-functions) |
 | geo-rigid-motion-definitions (Geometry): transformations as functions on points | Unit 7, pc-matrix-transformations | readiness (day 101); last use grade 10, Geometry unit 1 (day 26) |
-| geo-dilations (Geometry): dilations by a centre and a scale factor | Unit 7, pc-matrix-transformations | readiness (day 101); last use grade 10, Geometry unit 3 (day 67) |
+| geo-dilations (Geometry): dilations by a center and a scale factor | Unit 7, pc-matrix-transformations | readiness (day 101); last use grade 10, Geometry unit 3 (day 67) |
 | alg1-linear-systems (Algebra I): linear systems by graphing, substitution and elimination | Unit 7, pc-matrix-systems | readiness (day 101); last use grade 10, Geometry unit 6 (day 118) |
 | alg2-unit-circle-radians (Algebra II): radians and the unit circle | Unit 8, pc-polar-graphs | retrieval (and unit 4 this year); last use grade 11, Algebra II unit 6 (day 136) |
 | alg2-complex-numbers (Algebra II): complex arithmetic | Unit 8, pc-complex-polar | retrieval (and unit 2 this year); last use grade 11, Algebra II unit 3 (day 69) |
