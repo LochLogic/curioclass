@@ -12,7 +12,7 @@ first_day: 44
 days: 44 (cards 1, 2, 4, 5); 56 (cards 1 to 5); 74 (previously released cards)
 edition: Curio Class original, 2026, print and digital
 rights_basis: ours
-rights_checked: 2026-11-22
+rights_checked: 2026-11-25
 reading_basis: grade 4 connected-text reading; not a cycle-controlled decodable
 ---
 
@@ -49,4 +49,4 @@ Photograph (FOH-tuh-graf): a picture recorded with light.
 
 ## Sources
 
-- Curio Class original reference definitions and plain pronunciation guides, following the five entries commissioned in the unit plan. No new real-world animal facts. checked: 2026-11-22 (run batch date; linked factual sources opened 2026-11-23).
+- Curio Class original reference definitions and plain pronunciation guides, following the five entries commissioned in the unit plan. No new real-world animal facts. checked: 2026-11-25.
