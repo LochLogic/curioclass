@@ -305,7 +305,6 @@ s02-P32-1,Continues past five until all available pieces are used.,,,D,Assign th
 s02-P33-1,Keeps one dot for the zero request.,,,O,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P34-1,Continues past five to use all available pieces.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P35-1,Counts five correctly but keeps label 2.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P36-1,Counts eight correctly but writes label 6.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P37-1,Adds one to four but says it stays four.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P38-1,Acknowledges extras in eight but calls it fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-P39-1,Acknowledges extras in five but calls it fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
@@ -460,10 +459,7 @@ s02-P35-2,Intended numeral remains unrecognizable.,,,x,Assign a letter only from
 s02-F35-route,Omits middle square and gives four.,,,K,Assign a letter only from an observed action or explanation; record help separately.
 s02-F35-route,Revisits middle square and gives six.,,,L,Repeated visit is directly observed.
 s02-R36,Claims ten because squares spread.,,,B,Assign a letter only from an observed action or explanation; record help separately.
-s02-K36-1,Says two after one square joins two.,,,H,Assign a letter only from an observed action or explanation; record help separately.
-s02-K36-2,Chooses 2 because its printed mark is larger.,,,J,Assign a letter only from an observed action or explanation; record help separately.
 s02-P36-2,Counts two but writes 1.,,,M,Assign a letter only from an observed action or explanation; record help separately.
-s02-P36-3,Says same despite extra square.,,,H,Assign a letter only from an observed action or explanation; record help separately.
 s02-F36,Continues beyond requested five.,,,D,Assign a letter only from an observed action or explanation; record help separately.
 s02-P34-4,Claims spreading the five requires label 8.,,,B,Assign only when explanation shows spacing used as quantity.
 s02-R37,Says two after seeing the extra square.,,,H,Assign only from observed action or heard explanation; record help separately.
@@ -1912,3 +1908,10 @@ s02-P42a,2 after correctly counting three.,,,M,"One letter only, from observed a
 s02-P42b,3 after correctly counting eight.,,,M,"One letter only, from observed action or heard words. Record help; a numeral reversal alone is formation feedback."
 s02-P42c,Long mat before short after correct counts.,,,G,"One letter only, from observed action or heard words. Record help; a numeral reversal alone is formation feedback."
 s02-P43,Continues beyond six after losing the requested stop.,,,D,"One letter only, from observed action or heard words. Record help; a numeral reversal alone is formation feedback."
+s02-R34-oral,Omits a heard counting word.,,,x,Other observed response; record the actual words. Choral participation does not establish individual mastery.
+s02-R35-oral,Omits a heard counting word.,,,x,Other observed response; record the actual words. Choral participation does not establish individual mastery.
+s02-R36-oral,Omits a heard counting word.,,,x,Other observed response; record the actual words. Choral participation does not establish individual mastery.
+s02-K36-1,Says eight after one square joins eight.,,,H,Assign a letter only from an observed action or explanation; record help separately.
+s02-K36-2,Chooses 8 because its printed mark is larger.,,,J,Assign a letter only from an observed action or explanation; record help separately.
+s02-P36-1,Counts nine correctly but writes 6.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P36-3,Says same despite the extra square.,,,H,Assign a letter only from an observed action or explanation; record help separately.
