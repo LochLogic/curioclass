@@ -5,6 +5,8 @@
                                                      the shared ones (and the self-tests if a script changed)
     python -X utf8 scripts/gate.py --all [--site]    every gate; --site also builds the site into the run folder
                                                      and runs check_site.py on it
+    add --record to a --course run of a committed course to write its failing count to data/plans/debt.csv (the
+    lead, at each grade close; 4.L).
     add --baseline to store this run as the scope's baseline (build/gates/base-<scope>/, ignored). A --course run
     stores it by itself whenever the course has nothing uncommitted, refuses --baseline on a changed course, and
     fails (exit 2) on a changed course with no baseline. A --course run prints failing counts by gate and rule and
@@ -81,7 +83,8 @@ def course_gates(c):
 def shared():
     return [('frame', ['scripts/frame.py', 'check']), ('index-reports', ['scripts/index.py', '--reports']),
             ('rows-check', ['scripts/rows.py', 'check']), ('skel-guard', ['scripts/skel_strip.py', '--guard']),
-            ('ids-check', ['scripts/ids.py', 'check']), ('vocabulary-check', ['scripts/vocabulary.py', 'check'])]   # homes.py check runs inside index-reports (the layout report)
+            ('ids-check', ['scripts/ids.py', 'check']), ('vocabulary-check', ['scripts/vocabulary.py', 'check']),
+            ('plan-links', ['scripts/plan_facts.py', 'links'])]   # homes.py check runs inside index-reports (the layout report)
 
 
 def selftests():
@@ -289,7 +292,7 @@ def main(a):
         subprocess.run([sys.executable, '-X', 'utf8', str(ROOT / 'scripts' / 'goal_tests.py'), '--write'], cwd=ROOT)
     base = RAW / ('base-' + key)
     if scope[0] == 'course':
-        return course_answer(scope[1], raw, base, pats, '--verbose' in a, '--baseline' in a)
+        return course_answer(scope[1], raw, base, pats, '--verbose' in a, '--baseline' in a, '--record' in a)
     if '--baseline' in a:
         store(raw, base)
         return 0
@@ -332,7 +335,22 @@ def rule_of(line):
     return ' '.join(words[:8]) or '(ids only)'
 
 
-def course_answer(course, raw, base, pats, verbose, force_base):
+DEBT = ROOT / 'data' / 'plans' / 'debt.csv'
+
+
+def record_debt(course, n, by):
+    """One row per course per date in data/plans/debt.csv: the known failing lines a grade close leaves (close review,
+    "what got worse" (c); 4.L row 8). The lead runs `gate.py --course <course> --record` at each grade close, after
+    the cleanup job, on the committed course, so each grade's count can be read against the one before."""
+    import datetime
+    import rows
+    top = '; '.join('%s %d' % (r, k) for (g, r), k in sorted(by.items(), key=lambda x: -x[1])[:5])
+    rows.target = lambda c, t: DEBT
+    rows.change('', 'debt', ['course', 'date'], {'course': course, 'date': datetime.date.today().isoformat(),
+                                                'commit': head()[:9], 'failing': str(n), 'top_rules': top})
+
+
+def course_answer(course, raw, base, pats, verbose, force_base, record=False):
     """A course run (close review findings 1 and 2). On a clean course (nothing uncommitted or untracked in its three
     homes) the run IS the baseline: it is stored with its commit, so each job starts from the committed state and no
     flag has to be remembered. On a changed course the run is compared with that baseline; with none it fails (exit
@@ -350,6 +368,12 @@ def course_answer(course, raw, base, pats, verbose, force_base):
     for (g, r), n in sorted(by.items(), key=lambda x: (-x[1], x[0])):
         print('  %6d  %s: %s' % (n, g, r))
     changed = dirty(course)
+    if record:
+        if changed or pats:
+            print('FAIL --record: only a full run of a clean course is recorded (%s)' %
+                  ('--only given' if pats else '%d uncommitted file(s)' % len(changed)))
+            return 2
+        record_debt(course, len(cur), by)
     if pats:
         print('(--only: a partial run is never stored as the baseline)')
     elif not changed:

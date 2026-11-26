@@ -703,6 +703,18 @@ Built (2026-11-25):
   kinds); check fails any other value. day.txt and section-write.md say when to mark (kit 10, RETOOL 9). vocabulary.py
   report counts only yes rows: the backlog is 0 today, a real number, since no writer has marked a word yet; a
   `[[word:...]]` mark may still name any term row. It grows as course runs mark words (later.csv L130).
+- Row 7: not run, by design. The count-only Word Wall overlap read waits for L130 to open (later.csv L130 says so).
+- Row 8: (a) each of the 918 written plans carries one line under its title that opens it with its facts on the
+  Front Office, or names the `plan_facts.py` read view (`plan_facts.py links --write`; the merged view drops the
+  line, so word caps and the Front Office are unchanged); gate `plan-links` fails a plan without it. (b) index.py
+  loads data/index.db when it is fresh (newer than every source and than index.py itself), 1.4 s against 24.6 s, and
+  `--rebuild` forces a build; uses.py shares that check. (c) `gate.py --course <course> --record` writes the
+  course's failing count and top rules to data/plans/debt.csv (refused on a dirty course or with --only); COURSE-RUN
+  stage 6 has the lead record it at each grade close, and kit cleanup.txt part D works the known debt down (kit 11,
+  RETOOL 10). (d) the standing rules found only in Built notes moved: the flow-status done rows and the pilot's
+  place outside the index into data/homes.csv notes, soft prose item ids into data/plans/README.md (the older turn
+  queue was already in AGENTS.md), each with a DESK-ANSWERS line. (e) vocabulary.py and ids.py say in their
+  docstrings that they get no new features until their first real user (DESK-ANSWERS line).
 
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 

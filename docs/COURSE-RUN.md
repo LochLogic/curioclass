@@ -105,7 +105,10 @@ time: a grade's section plans, then its days, then a retool, then the next grade
 - **Check:** lesson structure, one-ask items, exit slot and marking time, turn-taking time, review claims and
   copied exit text; the lead's targeted check at every hand-back; at grade close, a sample read of 10 days by two
   fresh readers.
-- **Fix:** small fixes go to the same writer, resumed. Faults across days go to one cleanup job at grade close.
+- **Fix:** small fixes go to the same writer, resumed. Faults across days go to one cleanup job at grade close,
+  which also works the course's baselined gate lines down (the known debt, 4.L). After it is committed, the lead runs
+  `gate.py --course <course> --record`, which writes the course's failing count to data/plans/debt.csv, so each grade
+  close shows whether the debt shrank.
 - **Retool:** the grade report's findings go into the kit, and the next grade runs on the new version.
 - **Gate:** pass marks met (section 5), then the next grade's stage 5.
 

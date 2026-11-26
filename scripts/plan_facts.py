@@ -1,6 +1,7 @@
 """A written plan's facts, rendered from data, beside its prose (consolidation 4.E2 step 4).
 
     python -X utf8 scripts/plan_facts.py <course> <sNN.md | uNN-N.md> [--facts]
+    python -X utf8 scripts/plan_facts.py links [--write]    each plan's Front Office link line under its title
     python -X utf8 scripts/plan_facts.py --self-test
 
 Written plans (docs/courses/<course>/sNN.md unit plans, uNN-N.md section plans) hold judgment prose only. The
@@ -29,9 +30,59 @@ FROM_DATA = ' <!-- from data -->'   # ends a heading the merged view adds (word 
 _cache = {}
 
 
+LINK_MARK = '<!-- facts link -->'
+LINK_LINE = re.compile(r'^[^\n]*' + re.escape(LINK_MARK) + r'[ \t]*\n(?:[ \t]*\n)?', re.M)
+SITE = 'https://curioclass.org/front-office/'
+
+
 def strip(text):
-    """The plan with every stored block taken out, and nothing else changed."""
-    return BLOCK.sub('', text.replace('\r\n', '\n'))
+    """The plan with every stored block and its facts link line taken out, and nothing else changed."""
+    return LINK_LINE.sub('', BLOCK.sub('', text.replace('\r\n', '\n')))
+
+
+def link_line(course, name, subject):
+    """The line under a plan's title that opens it with its facts on the Front Office, for a reader on GitHub, where
+    the stripped plan shows prose only (close review, "what got worse" (a); 4.L row 8). The merged view drops it."""
+    m = re.fullmatch(r's(\d+)\.md', name)
+    if m:
+        where = '%d/plan' % int(m.group(1))
+    else:
+        m = re.fullmatch(r'u(\d+)-(\d+)\.md', name)
+        where = '%d/s/%d.%s' % (int(m.group(1)), int(m.group(1)), m.group(2))
+    return ('Read this plan with its facts from data (days, codes, minutes): [the Front Office](%s#%s/%s/%s), or '
+            '`python -X utf8 scripts/plan_facts.py %s %s`. %s' % (SITE, subject, course, where, course, name, LINK_MARK))
+
+
+def links(write=False):
+    """Lines for each written plan whose facts link line is missing or out of date; --write puts it right."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import course_pages
+    import safe_write
+    subj = {c['slug']: c['subject'] for c in course_pages.load()}
+    out = []
+    for course in sorted(subj):
+        d = DOCS / course
+        for p in sorted(d.glob('s[0-9][0-9].md')) + sorted(d.glob('u[0-9][0-9]-[0-9]*.md')):
+            if not PLAN.fullmatch(p.name):
+                continue
+            raw = p.read_bytes().decode('utf-8')
+            nl = '\r\n' if '\r\n' in raw else '\n'
+            text = raw.replace('\r\n', '\n')
+            want = link_line(course, p.name, subj[course])
+            have = [m.group(0).rstrip('\n').rstrip() for m in LINK_LINE.finditer(text)]
+            if have == [want]:
+                continue
+            out.append('plan-link docs/courses/%s/%s: %s (plan_facts.py links --write)'
+                       % (course, p.name, 'no Front Office link line' if not have else 'link line out of date'))
+            if write:
+                body = LINK_LINE.sub('', text)
+                title, sep, rest = body.partition('\n')
+                if not title.startswith('# '):
+                    title, sep, rest = '', '', body
+                new = (title + '\n\n' if title else '') + want + '\n\n' + rest.lstrip('\n')
+                with safe_write.lock(p):
+                    safe_write.replace(p, new.replace('\n', nl))
+    return out
 
 
 def key(heading):
@@ -148,6 +199,11 @@ def self_test():
 def main(a):
     if a == ['--self-test']:
         return self_test()
+    if a[:1] == ['links']:
+        lines = links('--write' in a)
+        print('\n'.join(lines))
+        print('plan links: %d plan(s) %s' % (len(lines), 'put right' if '--write' in a else 'missing or out of date'))
+        return 1 if lines and '--write' not in a else 0
     only = '--facts' in a
     a = [x for x in a if x != '--facts']
     if len(a) != 2 or not PLAN.fullmatch(a[1]):

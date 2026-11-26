@@ -1959,3 +1959,10 @@ course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN
 - **Tool records flattened at once** (Desk card q-tool-record-1, answered 2026-11-25): Cory, "yes, flatten them all
   now. that should give us a more uniform baseline." This replaces the plan's "when a tool next moves": all 194 tools
   with record files were flattened in one scripted pass; the briefs that still name the old files are later L131.
+- **Standing rules left the Built notes** (close review "what got worse" (d), 4.L row 8, 2026-11-25): the 412
+  flow-status done rows stay (now in the data/homes.csv flow-status note).
+- **The math 4 pilot stays in the gate, out of the index** (4.L row 8 (d)): now in the data/homes.csv math-4 note.
+- **Prose item ids are soft uses** (4.L row 8 (d)): now in data/plans/README.md, Ids section; no gate fails on one.
+- **vocabulary.py and ids.py: no new features until their first real user** (close review "what got worse" (e), 4.L
+  row 8): they stay as built; vocabulary.py waits for L129 and L130, ids.py for the first real retire. Stated in each
+  script's docstring.

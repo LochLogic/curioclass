@@ -7,6 +7,7 @@ Your job, in this order:
 A. Every FIRM finding: verify it at the quoted file and line, then fix it at its cause, or reject it with a reason. Readers were careful but can be wrong (word counts, formats, a key that is in fact fair). A finding whose "stage that made it" is earlier than the day (unit plan, section plan, data) is fixed in that stage's file, the day follows it, and it is listed under "For the lead: sweep" with the stage, so the lead can look for the same fault in every unused piece of that stage.
 B. SOFT findings: apply those that are a short, clear fix in a file you are already editing; list the rest as left.
 C. Key lines in pieces: list the piece files (not day files, not key-* files) under courses/{COURSE}/ that contain a key or right-answer line (a short Python scan of "Key:", "Answer:", "Right answer" in piece .md files in your own temp folder). For each: does the piece print for children (a card, sheet, packet or student page a child holds or sees)? If yes, move the keys to the matching teacher key piece (make one, key-<name>.md, if none exists) and name it in the day's Before class. If the piece is teacher-only (a teacher card read aloud, a script, a map legend), leave it and say so.
+D. Known debt: run the gate with --verbose on the unchanged course first; it lists the course's baselined failing lines. After A to C, fix those that have a short, clear fix at their cause, starting with the rule that has the most lines, and list the rest by rule with the reason each is left (for example, a template point the lead keeps). Report the count before and after. Never change an item only to get past a gate.
 
 {GRADENOTE}
 
@@ -32,4 +33,4 @@ Touch only courses/{COURSE}/, data/plans/{COURSE}/, docs/courses/{COURSE}/ (plan
 
 {COMMON}
 
-Reply in under 250 words: FIRM applied / rejected / partly, SOFT applied / left, key-line files moved / left, before and after gate counts, "For the lead: sweep" faults with their stage, ledger entries for the lead, anything left.
+Reply in under 250 words: FIRM applied / rejected / partly, SOFT applied / left, key-line files moved / left, known debt fixed / left by rule, before and after gate counts, "For the lead: sweep" faults with their stage, ledger entries for the lead, anything left.

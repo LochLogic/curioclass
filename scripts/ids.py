@@ -11,6 +11,8 @@ Ids use the index's node keys (scripts/index.py): item:<course>:<item_id>, day:<
 section:<course>:3.2, piece:<course>:<section>/<name>.md, prog:<subject>:<id>, course:<id>, and so on.
 data/ids-retired.csv is committed and append-only: old_id, new_id (blank when the id is gone, not merged), date,
 reason. The registry is generated from the index plus that file and never committed.
+
+No new features until its first real user, the first real retire (close review, 4.L row 8 (e)).
 """
 import csv
 import datetime

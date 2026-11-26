@@ -154,3 +154,11 @@ Source: the step 4 close review, finding 4 (consolidation 4.L row 6). No grade r
 | Finding (stage that found / made it) | Where it went |
 |---|---|
 | The word backlog counted every ledger term row (16,128 heads, mostly phrases a later day leans on, not words a student is taught) (close review, finding 4) | ledger term rows carry student_word yes or no (default no); day.txt and section-write.md tell writers to add `--student-word` only for a word the page teaches students as vocabulary; vocabulary.py report counts only yes rows |
+
+## Retool 10: KIT-VERSION 11 (2026-11-25)
+
+Source: the step 4 close review, "what got worse" (c) (consolidation 4.L row 8). No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| The debt baselines (the `--all` lesson check and lint style lines) had no schedule, so they could sit forever (close review, "what got worse" (c)) | cleanup.txt part D "Known debt": the cleanup job works a course's known debt down and reports "known debt fixed / left by rule"; the lead records the count per grade close with `gate.py --course <course> --record` into data/plans/debt.csv (COURSE-RUN.md stage 6) |

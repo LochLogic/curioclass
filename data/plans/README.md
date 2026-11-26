@@ -163,6 +163,9 @@ the course list (a join); nobody edits them:
 - **Day numbers are permanent once a course's scope and sequence is signed off.** A course changes by rewriting a day
   in place or trading content inside a section; the year has a fixed length, so an insert always removes a day
   somewhere. A true renumber is a course rewrite, planned as one.
+- **An item id written in prose is a soft use.** The index (scripts/index.py) records bare item ids in plan and
+  day prose as soft `mentions` edges; `uses.py <id>` lists them, marked soft, and no gate fails on one. Hard uses
+  (links, leans_on, CSV id columns) are the ones a check enforces.
 
 ## What the gates cannot see
 

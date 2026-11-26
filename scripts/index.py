@@ -357,6 +357,39 @@ def save(ix):
     tmp.unlink()                                      # the other process's fresh build stands
 
 
+def stale():
+    """True when data/index.db is missing or older than any file it is built from: the tracked and new files under
+    data/, docs/ and courses/, or this script (a stat of each, about a second)."""
+    if not DB.exists():
+        return True
+    built = DB.stat().st_mtime
+    if Path(__file__).stat().st_mtime > built:
+        return True
+    import subprocess
+    out = subprocess.run(['git', 'ls-files', '-co', '--exclude-standard', 'data', 'docs', 'courses'], cwd=ROOT,
+                         capture_output=True, text=True).stdout
+    for f in out.splitlines():
+        try:
+            if (ROOT / f).stat().st_mtime > built:
+                return True
+        except OSError:
+            return True   # a file gone since the build
+    return False
+
+
+def load():
+    """The index as saved in data/index.db."""
+    ix = Index()
+    con = sqlite3.connect(DB)
+    try:
+        for k, *v in con.execute('select key, type, course, local, path, line, state from nodes'):
+            ix.nodes[k] = tuple(v)
+        ix.edges = [tuple(r) for r in con.execute('select src, dst, kind, hard, path, line, course, day from edges')]
+    finally:
+        con.close()
+    return ix
+
+
 def dump(ix, out):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
@@ -583,10 +616,14 @@ def main(a):
     flags = [x[2:] for x in a if x[2:] in REPORTS]
     if '--reports' in a:
         flags = list(REPORTS)
-    ix = build()
-    save(ix)
+    if '--rebuild' not in a and not stale():      # nothing it reads changed: the saved index stands (4.L row 8 (b))
+        ix, how = load(), 'fresh, loaded'
+    else:
+        ix, how = build(), 'built'
+        save(ix)
     hard = sum(e[3] for e in ix.edges)
     print('index: %d nodes, %d edges (%d hard) -> %s' % (len(ix.nodes), len(ix.edges), hard, rel(DB)))
+    print('index %s' % how)
     if '--csv' in a:
         dump(ix, a[a.index('--csv') + 1])
     load_days()

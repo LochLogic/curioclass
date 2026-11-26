@@ -3,6 +3,8 @@
 The chain is stated once in docs/CONSOLIDATION-PLAN.md ("Words: from the days"): a word is planned by skill in the
 progressions, introduced on a day in the course ledger (`term` rows), and defined for students here.
 
+No new features until its first real user (later.csv L129, L130; close review, 4.L row 8 (e)).
+
     data/plans/vocabulary.csv   sense, word, band, definition, fun_fact, fun_fact_source, status, from
         sense            the word plus a meaning tag, lower case with hyphens: cell-biology, cell-table, family-arts
         word             the word as shown (cell)

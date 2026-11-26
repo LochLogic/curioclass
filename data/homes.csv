@@ -9,7 +9,7 @@ data/media-manifest.txt,state,scripts/sync_media.py,,R2 media manifest; changed 
 data/docs-manifest.txt,state,scripts/sync_media.py,,R2 docs manifest; changed only by its script
 **ela-6**,blind,none,,retired pilot; never opened by any writer
 docs/reviews/*reconcile*,blind,none,,old reconcile reports; never opened by any writer
-**math-4**,pilot,lead,gate.py --course math-4,the math 4 pilot; blind to the plan briefs; open to math course runs (Cory 2026-11-20)
+**math-4**,pilot,lead,gate.py --course math-4,the math 4 pilot; blind to the plan briefs; open to math course runs (Cory 2026-11-20); kept in the gate's scope but left out of the index (data/index.db) until the pilot retires
 docs/courses/*-spine.md,pilot,lead,,pilot spines; blind to the plan briefs
 docs/courses/NEXT-SPINES.md,pilot,lead,,pilot spine list; blind to the plan briefs
 docs/courses/math-3-5-progression*.md,pilot,lead,,pilot progression notes; blind to the plan briefs
@@ -36,7 +36,8 @@ data/plans/goal-tests.csv,generated-committed,scripts/goal_tests.py --write,,the
 docs/COURSE-RUN.pdf,generated-committed,docs/COURSE-RUN.md,,print copy of COURSE-RUN.md
 data/plans/course-list.csv,source,lead,rows.py check,which courses exist
 data/plans/later.csv,source,lead,rows.py check,parked work; the Desk Dashboard reads it
-data/plans/flow-status.csv,source,lead,index.py --status,only what no file can show
+data/plans/flow-status.csv,source,lead,index.py --status,only what no file can show; the done rows stay: plan_flow reads them as done to the stage 4 bar, which the plan file alone does not show
+data/plans/debt.csv,source,gate.py --course <course> --record,rows.py check,known failing lines per course at each grade close (4.L)
 data/plans/*.csv,source,lead,rows.py check,cross-course plan tables
 data/plans/README.md,source,lead,,plan table formats
 data/plans/*/ledger.csv,source,course runs,ledger.py check,what was taught when; written through rows.py and ledger.py
