@@ -438,6 +438,29 @@ def r_status(ix):
             same += 1
     print('status: %d flow-status done rows sit on a written plan; they stay: plan_flow reads them as "done to the '
           'stage 4 bar", which the file alone does not show (only "on file")' % same)
+    for c in sorted(COURSE_SET):
+        have = {int(m.group(1)) for f in (PIECES / c).glob('*/d*.md')
+                for m in [re.fullmatch(r'd(\d{3})[a-z]?\.md', f.name)] if m}
+        out += day_status(c, rows_of(PLANS / c / 'ledger.csv'), have)
+    return out
+
+
+def day_status(c, ledger, have):
+    """A day's status has two homes: its file (frontmatter `version:`, which exists only once the day is written) and
+    the ledger stage (`written` only when a day adds the row, ledger.py add). A written row with no day, or naming a day
+    with no day file, contradicts the files (close review, goal test 10)."""
+    out = []
+    for i, r in enumerate(ledger, 2):
+        if r.get('stage') != 'written':
+            continue
+        days = [int(d) for d in re.findall(r'\d+', r.get('day') or '')]
+        where = 'data/plans/%s/ledger.csv:%d' % (c, i)
+        if not days:
+            out.append(('ledger|%s|%d' % (c, i), '%s: stage written but no day named' % where))
+        for d in days:
+            if d not in have:
+                out.append(('ledger|%s|d%03d|%s' % (c, d, (r.get('entry') or '')[:40]),
+                            '%s: stage written for day %d, which has no day file' % (where, d)))
     return out
 
 
@@ -546,6 +569,10 @@ def self_test():
     miss = [k for k, _ in r_resolve(ix)]
     check('resolve finds a missing item and path, not a "when it exists" one',
           sorted(miss) == ['x|leans_on|courses/none.md', 'x|link|item:c:s01-Z'])
+    led = [{'day': '3', 'stage': 'written', 'entry': 'a'}, {'day': '', 'stage': 'written', 'entry': 'b'},
+           {'day': '9', 'stage': 'planned', 'entry': 'c'}, {'day': '4', 'stage': 'written', 'entry': 'd'}]
+    check('day status: a written ledger row with no day, or a day with no file, fails (goal test 10)',
+          len(day_status('c', led, {4})) == 2 and not day_status('c', led[2:], {4}))
     print('index self-test: %s' % ('all passed' if ok else 'FAILED'))
     return 0 if ok else 1
 

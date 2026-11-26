@@ -65,7 +65,8 @@ def tests():
                         text=True).stdout
     m = re.search(r'(\d+) problems', rc)
     add(6, 'changes run as scripts, rows through rows.py', int(m[1]) if m else -1, 0,
-        'plan CSVs rows.py check cannot split like the csv reader (a hand edit that broke a row)')
+        'a convention, not a test (4.L): plan CSVs rows.py check cannot split like the csv reader (a hand edit '
+        'that broke a row); how a row was written cannot be read from the file')
     old = 0
     for p in list((ROOT / 'docs' / 'pipeline' / 'kit').glob('*.txt')) + list(
             (ROOT / 'docs' / 'pipeline' / 'briefs').glob('*.md')):
@@ -78,10 +79,12 @@ def tests():
     add(9, 'every relation resolves', len(res), 0,
         '%d misses, %d of them new against data/index-baseline.csv' % (len(res), sum(1 for k, _ in res if k not in known)))
     st = index.r_status(ix)
-    add(10, 'one status per object', len(st), 0, 'status report lines (flow-status rows a file contradicts)')
+    add(10, 'one status per object', len(st), 0,
+        'status report lines (flow-status rows a file contradicts; ledger rows at stage written with no day file)')
     import ids
-    idl = [ln for ln in ids.check() if ln.startswith('FAIL')]
-    add(11, 'retired ids never reused', len(idl), 0, '%d retired ids recorded' % len(ids.retired()))
+    idl = [ln for ln in ids.check() + ids.left_tables() if ln.startswith('FAIL')]
+    add(11, 'retired ids never reused', len(idl), 0, '%d retired ids recorded; also fails an item, day or source id that left its table since the last commit '
+        'with no retire row' % len(ids.retired()))
     orph = index.r_orphans(ix)
     add(12, 'nothing orphaned', len(orph), 0, 'orphans report lines')
     return out

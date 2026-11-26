@@ -1,6 +1,9 @@
 """Retired ids and the id registry (consolidation 4.H).
 
-    python -X utf8 scripts/ids.py check          fail a retired id that is live again, or a bad row in ids-retired.csv
+    python -X utf8 scripts/ids.py check          fail a retired id that is live again, a bad row in ids-retired.csv, or
+                                                 an item, day or source id that left its table since the last commit
+                                                 with no retire row
+    python -X utf8 scripts/ids.py --self-test
     python -X utf8 scripts/ids.py retire <old_id> [<new_id>] --reason "..."   append one row (the only way to write it)
     python -X utf8 scripts/ids.py registry       write data/ids-registry.csv (ignored): every live id and every alias
 
@@ -55,6 +58,59 @@ def check():
     return lines
 
 
+TABLES = (('items.csv', 'item_id', 'item:{c}:{v}'), ('days.csv', 'day', 'day:{c}:d{v:0>3}'),
+          ('sources.csv', 'source_id', 'source:{c}:{v}'))
+
+
+def table_ids(text, c, col, key):
+    """Index keys for the ids of one course table's text."""
+    if not text:
+        return set()
+    out = set()
+    for r in csv.DictReader(ln for ln in text.splitlines() if not ln.startswith('#')):
+        v = (r.get(col) or '').strip()
+        if v:
+            out.add(key.format(c=c, v=v))
+    return out
+
+
+def dropped(committed, now, retired_ids):
+    """Ids a table held at the last commit that it holds no longer, with no ids.py retire row (goal test 11)."""
+    return sorted(committed - now - retired_ids)
+
+
+def left_tables():
+    """FAIL lines for each id that left a course table since the last commit without `ids.py retire`. It runs in a
+    writer's gate before the commit, which is where a deletion can still be seen (close review, goal test 11)."""
+    import subprocess
+    gone = {r['old_id'] for r in retired()}
+    lines = []
+    for p in sorted((ROOT / 'data' / 'plans').glob('*/')):
+        c = p.name
+        for name, col, key in TABLES:
+            rel = 'data/plans/%s/%s' % (c, name)
+            old = subprocess.run(['git', 'show', 'HEAD:' + rel], cwd=ROOT, capture_output=True, text=True,
+                                 encoding='utf-8').stdout
+            if not old:
+                continue
+            new = (ROOT / rel).read_text(encoding='utf-8') if (ROOT / rel).exists() else ''
+            if new == old:
+                continue
+            for k in dropped(table_ids(old, c, col, key), table_ids(new, c, col, key), gone):
+                lines.append('FAIL %s: left %s since the last commit with no data/ids-retired.csv row (ids.py retire)'
+                             % (k, rel))
+    return lines
+
+
+def self_test():
+    old = table_ids('item_id,stem\na1,x\na2,y\n', 'c', 'item_id', 'item:{c}:{v}')
+    new = table_ids('item_id,stem\na1,x\n', 'c', 'item_id', 'item:{c}:{v}')
+    ok = dropped(old, new, set()) == ['item:c:a2'] and dropped(old, new, {'item:c:a2'}) == []
+    ok = ok and table_ids('day,goal\n7,g\n', 'c', 'day', 'day:{c}:d{v:0>3}') == {'day:c:d007'}
+    print('ids self-test: %s' % ('all passed' if ok else 'FAILED'))
+    return 0 if ok else 1
+
+
 def retire(a):
     if not a or '--reason' not in a:
         raise SystemExit(__doc__)
@@ -85,8 +141,10 @@ def registry():
 
 
 def main(a):
+    if a[:1] == ['--self-test']:
+        return self_test()
     if a[:1] == ['check']:
-        lines = check()
+        lines = check() + left_tables()
         print('\n'.join(lines))
         print('ids: %d retired id(s) checked, %d line(s)' % (len(retired()), len(lines)))
         return 1 if any(ln.startswith('FAIL') for ln in lines) else 0

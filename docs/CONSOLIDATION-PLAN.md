@@ -42,15 +42,17 @@ cannot. Agents write CSV rows through one safe command, not by hand.
 3. One home per fact. data/homes.csv (4.H) names the owner of every kind of fact; anything else that holds it is
    generated from the owner and marked so, or gone. *Test:* the `drift` report (skel blocks) and the homes check
    leave no fact with two hand-kept homes.
-4. No curriculum list is built from the tool catalog. *Test:* the catalog lint (4.G) passes, with one named exception
-   until the standards pages are rebuilt (course_pages.py `known_standards`, later.csv).
+4. No curriculum list is built from the tool catalog. *Test:* the catalog lint (4.G) passes over every script but a
+   named tool-side set (4.L), with two named exceptions: course_pages.py `known_standards` until the standards pages
+   are rebuilt (later.csv), and course_status.py's catalog placement counts.
 
 **Efficient** (cheap to find, cheap to change, cheap to check):
 
 5. Any object is found by id, and `uses.py <id>` answers "what uses this?" in seconds across all courses, including
    soft mentions in prose (4.F).
 6. Any change runs as a script with a dry run and an impact list (docs/CHANGES.md, 4.H), and CSV rows are written
-   through `rows.py upsert`, never by hand (4.D).
+   through `rows.py upsert`, never by hand (4.D). *A convention, not a test* (4.L): goal test 6 counts plan CSVs that
+   no longer parse, which a hand edit can break, but nothing can tell from a file how it was written.
 7. One gate command, `gate.py`, scoped to what changed: `--course`, `--changed`, `--all` (4.G). Mechanical rules are
    lint, not reader tokens.
 8. Generated things are never edited by hand and never stored twice. *Test:* the generated-file guard in lint, read
@@ -61,9 +63,12 @@ cannot. Agents write CSV rows through one safe command, not by hand.
 9. Every relation resolves: each `leans_on`, CSV id column and `[[...]]` link points at something that exists.
    *Test:* the `resolve` report, failing on anything not in its baseline file (4.F).
 10. Every object has one status, read from one source. *Test:* the `status` report (4.F); the file's own state wins,
-    flow-status.csv keeps only what no file can show.
+    flow-status.csv keeps only what no file can show, and a ledger row at stage written must name a day that has a day
+    file (4.L).
 11. Every retired id is recorded and never reused (data/ids-retired.csv, 4.H), and a day number is permanent once its
-    course's scope and sequence is signed off.
+    course's scope and sequence is signed off. *Test:* `ids.py check` fails a retired id that is live again and an
+    item, day or source id that left its table since the last commit with no retire row (4.L; seen in the writer's
+    gate, before the commit).
 12. Nothing is orphaned: no day without a days.csv row, no piece no day leans on, no plan row without a frame unit.
     *Test:* the `orphans` report (4.F).
 
@@ -688,6 +693,11 @@ Built (2026-11-25):
   each with its reason; coverage_ledger.py is named there: it measures tool coverage and writes a catalog file), with
   course_status.py's module-level placement counts as the second named exception. 0 lines; a probe script reading
   modules.csv is caught, and so is course_status.py without its exception.
+- Rows 4 and 5: goal test 10 also reads the day status in both homes: a ledger row at stage written must name a
+  day, and that day must have a day file (index.py day_status, in the status report; 0 today). Goal test 11 also
+  fails an item, day or source id that left its table since the last commit with no ids.py retire row (ids.py
+  left_tables, in `ids.py check`; a trial deleting one item row of algebra II failed it). Each has a self-test case
+  that fails it. Test 6 is named a convention in "What each word means" and in goal_tests.py.
 
 Then a short Fable read of 4.L's diff only (not the whole repository), and step 5 waits for Cory's go.
 
