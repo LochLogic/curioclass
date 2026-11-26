@@ -21,7 +21,7 @@ Ask 2: Savings Card, invented. A club saves $30 in a jar. Is it gone?
 At a market, a seller can make stew or pears. Stew costs $9 and sells for $12. Pears cost $3 and sell for $7.
 
 Ask 1: Market Card, invented. Which leaves more money after costs, stew or pears?
-Ask 2: Market Card. How much more is left?
+Ask 2: Market Card. The seller hopes for profit. Write which one she would sell, and the reason.
 
 ## Day 55: Clock Repair Card
 

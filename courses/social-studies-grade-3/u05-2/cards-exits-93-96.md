@@ -11,9 +11,10 @@ Print "made up, for practice" on every invented card. The teacher reads each ste
 
 ## Day 93: Encounter Card (made up)
 
-A ship reaches a coast where people live. Traders swap tools for corn.
+A ship sails west because its owners hope to trade in far lands. It reaches a coast where people live. Traders swap tools for corn.
 
-Ask: Encounter Card. Name one effect of this meeting.
+Ask 1: Encounter Card. Name one effect of this meeting.
+Ask 2: Encounter Card. Why did the ship sail west?
 
 ## Day 94: Cabot Route Card
 

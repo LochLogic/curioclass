@@ -15,7 +15,7 @@ In 2015 a woman is recorded. She says, "When I was a girl, we skated on the pond
 
 Ask 1: Interview Dates Card. Was the skating in 2015 or earlier?
 
-Ask 2: Interview Dates Card. Does it show every child in town skated there?
+Ask 2: Interview Dates Card. Write one open question to ask her next about the pond.
 
 ## Day 147: Procession Card (made up, for practice)
 
@@ -31,4 +31,4 @@ On a strip, a horse tram band runs 1905 to 1935. An electric tram band runs 1920
 
 Ask 1: Strip Card. In which years did both trams run?
 
-Ask 2: Strip Card. Did the horse tram stop when the electric tram opened?
+Ask 2: Strip Card. Write one thing that changed and one that stayed.

@@ -14,7 +14,7 @@ Teacher only. Keep apart from the exit cards (cards-exits-3-6.md); never hand to
 - Day 3: both circles on the right places; the flat card stretches sizes, bends shapes or cuts the edges.
 - Day 4: Africa; northern; western.
 - Day 5: C3; latitude.
-- Day 6: N; no, how much rain is a different fact from how warm it is.
+- Day 6: M, because near the pole it gets less direct sunlight; no, how much rain is a different fact from how warm it is.
 
 ## Practice card keys (teacher only)
 

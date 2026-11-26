@@ -17,4 +17,4 @@ Teacher only. Keep apart from cards-exits-141-145.md. Marking: shown, shown with
 - E144: no; the railroad stop and the brick works jobs also helped. Not "yes, towns grow where there is water" (O).
 - E144b: the railroad stop that opened in 1885, or the brick works jobs. Not "the lake" (O).
 - E145: Joel's card. Not Lena's "because she came to work" (B).
-- E145b: his family took a train because a factory was hiring; nobody made them. Not "because Lena came to work" (B). Shown with help: names the train or the job only.
+- E145b: a factory there was hiring, so they moved for work; nobody made them. Not "because Lena came to work" (B). Shown with help: names the train or the job only.

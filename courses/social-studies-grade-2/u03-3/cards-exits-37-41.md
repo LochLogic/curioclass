@@ -24,7 +24,7 @@ Every card prints "invented for practice" in small letters. Plain black line dra
 ## Day 39 exit card: apple-juice chain
 
 **Picture:** A map. An orchard and a shop in the same town. A pressing plant far across the map. Arrows from the orchard to the plant and from the plant to the shop. A family at the end.
-**Mark:** Circle the stage that happens far away.
+**Mark:** Write G under who grows the apples and B under who buys the juice.
 **Spoken:** "Say how the juice gets from the orchard to the shop, from the arrows."
 
 ## Day 40 exit card: Towns A and B

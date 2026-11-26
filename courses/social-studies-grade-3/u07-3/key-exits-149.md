@@ -9,4 +9,4 @@ credit: ours
 
 Teacher only. Keep apart from cards-exits-149.md.
 
-- E149: C. Not A or B, which ask about looks or a name (P).
+- E149: a question about the neighbors' action, such as "How did the neighbors keep the library open?" Not one about looks or a name, like A or B (P).

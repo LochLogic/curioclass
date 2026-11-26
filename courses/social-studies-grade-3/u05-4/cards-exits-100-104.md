@@ -20,7 +20,7 @@ Ask 2: Passenger Comparison. Why was Bo not a Pilgrim?
 
 A list of four signers of the Compact: John Carver, William Bradford, Edward Winslow, Myles Standish. Forty-one names are signed in all. (Avalon text, U5P.)
 
-Ask: Compact Exit Card. Name one group of people who did not sign the Compact.
+Ask: Compact Exit Card. These men signed to make and obey their own laws. Write what self-government means.
 
 ## Day 102: Winter Care Card (made up)
 

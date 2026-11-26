@@ -11,8 +11,8 @@ Teacher only. Keep apart from the exit cards (cards-exits-11-15.md); never hand 
 
 ## Key
 
-- Day 11: Midwest (or Southeast for Tennessee); the state name circled in its list.
-- Day 12: every state of the region that touches our state, each named and in place.
+- Day 11: an X on Missouri and Midwest (or an X on Tennessee and Southeast); the state name circled in its list.
+- Day 12: every state of the region, each named and in place, the count matching the key's list.
 - Day 13: Oklahoma, Texas, New Mexico and Arizona; Colorado and Arkansas belong to other regions, Southwest and Rocky Mountains are not states.
 - Day 14: cape, bay, mountains, river.
 - Day 15: the bridge lets the road cross the river, so people could meet and cross at Hillford.

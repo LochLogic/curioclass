@@ -11,15 +11,15 @@ Print "made up, for practice" on the invented cards. Day 135 has no exit; it is 
 
 ## Day 133: Detail Card (made up, for practice)
 
-Claim: The people of Willow Park have a say about the park.
+Question: Do the people of Willow Park have a say about the park?
 
 Detail X: A sign at the gate lists the park rules.
 
 Detail Y: Each year neighbors vote on new park rules at the meeting.
 
-Ask 1: Detail Card. Which detail supports the claim, X or Y?
+Ask 1: Detail Card. Which detail answers the question, X or Y?
 
-Ask 2: Detail Card. Why does that detail support the claim?
+Ask 2: Detail Card. Write a claim that answers the question, using that detail.
 
 ## Day 134: Overlap Card (made up, for practice)
 

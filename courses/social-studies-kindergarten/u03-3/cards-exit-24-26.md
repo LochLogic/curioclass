@@ -23,16 +23,16 @@ Say aloud: "This is a pretend card."
 
 **Mark:** circle the block that stands for the tree (the left block). **Spoken, rotating group:** "How do you know that block is the tree?" The child's own model is the construction evidence.
 
-## Card 25, second part: a wrong graph
+## Card 25, second part: a graph to fill
 
-**Picture:** four cups on the left. On the right a two-row graph card: row 1 has a cup picture and four marks; row 2 has a spoon picture and one mark.
+**Picture:** four cups on the left. On the right an empty two-row graph card: row 1 has a cup picture, row 2 has a spoon picture, and no marks yet.
 
-**Mark:** put a finger on the row that is wrong, and say what is wrong with it.
+**Mark:** draw one mark in the cup row for each cup. **Spoken, rotating group:** "Tell why the spoon row stays empty."
 
 ## Card 26: the drawn map
 
-**Picture:** a page with a thick border and a boxed key showing a small swing picture and a small fence picture. On the map a swing picture sits beside a fence picture, and a triangle sits at the other side.
+**Picture:** a page with a thick border and a boxed key showing a small swing picture and a small fence picture. On the map a fence picture sits near the middle with an empty spot beside it, and a triangle sits at the other side. The teacher says the swing is beside the fence.
 
-**Mark:** circle the key picture for the swing and point to the swing on the map. **Spoken, rotating group:** "How could someone find the swing?" The child's own drawn map is the map evidence.
+**Mark:** draw the key's swing picture on the map where the swing is. **Spoken, rotating group:** "How could someone find the swing?" The child's own drawn map is the map evidence.
 
 The key for these cards is in key-exits-24-26.md (teacher only).

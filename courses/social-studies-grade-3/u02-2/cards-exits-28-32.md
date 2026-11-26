@@ -22,7 +22,7 @@ Ask 3: Who decides cases about the state's laws?
 In Quill Town, voters chose Ezra. Ezra votes on town laws. Marit was hired to run the town's daily work.
 
 Ask 1: Which person is the town manager?
-Ask 2: What job shows who the manager is?
+Ask 2: Write one way Quill Town's form is different from Boston's.
 
 ## Day 30: School Card
 
@@ -45,6 +45,6 @@ Notice A (our town; the teacher replaces this default). Notice of Meeting. The A
 Notice B (the comparison town; the teacher replaces this default). Notice of Town Meeting. The voters of Fenn Town will gather Saturday at 10 am in the school gym. The voters will vote on the budget and on a new rule for the town pool. Anyone may watch.
 
 Ask 1: Notice A. Name the body in this notice that votes on rules.
-Ask 2: Notice B. Name the body in this notice that votes on rules.
+Ask 2: Notices A and B. Write one way the two towns differ in who votes on rules.
 
 Teacher key: key-exits-28-32.md. Not for children.

@@ -47,4 +47,4 @@ Joel's card: Joel's family took a train to the city because a factory there was 
 
 Ask 1: Lena and Joel Cards. Which card shows a move that was chosen?
 
-Ask 2: Lena and Joel Cards. What on that card tells you?
+Ask 2: Lena and Joel Cards. Write why Joel's family moved to the city.

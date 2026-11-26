@@ -11,9 +11,9 @@ Print "made up, for practice" on every card. Each exit is a half slip. The teach
 
 ## Day 150: Source Pair Card (made up, for practice)
 
-Source 1: a museum page about a baker, made by a museum. Source 2: another page about the same baker, made by the same museum.
+Source 1: a page about the baker Ada Lin, made by the town museum: in 1912 she opened a bakery on Elm Street. Source 2: a newspaper story about her, made by the Elm Street News: in 1930 her bakery fed families for free.
 
-Ask: Source Pair Card. Do these two sources have different makers?
+Ask: Source Pair Card. Write the detail from Source 2 and name its maker.
 
 ## Day 151: Mara Card (made up, for practice)
 

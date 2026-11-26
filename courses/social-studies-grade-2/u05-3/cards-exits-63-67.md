@@ -28,7 +28,9 @@ Credit: "United Keetoowah Band of Cherokee Indians in Oklahoma, official website
 
 Credit: "Anna Zagar Klarich, interview EI-89, 12 September 1991, Ellis Island Oral History Collection, National Park Service. Summary by Curio Class."
 **Cookie Card:** "Anna remembers being so hungry for cookies that she took four big cookies the next morning. Her mother told her not to be embarrassed and to eat all she wanted."
-**Mark:** Circle what Anna wanted in her memory: cookies, a hat, a boat.
+**Line:** "Anna came to America in 1920."
+**Timeline:** a strip from 1900 to 2000 with a tick every 20 years.
+**Mark:** Circle what Anna wanted in her memory: cookies, a hat, a boat. Then put an A on the timeline at the year she came.
 **Newcomer Card (invented for practice):** "Zeb is new in town and has a cousin who lives there. Zeb says, 'I hope my cousin will be my friend here.'"
 **Spoken, the six one at a time:** "On the Newcomer Card, say what Zeb hopes for."
 

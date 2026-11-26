@@ -9,7 +9,7 @@ credit: ours
 
 Teacher only. Keep apart from cards-exits-117-119.md. Marking: shown, shown with help, not yet seen.
 
-- E117: it is evidence that the garden has room for both families, so they could share it. Not "it helps because it has words" (AH).
+- E117: the garden club's chart shows four beds and the Cho family's note shows two beds each, so the garden has room for both families and they could share it. Not "it helps because it has words" (AH).
 - E119: yes. Both were running between 1720 and 1740. E119b: 1720 to 1740. Not "the wharf replaced the ferry" (K).
 - E121: a new answer that uses a detail from the fresh passage. E121b: a reason in the child's own words. Not a copied answer.
 

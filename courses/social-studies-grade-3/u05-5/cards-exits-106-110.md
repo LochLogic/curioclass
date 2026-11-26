@@ -17,9 +17,9 @@ Ask: New Cause Card. Name one effect on the people there, and its cause.
 
 ## Day 107: New Leader Pair (made up)
 
-Governor V ran a town. Captain W led a farm town that shared a pasture. V kept the town safe. W kept the town's shared pasture.
+Governor V ran a town. He built a wall round it to keep the town safe. Captain W led a farm town that shared a pasture. He made a rule: each family may graze only two cows, to keep the pasture.
 
-Ask: New Leader Pair. What did each leader want to keep safe?
+Ask: New Leader Pair. Write one way the two leaders' choices were alike or different.
 
 ## Day 108: New Object Caption (made up)
 
@@ -37,6 +37,6 @@ Ask: New Work Terms Card. Who is free to leave after five years, Tom or Hester?
 
 Then: in a made-up town in 1650, a child learned letters at a neighbor's kitchen table. Now: a child learns letters in a classroom with a teacher.
 
-Ask: New Learning Exit Pair. What stayed the same?
+Ask: New Learning Exit Pair. Write one thing that changed and one that stayed the same.
 
 The keys are in key-exits-106-110.md. Do not give them to children.

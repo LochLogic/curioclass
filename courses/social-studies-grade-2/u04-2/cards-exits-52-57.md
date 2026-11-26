@@ -30,7 +30,7 @@ Every card prints "invented for practice" and "model" in small letters. Where a 
 ## Day 55 exit card: Repair Case
 
 **Picture:** A workshop with a bag of screws and a technician in another country giving advice by telephone, a coin purse changing hands.
-**Mark 1:** Circle the service. **Spoken, three of the six, two small cards:** "Repair Card: Made by Curio Class, 2026, invented for practice: the workshop's staff have not learned this repair." "Everyone knows workshops need advice." Point to the card that gives a source for the reason.
+**Mark 1:** Finish the claim: The workshop pays a technician in another country because ___. The ___ card says so. **Spoken, three of the six, two small cards:** "Repair Card: Made by Curio Class, 2026, invented for practice: the workshop's staff have not learned this repair." "Everyone knows workshops need advice." Point to the card that gives a source for the reason.
 **Spoken, the six one at a time:** "Say what the workshop gets when it pays the technician."
 
 ## Day 57 exit card: a Kenya label

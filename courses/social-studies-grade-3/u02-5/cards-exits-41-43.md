@@ -28,7 +28,7 @@ Ask 3: Did every state write its plan in 1780? Say how you know.
 The Menominee Indian Tribe of Wisconsin has its own court system today. It has a lower court and a supreme court. Credit: the Tribe's own pages.
 
 Ask 1: Must the Menominee plan copy a state's three parts?
-Ask 2: What does the card show about the Menominee courts?
+Ask 2: Write one way the Menominee courts compare with our state's courts.
 Ask 3 (read aloud; also printed in the student page's Exit box): A made-up town (for practice): its Council makes its rules and its Mayor puts them to work. Who carries out the laws in the made-up town?
 
 The teacher key is in key-exits-41-43.md, a separate piece. Do not give it to children.

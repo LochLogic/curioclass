@@ -18,10 +18,10 @@ Ask 2: Port Work Card. Wyn has no coins. How can Wyn pay Rafe?
 
 ## Day 114: Route Card (made up)
 
-A ship carries indigo, a blue dye, from the island of Isle Corra to a port. The indigo was grown on Isle Corra's plantations by people who were held there against their will and never paid.
+A ship carries indigo, a blue dye, from the island of Isle Corra across the sea to Bristow, a port. The indigo was grown on Isle Corra's plantations by people who were held there against their will and never paid.
 
 Ask 1: Route Card. Who grew the indigo on Isle Corra?
-Ask 2: Route Card. How were they made to work?
+Ask 2: Route Card. Where did the ship carry the indigo, from where to where?
 
 ## Day 115: Two-Harbor Exit Map (made up)
 
@@ -32,8 +32,8 @@ Ask 2: Two-Harbor Exit Map. What do the people at each harbor do?
 
 ## Day 116: Route Card (made up)
 
-A map. Goods gather at Marlow Quay, a made-up port with deep water and a long dock. Ships arrive from far away.
+A map with a compass rose. Goods gather at Marlow Quay, a made-up port with deep water and a long dock. An arrow labeled sugar runs north from Fennick Island to Marlow Quay. An arrow labeled cloth runs south from Marlow Quay to Fennick Island.
 
-Ask: Route Card. Why did goods gather at Marlow Quay?
+Ask: Route Card. Write where the sugar sailed from and where it went.
 
 The keys are in key-exits-113-116.md. Do not give them to children.

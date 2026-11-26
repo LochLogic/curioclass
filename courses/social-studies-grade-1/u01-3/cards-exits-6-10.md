@@ -23,9 +23,9 @@ Each exit has a picture card that every child marks (circle or point) and a spok
 
 ## Day 8 exit card: a book fair table
 
-**Picture:** Two ringed cards side by side. On the left, the words "The coin counter counts the coins," with a picture of a hand sorting coins into a tray. On the right, a badge with the words "Coin Counter" and no picture of work.
+**Picture:** Three helpers down the left, each with a name: Ana, Ben and Cy. Four cards down the right: "counts the coins" with a hand sorting coins into a tray, "hands each buyer a book" with a hand passing a book, "holds the open sign" with a hand raising a sign, and a badge with the words "Coin Counter" and no picture of work.
 
-**Mark:** Circle the card that tells what a duty does. **Spoken:** "How does the coin counter's duty help?"
+**Mark:** Draw a line from each helper to a card that tells a duty, so every helper has one. **Spoken:** "How does the coin counter's duty help?"
 
 ## Day 10 exit card: a bird-watching club
 

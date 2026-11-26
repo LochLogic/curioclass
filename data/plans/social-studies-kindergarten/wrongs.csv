@@ -193,7 +193,6 @@ s05-X46b,It is just a pretty picture.,,,B,
 s05-X46c,"I do not need the book, I just know.",,,I,
 s05-X47a,Circles turns only for children who say the words.,,,L,
 s05-X47a,Circles all must say the words together before any turn.,,,E,
-s05-X47b,"Yes, if lots of people like it.",,,K,
 s05-X48a,A token on the soup.,,,O,"one difference named, the shared feature missing"
 s05-X48b,Hill Town is doing it wrong.,,,M,
 s05-X48b,Every town makes soup.,,,F,
@@ -392,8 +391,6 @@ s03-X21b,Turns the card and says: left is the way my hand points.,,,A,
 s03-X25b,That block is a real tree.,,,C,
 s03-X25b,I picked the nicest block.,,,D,
 s03-X25b,Because it is.,,,G,
-s03-X25c,Puts a finger on the cup row.,,,L,a mark for each counted thing; the spoon row is the one with a mark for nothing
-s03-X25d,It is the short row.,,,x,"names the row by its length, not by the missing spoons"
 s03-X28b,Circles the street named Oak Street as the school.,,,x,"a street is marked, not the school; a place to find the school symbol first"
 s03-X28c,Birch Street is the town.,,,E,
 s03-E2b,Every map shows only a small place.,,,I,
@@ -419,3 +416,6 @@ sc2-E14b,"The turtle, because it is the best.",,,B,a pick with no reason from th
 s02-X11b,"Nobody, she did her part.",,,A,
 s02-X11b,The teacher will do it.,,,A,
 sc1-X33d,Token on card one.,,,x,"paint jars open, lids off, is where the rule is not followed"
+s03-X25c,Four cup marks and one spoon mark.,,,L,a mark for each counted thing; zero spoons is a labeled row with no marks
+s03-X25d,It needs one mark for the spoon.,,,L,a mark stands for a counted thing; there are none
+s05-X47b,"Everybody cheered for it, so it is the anthem.",,,K,

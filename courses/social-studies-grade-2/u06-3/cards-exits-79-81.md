@@ -13,7 +13,7 @@ Every card prints "invented for practice" in small letters. Reserved: print each
 
 **Card line:** "The Orsa family moves to Hollis Lane. They keep singing their own songs. They learn the street's words for things. They teach the neighbors a new song."
 **Three pictures:** the Orsas saying the street's words; the neighbors singing the new song; the Orsas singing their own songs.
-**Mark:** Put a token on the one picture that shows something that did not change.
+**Mark:** Finish the claim: When the Orsas moved, ___ changed, because the Orsa card shows ___.
 **Spoken, the six one at a time:** "On the Orsa card, say one thing that changed, starting: The Orsa card shows ___."
 
 ## Day 81 exit card: the weaving memory

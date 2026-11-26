@@ -29,6 +29,6 @@ Ask 3: Give one reason a classmate might want a different place.
 Room 9 voted on a Friday game. Hugo's friends asked the teacher to count his ballot three times because he is popular. The teacher did.
 
 Ask 1: Was the vote fair?
-Ask 2: What should change?
+Ask 2 (about our own class vote): Why are the reasons with fewer marks heard first?
 
 The teacher key is in key-exits-38-40.md, a separate piece. Do not give it to children.

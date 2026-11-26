@@ -26,5 +26,5 @@ Every card prints "invented for practice" in small letters. Plain black line dra
 
 ## Day 36 exit
 
-**Mark:** On the class Action Record, each child circles the picture of the job they did. This is a record of what happened and has no wrong answer; a child with no circle is not yet seen.
+**Mark:** On the class Action Record, each child circles the picture of the job they did, then finishes the line: I helped by ___. The teacher marks it against the job seen; a child with no circle, or a job not done, is not yet seen.
 **Spoken:** "Our message is up. What could we check in two weeks to see if people read it?"

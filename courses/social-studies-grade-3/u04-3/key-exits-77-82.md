@@ -14,6 +14,6 @@ Teacher only. Keep apart from the exit cards (cards-exits-77-82.md); never hand 
 - Day 79, ask 1: The passage says people harvested wild rice at those camps. Not "all nations camp by lakes" (J). Ask 2: No. It names camps at one lake only. Not "yes, all Menominee people lived there" (J).
 - Day 80, ask 1: Utah, Arizona and New Mexico, in any order. Not Colorado (x). Ask 2: No. The dot shows presence only, not a border. Not "the state edge is the homeland edge" (B).
 - Day 81, ask 1: They keep their boats on the sand there and fish beyond the bay. Not "the bay decided" (C); not "there is a bay" (L). Ask 2: They keep boats there, or they fish offshore.
-- Day 82, ask 1: Clay at the bank supports the pottery work, so potters settle near it. Ask 2: Summer grass feeds the cows, so the farm puts the summer shed beside it. Not "the grass decided" (C); not "there is grass" (L).
+- Day 82, ask 1: Clay at the bank supports the pottery work, so potters settle near it. Ask 2: both sit beside what the work needs, the shed by the grass the cows graze and the potters by the clay. Not "the grass decided" (C); not "there is grass" (L).
 
 Marking: shown, shown with help, or not yet seen. The day 82 written task has four look-fors: a feature from each case, a practice from each case, one thing the same or different, and no claim about all nations.

@@ -25,7 +25,7 @@ In 1805 a state law says only men who own land may vote. Reza was born in that s
 
 Ask 1: Voting Law Card. Is Reza still a citizen of the state?
 
-Ask 2: Voting Law Card. What does this law decide?
+Ask 2: Voting Law Card. Which kind of rights case is this?
 
 ## Day 132: Monument Card (made up, for practice)
 

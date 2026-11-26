@@ -23,6 +23,6 @@ An Exit Grid: columns A to D from west to east, rows 1 to 4 from south to north,
 
 ## Day 6
 
-Lowlands Card, invented for practice. Two lowlands: M is near the North Pole and has steady rain; N is near the equator and has almost none. Ask: Which lowland gets more direct sunlight, M or N? Someone says N must be wetter because it is hot. Is that right?
+Lowlands Card, invented for practice. Two lowlands: M is near the North Pole and has steady rain; N is near the equator and has almost none. Ask: Why is M colder than N? Someone says N must be wetter because it is hot. Is that right?
 
 The teacher key is in key-exits-3-6.md, a separate piece. Do not give it to children.

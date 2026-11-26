@@ -19,7 +19,7 @@ A map with a pond, a creek, a hill and a gate, with the pond and gate four bars 
 
 ## Day 9: Landmark Exit Caption
 
-A photograph card of a depot with the caption "Mill Road Depot, 1912: freight trains stopped here." Ask: what past use does the caption say?
+A photograph card of a depot with the caption "Mill Road Depot, 1912: freight trains stopped here." Beside it, a small new town map with a legend shows the depot and four other places by symbol, none named. Ask: what past use does the caption say? Then: use the legend to find the depot, and circle it.
 
 ## Day 10: Stone Yard Plan
 

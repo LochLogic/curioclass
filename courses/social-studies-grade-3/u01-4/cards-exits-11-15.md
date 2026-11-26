@@ -11,11 +11,11 @@ Print "invented for practice" at the bottom of each card. Every child answers in
 
 ## Day 11: Exit Map 1
 
-A political map with one state marked: Missouri (use Tennessee for classes in the Midwest) and the five-region key printed beside it. Ask: write the region of the key that holds it; circle the marked state's name in its region list.
+A political map with every state named and none marked, and the five-region key printed beside it. Ask: put an X on Missouri (use Tennessee for classes in the Midwest), then write the region of the key that holds it; circle that state's name in its region list.
 
 ## Day 12
 
-A new outline of our own region. Ask: write the states that touch our state. 
+A new outline of our own region, with no name bank. Ask: write the name of every state in its place. 
 
 ## Day 13
 

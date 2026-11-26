@@ -25,8 +25,8 @@ Every card prints "invented for practice" in small letters. Reserved: print each
 ## Day 87 exit card: stories
 
 **Caption:** "Some neighbors meet to tell stories."
-**Two word cards:** some, everyone.
-**Mark:** Put a token on the word the caption uses.
+**School card:** "Our class hears a story at the rug each Friday."
+**Mark:** Finish the line: There, some neighbors ___; here, our class ___.
 **Spoken, the six one at a time:** "Say what we can say about the people there."
 
 <!-- TEACHER-ONLY BLOCK: begins -->

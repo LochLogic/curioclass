@@ -11,9 +11,9 @@ Print "invented for practice" in small letters at the bottom of each card. Plain
 
 ## Day 44: Cedarbank Card
 
-The big question: Who should decide the rules for the Cedarbank fishing dock? A supporting answer: most people who use the dock after school are children.
+The big question: Who should decide the rules for the Cedarbank fishing dock? Supporting question: Who uses the dock after school? Record 1, the dock sign: Open from 7 am to dusk. Record 2, a count by the harbor keeper: of 40 people on the dock after school, 31 were children.
 
-Ask: How does this supporting answer help the big question?
+Ask: Write the detail that answers the supporting question and the record it came from.
 
 ## Day 45: Rule Exit Pair
 

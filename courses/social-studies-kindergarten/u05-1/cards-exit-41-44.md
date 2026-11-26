@@ -11,11 +11,11 @@ New picture cards for the exits of days 41 to 44, printed "invented for practice
 
 ## Day 41
 
-A pretend school bulletin board headed with the day's local name, read aloud. For the Indigenous Peoples' Day heading, three cards: grown-ups and children at a table with a word chart in a Native nation's language class today; a pot of food at a big table; fireworks at night. For the Columbus Day heading, three cards: a ship with sails on the waves; a pot of food at a big table; fireworks at night. Each child circles the card the board is remembering. Spoken, rotating group: "Who does this day help us remember?"
+A pretend school bulletin board headed with the day's local name, read aloud. For the Indigenous Peoples' Day heading, three cards: grown-ups and children at a table with a word chart in a Native nation's language class today; a pot of food at a big table; fireworks at night. For the Columbus Day heading, three cards: a ship with sails on the waves; a pot of food at a big table; fireworks at night. Each child circles the card the board is remembering. Spoken, rotating group: "Why do we remember these people on this day?"
 
 ## Day 42
 
-Two cards: a grown-up in a uniform visiting a classroom while children wave; children in costumes at a front door at night. Circle the card that helps explain Veterans Day. Spoken, rotating group: "Who does Veterans Day thank?" Then, with a new record paper drawn for the exit (a ribbon, a basket and the words autumn, 1621, no people shown; not the teaching card): "Who was at the harvest meal in 1621?"
+Two cards: a grown-up in a uniform visiting a classroom while children wave; children in costumes at a front door at night. Circle the card that helps explain Veterans Day. Spoken, rotating group: "Why do we have Veterans Day?" Then, with a new record paper drawn for the exit (a ribbon, a basket and the words autumn, 1621, no people shown; not the teaching card): "Who was at the harvest meal in 1621?"
 
 ## Day 43
 

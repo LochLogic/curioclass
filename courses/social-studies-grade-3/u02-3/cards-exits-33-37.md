@@ -42,6 +42,6 @@ Ask 2: Pool Card. Name one difficulty of planning that swim program together.
 On Saturday, voters in Rilla choose between two people for a seat on the school committee. On Tuesday, the committee votes yes or no on a new bell schedule.
 
 Ask 1: Rilla Card, invented. Which vote is an election?
-Ask 2: Rilla Card. On Saturday, what do the voters decide?
+Ask 2: Rilla Card. Write one way Tuesday's vote is different from Saturday's.
 
 The teacher key is in key-exits-33-37.md, a separate piece. Do not give it to children.

@@ -23,7 +23,7 @@ Ask 2: Contribution Card. Name the source that shows it.
 On 16 April 2025 the Eastern Band of Cherokee Indians posted a notice. Principal Chief Michell Hicks and other tribal leaders went to Raleigh. They met the governor, state officials and lawmakers. They spoke for the tribe's priorities. The notice says they want to stay in touch at state and federal levels.
 
 Ask 1: Eastern Band Notice. What shows the Eastern Band is acting as a government?
-Ask 2: Eastern Band Notice. Does the notice show that a law changed?
+Ask 2: Eastern Band Notice. How do the two governments relate?
 
 ## Day 85: Boat Photo and Harbor Note, made up, for practice
 

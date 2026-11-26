@@ -15,7 +15,7 @@ A made-up court with a map and a photograph. The map shows a ramp on the east si
 
 ## Day 20
 
-Use the board's five supporting questions. Ask: pick one you did not choose today and write one fact you still need; in the same question write one word people could read two ways.
+Use the board's five supporting questions. Ask: pick one you did not choose today and write one fact it needs and two sources that could give it; in the same question write one word people could read two ways.
 
 ## Day 21: Town Exit Pair
 

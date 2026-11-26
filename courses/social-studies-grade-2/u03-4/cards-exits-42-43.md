@@ -17,9 +17,8 @@ Every card prints "invented for practice" in small letters. Plain black line dra
 
 ## Day 43 exit card: Hill Path cases
 
-**Picture:** Three small panels.
-**Case 1:** Logs are set into a steep path to make steps.
+**Picture:** A steep path up a hill that turns to mud in the wet months, made by Curio Class. Below it, two small panels.
 **Case 2:** Walkers move their trips to the dry months.
 **Case 3:** A ditch is dug beside the path and walkers also skip muddy days.
-**Mark:** Under each, circle change, adapt or both.
-**Spoken:** "In case 3, what do the walkers do to adapt?"
+**Mark:** Finish the claim: I think the walkers should change the land, adapt or do both because ___. The Hill Path card shows ___.
+**Spoken, the six:** say change, adapt or both for case 2 and for case 3. "In case 3, what do the walkers do to adapt?"

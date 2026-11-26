@@ -11,6 +11,6 @@ Print "made up, for practice". The exit is a half slip. The teacher reads the st
 
 ## Day 149: Reading Room Card (made up, for practice)
 
-A town library nearly closed. Neighbors kept it open. Three questions: A. What color did the neighbors paint the hall? B. What was the first name of the neighbor who led the group? C. How did the neighbors keep it open?
+A town library nearly closed. Neighbors kept it open. Two weak questions: A. What color did the neighbors paint the hall? B. What was the first name of the neighbor who led the group?
 
-Ask: Reading Room Card. Which question asks about the neighbors' action: A, B or C?
+Ask: Reading Room Card. Write a better question, one about what the neighbors did.

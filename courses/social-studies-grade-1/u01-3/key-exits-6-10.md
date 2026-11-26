@@ -13,5 +13,5 @@ Teacher only. Keep apart from cards-exits-6-10.md; never hand to children.
 
 - Day 6: the first picture; cups let people drink. "The guide is the one who matters" shows error C.
 - Day 7: the first picture; visitors find the right rooms. Naming only the greeter's pointing shows error C.
-- Day 8: the first card; so the table knows how much money it has and every buyer gets the right change. "The counter wears a badge" shows error H.
+- Day 8: each helper joined to a different action card (counts the coins, hands each buyer a book, holds the open sign), the badge left without a line; so the table knows how much money it has and every buyer gets the right change. "The counter wears a badge" shows error H.
 - Day 10: the first card; a smaller question with a fact to find, such as "Where do we sit to watch?" or "Who keeps the list of birds?" A rule with no reason shows error I; "Is it fun?" shows error G.

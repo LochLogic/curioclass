@@ -13,6 +13,6 @@ Print "invented for practice" in small letters at the bottom of each card.
 
 Greengrocer (made up): neighbours come each day to buy plums the shop gets from a farm. Bus Depot (made up): it has ticket booths where riders buy tickets and a place to wait.
 
-Greengrocer and Depot cards, invented. Write one likeness with a detail from each.
+Greengrocer and Depot cards, invented. Write a claim: how does a town get what it needs? Use a detail from each card.
 
 The teacher key is in key-exits-65.md, a separate piece. Do not give it to children.

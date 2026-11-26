@@ -15,10 +15,10 @@ Anyone may say "Stop." Everyone freezes, hands down, and you look: a ball going 
 ## Eye protection (days 1 to 9, 20 to 31, 45, 46, 48, 50, 53, 54)
 
 - Everyone in the room, you too, wears it for every roll, pull, clean-up and sand, soil or water tray: rolling balls can fly.
-- Child-sized safety glasses or splash goggles marked Z87.1; splash goggles also stop impacts.
+- The school supplies child-sized splash goggles marked Z87.1; splash goggles also stop impacts.
 - Wipe shared eyewear with a disinfectant wipe and dry it between children, strap included.
 - Glasses wearers use fit-over goggles. A child who cannot wear it is the recorder, behind the line.
-- None in the room: use the dated photographs, said aloud; never fake a trial.
+- Where the school has none, the class watches the dated photographs, said aloud, and runs no trial; never fake one.
 
 ## Hand washing (days 32, 33, 40, 41, 44 to 46, 48, 53 to 55, 57, 59)
 

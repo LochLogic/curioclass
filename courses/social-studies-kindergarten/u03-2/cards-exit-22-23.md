@@ -15,7 +15,7 @@ Say aloud: "This is a pretend card."
 
 **Picture:** two outlines of Earth with Asia in the middle. On the left the outline is drawn wrapped round a ball (shaded so it looks round, one side showing). On the right the same land is drawn flat, edge to edge.
 
-**Mark:** put a token on water on each outline. **Spoken:** "Show water on both. Tell one way these are alike and one way they differ."
+**Mark:** put a token on water and circle one piece of land on each outline. **Spoken:** "Show land and water on both. Tell one way these are alike and one way they differ."
 
 ## Card 23: the same island twice
 
@@ -25,6 +25,6 @@ Say aloud: "This is a pretend card."
 
 ## Key (teacher)
 
-Card 22: tokens on plain water on both outlines. Both show Earth's land and water; one is round and the other flat; the round one does not show both sides at once. "The flat one is a different Earth" is error B; "the flat one is just a small place" is error I.
+Card 22: tokens on plain water and a circle on patterned land on both outlines. Both show Earth's land and water; one is round and the other flat; the round one does not show both sides at once. "The flat one is a different Earth" is error B; "the flat one is just a small place" is error I.
 
 Card 23: the same island on both. No, it did not move on Earth; the map maker chose a different middle. "Yes, it moved" is error B; "the map with the island in the middle is only the island's place" is error I. Give a supported comparison, not projection words.

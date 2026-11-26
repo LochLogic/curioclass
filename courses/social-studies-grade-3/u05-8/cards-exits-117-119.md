@@ -11,9 +11,9 @@ Print "made up, for practice" on every card. The teacher reads each stem aloud o
 
 ## Day 117: Inquiry Link Card (made up)
 
-Big question: Could two families share one garden? Supporting question: How much room does each family need? Answer: the Reyes family needs two beds. The Cho family needs two beds. The garden has four beds.
+Big question: Could two families share one garden? Source 1, a bed chart made by the garden club: the garden has four beds. Source 2, a note written by the Cho family: the Reyes family and the Cho family each need two beds.
 
-Ask: Inquiry Link Card. How does the answer about room help?
+Ask: Inquiry Link Card. For each source, write its maker and how it helps answer the big question.
 
 ## Day 119: Overlap Card (made up)
 

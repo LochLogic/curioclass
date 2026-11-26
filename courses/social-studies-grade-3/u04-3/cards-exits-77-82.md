@@ -57,6 +57,6 @@ Ask 2: Shore Case. Name one thing the people do that helps explain it.
 **Dairy Farm Card, invented.** At a made-up farm, cows graze on upland grass in summer. The farm puts a summer shed beside the grass.
 
 Ask 1: Potter Card, invented. How do the clay bank and pottery work explain the place?
-Ask 2: Dairy Farm Card, invented. How do upland grass and grazing explain the shed?
+Ask 2: Dairy Farm Card. How is the shed's place like the potters'?
 
 The teacher key is in key-exits-77-82.md, a separate piece. Do not give it to children.

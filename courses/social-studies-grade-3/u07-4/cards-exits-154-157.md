@@ -13,7 +13,7 @@ Print "made up, for practice" on every card. Each exit is a half slip. The teach
 
 A child draws a sign for the school door. It asks people to walk, not run, on the ramp.
 
-Ask: Sign Card. Name one limit of the child's sign.
+Ask: Sign Card. Predict what will happen once the sign is up. Give a reason.
 
 ## Day 155: Vote Card (made up, for practice)
 
@@ -31,4 +31,4 @@ Ask: Display Card. Does finishing the display show visitors learned from it?
 
 A child writes: "I think workers made our community because they are important."
 
-Ask: Claim Card. What is missing from this claim?
+Ask: Claim Card. Rewrite the claim with a detail from one of our sources.

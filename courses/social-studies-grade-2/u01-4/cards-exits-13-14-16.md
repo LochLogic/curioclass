@@ -11,15 +11,15 @@ Each card is marked by every child, then one spoken part is heard from the day's
 
 ## Day 13 exit card: a courtyard and its graph
 
-**Picture:** A courtyard diagram with two benches and five trees. Beside it, a picture graph with two rows: five tree marks and one bench mark.
+**Picture:** A courtyard picture seen from above, with two benches and five trees drawn where they stand. Below it, an empty key of two lines.
 
-**Mark:** Draw one more mark so the bench row matches the courtyard. **Spoken:** "Which positions should a map of this courtyard keep?"
+**Mark:** In the key, draw one symbol for a bench and one for a tree. Then draw your bench symbol on each bench in the picture. **Spoken:** "Which positions should a map of this courtyard keep?"
 
 ## Day 14 exit card: a zoo map
 
 **Picture:** A zoo map with small pictures of an elephant, a tent and a café, and no key; it also has a title, a compass rose and a scale bar. Four boxes below: title, key, compass rose, scale bar.
 
-**Mark:** A visitor cannot tell what the little pictures mean. Circle the part to add. **Spoken:** "What could this map help a visitor find?" (heard from a second group of six, not the claim group)
+**Mark:** A visitor cannot tell what the little pictures mean. Circle the part to add. **Spoken:** "Say one thing this zoo map leaves out." (heard from a second group of six, not the claim group)
 
 ## Day 16 exit card: a response card
 
