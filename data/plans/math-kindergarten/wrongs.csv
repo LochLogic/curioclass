@@ -803,7 +803,7 @@ s04-F74-E,Rings moved one as remaining.,,,E,"Code a register letter only from th
 s04-P74-game,"Rings moved two as remaining, error E.",,,E,"Code a register letter only from the corresponding observed action, never a number alone."
 s04-P74-game,"Counts only arriving three as whole, error B.",,,B,Joining card only; observe exclusion of starting group.
 s04-K75-count,Omits nine in spoken sequence.,,,x,"Code a register letter only from the corresponding observed action, never a number alone."
-s04-K75-model,Adds an eleventh square instead of recording removal.,,,C,"Code a register letter only from the corresponding observed action, never a number alone."
+s04-K75-model,"Adds an eleventh square instead of recording removal, error x.",,,x,"One extra mark does not establish error C, which adds the removed quantity. Record this different mark error descriptively."
 s04-F75-C,"Adds two instead of moving them away, seven.",,,C,"Code a register letter only from the corresponding observed action, never a number alone."
 s04-F75-E,Rings moved one as remaining.,,,E,"Code a register letter only from the corresponding observed action, never a number alone."
 s04-P75-game,"Rings moved two as remaining, error E.",,,E,"Code a register letter only from the corresponding observed action, never a number alone."
