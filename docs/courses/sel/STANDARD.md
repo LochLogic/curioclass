@@ -4,8 +4,8 @@
 (docs/reviews/prework-sel-fixes-2026-11-20.md). Written 2026-11-16.**
 
 Written 2026-11-16 as the pre-work owed for social and emotional learning (docs/ADOPTION-BAR-SUBJECTS.md, "Before a
-scope and sequence in this subject", the SEL row), in the shape of docs/courses/social-studies/STANDARD.md. Core
-subjects come first: nothing here starts a frame or a scope and sequence. Decisions already made by Cory
+scope and sequence in this subject", the SEL row), in the shape of docs/courses/social-studies/STANDARD.md. Frames are
+written from 2026-11-25 (Cory, docs/DESK-ANSWERS.md); scopes, unit plans and days follow docs/COURSE-RUN.md. Decisions already made by Cory
 (2026-11-11 and 2026-11-15): SEL stays as separate courses, not strands; they may be smaller by nature, which means
 fewer minutes a week, never fewer units; there is a sequence for each grade; the design half of the registry's
 criteria is the bar, with the evidence half stated as unmet, **marked for a deeper review** (section 4 is that
@@ -13,7 +13,7 @@ review).
 
 | Owed row (ADOPTION-BAR-SUBJECTS) | State | Where |
 |---|---|---|
-| Separate courses (decided); they may be small | Applied: four band courses, 13 grade-year frames, 64 sessions a year (settled 2026-11-16) | Section 2 |
+| Separate courses (decided); they may be small | Applied: four band courses, one band frame each with a Year column (Cory, 2026-11-25), 64 sessions a year (settled 2026-11-16) | Section 2 |
 | Write a sequence per grade | Done as a draft, 13 grade years, every grade covering all 40 sub-skills | Section 3 |
 | The design half as the bar, marked for a deeper review | Review done (criteria paper pp 1 to 3 and 20 to 35 read in full); five gaps named; the additions are in bar part 9 (settled 2026-11-16) | Section 4 |
 | Approach page (all ten subjects) | Approved by Cory 2026-11-21 (Desk q-prework-open-1) | docs/courses/sel/APPROACH.md |
@@ -48,13 +48,14 @@ review).
 
 ## 2. Courses, bands and time
 
-- **The catalogue.** data/courses.csv has four SEL band rows (`sel-k-2`, `sel-3-5`, `sel-6-8`, `sel-9-12`; Cory,
+- **The catalog.** data/courses.csv has four SEL band rows (`sel-k-2`, `sel-3-5`, `sel-6-8`, `sel-9-12`; Cory,
   2026-11-21, "Light shelf" dropped), as docs/COURSES-STATUS.md counts them. The bar asks for a sequence for each grade, and the registry gives a
   single lesson set for a band its lower design rating. So each band course holds one distinct year per grade, and
   "a band taught the same way every year" is a fail (bar, Fails if).
-- **How a grade year is framed.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): each grade year gets its
-  own frame and scope and sequence, 13 grade-year frames filed under the four band courses. plan.py takes one
-  course id per band (the four catalogue ids), with a frame per grade year under it.
+- **How a grade year is framed.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): each grade year is
+  framed whole, with its own year of units. Since 2026-11-25 (Cory, docs/DESK-ANSWERS.md) a band has one frame with a
+  Year column, and its scope and sequence is written one year at a time. plan.py takes one course id per band (the
+  four catalog ids).
 - **Sessions.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): two sessions a week in every grade, 32 weeks,
   so 64 sessions a year. A session is 20 minutes in K to 2, 30 in grades 3 to 5, 30 in grades 6 to 8 and 40 in
   grades 9 to 12 (an advisory period); a frame may change its band's number and gives the reason. The registry's
@@ -88,7 +89,7 @@ review).
 The draft year for each grade. The theme sets the year's angle, so no two years of a band run alike. Each unit lists
 the sub-skills it teaches first that year; every later unit brings earlier sub-skills back in practice (C7). In
 every grade all 40 sub-skills are taught once and only once as a unit's own. No unit teaches more than eight
-sub-skills first, so each has time to be rehearsed (a unit has 10 or 11 sessions, its sub-skills taught in two or
+sub-skills first, so each has time to be rehearsed (a unit has 10 or 11 sessions, or the sizes its band frame sets to fit course-level checks, its sub-skills taught in two or
 three groups of related skills, each group introduced then rehearsed: section 2, "How the sessions add up"); a sub-skill that suits a late
 unit better comes back there in practice, not as a first teaching.
 
@@ -267,7 +268,9 @@ Applied to SEL:
    the school is told which sub-skills that year then does not teach, a later unit never assumes the left-out one (its readiness item rests on the previous year's row for that sub-skill, or, if that unit was left out too,
    the nearest earlier year that was taught, and checks only the one-step form), and the course page and the unit's
    family note say the course does not claim those sub-skills that year ("Acceptability is local",
-   ADOPTION-BAR-SUBJECTS), naming the ids, the same leave-out rule as arts (Cory, 2026-11-21, Desk q-fix-sel-1).
+   ADOPTION-BAR-SUBJECTS), naming the ids, the same leave-out rule as arts (Cory, 2026-11-21, Desk q-fix-sel-1). Where a later unit uses a card the
+   left-out unit made (section 7, "Shared steps"), its first Understanding session teaches the card's one-step form in
+   its first ten minutes and claims none of the left-out sub-skills; each band frame lists those bridges.
 7. **No product names, no rating words.** No program, app or registry name in public copy; no claim of being
    reviewed, approved, "evidence-based" or rated.
 
@@ -288,7 +291,17 @@ Applied to SEL:
 - **Health (NHES 2024, data/standards/nhes-2024.txt).** NHES S4 (interpersonal communication), S5 (decision making)
   and S6 (goal setting) overlap RS1, RS5, RS6, RD2 to RD4 and SM4. Rule: SEL teaches the skill on everyday cases;
   health applies it to health topics. When both courses run in a grade, the health frame names the SEL unit as
-  "builds on" and does not reteach the steps. A one-line gate when health's frames are written.
+  "builds on" and does not reteach the steps. Where health teaches a shared card first in a year, the SEL unit opens
+  with it as retrieval where the school runs health, and teaches it where it does not; each band frame names the
+  units and weeks.
+- **Shared steps (SEL, health and PE; 2026-11-25, from the K to 2 frame reads).** One set of words, so a child meets
+  one card in every course. Calm-down card: "stop, breathe" (the balloon breath) first, then count to five (grade 1),
+  then a stretch or asking for a break, chosen by the moment (grade 2); PE's "three slow breaths, count to five" uses
+  the same picture. I-statement: "I feel ___ when ___. I need ___." in K to 2 (health kindergarten's words); grade 2
+  adds asking "What do you need?" and a fair end; grades 3 to 5 add "because" (I feel, when, because, I need).
+  Refusal second push: say it again, move away, tell (health's boundary steps). Goal steps card: my goal and one step;
+  then a helper and a check; then a changed step; used by health's goal plans and PE's goal cycles. Talk turn card:
+  its two steps open health's listening card. Changes on the health and PE side are the lead's.
 - **ELA (data/progressions/ela.csv).** The discussion rows (ek-discussion to e5-discussion, e6-collab-discussion to
   e8-collab-discussion, e9-sl-discussion, e10-sl-seminar, e11-seminar and e12-seminar) carry turn-taking, listening and building on
   others' ideas. SEL's RS1 uses the same norms and words, so a class meets one set of talk rules.

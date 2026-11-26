@@ -58,7 +58,7 @@ as UNIT-PLAN.md writes it; the lines below add only what SEL fills, under UNIT-P
   civics row), named by its row id.
 - Unit field 4 (readiness): every unit's sub-skills were used the year before or earlier the same year, so the
   field is `Retrieval only:` (UNIT-PLAN field 4): one scenario item on the same sub-skill at its earlier depth,
-  inside the session's five-minute opening, and on a miss the earlier skill modeled again. A `Given:` readiness
+  inside the session's five-minute opening (about four minutes in K to 2's 20-minute session), and on a miss the earlier skill modeled again. A `Given:` readiness
   check only where a left-out unit puts the last use two or more grades back (STANDARD section 5, item 6).
   Kindergarten unit 1: `Start-of-year check:` on what a child arrives with (STANDARD section 3).
 - Unit field 5 (end-of-unit assessment): a rehearsal with look-fors and scenario items, each teacher-judged item with
@@ -98,7 +98,7 @@ as UNIT-PLAN.md writes it; the lines below add only what SEL fills, under UNIT-P
 - Section field 8 (practice that returns): one earlier skill, named, rehearsed for three minutes with its card.
 - Section field 9 (supports): English learners: six to eight words taught in depth per unit with a picture (feelings
   words and words with two meanings, such as cool down, stand up, pressure, mean), and a sentence frame for each
-  step ("When you ___, I feel ___. I would like ___."); the family note's languages are used where it has them. The key
+  step ("I feel ___ when ___. I need ___.", the shared I-statement, STANDARD section 7); the family note's languages are used where it has them. The key
   says: the right step shown in the home language, by pointing or acting, is a language gap; a wrong step is a content
   gap. Access: no student must speak aloud or be watched rehearsing; any rehearsal can be done in writing, with a card
   or with the teacher. Reading load: a scene card is at most five short sentences (K to 2: read aloud, pictured).
@@ -111,7 +111,7 @@ as UNIT-PLAN.md writes it; the lines below add only what SEL fills, under UNIT-P
 
 ## Where the evidence is thin
 
-Studies of school SEL programs as a group find gains in skills, behaviour and attainment (the meta-analyses in the
+Studies of school SEL programs as a group find gains in skills, behavior and attainment (the meta-analyses in the
 lens, read as abstracts only). They say nothing about these courses, which no study has tried. Short mindset lessons have mixed results (from memory).
 Curio Class states this on every SEL course page and never calls these courses evidence-based.
 
