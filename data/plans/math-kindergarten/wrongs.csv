@@ -34,7 +34,7 @@ s01-P5-1,One piece omitted.,,,A,One object has no counting word.
 s01-P5-2,Because I like it.,,,x,Preference alone gives no tracking reason.
 s01-F5,Last square remains untouched.,,,A,An object is still omitted.
 s01-X5,Marks the heap tray.,,,x,A hidden leaf edge makes tracking difficult; selection alone cannot diagnose error A.
-s01-X5,Marks the overlapping tray.,,,x,Leaves cross a compartment edge; selection alone cannot diagnose error B.
+s01-X5,Marks the overlapping tray.,,,x,"Leaves overlap within compartments, making a skip or repeat easier; selection alone cannot diagnose error B."
 s01-W6,Last square untouched,,,A,An object receives no word.
 s01-K6,Skips a square while checking,,,A,"Observe the skipped action, not just a wrong total."
 s01-F6,Stops at four with one square untouched,,,A,One member omitted.

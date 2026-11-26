@@ -11,6 +11,6 @@ teacher_note: Read the exact printed stem aloud. Use only for day 17 exit, one i
 
 <style>body.student {font-size:18pt;line-height:1.15} h1 {font-size:18pt;margin:.1in 0} p {margin:.12in 0} .new-page {break-before:page} .slip {width:6.5in;max-width:100%;height:auto;display:block;box-sizing:border-box;padding:.1in;margin:.08in 0;font-size:18pt;line-height:1.15;overflow:visible;break-inside:avoid} svg {display:block}</style>
 
-<div class="slip"><p>Build a stack with one counting word for each block you add.</p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" style="width:6.5in;max-width:100%;height:auto" fill="white" stroke="black" stroke-width="3"><rect x="270" y="10" width="160" height="355"/></svg></div>
+<div class="slip"><p>Stack all these blocks with one counting word for each block.</p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" style="width:6.5in;max-width:100%;height:auto" fill="white" stroke="black" stroke-width="3"><rect x="270" y="10" width="160" height="355"/></svg></div>
 
 <p>Invented for practice.</p>

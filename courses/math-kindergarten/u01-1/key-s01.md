@@ -68,7 +68,7 @@ Look-fors: Mark only the organized tray, identified by its four fully visible se
 
 Samples: Shown: marks the organized tray, with one fully visible leaf per compartment. | Not yet seen: marks the heap tray with a hidden edge, error x.
 
-Wrong responses: Marks the heap tray. (x): A hidden leaf edge makes tracking difficult; selection alone cannot diagnose error A.; Marks the overlapping tray. (x): Leaves cross a compartment edge; selection alone cannot diagnose error B.
+Wrong responses: Marks the heap tray. (x): A hidden leaf edge makes tracking difficult; selection alone cannot diagnose error A.; Marks the overlapping tray. (x): Leaves overlap within compartments, making a skip or repeat easier; selection alone cannot diagnose error B.
 
 ## s01-X6
 
@@ -168,13 +168,13 @@ Wrong responses: Leaves one crayon uncounted. (A): Assign this letter only when 
 
 ## s01-X14
 
-Read: "Count these corks."
+Read: "Count these corks to show how many."
 
-Answer: One through eight, one dot per distinct cork.
+Answer: One through eight, one dot per distinct cork, identifying eight as how many corks are in the whole collection.
 
-Look-fors: Eight fixed cork drawings in a loose crescent with unequal gaps. | Dot each indicated cork. | Hear one ordered word per dot for six; last-word meaning is descriptive only. | Scale: shown; shown with help; not yet seen.
+Look-fors: Eight fixed cork drawings in a loose crescent with unequal gaps. | Dot each indicated cork. | For the rotating six, hear one ordered word per dot and observe whether the final word refers to the whole collection. | Accept eight altogether or an equivalent whole-group gesture after the count; no separate total question. | Record counting correspondence and descriptive last-word meaning separately; do not infer unheard words. | A total alone does not establish K.CC.B.4a. | Scale: shown; shown with help; not yet seen.
 
-Samples: Shown: eight distinct dots and one through eight heard. | Not yet seen: revisits a cork and stops at nine, error B.
+Samples: Shown: eight distinct dots, one through eight heard, with eight altogether or an equivalent whole-group gesture. | Not yet seen: revisits a cork and stops at nine, error B.
 
 Wrong responses: Skips a cork and stops at seven. (A): Assign this letter only when the action is observed; a total alone does not diagnose it.; Revisits a cork and stops at nine. (B): Assign this letter only when the action is observed; a total alone does not diagnose it.
 
@@ -204,7 +204,7 @@ Wrong responses: Leaves one animal unrepresented. (A): Assign this letter only w
 
 ## s01-X17
 
-Read: "Build a stack with one counting word for each block you add."
+Read: "Stack all these blocks with one counting word for each block."
 
 Answer: Eight pieces placed once each, one through eight, with one dot on each placed piece.
 
