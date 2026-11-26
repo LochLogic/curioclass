@@ -647,10 +647,24 @@ def check(slug, cal_rows=None):
     return fails, notes
 
 
+WRITING_FILE = os.path.join(ROOT, 'build', 'frames-writing.txt')
+
+
+def writing():
+    """Courses whose frames are being written now (build/frames-writing.txt, the lead's, git-ignored; added
+    2026-11-25 while the after-core frames were written beside the Codex day lanes): the full `frame.py check`, which
+    every course's gate runs, skips them with a note so a frame half written cannot show as a new failure in another
+    course's gate. `frame.py check <slug>` still checks them in full. The lead empties the file when the frames are
+    committed."""
+    if not os.path.exists(WRITING_FILE):
+        return set()
+    return {l.strip() for l in open(WRITING_FILE, encoding='utf-8') if l.strip() and not l.startswith('#')}
+
+
 def check_global():
     """Failures that belong to no one frame: frames.csv rows with no frame, courses with no frame, catalogue ids."""
     fails = []
-    have = set(found())
+    have = set(found()) | writing()
     for c in sorted(set(frames_csv()) - have):
         fails.append('data/plans/frames.csv: row %s has no frame (run scripts/frame.py sync)' % c)
     for c in sorted(set(COURSE_ROWS) - have):
@@ -750,7 +764,10 @@ def main(a):
         for x in check_global():
             print('  FAIL', x)
             bad += 1
-    for s in a[1:] or found():
+    skip = set() if a[1:] else writing()
+    if skip:
+        print('  note %d frame(s) being written are skipped here (build/frames-writing.txt); check each by name' % len(skip))
+    for s in a[1:] or [x for x in found() if x not in skip]:
         fails, notes = check(s, cal)
         print('frame %s: %d failure(s)' % (s, len(fails)))
         for x in fails:
