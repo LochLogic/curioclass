@@ -376,9 +376,9 @@ lean either way.
    second-model read checked the grade 4 and 5 creating and Re7.2 ids against the handout (paired settings and the
    three-prompt card now in units 1, 5, 6, 9, 10 and 11). Pick: the lead still spot-checks the remaining grade 3 to 5
    lines (above all MU:Re7.1, MU:Re9.1 and the Pr4.2 c parts) in Claude in Chrome before the year 3 scope.
-4. **Supplies ceiling (money, for Cory).** Provisional costs: $30 (year 3), $25 (year 4), $25 (year 5) a class of 30,
-   all optional beside a free path, plus $20 once for rhythm sticks where a school has none. Pick: the same ceiling
-   the visual arts K to 2 frame proposes ($75 a class a year), with every unit's free path kept.
+4. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $75 a class a year, with every
+   unit's free path kept. Provisional costs: $30 (year 3), $25 (year 4), $25 (year 5) a class of 30, all optional
+   beside a free path, plus $20 once for rhythm sticks where a school has none.
 5. **Stagger key.** All five arts are subject `arts` in calendar.csv; each after-core course counts on its own in the
    lead's pass (frame-write, "After-core stagger"), so the other four arts 3 to 5 frames' weeks need checking against
    these.

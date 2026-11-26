@@ -381,12 +381,11 @@ computer science, which is not core; the deeper unit is computer-science:g8-attr
 4. **Paper path meets the tool, capture and online ids (item-level, decided, as the K to 2 frame).** A media tool
    here is anything that frames, captures, orders, plays or shows pictures and sound, so a device-free class meets
    MA:Pr5.1.3a to 5c, the Cn11 tool-and-space ids and the online ids in full on paper and printed invented screens.
-   If the lead or Cory wants capture or editing met only on a device, the course needs one shared device per group
-   of five, a cost question.
+   The paper path is the standard; a shared device is welcome but never required (decided, Cory 2026-11-26, Desk q-frames-arts-1).
 5. **Work picks the unit plans must confirm on the item's page:** the summary of Obomsawin's Sigwan (unit 4), the
    film and page for Alassane's La Mort du Gandji (unit 2), which Ōfuji film (unit 6), and the living status of the
    Ghanaian poster painters (unit 9). Each is named as a pick with "the unit plan confirms"; a swap keeps the ids and
    the band's range.
-6. **Supplies ceiling (money, for Cory).** Provisional costs: $45 (year 3), $50 (year 4), $50 (year 5) a class of 30,
-   all optional beside a free path. Pick: $50 a class a year for grades 3 to 5 media arts, like science K to 5's
-   settled $50 ceiling, with every unit's free path kept.
+6. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $50 a class a year, with every
+   unit's free path kept. Provisional costs: $45 (year 3), $50 (year 4), $50 (year 5) a class of 30, all optional
+   beside a free path.

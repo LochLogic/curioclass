@@ -329,9 +329,9 @@ here hear and name the beat and meter; dancing them is dance's. No lean either w
 3. **Connecting wording, landed.** The kindergarten, grade 1 and grade 2 choosing rows connect musical choices to
    interests, knowledge or skills and carry an invented or public option (landed in data/progressions/arts.csv
    2026-11-25; mu-g2-choose 2026-11-26). Units 2, 6 and 10 carry that wording.
-4. **Supplies ceiling (money, for Cory).** Provisional costs: $55 (year K), $20 (year 1), $20 (year 2) a class of 30,
-   all optional beside a free path. Pick: the same ceiling the visual arts K to 2 frame proposes ($75 a class a year),
-   with every unit's free path kept.
+4. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $75 a class a year, with every
+   unit's free path kept. Provisional costs: $55 (year K), $20 (year 1), $20 (year 2) a class of 30, all optional
+   beside a free path.
 5. **Stagger key.** As the visual arts frame noted, all five arts are subject `arts` in calendar.csv; the 2026-11-25
    brief says each after-core course counts on its own, so the music and visual arts checks in grade 2 week 17 are two
    checks for the lead's pass.

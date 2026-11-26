@@ -217,4 +217,4 @@ Each lean still carries its own frame or step card, and the item never scores th
 
 ## For Cory
 
-- **Supplies ceiling (money).** The frame's pick stands open: $100 a class of 30 a year, every unit keeping its free path (provisional costs $60, $70 and $100 by year; year 8's print unit carries brayers and block ink). This plan's materials (graphite, charcoal, chalk pastel, watercolor, water-based ink, foam plates, mount card, markers) fit inside it, each with a free path in its note.
+- **Supplies ceiling (money).** Decided at $100 a class of 30 a year (Cory approved 2026-11-26, Desk q-frames-money-1), every unit keeping its free path (provisional costs $60, $70 and $100 by year; year 8's print unit carries brayers and block ink). This plan's materials (graphite, charcoal, chalk pastel, watercolor, water-based ink, foam plates, mount card, markers) fit inside it, each with a free path in its note.

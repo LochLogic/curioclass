@@ -94,7 +94,9 @@ year's part of this file (its units and its two course-level checks) is that yea
   has no PE equipment at all: shown in each unit's last column. Across the band about $370, plus mats (units 9, 15)
   from the school's stock. A school with an ordinary PE closet spends nothing. Most low-equipment activities use
   common materials, but the low-equipment path's listed buys (clothesline about $20, pool noodles about $10) and
-  the Required access items are provisional, so the path is not promised at no cost (For Cory, in the fix report).
+  the Required access items stay provisional until the unit plans price them, so the path is not promised at no
+  cost. Ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1): $150 a year in equipment, with the mats and child life jackets
+  borrowed or bought for about $80.
 - **Devices.** None per student. One shared teacher device is optional: it shows cue pictures and plays the music
   track for dance and rhythm days (units 2, 7, 13, 21). No owned code needs technology: a teacher who has no device
   claps or sings the beat and holds up the printed cue card, and every child meets every part in full.

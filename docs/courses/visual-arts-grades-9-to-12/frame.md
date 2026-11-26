@@ -348,10 +348,10 @@ sourcing habit of naming who made a source, when and why.
    Level n", not a grade. Pick: keep them off the grade 9 to 12 rows, since a level is not a grade (STANDARD.md 3.2).
 3. **Blades in high school.** APPROACH "Safe use" says "blades only by an adult" for every visual arts course, which
    rules out linocut and craft knives in 9 to 12, where they are usual. This frame keeps the rule (foam-plate and
-   collagraph prints). Pick: keep it until the safety agent's read of the two guides; if Cory wants linocut in Levels
-   2 and 3, APPROACH changes in place with a DESK-ANSWERS line.
+   collagraph prints). Decided (Cory 2026-11-26, Desk q-frames-arts-1): keep it until the safety agent's read of the two guides;
+   if that read clears linocut for Levels 2 and 3, APPROACH changes in place with a DESK-ANSWERS line.
 4. **Two levels in one room.** Many high schools teach Level 1 and Level 2 students in one period. STANDARD.md does
-   not say how. Pick (a scope question for Cory): each level keeps its own units and ids, and the two levels' units
+   not say how. Decided (Cory 2026-11-26, Desk q-frames-arts-1): each level keeps its own units and ids, and the two levels' units
    share the opening look and the critique days where their units sit side by side (unit 2 with unit 7, and so on);
    the scope and sequence marks the shared days.
 5. **STANDARD.md 3.4 row (a shared doc).** The high school checklist was read at source in the Codex read of
@@ -361,9 +361,9 @@ sourcing habit of naming who made a source, when and why.
 6. **Shared doc stale (from the pilot, still open).** docs/ADOPTION-BAR-SUBJECTS.md, arts row of "Before a scope and
    sequence": "Owed: the standards gate (later.csv L83); load the 63 strand ids when the high school music frame is
    written." Both are done (2026-11-21). Replacement: drop both from the owed list.
-7. **Supplies ceiling (money, for Cory).** Provisional costs: $120 (Level 1), $125 (Levels 2 and 3), $110 (Level 4)
-   a class of 30, all optional beside a free path. Pick: a ceiling of $150 a class a level for 9 to 12 visual arts,
-   with every unit's free path kept.
+7. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $150 a class a level, with every
+   unit's free path kept. Provisional costs: $120 (Level 1), $125 (Levels 2 and 3), $110 (Level 4) a class of 30, all
+   optional beside a free path.
 8. **Facts to confirm (2026-11-26 swaps, from memory).** Dürer's Melencolia I at the Met (open access, 1514);
    Sherald's portrait of Michelle Obama at the National Portrait Gallery (2018); América Tropical's dates (painted
    1932, painted over within a few years, shown again from 2012 under a shelter) on the Getty Conservation

@@ -243,13 +243,13 @@ AASL V.D.1 is taught with SM3 (units 2, 8 and 14), V.D.2 with SA8 (units 3, 12 a
 
 ## For the lead
 
-1. **Unit sizes.** 11/8 (K 12/8) departs from q-fix-sel-1 so each year's two checks fit 64 sessions; Cory's call (fixes report, For Cory). The 3 to 12 frames kept q-fix-sel-1's 11 and 10 by folding the course-level checks into the units' Check sessions, which a 20-minute K to 2 session cannot hold (3 to 12 expert read J1); the card should say so.
-2. **Year-end check placement.** After unit 5, leaving unit 6 sampled by its own assessment and next year's mid-year check; Cory's call (fixes report, For Cory).
+1. **Unit sizes (decided, Cory 2026-11-26, Desk q-frames-scope-1).** 11/8 (K 12/8) departs from q-fix-sel-1 so each year's two checks fit 64 sessions; Cory accepted it, since it keeps checks off the core check weeks. The 3 to 12 frames kept q-fix-sel-1's 11 and 10 by folding the course-level checks into the units' Check sessions, which a 20-minute K to 2 session cannot hold (3 to 12 expert read J1); Cory accepted both shapes.
+2. **Year-end check placement (decided, Cory 2026-11-26, Desk q-frames-scope-1).** After unit 5, leaving unit 6 sampled by its own assessment and next year's mid-year check, so the check stays off the core check weeks.
 3. **AASL ids for SEL.** Done 2026-11-26: scripts/progression.py accepts AASL.V.D.1, V.D.2 and III.D.2 for SEL rows, and the owner rows and units name them.
 4. **Health K to 2 side.** Listening card opens with the talk turn card's two steps; I-statement, refusal second-push and goal rungs cite STANDARD section 7; health rows gain cross_subject leans to SEL.
 5. **PE K to 2 side.** Ampe repeats in PE G1 unit 14 (pick: PE swaps in another Ghanaian game); PE G1 unit 11 uses the calm-down card picture; PE goal cycles use the card rungs.
 6. **Spanish family notes.** Eighteen notes need a translation agent's read; no brief for that read exists yet.
-7. **Supply ceiling.** None set for SEL; about $55 to $60 a year printing plus about $21 once (Cory's money call, fixes report).
+7. **Supply ceiling.** About $55 to $60 a year printing plus about $21 once. Decided (Cory 2026-11-26, Desk q-frames-money-1): no SEL ceiling until the unit plans price it.
 8. **k-2 clash check.** Band course "k-2" is outside frame.py's K to 8 clash check; these weeks were placed by hand.
 9. **DESK-ANSWERS log lines.** Shared steps (STANDARD section 7), the "I need" I-statement wording and the leave-out bridge rule need one log entry each.
 10. **After-core check clashes.** Listed in the fixes report for the lead's calendar pass; SEL checks were not moved.

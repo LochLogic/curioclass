@@ -122,8 +122,9 @@ frame, as the subject page's "one frame per grade year" asks.
 - **Supplies and cost.** Provisional cost per unit for a class of 30, counting reusable items once, if the school
   has no PE equipment at all (a middle school building does not share the elementary closet): shown in each unit's
   last column. Across the band about $745 (grade 6 about $315, grade 7 about $65, grade 8 about $365). A school with an ordinary PE closet spends little beyond floor-hockey sticks,
-  compasses and life jackets. The low-equipment path's listed buys and the Required access items are provisional, so
-  the path is not promised at no cost (For Cory).
+  compasses and life jackets. Ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1): about $745 across the band from nothing, as priced
+  here. The low-equipment path's listed buys and the Required access items stay provisional until the unit plans
+  price them, so the path is not promised at no cost.
 - **Devices.** None per student. One shared teacher device is optional: it plays music for dance and circuit days
   (units 2, 6, 13, 14, 18, 22) and may show a skill clip for analysis (units 1, 8). No owned code needs technology:
   S2.8.18 (analyzing a skill) is met by watching a partner with the cue card, and S2.8.19 (judging technology) is met
@@ -404,10 +405,11 @@ only its own part, in its words; If later says what PE does if the other course 
    Pick: keep it in both, named both ways; the other way is a new grade 8 case from a community no frame uses, which
    the sensitivity agent would source.
 4. **Cost.** About $745 across the band from nothing (grade 6 $315, grade 7 $65, grade 8 $365); floor-hockey sticks
-   ($150), paddles and bats ($125), compasses ($75) and life jackets ($100) are most of it. The money question is in
-   For Cory.
+   ($150), paddles and bats ($125), compasses ($75) and life jackets ($100) are most of it. Approved as the band's
+   ceiling (Cory 2026-11-26, Desk q-frames-money-1).
 5. **Cultural picks to confirm.** The fix pass replaced unit 6's tinikling and Virginia Reel (repeats of dance K to 2
-   grade 2 and PE 3 to 5 grade 3) with cumbia's basic step (Colombia), named from memory: it needs the sensitivity
+   grade 2 and PE 3 to 5 grade 3) with cumbia's basic step (Colombia), named from memory. Cory confirmed cumbia and
+   capoeira (Cory 2026-11-26, Desk q-frames-arts-1); cumbia still needs the sensitivity
    confirm at a Colombian cultural institution's page before unit 6's plan names it. The gumboot dance the expert read
    proposed is a studied work in dance 3 to 5 (grade 4), so it was not used. Kolo now cites the Serbian national
    heritage register (unit 13); the UNESCO kolo and capoeira entries showed a human-verification wall to the
@@ -425,8 +427,7 @@ only its own part, in its words; If later says what PE does if the other course 
    walk or run with the distance recorded, and its lean is 6.EE.C.9. The standard file's paraphrases of SHAPE.S1.8.12,
    S1.8.13 and S1.8.17 now ask for both (data/standards/shape-pe-2024.txt, fixed 2026-11-26).
 
-## For Cory
+## Decided by Cory
 
-- Money: the band's provisional new buys from nothing are about $745 (grade 6 about $315, grade 7 about $65, grade 8
-  about $365). Grades 6 and 8 are over the $150 a year PE ceiling already asked of you in the K to 2 fix report. Is the
-  ceiling per year, per band, or per building?
+- Money (decided, Cory 2026-11-26, Desk q-frames-money-1): the band's ceiling is its priced new buys from nothing, about $745 (grade 6
+  about $315, grade 7 about $65, grade 8 about $365). The K to 2 band's $150 a year does not cap grades 6 to 8.

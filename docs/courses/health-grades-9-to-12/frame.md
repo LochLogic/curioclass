@@ -324,8 +324,8 @@ rates and percents in units 2, 3, 11 and 12, unit prices in unit 14, counts and 
    lines for NHES.S1.12.7 (benefits apart from supports), NHES.S1.12.8 (confidence, likelihood and seriousness) and
    NHES.S3.12.2 to NHES.S3.12.4 (information, products and services) in data/standards/nhes-2024.txt were fixed
    2026-11-26.
-5. **Supplies ceiling (money, Cory's).** $68 printing for a class of 30 a semester, $113 with the optional no-cook
-   demonstration. Pick: $70 a semester, the demonstration outside it.
+5. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $70 a semester, the no-cook demonstration outside
+   it. $68 printing for a class of 30 a semester, $113 with the optional demonstration.
 6. **Sources named from memory.** No page was opened for this frame (no fetch); the Codex read (2026-11-25) opened
    the CDC YRBS 2025 physical activity results page used in unit 2. The safety guides, survey names and
    help lines are opened at the safety and expert reads; any page that refuses an automated read goes on the browser

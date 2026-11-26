@@ -382,8 +382,8 @@ No unit asks for number work beyond counting cues and timing a scene in seconds 
    completed 2026-11-21"; and its introductory approach statement, which says no subject approach exists, with
    "Layer 3 requires a subject approach before its scope and sequence; current states are recorded below." A shared
    file: the lead edits it.
-5. **Supplies ceiling (money, for Cory).** Provisional costs: $120 (Level 1), $110 (Level 2), $115 (Level 3), $90
-   (Level 4) a class of 30, all optional beside a free path. Pick: a ceiling of $150 a class a level for high school
-   theater, with every unit's free path kept.
+5. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $150 a class a level, with every
+   unit's free path kept (it covers gels, LED units and set stock across four levels). Provisional costs: $120 (Level
+   1), $110 (Level 2), $115 (Level 3), $90 (Level 4) a class of 30, all optional beside a free path.
 6. **Level 4 and the year count.** frame.py spreads the band over four school years, though Level 4 is optional and
    many schools offer one level. No change asked: each level is whole on its own, as the brief's band shape says.

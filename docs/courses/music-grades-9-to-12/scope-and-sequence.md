@@ -349,6 +349,6 @@ For a senior whose school ends early (a level taken in grade 12, any level), the
 
 1. **Unit 18 mid-unit assessment.** The frame names no mid-unit assessment for unit 18 (32 days), and the gate asks one of every unit over 25 days. This scope adds a checkpoint on the capstone plan and sketch on day 574 (unit day 14), with its critique on day 575, inside the unit's days. Fix for the frame: name that checkpoint in unit 18's check set.
 2. **Level 1 readiness by grade number** (frame For the lead 2): kept as the frame picks; the gate's count from grade 9 may print rule 2 notes on Level 1 units.
-3. **Supplies ceiling** (frame For the lead 7, for Cory): still open; nothing in this scope buys anything, and every day has a device-free and plain-paper path.
+3. **Supplies ceiling** (frame For the lead 7): $40 a class a level (Cory approved 2026-11-26, Desk q-frames-money-1); nothing in this scope buys anything, and every day has a device-free and plain-paper path.
 4. **Level 4 codes on days.** The frame's Owned standards cell for units 16 to 19 is None; the days carry the .IIIa codes they apply again, so a reader sees what each day scores. If a later gate counts these as owned, the frame's "applied again" wording is the reason.
 5. **Browser checks.** Works described and linked (Miyagi, Frank, Bonds, Ballard, Shaw, Sowande, Revueltas, Oliveros, Leon, Umm Kulthum, Still, Esmail, Chou, Saariaho, Chacon, Part, Khan, Chen Yi, Ellington, Hamza El Din) need their linked pages opened at unit-plan time; the scope adds none.

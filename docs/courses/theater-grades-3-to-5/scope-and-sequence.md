@@ -499,8 +499,8 @@ Nothing here has been tried with children, and Curio Class makes no claim that a
    and gives the design unit 9 sessions (8 in year 5); units 3, 7 and 11 hold at most three days a session, and the
    story units' sessions carry minute lines. Unit 8's second session stays a five-day merge, which its unit plan
    tests; if it fails, the frame's fix would be a critique on two model groups.
-4. **Supplies ceiling (money, for Cory).** Carried from the frame: provisional $35, $40 and $30 a class of 30 for
-   years 3, 4 and 5, all optional beside a free path; pick a $40 ceiling a class a year. Not decided here.
+4. **Supplies ceiling (decided).** $40 a class a year (Cory approved 2026-11-26, Desk q-frames-money-1); planning costs $35, $40 and $30 a class of 30 for
+   years 3, 4 and 5, all optional beside a free path.
 5. **Browser checks for the unit plans:** Holder's Wiz designs (unit 3), a griot practitioner's published words
    (unit 4), the public domain Stanislavski wording (unit 5), FastHorse's own words (unit 7), Mhlophe's own words
    (unit 8), the Laedza Batanani account (unit 11) and the Zuni Pueblo heritage pages (unit 12). The living-or-not

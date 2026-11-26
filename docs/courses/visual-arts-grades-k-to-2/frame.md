@@ -285,6 +285,6 @@ setting they use themselves, on work cards (bar criterion 7).
 5. **National time figures still to read.** STANDARD.md 3.4 now carries the elementary visual arts figure (50
    minutes a week, read 2026-11-25); the association's middle school checklist and its media arts lines are read at
    source before the visual arts 6 to 8 and media arts frames.
-6. **Supplies ceiling (money, for Cory).** Provisional costs: $70 (year K), $50 (year 1), $40 (year 2) a class of 30,
-   all optional beside a free path. Pick: a ceiling of $75 a class a year for K to 2 visual arts, like science K to
-   5's settled $50 ceiling, with every unit's free path kept.
+6. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $75 a class a year, with every
+   unit's free path kept. Provisional costs: $70 (year K), $50 (year 1), $40 (year 2) a class of 30, all optional
+   beside a free path.

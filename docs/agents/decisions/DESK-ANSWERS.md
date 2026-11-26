@@ -2050,3 +2050,32 @@ The 20 arts band scopes were fixed under these calls (full wording in the fix br
   with the school's own adults, on the free path; the frame's Candidate (a community partner's space) is dropped.
   Unit 18 (Level 4, work for a real audience) keeps its community space where the school allows it. Why: every school
   has the space, it needs no outside agreement, and families know the way.
+
+## 2026-11-26: after-core frame calls (Desk q-frames-arts-1, q-frames-scope-1, q-frames-sources-1, q-frames-money-1, q-calendar-rule-1)
+
+Cory answered on the Desk; each frame's open item now states the call (docs/reviews/desk-answers-frames-2026-11-26.md).
+- **Arts and PE picks:** theater 6 to 8 keeps both Japan picks (kabuki, Eiko Ishioka). Media arts recording ids: the
+  paper path is the standard; a shared device is welcome but never required. Visual arts 9 to 12: Levels 1 and 2 may
+  share a room, each keeping its own units and ids; linocut stays adult-blade-only until the safety read of the two
+  guides. Dance: teacher-danced step cards, no filmed set for now; Level 4 has no short path; Level 4 recovery covers
+  the 11 Advanced ids only. PE: Pilolo, cumbia and bhangra confirmed, and capoeira with a sensitivity read before its
+  case card.
+- **Scope calls:** SEL unit sizes accepted for K to 2 (11 and 8, kindergarten 12 and 8) and 3 to 12 (11 and 10, checks
+  folded in), "because it keeps checks off the core check weeks". SEL 9 to 12: Curio Class claims no grading or credit.
+  Health 6 to 8 stays 48 lessons a year and library 6 to 8 stays 18 sessions. Health 3 to 5 grade 4 unit 14: the family
+  note and private route. Career: no row owns a first job's safety and rights; practice 5's shared-device rule stays.
+  ELD newcomer strand: an added period with the ELD teacher, "because a side table splits one adult's attention".
+  Computer science: the on-device sorter trainer, a K to 2 picture-block mode and a grade 4 table report view are
+  queued with tool work as modes of our own editor (later.csv L148); paper paths meet the ids meanwhile. Grade 9 entry
+  with no programming, the grade 12 model build and MS-ALG-PS-05 with saved outputs go as recommended.
+- **Sources:** yes to all the downloads (the archived Teach Computing Curriculum 2023 as the CS K to 8 partial base, the
+  NOAA Climate Data Online extract, the AASL continuum 3 to 5 band file, the library online-reasoning lessons and
+  web-literacy book); each frame stays provisional until its source is loaded (later.csv L149). Arts time and safety
+  sources as proposed. The queued browser checks run at grade close (the standing rule).
+- **Supply ceilings approved** as proposed, per class: music $75 a year K to 8 and $40 a level 9 to 12; theater $40,
+  $40, $45 a year and $150 a level 9 to 12; media arts $75, $50, $75 a year and $100 a level; visual arts $75 (K to 5),
+  $100 (6 to 8), $150 a level; dance $50 a year K to 8 and $75 a level; health, PE and SEL as proposed; career pathways
+  unit 6 adds about $9 a class for reusable source sheets. Every unit keeps a free path; a ceiling caps only the
+  optional kit.
+- **Calendar stagger rule kept** as refined in the lead calendar pass (CALENDAR.md rules 1 and 3), "because specials
+  teachers run their own checks, and a student takes one arts elective at a time in 6 to 8".

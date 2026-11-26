@@ -351,5 +351,5 @@ has already studied in that course, chosen with the teacher.
    sequence", still lists the standards gate (later.csv L83) and the 63 strand ids as owed; both are done
    (2026-11-21; L83 is marked done in later.csv). Replacement for the owed sentence: "NCAS id-membership checking and
    the 63 composition and theory strand ids were completed 2026-11-21." That file is the lead's to edit.
-7. **Supplies ceiling (money, for Cory).** Provisional printing costs: $35 (Level 1), $30 (Levels 2 and 3), $20
-   (Level 4) a class of 30, all optional beside plain paper. Pick: a ceiling of $40 a class a level.
+7. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $40 a class a level. Provisional
+   printing costs: $35 (Level 1), $30 (Levels 2 and 3), $20 (Level 4) a class of 30, all optional beside plain paper.

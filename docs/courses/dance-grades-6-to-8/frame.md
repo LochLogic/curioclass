@@ -430,8 +430,8 @@ No unit asks for fractions, ratios or time signatures as math: counts are spoken
    frames' works; the one named return is Trisha Brown through Grand Union. The step team, the Sankai Juku work and
    the Moiseyev piece stay the unit plan's picks: each needs its holding page opened for its rights line first.
 5. **Unseen dances.** As in the K to 2 dance frame: every unseen dance is a Curio Class original danced live by the
-   teacher from a step card, or a written description. A filmed set of the band's 24 or so unseen phrases would
-   help a teacher with no dance training, but needs a dancer and filming (a people and money question for Cory).
-6. **Supplies ceiling (money, for Cory).** Provisional costs: $30 (year 6), $25 (year 7), $30 (year 8) a class of 30,
-   all optional beside a free path. Pick: the same ceiling as the K to 2 dance pick, $50 a class a year, with every
-   unit's free path kept.
+   teacher from a step card, or a written description. Decided (Cory 2026-11-26, Desk q-frames-arts-1): keep teacher-danced step
+   cards, with no filmed set for now.
+6. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $50 a class a year, with every
+   unit's free path kept. Provisional costs: $30 (year 6), $25 (year 7), $30 (year 8) a class of 30, all optional
+   beside a free path.

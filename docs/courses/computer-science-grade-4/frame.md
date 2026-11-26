@@ -312,8 +312,9 @@ Speaking, listening and writing (explaining an algorithm, the data report, comme
    yet, a comment block that shows in the text view, and a typed or list choice in place of drag and drop. Units 3
    and 5 need two small tools for TOOL-ASKS.md: a table tool (rows, columns, sort, a bar chart, nothing sent off the
    device, and a report view that keeps a short text with its chart in one file) and a one-screen picture sorter with
-   changeable training sets. The report view is a tool-build choice (Cory's); my pick is one small report view inside
-   the table tool rather than a separate tool. The paper path meets every grade 4 id in full except E4-DAT-DC-09 and
+   changeable training sets. Decided (Cory 2026-11-26, Desk q-frames-scope-1): one small report view inside the table tool, as a mode
+   of our own editor, and the on-device sorter trainer, both queued with tool work (later.csv); the paper paths meet
+   the ids meanwhile. The paper path meets every grade 4 id in full except E4-DAT-DC-09 and
    E4-DAT-DI-10, which are part met without a device (Devices).
 5. **Source list.** docs/APPROACH-SOURCES.md, beside the pilot's entries: the archived key stage 2 unit pages
    (raspberrypi.org/curriculum/archived/key-stage-2), with the Flat-file databases and Selection in quizzes unit pages,

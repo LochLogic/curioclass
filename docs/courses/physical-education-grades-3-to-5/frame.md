@@ -120,8 +120,9 @@ frame, as the subject page's "one frame per grade year" asks.
   to 2 band's items (a grades 3 to 5 school shares the elementary closet: soft balls, beanbags, cones, scarves, short
   paddles, plastic bats, ropes, a rope and pool noodle): shown in each unit's last column. Across the band about $480
   new (grade 3 about $220, grade 4 about $115, grade 5 about $145 with the youth life jackets), plus mats from the
-  school's stock. A school with an ordinary PE closet spends nothing. The low-equipment path's listed buys are provisional,
-  so the path is not promised at no cost (For Cory).
+  school's stock. A school with an ordinary PE closet spends nothing. Ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1): about $480
+  across the band, as priced here. The low-equipment path's listed buys stay provisional until the unit plans price
+  them, so the path is not promised at no cost.
 - **Devices.** None per student. One shared teacher device is optional: it shows cue pictures, plays the music
   track for dance and rope days (units 7, 8, 15, 22) and runs a visible timer for circuit stations. No owned code
   needs a device: SHAPE.S2.5.16 (unit 17) asks students to name technology and what it can and cannot show, taught
@@ -395,14 +396,13 @@ other course comes later.
    at encyclopedia, folk dance archive, university, film board and early learning pages only (2026-11-25); none was
    confirmed at a community's own institution, which is the sensitivity agent's first task (no download or sign-in
    needed). Pilolo (Ghana) replaced tinikling in the fix pass (tinikling is in dance K to 2 and was in PE 6 to 8), so
-   PE now has an activity from Africa; it needs the sensitivity confirm at a Ghanaian source before unit 16's plan
-   names it. The Library of Congress record of the dance manual (loc.gov/item/afcreed000072) returned 403 to the
+   PE now has an activity from Africa; Cory confirmed the pick (Cory 2026-11-26, Desk q-frames-arts-1), and it still needs the
+   sensitivity confirm at a Ghanaian source before unit 16's plan names it. The Library of Congress record of the dance manual (loc.gov/item/afcreed000072) returned 403 to the
    second-model read: browser check. The line dance in unit 15 is written by Curio Class and claims no culture.
 
-## For Cory
+## Decided by Cory
 
-- Money: the band's provisional new buys are about $480 for a school with only the K to 2 closet (pinnies, hoops,
-  kicking and dribble balls, rackets, trainer balls, two low nets, ribbons, shuttlecocks, bases, four youth life
-  jackets): grade 3 about $220, grade 4 about $115, grade 5 about $145. Is the per-year PE
-  equipment ceiling of $150 (asked in the K to 2 fix report) right for grades 3 to 5 too? Grade 3 needs about $220
-  of it.
+- Money (decided, Cory 2026-11-26, Desk q-frames-money-1): the band's ceiling is its priced new buys, about $480 for a school with only
+  the K to 2 closet (pinnies, hoops, kicking and dribble balls, rackets, trainer balls, two low nets, ribbons,
+  shuttlecocks, bases, four youth life jackets): grade 3 about $220, grade 4 about $115, grade 5 about $145. The
+  K to 2 band's $150 a year does not cap grades 3 to 5.

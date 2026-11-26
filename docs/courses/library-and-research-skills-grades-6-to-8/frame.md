@@ -351,8 +351,9 @@ which stay reference only; Web Literacy for Student Fact-Checkers, kept for grad
 2. **Load at this dose.** 23 rows in 42 unit days across the band (8, 8 and 7 rows in 14 days a year), against K's 7
    rows in 24. The frame fits it by mixed show-me and practice days, by letting the second and third unit of each
    year end in a course-level check (the after-core rule), and by folding the first unit's respond step into the next
-   unit's opening and the mid-year respond day. Pick: keep Cory's 18 sessions a year. If the reads find a unit short,
-   the fix is two more sessions a year (20, 60 across the band), which is a dose question for Cory, not a frame edit.
+   unit's opening and the mid-year respond day. Decided (Cory 2026-11-26, Desk q-frames-scope-1): keep 18 sessions a year. If the
+   reads find a unit short, the fix is two more sessions a year (20, 60 across the band), a dose question for a later
+   Desk card, not a frame edit.
 3. **After-core check stagger in grades 6 to 8.** The checks sit off every core check week. Pick: settle any clash
    with other after-core courses (for example career exploration's grade 8 mid-year check, week 16) in the one
    calendar pass; this frame's checks move only then.
@@ -361,12 +362,12 @@ which stay reference only; Web Literacy for Student Fact-Checkers, kept for grad
    checks with the ten-minute reteach (lesson 32). Pick: keep; the library grade 5 frame need not change.
 5. **later.csv L103.** Done for every grade, K to 12 (data/plans/later.csv).
 6. **Source map by item.** The Source map places the base by item kind; exact titles, levels, versions and license
-   lines are read when the items are downloaded (For Cory), and source-map.csv then gives each selected item one
+   lines are read when the items are downloaded (download approved, Cory 2026-11-26, Desk q-frames-sources-1), and source-map.csv then gives each selected item one
    receiving unit, with any later use marked review. Pick: as written until the download.
 
-## For Cory
+## Decided by Cory
 
-- **A download, when the scope and sequence starts:** the CC BY 4.0 Civic Online Reasoning items named in the Source
-  map, into S:\CurioClass-sources\library, so each item's license can be re-read and its lesson range placed. Your
-  2026-11-16 yes made them a partial base; the files themselves are not in the source store. Some may need a free
-  sign-in to download; that would be yours to do.
+- **A download, when the scope and sequence starts (approved, Cory 2026-11-26, Desk q-frames-sources-1):** the CC BY 4.0 Civic Online
+  Reasoning items named in the Source map, into S:\CurioClass-sources\library, so each item's license can be re-read
+  and its lesson range placed. Cory's 2026-11-16 yes made them a partial base; the files are not yet in the source
+  store, so the Source map stays provisional until they are loaded. A free sign-in, if one is needed, is Cory's to do.

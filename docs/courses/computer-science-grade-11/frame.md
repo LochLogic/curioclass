@@ -327,6 +327,7 @@ Grade 12's own computer science rows lean on grade 12 English language arts (e12
    (ecology.wa.gov). Each is opened and dated by the unit writer; the Washington recycling law and the data center
    siting and water case are from memory, checked at source by the scope writer before use. The Lawrence Berkeley
    National Laboratory data center energy report stays with grade 8 unit 5's debate and is not used here.
-6. **A download for unit 3 (Cory's call).** The weather station extract is a NOAA Climate Data Online download (free,
-   public, no account for small daily-summary requests as far as known); it is a download, so it waits on Cory's yes.
+6. **A download for unit 3 (approved, Cory 2026-11-26, Desk q-frames-sources-1).** The weather station extract is a NOAA Climate Data
+   Online download (free, public, no account for small daily-summary requests as far as known); unit 3 stays
+   provisional until it is loaded.
    Fallback: an extract invented for practice, marked so.

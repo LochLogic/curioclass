@@ -422,9 +422,8 @@ their own family's culture.
 4. **National standard text.** The second read of 2026-11-25 compared each id with the national text; its
    additions are in units 1, 2, 5, 6, 7, 9, 10 and 12 (2026-11-26).
 5. **Unseen dances and works with no open copy.** As Dance, grades K to 2: every unseen dance is a Curio Class original
-   danced live by the teacher or a written description, and every studied dance is described and linked. Pick: keep
-   it; a filmed set of the unseen phrases would help a teacher with no dance training but needs a dancer and filming
-   (a people and money question for Cory).
-6. **Supplies ceiling (money, for Cory).** Provisional costs: $40 (year 3), $30 (year 4), $25 (year 5) a class of 30,
-   all optional beside a free path. Pick: the same ceiling as Dance, grades K to 2's pick, $50 a class a year, with
-   every unit's free path kept.
+   danced live by the teacher or a written description, and every studied dance is described and linked. Decided
+   (Cory 2026-11-26, Desk q-frames-arts-1): keep teacher-danced step cards, with no filmed set for now.
+6. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $50 a class a year, with every
+   unit's free path kept. Provisional costs: $40 (year 3), $30 (year 4), $25 (year 5) a class of 30, all optional
+   beside a free path.

@@ -234,12 +234,13 @@ following a partner's cards, posing a class question) are practiced here, not ow
    Practices and concept areas." Grades 1 to 12 copy it.
 4. **The partial base edition and store folder.** The units mapped here exist only in the publisher's archived
    edition, no longer maintained; England's current lessons (on Oak National Academy) keep for Year 1 only the three
-   units left out here. Pick: Cory confirms the archived edition as the fixed K to 8 partial base; the lead loads it
+   units left out here. Decided (Cory 2026-11-26, Desk q-frames-sources-1): the archived edition is the fixed K to 8 partial base, and the
+   source map stays provisional until it is loaded; the lead loads it
    from raspberrypi.org/curriculum/archived into S:\CurioClass-sources\teach-computing-curriculum with MANIFEST.csv,
    reads each file's own license line, and fills the BASE-TEXTS.md row's store folder and state; the per-unit
    third-party check runs then. Whether the archive's lesson files need a sign-in is checked when the folder is made;
    an account would be Cory's.
-5. **A picture-block tool for kindergarten to grade 2 (scope, Cory's).** STANDARD.md "Our own editor" starts the
+5. **A picture-block tool for kindergarten to grade 2 (decided, Cory 2026-11-26, Desk q-frames-scope-1: yes, queued with tool work, later.csv).** STANDARD.md "Our own editor" starts the
    editor with grades 3 to 5 (Desk q-prework-open-1); unit 3 here (and grades 1 and 2) uses large picture blocks on a
    grid with a step-through run. Pick: add a kindergarten-to-grade-2 picture-block mode to the editor's build list
    (one file, no account, keyboard-only use, shape and label as well as color). The arrow-card paper path meets every

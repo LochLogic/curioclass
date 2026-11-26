@@ -303,8 +303,8 @@ and explaining a design in writing (units 1 to 3) are practiced here, not owned.
    count as days inside the standards." If the lead rules they count outside, the fallback is the second-model read's
    plan: fold days 29 and 30 into one, days 31 and 32 into one, give the two freed days to HS-ALG-PS-04 practice,
    halve day 61, and keep HS-SOC-HU-43 to a quarter of day 60 (about 4.75 of 50, under 10 percent).
-6. **Question for Cory: entry for a student with no programming.** Course order gives a student who skipped grade 8
+6. **Entry for a student with no programming (decided, Cory 2026-11-26, Desk q-frames-scope-1).** Course order gives a student who skipped grade 8
    a readiness check and worked programs on unit 1's understanding days. A student who took no middle school
-   computer science at all may need more than that. Pick: the scope and sequence budgets the bridge tasks on days 1
-   to 5 and reports whether they are enough; if not, Cory chooses between an added entry provision and a stated
-   prerequisite.
+   computer science at all may need more than that. Decided: the scope and sequence budgets the bridge tasks on days
+   1 to 5 and reports whether they are enough; if not, an added entry provision or a stated prerequisite goes to a
+   later Desk card.

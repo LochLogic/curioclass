@@ -147,7 +147,7 @@ Course `computer-science-grade-12` (catalog id `cs-k12`, key `cs-k12-12`), grade
   error counts of S1-AIN-HR-09 are tallied by hand from a printed test-table. Three things are part met: S1-AIN-HR-09
   asks students to analyze a model they helped create as well as one others made, so a student with no grade 11
   model of their own uses the supplied saved model on unit 1 day 4 and S1-AIN-HR-09 is recorded part met for that
-  student (HS-ALG-PS-05 stays fully claimed; whether grade 12 adds a small model build is Cory's call, For the lead
+  student (HS-ALG-PS-05 stays fully claimed; grade 12 adds no model build day, decided by Cory 2026-11-26, For the lead
   6); the version
   control part of S1-SWD-PP-08 (branch, review, merge) is part met for every class until our editor's offline
   version history exists (Cory, 2026-11-21, Desk q-fix-cs-2), taught on paper branch cards meanwhile; and on the
@@ -323,8 +323,9 @@ or after unit 2, so unit 2 writes its own plain-language summaries and assumes n
 5. **The editor's version history.** S1-SWD-PP-08's version control part stays part met for every class until the
    editor's offline version history is built (Desk q-fix-cs-2). Pick: keep it on the editor's build list ahead of
    grade 12's first teaching year; unit 3 day 6 teaches the idea on paper branch cards meanwhile.
-6. **A model of their own (Cory's call).** S1-AIN-HR-09 asks students to analyze a model they helped create. A student
-   without grade 11 has none, so unit 1 uses a supplied model and records the id part met. Pick: keep it part met;
+6. **A model of their own (decided, Cory 2026-11-26, Desk q-frames-scope-1).** S1-AIN-HR-09 asks students to analyze a model they
+   helped create. A student without grade 11 has none, so unit 1 uses a supplied model and records the id part met.
+   Decided: keep it part met, with no added build day;
    adding a small model build would take a day from the 0.7 left under bar C1 and the row's notes keep building out.
 7. **Adoption bar wording (shared doc).** docs/ADOPTION-BAR-SUBJECTS.md lines 20 and 21 say layer 3 needs an approach
    page and "none exists", though computer science's approach is approved (2026-11-20). Replacement text: "This page

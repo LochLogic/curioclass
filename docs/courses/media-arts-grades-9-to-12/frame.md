@@ -390,9 +390,9 @@ fractions and percent only, taught in earlier grades; no statistics beyond readi
 4. **Level 4 in the calendar.** The band's 640 days spread over four school years in frames.csv, though Level 4 is
    optional and a level is not a grade. Pick: keep, since frame.py needs one year per level, and the course page says
    a school may offer Levels 1 to 3 only (480 days).
-5. **Supplies ceiling (money, for Cory).** Provisional costs a class of 30: $90 (Level 1), $80 (Level 2), $80 (Level
-   3), $60 (Level 4), all optional beside a free path, and no device bought. Pick: a ceiling of $100 a class a level
-   for high school media arts, with every unit's free path kept.
+5. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $100 a class a level, with every
+   unit's free path kept. Provisional costs a class of 30: $90 (Level 1), $80 (Level 2), $80 (Level 3), $60 (Level 4),
+   all optional beside a free path, and no device bought.
 6. **Facts to confirm at the unit plan.** Dates, holders and whether each maker is living are from memory and are
    checked on the holder's own page when the unit plan is written (lesson 23). Verified by the second-model read:
    Kicking the Clouds (the maker's own page, skyhopinka.com/kicking-the-clouds, now in unit 11). Unresolved, each for

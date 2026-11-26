@@ -307,7 +307,8 @@ language arts or social studies. Writing a claim with two views and explaining a
    ends.
 3. **g7-pick-approach.** The row's attendance example is the contract and session 34 uses it, with invented
    whole-class totals; no row change.
-4. **The partial base edition and store folder.** As the pilot's For the lead 4: Cory confirms the archived edition;
+4. **The partial base edition and store folder.** As the pilot's For the lead 4: the archived edition is confirmed and
+   its download approved (Cory 2026-11-26, Desk q-frames-sources-1; provisional until loaded);
    the lead loads key stage 3 (Year 8 "Introduction to Python programming", Year 9 "Python programming with sequences
    of data", Year 8 "Layers of computing systems") into S:\CurioClass-sources\teach-computing-curriculum with
    MANIFEST.csv, reads each file's own license line, and runs the per-unit third-party check. Lesson 5 of the Year 9

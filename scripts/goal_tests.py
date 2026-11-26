@@ -35,7 +35,9 @@ def missing_homes():
     must have all four, so a deleted frame.md or a days.csv with no frame fails (Fable read of 4.L, finding 4).
     A listed course with none of them has not started and is not counted, and neither is one with its frame.md
     alone: a framed course gets its scope, days and ledger when its course run starts (2026-11-25, all 117 frames
-    written before any after-core run)."""
+    written before any after-core run). A course at the scope stage (frame, scope and days.csv, but no unit plan
+    s<nn>.md and no course folder yet) owes no ledger: the ledger opens with its first unit plan (2026-11-26, the 20
+    arts scopes were written before any arts run)."""
     import csv
     with open(ROOT / 'data' / 'plans' / 'course-list.csv', encoding='utf-8', newline='') as f:
         ids = [r['id'] for r in csv.DictReader(f)]
@@ -43,7 +45,9 @@ def missing_homes():
     for c in ids:
         have = [h for h in HOMES if (ROOT / h.format(c=c)).exists()]
         if have and have != [HOMES[0]]:
-            out += [h.format(c=c) for h in HOMES if h not in have]
+            scope_stage = (not list((ROOT / 'docs' / 'courses' / c).glob('s[0-9][0-9].md'))
+                           and not (ROOT / 'courses' / c).exists())
+            out += [h.format(c=c) for h in HOMES if h not in have and not (scope_stage and h == HOMES[3])]
     return out
 
 

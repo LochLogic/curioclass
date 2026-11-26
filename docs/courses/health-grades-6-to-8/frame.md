@@ -463,7 +463,7 @@ comparing two given figures, all taught in math by the unit that uses them or ea
 
 ## For the lead
 
-1. **Dose (pick: 48 lessons a year of 45 minutes, three every two weeks).** APPROACH.md says about 45; 48 gives a
+1. **Dose (decided, Cory 2026-11-26, Desk q-frames-scope-1: 48 lessons a year of 45 minutes, three every two weeks).** APPROACH.md says about 45; 48 gives a
    fixed rhythm a school can timetable and puts the checks on weeks 17 and 32. A school that adds time (the
    national figure is 80 hours a year; this is 36) adds lessons to extend units, never a new unit.
 2. **After-core checks (settled 2026-11-26).** Health's mid-year check stays on school day 84 (week 17) in each
@@ -488,5 +488,5 @@ comparing two given figures, all taught in math by the unit that uses them or ea
    browser check; the safety read opens them in Claude in Chrome.
 8. **Survey figures.** Units 4, 12 and 25 name the national youth tobacco survey and a national survey of grade 8
    students; the expert read enters each figure with its source and latest year. No download or sign-in is needed.
-9. **Supplies ceiling (money, Cory's).** Grade 6 $30, grade 7 $31 ($46 with a bought helmet), grade 8 $39 for a
-   class of 30. Pick: $40 a year for a class of 30, with the optional helmet outside it.
+9. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $40 a year for a class of 30, with the optional
+   helmet outside it. Grade 6 $30, grade 7 $31 ($46 with a bought helmet), grade 8 $39 for a class of 30.

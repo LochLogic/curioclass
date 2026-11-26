@@ -393,6 +393,6 @@ it uses itself. No lean either way.
 4. **MU:Pr6.1.8a's words line.** The national standard includes culturally authentic practice (confirmed from the
    national handbook in the second-model read, 2026-11-25); unit 12 meets it with practice taken from a named
    community source, and that work-specific source check stays at the unit plan.
-5. **Supplies ceiling (money, for Cory).** Provisional costs: $35 (year 6), $20 (year 7), $20 (year 8) a class of 30,
-   all optional beside a free path. Pick: the same ceiling the arts K to 2 frames propose ($75 a class a year), with
-   every unit's free path kept.
+5. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $75 a class a year, with every
+   unit's free path kept. Provisional costs: $35 (year 6), $20 (year 7), $20 (year 8) a class of 30, all optional
+   beside a free path.

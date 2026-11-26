@@ -420,7 +420,7 @@ baseline look moves with the drill into the neighbor's opener.
    the frame's "What it checks": as the table above. `frame.py calendar` is unaffected (same days and weeks).
 2. **Frame For the lead items 1 to 6 are unchanged here.** The after-core week sharing (item 1) and the arts
    discipline key in the stagger check (item 2) are the calendar pass's; the VA:Re7.1.Ka words line (item 3), the
-   stale bar row (item 4), the time figures (item 5) and the supplies ceiling for Cory (item 6) are untouched.
+   stale bar row (item 4), the time figures (item 5) are untouched; the supplies ceiling (item 6) is decided at $75 a class a year (Cory approved 2026-11-26, Desk q-frames-money-1).
 3. **Year 1 mid-year check and paint.** The frame's "fresh print task" sits on a check day, which the frame keeps
    free of paint; this scope uses crayon rubbing over found objects or dry stamp pads. If the lead prefers wet prints,
    the frame's check-day rule needs a line.

@@ -365,11 +365,11 @@ domain archives, never by role play.
 4. **Paper path meets the tool, polish and platform ids (item-level, decided).** As the K to 2 media arts frame's
    item 5: "media tool" is read as anything that frames, captures, orders, plays or shows pictures and sound, so a
    device-free class meets MA:Pr5.1.6c to 8c and MA:Cr3.1.8b in full on paper or live, and MA:Cn11.1.7b and 8b
-   (social platforms, virtual worlds) through invented case cards with no account. If the lead or Cory wants the
-   technical-quality id met only on a device, the course needs one shared device per team of five or six, which is
-   a cost question.
-5. **Supplies ceiling (money, for Cory).** Provisional costs: $40 (year 6), $40 (year 7), $45 (year 8) a class of 30,
-   all optional beside a free path. Pick: the same ceiling as the visual arts pilot's pick, $75 a class a year.
+   (social platforms, virtual worlds) through invented case cards with no account. The paper path is the standard;
+   a shared device per team is welcome but never required (decided, Cory 2026-11-26, Desk q-frames-arts-1).
+5. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $75 a class a year, with every
+   unit's free path kept. Provisional costs: $40 (year 6), $40 (year 7), $45 (year 8) a class of 30, all optional
+   beside a free path.
 6. **Works to confirm at source.** Several picks rest on memory for dates and holding pages (Kunuk's Qaggiq, 1989,
    and its holding page; Starevich's The Grasshopper and the Ant, 1913; the Frenkel brothers' Mafish Fayda, about
    1936; Lye's A Color Box, 1935; Edgerton's Milk Drop Coronet, 1957; Guy-Blaché's Falling Leaves, 1912, verified

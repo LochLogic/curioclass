@@ -349,10 +349,10 @@ writing (the investigation summary, the verdicts) and reading supplied sources a
 6. **Now true (landed 2026-11-26).** All 13 computer science frames exist. The g7-collab-text to g8-text-project link
    and the design-for-all wording are in data/progressions/computer-science.csv; the grade 7 frame's Handed on table
    cites this frame's units. The data center energy debate stays here; grade 11 unit 6 opens it as retrieval.
-7. **Question for Cory: PS-05 with saved outputs.** The published boundary for MS-ALG-PS-05 lets students who may not
+7. **PS-05 with saved outputs (decided).** The published boundary for MS-ALG-PS-05 lets students who may not
    use generated-text tools validate teacher-generated output. STANDARD.md "Generated-text tools" marks the id "part
-   met" when a school has no approved tool. Pick: keep the rule as it stands until Cory decides; if Cory allows it,
-   the replacement line for STANDARD.md would read "A school with no approved tool meets MS-ALG-PS-05 in full with
+   met" when a school has no approved tool. Decided (Cory 2026-11-26, Desk q-frames-scope-1): keep the rule; MS-ALG-PS-05 stays
+   part met for now. If that changes later, the replacement line for STANDARD.md would read "A school with no approved tool meets MS-ALG-PS-05 in full with
    Curio Class's saved, dated outputs, each labeled as generated, when each student validates them against the
    problem; no student uses a live tool."
 

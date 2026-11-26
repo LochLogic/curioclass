@@ -384,9 +384,9 @@ two-minute limit of unit 1 is kept on the teacher's timer as a pace cue, and no 
    out the course. No change asked; noted so the course page wording matches.
 5. **Row notes.** The twelve grade 3 to 5 notes expanded on 2026-11-25, and the actor, notice and show notes of each
    grade, were aligned on 2026-11-26 with the id-by-id evidence lines; the frame's evidence lines govern.
-6. **Supplies ceiling (money, for Cory).** Provisional costs: $35 (year 3), $40 (year 4), $30 (year 5) a class of 30,
-   all optional beside a free path. Pick: a ceiling of $40 a class a year for 3 to 5 theater, with every unit's
-   free path kept.
+6. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $40 a class a year, with every
+   unit's free path kept. Provisional costs: $35 (year 3), $40 (year 4), $30 (year 5) a class of 30, all optional
+   beside a free path.
 7. **Sensitivity choices made here.** Three item-level calls, each read first by the sensitivity agent: unit 7 tells
    the old Peter Pan stereotype only in Larissa FastHorse's own words and shows no old images; unit 11 studies
    Laedza Batanani's village plays (Kamiriithu and its closing moved to theater 6 to 8 unit 8, where older students

@@ -78,7 +78,9 @@ Course `theater-grades-6-to-8` (catalog id `theater-6-8`), a band course for gra
   (Kenya), the Americas (a Native American company of Kuna and Rappahannock founders; Chicago; New York), Asia (India,
   Japan) and Europe (Russia, the United Kingdom); year 8 Africa (South Africa), the Americas (Brazil; a Native
   American playwrights' company; the United States), Asia (China), Europe (England, Ireland's Sheridan on the London
-  stage, Russia) and Oceania (an Aboriginal and Torres Strait Islander company); living makers in every year.
+  stage, Russia) and Oceania (an Aboriginal and Torres Strait Islander company); living makers in every year. The two
+  Japan picks (designer Eiko Ishioka in unit 3, kabuki in unit 7) are kept, since Ishioka is a designer, not a form
+  (decided, Cory 2026-11-26, Desk q-frames-arts-1).
   Checked against every lower theater band (K to 2 and 3 to 5), 2026-11-26: no work repeats. Three makers or forms
   return on purpose, each named in its unit as a revisit with a new job: commedia dell'arte (grades 3 to 5 unit 1,
   Scala's improvised scenarios; here unit 2, Goldoni's written comedy), Stanislavski and Spolin (grades 3 to 5 units 5
@@ -406,6 +408,6 @@ No unit uses number work beyond counting beats and minutes (lesson 13).
    ELA grade 9 reads.
 6. **Leave-out and play-acting.** As theater K to 2: every unit is play-acting, so leaving out play-acting leaves out
    the course; the course page says so. No change asked.
-7. **Supplies ceiling (money, for Cory).** Provisional costs: $45 (year 6), $30 (year 7), $30 (year 8) a class of 30,
-   all optional beside a free path. Pick: a ceiling of $45 a class a year for grades 6 to 8 theater, with every
-   unit's free path kept.
+7. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $45 a class a year, with every
+   unit's free path kept. Provisional costs: $45 (year 6), $30 (year 7), $30 (year 8) a class of 30, all optional
+   beside a free path.

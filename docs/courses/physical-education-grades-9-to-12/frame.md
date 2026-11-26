@@ -125,8 +125,9 @@ year (9, 10, 11, 12); grades 9 and 10 stand for the review tool's level 1 and gr
   no PE equipment at all: shown in each unit's last column. Counted from nothing: a high school building does not share the
   elementary closet. Across the band about $740 (grade 9 about $535, grade 10 about $185, grade 11 $0, grade 12 about
   $20), summed from the unit cells; unit 10's optional compasses add about $120. Almost all of it is reusable gear a PE
-  closet usually holds, so a school with an ordinary PE closet spends little. The low-equipment path's listed buys and the Required access items are provisional,
-  so the path is not promised at no cost (For Cory).
+  closet usually holds, so a school with an ordinary PE closet spends little. Ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1): about
+  $740 across the band from nothing, as priced here. The low-equipment path's listed buys and the Required access
+  items stay provisional until the unit plans price them, so the path is not promised at no cost.
 - **Devices.** None per student. One shared teacher device is optional: it shows cue pictures or a short skill video,
   runs an interval timer and plays music for dance and aerobic days (units 1, 5, 12, 17). One owned code needs
   technology: SHAPE.S2.12.15 (unit 8), where the student examines and uses a technology that supports an active life.
@@ -412,7 +413,8 @@ own setting and SEL opens with it.
    on 2026-11-25 (IOC history, National Football Museum, ActiveSG, Library of Dance); the 1863 claim now reads "the
    association's rules were codified in 1863". Browser checks, only for pages that refused: Singapore's heritage page
    on sepak takraw (bot check) and the English Football Association's history page (timed out). Unit 5's Virginia reel,
-   a third use across PE, is replaced by bhangra's basic steps (Punjab), named from memory: it needs the sensitivity
+   a third use across PE, is replaced by bhangra's basic steps (Punjab), named from memory. Cory confirmed the pick
+   (Cory 2026-11-26, Desk q-frames-arts-1); it still needs the sensitivity
    confirm at a Punjabi or Indian cultural institution's page before unit 5's plan names it. The safety guide links
    were opened by the K to 2 frame writer on 2026-11-25 and are reused here.
 4. **A choice each term.** g10-choose-active-apply says "picks and tries a different activity each term". The fix pass
@@ -425,15 +427,15 @@ own setting and SEL opens with it.
    unit 12's Ends now name a task for S4.12.7, S4.12.8 and S4.12.9 and a separate S3 mark. Unit 12 now owns nine
    indicators, all S4, in one plan.
 6. **Money.** The cost line now sums its cells: about $740 from nothing, $535 of it in grade 9, plus $120 of optional
-   compasses (the old $780 counted part of them). The question is in For Cory.
+   compasses (the old $780 counted part of them). Approved as the band's ceiling (Cory 2026-11-26, Desk q-frames-money-1).
 7. **Cross-subject leans are old.** All three leans point to grades 6 and 8. Physics (grade 11) and biology (grade 9)
    teach force and body systems at high school level; a lean on them is not needed, so no lean change is asked.
 8. **Row change applied in the fix pass.** g9-exercise-principles now applies the principles to two contrasting
    activities (the indicator asks for several self-selected activities).
 
-## For Cory
+## Decided by Cory
 
-- Money: the band's provisional new buys from nothing are about $740 (grade 9 about $535, grade 10 about $185, grade 11
-  $0, grade 12 about $20), plus $120 of optional compasses. Grade 9 is over the $150 a year PE ceiling already asked of
-  you in the K to 2 fix report; at that ceiling grade 9 leans on the school's closet or the low-equipment path (beach
-  balls, cardboard boards, body weight). Is the ceiling per year, per band, or per building?
+- Money (decided, Cory 2026-11-26, Desk q-frames-money-1): the band's ceiling is its priced new buys from nothing, about $740 (grade 9
+  about $535, grade 10 about $185, grade 11 $0, grade 12 about $20), plus $120 of optional compasses. The K to 2
+  band's $150 a year does not cap grades 9 to 12; a school short of it still has the closet or the low-equipment
+  path (beach balls, cardboard boards, body weight).

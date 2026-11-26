@@ -316,8 +316,9 @@ two views of a case are practiced here, not owned.
    value is reached; a temporary "show value" or sound block for debugging; comments shown in the text view; and a way
    to paste one saved program's blocks into another (the remix and the team assembly), all in one file with no
    account. A separate small model-training tool with a drawing pad and on-device training is also asked (unit 4);
-   until it exists, E5-ALG-ML-02 is met only on the paper path, marked part met. Whether Curio Class builds a training
-   tool is a scope call (Cory's); my pick is yes, small and on-device, since grades 4, 5 and 6 rows all lean on one.
+   until it exists, E5-ALG-ML-02 is met only on the paper path, marked part met. Decided (Cory 2026-11-26, Desk q-frames-scope-1):
+   Curio Class builds it, small and on-device, as a mode of our own editor, queued with tool work (later.csv), since
+   grades 4, 5 and 6 rows all lean on one.
 4. **Source list.** docs/APPROACH-SOURCES.md, beside the pilot's entries: the archived key stage 2 Year 6 unit pages
    (raspberrypi.org/curriculum/archived/key-stage-2), with the four mapped unit pages (Communication and collaboration,
    Variables in games, Introduction to spreadsheets, Sensing movement), the National Association of the Deaf's captioning pages, the

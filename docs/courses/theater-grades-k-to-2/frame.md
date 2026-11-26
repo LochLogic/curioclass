@@ -336,6 +336,6 @@ measuring or money (lesson 13); unit 7's pretend market uses play coins as props
 4. **Row notes.** The twelve notes expanded on 2026-11-25, and th-k-actor, th-k-notice, th-g1-show, th-g2-actor,
    th-g2-show and th-g2-notice, were aligned on 2026-11-26 with the id-by-id evidence lines; the frame's evidence
    lines govern.
-5. **Supplies ceiling (money, for Cory).** Provisional costs: $40 (year K), $30 (year 1), $35 (year 2) a class of 30,
-   all optional beside a free path. Pick: a ceiling of $40 a class a year for K to 2 theater, with every unit's free
-   path kept.
+5. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $40 a class a year, with every
+   unit's free path kept. Provisional costs: $40 (year K), $30 (year 1), $35 (year 2) a class of 30, all optional
+   beside a free path.

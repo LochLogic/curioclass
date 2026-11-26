@@ -420,9 +420,11 @@ and 3 mathematics teach) and ticking a four-week log; no percent, rate, serving 
    it, with muscle-strengthening and bone-strengthening at least three days a week".
 7. **Puberty in two lessons (grade 4 unit 14).** Two 30-minute lessons for body changes, hygiene and who to ask is
    thin. Pick: keep two (the rows' load, and it returns in unit 21); a school may add a lesson, and the unit plan
-   names what that lesson holds.
-8. **Supplies ceiling (money, Cory's).** Grade 3 $18, grade 4 $20, grade 5 $20 in printing; the optional snack day
-   is the school's own food cost. Pick: the same $30 a year for a class of 30 as the K to 2 pick.
+   names what that lesson holds. Timing (decided, Cory 2026-11-26, Desk q-frames-scope-1): unit 14 cannot promise puberty teaching
+   before changes begin, so no grade 3 content is added; a family note goes home before unit 14, and the school
+   offers a private nurse or counselor route.
+8. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $30 a year for a class of 30, as in K to 2. Grade 3
+   $18, grade 4 $20, grade 5 $20 in printing; the optional snack day is the school's own food cost.
 9. **Owed before the scope and sequence.** Each grade's unit planner reads the HECAT 2021 modules its units use, 3-5
    span (STANDARD.md section 3); no download or sign-in is needed (CDC pages are free). No page was fetched for this
    frame, so no browser check is listed; the links in Safety and Sensitivity reads are named from memory and opened

@@ -61,7 +61,7 @@ Course `library-and-research-skills-grades-9-to-12` (catalog id `library-9-12`),
   named platform replaced by a generic kind. Where they would fit, ours: the lateral reading lessons in units 1 and 4,
   news versus opinion, sponsored results and checking photos, video and data in units 4 and 5, the book's four moves
   (previous work, go upstream, read laterally, check your own feeling about a claim) as teacher background for units 1
-  and 5. No source map is written now, since no item is in the source store (For Cory, item 1). Curio Class writes, per
+  and 5. No source map is written now, since no item is in the source store yet (download approved, Decided by Cory, item 1). Curio Class writes, per
   unit, the invented source sets, invented search and database results pages, invented sites and their "other tabs"
   sheets, dated captures, the skill cards, the research notebook pages and every check.
 - **Host tasks.** Every unit runs its cycle on a host task from a core course of the same grade, named by row id for
@@ -347,8 +347,9 @@ it when the host is not in step.
 6. **US Copyright Office link.** The Sensitivity reads bullet names its fair use index for the `rights` read; the page
    was not opened for this frame. Pick: the first `rights` read opens it and records it in docs/APPROACH-SOURCES.md.
 
-For Cory:
+Decided by Cory:
 
-1. **The partial bases are not in the source store.** The CC BY online-reasoning lessons and the open web-literacy
-   book (STANDARD.md section 3) would need a download into S:\CurioClass-sources\library before any day adapts them
-   and before a source map can be written. Your yes is needed for the download.
+1. **The partial bases are not in the source store (download approved, Cory 2026-11-26, Desk q-frames-sources-1).** The CC BY
+   online-reasoning lessons and the open web-literacy book (STANDARD.md section 3) are downloaded into
+   S:\CurioClass-sources\library before any day adapts them and before a source map is written; the frame stays
+   provisional until they are loaded.

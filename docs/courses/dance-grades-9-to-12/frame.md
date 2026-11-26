@@ -53,7 +53,7 @@ Course `dance-grades-9-to-12` (catalog id `dance-9-12`), the high school band of
   assessed in its own level. Level 4 owns no id: it assesses the Level 3 `.IIIa` ids again on new, self-directed work
   (the rows' `~` codes, owned in Level 3). Advanced is claimed by assessed work, not by finishing Level 3. Level 4 reassesses the 11 Advanced
   ids listed in its units; an unmet Advanced id is completed only when new evidence shows its full action, and taking
-  or finishing Level 4 does not establish it (the scope of that promise is a question for Cory, For the lead 10). No grade 8 id is claimed (the bridge teaches grade 8
+  or finishing Level 4 does not establish it (that promise covers these 11 ids only, decided by Cory 2026-11-26, For the lead 10). No grade 8 id is claimed (the bridge teaches grade 8
   techniques and words as readiness only). Every level touches all four artistic processes (creating, performing,
   responding, connecting; bar criterion 1). In the Units table the C3 column is headed "Processes, anchors and works":
   the processes and anchor standards the unit works on, and the dances it studies. Each id's action was checked
@@ -438,10 +438,10 @@ itself (bar criterion 7). No math beyond counts of eight and beats is used (less
    ("says something") and "stated idea" step belong to dance; physical education can keep the phrase as a movement
    problem. A stale line near the end of that frame still says the dance 9 to 12 frame is not written.
 7. **Level 4 has no short path.** STANDARD.md 3.2 sets the 80-day path for Levels 1 to 3 only; Level 4 runs a full
-   year. Pick: keep it so; a school that wants a semester Level 4 is a scope question for Cory if one asks.
-8. **Supplies ceiling (money, for Cory).** Provisional costs: $55 (Level 1), $55 (Level 2), $60 (Level 3), $50 (Level
-   4) a class of 30, all optional beside a free path. Pick: a ceiling of $75 a class a level for 9 to 12 dance, the
-   figure the visual arts K to 2 pilot picked, with every unit's free path kept.
+   year. Decided (Cory 2026-11-26, Desk q-frames-arts-1): Level 4 has no short path.
+8. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $75 a class a level, with every
+   unit's free path kept. Provisional costs: $55 (Level 1), $55 (Level 2), $60 (Level 3), $50 (Level 4) a class of 30,
+   all optional beside a free path.
 9. **Range across the dance bands.** The bridge now shows Ella Lola's 1898 film, used in no other frame; the K to 2
    Annabelle film is not shown again. Named returns: the serpentine dance (Fuller, unit 10), Swan Lake (Masilo, unit
    13), the École des Sables (unit 9). Makers that come back with a different work: Lin Hwai-min (Moon Water here, Cursive below),
@@ -449,8 +449,7 @@ itself (bar criterion 7). No math beyond counts of eight and beats is used (less
    Dance Theatre of Harlem, and The Rite of Spring (Shen Wei's version below; Nijinsky's and Bausch's here). Pick:
    keep them, since a high school student meets a known maker again at depth; the lead's seam read checks the bands
    once all are final. Native American work here: Emily Johnson (Yup'ik), unit 4.
-10. **Level 4 recovery scope (for Cory).** Level 4 reassesses 11 of the 21 Advanced ids; the other ten
+10. **Level 4 recovery scope (decided, Cory 2026-11-26, Desk q-frames-arts-1).** Level 4 reassesses 11 of the 21 Advanced ids; the other ten
    (DA:Cr1.1.IIIb, DA:Cr2.1.IIIb, DA:Cr3.1.IIIb, DA:Pr4.1.IIIb, DA:Pr4.1.IIIc, DA:Pr5.1.IIIb, DA:Pr5.1.IIIc,
-   DA:Pr6.1.IIIb, DA:Re7.1.IIIb, DA:Cn10.1.IIIb) have no recovery route. Pick: keep the limited promise the Standard
-   bullet now states; if Cory wants all 21, creating recovery goes in unit 16, responding in 17, performing in 18 and
-   the career capstone in 19, with matching `~` references.
+   DA:Pr6.1.IIIb, DA:Re7.1.IIIb, DA:Cn10.1.IIIb) have no recovery route. Decided: Level 4 recovery covers the 11
+   Advanced ids only, the limited promise the Standard bullet states.

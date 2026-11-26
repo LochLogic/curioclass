@@ -331,5 +331,6 @@ kindergarten and grade 1 mathematics teach well before. Speaking and listening a
    SEL adds them.
 7. **Browser check.** The NHTSA car seat page and the federal Poison Help page returned 403 to the reader's fetcher.
 8. **Body names (L89).** Unit 1 day 3 and its family note are marked for the person's read before publishing.
-9. **Supplies ceiling (money, Cory's).** Kindergarten $14 in printing, $44 with the optional tasting and a bought
-   helmet; grade 1 $17; grade 2 $16. Pick: $30 a year for a class of 30, with the two optional purchases outside it.
+9. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $30 a year for a class of 30, with the two optional
+   purchases outside it. Kindergarten $14 in printing, $44 with the optional tasting and a bought helmet; grade 1
+   $17; grade 2 $16.

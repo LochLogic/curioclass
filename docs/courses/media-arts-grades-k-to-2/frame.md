@@ -349,8 +349,8 @@ are not core, so nothing here assumes them.
    stagger_key (lead, 2026-11-25), so the clashes in item 3 are reported; the lead's remaining task is resolving them.
 5. **Paper path meets the capture and tool ids (item-level, decided).** I read "media tool" as anything that
    frames, captures, orders, plays or shows pictures and sound, so a device-free class meets MA:Cr3.1.Ka, MA:Pr5.1.*
-   and MA:Pr5.1.2c (recording) in full on paper (a drawn frame, a sound score). If the lead or Cory wants recording
-   ids met only on a device, the course needs one shared device per group of five, which is a cost question.
-6. **Supplies ceiling (money, for Cory).** Provisional costs: $35 (year K), $30 (year 1), $40 (year 2) a class of
-   30, all optional beside a free path. Pick: the same ceiling as the visual arts pilot's pick, $75 a class a year,
-   with every unit's free path kept.
+   and MA:Pr5.1.2c (recording) in full on paper (a drawn frame, a sound score). The paper path is the standard; a
+   shared device is welcome but never required (decided, Cory 2026-11-26, Desk q-frames-arts-1).
+6. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $75 a class a year, with every
+   unit's free path kept. Provisional costs: $35 (year K), $30 (year 1), $40 (year 2) a class of 30, all optional
+   beside a free path.

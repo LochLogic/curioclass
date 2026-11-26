@@ -365,9 +365,8 @@ to explain their own family's culture.
    only (docs/reviews/frame-visual-arts-dance-fixes-2026-11-26.md).
 4. **Unseen dances and works with no open copy.** Dance has few open recordings, so every unseen dance is a Curio
    Class original danced live by the teacher from a picture step card, and most studied dances are described and
-   linked. Pick: keep live teacher-danced originals and written descriptions (APPROACH "Scoring creative work"); a
-   filmed set of the 24 or so unseen phrases would help a teacher with no dance training, but needs a dancer and
-   filming (a people and money question for Cory).
-5. **Supplies ceiling (money, for Cory).** Provisional costs: $45 (year K), $30 (year 1), $25 (year 2) a class of 30,
-   all optional beside a free path. Pick: a ceiling of $50 a class a year for K to 2 dance, with every unit's free
-   path kept.
+   linked. Decided (Cory 2026-11-26, Desk q-frames-arts-1): keep live teacher-danced originals from step cards and written
+   descriptions (APPROACH "Scoring creative work"), with no filmed set for now.
+5. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $50 a class a year, with every
+   unit's free path kept. Provisional costs: $45 (year K), $30 (year 1), $25 (year 2) a class of 30, all optional
+   beside a free path.

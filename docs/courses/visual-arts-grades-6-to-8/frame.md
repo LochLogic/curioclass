@@ -344,6 +344,6 @@ judgment of unit 7 (W.7.1). Units 4, 5, 8 and 12 use social studies' sourcing ha
    calendar pass over all after-core frames.
 2. **STANDARD.md 3.4.** Its Pending row for visual arts 6 to 8 can be filled from the middle school checklist as read
    on 2026-11-25: no weekly minimum in minutes, several scheduling patterns allowed, so no gap.
-3. **Supplies ceiling (money, for Cory).** Provisional costs: $60 (year 6), $70 (year 7), $100 (year 8) a class of
-   30, all optional beside a free path; year 8's print unit carries brayers and block ink. Pick: a ceiling of $100 a
-   class a year for 6 to 8 visual arts, with every unit's free path kept.
+3. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $100 a class a year, with every
+   unit's free path kept. Provisional costs: $60 (year 6), $70 (year 7), $100 (year 8) a class of 30, all optional
+   beside a free path; year 8's print unit carries brayers and block ink.

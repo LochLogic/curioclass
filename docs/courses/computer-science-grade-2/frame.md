@@ -285,7 +285,7 @@ saying why a rule is fair) are practiced here, not owned.
    "Connecting computers" lessons 4 to 6 in its unit 1 (networks) and "Branching databases" lessons 3 and 4 in its
    unit 2 (the yes or no split as the first choice), and leaves Branching databases lessons 5 and 6 out.
 3. **The picture-block editor's repeat.** Pilot For the lead 5 asks for a kindergarten-to-grade-2 picture-block mode
-   (scope, Cory's). Grade 2 adds two needs to that ask: an event block and a repeat block whose step-through run counts
+   (decided, Cory 2026-11-26, Desk q-frames-scope-1: queued with tool work, later.csv). Grade 2 adds two needs to that ask: an event block and a repeat block whose step-through run counts
    each pass. The paper path meets every grade 2 id in full, so the course does not wait on it.
 4. **Source list.** docs/APPROACH-SOURCES.md, beside the pilot's entries: the Computer History Museum's "The
    Versatile, Venerable Abacus" (computerhistory.org/revolution/calculators/1/1), the Smithsonian National Museum of

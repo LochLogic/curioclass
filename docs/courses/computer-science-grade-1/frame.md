@@ -273,15 +273,17 @@ weather and plant examples of unit 3 session 1 and unit 4 are everyday ones and 
    g1-two-kinds-data); the frame's text matches the rows.
 3. **The picture-block tool's event block.** The kindergarten frame's For the lead 5 asks for a kindergarten to grade 2
    picture-block mode. Grade 1 needs one more block in it: a "when tapped, start" event block, with nothing running
-   until the tap, and a step-through run that shows the tap first. Pick: add it to that same build-list line. The
+   until the tap, and a step-through run that shows the tap first. Pick: add it to that same build-list line (the
+   mode is queued with tool work, later.csv; Cory 2026-11-26, Desk q-frames-scope-1). The
    block-card paper path meets every grade 1 id in full, so the course does not wait on it.
 4. **Base units offered by the kindergarten frame.** Kindergarten offered its archived Year 1 "Programming animations"
    unit and "Technology around us" lessons 3 to 5 (mouse and keyboard skills) to this frame. Decided here: neither is
    used. Year 2 "Programming quizzes" carries the event program at the grade 1 age, and mouse and keyboard handling
    has no E1 id (E1-SYS-HW-11 asks for names and purposes, which unit 1 teaches); both stay left out.
 5. **Partial base edition and store folder.** As the kindergarten frame's For the lead 4: the Year 2 units mapped here
-   exist in the archived edition; the store folder, each file's license line and the per-unit third-party check wait
-   on it.
+   exist in the archived edition (the fixed partial base, download approved, Cory 2026-11-26, Desk q-frames-sources-1); the store
+   folder, each file's license line and the per-unit third-party check wait on it, and the source map stays
+   provisional until it is loaded.
 6. **Device share in kindergarten to grade 3 (APPROACH.md Pacing, the lead's wording).** Grades K to 2 spend more
    of the year away from a device than APPROACH.md's "about two thirds", and grade 3 a little less of it on a device
    than "about half", so all four sit below APPROACH.md's device share. Proposed line for APPROACH.md Pacing, after the share

@@ -330,9 +330,9 @@ words and the settings they use themselves, on setting and work cards (bar crite
 2. **Works shared with media arts.** The Lakota winter count (here unit 4, media arts 3 to 5 unit 12) and Lewis Hine's
    photographs (here unit 12, grade 5; media arts 6 to 8 unit 4, grade 6) are named in both as links; the lead picks
    in the calendar pass whether media arts swaps either.
-3. **Supplies ceiling (money, for Cory).** Provisional costs: $60 (year 3), $50 (year 4), $50 (year 5) a class of 30,
-   all optional beside a free path. Pick: the same $75 a class a year as the K to 2 frame's pick, with every unit's
-   free path kept.
+3. **Supplies ceiling (decided, Cory 2026-11-26, Desk q-frames-money-1).** Ceiling $75 a class a year, with every
+   unit's free path kept. Provisional costs: $60 (year 3), $50 (year 4), $50 (year 5) a class of 30, all optional
+   beside a free path.
 4. **Facts the unit plans confirm at source.** Several works are named from memory and not opened for this frame
    (no downloads or page reads were made): Bearden's The Block at the Met, Catlett's Sharecropper at the Art
    Institute of Chicago, D.Y. Begay's holding page, El-Salahi's holding page, the Chicano Park start date, the Iznik
