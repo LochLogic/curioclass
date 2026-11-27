@@ -655,39 +655,36 @@ s02-X75,All pufferfish have long spines.,,,A,Locate a detail and explain its con
 s02-X75,The familys are different.,,,N,Compare it with a reference and record the correction.
 s02-X75,Some porcupinefish have longer spines. The families are different.,,,L,"Add its title, author and location."
 s02-R71-purpose,Eli is the speaker.,,,AG,Connect the line of speech to what changes in the scene.
-s03-X81,The page has a timeline.,,,AF,Use the matching register repair.
+s03-X81,The page has a timeline.,,,AF,Observed response misses this task: The 1819 and 1823 rows show that parts were usable before the whole canal opened. They add specific stages and dates.
 s03-R81-gist,The timeline.,,,D,Use the matching register repair.
 s03-X82,The ocean ceremony made workers finish the canal.,,,C,Use the matching register repair.
 s03-R82-display,It says October and November.,,,AG,Use the matching register repair.
-s03-X83,Everyone gained equally.,,,R,Use the matching register repair.
-s03-X83,Sellers already kept more money.,,,B,Use the matching register repair.
+s03-X83,Everyone gained equally.,,,R,Observed response misses this task: Sellers or buyers might benefit from cheaper shipping. Canal workers faced illness or accidents.
+s03-X83,Sellers already kept more money.,,,B,Observed response misses this task: Sellers or buyers might benefit from cheaper shipping. Canal workers faced illness or accidents.
 s03-X84,How much would farmers pay to ship apples?,,,J,Use the matching register repair.
 s03-R84-category,"Farm prices, for a question about structures needed.",,,J,Use the matching register repair.
 s03-X85,Herculean means striking with a club.,,,X,Use the matching register repair.
 s03-R85-theme,I like stories about lions.,,,E,Use the matching register repair.
 s03-X87,It settles every Nation's land case.,,,C,Use the matching register repair.
 s03-R87-idea,The canal.,,,D,Use the matching register repair.
-s03-X88,Reported event: a court found the original takings lawful.,,,C,Use the matching register repair.
+s03-X88,A court found the original takings lawful.,,,C,Observed response misses this task: A later Onondaga case was dismissed without a trial of the facts. Accept another accurately copied reported event in the excerpt.
 s03-X89,Hall says instead and the history says later.,,,AG,Use the matching register repair.
 s03-R89-source,Hall saw the crews digging.,,,AH,Use the matching register repair.
 s03-X90,Hall discusses trade. The history discusses workers.,,,AD,Use the matching register repair.
 s03-R90-question,What is your favorite boat?,,,M,Use the matching register repair.
 s03-P89-decode,Guesses obstacle from the sentence without reading obstruction.,,,Q,Use the matching register repair.
 s03-P89-dictation,Leaves an uncertain spelling unchecked.,,,Y,Use the matching register repair.
-s03-X92,Holding the stake follows the direction.,,,AI,Use the matching register repair.
-s03-X93,He is nice.,,,F,Use the matching register repair.
-s03-X93,He set a block beside the boat.,,,G,Use the matching register repair.
-s03-X94,It is a nice place.,,,F,Use the matching register repair.
-s03-X94,She catches it with.,,,U,Use the matching register repair.
+s03-X92,Holding the stake follows the stage direction.,,,AI,Observed response misses this task: In the script Ben takes his hand off the stake and picks up the boat. In the performance he keeps holding the stake.
+s03-X93,He is nice.,,,F,Observed response misses this task: Ben realizes Ada was thinking about the start of the journey. He stops counting trips until he knows what the blocks mean and sets only one block beside the boat. Accept a supported description of that response.
+s03-X94,It is a nice place.,,,F,"Observed response misses this task: The gust lifts a corner of the map, so Ada catches it."
 s03-X95,The script and the reading give Ben the same number of apples.,,,AI,Use the matching register repair.
 s03-C95-ownership,There map remains beside the basket.,,,V,Use the matching register repair.
-s03-X96,They want the canal.,,,H,Use the matching register repair.
-s03-X96,Toll payments already paid the debt.,,,B,Use the matching register repair.
-s03-X97,One text has a map. One has a homeland.,,,AD,Use the matching register repair.
-s03-X97,The play family speaks for the Onondaga Nation.,,,C,Use the matching register repair.
+s03-X96,They want the canal.,,,H,"Observed response misses this task: The memorial expects new revenues to pay borrowing costs. Income from public salt works or higher state land values could cover interest, or tolls could pay down the debt."
+s03-X96,Toll payments already paid the debt.,,,B,"Observed response misses this task: The memorial expects new revenues to pay borrowing costs. Income from public salt works or higher state land values could cover interest, or tolls could pay down the debt."
+s03-X97,One text has a map. One has a homeland.,,,AD,Observed response misses this task: Ben takes the family's question beyond its own fence. The history shows why other people and Nations have their own concerns about land: the Onondaga Nation describes care for its homeland across generations. Accept another connection grounded in both texts that keeps the family's perspective distinct.
+s03-X97,The play family speaks for the Onondaga Nation.,,,C,Observed response misses this task: Ben takes the family's question beyond its own fence. The history shows why other people and Nations have their own concerns about land: the Onondaga Nation describes care for its homeland across generations. Accept another connection grounded in both texts that keeps the family's perspective distinct.
 s03-X100,"A character says I in the play, so both versions have first-person narrators.",,,AJ,Use the matching register repair.
-s03-X101,I put them down. Then I went.,,,AK,Use the matching register repair.
-s03-X101,I packed the field description. Then a circus rolled into town.,,,AC,Use the matching register repair.
+s03-X101,I put them down. Then I went.,,,AK,"Observed response misses this task: For example, I stood at the kitchen table with our family's questions about the canal route. Accept first-person openings that establish who is telling, the setting and why the family is gathering its papers."
 s03-R101-decision,"The reply guarantees the tree is safe, so Ada stops asking.",,,C,Use the matching register repair.
 s03-A86a,I asked twice whether transport would be cheap.,,,J,Use the matching register repair.
 s03-A86b,Lists the history but omits the memorial used for the estimate.,,,K,Use the matching register repair.
@@ -714,9 +711,9 @@ s03-A108a,Every boat crew needs morning service.,,,R,Use the matching register r
 s03-A108b,Open the lock in the morning.,,,H,Use the matching register repair.
 s03-A108c,I like mornings better.,,,A,Use the matching register repair.
 s03-A115-process,I copied the same sentences neatly.,,,S,Use the matching register repair.
-s03-A115a,"Put a comma before every and, even without two complete clauses.",,,T,Use the matching register repair.
+s03-A115a,"The boat could carry apples but, the family still had questions.",,,T,"Observed response misses this task: The boat could carry apples, but the family still had questions."
 s03-A115b,The crew dug yesterday.,,,G,Use the matching register repair.
-s03-A115c,The workers were walking along.,,,U,Use the matching register repair.
+s03-A115c,The workers were walking along.,,,U,"Observed response misses this task: For example, The workers were walking along the route. Accept any fitting complete place phrase."
 s03-A115d,Two workers left there tools there.,,,V,Use the matching register repair.
 s03-A115-theme,The same events happen in all three tales.,,,W,Use the matching register repair.
 s03-A115-word,Fruitless means that there were no apples.,,,X,Use the matching register repair.
@@ -755,31 +752,25 @@ s03-A117h,Guesses a word from context alone.,,,Q,Use the matching register repai
 s03-A119k,Says the words but cannot describe meaning.,,,O,Use the matching register repair.
 s03-A119l,Races through phrases in one read.,,,P,Use the matching register repair.
 s03-A119m,Guesses a word from context alone.,,,Q,Use the matching register repair.
-s03-X102,Both heroes trap bees to win stories.,,,W,This collapses different trials into one plot.
-s03-X103,Herculean fits because it means telling people what to do.,,,X,The explanation misses the exceptional effort carried by the allusion.
-s03-X104,Tolls had already paid all the interest.,,,B,This treats a proposed revenue stream as money received.
-s03-X104,The memorial talks about money. The speech talks about borrowing.,,,AD,The two details need a connection that explains the different positions.
+s03-X102,Both heroes trap bees to win stories.,,,W,Observed response misses this task: Both must meet conditions set for them by others. Anansi tricks the bees into a jar for Nyankupon. Heracles has to bring back the guardian without weapons and return him afterward. Accept a comparison supported by both episodes.
+s03-X103,It means telling people what to do.,,,X,Observed response misses this task: Herculean suggests extraordinary strength or effort. Momotaro stops quarrels and gets his companions to cooperate. That differs from Heracles taking the weight of the sky. Accept another interpretation if the child explains what shows extraordinary effort.
+s03-X104,The memorial talks about money. The speech talks about borrowing.,,,AD,"Observed response misses this task: The memorial projects income from salt works, state land values or tolls to pay interest or debt. The speech asks what will cover interest before expected income arrives. Accept a comparison grounded in both passages."
+s03-X104,Tolls had already paid all the interest.,,,B,"Observed response misses this task: The memorial projects income from salt works, state land values or tolls to pay interest or debt. The speech asks what will cover interest before expected income arrives. Accept a comparison grounded in both passages."
 s03-X105,Reason one is wait. Reason two is do not start yet.,,,J,Both labels repeat the position instead of naming distinct reasons.
 s03-X105,Wait because canals are dull and stories about boats are boring.,,,A,The reasons have no support in the argument.
-s03-X106,The reason is five million dollars. The detail is that five million is the reason.,,,AM,"The figure is an estimate, not the grounds for confidence."
-s03-X106,Five million dollars was the full amount paid.,,,B,The memorial’s figure was an estimate.
+s03-X106,Their reason is five million dollars.,,,AM,Observed response misses this task: The writers are guided by experience with comparable projects. This provides a basis for estimating costs without guaranteeing them.
 s03-X107,This shows it. We should wait.,,,AN,A new reader cannot tell what decision the writer means.
 s03-X107,People have questions about the canal.,,,Z,The topic is named without a position.
-s03-X109,Every finished section settles every route question.,,,S,This copies the overclaim without changing its meaning.
-s03-X109,"One section can open, and teach planners about travel.",,,T,The second part after and lacks its own subject.
-s03-X109,Every route question is answered because a boat is fun.,,,A,The revision gives no source support.
-s03-X110,Reason one is wages. Reason two is money paid to workers.,,,J,This repeats one aspect.
-s03-X110,Source: that canal thing we read.,,,K,The source lacks a location the reader can find.
+s03-X109,Every finished section settles every route question.,,,S,"Observed response misses this task: A working section can show planners how part of the route works, but incomplete sections can leave route questions unanswered."
+s03-X110,Reason one is wages. Reason two is money paid to workers.,,,J,Observed response misses this task: A court or payment record cannot show everything about a Nation's relationship with its homeland. A wage figure cannot show whether workers were safe or recovered from injuries. Accept two distinct reasons with relevant source details.
 s03-X111,They should say yes to it for those reasons.,,,AN,The proposal and reasons are unclear for a new reader.
 s03-X111,The memorial has a funding plan.,,,Z,The introduction names the topic without taking a position.
 s03-X111,The state should borrow because it already got all the promised income.,,,B,Expected income is treated as received.
 s03-X112,The speaker watched workers get sick.,,,AA,The invented voice cannot supply eyewitness evidence.
 s03-X112,Plans should be different because I say so.,,,A,The paragraph needs a detail that supports the reason.
-s03-X113,The aqueduct carries water over.,,,U,The place phrase has no object.
-s03-X113,"An aqueduct carries water, and crosses a stream.",,,T,The second part after and lacks its own subject.
-s03-X113,One kind of design is best because I like it.,,,A,The revision gives no source detail.
-s03-X114,The canal has many kinds of boats.,,,AC,This changes the subject instead of returning to the reason.
-s03-X114,Go ahead because the expected income has all arrived.,,,B,The ending treats a forecast as a result.
+s03-X113,One kind of design is best because I like it.,,,A,"Observed response misses this task: For example, a lock changes the level of the water, while an aqueduct carries canal water over a stream. That is why planners need different designs for different obstacles."
+s03-X114,Go ahead because the expected income has all arrived.,,,B,Observed response misses this task: A related conclusion can recommend waiting or put a condition on borrowing because interest can come due before revenue arrives. Accept a closing judgment grounded in a financing idea from the readings.
+s03-X114,The canal has many kinds of boats.,,,AC,Observed response misses this task: A related conclusion can recommend waiting or put a condition on borrowing because interest can come due before revenue arrives. Accept a closing judgment grounded in a financing idea from the readings.
 s03-X118,Hall visited Rochester when his account appeared in 1829.,,,AA,This substitutes the publication date for the date of the observation.
 s03-R102-summary,I think Anansi is the best spider.,,,E,This gives approval instead of summarizing the bargain.
 s03-R103-pattern,Both win the right to name the stories.,,,W,The endings give the heroes different outcomes.
@@ -787,3 +778,19 @@ s03-R105-opinion,The canal and its cost.,,,Z,This names the topic rather than th
 s03-R107-notes,Canals are fun. I like boats.,,,A,The reasons lack support from the texts.
 s03-R107-notes,Route costs and payment timing. Source: one of the readings.,,,K,The source label cannot be followed.
 s03-R114-question,What is your favorite boat?,,,M,This does not follow the draft or its source detail.
+s03-X83-detail,Workers could carry all the goods safely.,,,C,Observed response misses this task: Workers faced illness or accidents while building the canal. Accept either burden from the overview.
+s03-X88-judgment,We should commit to the whole project immediately.,,,C,Observed response misses this task: I therefore favor a delay in committing to the whole project.
+s03-X92-effect,He follows Mother's request in exactly the same way.,,,AI,Observed response misses this task: Holding the stake instead of turning to the boat makes him seem unwilling to follow her direction to leave it alone. Accept another effect grounded in that change.
+s03-X93-progressive,He set one block beside the boat.,,,G,Observed response misses this task: He is setting one block beside the boat. Also accept another accurate description of the final direction using is plus a verb ending in -ing.
+s03-X94-phrase,Ada looks toward.,,,U,Observed response misses this task: Ada looks toward the tree. Accept a complete phrase that accurately identifies the tree as the direction of her gaze.
+s03-X96-detail,Individuals had already paid the state more than a million dollars in cash.,,,C,"Observed response misses this task: Individuals had pledged 106,632 acres for the work. Accept an accurate statement of the quantity and its pledged status."
+s03-X101-time,"I put the papers down. For example, I picked them up.",,,AB,"Observed response misses this task: For example, I put the papers down. A moment later, I picked them up. Accept a time link that makes sense for the action sequence."
+s03-X101-ending,Then a circus rolled into town.,,,AC,"Observed response misses this task: For example, I left our questions beside the map, ready for the morning. Accept an ending consistent with gathering the papers and continuing to ask about the route."
+s03-X106-detail,Five million dollars was the full amount paid.,,,B,Observed response misses this task: The commissioners estimated that the work would cost no more than five million dollars. That figure gave lawmakers a basis for judging affordability before the work began.
+s03-X109-ending,The canal has many kinds of boats.,,,AC,"Observed response misses this task: For example, The state should wait for clearer reports on the full route before committing to the whole project."
+s03-X109-comma,"Some crews have finished their work, but still have work to do.",,,T,"Observed response misses this task: Some crews have finished their work, but other crews still have work to do. Accept a fitting coordinating conjunction with a comma between the two complete clauses."
+s03-X110-sources,Source: that canal thing we read.,,,K,"Observed response misses this task: Accept a traceable location matching each reason. For example, chapter 4's final paragraph describes the two kinds of records, and chapter 5 paragraph 5 explains what wages cannot show."
+s03-X113-phrase,The stream passes beneath.,,,U,"Observed response misses this task: For example, The smaller stream passes beneath the aqueduct. Accept a complete phrase that puts the stream beneath the crossing."
+s03-X113-comma,"The canal followed one route, and took another.",,,T,"Observed response misses this task: The canal followed one route, and the road took another. Accept a fitting coordinating conjunction with a comma between the two complete clauses."
+s03-A115a-why,Any sentence with a joining word needs a comma.,,,T,Observed response misses this task: But joins two complete clauses. Each could stand alone as a sentence.
+s03-A115c-action,It describes the workers.,,,AB,Observed response misses this task: It describes were walking. Accept walking.
