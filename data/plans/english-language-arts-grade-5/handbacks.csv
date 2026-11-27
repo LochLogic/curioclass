@@ -228,3 +228,133 @@ from_day,to_day,what,where,minutes,error,note
 60,61,Word-probe absent pupil or recording failure,Independent,5,AD,Complete pending private turns and return the resulting written cue on 62.
 61,62,Delayed word-probe cue from a day 61 make-up,Words,5,AD,"A private cue and one fresh-word repair, if applicable."
 62,63,Missed essay structure retrieval,Draft,5,L,Confer during drafting and use the released model if a dated essay is unavailable.
+65,66,s02-X65,Return,5,P,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+65,66,s02-X65b,Return,0,P,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+68,69,s02-X68,Return,5,Q,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+68,69,s02-X68b,Return,0,B,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+69,70,s02-X69,Return,5,Q,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+69,70,s02-X69b,Return,0,AE,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+70,71,s02-X70,Return,5,R,Return both paper marks. Repair pacing in Return. Use the first five minutes of Draft for a separate released grammar cue and independent correction.
+70,71,s02-X70b,Return,0,U,Return both paper marks. Repair pacing in Return. Use the first five minutes of Draft for a separate released grammar cue and independent correction.
+71,72,s02-X71,Setup,10,P,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+71,72,s02-X71b,Setup,0,B,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+73,74,s02-X73,Return,5,V,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+73,74,s02-X73b,Return,0,R,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+74,75,s02-X74,Return,5,T,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+74,75,s02-X74b,Return,0,U,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+75,76,s02-X75,Return,10,AE,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+75,76,s02-X75b,Return,0,AE,"Return written feedback, give a matching cue on released material, then allow independent correction. Use one priority per pupil within the shared minutes."
+70,71,s02-X70b,Draft,5,U,Give the grammar function correction with a different released sentence.
+65,66,Dated essay and marked convention strip,Return,0,,Return both alongside the marked close. Reserve independent card correction for day 67.
+65,67,s02-P65CAP,Revision,0,AK,"Use the common five-minute priority window, then an independent edit. File the original and correction for 80U."
+65,67,s02-P65YES,Revision,0,AK,"Use the common five-minute priority window, then an independent edit. File the original and correction for 80U."
+65,67,s02-P65ADR,Revision,0,AK,"Use the common five-minute priority window, then an independent edit. File the original and correction for 80U."
+65,67,s02-P65INT,Revision,0,AK,"Use the common five-minute priority window, then an independent edit. File the original and correction for 80U."
+65,67,s02-P65SER,Revision,0,AG,"Use the common five-minute priority window, then an independent edit. File the original and correction for 80U."
+65,67,s02-P65TAG,Revision,0,AK,"Use the common five-minute priority window, then an independent edit. File the original and correction for 80U."
+65,67,s02-P65TTL,Revision,0,AL,"Use the common five-minute priority window, then an independent edit. File the original and correction for 80U."
+65,67,s02-P65SPL,Revision,0,AJ,"Use the common five-minute priority window, then an independent edit. File the original and correction for 80U."
+65,67,s02-P65QTE,Revision,0,Y,"Use the common five-minute priority window, then an independent edit. File the original and correction for 80U."
+65,67,s02-P65END,Revision,0,P,"Use the common five-minute priority window, then an independent edit. File the original and correction for 80U."
+66,67,s02-A66A,Revision,20,L,Return written feedback in Return. Use five minutes of Revision for a matching cue and fifteen for independent correction; short audio corrections run alongside. Retain both versions.
+66,67,s02-A66B,Revision,0,M,Return written feedback in Return. Use five minutes of Revision for a matching cue and fifteen for independent correction; short audio corrections run alongside. Retain both versions.
+66,67,s02-A66C,Revision,0,N,Return written feedback in Return. Use five minutes of Revision for a matching cue and fifteen for independent correction; short audio corrections run alongside. Retain both versions.
+66,67,s02-A66D,Revision,0,O,Return written feedback in Return. Use five minutes of Revision for a matching cue and fifteen for independent correction; short audio corrections run alongside. Retain both versions.
+66,67,s02-A66E,Revision,0,P,Return written feedback in Return. Use five minutes of Revision for a matching cue and fifteen for independent correction; short audio corrections run alongside. Retain both versions.
+66,67,s02-A66F1,Revision,0,AE,Return written feedback in Return. Use five minutes of Revision for a matching cue and fifteen for independent correction; short audio corrections run alongside. Retain both versions.
+66,67,s02-A66F2,Revision,0,AE,Return written feedback in Return. Use five minutes of Revision for a matching cue and fifteen for independent correction; short audio corrections run alongside. Retain both versions.
+66,67,s02-A66G1,Revision,0,AD,Return written feedback in Return. Use five minutes of Revision for a matching cue and fifteen for independent correction; short audio corrections run alongside. Retain both versions.
+66,67,s02-A66G2,Revision,0,AD,Return written feedback in Return. Use five minutes of Revision for a matching cue and fifteen for independent correction; short audio corrections run alongside. Retain both versions.
+66,67,s02-A66H,Revision,0,AD,Return written feedback in Return. Use five minutes of Revision for a matching cue and fifteen for independent correction; short audio corrections run alongside. Retain both versions.
+67,68,s02-A67F,Return,5,W,Return the marked revision process and permit an independent correction before recording its mark.
+72,73,s02-A72A,Return,10,Q,"Return the marked independent draft, give a matched cue and save the independent retry. Carry a second priority to Revision when needed."
+72,73,s02-A72B,Return,0,R,"Return the marked independent draft, give a matched cue and save the independent retry. Carry a second priority to Revision when needed."
+72,73,s02-A72C,Return,0,S,"Return the marked independent draft, give a matched cue and save the independent retry. Carry a second priority to Revision when needed."
+72,73,s02-A72D,Return,0,T,"Return the marked independent draft, give a matched cue and save the independent retry. Carry a second priority to Revision when needed."
+72,73,s02-A72E,Return,0,P,"Return the marked independent draft, give a matched cue and save the independent retry. Carry a second priority to Revision when needed."
+72,73,s02-A72F,Return,0,Q,"Return the marked independent draft, give a matched cue and save the independent retry. Carry a second priority to Revision when needed."
+76,77,s02-A76A1,Revision,5,U,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+76,77,s02-A76A2,Revision,0,U,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+76,77,s02-A76A3,Revision,0,U,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+76,77,s02-A76B11,Revision,0,V,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+76,77,s02-A76B12,Revision,0,V,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+76,77,s02-A76B21,Revision,0,V,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+76,77,s02-A76B22,Revision,0,V,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+76,77,s02-A76B31,Revision,0,V,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+76,77,s02-A76B32,Revision,0,V,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+76,77,s02-A76C1,Revision,0,R,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+76,77,s02-A76C2,Revision,0,R,Correct marked language evidence independently in the first five minutes. Use released examples for any separate cue.
+77,78,s02-A77A,Independent,0,Q,Return written feedback with the earlier draft. Save the story and any updated note with their original versions. The independent correction lands during day 80 Response.
+77,78,s02-A77B,Independent,0,R,Return written feedback with the earlier draft. Save the story and any updated note with their original versions. The independent correction lands during day 80 Response.
+77,78,s02-A77C,Independent,0,S,Return written feedback with the earlier draft. Save the story and any updated note with their original versions. The independent correction lands during day 80 Response.
+77,78,s02-A77D,Independent,0,T,Return written feedback with the earlier draft. Save the story and any updated note with their original versions. The independent correction lands during day 80 Response.
+77,78,s02-A77E,Independent,0,P,Return written feedback with the earlier draft. Save the story and any updated note with their original versions. The independent correction lands during day 80 Response.
+77,78,s02-A77F,Independent,0,W,Return written feedback with the earlier draft. Save the story and any updated note with their original versions. The independent correction lands during day 80 Response.
+78,79,s02-A78A,Return,10,B,Return written research and device feedback. Identify the correction due in day 80 Response. Save the original typing evidence.
+78,79,s02-A78B1,Return,0,C,Return written research and device feedback. Identify the correction due in day 80 Response. Save the original typing evidence.
+78,79,s02-A78B2,Return,0,C,Return written research and device feedback. Identify the correction due in day 80 Response. Save the original typing evidence.
+78,79,s02-A78C1,Return,0,G,Return written research and device feedback. Identify the correction due in day 80 Response. Save the original typing evidence.
+78,79,s02-A78C2,Return,0,G,Return written research and device feedback. Identify the correction due in day 80 Response. Save the original typing evidence.
+78,79,s02-A78D,Return,0,AB,Return written research and device feedback. Identify the correction due in day 80 Response. Save the original typing evidence.
+78,79,s02-A78E1,Return,0,H,Return written research and device feedback. Identify the correction due in day 80 Response. Save the original typing evidence.
+78,79,s02-A78E2,Return,0,I,Return written research and device feedback. Identify the correction due in day 80 Response. Save the original typing evidence.
+78,79,s02-A78E3,Return,0,I,Return written research and device feedback. Identify the correction due in day 80 Response. Save the original typing evidence.
+78,79,s02-A78F,Return,0,AI,Return written research and device feedback. Identify the correction due in day 80 Response. Save the original typing evidence.
+79,80,s02-A79A1,Hand-back,5,X,Return written reading and online-work feedback. Correct the earlier evidence independently during Response.
+79,80,s02-A79A2,Hand-back,0,X,Return written reading and online-work feedback. Correct the earlier evidence independently during Response.
+79,80,s02-A79A3,Hand-back,0,X,Return written reading and online-work feedback. Correct the earlier evidence independently during Response.
+79,80,s02-A79B,Hand-back,0,D,Return written reading and online-work feedback. Correct the earlier evidence independently during Response.
+79,80,s02-A79C,Hand-back,0,E,Return written reading and online-work feedback. Correct the earlier evidence independently during Response.
+79,80,s02-A79D1,Hand-back,0,F,Return written reading and online-work feedback. Correct the earlier evidence independently during Response.
+79,80,s02-A79D2,Hand-back,0,F,Return written reading and online-work feedback. Correct the earlier evidence independently during Response.
+79,80,s02-A79D3,Hand-back,0,F,Return written reading and online-work feedback. Correct the earlier evidence independently during Response.
+77,80,Marked revision and source-note additions,Response,8,,Use the pooled 25 minutes for matched five-minute priority groups and independent corrections. Preserve the first evidence and date any pending authentic device action.
+78,80,Marked research and saved typing,Response,9,,Use the pooled 25 minutes for matched five-minute priority groups and independent corrections. Preserve the first evidence and date any pending authentic device action.
+79,80,Marked story comparison and internet exchange,Response,8,,Use the pooled 25 minutes for matched five-minute priority groups and independent corrections. Preserve the first evidence and date any pending authentic device action.
+66,67,First private reading for 3 pupils on the single-recorder route,Planning,12,,"Use four minutes per pupil, track prose and verse separately and return a written cue before the next day. Keep the assessment leaves private."
+66,68,First private reading for 4 pupils on the single-recorder route,Independent,16,,"Use four minutes per pupil, track prose and verse separately and return a written cue before the next day. Keep the assessment leaves private."
+66,70,First private reading for 4 pupils on the single-recorder route,Independent,16,,"Use four minutes per pupil, track prose and verse separately and return a written cue before the next day. Keep the assessment leaves private."
+66,71,First private reading for 4 pupils on the single-recorder route,Independent,16,,"Use four minutes per pupil, track prose and verse separately and return a written cue before the next day. Keep the assessment leaves private."
+66,73,First private reading for 3 pupils on the single-recorder route,Independent,12,,"Use four minutes per pupil, track prose and verse separately and return a written cue before the next day. Keep the assessment leaves private."
+67,68,Dated cue and short correction for a delayed oral turn,Words,4,AD,Give each reader up to 45 seconds for the marked segment. A missed full reading remains pending for a four-minute turn.
+68,69,Dated cue and short correction for a delayed oral turn,Words,4,AD,Give each reader up to 45 seconds for the marked segment. A missed full reading remains pending for a four-minute turn.
+70,71,Dated cue and short correction for a delayed oral turn,Words,4,AD,Give each reader up to 45 seconds for the marked segment. A missed full reading remains pending for a four-minute turn.
+71,72,Dated cue and short correction for a delayed oral turn,Words,4,AD,Give each reader up to 45 seconds for the marked segment. A missed full reading remains pending for a four-minute turn.
+73,74,Dated cue and short correction for a delayed oral turn,Grammar,3,AD,Give each reader up to 45 seconds for the marked segment. A missed full reading remains pending for a four-minute turn.
+72,73,Second diagnostic priority if needed,Revision,5,,Use the paper rotation while the partner types. Preserve the first dated draft.
+73,74,Arc or file-saving practice still pending,Revision,0,X,Offer a paper review and reserve a real device turn in the day 75 rotation if needed.
+75,76,s02-P75E,Return,0,X,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,s02-P75WS,Preparation,5,AD,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,s02-P75WI,Preparation,0,AD,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,s02-P75WC,Preparation,0,AD,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,s02-P75WM,Preparation,0,AD,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,s02-P75DA,Preparation,5,AJ,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,s02-P75DB,Preparation,0,AA,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,s02-P75DC1,Preparation,0,J,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,s02-P75DC2,Preparation,0,J,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,s02-P75DD,Preparation,0,K,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,s02-P75N,Preparation,10,I,Return a dated written cue. Correct independently using the earlier record. Preserve actual oral or digital evidence and log any pending action.
+75,76,Sixth group live turn if day 75 recording is unavailable,Independent,4,,Hear five short questions and five linked replies; give written cues before Preparation.
+75,76,Remaining private word corrections on one-recorder route,Independent,15,,"Use up to fifteen minutes for 45-second corrected word turns, with other pupils reading."
+75,77,Up to two pending live discussion groups,Conference,8,,"Use up to two four-minute groups, give dated cues and retain an independent correction before closing."
+75,78,Final pending live discussion group,Independent,4,,Use one four-minute group when needed. Return cues before day 80 Response.
+75,78,Saved source note and three checked federal page labels,Independent,4,,Verify the day 76 correction with each writer and retain as distinct from the research folio.
+75,80,"Saved discussion, word and source note records",Verification,0,,Use the dated originals and feedback during the closing inventory. Finish independent corrections in Response.
+76,80,Corrected 76 language record,Verification,0,,"Retain the earlier independent language corrections, with feedback dates."
+65,66,s02-P65R1,Independent,2,M,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+65,66,s02-P65R2,Independent,0,N,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+66,67,s02-P66R1,Word,2,O,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+68,69,s02-P68R1,Draft,2,Q,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+68,69,s02-P68R2,Draft,0,AE,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+69,70,s02-P69R1,Middle,2,Q,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+69,70,s02-P69R2,Middle,0,AE,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+70,71,s02-P70R1,Draft,2,U,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+70,71,s02-P70R2,Draft,0,AE,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+71,72,s02-P71R1,Response,2,W,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+71,72,s02-P71R2,Response,0,O,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+73,74,s02-P73R1,Revision,2,V,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+73,74,s02-P73R2,Revision,0,AK,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+74,75,s02-P74R1,Independent,2,U,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+74,75,s02-P74R2,Independent,0,U,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
+75,76,s02-P75R1,Preparation,0,I,Return the reading-practice cue and allow a brief correction within the ten minutes already reserved for source-note revision.
+75,76,s02-P75R2,Preparation,0,B,Return the reading-practice cue and allow a brief correction within the ten minutes already reserved for source-note revision.
