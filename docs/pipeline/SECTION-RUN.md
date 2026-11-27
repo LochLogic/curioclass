@@ -1,102 +1,59 @@
-# Section run: unit waterfall, two courses at a time
+# Curio Class section run
 
-Agreed with Cory 2026-11-26. The script is `scripts/section_run.py`; this file is its spec and the one home for its rules.
-It writes section plans (stage 5 of docs/COURSE-RUN.md) and takes each unit to green on the Desk Dashboard: plan,
-plan data and answer-key report. Days are not part of this run.
+Cory set the section run cadence on November 27, 2026. One process per subject writes section plans and their data, then reviews the finished units. Day writing is a later stage of [the course run](../COURSE-RUN.md).
 
-## What it runs
+| Lane | Course order |
+|---|---|
+| ELA | English language arts grades 4 through 12 |
+| Math | Math grades 1 through 8, algebra I, geometry, algebra II, precalculus, statistics, calculus |
 
-Two lanes, one per subject, each its own process: English language arts and math. Each lane works one course at a
-time, unit by unit, in the order below, so two courses are always in flight (one per subject).
+Math kindergarten and the old `math-4` pilot are outside this run. The grade 1 pilot unit is already green. The course inventory ends at the first missing input, including a missing unit plan, frame, DEFAULTS.md or days.csv. The lane processes the units before that course and reports the reason after the review queue drains.
 
-| Lane | Courses, in order | Starts at |
+## Codex stages
+
+| Stage | Model and effort | Work and resume rule |
 |---|---|---|
-| ela | english-language-arts-grade-4 to grade-12 | grade 4: its 30 section plans exist, so its units run plan data and key read only |
-| math | math-grade-1 to math-grade-8, algebra-i, geometry, algebra-ii, precalculus, statistics, calculus | math-grade-1 unit 2 (unit 1 is green from the pilot) |
+| `texts` (ELA) | GPT-6.2 Sol, high | Before writing missing plans, settle the unit's open text rows with the text kit. Merge the side file and rebuild the skeletons. Skip a finished pass or a unit with no open texts. |
+| `prep` | GPT-6.2 Astra, xhigh | Read the brief, rules, unit plan, skeletons, approach, filtered ledger and feedback. Write a note for each section under `build/sections/prep/<course>/`. Reuse completed notes. |
+| `write` | GPT-6.2 Sol, high | Use the section kit, prep notes and current feedback. Write only missing section plans and their ledger rows. Gate and commit each group. If an interrupted write landed all its plans, gate and commit them on resume. |
+| `crefine` | GPT-6.2 Astra, xhigh | Review every section of a unit this lane wrote, including any sections that predated a partial write. Fix the plans and ledger. Write `docs/reviews/<course>/section-crefine-<course>-u<uu>-<date>.md` with the fault table, plan points and final `## Changed for the next unit` list. Recover a complete report through the gate and commit. An existing Opus refine report satisfies this stage. |
+| `texts2` (ELA) | GPT-6.2 Sol, high | After a unit write, use the second text kit to fill commissioned texts the section plans still need. Merge the rows and rebuild the skeletons. |
+| `data` | GPT-6.2 Sol, high | Use the data kit for the unit's rows and shared pieces. ELA units with more than five sections use two separately gated and committed halves. Reuse completed data and retain preexisting unit items when the lane did no writing or data work on the unit. |
 
-Math kindergarten is green and is not in the run. math-grade-4 is in the run (Cory 2026-11-26: the hold is no longer
-needed); the old pilot paths `math-4` stay untouched as the L13 reference. A course with no unit plans (precalculus,
-statistics and calculus today) stops its lane with the reason "no unit plans", logged; it never fails silently.
+A unit whose plans all predate the run goes directly to data. The lane records `<course>:u<uu>:codex-done` in `done.txt` when its Codex work is complete. Prep writes local notes. The text stages commit the text files and merged rows. The other stages that edit course content run the course gate before the job to establish its baseline and again afterward. The lane hands new lines back once and commits through the shared lock, restricted to the stage's paths. A held turn delays the commit. Each commit is pushed.
 
-A unit whose section plans, items rows and key report all exist is skipped. A unit with some section plans written
-(english-language-arts-grade-11, algebra-ii) writes only the missing ones; the refine reads all of them.
+## Claude review and green units
 
-## The stages of one unit
+After each Codex unit, the lane takes at most one eligible unit from the front of the review queue. One background thread runs the next unit's ELA texts, if needed, and then its prep beside that review, including across a course boundary. The lane joins the thread before another foreground job. At the end of the course list it reviews the remaining queue in order.
 
-| # | Stage | Model, effort | Runs as | Reads | Writes | Gate after |
-|---|---|---|---|---|---|---|
-| 0 | Texts (ELA only) | GPT-6.2 Sol, high | Codex, kit `text.txt` | unit plan, frame, ela-texts rows | courses/<c>/texts/, texts-out side file; the script merges it and rebuilds skeletons | none |
-| 1 | Prep | GPT-6.2 Astra, xhigh | Codex | brief, unit plan, DEFAULTS, frame, approach doc, filtered ledger, skeletons, the newest "Changed for the next unit" list | build/sections/prep/<c>/u<uu>-<n>.md, one note per section | none (prep writes no repo file) |
-| 2 | Write | GPT-6.2 Sol, high | Codex, kit `section.txt` plus the prep notes and the last "Changed" list | as the kit says | docs/courses/<c>/u<uu>-<n>.md, ledger rows | gate.py --course, new lines handed back once |
-| 3 | Refine | Opus 5.5, high | Claude CLI | the plans, unit plan, skeletons, rules, filtered ledger | the plans in place, ledger rows, docs/reviews/<c>/section-refine-<c>-u<uu>-<date>.md ending in "Changed for the next unit" | gate.py --course |
-| 3b | Texts, second pass (ELA only) | GPT-6.2 Sol, high | Codex, kit `text2.txt` | the refined plans | new text rows; the script merges them | none |
-| 4 | Plan data | GPT-6.2 Sol, high | Codex, kit `data.txt` (ELA units over 5 sections in two halves) | as the kit says | data/plans/<c>/ rows, courses/<c>/u<uu>-*/ shared pieces | gate.py --course, new lines handed back once |
-| 5 | Key read, narrow | Opus 5.5, high | Claude CLI | the key packet only (below), opening a shared piece or text only for an item that needs it | items.csv and wrongs.csv fixes, shared piece fixes, docs/reviews/<c>/answer-key-<c>-u<uu>-<date>.md | gate.py --course |
+The `claude` stage uses Opus 5.5 at high effort. In one session it solves the narrow key packet cold, checks the full section plans and ledger, and reconciles all fixes. It may edit the unit's plans, ledger rows, shared pieces and its own items, wrongs, handbacks, errors and sources rows. It writes both reports in `docs/reviews/<course>/` under the existing `section-refine-<course>-u<uu>-<date>.md` and `answer-key-<course>-u<uu>-<date>.md` names. Each ends with `## Changed for the next unit` and a list or `None.`. With an existing old-chain Opus refine report, the lane runs only the narrow `key` job. Claude receives any new gate lines in one fix call.
 
-The "Changed for the next unit" list is part of stage 3, in the same Opus pass: what the refine changed that a
-later unit must also do (a routine renamed, a fault class the writer keeps making, a term fixed). It is the last
-heading of the refine report.
+The packet lives at `build/sections/packets/<course>-u<uu>.md`. It contains the judged items with all columns, their wrong answers, the unit's error register, field 3 exit lines and shapes, shared-piece paths and sizes, and ELA text IDs and paths. During the key read, Opus opens a text, shared piece or day block only when an item requires it. It solves changed items cold again.
 
-**The key packet** (stage 5) is cut by the script, so the key read never re-reads whole plans: the unit's items.csv
-rows (every column), the wrongs.csv rows of those items, the unit's errors.csv register rows, every exit line of
-each section plan's field 3 with its "Shape:" line, the list of the unit's shared pieces with their sizes, and for
-ELA the text_id of each item with the path of its text. Saved as build/sections/packets/<c>-u<uu>.md.
+A **green** unit has all its plans, unit items and a committed answer-key report. An interrupted combined pass still owes both reports and its gate. An existing green unit needs no further model call.
 
-## When each stage starts
+## Carrying changes forward
 
-- Within a course, stages 0, 2, 3, 3b, 4 and 5 run one after another, unit by unit. Only prep may overlap.
-- The next unit's texts (ELA) and prep start when the current unit enters refine (stage 3). This holds across a
-  course edge: the next course's unit 1 preps while the last unit of this course refines.
-- The next unit's write waits for the current unit's key read to finish.
-- Prep reads the newest "Changed" list that exists when it starts (usually two units back). The write always reads
-  the previous unit's list, so nothing the refine found is missed.
-- A unit's commits go through the shared git lock (`codex_lane.py` gitlock), only the course's own paths, one commit
-  per stage, pushed.
+The lane stores each nonempty Claude list once in `build/sections/<subject>/carry.json`, with its source unit, text, time and `applied_to` units. Prep and write receive the previous unit's Codex refine list (the old Opus list when it is the only one) plus same-course Claude lists awaiting prep. The lane removes duplicate lines and puts newer lists last. It records which lists a prep saw so its writer also receives them after a restart. A list that arrives while prep is running can still reach the write.
 
-## Stops (every stop logs a reason and can be resumed)
+At each boundary, including during the final drain, one `sweep` job per affected course uses GPT-6.2 Sol at high effort on the Codex-complete units still awaiting review. The prompt assigns each list to its eligible units, excludes the source and any unit under review, and limits edits to those units' plans, ledger entries and data rows. The job applies a lesson where it fits, preserves content that a gate cannot judge, and passes through the gate and commit before the lane records `applied_to`. A full write that already received the list needs no sweep for it. The unit's Claude prompt names its swept lists for verification.
 
-The run stops a lane, never skipping a stage, when:
+## Limits, stops and resume
 
-1. `build/sections/STOP` (both lanes) or `build/sections/<subject>/STOP` (one lane) exists, checked before each stage.
-2. A usage limit is reported by Codex or Claude: the lane stops cleanly and does not retry (Cory 2026-11-26: stop
-   when tokens run out).
-3. A stage fails twice: a job is resumed once when it goes silent or ends with no last message; a second failure
-   stops the lane.
-4. A gate exit 2 (changed course with no baseline), or new gate lines past the pileup rule (more than 10 plus one per
-   section written in the course).
-5. A course is missing an input (unit plans, days.csv, DEFAULTS.md).
-6. Files outside the stage's allowed paths change: not committed, and the lane stops.
-7. Codex refuses a stage's model (`model_not_found`): the lane stops at once, before any retry.
-8. Any error in the script itself: caught, logged with its traceback, and the lane stops.
-9. Every course of the lane is done.
+- A Claude usage limit keeps the same unit at the front. The lane saves the reset time locally and continues Codex work. An unreadable or missing reset time gives a 60-minute cooldown. A sign-in failure stops the lane.
+- A Codex usage limit switches the lane to reviewing the backlog. It honors Claude cooldowns and retries the pending Codex work at hourly intervals. When Codex is unavailable for a sweep, Opus sees outstanding lessons for its unit in the already scheduled review. A Codex denial with an empty queue writes the usual stop note. A limited attempt restores its unfinished edits to the course files it owns before another unit uses them.
+- During a cooldown with no eligible work, the lane sleeps and checks the stop files at least every 30 seconds. `build/sections/STOP` stops both lanes and `build/sections/<subject>/STOP` stops one at its next check. A background job joins before exit.
+- A twice-failed model job, a refused Codex model, a changed course with no gate baseline, unexpected course paths, or a script error stops the lane with a reason. The gate pileup limit is more than ten new lines plus one per section written in the course. Its counters persist in `counts.json`.
+- A stop writes `build/sections/<subject>/STOPPED` with the reason and resume command. On restart, the lane reconstructs the FIFO queue from the completed stages and files, including data finished by the old chain. Stage start and completion marks distinguish an unfinished review from a finished report. Landed outputs are gated and committed where complete. Missing outputs resume the applicable job. A limited or interrupted sweep stays eligible until its applications are recorded.
 
-Before every gated job the course gate runs first: a clean course stores its baseline, and a changed course with no
-baseline stops the lane before a model call is spent on it.
+## Commands and state
 
-On a stop the lane writes `build/sections/<subject>/STOPPED` (the time, the reason, how to resume), after any prep
-running beside the stopped stage has ended. One process per lane: `RUNNING` holds its pid, and a second start is
-refused while that process lives. Each stage marks `<stage>-start` before its model call and `<stage>` after its
-commit. On a rerun, a stage that started but did not finish and whose output is already there (the plans, the refine
-report, the key report) is gated and committed, not run again; one whose output is missing runs again. A key or
-refine report counts as done only once git tracks it. The pileup counts live in `counts.json`, so they survive a
-rerun. safe_write lock and temp files (`*.lock`, `*.tmp`) are git-ignored and never committed.
+    python -X utf8 scripts/section_run.py dry-run <subject> [<units>]
+    python -X utf8 scripts/section_run.py run <subject>
+    python -X utf8 scripts/section_run.py status
 
-## Running it
+A dry run saves prompts, rendered kit jobs, packets and state under the subject's `dry/` directory. It makes no model calls, gate runs or commits. It supplies one example carry list to exercise the sweep. In a bounded preview of two or more units, if the first units all have plans, the last sample slot shows the first unit needing a write when one exists.
 
-    python -X utf8 scripts/section_run.py dry-run <subject> [<n units>]   every stage's prompt and command, no model calls
-    python -X utf8 scripts/section_run.py run <subject>                   run the lane until a stop
-    python -X utf8 scripts/section_run.py status                          per lane: last stage, any STOPPED reason, tokens
+Each live subject has its own `RUNNING` PID and keeps the machine awake. Start it in its own terminal or detached process. An active section lane or an older `codex_lane.py` subject lane without a stop file prevents a second start. Sign in to the bundled Claude CLI before the first run. It uses a scoped tool list and a session ID so a gate fix can resume the review.
 
-Each lane runs detached (its own terminal or background process) with keep-awake on. It refuses to start while the
-old `codex_lane.py` lane of the same subject has no STOP file, so the two never write the same course.
-
-**Before the first run:** the Claude CLI must be signed in once (`claude` then `/login`; the lead cannot do this).
-The Claude stages use the bundled CLI with `-p --model claude-opus-5-5 --effort high --output-format json
---no-session-persistence` and a scoped `--allowedTools` list (read, edit, write, search and `python -X utf8`
-commands); no permission mode is weakened.
-
-## Cost log
-
-`build/sections/<subject>/usage.csv`, one row per stage: time, course, unit, stage, model, effort, result, minutes,
-tokens in, cached in, tokens out, reasoning out, cost in US dollars (Claude stages), new gate lines. `status` sums it
-per stage and per unit.
+`status` reads each lane's last log line, stop reason, Codex-complete total (including green), green count, backlog length, active Claude cooldown and number of carry lists still awaiting a prep or sweep. It totals usage by stage. `usage.csv` records each model call's course, unit, stage, model, effort, result, minutes, input and output token counts, and reported Claude cost.

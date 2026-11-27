@@ -1,15 +1,17 @@
-r"""Section run: section plans unit by unit, two courses at a time (one lane per subject). Spec: docs/pipeline/SECTION-RUN.md.
+r"""Curio Class section run. One process per subject. See docs/pipeline/SECTION-RUN.md.
 
     python -X utf8 scripts/section_run.py dry-run <subject> [<units>]   every stage's prompt and command, no model calls
     python -X utf8 scripts/section_run.py run <subject>                 run the lane until a stop (resumes where it stopped)
-    python -X utf8 scripts/section_run.py status                        per lane: last line, any STOPPED reason, tokens
+    python -X utf8 scripts/section_run.py status                        progress, backlog, cooldown, carry and usage
 
-Per unit: texts (ELA), prep (Codex GPT-6.2 Astra xhigh), write (Codex GPT-6.2 Sol high), refine (Claude Opus 5.5 high,
-its report ends with "Changed for the next unit"), second texts pass (ELA), plan data (Codex Sol high), narrow key read
-(Claude Opus 5.5 high on a packet the script cuts). The next unit's prep runs beside the current unit's refine, data
-and key; every other stage runs one at a time per course. Any stop writes build/sections/<subject>/STOPPED with the
-reason; a stage is marked done only after its commit, and unit state is also read from the files, so a rerun resumes.
+Codex runs texts (ELA), prep, write, crefine, texts2 (ELA) and data. Opus takes finished
+units in FIFO order and combines refine and the narrow key read. The next unit's texts and prep
+can overlap this pass. Codex sweeps Claude feedback into units written ahead. Claude limits
+start a cooldown. Codex limits switch the lane to draining with hourly retries. Stage marks
+and reports support resume. A green unit has its plans, plan data and completed key read.
 """
+from collections import deque
+from contextlib import contextmanager
 import csv
 import datetime as dt
 import glob
@@ -23,6 +25,7 @@ import time
 import traceback
 import uuid
 from pathlib import Path
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
@@ -43,6 +46,9 @@ MODELS = {   # stage: (runner, model, effort); Cory 2026-11-26
     'prep': ('codex', 'gpt-6.2-astra', 'xhigh'),
     'write': ('codex', 'gpt-6.2-sol', 'high'),
     'refine': ('claude', 'claude-opus-5-5', 'high'),
+    'crefine': ('codex', 'gpt-6.2-astra', 'xhigh'),
+    'claude': ('claude', 'claude-opus-5-5', 'high'),
+    'sweep': ('codex', 'gpt-6.2-sol', 'high'),
     'texts2': ('codex', 'gpt-6.2-sol', 'high'),
     'data': ('codex', 'gpt-6.2-sol', 'high'),
     'key': ('claude', 'claude-opus-5-5', 'high'),
@@ -61,6 +67,71 @@ NEVER = ('Never open .claude/, docs/Return/, Gemini/, Gemini.*, data/closet/word
 
 class Stop(Exception):
     """A lane stop with its reason (SECTION-RUN.md "Stops")."""
+
+
+class CodexLimit(Stop):
+    pass
+
+
+class ClaudeLimit(Exception):
+    pass
+
+
+def reset_time(message, current):
+    """Return an absolute reset timestamp. Clock times without a zone use the lane's local time."""
+    m = re.search(r'"resets?_?at"\s*:\s*"?(\d{10})(?=\D|$)', message, re.I)
+    if m and int(m[1]) > current:
+        return int(m[1])
+    m = re.search(r'(?:reset(?:s|ting)?|try again|retry)(?:[_ ]?at| in| after| on)?[\s:"=]*'
+                  r'(\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?::\d\d(?:\.\d+)?)?(?:Z|[+-]\d\d:\d\d)?)', message, re.I)
+    if m:
+        try:
+            stamp = dt.datetime.fromisoformat(m[1].upper()).timestamp()
+            if stamp > current:
+                return stamp
+        except ValueError:
+            pass
+    duration = r'(\d+)\s*(hours?|hrs?|h|minutes?|mins?|m|seconds?|secs?|s)\b'
+    m = re.search(r'(?:resets?|try again|retry)\s+(?:in|after)\s+((?:' + duration + r'\s*)+)', message, re.I)
+    if m:
+        seconds = sum(int(n) * {'h': 3600, 'm': 60, 's': 1}[unit[0].lower()]
+                      for n, unit in re.findall(duration, m[1], re.I))
+        return current + max(1, seconds)
+    m = re.search(r'(?:resets?|try again|retry)\s+(?:at\s+)?(?:(\w{3,9} \d{1,2}),?\s+(?:at\s+)?)?'
+                  r'(\d{1,2})(?::(\d\d))?\s*(am|pm)?\b(?:\s*\(?(UTC|GMT|[A-Za-z_]+/[A-Za-z_/]+)\b)?', message, re.I)
+    if m:
+        h, minute = int(m[2]), int(m[3] or 0)
+        if minute < 60 and (1 <= h <= 12 if m[4] else h < 24):
+            if m[4]:
+                h = h % 12 + 12 * (m[4].lower() == 'pm')
+            try:
+                zone = None
+                if m[5]:
+                    if m[5].upper() in ('UTC', 'GMT'):
+                        zone = dt.timezone.utc
+                    else:
+                        try:
+                            zone = ZoneInfo(m[5])
+                        except ZoneInfoNotFoundError:
+                            # Windows Python can lack tzdata. The CLI normally prints the machine's own zone.
+                            local = {'America/Denver': 'Mountain', 'America/Los_Angeles': 'Pacific',
+                                     'America/New_York': 'Eastern', 'America/Chicago': 'Central'}
+                            if time.tzname[0] != local.get(m[5], '') + ' Standard Time':
+                                raise
+                base = dt.datetime.fromtimestamp(current, zone)
+                end = base.replace(hour=h, minute=minute, second=0, microsecond=0)
+                if m[1]:
+                    month, day = m[1].split()
+                    date = dt.datetime.strptime(month[:3] + ' ' + day + ' ' + str(base.year), '%b %d %Y')
+                    end = end.replace(month=date.month, day=date.day)
+                    if end <= base:
+                        end = end.replace(year=end.year + 1)
+                elif end <= base:
+                    end += dt.timedelta(days=1)
+                return end.timestamp()
+            except (ValueError, ZoneInfoNotFoundError):
+                pass
+    return current + 3600
 
 
 def now():
@@ -112,24 +183,21 @@ class Unit:
             return [r['text_id'] for r in csv.DictReader(f) if r['course'] == self.course and r['unit'] == str(self.u)
                     and r['status'].split(':')[0].strip() in OPEN_TEXT]
 
-    def refine_report(self):
-        """Dated when first asked, then fixed, so a refine that runs past midnight is still found."""
-        if not getattr(self, '_rr', None):
-            old = self.refine_reports()
-            self._rr = Path(old[-1]) if old and not tracked(old[-1]) else \
-                ROOT / 'docs' / 'reviews' / self.course / ('section-refine-%s-u%s-%s.md' % (self.course, self.uu, today()))
-        return self._rr
+    def report_path(self, prefix):
+        """Reuse a landed report, including one left before midnight by an interrupted job."""
+        if not hasattr(self, '_reports'):
+            self._reports = {}
+        if prefix not in self._reports:
+            stem = ROOT / 'docs' / 'reviews' / self.course / ('%s-%s-u%s' % (prefix, self.course, self.uu))
+            existing = sorted(stem.parent.glob(stem.name + '-*.md'))
+            self._reports[prefix] = existing[-1] if existing else Path('%s-%s.md' % (stem, today()))
+        return self._reports[prefix]
+
+    def refine_report(self, stage='refine'):
+        return self.report_path('section-' + stage)
 
     def key_path(self):
-        if not getattr(self, '_kp', None):
-            left = [k for k in self.key_report() if not tracked(k)]
-            self._kp = Path(left[-1]) if left else \
-                ROOT / 'docs' / 'reviews' / self.course / ('answer-key-%s-u%s-%s.md' % (self.course, self.uu, today()))
-        return self._kp
-
-    def refine_reports(self):
-        return sorted(glob.glob(str(ROOT / 'docs' / 'reviews' / self.course / ('section-refine-%s-u%s-*.md' % (
-            self.course, self.uu)))))
+        return self.report_path('answer-key')
 
 
 def tracked(path):
@@ -147,19 +215,31 @@ def course_units(course):
     return [Unit(course, u, secs[u]) for u in sorted(secs)]
 
 
-def changed_list(unit_before):
-    """The newest "Changed for the next unit" report path of the unit before, or None."""
-    if unit_before is None:
-        return None
-    reps = unit_before.refine_reports()
-    return reps[-1] if reps else None
+def report_changes(path):
+    if path.exists():
+        parts = re.split(r'^## Changed for the next unit[ \t]*\r?$', path.read_text(encoding='utf-8'), flags=re.M)
+        if len(parts) > 1 and parts[-1].strip() and not re.search(r'^#{1,6} ', parts[-1], re.M):
+            return parts[-1].strip()
+    return ''
+
+
+def changed_list(previous, carry, course=None):
+    lists = []
+    if previous:
+        prior = report_changes(previous.refine_report('crefine'))
+        if not prior and previous.course == course:
+            prior = report_changes(previous.refine_report())
+        lists.append(prior)
+    lists.extend(item['text'] for item in carry)
+    lines = [line.rstrip() for block in lists for line in block.splitlines() if line.strip() and line.strip() != 'None.']
+    return '\n'.join(reversed(dict.fromkeys(reversed(lines))))
 
 
 # ---------------------------------------------------------------- prompts
 
 def kit_job(lane, unit, kind, template, extra, detail):
     """Render a kit template through coursegen's Queue (same tokens and notes as the course run)."""
-    out = RUN / lane.subj / 'jobs-kit'
+    out = lane.dir / 'jobs-kit'
     q = cg.Queue(out, lane.subj, cg.kit_version(), today())
     q.n = int(time.time()) % 100000          # unique job number per render
     name = q.job(kind, unit.course, detail, template, extra)
@@ -177,9 +257,8 @@ def texts_prompt(lane, unit, second=False):
 def prep_prompt(unit, changed):
     notes = ', '.join('build/sections/prep/%s/%s.md' % (unit.course, n) for n in unit.names)
     approach = 'docs/APPROACH-%s.md' % ('ELA' if unit.ela else 'MATH')
-    ch = ('The refine of an earlier unit listed what later units must also do: read the heading "Changed for the next '
-          'unit" at the end of %s and carry every line into your notes.' % changed) if changed else \
-        'No earlier unit of this run has a refine report yet.'
+    ch = ('Carry these lessons from earlier units into your notes where they apply:\n' + changed
+          if changed else 'There are no earlier changes to carry into these notes.')
     return """You are the prep pass of the section run in the Curio Class repository, S:\\CurioClass (Windows; Bash with POSIX paths like /s/CurioClass, `python -X utf8`). Read AGENTS.md first.
 
 The run (docs/pipeline/SECTION-RUN.md): for each unit, you write short prep notes, a writer then writes the section plans from them, and a refine pass brings them to the bar. Your notes carry the judgment the writer most often gets wrong: solved exits and keys, error letters, part minutes, turn counting, continuity with earlier units and grades, and new cases that never reuse a taught one.
@@ -228,8 +307,7 @@ def write_prompts(lane, unit, changed):
                  'minutes and continuity. Where a note breaks a rule, the unit plan or the skeleton, the rule wins; '
                  'list it under Plan points.\n' % ', '.join('build/sections/prep/%s/%s.md' % (unit.course, n) for n in names))
         if changed:
-            text += ('- The refine of the previous unit listed what later units must also do: read the heading "Changed '
-                     'for the next unit" at the end of %s and apply every line.\n' % changed)
+            text += '- Apply these lessons from earlier units where they fit:\n%s\n' % changed
         written = [n for n in unit.names if n not in todo]
         if written:
             text += '- These sections of the unit are already written; leave them as they are: %s.\n' % ', '.join(written)
@@ -237,14 +315,14 @@ def write_prompts(lane, unit, changed):
     return out
 
 
-def refine_prompt(unit):
+def refine_prompt(unit, stage='refine'):
     subj = 'ela' if unit.ela else 'math'
     approach = 'docs/APPROACH-%s.md' % ('ELA' if unit.ela else 'MATH')
-    rep = unit.refine_report().relative_to(ROOT).as_posix()
+    rep = unit.refine_report(stage).relative_to(ROOT).as_posix()
     plans = ', '.join('docs/courses/%s/%s.md' % (unit.course, n) for n in unit.names)
     return """You are the refine pass of the section run in the Curio Class repository, S:\\CurioClass (Windows; Bash with POSIX paths like /s/CurioClass, `python -X utf8`). Read AGENTS.md first.
 
-The section plans of {course} unit {u} were just written from prep notes: {plans}. Bring them to the section plan bar so the plan data job and the answer-key read can run next. The gates already pass or list their lines; judge what a gate cannot.
+Review the section plans of {course} unit {u}: {plans}. Bring them to the section plan bar. The gates already pass or list their lines; judge what a gate cannot.
 
 1. Re-check cold: every exit, key, worked case and listed wrong answer solved; each wrong answer with exactly one error letter from s{uu}'s register; rule 4 (no taught case, number, picture or text passage in an exit or check, across section edges and earlier units); one ask per stem; "Shape:" lines; each day gives its goal in student words and its kind; part minutes per DEFAULTS.md; turn counting for about 30 children with a hand-back for those not heard; terms and notation taught before tested; owed codes, days and assessment items from the unit plan and skeletons; the 1,600-word cap outside fields 3, 4 and 6; plain words a teacher can use.
 2. Fix every real fault in the plans in place. Keep what meets the bar; do not rewrite for taste.
@@ -295,7 +373,7 @@ def data_prompts(lane, unit):
     return out
 
 
-def key_packet(unit):
+def key_packet(unit, directory=PACKETS):
     """The narrow key read's packet (SECTION-RUN.md): the unit's item rows and what the key read needs, nothing more."""
     d = ROOT / 'data' / 'plans' / unit.course
 
@@ -343,8 +421,8 @@ def key_packet(unit):
         parts.append('\n## Texts of the items\n')
         for t in sorted({r.get('text_id', '') for r in items if r.get('text_id')}):
             parts.append('- %s: courses/%s/texts/%s.md\n' % (t, unit.course, t))
-    PACKETS.mkdir(parents=True, exist_ok=True)
-    out = PACKETS / ('%s-u%s.md' % (unit.course, unit.uu))
+    directory.mkdir(parents=True, exist_ok=True)
+    out = directory / ('%s-u%s.md' % (unit.course, unit.uu))
     out.write_text('\n'.join(parts), encoding='utf-8')
     return out, len(items)
 
@@ -383,24 +461,105 @@ def claude_exe():
     return hits[-1]
 
 
+def read_state(path, default):
+    return json.loads(path.read_text(encoding='utf-8')) if path.exists() else default
+
+
+def save_state(path, value):
+    tmp = path.with_suffix('.tmp')
+    tmp.write_text(json.dumps(value, indent=2), encoding='utf-8')
+    tmp.replace(path)
+
+
+def course_inventory(subj):
+    units = []
+    for course in COURSES[subj]:
+        try:
+            units.extend(course_units(course))
+        except Stop as e:
+            return units, str(e)
+    return units, None
+
+
+def unit_state(unit, marks, check_tracked=False):
+    """Read old and new stage marks. A report from an unfinished pass still needs its gate and commit."""
+    stages = {m[len(unit.key) + 1:] for m in marks if m.startswith(unit.key + ':')}
+    if unit.missing_plans() or not unit.has_items():
+        return 'todo'
+    interrupted = any(s + '-start' in stages and s not in stages for s in ('claude', 'key'))
+    if not interrupted and any(not check_tracked or tracked(p) for p in unit.key_report()):
+        return 'green'
+    if 'codex-done' in stages or 'data' in stages:
+        return 'backlog'
+    if stages.isdisjoint({'write', 'write-start', 'refine', 'refine-start', 'data-start', 'data-a-start', 'data-b-start'}):
+        return 'backlog'   # pilot or existing plans and data
+    return 'todo'
+
+
+KEY_TABLES = ('items', 'wrongs', 'handbacks', 'errors', 'sources')
+DATA_TABLES = KEY_TABLES + ('parts', 'days', 'words', 'materials', 'source-map', 'wordlist')
+
+
+def table_paths(course, tables):
+    return tuple('data/plans/%s/%s.csv' % (course, name) for name in tables)
+
+
+@contextmanager
+def quota_guard(paths, dry):
+    """Undo only this attempt's unfinished, exclusively owned edits before another unit uses its course CSVs."""
+    def files():
+        found = set()
+        for pattern in paths:
+            p = ROOT / pattern
+            if pattern.endswith('/'):
+                found.update(p.rglob('*'))
+            elif pattern.endswith('-'):
+                for match in p.parent.glob(p.name + '*'):
+                    found.update(match.rglob('*') if match.is_dir() else [match])
+            else:
+                found.add(p)
+        return {p for p in found if p.is_file() and p.suffix not in ('.lock', '.tmp')}
+
+    before = {} if dry else {p: p.read_bytes() for p in files()}
+    try:
+        yield
+    except (ClaudeLimit, CodexLimit):
+        if not dry:
+            for p in files() - before.keys():
+                p.unlink()
+            for p, contents in before.items():
+                if not p.exists() or p.read_bytes() != contents:
+                    p.parent.mkdir(parents=True, exist_ok=True)
+                    tmp = p.with_name(p.name + '.tmp')
+                    tmp.write_bytes(contents)
+                    tmp.replace(p)
+        raise
+
+
 class SectionLane(cl.Lane):
     def __init__(self, subj, dry=False):
         if subj not in COURSES:
             sys.exit('no section lane %r (lanes: %s)' % (subj, ', '.join(COURSES)))
-        super().__init__(subj)
+        self.subj = subj
         self.dry = dry
         self.dir = RUN / subj / ('dry' if dry else '')
         self.dir.mkdir(parents=True, exist_ok=True)
         if dry:                   # a dry run keeps its own state, fresh each time
-            for f in ('done.txt', 'run.log', 'usage.csv'):
+            for f in ('done.txt', 'run.log', 'usage.csv', 'counts.json', 'carry.json', 'claude-cooldown.json'):
                 if (self.dir / f).exists():
                     (self.dir / f).unlink()
         self.lock = threading.Lock()
         self.bg = None            # (unit, thread, result dict) of the prep running beside the current unit
-        if dry and (self.dir / 'counts.json').exists():
-            (self.dir / 'counts.json').unlink()
+        self.reviewing = None
+        self.parallel_paths = ()
+        self.carry = read_state(self.dir / 'carry.json', [])
+        self.cooldown = read_state(self.dir / 'claude-cooldown.json', 0)
+        self.dry_sweep = dry
+        self.prompt_counts = {}
 
     def stopped(self):
+        if self.dry:
+            return (self.dir / 'STOP').exists()
         return (RUN / 'STOP').exists() or (RUN / self.subj / 'STOP').exists()
 
     def log(self, line):
@@ -418,18 +577,17 @@ class SectionLane(cl.Lane):
     # ------------------------------------------------------------ one model call
     def usage(self, unit, stage, result, t0, toks, cost=''):
         p = self.dir / 'usage.csv'
-        fresh = not p.exists()
         runner, model, effort = MODELS[stage.split('-')[0]]
         with self.lock, open(p, 'a', encoding='utf-8', newline='') as f:
             w = csv.writer(f)
-            if fresh:
+            if f.tell() == 0:
                 w.writerow(['ended', 'course', 'unit', 'stage', 'model', 'effort', 'result', 'minutes', 'tokens_in',
                             'cached_in', 'tokens_out', 'reasoning_out', 'cost_usd'])
             w.writerow([now(), unit.course, unit.u, stage, model, effort, result, round((time.time() - t0) / 60, 1),
                         *toks, cost])
 
-    def run_codex(self, unit, stage, prompt, gate_course=None):
-        """One Codex job with the stage's model and effort; a usage limit or two failures raise Stop."""
+    def run_codex(self, unit, stage, prompt):
+        """One Codex job. Return quota denials to the scheduler separately from job failures."""
         _, model, effort = MODELS[stage.split('-')[0]]
         extra = ['-c', 'model="%s"' % model, '-c', 'model_reasoning_effort="%s"' % effort]
         step = dict(course=unit.course, num='u%s' % unit.uu, kind=stage)
@@ -437,17 +595,22 @@ class SectionLane(cl.Lane):
             self.dry_show(unit, stage, prompt, 'codex exec %s' % ' '.join(extra))
             return dict(last='dry run', thread=None, resume=lambda *a: None)
         for attempt in (1, 2):
+            self.check_stop()
             t0 = time.time()
             self.log('start %s %s (%s %s, try %d)' % (unit, stage, model, effort, attempt))
             job = self.codex(step, prompt, extra)
             ok = bool(job['last'].strip())
             ev = ''
-            for f in (self.dir / 'jobs').glob('%s-%s-%s*.jsonl' % (step['course'], step['num'], stage.lower())):
-                ev += f.read_text(encoding='utf-8', errors='replace')[-20000:].lower()
+            for suffix in ('', '-resume'):
+                f = self.dir / 'jobs' / ('%s-%s-%s%s.jsonl' % (step['course'], step['num'], stage.lower(), suffix))
+                if not ok and not job['limit'] and f.exists() and f.stat().st_mtime >= t0 - 0.01:
+                    with f.open('rb') as events:
+                        events.seek(max(0, f.stat().st_size - 20000))
+                        ev += events.read().decode('utf-8', errors='replace').lower()
             limit = job['limit'] or (not ok and any(w in ev for w in LIMIT_WORDS))
             self.usage(unit, stage, 'limit' if limit else ('ok' if ok else 'failed'), t0, job['usage'])
             if limit:
-                raise Stop('usage limit reported by Codex at %s %s' % (unit, stage))
+                raise CodexLimit('usage limit reported by Codex at %s %s' % (unit, stage))
             if not ok and ('model_not_found' in ev or 'not supported when using codex' in ev):
                 raise Stop('Codex refused the model %s at %s %s (update the Codex CLI, or change MODELS)'
                            % (model, unit, stage))
@@ -470,6 +633,7 @@ class SectionLane(cl.Lane):
         stem = self.dir / 'jobs' / ('%s-u%s-%s' % (unit.course, unit.uu, stage))
         stem.parent.mkdir(parents=True, exist_ok=True)
         for attempt in (1, 2):
+            self.check_stop()
             sid = resume or str(uuid.uuid4())
             cmd = base + (['--resume', sid] if resume else ['--session-id', sid]) + ['--allowedTools', CLAUDE_TOOLS]
             t0 = time.time()
@@ -479,8 +643,11 @@ class SectionLane(cl.Lane):
                 pr = subprocess.Popen(cmd, cwd=ROOT, stdin=subprocess.PIPE, stdout=fo, stderr=fe, text=True,
                                       encoding='utf-8', env=env,
                                       creationflags=getattr(subprocess, 'CREATE_NEW_PROCESS_GROUP', 0))
-                pr.stdin.write(prompt)
-                pr.stdin.close()
+                try:
+                    pr.stdin.write(prompt)
+                    pr.stdin.close()
+                except BrokenPipeError:
+                    pass  # The CLI can reject the call before reading stdin. Classify its output below.
                 timed_out = False
                 while pr.poll() is None:
                     time.sleep(15)
@@ -498,14 +665,15 @@ class SectionLane(cl.Lane):
             toks = [u.get('input_tokens', 0) + u.get('cache_creation_input_tokens', 0), u.get('cache_read_input_tokens', 0),
                     u.get('output_tokens', 0), 0]
             text = out.get('result') or ''
-            err = timed_out or bool(out.get('is_error')) or not text.strip()
+            err = timed_out or bool(pr.returncode or out.get('is_error')) or not text.strip()
             blob = (text + ' ' + raw[-2000:] + ' ' + errt[-2000:]).lower()
-            limit = err and any(w in blob for w in LIMIT_WORDS)
-            login = err and any(w in blob for w in ('not logged in', '/login', 'invalid api key', 'authentication'))
+            login = any(w in blob for w in ('not signed in', 'not logged in', 'invalid api key')) or (
+                err and any(w in blob for w in ('/login', 'authentication')))
+            limit = not login and any(w in (blob if err else text.lower()) for w in LIMIT_WORDS)
             self.usage(unit, stage, 'limit' if limit else ('timeout' if timed_out else ('failed' if err else 'ok')), t0,
                        toks, out.get('total_cost_usd', ''))
             if limit:
-                raise Stop('usage limit reported by Claude at %s %s' % (unit, stage))
+                raise ClaudeLimit(text + '\n' + errt + '\n' + raw)
             if login:
                 raise Stop('the Claude CLI is not signed in (run `claude` once and /login), at %s %s' % (unit, stage))
             if not err:
@@ -521,19 +689,23 @@ class SectionLane(cl.Lane):
     def dry_show(self, unit, stage, prompt, cmd):
         d = self.dir / 'prompts'
         d.mkdir(parents=True, exist_ok=True)
-        p = d / ('%s-u%s-%s.txt' % (unit.course, unit.uu, stage))
+        stem = '%s-u%s-%s' % (unit.course, unit.uu, stage)
+        count = self.prompt_counts.get(stem, 0) + 1
+        self.prompt_counts[stem] = count
+        p = d / (stem + (('-%d' % count) if count > 1 else '') + '.txt')
         p.write_text('COMMAND: %s\n\n%s' % (cmd, prompt), encoding='utf-8')
         toks = re.findall(r'\{[A-Z][A-Z0-9_]*\}', prompt)
         self.log('DRY %s %s: %d words, %s%s' % (unit, stage, len(prompt.split()), p.relative_to(ROOT).as_posix(),
                                                ', UNFILLED %s' % toks if toks else ''))
 
     # ------------------------------------------------------------ gate, commit
-    def gated(self, unit, stage, job=None, sid=None):
+    def gated(self, unit, stage, job=None, sid=None, recovery_prompt=None):
         """Re-run the course gate; hand new lines back once (Codex: same session; Claude: a fix call)."""
         if self.dry:
             return 0
         code, out, new = self.gate(unit.course)
         if code == 1:
+            self.check_stop()
             self.log('%s %s: %d new gate line(s); handing them back once' % (unit, stage, len(new)))
             msg = ('The lead re-ran the gate for %s after your job (`python -X utf8 scripts/gate.py --course %s`). Fix '
                    'every new failing line below that your job made, as your job says (never bend content to pass a '
@@ -542,10 +714,12 @@ class SectionLane(cl.Lane):
             if job and job.get('thread'):
                 u0, t0 = list(job['usage']), time.time()
                 job['resume'](msg, '-fix')
-                self.usage(unit, stage + '-fix', 'ok' if job['last'].strip() else 'failed', t0,
+                self.usage(unit, stage + '-fix', 'limit' if job['limit'] else ('ok' if job['last'].strip() else 'failed'), t0,
                            [a - b for a, b in zip(job['usage'], u0)])
-            elif sid:
-                self.run_claude(unit, stage + '-fix', msg, resume=sid)
+                if job['limit']:
+                    raise CodexLimit('usage limit reported by Codex at %s %s-fix' % (unit, stage))
+            elif sid or recovery_prompt:
+                self.run_claude(unit, stage + '-fix', msg if sid else recovery_prompt + '\n\n' + msg, resume=sid)
             code, out, new = self.gate(unit.course)
         if code == 2:
             raise Stop('%s %s: gate exit 2 (the course changed and has no baseline)' % (unit, stage))
@@ -558,7 +732,7 @@ class SectionLane(cl.Lane):
         """Commit only this stage's paths; changes inside the course folders but outside them stop the lane."""
         if self.dry:
             return ''
-        own = ('docs/courses/%s/' % unit.course, 'data/plans/%s/' % unit.course, 'courses/%s/' % unit.course)
+        own = tuple('%s/%s/' % (folder, unit.course) for folder in ('docs/courses', 'docs/reviews', 'data/plans', 'courses'))
         waited = False
         while True:
             while cl.turn_held():               # wait for a held turn outside the git lock (review 11)
@@ -575,6 +749,8 @@ class SectionLane(cl.Lane):
                         continue                    # safe_write lock and temp files are never work
                     if any(p == x or (x.endswith(('/', '-')) and p.startswith(x)) for x in allowed):
                         paths.append(p)
+                    elif any(p == x or (x.endswith(('/', '-')) and p.startswith(x)) for x in self.parallel_paths):
+                        continue
                     elif p in before:
                         continue
                     elif p.startswith(own):
@@ -660,7 +836,9 @@ class SectionLane(cl.Lane):
         self.check_stop()
         before = dict(cl.porcelain()) if not self.dry else {}
         self.start(unit, stage)
-        self.run_codex(unit, stage, texts_prompt(self, unit, second))
+        side = cl.TEXTS_OUT / ('%s-u%d%s.csv' % (unit.course, unit.u, '-new' if second else ''))
+        with quota_guard(('courses/%s/texts/' % unit.course, side.relative_to(ROOT).as_posix()), self.dry):
+            self.run_codex(unit, stage, texts_prompt(self, unit, second))
         if not self.dry:
             with self.lock:
                 n = cl.merge_texts(unit.course, second)
@@ -668,27 +846,37 @@ class SectionLane(cl.Lane):
             self.log('%s %s: %d text rows merged; skeletons rebuilt (exit %d)' % (unit, stage, n, code))
         self.finish(unit, stage, ('courses/%s/texts/' % unit.course, 'data/plans/ela-texts.csv'), before)
 
-    def prep(self, unit, changed):
+    def feedback(self, unit):
+        marks = self.done()
+        seen = {m.split(':prep-carry:', 1)[1] for m in marks if ':prep-carry:' in m}
+        return [item for item in self.carry if item['unit'].split(':')[0] == unit.course and 'dry_target' not in item and
+                (item['unit'] not in seen or '%s:prep-carry:%s' % (unit, item['unit']) in marks)]
+
+    def prep(self, unit, previous):
         """Prep notes (build/ only, never committed). Safe to run beside another stage."""
-        if self.stage_done(unit, 'prep') or not unit.missing_plans():
+        missing = unit.missing_plans()
+        if not missing or (self.stage_done(unit, 'prep') and
+                           (self.dry or all((PREP / unit.course / (n + '.md')).is_file() for n in missing))):
             return
-        self.run_codex(unit, 'prep', prep_prompt(unit, changed))
+        self.check_stop()
+        carry = self.feedback(unit)
+        self.run_codex(unit, 'prep', prep_prompt(unit, changed_list(previous, carry, unit.course)))
         miss = [n for n in unit.missing_plans() if not (PREP / unit.course / ('%s.md' % n)).exists()]
         if miss and not self.dry:
             raise Stop('%s prep wrote no note for %s' % (unit, ', '.join(miss)))
-        self.mark('%s:prep' % unit.key)
+        self.mark('\n'.join(['%s:prep-carry:%s' % (unit, item['unit']) for item in carry] + ['%s:prep' % unit]))
         self.log('done %s prep' % unit)
 
-    def start_bg_prep(self, nxt, changed):
-        """Texts of the next unit run here first (they commit), then its prep runs in a thread beside the refine."""
-        if nxt is None or self.bg or nxt.green() or not nxt.missing_plans() or self.stage_done(nxt, 'prep'):
+    def start_bg_prep(self, nxt, previous):
+        """One worker does the next unit's texts and then prep while Opus reviews an older unit."""
+        if nxt is None or self.bg or not nxt.missing_plans() or self.stage_done(nxt, 'prep'):
             return
-        self.texts(nxt)
         res = {}
 
         def work():
             try:
-                self.prep(nxt, changed)
+                self.texts(nxt)
+                self.prep(nxt, previous)
             except Exception as e:            # carried to the main thread at the join
                 res['err'] = e
                 res['tb'] = traceback.format_exc()
@@ -712,7 +900,7 @@ class SectionLane(cl.Lane):
 
     def write(self, unit, changed):
         """Returns the number of sections written. A write that stopped after its plans landed is committed, not redone."""
-        if self.stage_done(unit, 'write'):
+        if self.stage_done(unit, 'write') and (self.dry or not unit.missing_plans()):
             return 0
         if not unit.missing_plans():
             if not self.started(unit, 'write'):
@@ -728,8 +916,9 @@ class SectionLane(cl.Lane):
             self.baseline(unit)
             before = dict(cl.porcelain()) if not self.dry else {}
             self.start(unit, 'write')
-            job = self.run_codex(unit, 'write', text)
-            newn = self.gated(unit, 'write', job=job)
+            with quota_guard(self.plan_paths(unit, names), self.dry):
+                job = self.run_codex(unit, 'write', text)
+                newn = self.gated(unit, 'write', job=job)
             self.commit_stage(unit, 'write', self.plan_paths(unit, names), before,
                               ' %s%s' % (', '.join(names), ', %d new gate lines left' % newn if newn else ''))
             written += len(names)
@@ -741,27 +930,30 @@ class SectionLane(cl.Lane):
         self.log('done %s write' % unit)
         return written
 
-    def refine(self, unit):
-        if self.stage_done(unit, 'refine'):
+    def crefine(self, unit):
+        if unit.refine_report().exists():
+            if not self.dry and not tracked(unit.refine_report()):
+                self.baseline(unit)
+                allowed = self.plan_paths(unit) + (unit.refine_report().relative_to(ROOT).as_posix(),)
+                self.finish(unit, 'refine', allowed, {}, self.gated(unit, 'refine'))
+            return
+        rep = unit.refine_report('crefine')
+        if self.stage_done(unit, 'crefine') and (self.dry or rep.exists()):
             return
         self.check_stop()
         self.baseline(unit)
         before = dict(cl.porcelain()) if not self.dry else {}
-        rep = unit.refine_report()
         allowed = self.plan_paths(unit) + (rep.relative_to(ROOT).as_posix(),)
-        if self.started(unit, 'refine') and rep.exists():
-            self.log('%s refine: its report is there from a stopped run; gate and commit it' % unit)
-            self.finish(unit, 'refine', allowed, {}, self.gated(unit, 'refine'))
-            return
-        self.start(unit, 'refine')
-        text, sid = self.run_claude(unit, 'refine', refine_prompt(unit))
-        newn = self.gated(unit, 'refine', sid=sid)
-        if not self.dry and not rep.exists():
-            raise Stop('%s refine wrote no report (%s)' % (unit, rep.relative_to(ROOT).as_posix()))
-        self.finish(unit, 'refine', allowed, before, newn)
+        self.start(unit, 'crefine')
+        with quota_guard(allowed, self.dry):
+            job = None if report_changes(rep) else self.run_codex(unit, 'crefine', refine_prompt(unit, 'crefine'))
+            newn = self.gated(unit, 'crefine', job=job)
+        if not self.dry and not report_changes(rep):
+            raise Stop('%s crefine left no final Changed list in %s' % (unit, rep))
+        self.finish(unit, 'crefine', allowed, before, newn)
 
     def data(self, unit):
-        if self.stage_done(unit, 'data'):
+        if self.stage_done(unit, 'data') and (self.dry or unit.has_items()):
             return
         if unit.has_items() and not any(self.stage_done(unit, s) for s in (
                 'write-start', 'refine', 'data-start', 'data-a-start', 'data-b-start')):
@@ -769,59 +961,174 @@ class SectionLane(cl.Lane):
             self.log('%s data: items rows already exist; kept' % unit)
             self.mark('%s:data' % unit.key)
             return
-        allowed = ('data/plans/%s/' % unit.course, 'courses/%s/u%s-' % (unit.course, unit.uu),
-                   'docs/courses/%s/u%s-' % (unit.course, unit.uu), 'data/plans/defects.csv')
+        owned = ('data/plans/%s/' % unit.course, 'courses/%s/u%s-' % (unit.course, unit.uu),
+                 'docs/courses/%s/u%s-' % (unit.course, unit.uu))
+        allowed = owned + ('data/plans/defects.csv',)
+        rebuild = not self.dry and not unit.has_items()
         for half, text in data_prompts(self, unit):
             st = 'data' + ('-' + half if half else '')
-            if self.stage_done(unit, st):
+            if self.stage_done(unit, st) and not rebuild:
                 continue
             self.check_stop()
             self.baseline(unit)
             before = dict(cl.porcelain()) if not self.dry else {}
             self.start(unit, st)
-            job = self.run_codex(unit, st, text)
-            newn = self.gated(unit, st, job=job)
+            with quota_guard(owned, self.dry):
+                job = self.run_codex(unit, st, text)
+                newn = self.gated(unit, st, job=job)
             self.finish(unit, st, allowed, before, newn)
         if not self.dry and not unit.has_items():
             raise Stop('%s data wrote no items.csv rows for the unit' % unit)
         self.mark('%s:data' % unit.key)
 
-    def key(self, unit):
-        if self.stage_done(unit, 'key') or any(tracked(k) for k in unit.key_report()):
+    def record_carry(self, unit):
+        if any(item['unit'] == unit.key for item in self.carry):
             return
+        changes = changed_list(None, [{'text': report_changes(p)} for p in (unit.refine_report(), unit.key_path())])
+        if changes:
+            self.carry.append(dict(unit=unit.key, text=changes, time=now(), applied_to=[]))
+            save_state(self.dir / 'carry.json', self.carry)
+
+    def sweep_items(self, unit, marks):
+        return [item for item in self.carry if item['unit'].split(':')[0] == unit.course and item['unit'] != unit.key
+                and item.get('dry_target', unit.key) == unit.key
+                and unit.key not in item['applied_to'] and '%s:write-carry:%s' % (unit, item['unit']) not in marks]
+
+    def sweep(self, backlog):
+        groups = {}
+        marks = self.done()
+        for unit in backlog:
+            if unit == self.reviewing:
+                continue
+            items = self.sweep_items(unit, marks)
+            if self.dry_sweep and not items:
+                example = dict(unit=unit.course + ':dry-example', time=now(), applied_to=[], dry_target=unit.key,
+                               text='- Check that each changed exit still matches its item and teacher key.')
+                self.carry.append(example)
+                items = [example]
+            self.dry_sweep = False
+            if items:
+                groups.setdefault(unit.course, []).append((unit, items))
+        for course, targets in groups.items():
+            self.check_stop()
+            first = targets[0][0]
+            paths = tuple(dict.fromkeys(path for unit, _ in targets for path in self.plan_paths(unit)))
+            allowed = paths + table_paths(course, DATA_TABLES)
+            prompt = ('Read AGENTS.md and docs/pipeline/briefs/section-write.md. Apply the Claude feedback below only '
+                      'where it fits each named unit. Inspect the section plans and their data first. Keep exits, keys, '
+                      'wrong answers, handbacks, sources and ledger entries consistent. Solve changed items cold. '
+                      'Never bend content for a gate. Preserve edits already made on an interrupted sweep. '
+                      'Use scripts/ledger.py for the ledger. In shared CSVs edit only rows belonging to the named '
+                      'sections and days, preserving other rows and full IDs. Edit only these paths:\n%s\n\n%s\n\n%s\n'
+                      'Run python -X utf8 scripts/gate.py --course %s and report what you applied or left with why.'
+                      % ('\n'.join(allowed), '\n\n'.join('%s (sections %s, days %d to %d)\n%s' % (
+                          u, ', '.join(u.names), min(u.days), max(u.days), changed_list(None, items))
+                          for u, items in targets), NEVER, course))
+            self.baseline(first)
+            before = {} if self.dry else dict(cl.porcelain())
+            with quota_guard(allowed, self.dry):
+                job = self.run_codex(first, 'sweep', prompt)
+                newn = self.gated(first, 'sweep', job=job)
+            self.commit_stage(first, 'sweep', allowed, before)
+            for unit, items in targets:
+                for item in items:
+                    item['applied_to'].append(unit.key)
+            save_state(self.dir / 'carry.json', self.carry)
+            self.log('done %s sweep: %s (%d new gate lines)' % (course, ', '.join(str(u) for u, _ in targets), newn))
+            self.pileup(first)
+
+    def claude_pass(self, unit, nxt, previous):
+        """Finish the oldest queued unit. Return False on cooldown, leaving it at the head."""
         self.check_stop()
         self.baseline(unit)
-        before = dict(cl.porcelain()) if not self.dry else {}
-        rep = unit.key_path()
-        allowed = tuple('data/plans/%s/%s.csv' % (unit.course, t) for t in ('items', 'wrongs', 'handbacks', 'errors',
-                                                                           'sources')) + \
-            ('courses/%s/u%s-' % (unit.course, unit.uu), 'docs/courses/%s/u%s-' % (unit.course, unit.uu),
-             rep.relative_to(ROOT).as_posix())
-        if self.started(unit, 'key') and rep.exists():
-            self.log('%s key: its report is there from a stopped run; gate and commit it' % unit)
-            self.finish(unit, 'key', allowed, {}, self.gated(unit, 'key'))
-            return
-        packet, n = key_packet(unit)
-        if not self.dry and n == 0:
-            raise Stop('%s key: the packet has no items rows' % unit)
-        self.start(unit, 'key')
-        text, sid = self.run_claude(unit, 'key', key_prompt(unit, packet))
-        newn = self.gated(unit, 'key', sid=sid)
-        if not self.dry and not rep.exists():
-            raise Stop('%s key read wrote no report (%s)' % (unit, rep.relative_to(ROOT).as_posix()))
-        self.finish(unit, 'key', allowed, before, newn)
+        refine, key = unit.refine_report(), unit.key_path()
+        combined = self.started(unit, 'claude') or not refine.exists()
+        stage = 'claude' if combined else 'key'
+        reports = [refine, key] if combined else [key]
+        allowed = table_paths(unit.course, KEY_TABLES) + ('courses/%s/u%s-' % (unit.course, unit.uu),
+                  'docs/courses/%s/u%s-' % (unit.course, unit.uu), key.relative_to(ROOT).as_posix())
+        if combined:
+            allowed += self.plan_paths(unit) + (refine.relative_to(ROOT).as_posix(),)
+        elif not self.dry and not tracked(refine):
+            self.finish(unit, 'refine', self.plan_paths(unit) + (refine.relative_to(ROOT).as_posix(),), {},
+                        self.gated(unit, 'refine'))
 
-    # ------------------------------------------------------------ the waterfall
-    def all_units(self):
-        """Every unit of the lane in order; a course with a missing input ends the list there (its reason kept)."""
-        out, why = [], None
-        for c in COURSES[self.subj]:
-            try:
-                out += course_units(c)
-            except Stop as e:
-                why = str(e)
-                break
-        return out, why
+        packet, n = key_packet(unit, self.dir / 'packets' if self.dry else PACKETS)
+        if not self.dry and n == 0:
+            raise Stop('%s key: the packet has no judged items' % unit)
+        prompt = key_prompt(unit, packet)
+        if combined:
+            prompt = ('Complete both jobs in this session on the finished unit. First solve the narrow key packet cold '
+                      'before reading plans, keys or prep notes for the refine. Then run the full refine. The read '
+                      'and edit restrictions below apply to their respective tasks. Reconcile both sets of fixes in '
+                      'the plans, ledger, shared pieces and the listed data rows of this unit. Recheck changed items '
+                      'cold against the final files. Write both named reports.\n\n' + prompt + '\n\n' + refine_prompt(unit))
+        prompt += ('\n\nEnd each report you write with the final heading "## Changed for the next unit" and the same '
+                   'list of lessons from this pass, or "None." if nothing carries.')
+        swept = [item for item in self.carry if unit.key in item['applied_to']]
+        if swept:
+            prompt += '\n\nVerify that these swept changes landed where applicable:\n' + changed_list(None, swept)
+        pending = self.sweep_items(unit, self.done())
+        if pending:
+            prompt += ('\n\nCodex has not swept these lessons yet. Check them within this review\'s scope and '
+                       'apply where relevant. Identify any applicable fix outside that scope in the report:\n' +
+                       changed_list(None, pending))
+
+        # An interrupted old key read can legitimately predate the final Changed heading.
+        legacy_key = (not combined and self.started(unit, 'key') and key.exists() and
+                      not self.stage_done(unit, 'key-with-carry'))
+        landed = legacy_key or all(report_changes(p) for p in reports)
+        before = {} if self.dry else dict(cl.porcelain())
+        self.reviewing = unit
+        text_paths = ('courses/%s/texts/' % nxt.course, 'data/plans/ela-texts.csv') if nxt and nxt.ela else ()
+        self.parallel_paths = allowed + text_paths
+        try:
+            self.start_bg_prep(nxt, previous)
+            if not combined and not legacy_key and not self.stage_done(unit, 'key-with-carry'):
+                self.mark('%s:key-with-carry' % unit)
+            self.start(unit, stage)
+            with quota_guard(allowed, self.dry):
+                sid = None
+                if not landed:
+                    _, sid = self.run_claude(unit, stage, prompt)
+                newn = self.gated(unit, stage, sid=sid, recovery_prompt=prompt)
+            if not self.dry and (not all(p.exists() for p in reports) or
+                                 (not legacy_key and not all(report_changes(p) for p in reports))):
+                raise Stop('%s %s left an incomplete report: %s' % (unit, stage, ', '.join(map(str, reports))))
+            if not self.dry and not unit.green():
+                raise Stop('%s %s left missing section plans, unit items or key report' % (unit, stage))
+            self.finish(unit, stage, allowed, before, newn)
+            self.record_carry(unit)
+            self.pileup(unit)
+            self.log('unit %s green%s' % (unit, ' (dry)' if self.dry else ''))
+            return True
+        except ClaudeLimit as exc:
+            self.cooldown = reset_time(str(exc), time.time())
+            save_state(self.dir / 'claude-cooldown.json', self.cooldown)
+            self.log('%s %s: Claude usage limit; cooldown until %s' % (unit, stage, dt.datetime.fromtimestamp(self.cooldown)))
+            return False
+        finally:
+            self.reviewing = None
+            # The caller joins prep before any further stage, including a quota drain.
+
+    def codex_unit(self, unit, previous):
+        self.check_stop()
+        if unit.missing_plans() or self.started(unit, 'write'):
+            self.texts(unit)
+            self.prep(unit, previous)
+            carry = self.feedback(unit)
+            written = self.write(unit, changed_list(previous, carry, unit.course))
+            if written == len(unit.names):
+                for item in carry:
+                    self.mark('%s:write-carry:%s' % (unit, item['unit']))
+            self.pileup(unit)
+        if self.stage_done(unit, 'write'):
+            self.crefine(unit)
+            self.texts(unit, second=True)
+        self.data(unit)
+        self.pileup(unit)
+        self.mark('%s:codex-done' % unit)
+        self.log('unit %s codex-done' % unit)
 
     def run(self, limit=None):
         old = cl.LANES_DIR / self.subj
@@ -832,36 +1139,86 @@ class SectionLane(cl.Lane):
         if stopped.exists() and not self.dry:
             stopped.rename(self.dir / ('STOPPED-%s.txt' % dt.datetime.now().strftime('%Y%m%d-%H%M%S')))
         cl.keep_awake(True)
-        units, why = self.all_units()
-        todo = [u for u in units if not u.green()]
+        units, why = course_inventory(self.subj)
+        previous = dict(zip(units, [None] + units[:-1]))
+        marks = self.done()
+        work = []
+        for u in units:
+            state = unit_state(u, marks, check_tracked=not self.dry)
+            if state != 'green':
+                work.append((u, state))
+            elif any('%s:%s-start' % (u, stage) in marks for stage in ('claude', 'key')):
+                self.record_carry(u)   # also recovers a crash just after committing the pass
         if limit:
-            todo = todo[:limit]
-        self.log('section run starts%s: %d units to go (%s first)%s' % (
-            ' (DRY)' if self.dry else '', len(todo), todo[0] if todo else 'none',
-            '; then stops: %s' % why if why else ''))
-        for i, unit in enumerate(todo):
-            self.check_stop()
-            nxt = todo[i + 1] if i + 1 < len(todo) else None
-            changed = changed_list(todo[i - 1]) if i else None   # the previous unit is through its refine by now
-            self.join_bg(unit)
-            if unit.missing_plans() or self.started(unit, 'write'):
-                self.texts(unit)
-                self.prep(unit, changed)       # skipped when it already ran beside the previous unit
-                self.write(unit, changed)
-                self.pileup(unit)
-            # the next unit's texts, then its prep beside this refine (prep reads the newest Changed list there is)
-            self.start_bg_prep(nxt, changed)
-            if self.stage_done(unit, 'write'):
-                self.refine(unit)
-                self.texts(unit, second=True)
-            self.data(unit)
-            self.key(unit)
-            self.pileup(unit)
-            self.log('unit %s green%s' % (unit, ' (dry)' if self.dry else ''))
+            sample = work[:limit]
+            if self.dry and limit > 1 and sample and not any(u.missing_plans() for u, _ in sample):
+                example = next((pair for pair in work[limit:] if pair[0].missing_plans()), None)
+                if example:
+                    self.log('DRY sample includes %s to show the stages for unwritten plans' % example[0])
+                    sample[-1] = example
+            work = sample
+        backlog = deque(u for u, state in work if state == 'backlog')
+        if backlog and (self.dir / 'done.txt').exists():
+            order = {}
+            for mark in (self.dir / 'done.txt').read_text(encoding='utf-8').splitlines():
+                if mark.endswith((':data', ':codex-done')):
+                    order.setdefault(mark.rsplit(':', 1)[0], len(order))
+            backlog = deque(sorted(backlog, key=lambda u: order.get(u.key, len(order))))
+        todo = deque(u for u, state in work if state == 'todo')
+        for u in backlog:
+            if not self.stage_done(u, 'codex-done'):
+                self.mark('%s:codex-done' % u)
+        self.log('section run starts%s: %d Codex units, %d awaiting Claude%s' % (
+            ' (DRY)' if self.dry else '', len(todo), len(backlog), '; after drain: %s' % why if why else ''))
+        self.schedule(todo, backlog, previous)
         if why and not limit:
             raise Stop(why)
-        self.log('section run finished: every unit of %s done%s' % (self.subj, ' (dry)' if self.dry else ''))
+        self.log('section run finished: %s units done%s' % (self.subj, ' (dry sample)' if self.dry else ''))
         cl.keep_awake(False)
+
+    def schedule(self, todo, backlog, previous):
+        """One foreground stage at a time. Recover an interrupted job before another unit edits shared rows."""
+        resume_review = bool(backlog) and any(self.started(backlog[0], s) for s in ('claude', 'key'))
+        resume_codex = bool(todo) and any(self.started(todo[0], s) for s in
+                                          ('write', 'crefine', 'refine', 'texts2', 'data', 'data-a', 'data-b'))
+        retry = 0
+        while todo or backlog:
+            self.check_stop()
+            limited = time.time() < retry
+            try:
+                if not limited and not (resume_review and time.time() >= self.cooldown and not resume_codex):
+                    if not resume_codex:
+                        self.sweep(backlog)
+                    resume_codex = False
+                    if todo:
+                        unit = todo[0]
+                        self.codex_unit(unit, previous[unit])
+                        backlog.append(todo.popleft())
+                        self.sweep(backlog)  # includes a unit that had no prep or write
+                    retry = 0
+                if backlog and time.time() >= self.cooldown:
+                    resume_review = False
+                    nxt = todo[0] if todo and not limited else None
+                    if self.claude_pass(backlog[0], nxt, previous.get(nxt)):
+                        backlog.popleft()
+                    try:
+                        self.join_bg()
+                    finally:
+                        self.parallel_paths = ()
+                elif limited or not todo:
+                    deadlines = ([retry] if limited else []) + ([self.cooldown] if backlog else [])
+                    if deadlines:
+                        self.wait_until(min(deadlines))
+            except CodexLimit as exc:
+                if not backlog:
+                    raise
+                retry = time.time() + 3600
+                self.log('%s; draining Claude backlog, Codex retry at %s' % (exc, dt.datetime.fromtimestamp(retry)))
+
+    def wait_until(self, deadline):
+        while time.time() < deadline:
+            self.check_stop()
+            time.sleep(max(0, min(30, deadline - time.time())))
 
 
 def push(log):
@@ -913,6 +1270,22 @@ def status():
         d = RUN / subj
         last = (d / 'run.log').read_text(encoding='utf-8').splitlines()[-1:] if (d / 'run.log').exists() else ['not started']
         print('%-5s last: %s' % (subj, last[0][:160]))
+        marks = set((d / 'done.txt').read_text(encoding='utf-8').splitlines()) if (d / 'done.txt').exists() else set()
+        units, _ = course_inventory(subj)
+        states = {u: unit_state(u, marks) for u in units}
+        green = sum(state == 'green' for state in states.values())
+        backlog = [u for u in units if states[u] == 'backlog']
+        cooldown = read_state(d / 'claude-cooldown.json', 0)
+        seen = {m.split(':prep-carry:', 1)[1] for m in marks if ':prep-carry:' in m}
+        carry = read_state(d / 'carry.json', [])
+        pending = sum(any(u.course == item['unit'].split(':')[0] and (
+            (states[u] == 'todo' and u.missing_plans() and item['unit'] not in seen) or
+            (states[u] == 'backlog' and u.key != item['unit'] and u.key not in item['applied_to'] and
+             '%s:write-carry:%s' % (u, item['unit']) not in marks)) for u in units) for item in carry)
+        print('      codex-done %d, green %d, backlog %d, Claude cooldown until %s, carry items pending %d' %
+              (green + len(backlog), green, len(backlog),
+               dt.datetime.fromtimestamp(cooldown).isoformat(sep=' ', timespec='seconds') if cooldown > time.time()
+               else 'none', pending))
         if (d / 'STOPPED').exists():
             print('      STOPPED: %s' % (d / 'STOPPED').read_text(encoding='utf-8').splitlines()[1][:300])
         p = d / 'usage.csv'
