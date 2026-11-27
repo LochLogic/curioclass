@@ -4,32 +4,38 @@ course: english-language-arts-grade-4
 unit: 1.6
 version: draft, not yet taught
 credit: ours
+teacher_note: Print only the assigned day; feedback day 26, independent revision day 27, audit day 36.
 ---
 # Independent convention slips
 
-Print only the assigned day. Work alone. Keep your first attempt.
+Work alone. Keep your first attempt.
 
 ## Day 24
 
-[[s01-C24-name]]
+Correct the name and poem-title capitals.
+nina wrote moon steps.
 
 Response: ________________________________________
 
 Reference or revision date: ____________________
 
-[[s01-C24-opening]]
+Correct the sentence-opening capital.
+the page rests beside a lamp.
 
 Response: ________________________________________
 
 Reference or revision date: ____________________
 
-[[s01-C24-speech]]
+Add the comma and quotation marks.
+The guide said Please enter quietly.
 
 Response: ________________________________________
 
 Reference or revision date: ____________________
 
-[[s01-C24-text]]
+Source sentence: Three bells rang.
+Add the comma and quotation marks.
+The note states Three bells rang.
 
 Response: ________________________________________
 
@@ -37,31 +43,33 @@ Reference or revision date: ____________________
 
 ## Day 25
 
-[[s01-C25-sentence]]
+Write one complete sentence about a classroom object.
 
 Response: ________________________________________
 
 Reference or revision date: ____________________
 
-[[s01-C25-fragment]]
+Repair this fragment.
+Although the cover was bent.
 
 Response: ________________________________________
 
 Reference or revision date: ____________________
 
-[[s01-C25-runon]]
+Repair this run-on.
+The folder opens its pages slide out.
 
 Response: ________________________________________
 
 Reference or revision date: ____________________
 
-[[s01-C25-reference]]
+Record the reference entry for one spelling you doubt in your draft.
 
 Response: ________________________________________
 
 Reference or revision date: ____________________
 
-[[s01-C25-spelling]]
+Write the checked spelling beside your first attempt.
 
 Response: ________________________________________
 

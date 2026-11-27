@@ -4,16 +4,16 @@ course: english-language-arts-grade-4
 unit: 1.6
 version: draft, not yet taught
 credit: ours
+teacher_note: Print only the current day. Keep the inspection answer key separate.
 ---
 # Section 1.6 feature inspection
-
-Print only the current day. Keep answer keys separate.
 
 ## Day 23
 
 Name: ____________________    Date: ____________________
 
-[[s01-P23-1]]
+Opening: These choices matter.
+Mark the missing information: subject or lunch menu.
 
 Response: ________________________________________
 
@@ -21,11 +21,14 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P24-1]]
+Claim: Williams wrote only poems.
+Cross out the part contradicted by his profile.
 
 Response: ________________________________________
 
-[[s01-P24-2]]
+Choose the correct text quotation.
+A. The profile states, "He also wrote novels, essays and plays."
+B. The profile states "He also wrote novels, essays and plays.
 
 Response: ________________________________________
 
@@ -33,11 +36,12 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P25-1]]
+Which word identifies a poem feature precisely: thing or stanza?
 
 Response: ________________________________________
 
-[[s01-P25-2]]
+The rain stopped because my notebook is blue.
+Cross out the link that falsely claims a cause.
 
 Response: ________________________________________
 
@@ -45,6 +49,8 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P26-1]]
+Body topic: Poem features.
+Detail: My sandwich has cheese.
+Cross out the misplaced detail.
 
 Response: ________________________________________

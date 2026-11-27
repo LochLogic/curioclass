@@ -1,51 +1,15 @@
 ---
-piece: blank
+piece: opener
 course: english-language-arts-grade-4
 unit: 1.7
 version: draft, not yet taught
 credit: ours
-exit: half
 ---
-# Section 1.7 independent exit cards
+# Section 1.7 exit distribution
 
-Separate days before printing. Open only at independent response time.
+Teacher only. Print one half-sheet exit and its separate reading leaf for the named day. Read exit-key.md before class.
 
-## Day 28
-
-Name: ____________________    Date: ____________________
-
-[[s01-X28]]
-
-Response: ________________________________________
-
-__________________________________________________
-
-## Day 29
-
-Name: ____________________    Date: ____________________
-
-[[s01-X29]]
-
-Response: ________________________________________
-
-__________________________________________________
-
-## Day 31
-
-Name: ____________________    Date: ____________________
-
-[[s01-X31]]
-
-Response: ________________________________________
-
-__________________________________________________
-
-## Day 32
-
-Name: ____________________    Date: ____________________
-
-[[s01-X32]]
-
-Response: ________________________________________
-
-__________________________________________________
+- Day 28: reading-028.md and exit-028.md, s01-X28.
+- Day 29: reading-029.md and exit-029.md, s01-X29.
+- Day 31: reading-031.md and exit-031.md, s01-X31.
+- Day 32: reading-032.md and exit-032.md, s01-X32.

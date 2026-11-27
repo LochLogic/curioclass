@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: opener
 course: english-language-arts-grade-4
 unit: 1.8
 version: draft, not yet taught
@@ -21,7 +21,7 @@ The evidence component adds no minutes.
 Day 35: release only Dust of Snow and The Lunch Table.
 Theme/summary share seven minutes; encounter description gets six.
 Comparisons, sayings and word relationships each share four minutes.
-Twenty-five minutes include reading. Number poem lines one to eight. Rued means regretted.
+Twenty-five minutes include reading. Number poem lines one to eight. Keep word explanations out of the independent response.
 
 Day 36: release only Text in g4-u1-tw; preserve paragraph numbers.
 Fact/inference share ten minutes; sentence/contribution gets five, including reading.
@@ -36,5 +36,5 @@ A private teacher exchange replaces public sharing inside the scheduled turn.
 Discussion uses eligible day 33 records after feedback and revised preparation.
 Hear at most six missing forty-five-second components within ten minutes.
 Paper never proves unheard speech. Finalize reading corrections after class.
-Return the record and folder on day 39 during Notebook.
+Keep unresolved needs on the unit handoff record. Do not promise a day 39 repair slot.
 Keep a second-audience copy if no available reader responds; mark response pending.

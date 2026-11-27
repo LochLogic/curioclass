@@ -4,16 +4,16 @@ course: english-language-arts-grade-4
 unit: 1.5
 version: draft, not yet taught
 credit: ours
+teacher_note: Print only the current day. Keep the inspection answer key separate.
 ---
 # Section 1.5 feature inspection
-
-Print only the current day. Keep answer keys separate.
 
 ## Day 18
 
 Name: ____________________    Date: ____________________
 
-[[s01-P18-1]]
+Williams kept a pet dragon.
+Cross out the claim unsupported by his profile.
 
 Response: ________________________________________
 
@@ -21,7 +21,9 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P19-1]]
+Which sentence closes its quotation?
+A. The reader said, "I see red.
+B. The reader said, "I see red."
 
 Response: ________________________________________
 
@@ -29,7 +31,9 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P20-1]]
+Choose the correctly capitalized sentence.
+A. mina reads a poem.
+B. Mina reads a poem.
 
 Response: ________________________________________
 
@@ -37,7 +41,9 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P21-1]]
+Group label: Poem features.
+Note: Williams earned a medical degree.
+Mark whether this note belongs in this group.
 
 Response: ________________________________________
 
@@ -45,22 +51,25 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P22-1]]
+Read the faulty essay sheet. Circle the opening word that hides its subject.
 
 Response: ________________________________________
 
-[[s01-P22-2]]
+Choose the complete thought.
+A. While the reader waits.
+B. While the reader waits, the clock ticks.
 
 Response: ________________________________________
 
 ## Day 18: retrieval
 
-[[s01-R10]]
+Name where Williams worked, using his biography.
 
 Response: ________________________________________
 
 ## Day 22: retrieval
 
-[[s01-R11]]
+XXII splits rainwater. It uses red and white.
+Join these thoughts without changing their meaning.
 
 Response: ________________________________________

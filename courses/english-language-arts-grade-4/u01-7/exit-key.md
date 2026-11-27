@@ -1,42 +1,54 @@
 ---
-piece: blank
+piece: opener
 course: english-language-arts-grade-4
 unit: 1.7
 version: draft, not yet taught
 credit: ours
 ---
-# Section 1.7 exit key
+# Section 1.7 exit answer key
 
-Teacher only. Before class, keep this key separate.
+Teacher only. Keep separate from student copies.
 
 ## s01-X28
 
-Button; clicking and flash; break after clicked to let the sound stand alone. Either observation works with a sensory image and purposeful break.
+Source: g4-u1-01, November 18 final four-line wheel card.
 
-Look for: Button; clicking and flash; break after clicked to let the sound stand alone. Either observation works with a sensory image and purposeful break.
+Shape: Plan a short original response with another subject, an image and a purposeful break.
 
-Samples: Button; clicking and flash; break after clicked to let the sound stand alone. Either observation works with a sensory image and purposeful break. | Things happen, with spaces.
+Open plan: another sound with a sensory image and a deliberate marked break. A labeled drawing is acceptable. A pencil tapping like footsteps with the tap isolated is one possibility; other original choices work.
+
+- Q: Things happen.
+- E: Spaces alone make it a poem.
 
 ## s01-X29
 
-A drawer shuts. / One bead rolls / into the light. Breaks focus movement and arrival; other discernible image/line choices work.
+Source: g4-u1-01, October 5 opening verse through with both hands.
 
-Look for: A drawer shuts. / One bead rolls / into the light. Breaks focus movement and arrival; other discernible image/line choices work.
+Shape: Compose an original short response poem on a different ordinary object.
 
-Samples: A drawer shuts. / One bead rolls / into the light. Breaks focus movement and arrival; other discernible image/line choices work. | Things do stuff.
+Open response: another ordinary object with visible or audible details, a discernible imagined character and intentional line placement. A reluctant drawer that groans is one possibility, not required wording.
+
+- Q: Things do stuff.
+- O: Copies the wedge poem and changes only its title.
 
 ## s01-X31
 
-Rae's poem shows a detail revealed by turning a pebble. Noticing something hidden seems to inspire this poem. Qualified inferences work.
+Source: g4-u1-01, September 11 Leila reading through Ben's final star.
 
-Look for: Rae's poem shows a detail revealed by turning a pebble. Noticing something hidden seems to inspire this poem. Qualified inferences work.
+Shape: Compose an introduction about a fresh source influence for an unfamiliar audience.
 
-Samples: Rae's poem shows a detail revealed by turning a pebble. Noticing something hidden seems to inspire this poem. Qualified inferences work. | It came from that.
+Leila's mud-islands image lets Ben picture ordinary stairs. This explanation shows what her words help him see. Other clear introductions identify the image and its effect on Ben.
+
+- AE: It came from that.
+- O: Ben traveled to real islands.
 
 ## s01-X32
 
-The zipper bites; the stapler has teeth. Both make an everyday fastener seem alive.
+Source: g4-u1-05 g4-u1-01, Hope whole 1891 version; December 5 hallway-light reflection.
 
-Look for: The zipper bites; the stapler has teeth. Both make an everyday fastener seem alive.
+Shape: Explain a source-to-response connection with one detail from each text.
 
-Samples: The zipper bites; the stapler has teeth. Both make an everyday fastener seem alive. | Both are nice.
+The bird continues singing through trouble. Ben's light also remains when someone no longer feels brave. Different images convey persistence, supported by both passages.
+
+- A: Both are nice.
+- O: Ben copied the bird as his own light.

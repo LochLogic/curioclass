@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: opener
 course: english-language-arts-grade-4
 unit: 1.7
 version: draft, not yet taught

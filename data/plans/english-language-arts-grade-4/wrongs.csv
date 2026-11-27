@@ -192,36 +192,12 @@ s01-P6-7,Delighted is opposite.,,,AA,Use only for the demonstrated fault; accept
 s01-P6-8,Only recopy the same opinion neatly.,,,S,Use only for the demonstrated fault; accept other grounded answers.
 s01-P6-9,Read daydream as dad ram.,,,H,Use only for the demonstrated fault; accept other grounded answers.
 s01-P6-10,Log an untaught reserved companion as familiar practice.,,,x,Use only for the demonstrated fault; accept other grounded answers.
-s01-X18-1,Inferred.,,,A,Treats directly stated wording as unstated.
-s01-X18-2,Stated.,,,A,Treats an interpretation as direct wording.
-s01-X18-2,His basket held prizes.,,,O,Adds an absent detail.
-s01-X19,She wanted fame.,,,A,No detail supports fame.
-s01-X19,She won a contest.,,,O,No contest is named.
-s01-X20,Soren fits because color proves sound.,,,A,Color does not support the sound brief.
-s01-X21,"One unsorted list: a, b, c, d.",,,N,Does not group related aspects.
-s01-X21,Writing for a driver: all notes.,,,O,Invents a purpose.
-s01-X22-1,All three are unrelated facts.,,,N,Misses the organized relationship.
-s01-X22-2,Because the room grows quiet.,,,T,Leaves a dependent clause alone.
-s01-X23,He does that.,,,AE,Does not identify subject or purpose.
-s01-X23,Kez won a biography prize.,,,O,No prize occurs in the plan.
-s01-X24,Mara watched shooting stars.,,,O,Neither source names shooting stars.
-s01-X24,"Rooftop, sunset, silver, threads.",,,N,A list supplies no developed explanation.
-s01-X24,"Her poem states, ""Silver threads stitch the dark.",,,W,No closing quotation mark.
-s01-X24,"Her poem states ""Silver threads stitch the dark.""",,,AG,No introducing comma.
-s01-X25,"Because the poem repeats lantern, the writer was born here.",,,P,Unsupported causal relationship.
-s01-X25,The things help readers expect a return.,,,Q,Keeps vague noun.
-s01-X26-1,Shopping is fun.,,,R,Unrelated new topic.
-s01-X26-2,The bus sentence explains the kitchen rhythm.,,,O,Claims a connection the ending does not make.
-s01-X28,Things happen.,,,Q,No identifiable subject or image.
-s01-X28,Spaces alone make it a poem.,,,E,Spacing replaces intentional language.
-s01-X29,Things do stuff.,,,Q,No precise moment or image.
-s01-X29,A storm tears the house apart.,,,O,Replaces the given moment.
-s01-X31,It came from that.,,,AE,Does not orient a new reader.
-s01-X31,A prize caused Rae to write.,,,O,Invents an absent cause.
-s01-X32,Both are nice.,,,A,No supported connection.
-s01-X32,They describe the same object.,,,O,Confuses zipper and stapler.
-s01-X33,The writer copied the source words.,,,O,The response uses different words and objects.
-s01-X33,Both are nice.,,,A,No evidence connects reading and revision.
+s01-X22-1,All three are unrelated facts.,,,N,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X28,Things happen.,,,Q,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X28,Spaces alone make it a poem.,,,E,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X29,Things do stuff.,,,Q,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X31,It came from that.,,,AE,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X32,Both are nice.,,,A,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
 s01-P18-1,Keep it because poets imagine things.,,,O,Supplied fault inspection; own draft remains unjudged.
 s01-P19-1,A.,,,W,Supplied fault inspection; own draft remains unjudged.
 s01-P20-1,A.,,,V,Supplied fault inspection; own draft remains unjudged.
@@ -354,15 +330,12 @@ s01-K19-1,"The profile states, ""He also wrote novels, essays and plays.",,,W,Su
 s01-K19-2,Keep it because he practiced medicine.,,,A,Supplied-fault inspection; own plans stay unjudged.
 s01-P19-2,C. Near the shelf.,,,T,Supplied-fault inspection; own plans stay unjudged.
 s01-P19-2,A. lena visits the shelf.,,,V,Missing opening/name capital.
-s01-K20-1,Keep it because his poems use New England settings.,,,O,Supplied-fault inspection; own plans stay unjudged.
 s01-K20-2,Mina reads hope.,,,V,Supplied-fault inspection; own plans stay unjudged.
-s01-P20-2,Every claim is true because a poet wrote it.,,,AH,Makes a general claim instead of posing a specific source-location question.
 s01-P21-2,Mina rereads hope.,,,V,Supplied-fault inspection; own plans stay unjudged.
 s01-K22-1,The bell rings we pack bags.,,,U,Leaves two complete thoughts fused without a boundary.
 s01-K22-2,Keep because.,,,P,Because invents a causal relationship between true details.
 s01-K19-3,Keep no.,,,O,Supplied-fault inspection or familiar pattern retrieval; not a reserved case.
 s01-K20-3,Keep the claim.,,,A,Supplied-fault inspection or familiar pattern retrieval; not a reserved case.
-s01-K21-1,Keep New England.,,,O,Supplied-fault inspection or familiar pattern retrieval; not a reserved case.
 s01-K22-3,Yes.,,,N,Supplied-fault inspection or familiar pattern retrieval; not a reserved case.
 s01-W21-2,"play, omitting re-.",,,H,Supplied-fault inspection or familiar pattern retrieval; not a reserved case.
 s01-W22-2,The stress moves to the last syllable.,,,x,Misplaces stress; no registered specific stress-error category.
@@ -372,27 +345,11 @@ s01-K18-3,Keep the invented cause.,,,P,Teacher selects one supplied fault matchi
 s01-K18-3,Keep the unrelated lunch statement.,,,R,Teacher selects one supplied fault matching feedback; no full paragraph model.
 s01-K18-3,Keep the unrecorded visitor claim.,,,O,Teacher selects one supplied fault matching feedback; no full paragraph model.
 s01-P24-2,B.,,,AG,The choice also omits the introducing comma; do not infer one fault alone.
-s01-X25,The things help.,,,Q,Vague noun in weak sample.
 s01-K24-1,B.,,,AF,Taught selection; diagnostic slips use different cases.
 s01-K24-2,B.,,,V,Taught selection; diagnostic slips use different cases.
 s01-K24-3,B.,,,W,Taught selection; diagnostic slips use different cases.
 s01-R26,Interrupts with an unrelated claim.,,,K,Actual observed evidence only.
 s01-P26-listen,I did not listen.,,,M,Actual observed evidence only.
-s01-W26-1,Skips a printed part.,,,H,Read every part before checking meaning.
-s01-W26-2,The stress moves to the last syllable.,,,x,Misplaces stress; no registered specific stress-error category.
-s01-W27-1,Skips a printed part.,,,H,Read every part before checking meaning.
-s01-W27-2,The stress moves to the last syllable.,,,x,Misplaces stress; no registered specific stress-error category.
-s01-K27-1,B.,,,AF,Taught selection; diagnostic slips use different cases.
-s01-K27-2,B.,,,V,Taught selection; diagnostic slips use different cases.
-s01-K23-R1,Yes.,,,N,Review of a taught case in one feedback-routed warm-up; no new collection.
-s01-K23-R2,A.,,,T,Review of a taught case in one feedback-routed warm-up; no new collection.
-s01-K24-R1,Lunch menu.,,,AE,Review of a taught case in one feedback-routed warm-up; no new collection.
-s01-K24-R2,Keep it because he practiced medicine.,,,A,Review of a taught case in one feedback-routed warm-up; no new collection.
-s01-K25-R1,Leave only poems.,,,O,Review of a taught case in one feedback-routed warm-up; no new collection.
-s01-K25-R2,B.,,,W,Review of a taught case in one feedback-routed warm-up; no new collection.
-s01-K25-R2,B.,,,AG,Review of a taught case in one feedback-routed warm-up; no new collection.
-s01-K26-R1,Keep because.,,,P,Review of a taught case in one feedback-routed warm-up; no new collection.
-s01-K26-R2,Thing.,,,Q,Review of a taught case in one feedback-routed warm-up; no new collection.
 s01-F28-1,Recopy things neatly.,,,S,Unjudged instruction or folder work; use this fault for feedback only.
 s01-K28-1,Both endings always mean the same thing.,,,E,Unjudged instruction or folder work; use this fault for feedback only.
 s01-K28-2,A paragraph telling events identifies drama.,,,E,Unjudged instruction or folder work; use this fault for feedback only.
@@ -414,7 +371,6 @@ s01-P32-listen,Describe an unrelated event without explaining a writing choice.,
 s01-W32-2,Keep inscripshun after checking.,,,AL,Unjudged instruction or folder work; use this fault for feedback only.
 s01-K32-1,A.,,,T,Unjudged instruction or folder work; use this fault for feedback only.
 s01-P33-folder,Invent a source detail.,,,O,Cold-solved contrast; targets error O.
-s01-P33-talk,No relevant answer.,,,AI,Cold-solved contrast; targets error AI.
 s01-W34,Skip the middle syllable.,,,H,Cold-solved contrast; targets error H.
 s01-K34,A.,,,T,Cold-solved contrast; targets error T.
 s01-W35,Repeat.,,,H,Cold-solved contrast; targets error H.
@@ -464,3 +420,47 @@ s01-P6-3,Remove Ben tries a window.,,,C,One observed fault; no error diagnosis f
 s01-A30-process,I copied the same words in green.,,,S,Neat recopying alone does not explain a substantive response to feedback.
 s01-A34a-process,I copied the same words in green.,,,S,Neat recopying alone does not explain a substantive response to feedback.
 s01-P7-2,rainbow shell,,,x,"This is the comparison in line 5, rather than the specified line 3; diagnose the location error only."
+s01-X18-2,First: inferred. Second: stated.,,,A,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X18-2,Her later book was about a prize.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X19,She wanted fame because I do.,,,A,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X19,She kept poems because she won a prize.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X20,I choose Frost because this profile says he disliked poetry.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X21,One unsorted list without headings.,,,N,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X21,His birthplace explains why he won a prize.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X23,He changed it.,,,AE,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X23,Visitors paid for tickets to enter.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X24,Ben describes an outdoor storm.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X24,"Umbrella, bakery, rain, floor.",,,N,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X24,"Ben calls it ""a small indoor rain.",,,W,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X24,"Ben writes ""a small indoor rain.""",,,AG,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X25,"Because a builder made the door, the poem repeats.",,,P,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X25,The things help readers hear things.,,,Q,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X25,A visitor unlocks the door with a key.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X26-1,My lunch is packed.,,,R,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X29,Copies the wedge poem and changes only its title.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X31,Ben traveled to real islands.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X32,Ben copied the bird as his own light.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X33,The teacher orders a new ending.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X33,He changes because every poem must rhyme.,,,A,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X18-1,She kept writing because a prize made her famous.,,,A,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X22-2,Although the second stanza uses quick commands.,,,T,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-X26-2,Garden tools finish the explanation of the woods.,,,O,This response misses the named component. Return with the item; repair the earliest unmet component using another taught case.
+s01-K20-1,He stopped writing before he practiced medicine.,,,O,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K21-1,He earned a music degree.,,,O,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K23-R1,"Yes, returning to Rutherford is a poem feature.",,,N,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K23-R2,Until the clock strikes.,,,T,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K24-R1,The reader needs a snack.,,,AE,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K24-R2,A patient dictated the words of XXII.,,,O,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K25-R1,He never tried new line arrangements.,,,O,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K25-R2,B has correct quotation boundaries.,,,W,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K26-R1,Because gives a supported cause.,,,P,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K26-R2,Stuff identifies the poetry feature.,,,Q,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-W26-1,Reads photography as photograph.,,,H,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-W27-1,Substitutes photograph for photography.,,,H,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-W26-2,Reads national as nation.,,,H,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-W27-2,Substitutes nation for national.,,,H,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K27-1,a bell rings.,,,AF,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K27-2,uma listens.,,,V,Misses the named supplied-fault inspection or familiar-pattern reading. Use a different taught case for a repair.
+s01-K25-R2,B needs no introducing comma.,,,AG,The reporting clause needs a comma before the borrowed words; inspect this boundary separately from quotation closure.
+s01-P20-2,No specific source-based contribution.,,,AH,A specific question asks about an actual located profile detail. Record only the six questions actually heard; other speech remains unobserved.
+s01-P33-talk,No specific source-based contribution.,,,AI,A relevant reply uses an actual located source detail. The separate question turn and natural role actions stay in the actual discussion record; paper never proves speech.

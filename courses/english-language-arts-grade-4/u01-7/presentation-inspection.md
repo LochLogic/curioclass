@@ -4,11 +4,11 @@ course: english-language-arts-grade-4
 unit: 1.7
 version: draft, not yet taught
 credit: ours
+teacher_note: Read separate fragments, leaving their disorder visible. Contrast a rush with clear words. Do not complete an assessed presentation.
 ---
 # Spoken components for inspection
 
-Teacher reads these separate fragments, leaving the disorder visible.
-Do not arrange a complete assessed presentation.
+Read the separate fragments.
 
 Fragment A: My lunch is packed.
 
@@ -16,7 +16,14 @@ Fragment B: The loose hinge creaks.
 
 Fragment C: This talk examines a gate sound.
 
-Visual: a labeled hinge beside the phrase about its creak.
+Visual: hinge beside the gate.
 
-Teacher contrasts an unclear rush with clear separate words.
-Use inspection-cards.md for student questions.
+```text
+POST     GATE
+ |       |
+ O-------|
+ |
+hinge
+```
+
+

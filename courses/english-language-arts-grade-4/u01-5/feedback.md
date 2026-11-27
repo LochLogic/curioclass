@@ -17,7 +17,7 @@ Words or location: ____________________
 
 One question: ____________________
 
-Teacher note, date: ____________________
+Feedback date: ____________________
 
 One change to try: ____________________
 

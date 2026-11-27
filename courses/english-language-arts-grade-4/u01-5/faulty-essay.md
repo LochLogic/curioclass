@@ -4,11 +4,11 @@ course: english-language-arts-grade-4
 unit: 1.5
 version: draft, not yet taught
 credit: ours
+teacher_note: Inspect one component at a time. Do not complete a source essay model.
 ---
 # Four-part essay for inspection
 
-Use the taught Williams profile and XXII. Inspect one fault at a time.
-Do not complete this essay as a class model.
+Use the Williams profile and XXII. Inspect the assigned fault.
 
 ## Opening
 

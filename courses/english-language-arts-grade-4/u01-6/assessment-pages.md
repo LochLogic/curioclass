@@ -4,17 +4,17 @@ course: english-language-arts-grade-4
 unit: 1.6
 version: draft, not yet taught
 credit: ours
+teacher_note: Separate days before printing. Unit observations stay on the teacher record.
 ---
 # Section 1.6 collection pages
 
-Teacher separates days and gives only the assigned collection.
-Teacher-only observation components stay on the record, off student copies.
+Work independently. Keep your versions and written feedback.
 
 ## Day 27
 
 Name: ____________________    Date: ____________________
 
-[[s01-A27-topic]]
+Revise your essay using the written feedback from day 26.
 
 Response: ________________________________________
 

@@ -4,16 +4,17 @@ course: english-language-arts-grade-4
 unit: 1.8
 version: draft, not yet taught
 credit: ours
+teacher_note: Print only the current day. Keep the inspection answer key separate.
 ---
 # Section 1.8 feature inspection
-
-Print only the current day. Keep answer keys separate.
 
 ## Day 33
 
 Name: ____________________    Date: ____________________
 
-[[s01-P33-1]]
+Source note: The speaker repeats a sound.
+Claim: This proves the writer won a race.
+Cross out the unsupported claim.
 
 Response: ________________________________________
 
@@ -21,7 +22,8 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P37-1]]
+Feedback: Name the object.
+Choose the meaningful response: change thing to hinge, or trace thing neatly.
 
 Response: ________________________________________
 
@@ -29,6 +31,7 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P38-1]]
+XXII uses selected line breaks.
+Cross out the false claim: Every poem must rhyme.
 
 Response: ________________________________________

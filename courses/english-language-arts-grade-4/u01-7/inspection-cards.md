@@ -4,16 +4,17 @@ course: english-language-arts-grade-4
 unit: 1.7
 version: draft, not yet taught
 credit: ours
+teacher_note: Print only the current day. Keep the inspection answer key separate.
 ---
 # Section 1.7 feature inspection
-
-Print only the current day. Keep answer keys separate.
 
 ## Day 28
 
 Name: ____________________    Date: ____________________
 
-[[s01-P28-1]]
+Choose the clearer image.
+A. A wet boot squeaks across the tile.
+B. A thing moves somewhere.
 
 Response: ________________________________________
 
@@ -21,11 +22,14 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P29-1]]
+In Hope, warm suggests comfort during trouble.
+Mark the false claim: The poem gives a measured temperature.
 
 Response: ________________________________________
 
-[[s01-P29-2]]
+Choose the line ending that holds attention on a sound.
+A. The loose shutter bangs / against the wall.
+B. The loose / shutter bangs against the wall.
 
 Response: ________________________________________
 
@@ -33,11 +37,13 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P31-1]]
+Talk notes: a packed lunch, a creaking hinge, a gate sound.
+Cross out the detail that does not support the gate-sound topic.
 
 Response: ________________________________________
 
-[[s01-P31-2]]
+A diagram labels a gate hinge beside the line about its creak.
+Choose its purpose: clarify the sound source or decorate an empty corner.
 
 Response: ________________________________________
 
@@ -45,12 +51,14 @@ Response: ________________________________________
 
 Name: ____________________    Date: ____________________
 
-[[s01-P32-1]]
+Source note: This poem repeats its opening phrase.
+Explanation detail: My shoes cost less.
+Cross out the irrelevant detail.
 
 Response: ________________________________________
 
 ## Day 31: retrieval
 
-[[s01-R12]]
+Mark the main idea and its supporting detail in the presentation fragments.
 
 Response: ________________________________________

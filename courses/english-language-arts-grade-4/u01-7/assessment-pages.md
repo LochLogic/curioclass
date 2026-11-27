@@ -4,17 +4,23 @@ course: english-language-arts-grade-4
 unit: 1.7
 version: draft, not yet taught
 credit: ours
+teacher_note: Separate days before printing. Unit observations stay on the teacher record.
 ---
 # Section 1.7 collection pages
 
-Teacher separates days and gives only the assigned collection.
-Teacher-only observation components stay on the record, off student copies.
+Work independently. Keep your versions and written feedback.
 
 ## Day 30
 
 Name: ____________________    Date: ____________________
 
-[[s01-A30-revise]]
+Revise your poem using yesterday's written feedback. Keep the earlier version.
+
+Response: ________________________________________
+
+__________________________________________________
+
+Explain one change that helps your reader.
 
 Response: ________________________________________
 
