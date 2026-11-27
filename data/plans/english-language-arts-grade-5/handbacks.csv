@@ -74,3 +74,157 @@ from_day,to_day,what,where,minutes,error,note
 28,29,essay response card,Return,0,,Return one cue in the same track as the essay revision.
 33,34,monologue response card,Return,0,,Return one cue in the same track as the draft.
 41,42,closing response card,Return,0,,Return one cue with the day 41 feedback. Receiving plan pending.
+42,43,s02-X42,Return,5,B,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+42,43,s02-X42b,Return,0,Z,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+43,44,s02-X43,Return,5,C,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+43,44,s02-X43b,Return,0,A,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+43,44,s02-X43c,Return,0,A,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+43,44,s02-X43d,Return,0,A,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+43,44,s02-X43e,Return,0,A,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+44,45,s02-X44,Return,5,B,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+44,45,s02-X44b,Return,0,O,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+45,46,s02-X45,Return,5,A,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+45,46,s02-X45b,Return,0,H,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+45,46,s02-X45c,Return,0,I,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+46,47,s02-X46,Return,5,G,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+46,47,s02-X46b,Return,0,G,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+46,47,s02-X46c,Return,0,C,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+47,48,s02-X47,Return,5,B,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+47,48,s02-X47b,Return,0,C,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+48,49,s02-X48,Return,5,A,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: AE.
+48,49,s02-X48b,Return,0,AE,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+48,49,s02-X48c,Return,0,AE,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+48,49,s02-X48d,Return,0,I,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+50,51,s02-X50,Return,5,H,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+50,51,s02-X50b,Return,0,J,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+50,51,s02-X50c,Return,0,I,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+51,52,s02-X51,Return,5,B,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+51,52,s02-X51b,Return,0,K,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+52,53,s02-X52,Return,5,G,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+52,53,s02-X52b,Return,0,G,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+52,53,s02-X52c,Return,0,G,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+52,53,s02-X52d,Return,0,AJ,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+52,53,s02-X52e,Return,0,AJ,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+55,56,s02-X55,Return,5,D,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+55,56,s02-X55b,Return,0,F,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+56,57,s02-X56,Return,5,Z,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+56,57,s02-X56b,Return,0,AE,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+57,58,s02-X57,Return,5,E,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+57,58,s02-X57b,Return,0,F,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+57,58,s02-X57c,Return,0,F,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+57,58,s02-X57d,Return,0,F,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+59,60,s02-X59,Return,5,Y,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+59,60,s02-X59b,Return,0,Z,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+60,61,s02-X60,Return,5,AE,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+60,61,s02-X60b,Return,0,Z,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+60,61,s02-X60c,Return,0,AE,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+60,61,s02-X60d,Return,0,AE,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+61,62,s02-X61,Return,5,M,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+61,62,s02-X61b,Return,0,O,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+62,63,s02-X62,Return,5,L,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+62,63,s02-X62b,Return,0,O,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+62,63,s02-X62c,Return,0,L,Return written feedback and give an independent correction within the shared five-minute priority slot. This judged paper item is in the Exit box; Match one priority per pupil. Other applicable letters: none.
+63,64,s02-X63,Return,5,Y,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: M.
+63,64,s02-X63b,Return,0,M,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+64,65,s02-X64,Return,5,V,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+64,65,s02-X64b,Return,0,AH,Return written feedback and give an independent correction within the shared five-minute priority slot. Match one priority per pupil. Other applicable letters: none.
+45,46,s02-P45S,Word,5,AD,Return the private word-probe feedback. Use a fresh word for regrouping.
+45,46,s02-P45I,Word,0,AD,Return the private word-probe feedback. Use a fresh word for regrouping.
+45,46,s02-P45C,Word,0,AD,Return the private word-probe feedback. Use a fresh word for regrouping.
+45,46,s02-P45L,Word,0,AD,Return the private word-probe feedback. Use a fresh word for regrouping.
+45,46,s02-P45Y,Word,0,AD,Return the private word-probe feedback. Use a fresh word for regrouping.
+45,46,s02-P45M,Word,0,AD,Return the private word-probe feedback. Use a fresh word for regrouping.
+48,50,s02-P48W1,Reference,5,Z,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W2,Reference,0,Z,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W3,Reference,0,Z,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W4,Reference,0,Z,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W5,Reference,0,Z,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W6,Reference,0,Z,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W7,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W8,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W9,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W10,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W11,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W12,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W13,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W14,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W15,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W16,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W17,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+48,50,s02-P48W18,Reference,0,AJ,Return the marked word page and both reference formats. Preserve the first context responses and actual format.
+49,50,s02-A49A1,Return,5,A,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49A2,Return,0,A,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49A3,Return,0,A,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49A4,Return,0,A,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49A5,Return,0,A,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49B1,Return,0,B,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49B2,Return,0,B,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49B3,Return,0,B,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49C1,Return,0,C,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49C2,Return,0,C,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49C3,Return,0,C,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49C4,Return,0,C,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49C5,Return,0,C,Return written feedback and allow independent correction before scoring the earlier cold work.
+49,50,s02-A49C6,Return,0,C,Return written feedback and allow independent correction before scoring the earlier cold work.
+51,52,s02-P51D,Return,0,K,Return the reflection beside the claim feedback. Give one priority per pupil.
+53,54,s02-A53A1,Preparation,5,G,Use the first five minutes for independent correction from the written cue before verifying the saved notebook.
+53,54,s02-A53A2,Preparation,0,G,Use the first five minutes for independent correction from the written cue before verifying the saved notebook.
+53,54,s02-A53A3,Preparation,0,G,Use the first five minutes for independent correction from the written cue before verifying the saved notebook.
+53,54,s02-A53A4,Preparation,0,G,Use the first five minutes for independent correction from the written cue before verifying the saved notebook.
+53,54,s02-A53B1,Preparation,0,AB,Use the first five minutes for independent correction from the written cue before verifying the saved notebook.
+53,54,s02-A53B2,Preparation,0,AB,Use the first five minutes for independent correction from the written cue before verifying the saved notebook.
+53,54,s02-A53C1,Preparation,0,H,Use the first five minutes for independent correction from the written cue before verifying the saved notebook.
+53,54,s02-A53C2,Preparation,0,H,Use the first five minutes for independent correction from the written cue before verifying the saved notebook.
+53,54,s02-A53C3,Preparation,0,H,Use the first five minutes for independent correction from the written cue before verifying the saved notebook.
+53,54,s02-A53C4,Preparation,0,I,Use the first five minutes for independent correction from the written cue before verifying the saved notebook.
+54,55,s02-A54A,Recording,5,AJ,Return each written cue and correct a short recorded segment or paper component. Preserve the original and correction. Use the private fallback for absent or unobserved turns.
+54,55,s02-A54B,Recording,0,AA,Return each written cue and correct a short recorded segment or paper component. Preserve the original and correction. Use the private fallback for absent or unobserved turns.
+54,55,s02-A54C1,Recording,0,J,Return each written cue and correct a short recorded segment or paper component. Preserve the original and correction. Use the private fallback for absent or unobserved turns.
+54,55,s02-A54C2,Recording,0,J,Return each written cue and correct a short recorded segment or paper component. Preserve the original and correction. Use the private fallback for absent or unobserved turns.
+54,55,s02-A54D1,Recording,0,K,Return each written cue and correct a short recorded segment or paper component. Preserve the original and correction. Use the private fallback for absent or unobserved turns.
+54,55,s02-A54D2,Recording,0,K,Return each written cue and correct a short recorded segment or paper component. Preserve the original and correction. Use the private fallback for absent or unobserved turns.
+54,55,s02-A54E,Recording,0,AB,Return each written cue and correct a short recorded segment or paper component. Preserve the original and correction. Use the private fallback for absent or unobserved turns.
+54,55,s02-A54F,Recording,0,H,Return each written cue and correct a short recorded segment or paper component. Preserve the original and correction. Use the private fallback for absent or unobserved turns.
+54,55,s02-A54G,Recording,0,B,Return each written cue and correct a short recorded segment or paper component. Preserve the original and correction. Use the private fallback for absent or unobserved turns.
+58,59,s02-A58A1,Return,5,Y,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58A2,Return,0,AE,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58A3,Return,0,Y,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58A4,Return,0,Y,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58B,Return,0,Z,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58C1,Return,0,D,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58C2,Return,0,D,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58C3,Return,0,D,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58D1,Return,0,E,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58D2,Return,0,E,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58E1,Return,0,F,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58E2,Return,0,F,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+58,59,s02-A58E3,Return,0,F,Return written C feedback before scoring earlier work. Materials for any same-day practice remain distinct.
+60,61,s02-P60S,Words,5,AD,Return private word-probe feedback. Use a fresh word outside the private set for regrouping.
+60,61,s02-P60I,Words,0,AD,Return private word-probe feedback. Use a fresh word outside the private set for regrouping.
+60,61,s02-P60C,Words,0,AD,Return private word-probe feedback. Use a fresh word outside the private set for regrouping.
+60,61,s02-P60L,Words,0,AD,Return private word-probe feedback. Use a fresh word outside the private set for regrouping.
+60,61,s02-P60Y,Words,0,AD,Return private word-probe feedback. Use a fresh word outside the private set for regrouping.
+60,61,s02-P60M,Words,0,AD,Return private word-probe feedback. Use a fresh word outside the private set for regrouping.
+60,61,s02-P60LA,Return,0,Z,Return independent reading and language feedback. Use the remaining five minutes for one priority. Preserve the unaided whole-story evidence separately.
+60,61,s02-P60LI,Return,0,Z,Return independent reading and language feedback. Use the remaining five minutes for one priority. Preserve the unaided whole-story evidence separately.
+60,61,s02-P60R1,Return,5,AE,Return independent reading and language feedback. Use the remaining five minutes for one priority. Preserve the unaided whole-story evidence separately.
+60,61,s02-P60R2,Return,0,AE,Return independent reading and language feedback. Use the remaining five minutes for one priority. Preserve the unaided whole-story evidence separately.
+60,61,s02-P60R3,Return,0,AE,Return independent reading and language feedback. Use the remaining five minutes for one priority. Preserve the unaided whole-story evidence separately.
+61,62,s02-P61D,Return,0,K,Return the written reflection within the shared priority slot. Save it for 80T with actual observed acts.
+62,63,s02-P62H,Return,0,L,Return the heading choice with the focus feedback. Keep the dated decision for 80Q.
+37,42,Supported priority track for day 37 source note,Supported,0,L,Five parallel minutes within supported reading. Use the group’s written checklist.
+41,43,Pending private unit 1 turns,Independent,5,,Hear due students privately and record actual evidence. If still pending route them on 45.
+41,45,Remaining private turns and word grouping,Independent,0,,Preserve due dates. Word-probe recording takes priority; reserve overflow for 46.
+41,46,Private turn overflow from the unit 1 record,Independent,5,,Hear students with pending turns from the earlier record.
+42,43,Missed event or structure retrieval,Talk,5,,Use released text to model a cause arrow.
+43,44,Missed main idea retrieval,Return,0,A,Sort released details in the five-minute shared Return.
+45,46,Missed source-label retrieval,Return,0,I,Match a released note to its source during the shared Return.
+51,52,"Formal discussion private sample, first three unheard groups",Research,12,,"Allow up to four minutes per group of five, one 45-second turn a pupil."
+51,53,"Formal discussion private sample, final two unheard groups",Independent,8,,"Allow four minutes for each of two groups, one 45-second turn a pupil. Return a written cue before 54."
+54,55,Live fallback for three unheard groups,Independent,18,,Use five additional minutes in Recording return. Fifteen pupils take two 45-second turns each. Combine prepared evidence and linked question in the first turn. Observe role and agreement during handoffs. Collect paper conclusions from all.
+55,56,Written cues and correction for live fallback discussion,Independent,5,,Return feedback to pupils heard on 55. Collect correction of previously observed work; file any outstanding oral evidence as pending.
+55,56,Missed narrator and story map retrieval,Return,0,D,Review the teller and challenge on newly released material during Return.
+57,59,Missed topic versus approach retrieval,Reading,5,E,Use a released pair without an assessment case.
+60,61,Word-probe absent pupil or recording failure,Independent,5,AD,Complete pending private turns and return the resulting written cue on 62.
+61,62,Delayed word-probe cue from a day 61 make-up,Words,5,AD,"A private cue and one fresh-word repair, if applicable."
+62,63,Missed essay structure retrieval,Draft,5,L,Confer during drafting and use the released model if a dated essay is unavailable.
