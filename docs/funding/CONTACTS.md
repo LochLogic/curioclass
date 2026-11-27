@@ -25,6 +25,11 @@ should know about Curio Class, and the people funders listen to.
 Unlocks almost every grant below. About 10 percent of incoming funds.
 
 - Phone: **(720) 855-0501** · Email: info@cndc.org · Mail: P.O. Box 18770, Denver, CO 80218
+- Staff (cndc.org Staff & Board, 2026-11-27): **Nicki Leszman**, Director of Fiscal Sponsorship; Desiree Coscia,
+  Partnership Support Coordinator. No direct emails published: use info@cndc.org and ask for Nicki.
+- Watch: partner projects must benefit Colorado communities ("a Colorado focus or impact") and operate only in the US;
+  CNDC does not help with 501(c)(3) applications. The inquiry form asks you to tick both. Draft:
+  drafts/paste-ready/cndc-fiscal-sponsor-inquiry.txt.
 - Inquiry form: https://cndc.org/partner-with-cndc/sponsorship/ (they aim to reply within 5 business days)
 - Steps: inquiry form, invitation to apply, partnership discussion, CNDC board approval.
 - Eligibility: benefits Colorado communities, charitable intent, committed leadership, US-only operations. They do not
@@ -100,6 +105,9 @@ an educator group that would use the tools.
 - Main line: 720-739-3238 (CDE site) or (303) 866-6600 (federal directory) · 201 East Colfax Ave., Denver, CO 80203
 - Ask for the digital learning or instructional materials office: does CDE list free, standards-aligned resources for
   districts?
+- K-12 OER Project (OERColorado Hub and microsite), from ed.cde.state.co.us/onlinelearning/currentwork (2026-11-27):
+  **Mallorie Klemm**, Blended Learning Education Sr. Consultant, klemm_m@cde.state.co.us, 303-818-9509; OERColorado
+  team, oercolorado@gmail.com. Draft: drafts/paste-ready/cde-oer-colorado.txt.
 
 ## National, now
 
@@ -108,6 +116,31 @@ an educator group that would use the tools.
 | Emergent Ventures | Form only: https://mercatus.tfaforms.net/5099527 (written by Cory; no AI beyond proofreading) |
 | Claude for Open Source | Form: https://claude.com/contact-sales/claude-for-oss (answers in applications/claude-for-oss.txt) |
 | OER Commons | Submit from Web after logging in: https://help.oercommons.org/support/solutions/articles/42000046849-submit-oer |
+
+## Research, partners and states (gathered 2026-11-27)
+
+Each from the organization's own page that day. Drafts in drafts/paste-ready (see its INDEX.md).
+
+| Who | Role | Contact | Why |
+|---|---|---|---|
+| CU Boulder, NSF AI Institute for Student-AI Teaming (iSAT) | Sidney D'Mello (director), Thomas Breideband (associate director), Tamara Sumner (professor; also leads inquiryHub) | Info.AI-Institute@Colorado.edu, Tamara.Sumner@colorado.edu | AI literacy units and teacher co-design; NSF STEM K-12 lead. Draft ready |
+| University of Denver, Morgridge College of Education | Peter Organisciak, Associate Professor; $898k NSF award on AI and creativity in K-12 classrooms | peter.organisciak@du.edu | Pilot design advice; NSF partner. Draft ready |
+| University of Northern Colorado, MAST Institute | K-12 math and science teaching research | MAST@unco.edu | Later, for math and science pilots |
+| Colorado School of Mines | Christine Liebe, Professor of Practice, Director of Teach@Mines (CS curriculum and evaluation help for districts) | cliebe@mines.edu | Later, for CS tools |
+| ED, EIR program | Jamila Smith | eir@ed.gov, 202-219-1724 | Questions on the next EIR cycle |
+| California Educators Together (CaET) OER repository | Michael Kryshak, CDE program contact | MKryshak@cde.ca.gov, 916-982-2171 | Ask who curates CaET in 2026-27 and how to offer content |
+| Oregon Dept. of Education, instructional materials | Adoption team | ode.instructionalmaterials@ode.oregon.gov | ELA adoption call early 2027, no publisher fee |
+| Massachusetts DESE CURATE | Review team | DESE-CURATE@mass.gov | Free review once a band is complete |
+| Tennessee Textbook Commission | Publisher mailing list | Tennessee.Textbooks@tn.gov | Join the list before ELA (Schedule H) 2027-28 |
+| Virginia DOE textbooks and HQIM | Procurement and review questions | textbook@doe.virginia.gov | K-12 science review; publisher webinar 2026-12-14 |
+| Oak National Academy | General inbox | help@thenational.academy | Peer call. Draft ready |
+| New America, Teaching, Learning & Tech | An-Me Chung, Director | chung@newamerica.org | Wrote the Oak interview. Draft ready |
+| aiEDU | Web form only | https://www.aiedu.org/contact | Content partnership. Form text ready |
+| Code.org | Support form only | https://support.code.org/hc/en-us/requests/new | Content partnership. Form text ready |
+| White House AI education pledge | Pledge inbox | EDAI@who.eop.gov | Public pledge list. Draft ready, Cory's call |
+| Overdeck Family Foundation, research | Concept notes, rolling | research@overdeck.org | After pilot results |
+| UNESCO OER Dynamic Coalition | Membership questions | info@oerdynamiccoalition.org | Free to join; visibility only |
+| Bureau of Indian Education | Central office | biecentraloffice@bie.edu, 202-208-4896 | Only if a tribal partner leads |
 
 ## A 30-second opener for every call
 

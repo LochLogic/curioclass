@@ -11,7 +11,7 @@ There is real potential, at a scale well above the $10,000 philanthropy in the c
 almost all of it, and neither is about the curriculum:
 
 1. **A legal home.** Large funders pay a nonprofit, a district or a fiscal sponsor, not an individual. The CNDC
-   inquiry (CONTACTS.md, item 2) unlocks most of this file.
+   inquiry (CONTACTS.md, item 2) unlocks most of this file; the longer path is in LEGAL-HOME.md.
 2. **Classroom evidence.** Big education funders want proof teachers used the materials with students. A small honest
    pilot (a few teachers, teacher-reported results, no student tracking) changes which doors open.
 
@@ -19,12 +19,12 @@ almost all of it, and neither is about the curriculum:
 
 | Route | What it pays for | Fit | Gate |
 |---|---|---|---|
-| **US Dept. of Education, EIR** (Education Innovation and Research) | Innovation grants; an AI-in-education priority; open licensing required since 2017 | Strong: we are openly licensed by design | District or nonprofit applicant; evidence tiers |
-| **US Dept. of Education, FIPSE** | Funding AI curriculum for rural areas now: Wright State $2.5M (OH, KS), DRI $2.7M (NV), Cochise College $1.87M (released as OER) | Strong on rural and AI | A college or nonprofit lead; a K-12 partner fits beside one |
-| **FY2026 federal notice** (Federal Register 2026-05-29) | Up to $2.5M over 48 months; priorities: rural applicants, AI literacy, career pathways, returning education to the states | Good | Applicant type and deadline to confirm |
+| **US Dept. of Education, EIR** (Education Innovation and Research) | Innovation grants. No FY2026 competition and no FY2027 notice yet (checked 2026-11-27); FY2025 was Mid-phase and Expansion only, literacy priority. ED's AI priority became final 2026-04-13; open licensing required | Strong: we are openly licensed by design | District, SEA, BIE or nonprofit applicant; moderate evidence for Mid-phase; 10% match |
+| **US Dept. of Education, FIPSE** | FY2025 Special Projects ($167M) funded AI work: Wright State $2.5M (OH, KS), DRI $2.7M (NV), Cochise College $1.87M. No FY2026 or FY2027 notice yet | Strong on rural and AI | A college or nonprofit lead; priority AP2 names K-12 partners |
+| **FIPSE RPED** (the 2026-05-29 Federal Register page; doc 2026-10773 itself is an unrelated student-aid notice) | Up to $2.5M over 48 months; rural, AI literacy, career pathways priorities. Closed 2026-06-23 | Good | Colleges and nonprofits; watch for a next round |
 | **Open Textbook Pilot** | $7M for FY2026, renewed yearly by Congress | Weak: higher education | Watch only |
-| **NSF** (new AI and STEM K-12 program; Discovery Research PreK-12) | Research on AI in K-12 STEM; field-tested materials | Good for the research angle: can AI-built, quality-checked curriculum meet the bar | A university research partner |
-| **State OER programs** (example: Washington OSPI 2026-27, closed May 29) | Districts and nonprofits building openly licensed K-12 materials | Strong: "any of the 50 states" | Each state's own cycle |
+| **NSF STEM K-12** (NSF 25-545; DRK-12 and the K-12 AI letter are archived) | $350k to $750k research and development, curricula in scope, strong AI focus; rolling deadline | Strong for the research angle: can AI-built, quality-checked curriculum meet the bar | A university, nonprofit or for-profit lead; Curio Class can be a subawardee |
+| **State OER programs and review lists** (all 50 in PROSPECTS.md) | Small in-state OER grants (Washington) and review lists that steer district money (Texas pays $40 per student) | Strong: "any of the 50 states" | An in-state lead for grants; a complete grade band for lists |
 | **Big education philanthropy** (Gates, Hewlett, Overdeck) | Free curriculum: Illustrative Mathematics, OpenSciEd, Fishtank | Right long-term target | Mostly by invitation; needs a relationship and evidence |
 | **AI companies** | Google.org long-term partners (aiEDU); OpenAI $150M mostly to teacher training and named partners; Anthropic Economic Futures is research only, $1M minimum, not open now | Weak as grants today | A partnership or a story, not a form |
 
@@ -49,42 +49,53 @@ squares it.
 
 ## Openings for deeper and wider research
 
-Each is a search not yet done; mark a row done here when it is.
+All ten done 2026-11-27, checked on funders' own pages; findings live in PROSPECTS.md (sections "Larger routes",
+"What evidence funders want" and "States") and people in CONTACTS.md.
 
-1. **State-by-state OER and instructional-materials funding.** Which states fund openly licensed K-12 materials, their
-   cycles, and which run high-quality instructional materials (HQIM) reviews (Louisiana, Texas, Oklahoma and others)
-   that free curriculum could pass.
-2. **EdReports and state review lists.** What a review takes, its cost, and whether a passing review opens state
-   adoption money.
-3. **Current EIR and FIPSE cycles.** Exact notices, deadlines, applicant types and evidence tiers on ed.gov and
-   grants.gov (aggregators disagreed).
-4. **NSF solicitation numbers and deadlines** for the new AI and STEM K-12 program and DRK-12; which universities in
-   Colorado run AI-in-education research (CU Boulder, Colorado State, University of Denver).
-5. **Commonwealth of Learning and UNESCO OER programs** (not reached by this search), plus Canada, Australia, New
-   Zealand, Ireland and other English-speaking ministries with open curriculum funds.
-6. **Tribal and Bureau of Indian Education routes**, which EIR lists as eligible applicants; ties to the Fort Belknap
-   work.
-7. **AI company partnership programs** beyond grants: credits, featured-partner and case-study programs, and the White
-   House AI education pledge signers (60+ companies).
-8. **Large individual donors and donor-advised funds** with K-12 or open-knowledge giving histories.
-9. **Prize competitions** beyond the Tools Competition (XPRIZE-style, Learning Engineering, state innovation prizes).
-10. **What evidence each funder wants**, so the pilot is designed once to serve them all.
+1. **State-by-state OER and instructional-materials funding.** DONE 2026-11-27: 50-state table in PROSPECTS.md. No
+   state has an open K-12 OER grant an individual can use; review lists need a complete grade band.
+2. **EdReports and state review lists.** DONE 2026-11-27: EdReports is free and reviews OER but picks its own queue and
+   whole grade bands; only Texas listing pays directly ($40 per student).
+3. **Current EIR and FIPSE cycles.** DONE 2026-11-27: no FY2026 EIR; FIPSE RPED closed; routes table corrected above.
+4. **NSF solicitation numbers and deadlines.** DONE 2026-11-27: NSF STEM K-12 (25-545) is rolling; Colorado partners
+   (CU Boulder iSAT and inquiryHub, DU Morgridge, UNC MAST, Mines) in CONTACTS.md.
+5. **Commonwealth of Learning, UNESCO and other English-speaking ministries.** DONE 2026-11-27: nothing a US project can
+   apply to; Oak's post-2022 lessons are adaptable under the Open Government Licence.
+6. **Tribal and Bureau of Indian Education routes.** DONE 2026-11-27: most are tribe-led; NAL@ED and Montana IEFA are
+   the partner routes, and only if Sara and the community want them.
+7. **AI company partnership programs.** DONE 2026-11-27: no open grant beyond AWS credits; the White House pledge is
+   free visibility (draft ready, Cory's call).
+8. **Large individual donors and donor-advised funds.** DONE 2026-11-27: nearly all invitation-only; Stand Together
+   takes cold proposals once there is an EIN and 501(c)(3) status.
+9. **Prize competitions.** DONE 2026-11-27: Yidan Prize (2027-03-02) is the only open fit, a long shot.
+10. **What evidence each funder wants.** DONE 2026-11-27: one pilot design reaching ESSA Tier 4 with no student data
+    (PROSPECTS.md, "What evidence funders want").
+11. **A legal home of our own: a Colorado nonprofit, and whether LeMay Ventures LLC can help** (Cory, 2026-11-27).
+    DONE 2026-11-27: LEGAL-HOME.md. CNDC as the bridge, a Colorado nonprofit in parallel (about $685 and 7 months),
+    the LLC kept separate and used only where a for-profit applicant fits.
 
 ## Openings for outreach
 
-Sends need Cory's yes; drafts go in drafts/paste-ready as usual.
+Sends need Cory's yes; drafts go in drafts/paste-ready (list and notes in its INDEX.md). Drafts 1 to 7 and 9 were
+written 2026-11-27; none is sent until Cory reports it.
 
-1. **CNDC fiscal sponsor inquiry** (CONTACTS.md item 2): the first step for everything above.
-2. **A pilot teacher group**: three to five teachers (family, InnEdCO contacts, a DPS teacher) using a unit and
-   reporting back.
-3. **A university research partner** in Colorado for an NSF or EIR bid on the AI-curriculum question.
-4. **A district partner** (rural Colorado first, matching the federal rural priority) to be EIR's applicant.
-5. **Colorado Department of Education**: ask about state instructional-materials review and OER interest.
-6. **Oak National Academy**: a peer conversation about their quality checks and funding story.
-7. **aiEDU and Code.org**: partners the AI companies already fund; a content partnership is a route to that money.
-8. **Program officers** at Hewlett (OER), Overdeck and the Gates Foundation K-12 team: introductory notes once the
-   pilot has results.
-9. **Education press and policy groups** (New America covered Oak): a story about the build itself.
+1. **CNDC fiscal sponsor inquiry** (CONTACTS.md item 2): the first step for everything above. Draft ready. Their rule
+   that partner projects need "a Colorado focus or impact" is the first question to settle.
+2. **A pilot teacher group**: teachers using a unit and reporting back (design in PROSPECTS.md, "What evidence funders
+   want"). Invite drafted; size and timing on the Desk.
+3. **A university research partner** in Colorado for an NSF STEM K-12 bid: CU Boulder iSAT and inquiryHub, DU
+   Morgridge. Two drafts ready.
+4. **A district partner** (rural Colorado first) to lead a future EIR bid: asked through the Colorado Education
+   Initiative. Draft ready.
+5. **Colorado Department of Education**: its K-12 OER Project and OERColorado. Draft ready.
+6. **Oak National Academy**: a peer conversation about their quality checks. Draft ready.
+7. **aiEDU and Code.org**: content partnerships. Form texts ready.
+8. **Program officers** at Hewlett (OER), Overdeck (research@overdeck.org takes concept notes) and the Gates
+   Foundation K-12 team: once the pilot has results. Not drafted yet on purpose.
+9. **Education press and policy groups**: New America's An-Me Chung, who interviewed Oak. Draft ready, best sent once
+   the pilot starts.
+10. **Federal visibility**: ED's priorities comment (due 2026-12-07) and the White House AI education pledge. Drafts
+    ready; both are public, so Cory decides.
 
 ## Sources
 
