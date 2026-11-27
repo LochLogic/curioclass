@@ -1,5 +1,5 @@
 Claude for Open Source application (https://claude.com/contact-sales/claude-for-oss)
-Drafted 2026-10-28. Paste each answer into its box. Edit anything that doesn't sound like you. The repo must be public before the "Select repo on GitHub" step will show it.
+Drafted 2026-10-28, rewritten 2026-11-27 curriculum-first with current facts. It was not sent in October. Paste each answer into its box and change anything that doesn't sound like you. The offer on the page (checked 2026-11-27) is 6 months of Claude Ultra. The page lists no account-age rule now, and Curio Class meets none of the listed thresholds, so this goes through the "Don't quite fit? Apply anyway" route. The form loads behind the "Apply now" button; the field names below are from the October draft, so check them when you open it.
 
 FIRST NAME: Cory
 LAST NAME: (yours)
@@ -8,24 +8,24 @@ REPO: LochLogic/curioclass
 
 ---------- Tell us about the project's reach and impact ----------
 
-Curio Class (curioclass.org) is a free, open library of interactive K-12 classroom tools: 797 planned across every grade and subject, aligned to national standards, 76 live today. No paywall, no accounts, no ads, no tracking. Every tool is one self-contained HTML file that runs offline on a smartboard, a locked-down school Chromebook or a USB stick. Code is MIT and content is CC BY 4.0.
+Curio Class (curioclass.org) is a free, openly licensed K-12 curriculum: 118 courses across every grade and the core subjects, each with a full-year scope and sequence, day-by-day lessons, printables and interactive tools. No paywall, no accounts, no ads, no tracking. It works offline, the printables stand on their own, and the 92 interactive tools live today are each one self-contained HTML file that runs on a smartboard, a locked-down school Chromebook or a USB stick. Code is MIT and content is CC BY 4.0, so any teacher, district or translator can adapt, rebrand and print it.
 
-The gap it fills: good interactive classroom material sits behind subscriptions, logins and district contracts, and teachers pay for it out of their own pockets. Curio Class removes that paywall for good, and because no student data ever exists, schools can use it with zero privacy paperwork.
+Kindergarten to grade 3 science is finished and signed off, and about 1,380 days of lessons are written across science, social studies and English language arts for those grades. The rest of the plan is public in the repo, so anyone can see exactly what's done and what's left.
 
-Each tool ships with a printable lesson plan, a substitute-teacher packet, an exit ticket, an anchor chart, English and Spanish vocabulary cards and a family game. The 721 tools still to build are already on the site as cards on the bench (curioclass.org/bench), so anyone can see exactly what is left.
+The gap it fills: good curriculum sits behind subscriptions, logins and district contracts, and teachers often pay for material themselves. Curio Class is free for good, and because it never collects student data, schools can use it without privacy paperwork.
 
-For the open source ecosystem, the repo is also a working, documented recipe for building quality software with Claude Code: a shared MIT kit (curio.js with a narration helper, plus 13 reusable family engines such as number lines, data tables, graphing, machine learning, fact-checking, networking and music) and a written agent pipeline (spec, build, three independent review lenses, exit check, lesson plan) that anyone building free educational tools can copy.
+For the open source ecosystem, the repo is also a working, documented recipe for building careful educational content with Claude Code: written standards, a pipeline where Claude drafts, separate Claude readers check teaching, accessibility and sensitivity, and a person signs off every page, plus a shared MIT kit of reusable engines for interactive tools. Anyone building free educational material can copy it.
 
-It is new (live since 2026-10-23), so it does not have downloads or dependents yet. Its reach is measured in classrooms, not packages.
+It's new and not marketed yet, so it doesn't have downloads or dependents. Its reach will be counted in classrooms, not packages.
 
 ---------- How will you use the subscription for your project? ----------
 
-All of it goes into building the remaining 721 tools. Claude Code is the engine of the whole project: for each tool a fresh Claude agent writes the spec, another builds it, three more review it cold for teaching quality, accessibility and play, then a final check and a lesson plan agent finish it. That is about 0.7 to 1 million tokens per tool before the engine work, catalog audits and second rounds that keep quality high.
+All of it goes into writing the rest of the curriculum. Claude Code is the engine of the whole project: Claude drafts units and days against the written scope, separate Claude readers check each one cold, and I fix and sign off. The usage limit is the bottleneck: runs stop mid-grade when limits hit, and quality depends on giving each check its own fresh read instead of cutting corners.
 
-The usage limit is the bottleneck. Waves of tools stop mid-run when limits hit, and quality depends on giving each tool its own fresh agents instead of cutting corners. Six months of Max 20x lets the build waves run uninterrupted at full quality. My goal for those six months is to triple the live catalog, with every new tool, its shared engine and its pipeline improvements published openly under MIT and CC BY.
+Six months of Ultra lets those runs go uninterrupted. In that time I'll carry the finished K-3 work up the grades in science, social studies and English language arts, and everything produced, curriculum, tools and pipeline improvements, is published openly under CC BY and MIT as it lands.
 
-Every token turns into something free: a tool any teacher, student or parent can open, download and keep, with no account and no paywall.
+Every token turns into something free: a lesson any teacher, student or parent can open, print and keep, with no account and no paywall.
 
 ---------- Other info ----------
 
-Being upfront: my GitHub account is under two years old (created December 2025), and the repo was private until now because it is in heavy development. I'm applying under the "Don't quite fit? Apply anyway" invitation because Curio Class is a public good that schools and families can depend on, built entirely with Claude, and opened up for others to learn from and reuse. I build it in my spare time and pay for it myself. It is dedicated to my mom, brother and sister, who are all teachers.
+Being upfront: Curio Class doesn't meet the listed thresholds, my GitHub account was created in December 2025, and the repo went public in October 2026. I'm applying under "Don't quite fit? Apply anyway" because Curio Class is a public good that schools and families can rely on, built with Claude and open for others to learn from and reuse. I build it in my spare time and pay for it myself. It's dedicated to my mom, brother and sister, who are all teachers.

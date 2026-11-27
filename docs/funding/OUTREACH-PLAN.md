@@ -89,7 +89,7 @@ Ordered. Items marked **(Cory)** commit him or need his facts and go on the Revi
 2. **Ownership in writing (Cory).** One page saying Cory owns the code, content, name and domain personally, and a
    note from Sara on her specs. A copyright and ownership line on the site (the Digital Public Goods registry asks
    for it).
-3. **Board and advisors (Cory).** Cory plus 2 independent directors (Cory can find two, Desk 2026-11-27). Useful
+3. **Board and advisors (Cory).** Cory plus 3 independent directors: CNDC requires partner projects to "maintain a board with a minimum of four members that meet at least quarterly" (its services FAQ, read 2026-11-27). Cory said he can find two (Desk 2026-11-27), so one more seat is needed. Useful
    seats: a classroom teacher outside the family and someone who has run a nonprofit; later, international
    education. Advisors (no legal duty) can be teachers who read courses. Advisors also answer "who reviews it?".
 4. **A new about page and one-pager.** ONE-PAGER.md (2026-10-28) is tools-first with old counts. Write it
@@ -259,10 +259,10 @@ PROSPECTS.md under the name shown. Status moves from open to drafted, sent, then
 |---|---|---|---|---|---|
 | ED supplemental priorities comment | 3 | None | Final read of ed-priorities-public-comment.txt for claims; Cory posts on regulations.gov | Claude, then Cory | 2026-12-07 |
 | Virginia K-12 science HQIM webinar | 2 | None | Register and attend; learn the 2027 review terms | Cory | 2026-12-14 |
-| NSF TechAccess, round 2 letter of intent | 2 | A Colorado hub lead | Find who is leading Colorado's bid; a one-paragraph partner note | Claude, then Cory | 2026-12-15 |
-| IES Seedlings to Scale, Phase One | 2 | A research partner already applying | Too tight to lead; one note to the CU and DU contacts asking if they're applying | Claude, then Cory | 2026-12-11 |
-| NLnet Restack | 1 | A European lead partner; not framed as AI | Low odds; ask one European open-education peer if they'd lead | Claude, then Cory | 2027-01-03 |
-| Tällberg-SNF-Eliasson Prize | 2 | Someone else nominates | Ask one person to nominate Cory; draft them a nomination outline | Claude, then Cory | Feb 2027 |
+| NSF TechAccess, round 2 letter of intent | 2 | A Colorado hub lead | No Colorado lead found 2026-11-27; note drafted to CU Boulder's Research & Innovation Office asking who leads (nsf-techaccess-colorado-partner.txt) | Cory | 2026-12-15 (may move: NSF says a revised solicitation is coming) |
+| IES Seedlings to Scale, Phase One | 2 | A research partner already applying | Notes drafted (ies-seedlings-cu-note.txt, ies-seedlings-du-note.txt); send one CU note, not this and cu-isat-research-partner.txt both | Cory | 2026-12-11 |
+| NLnet Restack | 1 | A European lead partner; not framed as AI | Low odds; note drafted to the Kiwix Association (Switzerland) proposing it lead offline packaging of K-3 science (nlnet-restack-partner.txt) | Cory | 2027-01-03 |
+| Tällberg-SNF-Eliasson Prize | 2 | Someone else nominates | Outline drafted (tallberg-nomination-outline.txt); Cory picks a non-family nominator; 2027 window not posted yet | Cory | Feb 2027 |
 | Yidan Prize, Education Development | 2 | 3 letters; impact evidence | Decide in February whether the facts fit; if yes, line up 3 letter writers | Cory | 2027-03-02 |
 | Denver Post Community Foundation | 1 | Fiscal sponsor | LOI draft | Claude, then Cory | May 15 to Jun 30, 2027 |
 | The Denver Foundation, Community Grants | 1 | Fiscal sponsor | Application draft when the cycle opens | Claude, then Cory | 2027 cycle 1 |
@@ -271,18 +271,18 @@ PROSPECTS.md under the name shown. Status moves from open to drafted, sent, then
 
 | Prospect | Path | Next step | Who |
 |---|---|---|---|
-| CNDC fiscal sponsorship | all | Fill in CNDC's inquiry form (needs an account), then apply; Claude preps every answer | Cory |
-| Emergent Ventures | 1 | Cory writes the application himself (no AI beyond proofreading); Claude preps facts and a structure only | Cory |
-| Awesome Foundation (Denver or nearest chapter) | 1 | Find the chapter; draft the short form | Claude, then Cory |
-| GitHub Secure Open Source Fund | 1 | Draft; the no-student-data design is the security angle | Claude, then Cory |
-| FLOSS/fund | 1 | Needs funding.json on the site (site lead) and a usage line we can state without tracking | Claude, then Cory |
-| Mozilla Foundation Incubator | 1 | Draft the "Tell us what you're building" intake | Claude, then Cory |
-| AWS Education Equity Initiative | 1 | Draft; credits plus advising | Claude, then Cory |
-| Claude for Open Source | 1 | Answers drafted 2026-10-28 (docs/funding/applications/claude-for-oss.txt, account age disclosed); Cory says whether it went out | Cory |
+| CNDC fiscal sponsorship | all | Drafted 2026-11-27 (cndc-inquiry-form.txt; fields hidden behind a login, answers follow CNDC's listed topics). Cory creates the account and fills it in; needs a four-member board plan | Cory |
+| Emergent Ventures | 1 | Facts under each real form question ready (emergent-ventures-facts.txt); Cory writes every word | Cory |
+| Awesome Foundation | 1 | Drafted for Montana awesome (every Colorado chapter is inactive); a long shot | Cory |
+| GitHub Secure Open Source Fund | 1 | Drafted (github-secure-oss-fund-form.txt, public rolling form); its last box asks Cory to confirm "an active and growing set of users", early for us | Cory |
+| FLOSS/fund | 1 | funding.json drafted and schema-valid; site lead publishes it at /funding.json. FLOSS/fund skips "very new projects", so apply once there's outside interest; its grants start at $10,000 | Site lead, then Cory |
+| Mozilla Foundation Incubator | 1 | Human-Scale AI call CLOSED 2026-11-20; notes kept for the next cohort call (mozilla-incubator-intake.txt); weak fit (wants deployed products with users) | Watch |
+| AWS Education Equity Initiative | 1 | Drafted; organizations only and needs a paid AWS account, so it waits for CNDC or the LLC (Cory's call) | Cory |
+| Claude for Open Source | 1 | Not sent in October; answers rewritten curriculum-first 2026-11-27 (docs/funding/applications/claude-for-oss.txt). Offer is now 6 months of Claude Ultra; goes through "apply anyway" | Cory |
 | OpenAI Researcher Access | 1 | A weak fit (research credits); draft only if nothing better is open | Claude, then Cory |
-| Small family foundations | 1 | Build a list of Colorado and K-12 or literacy family foundations that take letters | Claude |
-| Warm introductions (the "someone who wouldn't think twice" donor) | 1 | A short forwardable note Cory sends to people he knows | Claude, then Cory |
-| Rotary, Kiwanis and Lions clubs | 1, 3 | A 10-minute lunch talk outline and an ask card | Claude, then Cory |
+| Small family foundations | 1 | List done 2026-11-27 (PROSPECTS.md, "Small and mid-size foundations"): Dunn Family first ("educational support materials for use by teachers"), then Hughes Trust, Longview (LOI 2027-01-15), Hill, El Pomar (ask first whether online curriculum counts as "media"). All need a 501(c)(3) or a sponsor, so they follow CNDC; Echoing Green needs neither (window 2027-03-31) | Cory |
+| Warm introductions (the "someone who wouldn't think twice" donor) | 1 | Drafted (warm-intro-forwardable.txt) | Cory |
+| Rotary, Kiwanis and Lions clubs | 1, 3 | Request email, talk outline and ask card drafted (club-talk-outline.txt) | Cory |
 
 ### C. After the fiscal sponsor (an EIN through CNDC)
 
