@@ -52,3 +52,52 @@ from_day,to_day,what,where,minutes,error,note
 19,21,"Closing repair, last round",Return,5,,J and open needs. Keep original marks and retries together.
 17,18,"s01-X17 grouping reasons, positions 11 and 12",Share,2,,"Hear two private grouping turns, up to 45 seconds per child, alongside the regular exit rotation."
 6,7,s01-X6c,return,1,J,Return the separately collected Exit box mark within the J move.
+20,21,s02-P20-explain,Model,1,,Return first marks with a private cue while peers work. This minute is concurrent with the model or retrieval repair.
+21,22,s02-P21-check,Model,1,,Return the rejoining mark with a private cue during the forward action work.
+20,21,s02-X20,Return,5,D,"Label the whole and parts or the relevant owner amounts before choosing a calculation. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+20,21,s02-X20,Return,5,H,"Connect a written step to the same value in the drawing. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+21,22,s02-X21,Return,5,D,"Label the whole and parts or the relevant owner amounts before choosing a calculation. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+21,22,s02-X21,Return,5,I,"Enclose the parts in the original outline and recombine them. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+22,23,s02-X22,Return,5,D,"Label the whole and parts or the relevant owner amounts before choosing a calculation. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+22,23,s02-X22,Return,5,I,"Enclose the parts in the original outline and recombine them. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+23,24,s02-X23,Return,5,D,"Label the whole and parts or the relevant owner amounts before choosing a calculation. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+23,24,s02-X23,Return,5,H,"Connect a written step to the same value in the drawing. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+24,25,s02-X24,Return,5,B,"Draw the whole start and exchange before removing the stated amount. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+24,25,s02-X24,Return,5,C,"Cancel one ten as its ten ones appear. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+25,26,s02-X25,Return,5,B,"Draw the whole start and exchange before removing the stated amount. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+25,26,s02-X25,Return,5,C,"Cancel one ten as its ten ones appear. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+26,27,s02-X26,Return,5,B,"Draw the whole start and exchange before removing the stated amount. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+26,27,s02-X26,Return,5,C,"Cancel one ten as its ten ones appear. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+27,28,s02-X27,Return,5,B,"Draw the whole start and exchange before removing the stated amount. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+27,28,s02-X27,Return,5,C,"Cancel one ten as its ten ones appear. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+28,29,s02-X28,Return,5,C,"Cancel one ten as its ten ones appear. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+28,29,s02-X28,Return,5,H,"Connect a written step to the same value in the drawing. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+29,30,s02-X29,Return,5,A,"Circle ten drawn ones and transfer their value to the tens. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+29,30,s02-X29,Return,5,G,"Tick each original addend once when it enters a group. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+30,31,s02-X30,Return,5,G,"Tick each original addend once when it enters a group. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+30,31,s02-X30,Return,5,H,"Connect a written step to the same value in the drawing. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+31,32,s02-X31,Return,5,D,"Label the whole and parts or the relevant owner amounts before choosing a calculation. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+31,32,s02-X31,Return,5,C,"Cancel one ten as its ten ones appear. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+32,33,s02-X32,Return,5,I,"Enclose the parts in the original outline and recombine them. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+33,34,s02-X33,Return,5,E,"Name the larger amount and align both tapes. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+33,34,s02-X33,Return,5,B,"Draw the whole start and exchange before removing the stated amount. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+33,34,s02-X33,Return,5,C,"Cancel one ten as its ten ones appear. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+34,35,s02-X34,Return,5,F,"Put the second action on the first drawing and check the ending count. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+34,35,s02-X34,Return,5,B,"Draw the whole start and exchange before removing the stated amount. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+35,36,s02-X35,Return,5,F,"Put the second action on the first drawing and check the ending count. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+35,36,s02-X35,Return,5,C,"Cancel one ten as its ten ones appear. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+36,37,s02-X36,Warm-up,5,A,"Circle ten drawn ones and transfer their value to the tens. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+36,37,s02-X36,Return,5,E,"Name the larger amount and align both tapes. Return with a private written cue. If more than a third show the error, teach the move to the class; otherwise meet the small group."
+37,38,s02-X37,Warm-up,1,,Return the ticket with one private cue and file it. Route longer repairs into the matching post-assessment round.
+27,28,four-addend grouping marks,Return,5,G,Tick each original addend once and return the grouping papers privately.
+36,37,s02-E-add,Revision,5,,Return feedback and save both the original and the revising marks. Addition is scored with the closing records.
+36,38,s02-E-add revised record,Revision,0,,Score the revised addition explanation alongside subtraction. File the original without a second conference.
+37,38,s02-M,Revision,2,,"Return the private cue, preserve both marks and score the revised product."
+37,38,s02-T,Revision,2,,"Return the private cue, preserve both marks and score the revised product."
+37,38,s02-E-sub,Revision,2,,"Return the private cue, preserve both marks and score the revised product."
+38,39,"Closing work and feedback round 1: A, D and G",Return,5,,"Return all privately scored work in the first round on day 39. Assign a single move per child, use fresh numbers and date any retry."
+38,39,Closing work and feedback round 2: B and E,Return,5,,"Return all privately scored work in the first round on day 39. Assign a single move per child, use fresh numbers and date any retry."
+38,40,Closing work and feedback round 1: C and F,Return,5,,"Return all privately scored work in the first round on day 39. Assign a single move per child, use fresh numbers and date any retry."
+38,40,Closing work and feedback round 2: H and I,Return,5,,"Return all privately scored work in the first round on day 39. Assign a single move per child, use fresh numbers and date any retry."
+37,40,s02-X37 remaining needs,Return,0,F,Include in the F round if the child still needs a retry. No added minutes.
+37,39,s02-X37 remaining needs,Return,0,A,Include in the first A round without adding minutes.

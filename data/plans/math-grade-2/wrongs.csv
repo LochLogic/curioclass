@@ -79,3 +79,64 @@ s01-P13-equation,"For 13 and 4, 4 + 13 = □.",,,E,Adds both full lengths to fin
 s01-P15-parts,8 and 3.,,,G,Accepts eleven pieces as all twelve without checking the joined whole.
 s01-X1a,Uncovers both dots to count both from one.,,,B,Shows where to practice deriving a nearby fact; record that the flap was lifted.
 s01-S8,27,19+8,27,F,Adds a part to its whole as if the two groups were separate.
+s02-X20,159,98+61,159,D,Adds the covered holes to the whole.
+s02-X20,37 because I subtracted,,,H,Names a procedure without linking it to tens or ones.
+s02-X21,145,89+56,145,D,Joins a known part to its whole.
+s02-X21,"34 missing, with 56 and 34 labeled as 89",,,I,The marked parts actually fill 90.
+s02-X22,13,45-32,13,D,Treats the end count as the start.
+s02-X22,"76 as the start, marked as 45 and 32",,,I,The two parts actually total 77.
+s02-X23,22,54-32,22,D,Finds the difference instead of the whole.
+s02-X23,"86, I added",,,H,Gives no value reason for the total.
+s02-X24,77,70+8-1,77,B,Reverses the ones subtraction.
+s02-X24,73,70+11-8,73,C,Keeps the old ten when ten ones appear.
+s02-X25,"Neither strip, 5 minus 2 is 3",5-2,3,B,Reverses the ones instead of exchanging.
+s02-X25,"92 strip with 9 tens and 12 ones, leaving 97",90+12-5,97,C,Keeps the traded ten.
+s02-X26,43,40+9-6,43,B,Subtracts smaller ones from larger ones.
+s02-X26,47,80+16-49,47,C,Keeps the traded ten.
+s02-X27,44,40+4-0,44,B,Subtracts 0 from 4 in the ones.
+s02-X27,46,90+10-54,46,C,Keeps nine tens during exchange.
+s02-X28,35 on both notes,,,H,Gives the result without the value link.
+s02-X28,45 after renaming 44 as 40 + 14,40+14-9,45,C,Keeps the traded ten in the second note.
+s02-X29,127,27+46+54,127,G,Omits the row of 38.
+s02-X29,155,46+54+55,155,A,Drops a newly composed ten from 27 + 38.
+s02-X30,88,17+28+43,88,G,Omits 42.
+s02-X30,Both 130 because I added,,,H,Does not show how the same addends make both totals.
+s02-X31,58 card,41+17,58,D,Joins the whole and a part. A choice alone does not diagnose the error.
+s02-X31,34 card,40+11-17,34,C,Keeps four tens beside eleven ones. Confirm the child’s reasoning privately.
+s02-X32,42 and 46 strip,42+46,88,I,Accepts parts making 88. A choice alone does not diagnose the method.
+s02-X32,41 and 45 strip,41+45,86,I,Accepts parts making 86. A choice alone does not diagnose the method.
+s02-X33,130,92+38,130,E,Uses more as a cue to add.
+s02-X33,66,60+8-2,66,B,Reverses the ones.
+s02-X33,64,90+12-38,64,C,Keeps nine tens after exchange.
+s02-X34,76,83-7,76,F,Stops at the result of the first removal.
+s02-X34,63,60+9-6,63,B,Reverses the ones on the second removal.
+s02-X35,25 as the ending count,32-7,25,F,Uses only the removal.
+s02-X35,39,30+12-7+4,39,C,Keeps three tens beside twelve ones before subtracting.
+s02-X36,37,55-18,37,E,Uses fewer as a cue to subtract.
+s02-X36,63,50+10+3,63,A,Drops the new ten from the combined ones.
+s02-X37,63,56+7,63,F,Stops after the first arrival.
+s02-X37,74,53+21,74,A,Drops a composed ten on the first arrival.
+s02-E-add,73,70+3,73,A,Drops the composed ten from 70 + 13.
+s02-E-add,83,,,H,Gives only a result.
+s02-T,54,48+6,54,F,Stops after the arrival.
+s02-M,88,24+38+26,88,G,Omits 32 star cards.
+s02-E-sub,34,30+6-2,34,B,Subtracts each smaller digit from the larger digit.
+s02-E-sub,36,70+12-46,36,C,Keeps seven tens after trading one.
+s02-E-sub,26,,,H,Gives a result with no reason about preserved value.
+s02-S1,9,23-14,9,D,Subtracts the arrival from the start.
+s02-S2,89,31+58,89,D,Adds start and end.
+s02-S3,83,65+18,83,D,Adds the extra and the new total.
+s02-S4,107,84+23,107,D,Adds the removed tiles to the start.
+s02-S5,125,76+49,125,D,Adds start and remainder.
+s02-S6,18,35-17,18,D,Subtracts the removed part from the remainder.
+s02-S7,6,34-28,6,D,Finds the difference between the groups.
+s02-S8,88,63+25,88,D,Adds an identified part to the whole.
+s02-S9,"16 and 19, totaling 35",16+19,35,I,Loses one of the original seats.
+s02-S10,90,57+33,90,D,Adds both owners’ counts.
+s02-S11,23,42-19,23,D,Subtracts the extra from the smaller amount.
+s02-S12,89,68+21,89,D,Adds the gap to the larger amount.
+s02-S13,13,29-16,13,E,Subtracts because of fewer.
+s02-S14,93,71+22,93,E,Adds because of more.
+s02-F2,72,70+2,72,A,Drops the new ten after joining twelve ones.
+s02-F4,36,30+7-1,36,B,Reverses the ones subtraction.
+s02-F4,34,80+11-57,34,C,Keeps the traded ten.
