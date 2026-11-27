@@ -1378,7 +1378,7 @@ s06-K118,Restarts at one despite supplied start.,,,H,Only observed method suppor
 s07-X120a,Leaves a visible gap.,,,K,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X120b,Revisits a triangle and writes 4.,,,L,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X121,Marks three-rectangle build because its row spreads wider.,,,G,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-X122b,"For a total question, counts only two arriving squares as the whole.",,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X122b,"For a total question, counts only two arriving squares as the whole.",,,I,"For a valid joining story, both groups make seven. Assign I only when exact words or observed action show the added part treated as the whole; a single-group count without a joining question is descriptive and not addition-story evidence."
 s07-X124,Shows only arriving two as the total.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X125a,"Leaves one unassigned, claims eight and one make ten.",,,J,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X125b,Claims eight and one form all ten.,,,J,Assign this letter only when response or observed method shows it; otherwise describe the response.
@@ -1387,7 +1387,7 @@ s07-X126,Marks sphere and says its picture is flat.,,,M,Assign this letter only 
 s07-X127a,Triangle from its outline.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X127b,Traces triangular silhouette and calls whole solid triangle.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X128a,Groups both as flat because cylinder has flat ends.,,,O,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-X128b,Marks only color as difference.,,,D,"No color distinction is printed. Error D requires recorded words explicitly citing color; unexplained marks get descriptive notes, never an inferred letter."
+s07-X128b,Marks only color as difference.,,,D,No color distinction is printed. Error D requires recorded words explicitly citing color; unexplained marks get descriptive notes. Preserve the first same-or-different choice before this neutral follow-up; never supply its verdict.
 s07-X129,Builds only a flat circle and says whole tube is flat.,,,O,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X130a,Triangle.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X130b,In front of the container.,,,E,Assign this letter only when response or observed method shows it; otherwise describe the response.
@@ -2002,7 +2002,7 @@ s05-A103-F1,One dot in a retained split is assigned to both parts.,,,F,Use the o
 s05-A103-F2,"Three empty places are labeled zero, one, two and reported as two.",,,E,Use the observed action on the retained product; keep component feedback and revision dates.
 s06-X110b,One tab stands for ten; one further tab.,,,F,Only F when the child identifies one tab as replacing the ten; an unexplained wrong quantity gets a descriptive note.
 s06-Q114,"1 + 6 = 16, with one said to replace ten ones.",,,F,Only F when the representation replaces the ten visible ones with one object. Other equation or formation errors receive descriptive notes.
-s07-X122a,Calls the two squares the whole sign before asking how many pieces make the sign.,,,I,"The observed part-for-whole claim supports I. An unrelated or unheard question receives a descriptive note, not an inferred letter."
+s07-X122a,Calls the two squares the whole sign before asking how many pieces make the sign.,,,I,Assign I only for the observed part-for-whole claim in this row. A question that merely counts one group fails the joining-story criterion but receives a descriptive note; an unrelated or unheard question never establishes I.
 s07-X123,Links both piece groups to the same addend.,,,N,Only observed repeated-group links support N; selecting a distractor alone receives a descriptive note.
 s07-F3s,Names or marks the target without describing its relation.,,,x,Record the exact words and support. E requires an observed behind/in-front reversal; other missing relations are descriptive.
 s07-F3s2,Names or marks the target without describing its relation.,,,x,Record the exact words and support. E requires an observed behind/in-front reversal; other missing relations are descriptive.

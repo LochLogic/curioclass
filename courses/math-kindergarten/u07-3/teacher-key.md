@@ -442,11 +442,11 @@ Shown: Marks different. | Not yet seen: Marks same and says the whole cylinder i
 
 ## s07-X128b
 
-Mark what makes them different.
+Show how you decided.
 
 Answer: Marks cylinder body extending beyond its circular end, unlike the flat circle.
 
-A depth arrow, trace or directed adult mark is valid. Color alone is not geometric evidence. | Shape: Independently annotate dimension difference on mismatched-size pair; practice repairs indicated labels. No color distinction is printed. Size or pose alone does not establish flat versus solid; assign error D only if recorded words explicitly cite color, otherwise describe the response. Student-page Exit box on day 128, administered after the first ticket item, not practice. Retain the reserved image and independent feature mark. Return with day 128 feedback on day 129.
+Keep the original same-or-different response before revealing this neutral follow-up. A depth arrow, trace or directed adult mark can show that the cylinder extends beyond its circular end while the circle is flat. The prompt must not supply different or confirm the earlier choice. Color, size or pose alone does not establish flat versus solid. Assign error D only from recorded words explicitly citing color; unexplained marks get descriptive notes. Student-page Exit box on day 128, administered after the first ticket item, not practice. Retain the reserved image and independent feature mark. Return with day 128 feedback on day 129. | Shape: Independently support a shape-kind decision on a mismatched-size pair; practice repairs indicated labels. No color distinction is printed.
 
 Shown: Marks thickness beyond cylinder end. | Not yet seen: Marks only color as difference.
 

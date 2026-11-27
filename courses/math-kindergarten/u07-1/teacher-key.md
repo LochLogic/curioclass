@@ -232,21 +232,21 @@ Shown: Four upper squares link uniquely to four of six lower squares; two lower 
 
 ## s07-X122a
 
-Ask a how-many question.
+Ask a joining story question about this sign.
 
-Answer: Any answerable counting question about five triangles and two squares: how many altogether, how many triangles, how many squares.
+Answer: An answerable joining story question using both pictured groups, five triangles and two squares, with the whole unknown. Either group may be first. A question counting only one group does not show the addition-story goal.
 
-Every child originates one spoken question and marks its scope on the reserved sign. Teacher hears children 1 to 3 on 122; 4 to 9 on 123; 10 to 15 on 124; 16 to 21 on 125; 22 to 27 on 126; 28 to 30 on 127. One 45-second first-question turn each, inside the named exit/center allocation. Record words yourself, never from a partner. Save the paper solution until its question is heard. Return written feedback in the next named I or center revision slot. | Shape: Originate a question about an unseen complete sign; practice finishes a teacher-started question about a partial build.
+Each child originates one joining story question about both pictured groups, through usual communication. Require one actor and an unknown whole, without supplying a story or question for the child to repeat. Teacher hears children 1 to 3 on 122; 4 to 9 on 123; 10 to 15 on 124; 16 to 21 on 125; 22 to 27 on 126; 28 to 30 on 127. One 45-second first-question turn each in the existing allocation. Record exact words yourself, never from a partner; save the solution until its question is heard. Single-group counting receives descriptive feedback and is not addition-story evidence. Return written feedback in the next named I or center revision slot. | Shape: Originate a joining story question about an unseen complete sign; practice finishes a teacher-started question about a partial build.
 
-Shown: How many pieces make the sign? | Not yet seen: Says the two squares are the whole sign, then asks how many pieces make the sign.
+Shown: Rin has two square pieces. Rin adds five triangle pieces. How many pieces does Rin have now? | Not yet seen: Asks only how many squares there are, without a joining story; describe the response without inferring error I.
 
 ## s07-X122b
 
 Mark your question's answer.
 
-Answer: All pieces: 7, since 5 + 2 = 7. Triangles: 5. Squares: 2. Accept another correct answer to an answerable recorded question.
+Answer: 7 pieces for a valid joining story using both pictured groups: 5 + 2 = 7 or 2 + 5 = 7. Accept seven marks, counted pieces, a spoken solution recorded by the teacher or an optional matching numeral. A correct single-group count alone is not addition-story evidence.
 
-Paper marks solve own recorded question. If question unknown, correspondence pending. Hear three different children on this ask. | Shape: Solve own novel question; practice never originates and solves a whole question.
+Judge the solution against the child's own recorded joining question. Both pictured groups must form the whole; counting all is valid. If the question is unknown, correspondence remains pending. Hear three different children on this ask in the existing allocation. Keep the original solution for later correspondence; do not substitute a supplied story. | Shape: Solve own novel joining question; practice never originates and solves a whole question.
 
-Shown: Marks seven for own total question. | Not yet seen: For a total question, counts only two arriving squares as the whole.
+Shown: Marks seven for own joining question, counting both groups. | Not yet seen: For a whole-unknown joining question, counts only the two added squares as the whole.
 

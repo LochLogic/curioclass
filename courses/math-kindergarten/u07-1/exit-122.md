@@ -14,7 +14,7 @@ Name ____________________
 
 <div style="font-size:18pt">
 
-<p>Ask a how-many question.</p>
+<p>Ask a joining story question about this sign.</p>
 
 <p>Mark your question's answer.</p>
 
