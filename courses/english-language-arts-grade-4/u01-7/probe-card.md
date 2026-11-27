@@ -8,6 +8,6 @@ teacher_note: First release day 29 to five assigned readers. Record actual oral 
 ---
 # Independent word-reading card
 
-Read unhelpfulness and reconsidering alone and in the context.
-I was reconsidering my advice. I saw its unhelpfulness.
+Read unworkable and reconsidering alone and in the context.
+I was reconsidering my advice. I saw it was unworkable.
 It gave no way to improve the poem.

@@ -115,17 +115,17 @@ Wrong: One polished page proves all eight weeks of writing. (AD).
 
 Text: Self-contained task; two reserved words and original probe sentence; no source-text interpretation
 
-Prompt: Read unhelpfulness and reconsidering alone and in the context.
-I was reconsidering my advice. I saw its unhelpfulness.
+Prompt: Read unworkable and reconsidering alone and in the context.
+I was reconsidering my advice. I saw it was unworkable.
 It gave no way to improve the poem.
 
-Answer: un-help-ful-ness; re-con-sid-er-ing. un- means not, re- again; bases help/consider. Read all sounds and parts before context.
+Answer: un-work-a-ble; re-con-sid-er-ing. un- means not, re- means again, -able means can be; bases work/consider. Read all sounds and parts before context.
 
 Look for: Shape: actual whole-word decoding alone and in context; never infer speech from paper. | Day 29 children 1 to 5; day 31 children 6 to 10; day 32 children 11 to 15; day 33 children 16 to 20; day 34 children 21 to 25; day 37 children 26 to 30. Each later group uses five existing reading minutes, replacing optional conferences. | Earlier written feedback precedes each independently observed correction. The day 29 group corrects day 30 and is finalized day 31. Later groups remain diagnostic until actual feedback and a later correction; finalize eligible late evidence day 38, leave any missing component blank.
 
-Samples: Observer: reads both whole words alone/in sentence; identifies bases, prefixes and familiar suffixes. | Says helpful for unhelpfulness without reading every part.
+Samples: Observer: reads both whole words alone/in sentence; identifies bases, prefixes and familiar suffixes. | Says working for unworkable without reading every part.
 
-Wrong: Says helpful for unhelpfulness without reading every part. (H).
+Wrong: Says working for unworkable without reading every part. (H).
 
 ## s01-A30-process
 
