@@ -3590,8 +3590,6 @@ def main(a):
         print('%s: %s, %d words%s, %d failure(s)' % (lab, pc['head'].get('piece'), words(pc['body']), note, len(fails)))
         for x in fails:
             print('  FAIL', x)
-        for x in notes:
-            print('  NOTE', x)
         bad += len(fails)
         ng = new_piece_gates(pc)
         for x in ng:

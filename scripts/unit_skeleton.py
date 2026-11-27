@@ -868,7 +868,7 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
                 L.append('  - %s: measure: %s; demands: %s' % (clean(t['title']), clean(t['measure']) or 'not stated', clean(t['demands']) or 'not stated'))
         L.append(CLOSE)
         if trows:
-            L.append('%s: Anchor and paired texts: confirm each anchor and paired row above, the day it is read, and fill the rows whose status is to choose or to confirm (name the text, its edition and its part); say which texts you added or dropped. Rights stay as the file has them; where a row says not stated, give the basis you know (public domain by date, written by Curio Class, or the licence) and list the row under "For the lead".' % MARK)
+            L.append('%s: Anchor and paired texts: confirm each anchor and paired row above, the day it is read, and fill the rows whose status is to choose or to confirm (name the text, its edition and its part); say which texts you added or dropped. Rights stay as the file has them; where a row says not stated, give the basis you know (public domain by date, written by Curio Class, or the license) and list the row under "For the lead".' % MARK)
             L.append('%s: Text complexity: for each anchor, the reader and task and the support (the measure and the qualitative demands are on file above); correct a demand that is wrong.' % MARK)
         else:
             L.append('%s: Anchor and paired texts: no rows in data/plans/ela-texts.csv for this course and unit; name each anchor and paired text, the day it is read, and its rights line.' % MARK)
@@ -2121,7 +2121,7 @@ def build(course, unit):
           % runs_text([int(r['day']) for r in sens]))
     w(CLOSE)
     if ss:
-        w('%s: Sources chosen for the unit (named, with licence and what was read); the primary sources and the community\'s own sources first.' % MARK)
+        w('%s: Sources chosen for the unit (named, with license and what was read); the primary sources and the community\'s own sources first.' % MARK)
         w('%s: What the sensitivity agent (docs/pipeline/briefs/sensitivity-read.md) must study for this unit, the community\'s own sources first; or one line saying the unit has no cultural, Native, hard-history, faith, health or disability content.' % MARK)
     else:
         for m in miss10:
@@ -2133,7 +2133,7 @@ def build(course, unit):
                            'the references read (no base text: this grade\'s units are Curio Class\'s own, any outside unit is '
                            'reference only and never copied), and public data sets with their rights lines'),
                'ela': 'each text with its author, rights line and place in the unit'}[subj]
-        w('%s: Sources chosen for the unit (named, with licence and what was read): %s.' % (MARK, src))
+        w('%s: Sources chosen for the unit (named, with license and what was read): %s.' % (MARK, src))
         more = {'math': '', 'science': ' Name the hazards and chemicals the safety read checks against published guidance.',
                 'ela': ' Name each original text the text agent reads.'}[subj]
         w('%s: What the sensitivity agent (docs/pipeline/briefs/sensitivity-read.md) must study for this unit, the community\'s own sources first; '
