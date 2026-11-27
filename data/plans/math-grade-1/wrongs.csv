@@ -381,3 +381,78 @@ s06-AS15,27 from more.,,,H,Chooses addition from a keyword.
 s06-AF-short,10 pieces with open spaces.,,,C,Accepts gaps.
 s06-AF-long,17 pieces with overlap.,,,D,Accepts doubled coverage.
 s06-AF-extend,16 more units.,,,J,Uses the longer whole as the added part.
+s07-X129a,Circles the red cube and red cone because both are red.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-X129b,Marks only the largest solid because of its size.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-X130a,Separates the cube and prism to insert the cylinder.,,,D,Error D. See the unit 7 register for a fresh repair.
+s07-X130b,Traces two separate solids after pulling the first build apart.,,,D,Error D. See the unit 7 register for a fresh repair.
+s07-X131a,Circles only the upright triangle because the other is turned.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-X131b,Gives blue as what makes the triangles triangles.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-X132a,Draws a large circle because size makes it fit.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-X133a,Leaves a corner open and accepts the figure as a triangle.,,,B,Error B. See the unit 7 register for a fresh repair.
+s07-X133b,Draws a bowed side and treats it as straight.,,,C,Error C. See the unit 7 register for a fresh repair.
+s07-X133d,Crosses out the turned drawing because it cannot be a triangle.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-X134a,Leaves out the recolored rectangle because of its color.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-X134a,Marks the slanted figure because it has four sides.,,,J,Error J. See the unit 7 register for a fresh repair.
+s07-X134b,Says it stays a rectangle because it is still the same color.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-X135b,Splits the half-circles across the rectangle.,,,D,Error D. See the unit 7 register for a fresh repair.
+s07-X135c,Uses the circle’s color as the deciding feature.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-X136a,Separates the two rectangles to place the new piece between them.,,,D,Error D. See the unit 7 register for a fresh repair.
+s07-X136b,Separates the cubes to add the third solid.,,,D,Error D. See the unit 7 register for a fresh repair.
+s07-X136c,Marks the blue fill as what makes it square.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-X137a,Marks the off-center cap and remainder as equal.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-X137b,Redraws the off-center chord and calls its shares equal.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-X137c,Leaves the uneven dividers and calls the four strips equal.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-X138a,Marks a narrow sliver and treats it and the rest as equal halves.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-X138b,Labels three sectors as half and says they equal the remaining sector.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-X139a-circle,Marks the half as smaller because two is less than four.,,,I,Error I. See the unit 7 register for a fresh repair.
+s07-X139a-rectangle,Marks the half as smaller because fewer equal shares make smaller pieces.,,,I,Error I. See the unit 7 register for a fresh repair.
+s07-X139b,Says a fourth is larger because four is more than two.,,,I,Error I. See the unit 7 register for a fresh repair.
+s07-X140b,Marks the half because fewer equal pieces must be smaller.,,,I,Error I. See the unit 7 register for a fresh repair.
+s07-X141a,Marks the long hand at 12 as the hour hand.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-X141b,Writes 12:00 using the long hand as the hour hand.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-X141c,Says twelve o’clock from the long hand.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-X142a,Draws the short hand right on 5.,,,F,Error F. See the unit 7 register for a fresh repair.
+s07-X142a,Draws the short hand at 6 and long hand at the midpoint.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-X142b,Leaves the hour hand fixed on 5 through the half hour.,,,F,Error F. See the unit 7 register for a fresh repair.
+s07-X143a,Links the long hand to hour.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-X143b,Writes 6:06 from the numeral below the long hand.,,,H,Error H. See the unit 7 register for a fresh repair.
+s07-X144a,Puts the short hand exactly at 2.,,,F,Error F. See the unit 7 register for a fresh repair.
+s07-X144a,Puts the short hand at 6 and long hand halfway from 2 to 3.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-X144b,Writes 12:00 using the minute hand as the hour hand.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-X145a,Draws the copied squares apart.,,,D,Error D. See the unit 7 register for a fresh repair.
+s07-X145c,"Writes 12:06, using the dial numeral as elapsed minutes.",,,H,Error H. See the unit 7 register for a fresh repair.
+s07-AR1-sort,Rejects the closed triangle because it is tilted.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-AR1-sort,Marks the figure with the gap.,,,B,Error B. See the unit 7 register for a fresh repair.
+s07-AR1-sort,Marks the closed figure with the arc.,,,C,Error C. See the unit 7 register for a fresh repair.
+s07-AR1-sort-feature,Marks a curved edge as an acceptable straight side.,,,C,Error C. See the unit 7 register for a fresh repair.
+s07-AR1-nondef,Leaves turn as required because a triangle must stand up.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-AR1-build,Leaves a gap at one joint and calls it a triangle.,,,B,Error B. See the unit 7 register for a fresh repair.
+s07-AR1-draw,Traces an open path that omits a join and calls it a triangle.,,,B,Error B. See the unit 7 register for a fresh repair.
+s07-AR1-feature,Counts a curved mark as a straight side.,,,C,Error C. See the unit 7 register for a fresh repair.
+s07-AR1-color,Says changing its color stops it being a triangle.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-AR1-size,Says a smaller copy cannot be a triangle.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-AR1-turn,Rejects the turned copy as a triangle.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-AR1-rect,Marks the two-square-corner figure as a rectangle.,,,J,Error J. See the unit 7 register for a fresh repair.
+s07-AR1-rect,Leaves out the square solely because it is tilted.,,,A,Error A. See the unit 7 register for a fresh repair.
+s07-AR2-solid-use,Takes apart the original joined solids to make the larger build.,,,D,Error D. See the unit 7 register for a fresh repair.
+s07-AR2-flat-use,Rearranges the original six into unrelated pieces before adding.,,,D,Error D. See the unit 7 register for a fresh repair.
+s07-AR3-c2,Draws a chord near the rim and calls both areas equal.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-AR3-c4,Draws radial cuts with a clearly narrower sector and calls all areas equal.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-AR3-r2,Draws a line near one short edge and calls the unequal parts equal.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-AR3-r4,Draws four strips of visibly unequal widths and calls them equal.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-AS1-csize,Circles the half because two shares make smaller pieces.,,,I,Error I. See the unit 7 register for a fresh repair.
+s07-AS1-r2,Marks a subregion that is smaller than a half and calls it equal to the rest.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-AS1-r4,Marks a small corner of one triangle and calls all the shares equal.,,,E,Error E. See the unit 7 register for a fresh repair.
+s07-AS1-rsize,Circles the half because a quarter has the larger share count.,,,I,Error I. See the unit 7 register for a fresh repair.
+s07-AS1-why,Says that the fourth is larger because four is more than two.,,,I,Error I. See the unit 7 register for a fresh repair.
+s07-AR4-ah-read,Calls it twelve o’clock from the long hand.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-AR4-ah,Writes 12:00 from the long hand.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-AR4-a30-read,Calls it six o’clock from the long hand.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-AR4-a30,Writes 10:06.,,,H,Error H. See the unit 7 register for a fresh repair.
+s07-AR4-dh,Draws the short hand at 12 and long hand at 7.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-AR4-d30-read,Says six minutes past one because half past points to 6.,,,H,Error H. See the unit 7 register for a fresh repair.
+s07-AR4-d30,Draws the short hand directly on 1.,,,F,Error F. See the unit 7 register for a fresh repair.
+s07-AR4-d30,Draws the short hand at 6 and the long one at the midpoint.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-AS2-write,Writes 8:06.,,,H,Error H. See the unit 7 register for a fresh repair.
+s07-AS2-draw,Draws the short hand exactly at 11.,,,F,Error F. See the unit 7 register for a fresh repair.
+s07-AS2-draw,Draws the short hand at 6 and the long one at the midpoint.,,,G,Error G. See the unit 7 register for a fresh repair.
