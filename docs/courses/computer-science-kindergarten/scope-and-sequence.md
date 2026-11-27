@@ -29,12 +29,13 @@ Course `computer-science-kindergarten` (catalog id `cs-k12`), kindergarten, draf
   met in full (frame, Devices), so nothing is marked part met.
 - **Readiness and retrieval.** No course comes before kindergarten and no kindergarten row has an `assumes` cell, so
   no unit has readiness rows and no day carries a readiness check. Every retrieval is of a row taught earlier this
-  year, in the `retrieves` column, spread so each unit's rows come back in later units: k-tools-jobs (days 2, 5, 8,
-  12, 29), k-device-manners (3, 4, 7, 21), k-public-private (6, 20, 31), k-follow-steps (9, 10, 14, 32),
-  k-sort-attributes (11, 13, 16, 23), k-people-steps (18, 27), the unit 3 rows (15, 17, 19 and 22 inside the unit,
+  year, in the `retrieves` column, spread so each unit's rows come back in later units: k-tools-jobs (days 2, 8,
+  29), k-device-manners (3, 4, 7), k-public-private (6, 20), k-follow-steps (9, 10, 14, 32),
+  k-sort-attributes (11, 13, 16, 23), k-people-steps (18), the unit 3 rows (15, 17, 19 and 22 inside the unit,
   where each day builds on the one before; 24 and 26 in unit 4), the unit 4 rows (25, 28) and k-devices-places (30).
-  Inside unit 3, days 16, 18, 20 and 21 bring back units 1 and 2. No check day warms up a row it scores: day 5's
-  opener is a spoken "what is this tool's job" with the mystery bag, not the card match it scores.
+  Inside unit 3, days 16, 18, 20 and 21 bring back units 1 and 2. Check days (5, 12, 21, 27, 31) open with settling and
+  instructions, not a retrieval task: day 5's spoken "what is this tool's job" with the mystery bag stays as
+  instructions, not scored, and is not the card match it scores.
 - **Evidence.** Kindergarten answers by pointing, sorting, ordering or saying aloud; the teacher notes by exception on
   a class checklist. Each end-of-unit assessment and check is a whole-class paper task of about 15 minutes with
   unseen items, collected from every child, plus one spoken answer per child heard in five groups of six while the
@@ -194,8 +195,8 @@ assessed, and every id they carry is taught on another day.
 
 Total: 60 minutes, 2 sessions, so the year runs 30 of the frame's 32 days. A spare, folded only if the year runs
 shorter still: day 16 (the picture-block path) into day 17, with the traced program given as picture-block cards that
-the teacher lays beside the arrow cards (30 minutes). Never folded: any check or respond day, the only teaching day of
-any id, and day 3 (the only first device turn).
+the teacher lays beside the arrow cards (30 minutes). Never folded: any check day, a respond day after a course-level
+check, the only teaching day of any id, and day 3 (the only first device turn). The shorter-year rule, the same from kindergarten to grade 5: a respond day after an end-of-unit sitting may fold into the next day's opener with a self-check; a respond day after a course-level check never folds; check days keep their weeks, and a lost week before a check moves the teaching days, never the check.
 
 ## For the lead
 

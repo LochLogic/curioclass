@@ -167,6 +167,11 @@ drawn (E1-SOC-HI-14). Response time: respond day 32, which also records each chi
 **Candidate settled.** Dropped: a visit by a school worker who uses a device; the pictures carry both rows and a
 visit needs a school's own arrangement, zero days.
 
+**Swap or leave out.** A school may leave this unit out (frame): E1-SOC-CE-16 and E1-SOC-HI-14 are then not claimed
+that year, and the course page and family note say so. No course-level check samples the unit (it follows the year-end
+check), so no check item is replaced; days 29 to 32 stay in the calendar for the school's own use, and the calendar does
+not move. Computing and society is still taught through E1-SOC-HU-15 in unit 2.
+
 ## Course-level checks
 
 | Check | Course day | Week | Respond | Codes sampled |
@@ -213,7 +218,7 @@ owned part cut:
 | Day 19 (unit 3 modify: the goal square moves) | Day 20: after each pair's first run the goal square moves and they change one block (the kept Candidate moves with it) | 30 |
 
 Total: 60 minutes, two sessions, so the year runs 30 of the frame's 32 days. Every other day either first teaches an
-owned row or holds an assessment, so a year short by more than two weeks would need the lead's call on what to drop.
+owned row or holds an assessment, so a year short by more than two weeks would need the lead's call on what to drop. The shorter-year rule, the same from kindergarten to grade 5: a respond day after an end-of-unit sitting may fold into the next day's opener with a self-check; a respond day after a course-level check never folds; check days keep their weeks, and a lost week before a check moves the teaching days, never the check.
 
 ## For the lead
 

@@ -14,8 +14,8 @@ Course `computer-science-grade-8` (catalog id `cs-k12`), grade 8, one year, the 
   to 12 (docs/courses/computer-science/STANDARD.md section 2, Cory, Desk q-fix-cs-1), an elective, so course days 2k-1
   and 2k fall in week k. The 45 minutes hold set-up, clean-up and collecting work: a lesson opens in five minutes with a
   three-minute retrieval trace, a wrong example from the last exit ticket, or a short concrete moment (APPROACH.md, "How a day
-  opens"), and device lessons keep three minutes at each end to get devices out, saved and put away, so a device
-  lesson teaches for about 34 minutes and a paper lesson for about 40. Each unit's days include its end-of-unit
+  opens"), and device lessons keep three minutes at the start to get devices out and open the page and four at the end to save
+  work and put devices away, so a device lesson teaches for about 33 minutes and a paper lesson for about 40. Each unit's days include its end-of-unit
   assessment and end with a respond day, with one shape for a unit that a course-level check follows directly (the
   kindergarten pilot's pattern): in units 2 and 5 the check stands for the unit's own end-of-unit assessment and the
   check's respond day is the unit's respond day, so no week holds an assessment and a respond day just before a check.

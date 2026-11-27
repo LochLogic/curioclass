@@ -23,15 +23,15 @@ Every earlier-grade row this course assumes, with its last use and treatment. No
 | 1 (1 to 14) | ma-g2-read, ma-g2-society | grade 2 (Media Arts K to 2, unit 9) | Retrieval with reteach, day 2 |
 | 2 (15 to 32) | ma-g2-ideas, ma-g2-craft | grade 2 (unit 10) | Retrieval with reteach, day 16; the unit 1 critique card retrieved in the same opener |
 | 3 (35 to 50) | ma-g2-make, ma-g2-judge | grade 2 (unit 11) | Retrieval with reteach, day 36 |
-| 4 (53 to 64) | ma-g2-present, ma-g2-sources | grade 2 (unit 12) | Retrieval with reteach, day 54 |
+| 4 (51 to 62) | ma-g2-present, ma-g2-sources | grade 2 (unit 12) | Retrieval with reteach, day 52 |
 | 5 (65 to 78) | ma-g3-read, ma-g3-society | grade 3 (unit 1) | Retrieval, day 66 |
 | 6 (79 to 96) | ma-g3-ideas, ma-g3-craft | grade 3 (unit 2) | Retrieval, day 80 |
 | 7 (99 to 112) | ma-g3-make, ma-g3-judge | grade 3 (unit 3) | Retrieval, day 100 |
-| 8 (115 to 128) | ma-g3-present, ma-g3-sources | grade 3 (unit 4) | Retrieval, day 116 |
+| 8 (113 to 126) | ma-g3-present, ma-g3-sources | grade 3 (unit 4) | Retrieval, day 114 |
 | 9 (129 to 144) | ma-g4-read, ma-g4-society | grade 4 (unit 5) | Retrieval, day 130 |
 | 10 (145 to 162) | ma-g4-ideas, ma-g4-craft | grade 4 (unit 6) | Retrieval, day 146 |
 | 11 (165 to 176) | ma-g4-make, ma-g4-judge | grade 4 (unit 7) | Retrieval, day 166 |
-| 12 (179 to 192) | ma-g4-present, ma-g4-sources | grade 4 (unit 8) | Retrieval, day 180 |
+| 12 (177 to 190) | ma-g4-present, ma-g4-sources | grade 4 (unit 8) | Retrieval, day 178 |
 
 **Same-year retrieval.** A row taught earlier in the same year and leaned on again gets a five-minute warm-up in the opener of the making day that needs it (APPROACH "How a day opens"), named in the note and in `retrieves`. No unit's first day changes, and no readiness check is needed.
 
@@ -100,23 +100,23 @@ Days 35 to 50, weeks 18 to 25. Owns ma-g3-make (MA:Cr3.1.3a, 3b) and ma-g3-judge
 
 **Candidate settled.** Kept, no day added: an ordered-motion work by a living maker from Africa or Asia, described and linked, in 10 minutes of day 38. Year 3's living makers are otherwise from Chile, Argentina and the Abenaki nation; the unit plan picks the work and checks its rights line.
 
-### Year 3 year-end check
-
-Days 51 (check) and 52 (respond), week 26. See Course-level checks.
-
 ### Unit 4. Our class screening
 
-Days 53 to 64, weeks 27 to 32. Owns ma-g3-present (MA:Pr4.1.3, Pr6.1.3a, 3b) and ma-g3-sources (MA:Cn10.1.3a, 3b).
+Days 51 to 62, weeks 26 to 31. Owns ma-g3-present (MA:Pr4.1.3, Pr6.1.3a, 3b) and ma-g3-sources (MA:Cn10.1.3a, 3b).
 
-**Arc.** Méliès's Cendrillon opens the question of how a popular retelling changes a story (day 53). Blending forms into a narrated photo-story is taught (day 54) and studied in Sigwan (day 55); the source log (day 56) and a class-invented retelling beside Méliès's film (day 57) carry the connecting ids. Crews build the photo-story from frames and sounds kept from units 2 and 3 (day 58), learn the showing conditions and roles (day 59), take the critique (day 60) and revise and rehearse (day 61), where after the run the watching crew says what it noticed and the crew describes the run's experience, shares that result and names one way to present better (MA:Pr6.1.3b taught before day 63 scores it). The class screening is the unit's first check (day 62).
+**Arc.** Méliès's Cendrillon opens the question of how a popular retelling changes a story (day 51). Blending forms into a narrated photo-story is taught (day 52) and studied in Sigwan (day 53); the source log (day 54) and a class-invented retelling beside Méliès's film (day 55) carry the connecting ids. Crews build the photo-story from frames and sounds kept from units 2 and 3 (day 56), learn the showing conditions and roles (day 57), take the critique (day 58) and revise and rehearse (day 59), where after the run the watching crew says what it noticed and the crew describes the run's experience, shares that result and names one way to present better (MA:Pr6.1.3b taught before day 61 scores it). The class screening is the unit's first check (day 60).
 
-**Why this order.** Last in year 3 because the screening uses the year's crew roles and ordered pieces and ends the year after the year-end check; it is shorter than unit 2 though it owns five ids because kept frames and sounds are its material.
+**Why this order.** Last in year 3 because the screening uses the year's crew roles and ordered pieces and comes just before the year-end check; it is shorter than unit 2 though it owns five ids because kept frames and sounds are its material.
 
-**Assessment.** Retrieval inside day 54. End of unit: day 62, the screening with look-fors marked at the screening place (MA:Pr4.1.3, the look-for naming the school-subject fact in the blended piece; the role carried out for MA:Pr6.1.3a); day 63, the talk item (one sentence describing the screening's experience, one result shared, one improvement; MA:Pr6.1.3b) and written item (MA:Cn10.1.3b), with the source log (MA:Cn10.1.3a) and screening-plan card (MA:Pr6.1.3a) scored. Response time: day 64. The screening is the unit's own end-of-unit assessment (the year-end check comes before it).
+**Assessment.** Retrieval inside day 52. End of unit: day 60, the screening with look-fors marked at the screening place (MA:Pr4.1.3, the look-for naming the school-subject fact in the blended piece; the role carried out for MA:Pr6.1.3a); day 61, the talk item (one sentence describing the screening's experience, one result shared, one improvement; MA:Pr6.1.3b) and written item (MA:Cn10.1.3b), with the source log (MA:Cn10.1.3a) and screening-plan card (MA:Pr6.1.3a) scored. Response time: day 62. The screening is the unit's own end-of-unit assessment (the year-end check follows it, in week 32).
 
-**Processes.** Create: days 58, 60, 61. Present and produce: days 54, 59, 61, 62. Respond: days 53, 55, 57. Connect: days 53, 56, 57.
+**Processes.** Create: days 56, 58, 59. Present and produce: days 52, 57, 59, 60. Respond: days 51, 53, 55. Connect: days 51, 54, 55.
 
-**Candidate settled.** Kept, no day added: the film board's page for Sigwan is checked open and free on the day the unit plan is written (day 55's note).
+**Candidate settled.** Kept, no day added: the film board's page for Sigwan is checked open and free on the day the unit plan is written (day 53's note).
+
+### Year 3 year-end check
+
+Days 63 (check) and 64 (respond), week 32. See Course-level checks.
 
 ## Year 4 (grade 4 ids), course days 65 to 128
 
@@ -166,23 +166,23 @@ Days 99 to 112, weeks 18 to 24 of year 4. Owns ma-g4-make (MA:Cr3.1.4a, 4b) and 
 
 **Candidate settled.** Dropped: a balance-and-contrast work from Asia or Africa. Year 4 has Japan (unit 6) and Ethiopia (unit 5); the unit's 14 days have no spare time.
 
-### Year 4 year-end check
-
-Days 113 (check) and 114 (respond), week 25 of year 4. See Course-level checks.
-
 ### Unit 8. Show it to the school
 
-Days 115 to 128, weeks 26 to 32 of year 4. Owns ma-g4-present (MA:Pr4.1.4, Pr6.1.4a, 4b) and ma-g4-sources (MA:Cn10.1.4a, 4b).
+Days 113 to 126, weeks 25 to 31 of year 4. Owns ma-g4-present (MA:Pr4.1.4, Pr6.1.4a, 4b) and ma-g4-sources (MA:Cn10.1.4a, 4b).
 
-**Arc.** Painlevé's L'Hippocampe shows science and music coordinated in one film (day 115). Coordinating a school-subject topic, an art form and media is taught (day 116); research with two sources and cultural knowledge (day 117) and CyberPowWow beside an invented online space (day 118) carry the connecting ids. Crews plan (day 119) and make (day 120), learn the public showing conditions (day 121), take the critique (day 122), revise (day 123), run the showing (day 124, where after each run the crew explains how it went and one thing to improve: MA:Pr6.1.4b taught before day 127 scores it) and dress it (day 125). The public school showing is the first check (day 126).
+**Arc.** Painlevé's L'Hippocampe shows science and music coordinated in one film (day 113). Coordinating a school-subject topic, an art form and media is taught (day 114); research with two sources and cultural knowledge (day 115) and CyberPowWow beside an invented online space (day 116) carry the connecting ids. Crews plan (day 117) and make (day 118), learn the public showing conditions (day 119), take the critique (day 120), revise (day 121), run the showing (day 122, where after each run the crew explains how it went and one thing to improve: MA:Pr6.1.4b taught before day 125 scores it) and dress it (day 123). The public school showing is the first check (day 124).
 
 **Why this order.** The research comes before the plan that uses it, and the showing conditions before the run-through; last in year 4 because the showing uses the year's stop-motion, crew and arranged piece.
 
-**Assessment.** Retrieval inside day 116. End of unit: day 126, the showing look-fors (MA:Pr4.1.4; the role for MA:Pr6.1.4a); day 127, the talk item (MA:Pr6.1.4b) and written item (MA:Cn10.1.4b), with the source log (MA:Cn10.1.4a) and screening-plan card scored. Response time: day 128.
+**Assessment.** Retrieval inside day 114. End of unit: day 124, the showing look-fors (MA:Pr4.1.4; the role for MA:Pr6.1.4a); day 125, the talk item (MA:Pr6.1.4b) and written item (MA:Cn10.1.4b), with the source log (MA:Cn10.1.4a) and screening-plan card scored. Response time: day 126.
 
-**Processes.** Create: days 119, 120, 122, 123. Produce: days 121, 124, 125, 126. Respond: days 115 and 118. Connect: days 115, 117, 118.
+**Processes.** Create: days 117, 118, 120, 121. Produce: days 119, 122, 123, 124. Respond: days 113 and 116. Connect: days 113, 115, 116.
 
-**Candidate settled.** Kept, no day added: the topic card lists what the grade 4 science and social studies courses have taught that term (day 116); nothing waits on a set unit, and the source cards carry the facts used.
+**Candidate settled.** Kept, no day added: the topic card lists what the grade 4 science and social studies courses have taught that term (day 114); nothing waits on a set unit, and the source cards carry the facts used.
+
+### Year 4 year-end check
+
+Days 127 (check) and 128 (respond), week 32 of year 4. See Course-level checks.
 
 ## Year 5 (grade 5 ids), course days 129 to 192
 
@@ -232,65 +232,65 @@ Days 165 to 176, weeks 19 to 24 of year 5. Owns ma-g5-make (MA:Cr3.1.5a, 5b) and
 
 **Candidate settled.** Kept, no day added: the group-reading chart has a paper version for one adult at home (day 167's note).
 
-### Year 5 year-end check
-
-Days 177 (check) and 178 (respond), week 25 of year 5. See Course-level checks.
-
 ### Unit 12. Our newscast
 
-Days 179 to 192, weeks 26 to 32 of year 5. Owns ma-g5-present (MA:Pr4.1.5, Pr6.1.5a, 5b) and ma-g5-sources (MA:Cn10.1.5a, 5b).
+Days 177 to 190, weeks 25 to 31 of year 5. Owns ma-g5-present (MA:Pr4.1.5, Pr6.1.5a, 5b) and ma-g5-sources (MA:Cn10.1.5a, 5b).
 
-**Arc.** A Dianshizhai Pictorial page opens what news keeps of an event (day 179). The newscast's parts and voice-over are taught on the run sheet (day 180); a Posada broadside and a newsreel story of a community event are studied (day 181); the interview and voice-over are taught in steps (day 182); sources are gathered, the interview with a consenting adult among them (day 183), and the hand-offs drilled (day 184); the two showing formats are weighed and the teacher models comparing two presentations' results on a Curio Class example (day 185). Crews make the newscast (day 186), take the critique (day 187), revise (day 188) and rehearse in both formats (day 189): the printed news sheet is presented to a partner crew and one audience result logged, and day 190's live showing gives the second result to compare on day 191. The newscast is the first check (day 190).
+**Arc.** A Dianshizhai Pictorial page opens what news keeps of an event (day 177). The newscast's parts and voice-over are taught on the run sheet (day 178); a Posada broadside and a newsreel story of a community event are studied (day 179); the interview and voice-over are taught in steps (day 180); sources are gathered, the interview with a consenting adult among them (day 181), and the hand-offs drilled (day 182); the two showing formats are weighed and the teacher models comparing two presentations' results on a Curio Class example (day 183). Crews make the newscast (day 184), take the critique (day 185), revise (day 186) and rehearse in both formats (day 187): the printed news sheet is presented to a partner crew and one audience result logged, and day 188's live showing gives the second result to compare on day 189. The newscast is the first check (day 188).
 
-**Why this order.** The three news works are studied before the class makes its own; the interview is taught before it is used, and the sources are gathered before the reports are written; MA:Pr6.1.5b is modeled (day 185) and practiced on a real second showing (day 189) before it is scored; the newscast blends the year's reading of ads, its capture and its emphasis for clarity, and ends the band after the year-end check.
+**Why this order.** The three news works are studied before the class makes its own; the interview is taught before it is used, and the sources are gathered before the reports are written; MA:Pr6.1.5b is modeled (day 183) and practiced on a real second showing (day 187) before it is scored; the newscast blends the year's reading of ads, its capture and its emphasis for clarity, and comes just before the band's last year-end check.
 
-**Assessment.** Retrieval inside day 180. End of unit: day 190, the newscast look-fors (MA:Pr4.1.5; the role for MA:Pr6.1.5a); day 191, the talk item comparing the two logged results (printed sheet on day 189, live newscast on day 190) and one improvement (MA:Pr6.1.5b) and the written item (MA:Cn10.1.5b), with the source log (MA:Cn10.1.5a) and screening-plan card scored. Response time: day 192.
+**Assessment.** Retrieval inside day 178. End of unit: day 188, the newscast look-fors (MA:Pr4.1.5; the role for MA:Pr6.1.5a); day 189, the talk item comparing the two logged results (printed sheet on day 187, live newscast on day 188) and one improvement (MA:Pr6.1.5b) and the written item (MA:Cn10.1.5b), with the source log (MA:Cn10.1.5a) and screening-plan card scored. Response time: day 190.
 
-**Processes.** Create: days 186, 187, 188. Produce: days 180, 182, 185, 189, 190. Respond: days 179 and 181. Connect: days 179, 181, 183.
+**Processes.** Create: days 184, 185, 186. Produce: days 178, 180, 183, 187, 188. Respond: days 177 and 179. Connect: days 177, 179, 181.
 
 **Candidate settled.** Dropped: a picture-news form from Africa. The unit already studies three works beside the newscast production, and year 5 studies Ghana in unit 9.
 
+### Year 5 year-end check
+
+Days 191 (check) and 192 (respond), week 32 of year 5. See Course-level checks.
+
 ## Course-level checks
 
-Each check day follows the frame's form (set-up 4; the fresh plan or sort task 10 and the written item 8 done by every student at the tables while the teacher hears six groups of five at the table, about three minutes each; self-check 5; clean-up 3; about 10 minutes of slack). Each is followed by a respond day; marks are in before it. A check right after a unit never draws its items from that unit: the unit just before it is carried unscored, and every item is a new piece, prompt, sort or case.
+Each check day follows the frame's form (set-up 4; the fresh plan or sort task 10 and the written item 8 done by every student at the tables while the teacher hears six groups of five at the table, about three minutes each; self-check 5; clean-up 3; about 10 minutes of slack). Each is followed by a respond day; marks are in before it. A check never draws its items from the unit just before it, no artifact is scored twice, and every item is a new piece, prompt, sort or case.
 
 | Check | Days | Week (of its year) | What it samples |
 |---|---|---|---|
 | Year 3 mid-year | 33 check, 34 respond | 17 | Unit 1 with new pieces: written MA:Re7.1.3a, talk MA:Re7.1.3b, a fresh tool-and-space sort MA:Cn11.1.3b. Unit 2's storyboard and role record (days 30 and 31) carried unscored. |
-| Year 3 year-end | 51 check, 52 respond | 26 | Units 1 and 2: a fresh plan with three ideas using at least two tools or materials, tested with a partner (MA:Cr1.1.3, Cr2.1.3), written MA:Re7.1.3a, talk on a new day-of-media card and one invented online case sorted fair or unfair with a reason MA:Cn11.1.3a. Unit 3 (days 47 and 48) carried unscored; unit 4 is assessed by its screening. |
+| Year 3 year-end | 63 check, 64 respond | 32 | Units 1 and 2: a fresh plan with three ideas using at least two tools or materials, tested with a partner (MA:Cr1.1.3, Cr2.1.3), written MA:Re7.1.3a, talk on a new day-of-media card and one invented online case sorted fair or unfair with a reason MA:Cn11.1.3a. Unit 3 (days 47 and 48) carried unscored; unit 4 is assessed by its screening. |
 | Year 4 mid-year | 97 check, 98 respond | 17 | Unit 5: written MA:Re7.1.4a, talk MA:Re7.1.4b, a fresh ethics-card case MA:Cn11.1.4b. Unit 6 (days 94 and 95) carried unscored. |
-| Year 4 year-end | 113 check, 114 respond | 25 | Units 5 and 6: a fresh goal and two quick plans combined, with one test named and the showing in mind (MA:Cr1.1.4, Cr2.1.4), written MA:Re7.1.4a, talk on a new real-or-made pair MA:Cn11.1.4a. Unit 7 (days 109 and 110) carried unscored; unit 8 is assessed by its showing. |
+| Year 4 year-end | 127 check, 128 respond | 32 | Units 5 and 6: a fresh goal and two quick plans combined, with one test named and the showing in mind (MA:Cr1.1.4, Cr2.1.4), written MA:Re7.1.4a, talk on a new real-or-made pair MA:Cn11.1.4a. Unit 7 (days 109 and 110) carried unscored; unit 8 is assessed by its showing. |
 | Year 5 mid-year | 163 check, 164 respond | 18 | Unit 9: written MA:Re7.1.5a, talk MA:Re7.1.5b, a fresh checklist case MA:Cn11.1.5b. Unit 10 (days 160 and 161) carried unscored. |
-| Year 5 year-end | 177 check, 178 respond | 25 | Units 9 and 10: a fresh proposal with its goal and audience and one test named (MA:Cr2.1.5), written MA:Re7.1.5a, talk on a new invented ad, what it leaves out and one way its form differs from a trade card of the 1880s for a named community, public or invented (MA:Cn11.1.5a). Unit 11 (days 174 and 175) carried unscored; unit 12 is assessed by its newscast. |
+| Year 5 year-end | 191 check, 192 respond | 32 | Units 9 and 10: a fresh proposal with its goal and audience and one test named (MA:Cr2.1.5), written MA:Re7.1.5a, talk on a new invented ad, what it leaves out and one way its form differs from a trade card of the 1880s for a named community, public or invented (MA:Cn11.1.5a). Unit 11 (days 174 and 175) carried unscored; unit 12 is assessed by its newscast. |
 
-**Codes not sampled on a course-level check** (rule 3, L107). The frame's check table limits each check to the read, society and ideas rows of the units before the one just finished, so these are never sampled at course level: ma-g3-craft, make, judge, present and sources (MA:Pr5.1.3a, 3b, 3c; Cr3.1.3a, 3b; Re8.1.3; Re9.1.3; Pr4.1.3; Pr6.1.3a, 3b; Cn10.1.3a, 3b), the same rows for grade 4 (MA:Pr5.1.4a, 4b, 4c; Cr3.1.4a, 4b; Re8.1.4; Re9.1.4; Pr4.1.4; Pr6.1.4a, 4b; Cn10.1.4a, 4b) and for grade 5 (MA:Pr5.1.5a, 5b, 5c; Cr3.1.5a, 5b; Re8.1.5; Re9.1.5; Pr4.1.5; Pr6.1.5a, 5b; Cn10.1.5a, 5b), and the year 5 ideas code MA:Cr1.1.5. The reason: the craft and role codes are rotating look-fors marked over making days, never check-day items; each year's third unit is carried unscored by the check right after it; and the screening unit comes after the year-end check, which sits before the core year-end weeks 28 to 32 (frame, Course-level checks). Each of these codes is still taught and assessed in its own unit.
+**Codes not sampled on a course-level check** (rule 3, L107). The frame's check table limits each check to the read, society and ideas rows of the units before the one just finished, so these are never sampled at course level: ma-g3-craft, make, judge, present and sources (MA:Pr5.1.3a, 3b, 3c; Cr3.1.3a, 3b; Re8.1.3; Re9.1.3; Pr4.1.3; Pr6.1.3a, 3b; Cn10.1.3a, 3b), the same rows for grade 4 (MA:Pr5.1.4a, 4b, 4c; Cr3.1.4a, 4b; Re8.1.4; Re9.1.4; Pr4.1.4; Pr6.1.4a, 4b; Cn10.1.4a, 4b) and for grade 5 (MA:Pr5.1.5a, 5b, 5c; Cr3.1.5a, 5b; Re8.1.5; Re9.1.5; Pr4.1.5; Pr6.1.5a, 5b; Cn10.1.5a, 5b), and the year 5 ideas code MA:Cr1.1.5. The reason: the craft and role codes are rotating look-fors marked over making days, never check-day items; the screening unit is the unit just before the year-end check of week 32 (lead structure pass 2026-11-26, the media arts group read's finding 1, option (a)), so by rule that check does not draw from it; and each year's third unit is carried unscored, since the check items were kept as written when the check moved (each day keeps its content and codes; sampling the third unit's judge row there is open for the lead). Each of these codes is still taught and assessed in its own unit.
 
-All six sit on the weeks CALENDAR.md lists for this course, none on a core check week of its grade (grade 3: 9, 12, 14, 16, 20, 23, 25, 28, 30 to 32; grade 4: 8 to 10, 12, 16, 19, 21, 23, 27, 30 to 32; grade 5: 10, 11, 16, 17, 21, 22, 29 to 32). Arts are specials in K to 5 and do not count against the classroom teacher's stagger (CALENDAR.md rule 1); the clashes with other specials are the frame's For the lead item 2.
+All six sit on the weeks CALENDAR.md lists for this course (17 or 18 mid-year, 32 year-end). Week 32 is also a core check week of every grade, which binds no special: arts are specials in K to 5 and do not count against the classroom teacher's stagger (CALENDAR.md rule 1); the clashes with other specials are the frame's For the lead item 2.
 
 ## Shorter path
 
-**The once-a-week path (32 sessions a year, 40 minutes).** Every unit and every id is kept by merging the marked days; a merged session never drops a critique, a revision or a respond session, and fluency days fold into the openers. Check sessions fall in the full path's weeks (year 3: 17 and 26; year 4: 17 and 25; year 5: 18 and 25), respond sessions one week later. No assessment is done in a respond session; the rotating look-fors fall on the last two making sessions, fifteen students a session.
+**The once-a-week path (32 sessions a year, 40 minutes).** Every unit and every id is kept by merging the marked days; a merged session never drops a critique, a revision or a respond session, and fluency days fold into the openers. Mid-year check sessions fall in the full path's weeks (years 3 and 4: 17; year 5: 18), respond sessions one week later; the year-end check session falls in week 31 and its respond session in week 32 (one week before the full path, as in media arts 6 to 8). No assessment is done in a respond session; the rotating look-fors fall on the last two making sessions, fifteen students a session.
 
 | Unit | Sessions | Sessions, as course days merged |
 |---|---|---|
 | 1 | 7 | 1-3 (scroll, tool card, viewfinder); 4-6 (angles, Bear Story, drill as opener); 7-8; 9-11 (making with the modeled critique); 12 (revision and map); 13 (check); 14 (respond) |
 | 2 | 9 | 15-17; 18-20; 21-22; 23-24; 25-26 (making with critique); 27-29 (revision, run, showing); 30 (check); 31 (check); 32 (respond) |
 | 3 | 6 | 35-37 (hook, retrieval, order, the drill as opener); 38-40 (Luminaris, stress, criteria); 41-44 (making with critique); 45-46 and 50 (revision and criteria practice, the unscored class viewing as its last ten minutes); 47-48 (one talk-and-written check session); 49 (respond) |
-| 4 | 6 | 53-57 (week 25, before the year-end check); 58-60 (making with critique); 61 (revision); 62 (screening, check 1); 63 (check 2); 64 (respond) |
+| 4 | 6 | 51-55; 56-58 (making with critique); 59 (revision); 60 (screening, check 1); 61 (check 2); 62 (respond) |
 | 5 | 7 | 65-67; 68-70; 71; 72-74 (making with critique); 75-76 (revision and wall); 77 (check); 78 (respond) |
 | 6 | 9 | 79-81; 82-84; 85-86; 87-88; 89-91 (making with critique); 92-93 (revision and showing); 94 (check); 95 (check); 96 (respond) |
 | 7 | 6 | 99-101 (hook, retrieval, balance and contrast, Iturbide); 102-104 (drill as opener, refining, criteria on steps); 105-106 (making with critique); 107-108 and 112 (revision, the unscored class viewing as its last ten minutes); 109-110 (one check session); 111 (respond) |
-| 8 | 6 | 115-118; 119-122 (making with critique); 123-125 (revision and run); 126 (showing, check 1); 127 (check 2); 128 (respond) |
+| 8 | 6 | 113-116; 117-120 (making with critique); 121-123 (revision and run); 124 (showing, check 1); 125 (check 2); 126 (respond) |
 | 9 | 8 | 129-131; 132-134; 135-136; 137-138; 139-140 (making with critique); 141-142 (revision and wall); 143 (check); 144 (respond) |
 | 10 | 9 | 145-147; 148-150; 151-152; 153-154; 155-157 (making with critique); 158-159 (revision and showing); 160 (check); 161 (check); 162 (respond) |
 | 11 | 5 | 165-167 (hook, retrieval, the cut, Bread and Alley); 168-171 (drill as opener, criteria set, making with critique); 172-173 (revision and viewing); 174-175 (one check session: the written item, about 10, and the kept criteria card on a classmate's finished sequence, about 15, with set-up and clean-up); 176 (respond) |
-| 12 | 6 | 179-182 and 184 (hook, retrieval, newscast parts with voice-over and the interview steps, Posada and a newsreel, hand-offs as opener: two works and one technique only); 183 and 186-187 (gathering sources with the interview, making with critique); 185 and 188-189 (formats weighed and the comparison modeled, revision, rehearsal with the printed sheet shown to a partner crew); 190 (newscast, check 1); 191 (check 2); 192 (respond) |
+| 12 | 6 | 177-180 and 182 (hook, retrieval, newscast parts with voice-over and the interview steps, Posada and a newsreel, hand-offs as opener: two works and one technique only); 181 and 184-185 (gathering sources with the interview, making with critique); 183 and 186-187 (formats weighed and the comparison modeled, revision, rehearsal with the printed sheet shown to a partner crew); 188 (newscast, check 1); 189 (check 2); 190 (respond) |
 
-Units 4 and 8 keep the frame's counts here, and their opening sessions (53-57, 115-118) still hold two works, a technique, a retrieval and a connecting study each; the expert read's rebalance (one session moved from each ideas-and-crew unit to the screening unit) is a frame change sent to the structure pass, and the unit 12 row above is the in-count fallback it names until then.
+Units 4 and 8 keep the frame's counts here, and their opening sessions (51-55, 113-116) still hold two works, a technique, a retrieval and a connecting study each; the expert read's rebalance (one session moved from each ideas-and-crew unit to the screening unit) is a frame change sent to the structure pass, and the unit 12 row above is the in-count fallback it names until then.
 
-Year 3 pauses unit 4 for the year-end check: unit 3 in weeks 19 to 24, unit 4's first session in week 25, the check and respond in weeks 26 and 27, unit 4's last five sessions in weeks 28 to 32. Each year totals 32 sessions (units plus 2 check and 2 respond sessions).
+No unit pauses for the year-end check: in every year the screening unit runs in weeks 25 to 30, the year-end check in week 31 and its respond session in week 32. Each year totals 32 sessions (units plus 2 check and 2 respond sessions).
 
-**A shorter period (30 minutes).** Set-up (4) and clean-up (3) stay; the 5-minute opener stays, and a retrieval task takes 8 minutes of it on day 2; teaching days keep the demonstration and one try with the step card; making days keep the critique and cut repeated turns. On a talk-and-written check day the written item and self-check stay on the day and the talk items move to the unit's last three making days (two groups a day at the teacher's table, never on a day a technique is first taught), which changes the evidence window, not the items or the day count.
+**A shorter period (30 minutes).** Set-up (4) and clean-up (3) stay; the 5-minute opener stays, and a retrieval task takes 8 minutes of it on day 2; teaching days keep the demonstration and one try with the step card; making days keep the critique and cut repeated turns. The end-of-unit talk-and-written day stays a check day: on the 30-minute period the six talk groups are heard at the teacher's table while the class writes the item and the self-check at the tables, as on the course-level check days (set-up 4, written item and self-check 15 while the six groups take 18, clean-up 3: 25 minutes, 5 slack). If a class needs longer, the self-check moves to the end of the day before (the K to 2 rule). No talk item moves onto a making day.
 
 **A year about ten school days short.** Ten school days are two weeks, four meetings of this course. These fold-in days carry no `assess` value and teach nothing new; each is a drill whose five most useful minutes move into the next day's opener. Where the fold day ends the baseline look (days 5, 37, 68, 82, 102, 134, 149), its last rotating group is observed in the next day's opener, so each student keeps two marks in the unit. Each removes one 40-minute meeting and saves 35 minutes of teaching.
 
@@ -314,8 +314,8 @@ Total: 12 of the frame's 192 days, 4 of each year's 64, leaving 60 a year (180 o
 ## For the lead
 
 1. **Units 3 and 7 show after the respond day.** The frame fixes their check days at 47-48 and 109-110 inside 16- and 14-day units, which leaves two days after the checks; this file puts the respond day next and the class viewing last (days 50 and 112), so every piece shown is finished and nothing is scored on the viewing. Unit 11's check days (174-175) leave only the respond day after, so its viewing comes before the checks (day 173). If the lead wants one pattern, the frame's Units table would need to move those check days, which this file does not do.
-2. **The frame's year-end labels say "Samples units 1 to 3" (and 5 to 7, 9 to 11),** while the items listed sample only the two earlier units and the unit just before is carried unscored, as the frame's own rule says ("never the unit just before it"). This file states what is sampled; the frame's label could say "Samples units 1 and 2; carries unit 3" (and the same for years 4 and 5).
+2. **The frame's year-end labels** now say "Samples units 1 and 2 and carries unit 3" (and the same for years 4 and 5), set in the lead structure pass of 2026-11-26 when the checks moved to week 32. Settled.
 3. **Unit 2 and unit 6 have no talk or written item,** only kept cards, guide look-fors and rotating look-fors, so their two check days are self-check and kept-card days. That is the frame's evidence line; noted so the unit plan does not add a talk item.
 4. **The once-a-week path's merged check sessions** (units 3 and 7) fit the frame's talk-and-written day form (written 10, talk 18, set-up and clean-up 7, slack 5) exactly; there is no slack for a written item that runs long. Unit plans should keep the written item to 8 minutes there. Unit 11's merged check session holds the written item (about 10) and the kept criteria card (about 15) with set-up and clean-up.
-5. **After-core clashes:** the check weeks are the frame's (grade 3 weeks 17 and 26, grade 4 weeks 17 and 25, grade 5 weeks 18 and 25); arts are specials, so `frame.py calendar` shows no stagger break for this course. The clashes with other specials stay the frame's For the lead item 2.
-6. **Waiting on the structure pass** (docs/reviews/sequence-media-arts-grades-3-to-5-fixes-2026-11-26.md): the once-a-week rebalance for units 4, 8 and 12 (a frame change), the 30-minute period's talk items (an exception to APPROACH "Kinds of day"), and the frame's check-table wording that this file's items now go beyond.
+5. **After-core clashes:** the check weeks are the frame's (grade 3 weeks 17 and 32, grade 4 weeks 17 and 32, grade 5 weeks 18 and 32); arts are specials, so `frame.py calendar` shows no stagger break for this course. The clashes with other specials stay the frame's For the lead item 2.
+6. **Waiting on the structure pass** (docs/reviews/sequence-media-arts-grades-3-to-5-fixes-2026-11-26.md): the once-a-week rebalance for units 4, 8 and 12 (a frame change) and the frame's check-table wording that this file's items now go beyond.

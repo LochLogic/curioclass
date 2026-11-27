@@ -353,7 +353,8 @@ sourcing habit of naming who made a source, when and why.
 4. **Two levels in one room.** Many high schools teach Level 1 and Level 2 students in one period. STANDARD.md does
    not say how. Decided (Cory 2026-11-26, Desk q-frames-arts-1): each level keeps its own units and ids, and the two levels' units
    share the opening look and the critique days where their units sit side by side (unit 2 with unit 7, and so on);
-   the scope and sequence marks the shared days.
+   the scope and sequence marks the shared days. Levels 2 and 3 may share a room by the same rule (Cory 2026-11-26,
+   Desk q-va-levels-1).
 5. **STANDARD.md 3.4 row (a shared doc).** The high school checklist was read at source in the Codex read of
    2026-11-25: regular instruction on a par with other academic subjects, semester and other schedules allowed, no
    weekly minute minimum. Pick: the lead adds a visual arts 9 to 12 row to STANDARD.md 3.4 saying so (no gap to

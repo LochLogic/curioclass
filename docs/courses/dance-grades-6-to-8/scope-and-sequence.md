@@ -411,7 +411,7 @@ and English language development (days 81 and 82) sit on other days. Week 32 is 
 
 | Lean | Other subject's days (data/plans/calendar.csv) | Here | Bridge |
 |---|---|---|---|
-| Physical education 6 to 8 dance units (grade 6 unit 6, weeks 22 to 26; grade 7 unit 13, weeks 22 to 26; grade 8 unit 18, weeks 14 to 16) | After units 1, 5 and 9 (weeks 1 to 9) | Days 11, 75 and 140 note it | None needed: dance teaches first and assumes no physical education step |
+| Physical education 6 to 8 dance units (grade 6 unit 6, weeks 22 to 26; grade 7 unit 13, weeks 22 to 26; grade 8 unit 18, a planned week of routines, dance among them, weeks 12 to 14) | After units 1, 5 and 9 (weeks 1 to 9) | Days 11, 75 and 140 note it | None needed: dance teaches first and assumes no physical education step |
 | Physical education grade 8 unit 22 (weeks 28 to 31), capoeira | A year after unit 8 | Day 113 notes the planned return | None needed |
 | Health 6 to 8 unit 26 (grade 8 weeks 18 to 22) | After unit 9 | Day 137 | The day gives its own habit words, with no health step |
 | ELA grade 6 unit 1, SL.6.1 (weeks 1 to 7) | Before unit 3 (weeks 18 to 24) | Day 37 | None needed; practiced, not owned |

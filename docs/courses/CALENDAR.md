@@ -31,7 +31,7 @@ weeks or numbers these 32 is not settled yet (continuity review 2026-11-14, E5).
 | US Government and Politics | Every school day, fall half | 16, school days 1 to 80 |
 | Economics | Every school day, spring half | 16, school days 81 to 160 |
 
-A course with D course days spread over W weeks puts course day n on school day `start + ceil(n x 5W / D)`, so its days fall evenly across its weeks. Once a scope and sequence is written, its `data/plans/<course>/days.csv` may give each day a `school_day` column, and that column wins. From 2026-11-14 `scripts/frame.py` builds that course's rows of `data/plans/calendar.csv` from its days.csv (`days_calendar`): each day on its `school_day` where filled and on the even spread otherwise, a unit's or a check's days cut into separate rows wherever another day falls between, so a held day (a look-back taught weeks later, an on-the-day holiday lesson) shows in its own week. A course with no days.csv, or one whose check days do not match its frame's Course-level checks table, is still read from its frame.
+A course with D course days spread over W weeks puts course day n on school day `start + ceil(n x 5W / D)`, so its days fall evenly across its weeks. Once a scope and sequence is written, its `data/plans/<course>/days.csv` may give each day a `school_day` column, and that column wins. From 2026-11-14 `scripts/frame.py` builds that course's rows of `data/plans/calendar.csv` from its days.csv (`days_calendar`): each day on its `school_day` where filled and on the even spread otherwise, a unit's or a check's days cut into separate rows wherever another day falls between, so a held day (a look-back taught weeks later, an on-the-day holiday lesson) shows in its own week. A course with no days.csv, or one whose check days do not match its frame's Course-level checks table, is still read from its frame. Inside a week, the weekday a `school_day` names is a placeholder: two band courses may place a twice-a-week course on different weekdays (school days 2 and 4, or 3 and 5), and a school sets its own meeting days. Only the week is a promise (group reads 2026-11-26).
 
 ## Course-level checks across a grade (the stagger rule)
 
@@ -67,7 +67,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | Grade | Course | Course-level check days (weeks) | Units end (week) |
 |---|---|---|---|
 | K | dance-grades-k-to-2 | Year K mid-year (week 18 week 18, Year K year-end (week 26 week 26 | 32 |
-| K | media-arts-grades-k-to-2 | Year K mid-year (week 21 week 21, Year K year-end (week 27 week 27 | 32 |
+| K | media-arts-grades-k-to-2 | Year K mid-year (week 21 week 21, Year K year-end (week 32 week 32 | 31 |
 | K | music-grades-k-to-2 | Year K mid-year (week 19 week 19, Year K year-end (week 25 week 25 | 32 |
 | K | theater-grades-k-to-2 | Year K mid-year (week 19 week 19, Year K year-end (week 27 week 27 | 32 |
 | K | visual-arts-grades-k-to-2 | Year K mid-year (week 18 week 18, Year K year-end (week 26 week 26 | 32 |
@@ -82,7 +82,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | K | social-and-emotional-learning-grades-k-to-2 | Kindergarten mid-year ch week 11, Kindergarten year-end ch week 26 | 32 |
 | K | social-studies-kindergarten | 1, mid-year week 15, 2, year-end week 30 | 29 |
 | 1 | dance-grades-k-to-2 | Year 1 mid-year (week 17 week 17, Year 1 year-end (week 25 week 25 | 32 |
-| 1 | media-arts-grades-k-to-2 | Year 1 mid-year (week 21 week 21, Year 1 year-end (week 27 week 27 | 32 |
+| 1 | media-arts-grades-k-to-2 | Year 1 mid-year (week 21 week 21, Year 1 year-end (week 32 week 32 | 31 |
 | 1 | music-grades-k-to-2 | Year 1 mid-year (week 17 week 17, Year 1 year-end (week 25 week 25 | 32 |
 | 1 | theater-grades-k-to-2 | Year 1 mid-year (week 20 week 20, Year 1 year-end (week 27 week 27 | 32 |
 | 1 | visual-arts-grades-k-to-2 | Year 1 mid-year (week 18 week 18, Year 1 year-end (week 26 week 26 | 32 |
@@ -97,7 +97,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 1 | social-and-emotional-learning-grades-k-to-2 | Grade 1 mid-year check ( week 9, Grade 1 year-end check ( week 26 | 32 |
 | 1 | social-studies-grade-1 | 1, mid-year week 14, 2, year-end week 31 | 31 |
 | 2 | dance-grades-k-to-2 | Year 2 mid-year (week 17 week 17, Year 2 year-end (week 25 week 25 | 32 |
-| 2 | media-arts-grades-k-to-2 | Year 2 mid-year (week 21 week 21, Year 2 year-end (week 27 week 27 | 32 |
+| 2 | media-arts-grades-k-to-2 | Year 2 mid-year (week 21 week 21, Year 2 year-end (week 32 week 32 | 31 |
 | 2 | music-grades-k-to-2 | Year 2 mid-year (week 17 week 17, Year 2 year-end (week 25 week 25 | 32 |
 | 2 | theater-grades-k-to-2 | Year 2 mid-year (week 17 week 17, Year 2 year-end (week 27 week 27 | 32 |
 | 2 | visual-arts-grades-k-to-2 | Year 2 mid-year (week 17 week 17, Year 2 year-end (week 26 week 26 | 32 |
@@ -112,7 +112,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 2 | social-and-emotional-learning-grades-k-to-2 | Grade 2 mid-year check ( week 10, Grade 2 year-end check ( week 26 | 32 |
 | 2 | social-studies-grade-2 | 1, mid-year (week 14) week 14, 2, year-end week 31 | 30 |
 | 3 | dance-grades-3-to-5 | Year 3 mid-year (week 17 week 17, Year 3 year-end (week 26 week 26 | 32 |
-| 3 | media-arts-grades-3-to-5 | Year 3 mid-year (week 17 week 17, Year 3 year-end (week 26 week 26 | 32 |
+| 3 | media-arts-grades-3-to-5 | Year 3 mid-year (week 17 week 17, Year 3 year-end (week 32 week 32 | 31 |
 | 3 | music-grades-3-to-5 | Year 3 mid-year (week 15 week 15, Year 3 year-end (week 24 week 24 | 32 |
 | 3 | theater-grades-3-to-5 | Year 3 mid-year (week 17 week 17, Year 3 year-end (week 27 week 27 | 32 |
 | 3 | visual-arts-grades-3-to-5 | Year 3 mid-year (week 18 week 18, Year 3 year-end (week 26 week 26 | 32 |
@@ -127,7 +127,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 3 | social-and-emotional-learning-grades-3-to-5 | Grade 3 mid-year check ( week 10, Grade 3 year-end check ( week 26 | 32 |
 | 3 | social-studies-grade-3 | 1 week 14, 2, mid-year week 25, 3, year-end (week 28, be week 28 | 32 |
 | 4 | dance-grades-3-to-5 | Year 4 mid-year (week 17 week 17, Year 4 year-end (week 26 week 26 | 32 |
-| 4 | media-arts-grades-3-to-5 | Year 4 mid-year (week 17 week 17, Year 4 year-end (week 25 week 25 | 32 |
+| 4 | media-arts-grades-3-to-5 | Year 4 mid-year (week 17 week 17, Year 4 year-end (week 32 week 32 | 31 |
 | 4 | music-grades-3-to-5 | Year 4 mid-year (week 15 week 15, Year 4 year-end (week 24 week 24 | 32 |
 | 4 | theater-grades-3-to-5 | Year 4 mid-year (week 17 week 17, Year 4 year-end (week 26 week 26 | 32 |
 | 4 | visual-arts-grades-3-to-5 | Year 4 mid-year (week 17 week 17, Year 4 year-end (week 25 week 25 | 32 |
@@ -142,7 +142,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 4 | social-and-emotional-learning-grades-3-to-5 | Grade 4 mid-year check ( week 15, Grade 4 year-end check ( week 26 | 32 |
 | 4 | social-studies-grade-4 | 1 (week 8, after unit 2) week 8, 2, mid-year week 21, 3, year-end (week 27, be week 27 | 32 |
 | 5 | dance-grades-3-to-5 | Year 5 mid-year (week 18 week 18, Year 5 year-end (week 26 week 26 | 32 |
-| 5 | media-arts-grades-3-to-5 | Year 5 mid-year (week 18 week 18, Year 5 year-end (week 25 week 25 | 32 |
+| 5 | media-arts-grades-3-to-5 | Year 5 mid-year (week 18 week 18, Year 5 year-end (week 32 week 32 | 31 |
 | 5 | music-grades-3-to-5 | Year 5 mid-year (week 15 week 15, Year 5 year-end (week 24 week 24 | 32 |
 | 5 | theater-grades-3-to-5 | Year 5 mid-year (week 18 week 18, Year 5 year-end (week 27 week 27 | 32 |
 | 5 | visual-arts-grades-3-to-5 | Year 5 mid-year (week 18 week 18, Year 5 year-end (week 26 week 26 | 32 |

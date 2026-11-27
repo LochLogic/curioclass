@@ -49,12 +49,13 @@ day 4 with the self-check, then the sitting. The search plan comes first because
 use it; note cards come before the inquiry that fills them; the question chain closes the cycle, so its practice sits
 on the share day.
 
-- Readiness (day 1, last ten minutes, after the hook): g5-research-or-guess, g5-search-log-look-back, g5-search-revise,
-  g5-bibliography, each last used in library grade 5. By the grade count these are retrieval rows; the frame gives
-  them as readiness checks because a school may not run library grade 5 (frame For the lead item 4, kept). The
-  ten-minute reteach is day 2's opening.
+- Retrieval (no readiness check; group read 2026-11-26, lead call "Readiness on a band year's first day": a row last
+  used the year before is a retrieval): day 2 (g5-search-revise, g5-research-or-guess), day 3 (g5-bibliography), day 4
+  (g5-search-log-look-back), all library grade 5, each with the line "a class that did not take library grade 5 gets the ten-minute reteach from that unit's show-me case for every student". Day 1 keeps its exit ticket; day 2 is where the teacher
+  reads last year's class-level note, where there is one, to plan the reteach. Day 4 lets a student pick their grade 5
+  open question (grade 5 day 30) as the follow-up where it fits the host study.
 - End-of-unit assessment: day 5, a 30-minute sitting on all three rows (I.D.1 plus the carried search and citation
-  ids), then unit 2's readiness check. Response: the opening five minutes of day 7 and the mid-year respond day.
+  ids), then a log line on the hardest move (unscored). Response: the opening five minutes of day 7 and the mid-year respond day.
 - Host: ss6-mena-settlement, social studies grade 6 unit 3 (weeks 6 to 8): days 3 and 4 fall in weeks 6 and 8, in step.
   Stand-alone: food kept from spoiling before refrigerators. ELA's e6-short-research comes later (weeks 13 to 18): unit
   1 teaches the plan, the cards and the chain itself.
@@ -68,8 +69,12 @@ three claims are checked laterally; the group-written article's references and h
 lines are practiced; the host sources judged on day 9 (card withdrawn); lists shared and the two best sources agreed
 on day 10. Lateral reading first because the point-of-view and article days both judge by looking behind a source.
 
-- Readiness: day 5's last ten minutes (g5-first-lateral-check, g5-evidence-notes, g5-choose-sources); reteach in the
-  last ten minutes of day 6, after the hook and show-me.
+- Retrieval: day 7 (g5-first-lateral-check, g5-evidence-notes, after unit 1's respond step), day 8
+  (g5-choose-sources), all library grade 5, with the same reteach-for-all line. No readiness check.
+- The lateral card: day 6's card grows grade 5's "what others say" card by "go upstream" and names how it maps to the
+  grades 9 to 12 routine card, the band's end form (stop, investigate the source, look for better coverage, trace the
+  claim): leave the page is stop, ask who is behind it is investigate the source, what others say is look for better
+  coverage, go upstream is trace the claim.
 - End-of-unit assessment: the mid-year check, day 11 (VI.A.3, II.A.2, IV.C.1 each with its own prompt; the lateral item
   asks VI.A.3 whole in three prompts: what was found upstream, so is it accurate; is it fair in its context; is it fit
   for this task).
@@ -84,9 +89,9 @@ Arc: the sharing plan, team sheet and version log shown on day 13; version 1 mad
 withdrawn); version 1 tried on a reader, teacher feedback, version 2 begun on day 15; revision finished and shared with a
 younger class on day 16. Draft, feedback and revision sit in the unit's days, before any score.
 
-- Readiness: the mid-year respond day, day 12, last ten minutes (g5-group-inquiry, g5-share-real-audience); reteach at
-  the end of day 13.
-- Retrieval: day 14 opens with s5-design-test (science grade 5, the year before), without criteria or fair tests.
+- Retrieval: day 14 opens with s5-design-test (science grade 5, the year before), without criteria or fair tests;
+  day 15 opens with g5-group-inquiry and g5-share-real-audience (library grade 5 unit 4), with the reteach-for-all
+  line. No readiness check.
 - End-of-unit assessment: the year-end check, day 17: the sharing plan (III.B.1) and version log (V.B.2) scored from
   the revised work, and the written item on the team's new idea (III.A.2).
 - Host: s6-hazard-forecast, science grade 6 unit 5 (weeks 24 to 27): days 14 and 15 in step; natural hazards flag on
@@ -161,8 +166,9 @@ shared and self-checked in the last ten minutes); the scored log and sitting on 
 - End-of-unit assessment: day 40: the day 39 log scored for a source and a finding from each of three views (IV.B.2),
   then a 35-minute sitting (the views plan as transfer; V.A.2's marked findings, update and one line on how what I
   expected shaped what I looked for, the line day 37 teaches and day 39's log also asks).
-- Host: ELA grade 8 unit 2 (weeks 7 to 13) opens after day 39 (week 6), so the stand-alone school start question
-  carries the inquiry (For the lead, item 1); science grade 8 unit 5 (weeks 21 to 27) is later.
+- Host: ELA grade 8 unit 2 (weeks 7 to 13) opens after day 39 (week 6), so the stand-alone second-recess question
+  carries the inquiry. The case is not the school start question: ELA grade 9 unit 6 argues "Should school start
+  later?" and library grades 9 to 12 unit 2 may host it the next year (group read 2026-11-26); science grade 8 unit 5 (weeks 21 to 27) is later.
 - Candidates: questioning prior knowledge (kept, day 37); predicting the views likely to be found (kept, about 2
   minutes on day 38); changing one's opinion when reasons have merit (kept, the update, day 39).
 
@@ -173,6 +179,8 @@ comparing is practiced; pairs chart three entries (lines initialed) and make a p
 path on day 43 (card withdrawn); pages finished and shared on day 44.
 
 - Retrieval: day 42 (g7-citation-style, g7-class-wiki), after unit 7's five-minute respond step.
+- Case: day 41's stand-alone is the highest waterfall (its entries differ by total height, longest drop and an older
+  survey), not the tallest tree, which library grade 5 unit 3's redwood case already answers.
 - End-of-unit assessment: the mid-year check, day 45 (IV.C.3 by the unseen comparison and the scored pair chart,
   VI.B.1 by a new case).
 - Host: ELA grade 8 unit 3 (the 1906 research, weeks 13 to 18) is in step for days 43 and 44. Rights read on days 42
@@ -208,7 +216,7 @@ written on day 52.
 
 | Check | Course day | Week (of its grade) | Respond day, week | Samples |
 |---|---|---|---|---|
-| 1, mid-year, grade 6 | 11 | 20 | 12, week 22 (plus unit 3 readiness) | Unit 2 in full; unit 1 on a new case |
+| 1, mid-year, grade 6 | 11 | 20 | 12, week 22 | Unit 2 in full; unit 1 on a new case |
 | 2, year-end, grade 6 | 17 | 31 | 18, week 32 (year's reflect) | Unit 3 in full; units 1 and 2 on new cases |
 | 3, mid-year, grade 7 | 28 | 18 | 29, week 20 | Unit 5 in full; unit 4 |
 | 4, year-end, grade 7 | 35 | 31 | 36, week 32 | Unit 6 in full; units 4 and 5 |
@@ -229,7 +237,7 @@ sit in week 31, outside the finals week; the grade 6 and 7 computer science year
 ## Shorter path
 
 - **A shorter period** (35 working minutes):
-  - Day 5 drops its one-answer items (about 5 minutes); the rubric parts and the readiness check stay.
+  - Day 5 drops its one-answer items (about 5 minutes); the rubric parts stay.
   - Days 28 and 45 cut their earlier-unit sample to one item (about 5 minutes).
   - Show-me days give one fewer practice try in their practice half (about 5 minutes); the hook or retrieval, the
     think-aloud and the exit ticket stay.
@@ -263,10 +271,10 @@ sit in week 31, outside the finals week; the grade 6 and 7 computer science year
 
 ## For the lead
 
-1. **Grade 6 readiness on grade 5 rows** (frame item 4, kept): by the grade count these are retrieval rows; the days
-   give them as readiness checks as the frame decided. sequence.py prints no rule 2 note for library (its count does
-   not run on this subject), so the choice is recorded here.
+None open.
 
-Settled in the fix pass and dropped from this list: the unit 4 and 7 host lines (the frame now says the stand-alone
+Settled in the group fix pass (2026-11-26) and dropped from this list: grade 6 readiness on grade 5 rows (now
+retrievals on days 2 to 4, 7, 8 and 15, by the lead call on a band year's first day). Settled in the fix pass and
+dropped from this list: the unit 4 and 7 host lines (the frame now says the stand-alone
 question carries the inquiry), the "standard None" gate note (it comes from the frame's "None" cell; left as it is)
 and the source map (no source-map.csv; it waits on later.csv L149).

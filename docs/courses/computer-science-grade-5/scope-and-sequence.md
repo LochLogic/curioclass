@@ -127,8 +127,8 @@ non-author, zero added days.
 Days 20 to 24, weeks 20 to 24. Concept area: data and analysis, with machine learning; practices CT7, CT8, CT9, IC3,
 ESR1, ESR2.
 
-Arc: collect and organize (day 20), see that repeated measures differ (day 21), train and test a model (day 22),
-retrain after finding what is missing (day 23), then weigh the benefits and risks of tools that learn from collected
+Arc: collect and organize (day 20), see that repeated measures differ (day 21), train and test a model on training and test sets each pair
+builds, splits and names the features for (day 22; grade 3 day 25 used a set the teacher supplied), retrain after finding what is missing (day 23), then weigh the benefits and risks of tools that learn from collected
 data (day 24), right after students have made a model that was wrong for some shapes. Until the trainer exists the
 model on days 20, 22 and 23 is the paper partner model (On the first page, Devices).
 
@@ -188,7 +188,8 @@ specials in week 18 are the lead's calendar pass (frame For the lead 1).
   3. Day 10 (unit 2 respond), the same way into day 9, only if a third session is lost; day 10's flowchart fixes move
      to day 11's opening trace (a pair's own flowchart): saves 40 minutes.
 
-  Folds 1 and 2 take the year from 32 to 30 sessions (80 minutes saved); all three to 29 (120 minutes).
+  Folds 1 and 2 take the year from 32 to 30 sessions (80 minutes saved); all three to 29 (120 minutes). Days 5 and
+  10 follow end-of-unit sittings, so they may fold. The shorter-year rule, the same from kindergarten to grade 5: a respond day after an end-of-unit sitting may fold into the next day's opener with a self-check; a respond day after a course-level check never folds; check days keep their weeks, and a lost week before a check moves the teaching days, never the check.
 
 ## For the lead
 

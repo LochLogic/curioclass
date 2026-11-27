@@ -44,7 +44,7 @@ Course id visual-arts-grades-3-to-5. Grades 3 to 5, three years in one file. Dra
 
 *Where do artists' ideas come from, and how do they grow?* Ids: VA:Cr1.1.3a, VA:Cr1.2.3a, VA:Cr3.1.3a (va-g3-ideas, va-g3-revise). Works: Henri Rousseau, The Repast of the Lion; a Hamzanama page; Shaun Tan's invented worlds.
 
-- **Order.** Hook (19), idea page 1 (20), the Hamzanama page (21), overlap for depth (22 to 23), layering texture (24), tools and resources with Tan (25), idea pages 2 and 3 (26, 27), the partner talk card (28), making (29), making with the partner talk (30), revision with the "tools I chose" card (31), showing (32), end-of-unit assessment (33), respond (34).
+- **Order.** Hook (19), idea page 1 (20), the Hamzanama page (21), overlap for depth (22 to 23), layering texture (24), tools and resources with Tan (25), idea pages 2 and 3 (26, 27), the critique routine's partner talk (28), making (29), making with the partner talk (30), revision with the "tools I chose" card (31), showing (32), end-of-unit assessment (33), respond (34).
 - **Processes.** Creating 20, 22 to 27, 29 to 31; presenting 32; responding 19, 21, 25, 28, 30, 33; connecting 19 and 21 (setting cards).
 - **Checks.** End-of-unit day 33 (no written sitting: self-check, the teacher's table and look-fors scored from the kept work).
 - **Candidate settled.** Dropped (a fourth invented world): three works carry the unit and the year's range is met.
@@ -72,7 +72,7 @@ Course id visual-arts-grades-3-to-5. Grades 3 to 5, three years in one file. Dra
 - **Checks.** End-of-unit day 63; the show's look-fors are scored from the kept work after day 62.
 - **Candidate settled.** Dropped: three cultures meet VA:Pr6.1.3a and it is a 12-day unit.
 - **Sensitivity.** Lawrence (hard history): panels of travel, work and new homes, not violence (53). A hard year on the winter count in one plain sentence (55). Bayeux shown in building, sailing and feasting, not battle (56). Family yes for any showing outside class.
-- **Leave-out unit.** If a year runs short past the shorter path, this is the unit a school leaves out (frame).
+- **Leave-out (frame).** A unit the course page names: a school or family may leave out a work or the unit for its community's reasons (the winter count and the Great Migration, hard history). Swapping a work keeps the unit, its showing and its ids; if the unit is left out, the course page and the family note name the ids not claimed that year: VA:Pr4.1.3a, VA:Pr5.1.3a, VA:Pr6.1.3a, VA:Cn11.1.3a. It is never a short-year or time cut.
 - **Once a week.** 5 sessions: 1-4 / 5-6 / 7-9 / 11 / 12. The family show (local day 10, day 62) is held outside art time; session 11 is the check.
 
 ## Year 4 (grade 4)
@@ -92,7 +92,7 @@ Course id visual-arts-grades-3-to-5. Grades 3 to 5, three years in one file. Dra
 
 *How does a group plan and make one artwork, and how does critique improve it?* Ids: VA:Cr1.1.4a, VA:Cr1.2.4a, VA:Cr3.1.4a (va-g4-ideas, va-g4-revise). Works: the murals of Chicano Park; the painted house walls of Tiébélé.
 
-- **Order.** Chicano Park (81), how a community plans (82), Tiébélé (83), the design problem and brainstorm (84), three approaches (85), the goal card (86), color plan and grid (87 to 88), the critique protocol (89), drawing the sections (90), painting with the protocol critique (91), revision (92), joining (93), the entrance-hall showing (94), end-of-unit assessment (95), respond (96).
+- **Order.** Chicano Park (81), how a community plans (82), Tiébélé (83), the design problem and brainstorm (84), three approaches (85), the goal card (86), color plan and grid (87 to 88), the critique routine with roles (89), drawing the sections (90), painting with the critique (91), revision (92), joining (93), the entrance-hall showing (94), end-of-unit assessment (95), respond (96).
 - **Processes.** Creating 84 to 88, 90 to 93; presenting 94; responding 81, 83, 89, 91, 95; connecting 81 to 83.
 - **Checks.** End-of-unit day 95 (no written sitting; each child marked on their own sketches, card line and section).
 - **Candidate settled.** Dropped (a group-made work from Asia): year 4 already studies two Asian works (Zhang Zeduan, Mogao) and the panel needs its 16 days.
@@ -119,7 +119,7 @@ Course id visual-arts-grades-3-to-5. Grades 3 to 5, three years in one file. Dra
 - **Checks.** End-of-unit days 126 and 127; the showing's look-fors scored from the kept work after day 125.
 - **Candidate settled.** Kept as a unit plan task: the community source list checked open and free for the school's town (day 121 note); no day cost.
 - **Sensitivity.** Mogao is sacred, looked at only (115); no Dine design copied (117); no child explains their own family's culture or religion, no sacred practice imitated (121).
-- **Leave-out unit.** The year's leave-out unit (frame).
+- **Leave-out (frame).** A unit the course page names: a school or family may leave out a work or the unit for its community's reasons (Buddhist cave temples studied by looking only, and a piece on a community tradition). Swapping a work keeps the unit, its showing and its ids; if the unit is left out, the course page and the family note name the ids not claimed that year: VA:Pr4.1.4a, VA:Pr5.1.4a, VA:Pr6.1.4a, VA:Cn11.1.4a, VA:Cn10.1.4a. It is never a short-year or time cut.
 - **Once a week.** 6 sessions: 1-2 / 3-5 / 6-8 / 9-10 / 12-13 / 14. The wall and slide-set showing (local day 11, day 125) is hung at the end of session 9-10 and visited outside art time; the two check days (12-13) take one session as in unit 3.
 
 ## Year 5 (grade 5)
@@ -150,7 +150,7 @@ Course id visual-arts-grades-3-to-5. Grades 3 to 5, three years in one file. Dra
 
 *How do art and design words help us see our surroundings freshly, and why are works judged by different standards?* Ids: VA:Cr2.3.5a, VA:Cn10.1.5a, VA:Re8.1.5a, VA:Re9.1.5a (va-g5-design, va-g5-judge). Works: an Iznik tile panel; Qian Xuan, Wang Xizhi Watching Geese; Berthe Morisot, The Cradle.
 
-- **Order.** Iznik (165), places that matter (166), art and design words with the symmetry retrieval (167), the map or sketch set (168), Qian Xuan (169), Morisot and comparing standards (170), the grounds walk and labels (171), standards drill (172), making (173), making with the critique (174), revision and showing (175), end-of-unit assessment over two days (176, 177), respond (178).
+- **Order.** Iznik (165), places that matter (166), art and design words with the symmetry retrieval (167), the map or sketch set, grade 3's map with a key (41) returned with labels in art and design words (168), Qian Xuan (169), Morisot and comparing standards (170), the grounds walk and labels (171), standards drill (172), making (173), making with the critique (174), revision and showing (175), end-of-unit assessment over two days (176, 177), respond (178).
 - **Processes.** Creating 168, 171, 173 to 175; presenting 175; responding 165, 169, 170, 172, 174, 176, 177; connecting 165, 167, 169, 170.
 - **Checks.** End-of-unit days 176 (Re8 and the map) and 177 (Re9 and the made work).
 - **Candidate settled.** Kept as one of the two unseen works on day 177 (a work judged by different standards, from Africa or the Americas); no day cost.
@@ -166,7 +166,7 @@ Course id visual-arts-grades-3-to-5. Grades 3 to 5, three years in one file. Dra
 - **Checks.** End-of-unit day 191; the show's look-fors scored from the kept work after day 190.
 - **Candidate settled.** Kept as the unseen exhibit page set on day 191 (a second exhibit from Africa or Asia); no day cost.
 - **Sensitivity.** Hine (hard history): photographs without injury, health's steps if a child tells something (181). Moran: the Native nations pushed out of the Yellowstone lands, in one plain sentence (182). Te Taiao is shaped with Maori knowledge (184).
-- **Leave-out unit.** The year's leave-out unit (frame).
+- **Leave-out (frame).** A unit the course page names: a school or family may leave out a work or the unit for its community's reasons (photographs of child labor). Swapping a work keeps the unit, its showing and its ids; if the unit is left out, the course page and the family note name the ids not claimed that year: VA:Pr4.1.5a, VA:Pr5.1.5a, VA:Pr6.1.5a, VA:Cn11.1.5a. It is never a short-year or time cut.
 - **Once a week.** 5 sessions: 1-3 / 4-6 / 7-9 / 11 / 12. The curated show (local day 10, day 190) is hung at the end of session 7-9 and held outside art time; session 11 is the check.
 
 ## Course-level checks
@@ -197,7 +197,7 @@ Every route keeps each owned code, skill and end-of-unit assessment, every obser
   - Year 4: day 68 (mark drill, into 69), day 74 (parts drill, into 75), day 88 (grid drill, into 89), day 102 (building sketches, into 103).
   - Year 5: day 133 (wash strips, into 134; its log entry moves to 137), day 152 (joining and sewing drill, into 153), day 172 (standards drill, into 173), day 185 (evidence drill, into 186).
   - Where a fold day is a baseline practice day (days 8, 10, 23, 44, 68, 102, 133 and 185), its rotating group is observed in the next day's opener.
-  - No check, respond, observation or showing day folds. Past this, the year's leave-out unit (4, 8 or 12) is the frame's last resort.
+  - No check, respond, observation or showing day folds. These fold-ins are the only short-year route; the frame's leave-out units (4, 8, 12) are a community's choice, never a time cut.
 
 ## For the lead
 

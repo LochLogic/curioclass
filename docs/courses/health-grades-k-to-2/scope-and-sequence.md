@@ -22,7 +22,7 @@ That is all 33 PreK-2 indicators. A day's `codes` cell lists the owned ids it wo
 
 **Day kinds and the step card.** Kinds follow docs/GLOSSARY.md ("teaching day"). The first day a step card is shown, with the teacher saying each step aloud on a scenario (the model), is an Understanding day, because the card is new. Pairs then hold the card in the five-minute rehearsal of the next days, and the card is withdrawn in the last rehearsal before the check at the latest: on the day before each check the pairs rehearse with the card turned over (days 4, 10, 17, 23, 31, 37, 44, 49, 60, 65, 73 and 77), so no child meets the task without the card for the first time on a scored day. The end-of-unit assessment is always taken without it, and every said-aloud hearing (days 17 and 18, 37 and 38, 73 and 74) is taken with the card turned over, one condition for the whole record sheet. Three units have a whole Fluency day (4, 7 and 14), each practice only. One day is Application (day 43, the influence check without the card on new cases); most units first-teach a new row on nearly every day, so the skill on an unseen scenario without the card comes on the check day, and the leave-out paths add an Application day where a sensitive unit's days extend a unit. A card that returns in a later year gets one day with the card back, then goes without (APPROACH.md, "What is carried").
 
-**Shared cards, word for word (SEL STANDARD section 7, K to 2 form).** Calm-down card: "stop, breathe" (the slow balloon breath) in kindergarten, count to five added in grade 1, then a stretch or asking for a break chosen by the moment in grade 2. I-statement: "I feel ___ when ___. I need ___." (grade 2 adds asking "What do you need?" and agreeing a fair end, day 70). Refusal second push: say it again, move away, tell (inside health's boundary steps, "say it, say stop again, move away, tell"). Goal steps card: "my goal and one step" (kindergarten), then a helper and a check (grade 1; day 49's plan ends "and when we will check"), then a changed step (grade 2); health's goal plan uses these rungs. Talk turn card: its two steps, "eyes look, wait my turn", open health's listening card (look, quiet body, wait, say back).
+**Shared cards, word for word (SEL STANDARD section 7, K to 2 form).** Calm-down card: "stop, breathe" (the slow balloon breath) in kindergarten, count to five added in grade 1, then a stretch or asking for a break chosen by the moment in grade 2. I-statement: "I feel ___ when ___. I need ___." (grade 2 adds asking "What do you need?" and agreeing a fair end, day 70). Refusal second push: say it again, move away, tell (inside health's boundary steps, "say it, say stop again, move away, tell", the young form; "say stop again" grows into "say it again" in grade 3, where the steps read "say it, say it again, move away, tell"). Goal steps card: "my goal and one step" (kindergarten), then a helper and a check (grade 1; day 49's plan ends "and when we will check"), then a changed step (grade 2); health's goal plan uses these rungs. Talk turn card: its two steps, "eyes look, wait my turn", open health's listening card (look, quiet body, wait, say back).
 
 **End-of-unit assessments and response time (stated once).** Every unit's last day is its check day (`kind` Check, `assess` end): unseen pictured scenario cards read aloud, each child answering alone, scored met, partly or not yet on the skill steps with a guide, plus one facts-in-use item per fact the unit lists and one valuing item scored on whether the reason uses a unit fact, never on which choice. Never a fact-recall test, and never a score on a day a topic is first taught. In units 3, 7 and 14 the said-aloud step is heard from every child on a class record sheet, card turned over: ten children on the second-to-last day (`assess` observe; the observation records only the codes heard, and the note says so) and the rest on the check day at a side table while the others draw; any child not heard in the period is heard that week in the classroom routine, since health is the classroom teacher's course. Budget for 30 children: about a minute each. Response time: the last five minutes of each check day re-rehearse the step most often marked not yet, and each child's other not-yet steps return on the year's next course-level respond day, in groups from the record sheets. Doing indicators (NHES.S7.2.2 in unit 6, NHES.S6.2.5 in unit 15) are judged from the teacher's record of each child doing the routine or goal at school, never from a character's chart, never on health or whether a goal worked. Twice a unit each child rates their own use of the steps on a face card (the self-check days are named in each unit's notes). No unit runs over 25 days, so none has a mid-unit assessment.
 
@@ -52,11 +52,11 @@ That is all 33 PreK-2 indicators. A day's `codes` cell lists the owned ids it wo
 | 14 | g1-s-unsafe-feels-wrong; g1-v-settle-without-hurting (1) | retrieval, days 71 and 72 |
 | 15 | g1-pa-play-safe; g1-phw-name-a-goal; g1-phw-goal-helpers-and-steps (1) | retrieval, days 75 and 76 |
 | 16 (sensitive) | g1-v-body-safety (1, sensitive) | retrieval where unit 10 was taught, else the bridge, day 79 |
-| 17 (sensitive) | g1-sh-families-and-respect (1, sensitive) | retrieval where unit 11 was taught, else the bridge, day 81 |
+| 17 (sensitive) | g1-sh-families-and-respect (1) | retrieval, day 81 |
 
 Inside kindergarten, rows taught earlier the same year are retrieved where a later unit uses them (days 7, 9 and 20). The SEL feeling faces and calm-down card (SEL kindergarten unit 2, weeks 5 to 10) open unit 3 as retrieval; they are another course's rows, so they sit in the note, not in `retrieves`.
 
-**Family notes and sensitive units.** Every unit sends its home task (a talk with a trusted adult the child chooses; a school adult counts) on its first day, English and Spanish, written when the unit is finished; no task asks about a child's home, food, body, feelings or family. Each sensitive unit (5, 10, 11, 16, 17) has its leave-out note on its first page and the longer family note sent home two weeks before, on the day named: unit 5 on day 23 (kindergarten week 23), unit 10 on day 49 (grade 1 week 21), unit 11 on day 51 (week 23), unit 16 on day 77 (grade 2 week 21), unit 17 on day 79 (week 23). A family note that falls on a left-out unit's day still goes home that week. Where one family opts out and the school keeps the unit, the child does a help-steps picture sort with another adult (a kind-words sort on day 53); day 3's opt-out is the washing rehearsal. Every sensitive teaching day carries the disclosure steps of unit 5. In those units rehearsal uses written scripts of the telling line only; the teacher or a card plays any pressure. Each year's sensitive units sit right before the year-end check, which never samples them.
+**Family notes and sensitive units.** Every unit sends its home task (a talk with a trusted adult the child chooses; a school adult counts) on its first day, English and Spanish, written when the unit is finished; no task asks about a child's home, food, body, feelings or family. Each sensitive unit (5, 10, 16, 17) has its leave-out note on its first page and the longer family note sent home two weeks before, on the day named: unit 5 on day 23 (kindergarten week 23), unit 10 on day 49 (grade 1 week 21), unit 16 on day 77 (grade 2 week 21), unit 17 on day 79 (week 23). A family note that falls on a left-out unit's day still goes home that week. Where one family opts out and the school keeps the unit, the child does a help-steps picture sort with another adult; day 3's opt-out is the washing rehearsal. Every sensitive teaching day carries the disclosure steps of unit 5. In those units rehearsal uses written scripts of the telling line only; the teacher or a card plays any pressure. Each year's sensitive units sit right before the year-end check, which never samples them (in grade 1, unit 11 follows unit 10). Unit 11 (many kinds of families) is an ordinary unit, the way SEL's models show families of every kind all year: it holds no body or relationship-history content, so it has no leave-out note and no longer family note (Cory, 2026-11-26, Desk q-health-family-1).
 
 ## Kindergarten
 
@@ -122,9 +122,9 @@ Day 51 teaches keep telling when the first adult does not help; day 52 rehearses
 
 Candidate settled: a friend telling a worry kept as one scene on day 52, answered with the telling line, 0 days.
 
-### Unit 11: Many kinds of families (sensitive, removable; days 53 to 54, grade 1 weeks 25 to 26)
+### Unit 11: Many kinds of families (days 53 to 54, grade 1 weeks 25 to 26)
 
-Day 53 reads aloud a family story with families of many structures; day 54 is the check (pick the respectful words and say why). Owns no id; practices NHES.S4.2.5 and NHES.S2.2.2. Family note on day 51.
+Day 53 reads aloud a family story with families of many structures; day 54 is the check (pick the respectful words and say why). Owns no id; practices NHES.S4.2.5 and NHES.S2.2.2. An ordinary unit: no leave-out note and no longer family note.
 
 Candidate settled: one friendship scene kept on day 54, 0 days.
 
@@ -162,7 +162,7 @@ Candidate settled: trusted adults outside school kept as one scene on day 79, 0 
 
 ### Unit 17: Growing bodies, respectful friends (sensitive, removable; days 81 to 82, grade 2 weeks 25 to 26)
 
-Day 81 teaches that bodies grow and change in many ways, and privacy and respect for limits, with no reproduction detail and no pictures of bodies; day 82 is the check. Owns no id; practices NHES.S4.2.4 and NHES.S1.2.2. If unit 11 was left out, day 81 opens with one scene on respect for every family. Family note on day 79.
+Day 81 teaches that bodies grow and change in many ways, and privacy and respect for limits, with no reproduction detail and no pictures of bodies; day 82 is the check. Owns no id; practices NHES.S4.2.4 and NHES.S1.2.2. Family note on day 79.
 
 Candidate settled: "all living things grow" kept as one plain line on day 81, 0 days.
 
@@ -218,7 +218,7 @@ HECAT 2021 healthy behavior outcomes (`HECAT.<topic>.HBO<n>`, data/standards/hec
 | Violence prevention (V) | unit 3 (1, 3); unit 5 (8, s) | unit 7 (7); unit 9 (1, 3, 7); unit 10 (8, s) | unit 14 (1, 3, 7); unit 16 (8, s) | 1, 3, 7; 8 (s) |
 | Tobacco (T) | unit 4 (1, 2) | (the found-vape scene, unit 7, practice) | unit 13 (1, 2) | 1, 2 |
 | Alcohol and other drugs (AOD) | unit 4 (1, medicine safety) | unit 7 (1) | (medicines stay with adults, unit 13, practice) | 1 |
-| Sexual health (SH) | (body names in unit 1, non-sensitive) | unit 11 (2, 3, s) | unit 17 (1, 2, s) | 1, 2, 3 (s) |
+| Sexual health (SH) | (body names in unit 1, non-sensitive) | unit 11 (2, 3) | unit 17 (1, 2, s) | 2, 3; 1 (s) |
 
 Each topic is claimed at least in alternate years (STANDARD.md section 4).
 
@@ -275,11 +275,9 @@ That is 60 minutes a year, 180 minutes over the band: 84 course days become 78 (
 **A leave-out unit.** Each sensitive unit's two days extend the unit the frame names, as two days before that unit's check (an Application day on new scenarios with the card withdrawn and a Fluency rehearsal), so its end-of-unit check moves to its new last day; checks keep their weeks.
 - Unit 5 out: unit 4 runs weeks 19 to 26 (check week 26). The kindergarten year-end check then comes right after unit 4's end, so its unit 4 items use unit 3's scenes in a pointing form.
 - Unit 10 out: unit 9 runs weeks 18 to 24 (the frame names unit 9 in unit 10's row). Unit 16's day 79 opens with the keep-telling bridge.
-- Unit 11 out: unit 8 runs weeks 13 to 19, unit 9 moves to weeks 20 to 24 and unit 10 to 25 to 26 (its family note on week 23). Unit 9 then runs a week behind PE unit 12, so day 46 retrieves PE's heart lesson rather than leading it. Unit 17's day 81 opens with the respect-for-every-family bridge.
 - Unit 16 out: unit 14 runs weeks 13 to 20, unit 15 moves to weeks 21 to 24 (PE unit 19 then comes first, and day 75 names its fair rules), unit 17 stays at weeks 25 to 26.
-- Both units 10 and 11 out: unit 8 runs weeks 13 to 19 and unit 9 weeks 20 to 26 (two days each). The grade 1 year-end check then comes right after unit 9's end, so its unit 9 items are drawn from unit 8's scenes in a different form, and unit 9's end record is carried. Day 46 retrieves PE unit 12's heart lesson rather than leading it. The unit 10 and unit 11 family notes are dropped.
 - Unit 17 out: unit 14 gains its two days the same way and runs weeks 13 to 20 (its check in week 20); unit 15 moves to weeks 21 to 24 (PE unit 19 then comes first, and day 75 names its fair rules) and unit 16 to weeks 25 to 26, with its family note in week 23, on unit 15's third day. With unit 16 also out, unit 14 runs weeks 13 to 22 and unit 15 weeks 23 to 26.
-- A family note that falls on a left-out unit's day (unit 11's on day 51, unit 17's on day 79) still goes home that week.
+- A family note that falls on a left-out unit's day (unit 17's on day 79) still goes home that week.
 - The sensitive units make no card a later unit needs (help steps come from units 4, 7 and 13; the boundary steps from unit 14), so the leave-out bridge rule applies only to the one-idea openings named above.
 
 **A shorter period.** A 20-minute slot keeps each day's order, its opening scenario (three minutes) and the five minutes of washing on hand-washing days. The pair rehearsal moves into the classroom routine the same week (health is the classroom teacher's course), and each check day splits: the pictured scenes in the slot, the said-aloud hearing and any scribing in the classroom routine that week.
@@ -287,8 +285,8 @@ That is 60 minutes a year, 180 minutes over the band: 84 course days become 78 (
 ## For the lead
 
 1. **The band's school-day span.** `school_day` follows scripts/frame.py's span for this course (28 meeting weeks a year, so grade 1 starts at school day 141 and grade 2 at 281). If the lead changes the band span to the 32-week year (160), add 20 to every grade 1 school_day and 40 to every grade 2 one; the weeks do not change.
-2. **Unit 11's leave-out target.** Extending unit 8 shifts units 9 and 10 two weeks and puts unit 9 behind PE unit 12. Pick: unit 11's days extend unit 9 instead (adjacent to the sensitive block, no unit moves), or keep unit 8 with the shift written above.
-3. **SEL grade 1 unit 11 and health unit 11** meet families in the same weeks (SEL weeks 21 to 26, health weeks 25 to 26). Confirm SEL keeps to groups and friendships (no family-structure content) so health's opt-out holds, and each names the other.
+2. **Unit 11's leave-out target.** Settled: unit 11 is an ordinary unit (Cory, 2026-11-26, Desk q-health-family-1), so it has no leave-out path.
+3. **SEL grade 1 unit 11 and health unit 11** meet families in the same weeks (SEL weeks 21 to 26, health weeks 25 to 26). Settled: both treat families of every kind as ordinary content, so no opt-out depends on what SEL teaches (Cory, 2026-11-26, Desk q-health-family-1).
 4. **Browser check** (from the frame): the national highway traffic safety agency car seat page and the federal Poison Help page.
 5. **Body names (L89):** day 3 and its family note are marked for the person's read before publishing.
 

@@ -39,7 +39,7 @@ data/plans/music-grades-3-to-5/days.csv; this page holds the judgment.
   with its step card on an Understanding day before any Application day uses it. The artistic process "responding"
   is taught on Understanding days; a Respond day only acts on a check.
 - **Critique, revision and showing.** Every unit has one critique (the second or later application day, in the
-  routine describe, ask about a choice, suggest one change tied to a look-for), then a revision day, then its showing
+  card "Describe what you hear. Ask about one choice. Suggest one change tied to a look-for."), then a revision day, then its showing
   or check. Every unit has a showing: units 1, 5, 9 for a partner class; units 2, 6, 10 for the class; units 3, 7, 11
   the composers' share (on the year-end check day); units 4, 8, 12 the concert.
 - **Growth and portfolio.** Each unit's first practice day (its first Fluency day) holds the baseline look at the
@@ -148,7 +148,9 @@ recording for MU:Re7.2.3a and MU:Re9.1.3a, talk items for MU:Cn10.1.3a and MU:Cn
 "Course-level checks" sets; MU:Cn11.1.3a is taught on day 9 and practiced on days 12 and 14 (the four-box card);
 response on day 16. Under
 25 days, so no mid-unit assessment. Candidate (a menu with a real choice of setting): kept, no day cost, checked by
-the unit plan before day 3.
+the unit plan before day 3. A school may swap day 1's powwow listen for a living Native American maker's
+non-ceremonial concert or social work (named by the unit plan, not Tate, Ballard or Davids); the routine and
+MU:Re7.2.3a are taught on it the same way, and day 9's four-box card names the swapped work's setting.
 
 ### Unit 2. Two ways to play it
 
@@ -158,8 +160,8 @@ before inventing inside it, studies Abing's erhu piece and plans two readings of
 map. Order: the call and answer (day 18) before the given tonality or meter (day 20), which needs the pattern; the
 expression map (day 21) before the planning day (day 22); critique (day 24), revision (day 25), showing (day 26).
 Assessments: this unit's end-of-unit assessment is the year 3 mid-year check (day 29), as the frame sets; the kept
-idea-bank card (MU:Cr1.1.3b) is finished and handed in on day 28, which carries `end` for that kept-work part (see
-For the lead 1); day 27 is the rehearsal and revision day. Response on day 30. Candidate (a third reading by a living
+idea-bank card (MU:Cr1.1.3b) is finished and handed in on day 28 and scored once with the check, which carries
+its code; day 27 is the rehearsal and revision day. Response on day 30. Candidate (a third reading by a living
 performer): dropped; year 3 already hears living makers in units 1 and 4 and the 12 days have no spare minutes; the
 unit plan may pick a living pianist for one of the two readings if its rights line passes.
 
@@ -182,7 +184,7 @@ revised twice and prepared for the share. Order: the piece is played (day 32) be
 the checklist (day 38) before the critique (day 39) and the revisions (days 40, 41); intent (day 43) before the
 share rehearsal (day 45). No note value is named as part of a bar before unit 4. Assessments: this unit's
 end-of-unit assessment is the year 3 year-end check (day 47, the composers' share); the kept page and change list
-are handed in on day 46, which carries `end` for that kept-work part. Response on day 48. Candidate (a living child or
+are handed in on day 46 and scored once with the check. Response on day 48. Candidate (a living child or
 young composer beside Cotten): kept as a five-minute listen in day 33's opener if the unit plan finds one whose
 rights line passes, else dropped at no cost.
 
@@ -225,7 +227,7 @@ frame harmony and tone color; the class holds a drone or a third above, improvis
 (a given major key in twos and its relative minor in threes) and plans loudness, speed and tone color on the
 expression map. Order: the drone (day 82) before the paired ostinatos (day 84), which sit over it; tone color marks
 (day 85) before planning (day 86); critique day 88, revision 89, showing 90. Assessments: the year 4 mid-year check
-(day 93) is the end-of-unit assessment; the idea-bank card is handed in on day 92 (`end`, kept-work part); day 91
+(day 93) is the end-of-unit assessment; the idea-bank card is handed in on day 92 (scored with the check); day 91
 is the rehearsal and revision day. Candidate (a living European drone tradition): dropped; Europe is heard this year
 in Dvořák and Smetana and the 12 days have no spare minutes.
 
@@ -240,7 +242,7 @@ Days 95 to 110, weeks 16 to 23. Smetana's "Vltava" and Jessie Montgomery's Starb
 sections; the class organizes idea-bank ideas into a short arrangement or composition, writes a two-line score (the
 tune and the unit 6 drone or ostinato as a harmony part) by equal note values, and keeps a dated revision log against
 shared criteria, so growth shows over time. Order as unit 3. Assessments: the year 4 year-end check (day 111) is the
-end-of-unit assessment; the score and log are handed in on day 110 (`end`, kept-work part). Candidate (a composer
+end-of-unit assessment; the score and log are handed in on day 110 (scored with the check). Candidate (a composer
 from Asia or Africa who wrote about drafts): dropped; the year already hears Iraq, Benin and India, and Montgomery's
 own published words carry the drafts idea.
 
@@ -277,8 +279,8 @@ response day 144. Candidate (the response steps fit the reading load): kept, no 
 Days 145 to 156, weeks 9 to 14. Márquez's Danzón No. 2 and a Panorama steel orchestra: the class sings the I and V
 chords in three groups (or plays them on the bottles or a free keyboard), improvises over I and V tied to a setting,
 invents two easy-chord accompaniments in the paired settings and adds articulation to the expression map. Order as
-unit 6. Assessments: the year 5 mid-year check (day 157); the idea-bank card handed in on day 156 (`end`, kept-work
-part). Candidate (a living steelpan arranger from the national cultural body's page): kept, no day cost, named in
+unit 6. Assessments: the year 5 mid-year check (day 157); the idea-bank card handed in on day 156 (scored with
+the check). Candidate (a living steelpan arranger from the national cultural body's page): kept, no day cost, named in
 day 149's listen.
 
 ### Year 5 mid-year check
@@ -293,7 +295,7 @@ Days 159 to 174, weeks 16 to 23. Tate's Lowak Shoppala' and Liliʻuokalani's "Al
 My Lou" as the sung two-chord model: a motif developed by repeating, changing and extending, a melody with I and V
 chord symbols written by whole and half beats, and a revision log with a reason for each change. Order as unit 3.
 Assessments: the year 5 year-end check (day 175) with the frame's finished-piece look-fors; the score and log handed
-in on day 174 (`end`, kept-work part). Candidate (the composer's page confirms concert music with no ceremonial
+in on day 174 (scored with the check). Candidate (the composer's page confirms concert music with no ceremonial
 song): kept, no day cost, before day 159.
 
 ### Year 5 year-end check
@@ -395,18 +397,12 @@ loses more uses the once-a-week merges for the unit it is in, which keep every i
 
 ## For the lead
 
-1. **Gate and the frame's "check as end-of-unit assessment".** The frame makes the mid-year and year-end checks the
-   end-of-unit assessments of units 2, 3, 6, 7, 10 and 11, but scripts/sequence.py fails a unit with no `end` day
-   inside its own days. So each of those units' last day (the supported practice day, when the kept-work items are
-   finished and handed in, to be scored once after the check) carries `end`, and the performance, look-for, written
-   and talk items stay on the C day. Fix to choose: let sequence.py accept a unit whose next day is a `C` Check day
-   whose goal says it stands as that unit's end-of-unit assessment, then move `end` off those six days.
-2. **The frame's wording.** The frame's Units table evidence lines and Course-level checks table still carry the
+1. **The frame's wording.** The frame's Units table evidence lines and Course-level checks table still carry the
    item wording this page replaced (the item table under "Course-level checks"), and its check timetable gives the
    mid-year written card six minutes; both are in the fix report's "For the structure pass".
-3. **Source pass still owed.** The frame fix review (docs/reviews/frame-music-theater-media-arts-fixes-2026-11-26.md,
+2. **Source pass still owed.** The frame fix review (docs/reviews/frame-music-theater-media-arts-fixes-2026-11-26.md,
    C-35 8) left source links for the scope stage; this job had no web reads and changed no work. The frame's item 3
    (spot-check of the grade 3 to 5 words lines, above all MU:Re7.1, MU:Re9.1 and the Pr4.2 c parts, in Claude in
    Chrome) is also still the lead's.
-4. **Music K to 2** was checked against its scope (2026-11-26): its year 2 days teach the eight grade 2 rows the
+3. **Music K to 2** was checked against its scope (2026-11-26): its year 2 days teach the eight grade 2 rows the
    retrieval tables name; nothing more owed.

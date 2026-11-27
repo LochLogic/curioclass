@@ -30,8 +30,9 @@ from an earlier unit, "what happens?", answered on paper, three minutes. (b) The
 ticket, if more than a third missed it. (c) For a new idea, one short concrete moment, unplugged, that the teaching then
 names. Teaching first is the default for anything new: no blank editor, and no "try it" on a construct, before one worked
 example has been shown and traced. In grades 6 to 12 a day may open with a predict task on a short given program (ten
-minutes at most; ours, untested) when students have all they need to attempt it. The day row gives the opening and its
-minutes.
+minutes at most; ours, untested) when students have all they need to attempt it. A check sitting opens with settling
+and instructions, not a retrieval task: the sitting is itself retrieval, and its minutes go to settling in
+(kindergarten's spoken warm-up stays as instructions, not scored). The day row gives the opening and its minutes.
 
 ## The form of daily evidence
 
@@ -148,7 +149,7 @@ read by the sensitivity agent before they go live (docs/FOUNDATION.md section 7;
 
 Each course frame states weeks, sessions a week and minutes a session; the defaults and the short path are in
 STANDARD.md section 2 (Cory, 2026-11-21, Desk q-fix-cs-1). Because K to 5 meet once a week, every teaching and respond
-session opens with a three-minute retrieval task, a trace where the earlier row is a program or algorithm, and every unit ends with a respond day. Ours, untested: kindergarten to
+session opens with a three-minute retrieval task, a trace where the earlier row is a program or algorithm, and every unit ends with a respond day. The shorter-year rule, the same from kindergarten to grade 5: a respond day after an end-of-unit sitting may fold into the next day's opener with a self-check; a respond day after a course-level check never folds; check days keep their weeks, and a lost week before a check moves the teaching days, never the check. Device minutes, one line per band, which each frame and scope quotes: in K to 5, device sessions keep their last four minutes to put work and devices away (save or print, shut devices, return cards and mats); in 6 to 12, device lessons keep three minutes at the start to get devices out and open the page and four at the end to save or print work and close devices. In every grade pairs switch driver and navigator at the halfway signal; grade 6's eight-minute rotation for teams of four is the one named exception. Ours, untested: kindergarten to
 grade 2 spend about two thirds of the time away from a device; grades 3 to 5 about half; grades 6 to 12 at least one
 unplugged day in every unit. A K to 5 unit lets two or three ids share one anchor program, so one id is not one
 session. Which ids a high school year owns is set in STANDARD.md "Ownership of MS and HS ids".
@@ -160,7 +161,7 @@ read for this page on 2026-11-21. What that evidence supports, and no more: one 
 500 students aged 11 to 14 in English schools, 8 to 12 weeks of Python lessons on sequence, selection and iteration,
 against classes taught the same topics the school's usual way) found higher post-test scores for the PRIMM classes,
 and interviews with teachers found they valued the shared structure and the talk about code. The groups were not
-randomised, the evidence is for ages 11 to 14 in text-based Python, and the authors say which parts make the difference
+randomized, the evidence is for ages 11 to 14 in text-based Python, and the authors say which parts make the difference
 is still unknown. Our use in kindergarten to grade 5 (block and unplugged days) and our session counts are ours and
 untested. Two ideas from the same sources are already in this page and are now grounded: reading and tracing code before
 writing it, and pair or small-group talk about a given program away from the device. No page claims that learning to
@@ -178,7 +179,7 @@ approach reads, 2026-11-21".
 - 2026-11-21 (Cory, Desk q-prework-open-1): our own editor (STANDARD.md "Our own editor").
 - 2026-11-21 (Cory, Desk q-fix-cs-1): default minutes and sessions a year (STANDARD.md section 2); the swap and
   leave-out rule (STANDARD.md section 3); Python as the text language for grades 6 to 12 (STANDARD.md "Our own
-  editor"); the one `cs-k12` catalogue row.
+  editor"); the one `cs-k12` catalog row.
 
 ## Open for Cory
 

@@ -44,7 +44,7 @@ teaching).
 
 **Sources not loaded.** No grade 2 day leans on an unloaded source. The library online-reasoning lessons, the
 web-literacy book and the AASL 3 to 5 band file (later.csv L149) serve later grades; this course uses the PK to 2
-band file, already read for the frame. The NetSmartz K to 2 listing behind the stop rule was read 2026-11-25 for the
+band file, already read for the frame. The free K to 2 online-safety presentation's listing behind the stop rule was read 2026-11-25 for the
 kindergarten frame and not re-read; it matters only on day 7's optional shared screen. No source-map.csv (no base
 text; every day is Curio Class's own).
 
@@ -126,10 +126,11 @@ layer; the unit plan's day-level read confirms the load, and its fallback (unit 
 is not used here.
 
 Host: science:s2-plant-needs-test (science grade 2 unit 5, weeks 16 to 19), in step on day 18; or
-science:s2-water-where, as review; stand-alone "How tall does a sunflower grow?" with two passages and a third (plant
-facts, beside the science host), so the inquiry does not rerun the turtle show-me case. The third source in each set
-explains why the two differ (different kinds of turtle live different lengths; different kinds of sunflower grow to
-different heights), so the lesson is "check, and see why", not "one book was wrong"; every figure is true of a named
+science:s2-water-where, as review; stand-alone "How big does a pumpkin grow?" with two passages and a third (plant
+facts, beside the science host), so the inquiry does not rerun the turtle show-me case or grade 1's sunflower
+question (grade 1 days 1 to 4, group read 2026-11-26). The third source in each set
+explains why the two differ (different kinds of turtle live different lengths; different kinds of pumpkin grow to
+different sizes), so the lesson is "check, and see why", not "one book was wrong"; every figure is true of a named
 kind, checked at the days' accuracy read. Retrieval: day 16 opens with a credit line said for the two turtle covers,
 which leads into "who made it" (the teacher finds the differing pages herself); day 17 opens with the answering page
 found by its heading, the first practice round. Leans: ela:e2-author-purpose (weeks 10

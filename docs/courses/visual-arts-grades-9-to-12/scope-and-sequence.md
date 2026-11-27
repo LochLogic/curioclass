@@ -23,10 +23,14 @@ changes none of the frame's units, owned rows or day counts.
 - **The unit shape.** Each paired unit opens with the hook and its compelling question on day 1, retrieval in day
   2's opener (10 minutes, the row before in the same thread), technique taught in steps with a step card before the
   making that needs it, the baseline look in the first practice days, the mid-unit assessment on the frame's day,
-  one critique (describe, ask, suggest) in the second making stretch with a revision after it, practice items
+  one critique in the critique routine (describe, ask, suggest; critique the work, never the person; praise alone is
+  not feedback) in the second making stretch with a revision after it, practice items
   before the end, then two end days: a sitting of written items on unseen works (no paint, ink or clay out), and
   the showing with self-score, where the product is scored from kept work afterward. A respond day follows. One
-  piece goes to the portfolio each unit with a one-line reflection.
+  piece goes to the portfolio each unit with a one-line reflection. The portfolio (or a photo record of each piece)
+  stays at school across levels, since Level 2 (days 161, 203, 237) and Level 3 (day 328) draw on Level 1 work; a
+  placed student uses the work brought for the placement checklist (the frame's brought-work route) on days 203 and
+  237, and writes a first reaction on day 329.
 - **The four processes.** Each level holds all four artistic processes (create; present; respond; connect), and each
   unit touches at least the processes its frame row names; a unit need not claim all four (lead call, 2026-11-26).
   Each unit's "Processes" line names the unit days. A respond day (acting on a check) is tagged only by the process
@@ -60,7 +64,10 @@ Carries the 15 `.Ia` ids (Proficient).
 
 ### Unit 1. The bridge: tools of seeing (12 days)
 Course days 1 to 12, weeks 1 to 3. Value, contour and gesture, one-point perspective, a mixed color wheel, the
-looking routine and the credit idea, all grade 8 work taught again so every Level 1 student starts level. Order:
+looking routine and the credit idea, taught again so every Level 1 student starts level: value, gesture, perspective,
+the looking routine and the credit idea come from grades 6 to 8; contour is taught in grade 6 (6 to 8 days 7, 10) and
+retaught here; the full mixed color wheel is first built here (day 8), since grade 5 mixes colors and grade 6
+names schemes but no earlier day builds the wheel. Order:
 pencil before charcoal before wet media, so the hazard routine grows with the material; the looking routine (day 9)
 comes before the first critique (day 10). End: day 11, the showing with a readiness record (met, partly, not yet),
 no score, which sets unit 2's groups; response time on day 12. No id claimed; 12 of 160 days (7.5 percent) are
@@ -118,7 +125,11 @@ plan. Critique day 29, revision day 30. End: day 35 (the show, level day 155, as
 sitting, Pr6.1 and Cn11.1); respond days 37 and 38 (course days 157, 158) in week 32 beside the year-end check.
 Candidate (an exhibition from Africa or Asia whose pages explain its layout): kept as a third option inside day 3.
 Sensitivity: Mining the Museum and slavery's record (day 1); Americans (day 4); Sunflower Seeds and Chinese
-politics (day 21). Processes: create none (the frame's processes for this unit are presenting and connecting; its
+politics (day 21). Leave-out (frame, a unit this course names: a museum show built around objects of slavery): a
+work may be swapped, which keeps the unit, its show and its ids; if a school or family, or a student aged 18 or
+older, leaves the unit out for its community's reasons, the course page and the family note name the ids not
+claimed that level: VA:Pr4.1.Ia, VA:Pr5.1.Ia, VA:Pr6.1.Ia, VA:Cn11.1.Ia. Never a short-year or time cut.
+Processes: create none (the frame's processes for this unit are presenting and connecting; its
 making is mounting and installing, tagged present); present 1 to 20, 25 to 38; respond 1, 3, 5, 6, 21, 25, 29;
 connect 1, 4, 7, 8, 21 to 24, 26, 33, 36, 37.
 
@@ -139,8 +150,9 @@ id claimed. Processes: create 2 to 6; present 4; respond 1, 3 to 5; connect 1, 4
 ### Unit 7. Images that move people (34 days)
 Course days 167 to 200, weeks 2 to 8. Aesthetic and empathetic reactions to natural and built places (Re7.1), how
 well an image sways an audience (Re7.2), a term in one medium with a practice log (Cr2.1), and the ethics of making
-and sharing (Cr2.2), on Migrant Mother, the 2008 poster and The Oxbow. Order: the foam-plate and wash techniques
-(days 3, 4) before medium studies; the two cases (days 13, 14) before the reasoning is written. Mid: day 17 (course
+and sharing (Cr2.2), on Migrant Mother, the 2008 poster and The Oxbow. Order: the collagraph and wash techniques
+(days 3, 4; each names grade 3's and grade 8's prints and grade 5's and grade 7's washes as known, and adds one
+step) before medium studies; the two cases (days 13, 14) before the reasoning is written. Mid: day 17 (course
 day 183), the practice log and first studies. Critique day 23, revision day 24. End: day 32 (sitting, Re7.2 and
 Cr2.2) and day 33 (showing; reaction page and log from kept work); response day 34. Candidate (an image from Asia
 or Africa that swayed an audience): kept, inside day 10. Sensitivity: Florence Owens Thompson taught by name with
@@ -233,10 +245,14 @@ Course days 399 to 438, weeks 16 to 24. An argument work in collage about how a 
 reading of Guernica defended (Re8.1), and one work judged by several sets of standards (Re9.1), on Unbranded,
 Guernica, Reihana's in Pursuit of Venus and the Dufour wallpaper. Order: research and collage technique (days 3 to
 6) before the work; readings weighed (days 7, 8) before they are written. Mid: day 20 (course day 418), the research
-page and readings paragraph. Critique day 26, revision day 27. End: day 38 (sitting) and day 39 (showing); response
+page and the competing-readings argument (about 500 words, day 15). Critique day 26, revision day 27. End: day 38 (sitting) and day 39 (showing); response
 day 40. Candidate (a culture's material objects from Africa or Asia as a research source): kept, inside day 4.
 Sensitivity: Unbranded's racial images (day 1); Guernica and war, another work by choice (day 7); the wallpaper as
-a European view (day 12). Processes: create 2, 5, 6, 10, 16, 19, 22 to 28, 32, 37, 39, 40; present 34, 35, 39;
+a European view (day 12). Leave-out (frame, a unit this course names: war and colonial imagery): a work may be
+swapped (another work for Guernica, day 7), which keeps the unit, its showing and its ids; if a school or family, or
+a student aged 18 or older, leaves the unit out for its community's reasons, the course page and the family note
+name the ids not claimed that level: VA:Cr2.3.IIIa, VA:Cn10.1.IIIa, VA:Re8.1.IIIa, VA:Re9.1.IIIa. Never a
+short-year or time cut. Processes: create 2, 5, 6, 10, 16, 19, 22 to 28, 32, 37, 39, 40; present 34, 35, 39;
 respond 1, 7 to 9, 12 to 15, 17, 20, 26, 29 to 31, 36, 38; connect 1 to 4, 7, 11, 12, 18, 20, 21, 33.
 
 ### Unit 15. Keeping and changing (40 days)
@@ -246,7 +262,11 @@ a judgment of artists' influence on a society (Cn11.1), on The Night Watch's con
 Rivera's Detroit murals. Mid: day 20 (course day 458), the collection plan and judgment draft. Critique day 26,
 revision day 27. End: day 37 (the event show, level day 155) and day 38 (sitting, Cn11.1); respond days 39, 40 in
 week 32. Candidate (a conservation case from Africa or Asia): kept, inside day 4. Sensitivity: América Tropical's
-crucified figure, a unit a school may leave out (day 3); Rivera's murals disputed in their day (day 7).
+crucified figure, a unit a school may leave out (day 3); Rivera's murals disputed in their day (day 7). Leave-out
+(frame, a unit this course names): a work may be swapped, which keeps the unit, its show and its ids; if a school or
+family, or a student aged 18 or older, leaves the unit out for its community's reasons, the course page and the
+family note name the ids not claimed that level: VA:Pr4.1.IIIa, VA:Pr5.1.IIIa, VA:Pr6.1.IIIa, VA:Cn11.1.IIIa. Never
+a short-year or time cut.
 Processes: create none (presenting and connecting by the frame); present 1 to 6, 11 to 18, 20, 21, 23 to 31, 33
 to 37, 39, 40; respond 7, 26; connect 1, 3, 7 to 12, 19 to 22, 32, 38, 39.
 
@@ -441,16 +461,19 @@ fold in their place.
 - **Outcome claimed:** met marks on the level's 15 ids and growth on the look-fors. Nothing here has been tried with
   students, and Curio Class claims no effect of arts study on any other result.
 
-## Two levels in one room (pending Cory's pick, frame For the lead 4)
+## Two levels in one room (Cory, 2026-11-26, Desk q-frames-arts-1 and q-va-levels-1)
 
-If a school teaches two levels in one period, each level keeps its own units and ids, and the paired units share
-the opening look (day 1) and the critique day. Level 2 and Level 3 line up almost exactly; Level 1 runs a few days
-behind because the bridge is 12 days and the review units 6. Shared critique days, by level day: units 2 and 7
-(34 and 29), 3 and 8 (66 and 62), 4 and 9 (106 and 105), 5 and 10 (149 and 144); units 7 and 12 (29 and 29), 8
-and 13 (62 and 61), 9 and 14 (105 and 104), 10 and 15 (144 and 144). Shared opening days: unit 2 and 7 at level
-days 13 and 7, unit 3 and 8 at 45 and 41, 4 and 9 at 81 and 79, 5 and 10 at 121 and 119; Levels 2 and 3 open on
-the same level days. Where the days differ, the teacher holds the joint critique on the later level's day and the
-earlier level makes in that slot; the unit plans can align the days if Cory picks this.
+Levels 1 and 2 may share a room: each level keeps its own units and ids, and the paired units share the opening
+look (day 1) and the critique day. Level 1 runs a few days behind because the bridge is 12 days and the review
+units 6. Shared critique days, by level day: units 2 and 7 (34 and 29), 3 and 8 (66 and 62), 4 and 9 (106 and
+105), 5 and 10 (149 and 144). Shared opening days: units 2 and 7 at level days 13 and 7, 3 and 8 at 45 and 41, 4
+and 9 at 81 and 79, 5 and 10 at 121 and 119. Where the days differ, the teacher holds the joint critique on the
+later level's day and the earlier level makes in that slot; the unit plans mark these shared days, as the frame
+asks.
+
+Levels 2 and 3 may also share a room, by the same rule (Cory, 2026-11-26, Desk q-va-levels-1): each level keeps its
+own units and ids, and the paired units share the opening and critique days. The pairs line up almost exactly: shared critique days units 7 and 12 (29 and 29), 8 and 13 (62 and
+61), 9 and 14 (105 and 104), 10 and 15 (144 and 144), and Levels 2 and 3 open on the same level days.
 
 ## For the lead
 
@@ -467,7 +490,8 @@ earlier level makes in that slot; the unit plans can align the days if Cory pick
    may instead cut contour and gesture and the color wheel from the short-path bridge and teach each at its first
    need in units 2 and 3. Units 6 and 11: the scope keeps 3 short days with the checklist from brought work; the
    lead may instead give each 4 short days (units 7 and 12 at 15).
-4. **Two levels in one room.** See that section; the Level 1 offset (up to 5 days) comes from the bridge's 12 days
-   against the review units' 6.
+4. **Two levels in one room.** Levels 1 and 2: decided by Cory (2026-11-26, Desk q-frames-arts-1), see that
+   section; the Level 1 offset (up to 5 days) comes from the bridge's 12 days against the review units' 6. Levels 2
+   and 3: decided by Cory (2026-11-26, Desk q-va-levels-1), by the same rule; see that section.
 5. The frame's own For the lead items 1 to 8 (check weeks, level rows, blades, two levels, the STANDARD 3.4 row,
    the stale ADOPTION-BAR line, the $150 supplies ceiling, facts to confirm) stand; nothing here changes them.

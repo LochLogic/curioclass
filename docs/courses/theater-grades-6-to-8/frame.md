@@ -38,11 +38,14 @@ Course `theater-grades-6-to-8` (catalog id `theater-6-8`), a band course for gra
   works and the demonstration with a step card; rehearsal with the critique and the revision; the showing check; a
   separate written check session; and a respond session that starts from marks already made, so no first-time
   evidence is ever collected in a respond session (APPROACH "Scoring creative work"). Fluency days fold into the
-  openers, and the two rows' understanding days merge into one. Sessions on that path, every year: units of 9, 7, 6
-  and 6, split as study and demonstration 2, 2, 1, 1; rehearsal, critique and revision 4, 2, 2, 2; then 1 showing
-  check, 1 written check and 1 respond session in every unit. Each year's two course checks keep 1 check session and
-  1 respond session. The mid-year check session falls in week 17 and its respond
-  session in week 18; the year-end check session in week 31 and its respond session in week 32. A merged day never
+  openers, and the two rows' understanding days merge into one. On this path the year keeps its year-end
+  course-level check (1 check session in week 31 and 1 respond session in week 32) and drops the mid-year one, as
+  Theater, grades 3 to 5 does: every id is already assessed id by id in its own unit, the mid-year check samples only
+  a few ids, and the two freed sessions go to the design unit (units 3, 7 and 11), the heaviest of the year (group
+  read of the theater scopes, 2026-11-26, finding 4). Sessions on that path, every year: units of 9, 7, 8 and 6,
+  split as study and demonstration 2, 2, 1, 1; a making session alone 0, 0, 1, 0; rehearsal, critique and revision
+  4, 2, 3, 2; then 1 showing check, 1 written check and 1 respond session in every unit (30 unit sessions a year,
+  plus the year-end check and its respond session). The design unit runs in weeks 17 to 24. A merged day never
   drops a critique, a revision or a respond day; the scope and sequence marks which days merge.
 - **Standard.** National Core Arts Standards, 2014, theater performance standards, by id only, each named with its
   line in data/standards/ncas-performance-standards-words.txt, never quoted (STANDARD.md 2). The band-year rule binds
@@ -221,6 +224,12 @@ Course `theater-grades-6-to-8` (catalog id `theater-6-8`), a band course for gra
   beliefs; units 4, 8, 12 for community) offers an invented or public option marked the same (APPROACH "Sensitive
   ground"). Each section carries health's steps for "If a student tells you something"
   (docs/courses/health/APPROACH.md) on its teacher page.
+- **Content notes to families.** A studied work gets a content note to families (to the student at 18 or over) when
+  its subject includes violence against a person, a killing, sexual violence or drug use, even when only described;
+  other hard history is named plainly with no note (group read of the theater scopes, 2026-11-26, finding 6; the lead
+  states the same line once in docs/courses/arts/APPROACH.md "Sensitive ground"). Woza Albert! (unit 12, day 179: the
+  apartheid state's violence against people, described) carries the note; the housing covenant case (day 73) and the
+  government stopping Kamiriithu (day 118) are hard history named plainly with no note.
 - **Logic model (one page in the scope and sequence).** Inputs: two 40-minute sessions a week, a clear floor, step
   cards, adapted scenes, research and object cards, found and low-cost materials. Activities: the actor's tools,
   staging, design and devising taught in steps; plays, forms and companies studied with their setting; rehearsal with
@@ -389,8 +398,8 @@ No unit uses number work beyond counting beats and minutes (lesson 13).
    load, not to dodge other after-core courses. In week 17 the other four arts 6 to 8 courses hold the same school
    days 83 and 85, physical education 6 to 8 days 82 to 84 and English language development 6 to 8 days 83 to 86 in
    some grades (data/plans/calendar.csv); week 32 holds every finals check. All left for the lead's one calendar
-   pass. On the once-a-week path the mid-year respond session falls in week
-   18, which holds core check days in grade 6 (science) and grade 8 (ELA); it is a respond session, not a check.
+   pass. The once-a-week path drops the mid-year check and its respond session (group read finding 4, 2026-11-26),
+   so on that path weeks 17 and 18 hold no course-check session.
 2. **Theater national time figure.** The second-model read of 2026-11-25 read the Educational Theatre Association's
    2016 opportunity-to-learn standards at source
    (https://schooltheatre.org/wp-content/uploads/2022/02/Opportunity-to-Learn-Standards-EdTA_2022.pdf, PDF page 10):

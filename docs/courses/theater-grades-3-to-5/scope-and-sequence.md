@@ -45,6 +45,7 @@ Course `theater-grades-3-to-5`, grades 3 to 5 as three years in one file, draft,
   question.
 - **Equipment and safe use.** The supplies columns are math and science only, so each day's note names its
   equipment, safe use of the floor and the free path where the frame lists one: a clear floor with room for arms out;
+  no lifts, no falls rehearsed, no contact stage fights (the frame's hazards line);
   blunt scissors, tape not pins, costume pieces loose and quick to remove; LED flashlights with screw-closed battery
   doors, never shone into eyes, no flashing, the room dimmed but never dark; signs on a loose yarn loop, never round
   the neck; voice below shouting with a rest after siren and pitch work. Safety rules are "from memory" until each

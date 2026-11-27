@@ -42,23 +42,26 @@ in data/plans/library-and-research-skills-grades-9-to-12/days.csv; this page hol
 
   | Assumed row | Last used | Treatment |
   |---|---|---|
-  | g8-test-assumptions; g8-research-product | Library 6 to 8, grade 8 (optional course) | Readiness, last ten minutes of day 1 |
-  | g8-multiple-views-gather | Grade 8 | Readiness day 1; retrieval days 2 and 10 (day 10 for unit 2's use, views for a decision) |
-  | g8-news-lateral | Grade 8 | Readiness day 1; retrieval day 3 |
-  | g8-compare-wikis | Grade 8 | Readiness day 1; retrieval day 4 |
-  | g8-fair-use-basics | Grade 8 | Readiness day 9; retrieval day 11 |
-  | g8-diverse-team | Grade 8 | Readiness day 9; retrieval day 13 |
-  | g7-citation-style (the set citation style g10-label-own-work uses) | Library grade 7 (optional course); ELA grade 9 unit 4 taught the works-cited format (e9-w-short-research) | Readiness, last ten minutes of day 27 (check 3's respond day): one source cited in the set style; a miss gets a ten-minute reteach on day 28 or 29 |
+  | g8-test-assumptions; g8-research-product | Library 6 to 8, grade 8 (optional course) | Retrieval day 2 |
+  | g8-multiple-views-gather | Grade 8 | Retrieval days 2 and 10 (day 10 for unit 2's use, views for a decision) |
+  | g8-news-lateral | Grade 8 | Retrieval day 3 |
+  | g8-compare-wikis | Grade 8 | Retrieval day 4 |
+  | g8-fair-use-basics | Grade 8 | Retrieval day 11 |
+  | g8-diverse-team | Grade 8 | Retrieval day 13 |
+  | g7-citation-style (the set citation style g10-label-own-work uses) | Library grade 8 (6 to 8 days 42 and 53, an optional course), two grades back; ELA grade 9 unit 4 taught the works-cited format (e9-w-short-research) | Readiness, last ten minutes of day 27 (check 3's respond day): one source cited in the set style; a miss gets a ten-minute reteach on day 28 or 29 |
 | g9 rows (unit 3 and 4 assumptions) | Grade 9 | Retrieval: days 19 (g9-fair-sides), 20, 22, 28, 30, 33 |
   | g10 rows (unit 5 and 6 assumptions) | Grade 10 | Retrieval: days 37, 39, 44, 45, 49, 51 |
   | g11 rows (unit 7 and 8 assumptions) | Grade 11 | Retrieval: days 55, 57, 63, 66 |
 
-  The grade 8 rows are one year back, so by grade number they would be retrieval; the frame gives them a readiness
-  check as well because library 6 to 8 is optional and students reach grade 9 from many middle schools (frame,
-  Readiness and retrieval; lead fix pass M3). They are unscored, and a missing move gets a ten-minute reteach from the
-  6 to 8 show-me case at the start of the next session that needs it. Grades 10 to 12 have one readiness check, day 27's citation style (above, three grades back in an optional
-  course); every other row they assume was taught inside this band the year before. Day 1's `retrieves` lists
-  g8-test-assumptions and g8-research-product, the readiness items no later day retrieves. Rows used earlier the same year also come back in the
+  The grade 8 rows are one year back, so each is a five-minute retrieval on a day that builds on it, never a unit's
+  first day (group read 2026-11-26; lead call "Readiness on a band year's first day": a row last used the year before
+  is a retrieval, never a readiness check). Library 6 to 8 is optional and students reach grade 9 from many middle
+  schools, so each retrieval day carries the line "a class that did not take library 6 to 8 gets the ten-minute
+  reteach from the 6 to 8 show-me case for every student", as the K to 5 courses do; day 2 is where the teacher reads
+  last year's class-level note, where there is one, to plan the reteach. Days 1 and 9 keep their exit ticket and
+  respond time. Grades 10 to 12 have one readiness check, day 27's citation style (above, last used in library grade 8,
+  two grades back, in an optional course); every other row they assume was taught inside this band the year before.
+  Rows used earlier the same year also come back in the
   `retrieves` column (the lateral routine on days 10, 15 and 23, the log on days 12, 21, 25 and 40, the database
   move on day 29, the synthesis map on day 38, the advanced search on day 46, the fast-news check on day 56, the
   system on day 64).
@@ -104,7 +107,7 @@ inquiry days have somewhere to put judged sources. Days 3 to 7 are the unit's la
 placed in weeks 6 to 13, after World History I's source checks (its unit 1 ends in week 3). Rows by load: the long product (the log, I.D.2's
 evidence) runs across days 4 to 7.
 
-- **Readiness:** day 1, last ten minutes (the grade 8 rows above).
+- **Retrieval:** days 2, 3 and 4 (the grade 8 rows above). No readiness check.
 - **End-of-unit assessment:** the mid-year check, day 8 (below), with the revised log scored as the I.D.2 product.
   Response time: day 9.
 - **Host:** World History I unit 1 (wh1-sources-of-the-past, weeks 1 to 3), a host task only. ELA grade 9 unit 4's short
@@ -125,13 +128,13 @@ presentation, ending with each student's change line and the self-check. Fair si
 needs them; licenses before the memo because the memo is the first product that uses other people's images and
 quotes. The memo takes four days because it holds two owned rows (III.A.3's change line, II.B.3's fair views).
 
-- **Readiness:** day 9, check 1's respond day, last ten minutes (not day 7, a lateral session): g8-fair-use-basics
-  and g8-diverse-team; g8-multiple-views-gather was checked on day 1 and returns as day 10's retrieval.
+- **Retrieval:** days 10 (g8-multiple-views-gather), 11 (g8-fair-use-basics) and 13 (g8-diverse-team). No readiness
+  check.
 - **End-of-unit assessment:** the year-end check, day 17, with the day 16 change line scored as the III.A.3 item.
   Response time: day 18.
 - **Hosts:** World History I unit 3 (comparing interpretations, weeks 7 to 10) and ELA grade 9 unit 1 (discussion,
-  weeks 1 to 5) both run before the unit; day 10 teaches stating each view at its strongest itself, and day 13 sets
-  talk rules if a class has not had ELA's. Optional host in step: ELA grade 9 unit 6, "Should school start later?"
+  weeks 1 to 5) both run before the unit; day 10 teaches stating each view at its strongest itself, and day 13's group talk
+  opens with SEL's grades 9 to 12 talk turn card (taught there if a class has not had ELA's discussion unit). Optional host in step: ELA grade 9 unit 6, "Should school start later?"
   (weeks 20 to 24, beside days 11 to 13), a neutral school decision argued on both sides with data, which can feed
   the memo's evidence. Stand-alone: "Should our school add water refill stations, and where?"
 - **Candidates:** kept: images, sound and video used by their terms (9-10 bold) on day 11 (about 5 minutes) and in
@@ -177,7 +180,8 @@ feedback before day 34. **The labeled product** is a one-page synthesis summary 
 matrix and map, places the point-of-use credits in the summary, labels it and shares it. Credits use the set
 citation style (the works-cited format ELA grade 9 unit 4 taught), checked for readiness on day 27.
 
-- **Readiness:** day 27, check 3's respond day, last ten minutes: one source cited in the set style. Retrievals:
+- **Readiness:** day 27, check 3's respond day, last ten minutes: one source cited in the set style (g7-citation-style,
+  last used in library grade 8, 6 to 8 days 42 and 53, two grades back). Retrievals:
   days 28, 30, 33.
 - **End-of-unit assessment:** the year-end check, day 35, with the revised matrix and map (day 34) as the IV.D.2
   product. Response time: day 36.
@@ -358,9 +362,10 @@ says so in its note, inside the unit's days.
 
 ## For the lead
 
-1. **Grade 8 rows get both readiness and retrieval.** By grade number a one-year-back row gets retrieval only; the frame
-   gives the grade 8 rows a readiness check too because library 6 to 8 is optional. This scope keeps both. If the rule 2
-   count prints notes on unit 1 or 2, that is the reason.
+None open.
 
-The frame now states the school-day formula (fix pass, lead call 4); unit 8's owned codes on day 70 and unit 5's
+Settled in the group fix pass (2026-11-26): the grade 8 rows are retrievals only (days 2, 3, 4, 10, 11, 13) with the
+reteach-for-all line, by the lead call on a band year's first day; the readiness checks on days 1 and 9 are gone. The
+lateral routine card (day 3) is the band's end form, and day 3 names how the grade 5 and 6 to 8 cards map to it. Talk
+days 13, 22 and 24 open with SEL's grades 9 to 12 talk turn card. The frame now states the school-day formula (fix pass, lead call 4); unit 8's owned codes on day 70 and unit 5's
 empty owned cell are settled (lead calls 10 and 12), so they are no longer items here.

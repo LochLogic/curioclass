@@ -52,7 +52,7 @@ Day 3 adds the judge step the codex read asked for: a one-minute maker-and-purpo
 
 - Retrieval: day 2, one question-word question about a picture (g2-question-to-research). Day 3 also brings back
   g2-who-made-it.
-- End-of-unit assessment: day 4, written sitting about 20 minutes, a new topic (birds' nests): three research
+- End-of-unit assessment: day 4, written sitting about 20 minutes, a new topic (how camels live in hot deserts; not birds' nests, which library grade 1 unit 3 asked): three research
   questions labeled thin or thick, one circled with its reason, four sort items. Response time: day 5 (pair shares
   about ten minutes, then the regrouped reteach).
 - Host: social studies grade 3 unit 1 (ss3-inquiry-questions), the same weeks 1 to 5 in calendar.csv: in step. ELA's

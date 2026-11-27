@@ -36,7 +36,8 @@ script build/scope-writes/scratch/physical-education-grades-6-to-8/fix_2026-11-2
   an Understanding day before any Fluency or Application day uses it. Fluency days are many tries with feedback on
   one cue (stations, partners, no lines); Application days put the skill in a small-sided game, a dance, a circuit or
   a tactic. The last Fluency day of a unit holds the closure watch of any second skill (carried to the check); the
-  last Application day records conduct. Check days repeat the baseline cue, so each student has two marks and growth
+  last Application day records conduct. A conduct review outside the owning unit, in the same year or a later one,
+  writes the reviewed S3 id with `~` in the codes column on the day that records it. Check days repeat the baseline cue, so each student has two marks and growth
   is the change. The respond day groups students by the teacher's met, partly and not yet marks and practices the "not
   yet" cue in a new task; where the next unit has a readiness check, it is the respond day's last 10 minutes.
 - **Space and equipment.** Every movement day's note in days.csv names its safe space and equipment, with the
@@ -47,7 +48,9 @@ script build/scope-writes/scratch/physical-education-grades-6-to-8/fix_2026-11-2
   they go live (named on their first day).
 - **Shared cards, word for word (SEL STANDARD section 7, 6 to 8 form).** Calm-down: "stop, breathe, name it, choose,
   go on" (units 6, 11, 12, 22). Goal steps: "goal, steps, block and plan, check" (units 6, 15, 22). PE uses no
-  I-statement, refusal or talk turn card in this band.
+  I-statement, refusal or talk turn card in this band. Team talk is health's conflict steps, word for word from
+  health 6 to 8's scope (its cards list; taught on health 6 to 8 day 51) and health 3 to 5 day 77: "stop, calm down, each says their side, find a fair way, or walk away and get help" (days 1,
+  39, 45, 135).
 - **Competition.** Every small-sided game in the band offers a more and a less competitive court or field the student
   chooses (frame, Supports), whether or not the day's note names it.
 - **Teacher page, every unit.** Health's disclosure steps word for word (docs/courses/health/APPROACH.md, "If a
@@ -83,7 +86,8 @@ and g4-pulse-body and g4-reasons-strengths (used by grade 5 rows) on days 25 and
 ### Unit 1. Break down the throw
 
 Course days 1 to 13, school days 2 to 21, weeks 1 to 5. Codes S2.8.18, S1.8.6, S3.8.6, S3.8.7. Day 1 sets the class
-rules, the one throwing direction and the fetch signal, and holds the readiness check. Order: roll and underhand
+rules, the one throwing direction and the fetch signal, and holds the readiness check; day 2 has each student read
+the grade 5 skill sheet, where the school kept it, and circle one cue. Order: roll and underhand
 (day 2), sidearm and overhand (day 3), stations and analysis pairs (4, 5, 7), target and roll games (6, 8), closure
 watch of the roll and underhand (9), conduct (10). Check: day 11 the overhand throw (3 of 5) and the knowledge task,
 day 12 the sidearm throw and the conduct mark; each of the four forms is marked apart. Respond day 13.
@@ -308,13 +312,15 @@ Course days 268 to 274, school days 123 to 134, weeks 25 to 27. Codes S1.8.20, S
 enters water. Reach and throw (76), the life jacket with the "reach or throw" baseline (77), stations and scenarios
 (78 to 80), closure watch of the reach rescue (80). One check day (a 7-day unit), day 81. CDC's "Preventing
 Drowning" page (opened 2026-11-26) covers life jackets, swimming skills, the buddy rule and natural-water risks but not
-reach or throw rescues; those steps come from the Palm Beach County Drowning Prevention Coalition's "Reach, Throw, Don't Go" page (https://discover.pbc.gov/drowningprevention/Pages/Reach-Throw-DontGo.aspx, opened 2026-11-26): call for help first, reach with something long while lying flat, throw something that floats, never go in. Respond day 82 holds the
+reach or throw rescues; those steps come from the Palm Beach County Drowning Prevention Coalition's "Reach, Throw, Don't Go" page (https://discover.pbc.gov/drowningprevention/Pages/Reach-Throw-DontGo.aspx, opened 2026-11-26): call for help first, reach with something long while lying on your stomach, throw something that floats, never go in. New in this band: choosing reach or throw for a
+scene, and cold-water risk; the family card (day 271) names them. Respond day 82 holds the
 readiness check g4-world-activities for unit 22.
 
 ### Unit 22. Why it matters, and what PE means to me
 
 Course days 275 to 285, school days 136 to 155, weeks 28 to 31. Codes S3.8.5, S4.8.9. The ginga (83), the capoeira
-circle on its case card, retrieving dance 6 to 8 unit 8 (84), the reflection with both cards in review (85), the
+circle on its case card, retrieved by a student who took dance 6 to 8 unit 8 and given first by the card to every
+other student (84), the reflection with both cards in review (85), the
 ginga in pairs and in the circle, Naadam read only (confirmed at its UNESCO entry, 2010; the case card names its
 rituals and imitates none), the portfolio (86 to 91), conduct (91). One check day (an 11-day
 unit), day 92, respond day 93. Leans on social studies grade 4 unit 7, years before.
@@ -354,7 +360,8 @@ Owned codes no course-level check samples, and why (each is checked on its own e
 - After-core, named both ways, no lean: health 6 to 8 units 8, 11, 15 and 16 run before or beside units 7, 11 and
   14, which open with a retrieval task on them and say what to do if health runs later; SEL 6 to 8's calm-down card
   (grade 6 unit 3, grade 7 unit 10) and teamwork (grade 7 unit 7) come first or beside; dance 6 to 8 teaches first in
-  each year, and unit 22 retrieves its unit 8 capoeira study.
+  each year, and unit 22 retrieves its unit 8 capoeira study for a student who took that elective; every other
+  student gets the history from the case card first.
 
 ## Sensitivity and leave-out
 

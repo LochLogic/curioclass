@@ -106,8 +106,9 @@ the same-cluster swap, is STANDARD.md section 5.
 
 Settled 2026-11-16 (Cory): each course is one year at two or three sessions a week. Default time (settled by the expert
 reader, ours and untested): the 32-week year of docs/courses/CALENDAR.md, three sessions a week of 45 minutes, so 96
-sessions or 72 hours a year; a school at two sessions a week runs the short path, 64 sessions or 48 hours. The scope
-and sequence names the 32 sessions the short path drops; every unit keeps a field task day, its plan day, its
+sessions or 72 hours a year; a school at two sessions a week runs the short path, which each frame sets: Career Exploration 66 sessions, about
+50 hours (30 sessions fold), and Career Pathways 64 sessions, 48 hours (32 fold) (Cory 2026-11-26, Desk
+q-career-scope-1). Each scope and sequence names the sessions its short path folds; every unit keeps a field task day, its plan day, its
 assessment day and its respond day. No national body publishes a time figure for these courses that we found (Advance CTE, the Association for
 Career and Technical Education and NCDA searched 2026-11-20; the guidelines' stages are not tied to an age), so none is
 cited, and the course page says so. Each frame may change these numbers with a reason.

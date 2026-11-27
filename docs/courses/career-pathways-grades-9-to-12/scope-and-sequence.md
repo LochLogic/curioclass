@@ -38,7 +38,10 @@ finals week). Grades 9 to 12 follow the finals-week rule only; there is no stagg
   teacher page, and the leave-out swap to another field task in the same cluster. A swapped id is named as not claimed.
   Unit 3 carries the pay-gap flag on every day.
 - No row owns a first job's safety and rights; they are practiced on the teacher page on day 72 (Cory, 2026-11-26).
-- Supplies and safe use of space are named in each day's note. Field tasks are paper plans. The only hands-on test is
+- Supplies and safe use of space are named in each day's note. Field tasks are paper plans. The hands-on tasks are the
+  paper production line (session 1 where Advanced Manufacturing is a shared cluster, days 14 and 23, and packet day 32
+  for a student whose own cluster it is), on scrap paper with school scissors counted out and back in, cut away from
+  the body, seated, at the table, with five minutes of clean-up (Exploration days 33 and 34's safety words), and the
   card and school coins, done seated, with the coins counted out and back in and five minutes of clean-up (days 16, 17,
   25 and 26 where Advanced Manufacturing is a shared cluster, and packet days 34 and 35 for a student whose own cluster
   it is). Unit 6's tests use paper, card or school stock only, with the
@@ -52,7 +55,8 @@ minutes of the previous unit's respond day (unit 1's in day 1 after the hook). I
 same reading, for the students the check flagged, never takes the opening of a unit's first day, which is kept for the
 hook and the compelling question: it opens day 2 in units 1 (day 2), 2 (day 14, while the class starts the field task)
 and 4 (day 56), and runs in the second half of day 1, after the hook, in units 3 (day 44), 5 (day 68) and 6 (day 81). Grade 7 math rows (m7-percent-problems, m7-unit-rate-fractions,
-m7-compare-populations), ss8-public-budget and library g6-lateral-reading are also read in a readiness check.
+m7-compare-populations) and ss8-public-budget are also met in a readiness check, sampled or taught again in context
+(table below).
 
 Algebra I and ELA grade 9 rows are the year before, so they are met by retrieval in the retrieves column, never by
 readiness:
@@ -65,18 +69,23 @@ readiness:
 | e9-w-informative | sessions 2 and 3 of each block, 68 |
 | e9-sl-presentation | session 1 of each block, 75, 89 |
 
-| Readiness check | Day | Rows checked |
-|---|---|---|
-| Unit 1 | 1 | g8-cd1-2-first-plan, g8-cd1-3-goals, g8-cd1-3r-revisit-goals, g8-cd2-2-decision-steps, g8-cd3-4-cluster-map, g8-cd2-5-values, g8-all2-2-learner-identity, g8-all1-3-study-habits, g8-all1-5-school-plan |
-| Unit 2 | 12 | the 14 g8-clu rows and 14 first-look sub-cluster rows, g8-prac-8-creativity, g8-prac-9-resources, g8-cd1-4-steering-habits, g8-all1-2-improve-schoolwork, g8-all1-4-what-helps-me-learn, g8-cd4-3-general-skills, m7-percent-problems, m7-unit-rate-fractions, m7-compare-populations, ss8-public-budget |
-| Unit 3 | 43 | g8-cd2-7-stereotypes, g8-cd3-6-uncommon-jobs, g8-cd3-5-open-jobs, g8-cd5-3-hiring-trends, g8-cd5-2-economic-conditions, g8-cd5-1-society-needs, g8-cd2-8-luck-timing, g8-cd2-6-life-shapes-choices, g8-all2-1-lifelong-learning, g8-cd4-5-moving-for-work |
-| Unit 4 | 54 | g8-all2-5-routes-after-school, g8-all2-6-programs, g8-cd3-2-job-study, g8-cd3-1-why-career-info, g8-cd2-4-options, g8-cd2-9-trade-offs, g8-prac-5-digital-data, g8-prac-6-resilience, g8-prac-10-plan-path, g8-cd1-1-plan-keeps-going, g8-cd1-2-first-plan, g8-cd1-5-plans-change, g8-cd2-1-how-i-decide, g8-all1-1-school-and-goals, g8-all2-4-move-to-high-school |
-| Unit 5 | 67 | g8-cd4-2-job-search-steps, g8-cd4-1-skill-kinds, g8-cd4-4-carry-over-skills, g8-cd4-6-self-employment, g8-all2-7-learning-outside-class, g8-all1-7-school-opens-options, g8-prac-2-communicate |
-| Unit 6 | 80 | g8-cd3-3-judge-sources, library g6-lateral-reading, g8-all1-8-finding-information, g8-cd2-3-facts-for-choices, g8-all2-3-own-learning, g8-all1-6-attitude-habits, g8-prac-1-contributor, g8-prac-3-problem-solving, g8-prac-4-teamwork, g8-prac-7-time-space, g8-prac-11-effects, g8-prac-12-academic-skills |
+Each check holds the two items of APPROACH.md unit field 4 and at most two more, about two minutes each; the other
+assumed rows are taught again in context on the day named, not sampled (scope group read 2026-11-26, finding 4).
 
-Rows from courses that come later than this one (SEL 9 to 12, ELA grade 10, computer science, library 9 to 12) are
-bridges: the day teaches what it needs on its own sheet, with retrieval only for a student who took the other course.
-Each is named in the day's note.
+| Readiness check | Day | Items sampled (beside the two APPROACH items) | Taught again in context |
+|---|---|---|---|
+| Unit 1 | 1 | the plan's parts and goals (g8-cd1-2-first-plan, g8-cd1-3-goals); a job placed on the cluster map (g8-cd3-4-cluster-map) | g8-cd1-3r-revisit-goals 2; g8-cd2-5-values 3; g8-all2-2-learner-identity 4; g8-all1-3-study-habits, g8-all1-5-school-plan 5; g8-cd2-2-decision-steps 8 |
+| Unit 2 | 12 | a job placed on the cluster map (the 14 g8-clu rows); a wage set against a training cost (g8-prac-9-resources, m7-unit-rate-fractions); the APPROACH percent item samples m7-percent-problems | the 14 first-look sub-cluster rows 14, 23 and 32 (session 1 of each block, packet day 2); g8-cd4-3-general-skills 14; m7-compare-populations 14; ss8-public-budget 13; g8-cd1-4-steering-habits 16; g8-prac-8-creativity 17; g8-all1-4-what-helps-me-learn 18; g8-all1-2-improve-schoolwork 20 |
+| Unit 3 | 43 | a dated who-holds figure as a pattern (g8-cd2-7-stereotypes, g8-cd3-5-open-jobs); a ten-year outlook figure (g8-cd5-3-hiring-trends) | g8-cd2-8-luck-timing, g8-cd2-6-life-shapes-choices 46; g8-cd3-6-uncommon-jobs 47; g8-cd5-2-economic-conditions, g8-cd5-1-society-needs 48; g8-all2-1-lifelong-learning 49; g8-cd4-5-moving-for-work 50 |
+| Unit 4 | 54 | a route's dated cost and time (g8-all2-5-routes-after-school); a trade-off (g8-cd2-9-trade-offs) | g8-prac-5-digital-data 55; g8-cd3-2-job-study 56; g8-cd2-4-options 58; g8-all1-1-school-and-goals, g8-all2-4-move-to-high-school 60; g8-prac-6-resilience 62; g8-all2-6-programs, g8-prac-10-plan-path 63; g8-cd3-1-why-career-info, g8-cd1-1-plan-keeps-going, g8-cd1-5-plans-change, g8-cd2-1-how-i-decide 64; g8-cd1-2-first-plan 65 |
+| Unit 5 | 67 | a job search step and one resume line (g8-cd4-2-job-search-steps); a skill sorted by kind (g8-cd4-1-skill-kinds) | g8-prac-2-communicate 68; g8-all2-7-learning-outside-class 71; g8-cd4-4-carry-over-skills, g8-all1-7-school-opens-options 73; g8-cd4-6-self-employment 74 |
+| Unit 6 | 80 | a source checked laterally (g8-cd3-3-judge-sources); enough facts for a choice (g8-cd2-3-facts-for-choices) | g8-prac-1-contributor, g8-prac-4-teamwork, g8-prac-7-time-space, g8-prac-12-academic-skills 81; g8-prac-3-problem-solving 82; g8-all1-8-finding-information 84; g8-prac-11-effects 85; g8-all2-3-own-learning 87; g8-all1-6-attitude-habits 88 |
+
+Rows from courses that come later than this one (ELA grade 10, computer science) are bridges: the day teaches what it
+needs on its own sheet, with retrieval only for a student who took the other course. SEL 9 to 12's and library 9 to
+12's grade 9 rows come the year before (their grade 10 rows run beside this course), so they are retrieval for a
+student who took them and are taught on the day for one who did not; library 9 to 12's lateral reading card
+(g9-lateral-method) is retrieval on day 84. Each is named in the day's note.
 
 ## Unit 1. Where my plan stands (days 1 to 12)
 
@@ -135,13 +144,18 @@ Slot table: which sub-cluster's field task falls in which session. A repeated na
 | Public Service and Safety | government services | judicial | public safety | emergency response | military | military |
 | Supply Chain | logistics | warehousing | air and space | marine | ground and rail | maintenance and repair |
 
-Skill ids are g10-sub-<cluster>-<sub-cluster>, as in cte.csv. A day's skills cell lists every cluster's slot row, since the
+Session 1 in every cluster is that cluster's Exploration first-look task at higher demand (the paper production line
+longer and with a quality check, the menu for 20 grown to 100 with allergen labels, the stand grown to a one-page
+service plan, the five-minute lesson grown to fifteen); its task sheet names what is new for a student who did it in
+grade 8. Skill ids are g10-sub-<cluster>-<sub-cluster>, as in cte.csv. A day's skills cell lists every cluster's slot row, since the
 class picks. The sensitive sub-clusters are judicial (session 2), public safety (3), emergency response (4), military (5
-and 6), behavioral health and resource extraction (6), and water systems (6). Each keeps the family note on day 12,
+and 6), behavioral health and resource extraction (6) (STANDARD.md section 5). Water systems (6) is not on that list: it keeps
+the views line (no verdict, a student's own view never graded) with no leave-out. Each sensitive sub-cluster keeps the family note on day 12,
 health's steps and the same-cluster swap. The day 12 note names the sensitive sub-clusters of any shared cluster that
 holds one (Public Service and Safety, Healthcare and Human Services, Energy and Natural Resources) and, per student, of
 an own cluster that holds one (chosen on day 9). Regulation and investments carry their "no verdict" and "invented client" lines.
-Safety lines per session are in the notes; every one is a paper plan except the card-and-coin bracket in sessions 3 and 4.
+Safety lines per session are in the notes; every one is a paper plan except the paper production line in session 1 and the card-and-coin bracket in sessions 3
+and 4.
 
 The mid-unit days (21, 30) sample the block's cluster; the end (40) samples the own cluster, practices 8 and 9 and the
 learner rows. Day 22 and day 31 each open with ten minutes of response to the mid before, so their two jobs are compared
@@ -218,8 +232,9 @@ every student once before the scored mock interview.
 The teacher page on day 75 states the guidance's own terms: before a conditional job offer an employer may not ask
 disability-related questions, though it may ask whether you can do the job's tasks, with or without a reasonable change
 (the federal equal employment agency's guidance, opened 2026-11-26). The teacher page on day 72 cites the federal safety
-agency's young workers page for a safe workplace and the Wage and Hour Division's YouthRules and child labor pages for
-hours and barred tasks, a stricter state law applying where there is one. These sources are not loaded yet.
+agency's young workers page for a safe workplace and who to ask, and the Wage and Hour Division's Fact Sheet #43
+(https://www.dol.gov/agencies/whd/fact-sheets/43-child-labor-non-agriculture) for hours and barred tasks, with its
+YouthRules page as the student-facing page, a stricter state law applying where there is one. These sources are not loaded yet.
 
 ## Unit 6. The applied project (days 81 to 94)
 
@@ -231,7 +246,8 @@ day, and the panel is the course's closing demonstration.
 
 - Day 81 problem, teams, norms and milestones (practices 12, 4, 7, 1). Day 82 options weighed (practice 3). Day 83 the
   test and a second try.
-- Day 84 the lateral check on paper (CD3.R3, ALL1.A8). It uses the reusable source sheets Curio Class writes: three
+- Day 84 the lateral check on paper (CD3.R3, ALL1.A8), on library 9 to 12's lateral reading card (stop, investigate the source, look for better coverage, trace the claim to its original),
+  retrieval for a student who took library 9 to 12 and taught from the card for one who did not. It uses the reusable source sheets Curio Class writes: three
   invented sources, each with an invented owner's about page, two invented reports on it and the dated table it should
   match. One class set, one per pair, about $9 (Cory, 2026-11-26).
 - Day 85 effects (practice 11). Day 86 status notes and the replan. Day 87 learning alone and information use, with the

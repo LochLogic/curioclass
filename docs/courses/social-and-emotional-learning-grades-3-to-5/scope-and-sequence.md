@@ -37,7 +37,8 @@ written by build/scope-writes/scratch/social-and-emotional-learning-grades-3-to-
   seen earlier in the unit. Feelings in every item are a character's. Class sheet "seen" or "not yet" by step; the
   sheet is thrown away after the Respond day (collect once; class size 30).
 - **Respond.** At most four groups from the sheet's "not yet" cells, reteach then rehearse with the step card; the rest
-  rehearse in pairs. Each Respond day sends the unit's family note.
+  rehearse in pairs. Each Respond day sends the unit's family note. Each unit's first Understanding day names the
+  disclosure line and its carry-out cue; the core link sits on the day that leans on it.
 - **Safety and care.** A partner never plays an unkind, pushing or abusive part: the teacher or a card plays the push,
   the tease, the exclusion and the hurt friend's words, and a partner coaches with the step card. No real friends,
   families or cultures are asked about by name; webs, logs and SA7 plans of a student's own stay private. Disclosure
@@ -56,8 +57,9 @@ Quoted as the frame grows STANDARD section 7's cards for grades 3 to 5 (section 
   from ten) (day 4).
 - **I-statement:** "I feel ___ when ___ because ___. I need ___." (day 33).
 - **Goal steps card:** "goal, steps, block and plan, check" (day 54).
-- **Refusal steps:** "stop and think, say no clearly, give a reason, offer something else or walk away" (day 43);
-  health grade 4 adds "a reason is optional".
+- **Refusal steps:** "stop and think, say no clearly, give a reason or none, offer something else or walk away; if it
+  comes again: say it, say it again, move away, tell" (day 43), health's words; the second push is rehearsed against
+  the teacher's or card's repeat on days 43, 51, 112, 114, 165 and 167.
 - Stop-think-choose (day 7) and the problem size meter (tiny, small, medium, big; day 37) are SEL's own and grow the
   same way.
 
@@ -253,9 +255,10 @@ and Respond together; in five, one second rehearsal is dropped. A six-session th
 session of its own. Every Check keeps its page and its watched rehearsal, so no assessed part is cut. Check weeks on
 this path: grade 3 weeks 11 and 27, grade 4 weeks 15 and 26, grade 5 weeks 15 and 27.
 
-**Leave-out units and the bridge.** Where a unit is left out, a later unit that uses its card teaches the card in its
-first ten minutes and claims none of the left-out unit's rows. Named on the days: day 1 (no SEL K to 2: the grade 2
-card forms), day 12 (unit 1 left out: four-step stop-think-choose), day 22 (unit 1: the strength scale and stop-think-choose),
+**Leave-out units and the bridge.** Where a unit is left out, a later unit that uses its card models the card's
+one-step form in its first ten minutes (the card named, its first step modeled once) and claims none of the left-out
+unit's rows; day 1's bridge for a class without SEL K to 2 keeps the grade 2 forms, already one or two steps. Named on the days: day 1 (no SEL K to 2: the grade 2
+card forms), day 12 (unit 1 left out: stop-think-choose), day 22 (unit 1: the strength scale and stop-think-choose),
 day 33 (unit 1 left out: the calm-down steps), day 43 (unit 4 left out: the I-statement and meter; unit 1: stop-think-choose), day
 60 (unit 4 left out: the talk turn card), day 65 (the grade 3 talk turn card), day 75 (unit 7 left out: a minimal
 agreement; grade 3 unit 6 left out: the goal steps card), day 79 (grade 3 unit 6: the focus plan and its try-again step), day 95 (unit 1: the calm-down steps), day 98 (unit 3: the care steps), day 109 (unit 4: the I-statement and
@@ -278,7 +281,9 @@ written this run:
 
 ## For the lead
 
-1. **Owned codes not on a course-level check.** 32 grade 5 codes are checked only at their own unit ends or through
+1. **Owned codes not on a course-level check (settled by the scope group read, 2026-11-26, finding 11).** The unit's own
+   end-of-unit assessment is rule 3's named reason, and the cap stays (frame, Course-level checks); the line for
+   STANDARD section 2 is the lead's. Kept as a record: 32 grade 5 codes are checked only at their own unit ends or through
    products and observation (listed under Course-level checks), because the frame caps each check at two samples. If
    rule 3 needs more, the fix is a frame change (a third sample on the year-end check, or a sixth page item), not a
    sequence change.

@@ -14,7 +14,8 @@ Course `computer-science-grade-7` (catalog id `cs-k12`), grade 7, one year. Draf
   grades 6 to 12 (docs/courses/computer-science/STANDARD.md section 2, Cory, Desk q-fix-cs-1), an elective, so course
   days 2k-1 and 2k fall in week k. The 45 minutes hold set-up, clean-up and collecting work: a session opens with a
   retrieval trace or a predict task of three to ten minutes (APPROACH.md, "How a day opens"), and device sessions keep
-  four minutes at the end to save or print work and shut devices down, so a session teaches for about 35 minutes.
+  three minutes at the start to get devices out and open the page and four at the end to save or print work and shut
+  devices down, so a device session teaches for about 32 minutes.
   Each unit's days include its end-of-unit assessment and end with a respond day (APPROACH.md, Pacing), with the
   pilot's one shape for a unit that a course-level check follows directly: in units 3 and 6 the check stands for the
   unit's own end-of-unit assessment and the check's respond day is the unit's respond day. Each course-level check

@@ -8,7 +8,7 @@ docs/courses/health-grades-3-to-5/frame.md, whose units, owned rows and day coun
 
 - **Years.** Course days 1 to 30 are grade 3 (units 1 to 7), 31 to 60 grade 4 (units 8 to 14), 61 to 90 grade 5
   (units 15 to 21). Each grade's own NHES 3-5 indicators fall in its year: grade 3 owns 11 (units 1 to 5), grade 4
-  owns 14 (units 8 to 12), grade 5 owns 14 (units 15 to 19). The sensitive units (6, 7, 13, 14, 20, 21) own none.
+  owns 14 (units 8 to 12), grade 5 owns 14 (units 15 to 19). The sensitive units (6, 13, 14, 20, 21) and unit 7 own none.
 - **Meeting days.** One 30-minute lesson a week, weeks 1 to 30 of each 32-week school year; weeks 31 and 32 hold
   core year-end checks and no health. `school_day` = (year - 1) x 150 + (week - 1) x 5 + 3, so each lesson sits
   midweek and week = ((school_day - 1) mod 150) // 5 + 1 within its year; 150 is the span `scripts/frame.py` gives one
@@ -39,7 +39,7 @@ docs/courses/health-grades-3-to-5/frame.md, whose units, owned rows and day coun
   respond day (days 30, 60, 89). The course-level respond days re-rehearse every "not yet" step. Self-check cards
   fall twice in each unit (the notes name the days). Spoken steps (units 4, 10, 12, 18) are heard across the unit's
   last two days at two or three pair stations, as the frame sets them. An assess row lists only the codes an item
-  asks in full; the sensitive units' checks list the codes they practice and say "practiced, not scored".
+  asks in full; the sensitive units' and unit 7's checks list the codes they practice and say "practiced, not scored".
 - **Each part of each code.** NHES 3-5 indicators carry no lettered parts; where an indicator has two halves or more
   (own and others' health in S2.5.2; people and communities, and why, in S2.5.3; facts, products and services in
   S3.5.3; both halves of S4.5.4; giving and asking in S4.5.3; stay out of, handle and settle in S4.5.6; self and
@@ -47,6 +47,11 @@ docs/courses/health-grades-3-to-5/frame.md, whose units, owned rows and day coun
   finding information helps a choice in S1.5.5; teamwork and communication in S8.5.2) the teaching day and every check
   that lists the code hold a prompt for each part (days 24, 39, 44, 49, 54, 59, 69, 74, 75, 79 and 88 name them).
 - **Begun ids.** A day that begins a row a later grade owns lists it as `~ID` in `codes` (days 3, 20, 25, 27, 33).
+- **Sensitivity flags.** A non-sensitive day that touches a sensitive area names it in its note as "Sensitivity flag:
+  <area>" with the private route (cases are characters'; any student may take another case, and a student who wants
+  help talks to the teacher or the counselor): food (days 6, 80), substances (days 8, 51), bullying, safety and harm
+  (day 19), body and ongoing conditions (day 36), alcohol and other drugs (day 70). "Sensitivity read" names the
+  sources the sensitivity reader checks.
 - **Every day ties to a behavior outcome**, named as `HBO:` in its note (bar criterion 1). Every day sends no home
   question about the child's own home, food, body, feelings or family; scenarios are characters'.
 
@@ -68,14 +73,14 @@ Health, grades K to 2 (units 12 to 16 of that frame); grades 4 and 5 pick up the
 | 3 | g2-phw-doctor-nurse-visit; g2-s-outdoor-and-home-safety (grade 2) | retrieval, days 11 and 13 |
 | 3 | g2-meh-feelings-calm-and-talk; g2-v-settle-it-with-words; g2-v-my-limits-say-stop (grade 2) | retrieval, days 17, 19, 20 |
 | 3 | g2-phw-goal-do-it (grade 2) | retrieval, day 22 |
-| 3 | g2-v-body-safety; g2-sh-bodies-grow-respect (grade 2, sensitive) | retrieval in the leave-out bridge's form, sensitive to sensitive only, days 25 and 27 |
+| 3 | g2-v-body-safety; g2-sh-bodies-grow-respect (grade 2, sensitive) | retrieval in the leave-out bridge's form, days 25 (sensitive unit 6) and 27 (unit 7, one respect scene) |
 | 4 | g3-phw-set-goal; g3-phw-grow-strengths; g3-phw-goal-alone-or-together (grade 3) | retrieval, days 31, 32 |
 | 4 | g3-pa-active-and-invite (grade 3) | retrieval, days 33 and 53 |
 | 4 | g3-phw-habits-look-closely; g3-phw-find-resources; g3-s-decide-careful (grade 3) | retrieval, days 35, 36, 37 |
 | 4 | g3-meh-feelings-say; g3-s-which-helper (grade 3) | retrieval, day 40 |
 | 4 | g3-phw-influences-on-health; g3-fn-added-sugar-drinks (grade 3) | retrieval, days 46, 47 |
 | 4 | g3-v-my-limits-and-yours; g3-meh-listening; g3-t-tobacco-facts; g3-v-bullying (grade 3) | retrieval, days 50, 51, 52 |
-| 4 | g3-v-body-safety; g3-sh-respect-all-people (grade 3, sensitive) | retrieval in the bridge's form, days 55 and 57 |
+| 4 | g3-v-body-safety (grade 3, sensitive); g3-sh-respect-all-people (grade 3) | retrieval in the bridge's form, day 55; retrieval, day 57 |
 | 5 | g4-phw-goal-plan; g4-meh-calm-stress (grade 4) | retrieval, day 61 |
 | 5 | g4-pa-warm-up (grade 4; g5-pa-habit-practice assumes it) | retrieval, day 61 (one line) and day 62 |
 | 5 | g4-fn-food-claims-source-check; g4-phw-how-things-affect-us; g4-phw-routines-and-conditions (grade 4) | retrieval, days 65, 67, 68 |
@@ -103,7 +108,7 @@ runs the same weeks; health gives the why. Candidate settled: brushing and floss
 
 Day 5 models the influence check on a character's case; days 6 and 7 carry it into food groups and added sugar,
 with pairs holding the card on the drink ad; day 8 states the tobacco facts and the plain-word norm and withdraws
-the card on an invented vape ad (the norm sourced to the National Youth Tobacco Survey 2024, middle school);
+the card on an invented vape ad (the norm sourced to the National Youth Tobacco Survey 2025, middle school);
 day 9 is the end-of-unit check. One skill across three topics, so the card is
 modeled, held and withdrawn inside the unit. Candidates settled: breakfast kept as one line on day 6; "secondhand
 smoke at home is never the child's fault" kept as one line on day 8; no day cost.
@@ -130,8 +135,8 @@ show care when a friend is upset" kept inside day 18's scenes, no day cost.
 
 Day 22 grows a strength and writes a goal sentence (S1.5.1, S6.5.1), day 23 sorts alone, helper or team (S6.5.2),
 day 24 is the end-of-unit check on the student's own goal or a character's, with its own item on how to grow a
-strength. The family notes for units 6 and 7 go home together on day 23 (two and four weeks ahead), so neither rides
-on a removable unit's day. Candidate settled: "name a person who can help with a goal" kept inside day 23's sort.
+strength. The family note for unit 6 goes home on day 23 (two weeks ahead), so it does not ride on a
+removable unit's day. Candidate settled: "name a person who can help with a goal" kept inside day 23's sort.
 
 ### Unit 6. Telling more than one adult (sensitive, removable; days 25 and 26, weeks 25 and 26)
 
@@ -139,10 +144,11 @@ Day 25 teaches the idea and the telling line; day 26 practices it on written scr
 Practices S3.5.1; owns nothing. If left out, its days extend unit 4. Candidate settled: an online picture request as
 a reason to tell, kept as one telling scene on day 25.
 
-### Unit 7. Respect for every person (sensitive, removable; days 27 and 28, weeks 27 and 28)
+### Unit 7. Respect for every person (days 27 and 28, weeks 27 and 28)
 
-Day 27 is a story read aloud and the healthy-friendship signs; day 28 the end-of-unit check. If left out, its days
-extend unit 5. Candidate settled: "families differ and all deserve respect" is already in day 27.
+Day 27 is a story read aloud and the healthy-friendship signs; day 28 the end-of-unit check. An
+ordinary unit, the way SEL's models show families of every kind: it holds no body or relationship-history
+content, so it has no leave-out note and no longer family note (Cory, 2026-11-26, Desk q-health-family-1). Candidate settled: "families differ and all deserve respect" is already in day 27.
 
 ## Grade 4 (course days 31 to 60, weeks 1 to 30)
 
@@ -328,8 +334,9 @@ pages (days 7, 48), CDC germ and vaccine pages (day 35), CDC school health condi
 highway safety agency's bicycle pages and the federal Poison Help pages (days 11, 13), CDC HIV basics and a national
 pediatrics association's puberty pages (days 57, 86), and the child-welfare and child traumatic stress pages for the
 body safety units (days 25, 55, 84). Opened and holding: the CDC children's physical activity guideline page (dated
-2025-12-04, day 3, with the vigorous days), CDC youth tobacco data (National Youth Tobacco Survey 2024, middle school:
-3.5% current e-cigarette use, 12.9% ever tried any tobacco product; page dated 2024-10-17; days 8 and 51) and CDC
+2025-12-04, day 3, with the vigorous days), the National Youth Tobacco Survey, middle school (2025: 2.6% current e-cigarette
+use, FDA survey results page, opened 2026-11-26; 12.9% ever tried any tobacco product from 2024, the latest edition
+that reports it, CDC youth tobacco data, page dated 2024-10-17; days 8 and 51) and CDC
 "About bullying" (the uniform definition, page dated 2024-10-28; day 19). Browser check (the reader's fetch got 403):
 the federal stopbullying page on what bullying is (day 19) and the national survey of 8th graders (Monitoring the
 Future) results for day 70's alcohol and drug norm, which the unit planner confirms with its figure and year. Day 41
@@ -360,17 +367,18 @@ names the help line by purpose: the national crisis line, call or text 988.
   year-end checks on its own weeks off its core check weeks. Unit 15's log still runs four school weeks: its days 62
   to 64 take the first lesson of weeks 2 to 4 and unit 16 opens in the second lesson of week 2 (unit 16 assumes no
   unit 15 row).
-- **A left-out sensitive unit.** Its days extend the unit its row names (6 to unit 4, 7 to unit 5, 13 to unit 12, 14
-  to unit 11, 20 to unit 18, 21 to unit 19), or a short year takes them as its slack (up to four days a year); no
+- **A left-out sensitive unit.** Its days extend the unit its row names (6 to unit 4, 13 to unit 12, 14 to unit 11,
+  20 to unit 18, 21 to unit 19), or a short year takes them as its slack (up to four days a year); no
   check changes. The freed days stay in their weeks as practice days on that unit's cards, with no new items, so no
-  check moves. Every sensitive unit's family note goes home on a non-removable unit's day (day 23 for units 6 and 7,
+  check moves. Every sensitive unit's family note goes home on a non-removable unit's day (day 23 for unit 6,
   day 53 for units 13 and 14, day 82 for units 20 and 21), so a left-out unit never takes the next unit's note with
   it. Leave-out bridge: no non-sensitive unit uses a card a sensitive unit makes (the help-steps and
   boundary steps are made in units 3, 4, 10 and 12). A later sensitive unit after a left-out one opens with that
   card's or idea's one-step form in its first ten minutes and claims nothing from it: unit 13 and unit 20 with
-  "never a child's fault, telling works"; unit 14 with one scene on respect for every person if unit 7 was left out;
-  unit 21 with the plain body-change terms if unit 14 was left out. These one-step forms are also each sensitive
-  unit's first-day retrieval (days 25, 27, 55, 57, 84, 86), so they run whether or not the earlier unit ran.
+  "never a child's fault, telling works"; unit 21 with the plain body-change terms if unit 14 was left out. These
+  one-step forms are also the first-day retrieval of units 6, 13, 20 and 21 (days 25, 55, 84, 86) and of unit 7
+  (day 27, one respect scene from grade 2), so they run whether or not the earlier unit ran; unit 14 opens with
+  unit 7's respect scene as plain retrieval (day 57).
 
 ## For the lead
 

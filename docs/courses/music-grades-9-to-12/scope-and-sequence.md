@@ -32,7 +32,7 @@ Carries the NCAS composition and theory high school proficient ids (.Ia to .Ic),
 
 Course days 1 to 12 (12 days), level weeks 1 to 3.
 
-Staves and the keyboard map, rhythm with syllables, solfege sight-singing, I, IV and V, then Maple Leaf Rag as the first score read with its setting, the expanded form words and the critique routine. Order: reading before singing from notation, notation before chords, and the critique routine last so unit 2's critique can use it. Day 12 is the bridge record, kept as a baseline and never a grade.
+Staves and the keyboard map, rhythm with syllables, solfege sight-singing with major key signatures to three sharps and flats (day 6, a named revisit for a student from music 6 to 8), I, IV and V, then Maple Leaf Rag as the first score read with its setting, the expanded form words and the critique routine. Order: reading before singing from notation, notation before chords, and the critique routine last so unit 2's critique can use it. Day 12 is the bridge record, kept as a baseline and never a grade.
 
 Readiness: day 1, last ten minutes after the hook, on the eight grade 8 rows (a sung line, a clapped rhythm, a chord named); it sets which bridge days each student needs most.
 

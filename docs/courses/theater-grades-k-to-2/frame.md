@@ -183,6 +183,11 @@ Course `theater-grades-k-to-2` (catalogue id `theater-k-2`), a band course for k
   (units 3, 7, 11, and the community stories of unit 8) offers an invented or public option marked the same (APPROACH
   "Sensitive ground"). Each section carries health's steps for "If a student tells you something"
   (docs/courses/health/APPROACH.md) on its teacher page.
+- **Content notes to families.** A studied work gets a content note to families (to the student at 18 or over) when
+  its subject includes violence against a person, a killing, sexual violence or drug use, even when only described;
+  other hard history is named plainly with no note (group read of the theater scopes, 2026-11-26, finding 6; the lead
+  states the same line once in docs/courses/arts/APPROACH.md "Sensitive ground"). No work studied in this band meets
+  that line; hard history, where a unit names it, is named plainly with no note.
 - **Logic model (one page in the scope and sequence).** Inputs: two 40-minute sessions a week, a clear floor, step
   cards, scene cards, audience cards, found and low-cost materials. Activities: the voice and body taught in steps,
   tales and works heard or watched with their setting, guided drama and rehearsal with a critique and a revision, a

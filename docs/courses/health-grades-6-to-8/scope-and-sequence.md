@@ -49,7 +49,8 @@ happened, that it matters, keep telling); source check (who made it, what they w
 I trust agree; grade 7 adds can I reach it); influence check (name it, say how it pushes, toward or away from a
 healthy habit); decision steps (notice a careful choice, ask if it needs help, name options and results, pick the one
 that supports health, look back); conflict steps (stop, calm down, each says their side, find a fair way, or walk
-away and get help); boundary steps (say it, repeat it, leave, tell); speak-up plan (notice, who, say, ask).
+away and get help); boundary steps (say it, say it again, move away, tell; SEL's refusal second push uses the same words); speak-up plan
+(notice, who, say, ask; grade 7 adds spot the chance before notice, grade 8 fits it to the audience).
 
 ## Readiness and retrieval (rule 2)
 
@@ -61,7 +62,10 @@ away and get help); boundary steps (say it, repeat it, leave, tell); speak-up pl
 | 97 (unit 22's first, after the grade 7 year-end respond day) | readiness for unit 22's days 98 and 100 (`assess` readiness, last ten minutes after the hook) | g5-phw-surroundings-community; g6-phw-adult-or-professional | two or more grades back |
 
 Every other unit retrieves from the grade before on its first or second day (the `retrieves` column): grade 6 from
-grade 5 and 4, grade 7 from grade 6, grade 8 from grade 7.
+grade 5 and 4, grade 7 from grade 6, grade 8 from grade 7. Band entry: every grade 6 retrieval of a grade 4 or 5 row
+(days 1 to 39, sensitive units aside, which keep their leave-out bridge) says that a student new to Curio Class health
+shows any gap there and the teacher reteaches that step on the card the same day, as health 3 to 5 does; day 12's
+I-statement card carries the same line.
 
 ## Grade 6 (course days 1 to 48, grade 6 ids)
 
@@ -91,7 +95,7 @@ gives. Candidate cells: when stress needs help, kept inside day 10. Sensitive fl
 ### Unit 4. Nicotine and pressure
 
 Days 16 to 20, weeks 11 to 14. Arc: linked influences (day 16, NHES.S2.8.1), the nicotine norm (day 17: the share of middle school students who had
-not used an e-cigarette in the past 30 days, about 96 in 100 in the 2024 national youth tobacco survey), when a
+not used an e-cigarette in the past 30 days, about 97 in 100 in the 2025 national youth tobacco survey), when a
 choice needs the careful steps (day 18, NHES.S5.8.2), refusal rehearsal on an offered vape (day 19, Fluency), end
 day 20. Why the order: influence before decision, so the careful steps meet a real push. Candidate cells: secondhand
 smoke and vapor kept as one line on day 17. Sensitive flag: substances.
@@ -318,7 +322,9 @@ permitted.
 
 ## Sensitivity and leave-out
 
-Sensitive flags on the day they apply: body (units 8, 10, 17, 26, 30), substances (4, 5, 12, 23, 25), safety and harm
+Sensitive flags on the day they apply, each written in the note as "Sensitivity flag: <area>" with the private route
+(cases are characters'; any student may take another case, and a student who wants help talks privately with the
+nurse or counselor): body (units 8, 10, 17, 26, 30), substances (4, 5, 12, 23, 25), safety and harm
 (7, 9, 12, 14, 20, 25, 28), mental health (3, 11, 19, 29), food (6, 16). Each sensitive unit's first day carries the
 leave-out note, its family note went home two weeks ahead (English and Spanish, with the outline and the opt-out
 through the school), and the disclosure route (listen, no secrets, the school duty to report, the next adult named).
@@ -372,8 +378,8 @@ non-sensitive units.
 
 ## Sources not loaded
 
-- The national youth tobacco survey (day 17): 2024, 3.5 percent of middle school students current e-cigarette users
-  (CDC youth e-cigarette page, opened 2026-11-26); a later edition, if released, replaces it at the unit plan's expert
+- The national youth tobacco survey (day 17): 2025, 2.6 percent of middle school students current e-cigarette users
+  (FDA survey results page, opened 2026-11-26; the CDC youth e-cigarette page still showed 2024); a later edition, if released, replaces it at the unit plan's expert
   read.
 - The national survey of grade 8 students (days 54, 115): its federal summary page lists a 2025 survey released
   2025-12-17; the survey's own results site is browser check. Figures entered at the unit plan's expert read, never

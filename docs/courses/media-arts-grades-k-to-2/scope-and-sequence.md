@@ -6,7 +6,7 @@ Course `media-arts-grades-k-to-2`, a band course for kindergarten, grade 1 and g
 
 - **Three years, one after another.** Year K is course days 1 to 64, year 1 days 65 to 128, year 2 days 129 to 192.
   Each year has four units (18, 22, 10 and 10 days), a mid-year course-level check with its respond day after the
-  second unit, and a year-end course-level check with its respond day after the third unit: 60 unit days and 4
+  second unit, and a year-end course-level check with its respond day after the fourth unit: 60 unit days and 4
   course-level days a year. `stretch` is the unit number in the frame's Units table (1 to 12), or `C`.
 - **Which grade's standards fall in which year** (National Core Arts Standards, 2014, media arts, by id only, each
   action from its line in data/standards/ncas-performance-standards-words.txt). Year K (units 1 to 4) claims only
@@ -28,7 +28,7 @@ Course `media-arts-grades-k-to-2`, a band course for kindergarten, grade 1 and g
   every check sits in the frame's weeks by this formula (checked by script, 2026-11-26 fix pass). A school may pick
   any two days of the week; the weeks stay.
 - **Weeks every year.** First unit weeks 1 to 9; second unit weeks 10 to 20; mid-year check and respond week 21;
-  third unit weeks 22 to 26; year-end check and respond week 27; screening unit weeks 28 to 32.
+  third unit weeks 22 to 26; screening unit weeks 27 to 31; year-end check and respond week 32.
 - **The session.** Set-up about 5 minutes (devices and trays out), clean-up, hand-back of devices and collecting work
   about 5 (7 in a cutting and gluing session); a retrieval task takes ten minutes of the opener. The minutes of a
   talk check day, a screening check day and a course-level check day are written in those days' notes.
@@ -74,16 +74,16 @@ two grades back, so no readiness check is owed anywhere in the band.
 | 5 (day 66) | ma-k-read; ma-k-society | grade K, unit 1 |
 | 6 (day 84) | ma-k-ideas; ma-k-craft | grade K, unit 2 |
 | 7 (day 108) | ma-k-make; ma-k-judge | grade K, unit 3 |
-| 8 (day 120) | ma-k-present; ma-k-sources | grade K, unit 4 |
+| 8 (day 118) | ma-k-present; ma-k-sources | grade K, unit 4 |
 | 9 (day 130) | ma-g1-read; ma-g1-society | grade 1, unit 5 |
 | 10 (day 148) | ma-g1-ideas; ma-g1-craft | grade 1, unit 6 |
 | 11 (day 172) | ma-g1-make; ma-g1-judge | grade 1, unit 7 |
-| 12 (day 184) | ma-g1-present; ma-g1-sources | grade 1, unit 8 |
+| 12 (day 182) | ma-g1-present; ma-g1-sources | grade 1, unit 8 |
 
 Inside year K, three units also open a same-year retrieval of a tool or plan they build on: day 20 (ma-k-society,
-the media rules card before the flashlight), day 44 (ma-k-ideas, the storyboard before the paper stage) and day 56
+the media rules card before the flashlight), day 44 (ma-k-ideas, the storyboard before the paper stage) and day 54
 (ma-k-ideas, before the film strip). Years 1 and 2 do the same where a unit builds on a row of the same year, each a
-ten-minute task in the day's opener: day 86 (ma-g1-read, far, middle and close shots before the order practice), day
+five-minute warm-up in the day's opener (the cross-year retrievals stay ten minutes, rule 2): day 86 (ma-g1-read, far, middle and close shots before the order practice), day
 109 (ma-g1-ideas, pages in order before the six frames), day 156 (ma-g2-society, turns and the credit line before the
 first team try) and day 173 (ma-g2-craft, the recorded or shaped sound that goes into the whole).
 
@@ -157,25 +157,25 @@ and they use it (day 48), revise (day 49) and tell both versions to a partner cl
   it, records its rights line and whether the maker is living as of its date, and checks every arts frame for a
   repeat.
 
-### Year-end course-level check (days 53 and 54, week 27)
-
-See "Course-level checks" below.
-
-### Unit 4: Our class screening (days 55 to 64, weeks 28 to 32)
+### Unit 4: Our class screening (days 53 to 62, weeks 27 to 31)
 
 Owns ma-k-present and ma-k-sources (MA:Pr4.1.K, MA:Pr6.1.Ka, MA:Pr6.1.Kb, MA:Cn10.1.Ka, MA:Cn10.1.Kb). Ruttmann's
-painted shapes moving to music open it with a remembered media moment (day 55); the pull-through film strip and what
-goes on it (day 56); McLaren's Pas de deux and the class movement (day 57); the screening-plan card and how to tell
-how a showing felt (day 58). The strips are drawn (day 59), critiqued in rehearsal (day 60) and revised, with the
-screening-plan card filled (day 61). The screening for families is the end-of-unit assessment.
+painted shapes moving to music open it with a remembered media moment (day 53); the pull-through film strip and what
+goes on it (day 54); McLaren's Pas de deux and the class movement (day 55); the screening-plan card and how to tell
+how a showing felt (day 56). The strips are drawn (day 57), critiqued in rehearsal (day 58) and revised, with the
+screening-plan card filled (day 59). The screening for families is the end-of-unit assessment.
 
-- Processes (from the day notes): create days 57, 59 to 61; produce or present days 56, 58, 60 to 62; respond days 55,
-  57, 58, 63; connect days 55 to 57, 59.
-- Assessments: rotation days 59 to 61 (the MA:Cn10.1.Kb talk item). End day 62, the screening (MA:Pr4.1.K; kept strip
-  for MA:Cn10.1.Ka and screening-plan card for MA:Pr6.1.Ka scored after the session). End day 63, the MA:Pr6.1.Kb talk
-  item. Respond day 64.
-- Candidate (the found-sound track as the full equal of the movement version): kept, no day added; days 57 and 60
+- Processes (from the day notes): create days 55, 57 to 59; produce or present days 54, 56, 58 to 60; respond days 53,
+  55, 56, 61; connect days 53 to 55, 57.
+- Assessments: rotation days 57 to 59 (the MA:Cn10.1.Kb talk item). End day 60, the screening (MA:Pr4.1.K; kept strip
+  for MA:Cn10.1.Ka and screening-plan card for MA:Pr6.1.Ka scored after the session). End day 61, the MA:Pr6.1.Kb talk
+  item. Respond day 62.
+- Candidate (the found-sound track as the full equal of the movement version): kept, no day added; days 55 and 58
   carry both versions, and the leave-out note names it.
+
+### Year-end course-level check (days 63 and 64, week 32)
+
+See "Course-level checks" below.
 
 ## Year 1 (grade 1 ids, 18)
 
@@ -232,22 +232,24 @@ Ojeikere's Hairstyles and the before-and-after card come next (day 110), then th
   unit 6, the year's living makers of the Americas are Morales and Tonatiuh (unit 8), and the ten-day unit has no
   spare time.
 
-### Year-end course-level check (days 117 and 118, week 27)
-
-### Unit 8: A picture-book tale (days 119 to 128, weeks 28 to 32)
+### Unit 8: A picture-book tale (days 117 to 126, weeks 27 to 31)
 
 Owns ma-g1-present and ma-g1-sources (MA:Pr4.1.1, MA:Pr6.1.1a, MA:Pr6.1.1b, MA:Cn10.1.1a, MA:Cn10.1.1b). Morales's
-Viva Frida opens it with a meaningful media experience shared, as units 4 and 12 open (day 119); the sound on cue at
-a page turn is taught after the kindergarten retrieval (day 120); Tonatiuh's Dear Primo and what he drew on, an
-interest and an example (day 121); showing conditions and one task (day 122). The tales
-are made (day 123), critiqued in rehearsal (day 124) and revised with the screening-plan card (day 125).
+Viva Frida opens it with a meaningful media experience shared, as units 4 and 12 open (day 117); the sound on cue at
+a page turn is taught after the kindergarten retrieval (day 118); Tonatiuh's Dear Primo and what he drew on, an
+interest and an example (day 119); showing conditions and one task (day 120). The tales
+are made (day 121), critiqued in rehearsal (day 122) and revised with the screening-plan card (day 123).
 
-- Processes (from the day notes): create day 123 to 125; produce or present days 120, 122, 124 to 126; respond days
-  119, 121, 122, 127; connect days 119, 121, 123.
-- Assessments: rotation days 123 to 125 (the MA:Cn10.1.1b talk item). End day 126, the showing for families
-  (MA:Pr4.1.1, MA:Pr6.1.1a with its kept card, MA:Cn10.1.1a with the tale and source card). End day 127, the MA:Pr6.1.1b
-  talk item. Respond day 128.
-- Candidate (a quiet visual cue card for a child sensitive to noise): kept, no day added, on day 120's step card.
+- Processes (from the day notes): create day 121 to 123; produce or present days 118, 120, 122 to 124; respond days
+  117, 119, 120, 125; connect days 117, 119, 121.
+- Assessments: rotation days 121 to 123 (the MA:Cn10.1.1b talk item). End day 124, the showing for families
+  (MA:Pr4.1.1, MA:Pr6.1.1a with its kept card, MA:Cn10.1.1a with the tale and source card). End day 125, the MA:Pr6.1.1b
+  talk item. Respond day 126.
+- Candidate (a quiet visual cue card for a child sensitive to noise): kept, no day added, on day 118's step card.
+
+### Year-end course-level check (days 127 and 128, week 32)
+
+See "Course-level checks" below.
 
 ## Year 2 (grade 2 ids, 18)
 
@@ -303,69 +305,70 @@ seen (day 175); the critique (day 176), revision (day 177) and each piece shown 
 - Candidate (a whole for a public place by a living maker from Africa or the Americas): dropped. Villareal's Bay Lights
   is already that (a living maker of the Americas, a public place), and Africa is in unit 9.
 
-### Year-end course-level check (days 181 and 182, week 27)
-
-### Unit 12: Our narrated picture scroll (days 183 to 192, weeks 28 to 32)
+### Unit 12: Our narrated picture scroll (days 181 to 190, weeks 27 to 31)
 
 Owns ma-g2-present and ma-g2-sources (MA:Pr4.1.2, MA:Pr6.1.2a, MA:Pr6.1.2b, MA:Cn10.1.2a, MA:Cn10.1.2b). McCay's Gertie
-opens it with a media experience and what it was for (day 183); a patua scroll and the picture-scroll technique follow
-the grade 1 retrieval (day 184); sources, credit and the tale choice (day 185); showing conditions (day 186). The scroll
-is made (day 187), critiqued in rehearsal (day 188) and revised with the screening-plan card (day 189). The year-end
-scroll screening for families is the band's last end-of-unit assessment. Day 184 holds a retrieval, a flagged
+opens it with a media experience and what it was for (day 181); a patua scroll and the picture-scroll technique follow
+the grade 1 retrieval (day 182); sources, credit and the tale choice (day 183); showing conditions (day 184). The scroll
+is made (day 185), critiqued in rehearsal (day 186) and revised with the screening-plan card (day 187). The year-end
+scroll screening for families is the band's last end-of-unit assessment. Day 182 holds a retrieval, a flagged
 work and a step card, so the unit plan times it to the minute; if it runs over, the step card moves to the first
-half of day 186 and the conditions take its second half. On the first making day of each screening unit (days 59,
-123 and 187) the baseline is a glance mark made while walking the tables, and the tray rotation starts after it.
+half of day 184 and the conditions take its second half. On the first making day of each screening unit (days 57,
+121 and 185) the baseline is a glance mark made while walking the tables, and the tray rotation starts after it.
 
-- Processes (from the day notes): create days 185, 187 to 189; produce or present days 184, 186, 188 to 190; respond
-  days 183, 184, 186, 191; connect days 183 to 185, 187.
-- Assessments: rotation days 187 to 189 (the MA:Cn10.1.2b talk item). End day 190, the screening (MA:Pr4.1.2,
+- Processes (from the day notes): create days 183, 185 to 187; produce or present days 182, 184, 186 to 188; respond
+  days 181, 182, 184, 189; connect days 181 to 183, 185.
+- Assessments: rotation days 185 to 187 (the MA:Cn10.1.2b talk item). End day 188, the screening (MA:Pr4.1.2,
   MA:Pr6.1.2a with its kept card, MA:Cn10.1.2a with the source card: three picture boxes, I know, I like, I read,
-  and an example line; met = the "I read" box, one of the other two and the example). End day 191, the MA:Pr6.1.2b talk item. Respond
-  day 192.
+  and an example line; met = the "I read" box, one of the other two and the example). End day 189, the MA:Pr6.1.2b talk item. Respond
+  day 190.
 - Candidate (a public domain or openly licensed tale collection from more than one region): kept, no day added; the
-  tales are chosen from it on day 185.
+  tales are chosen from it on day 183.
+
+### Year-end course-level check (days 191 and 192, week 32)
+
+See "Course-level checks" below.
 
 ## Course-level checks
 
 Each check day runs as the frame's talk check day: one fresh table task every child does and keeps, and one talk item
-a child in six groups of five. Each check right after a unit's end-of-unit assessment draws its items from earlier
-units, never the unit just assessed, and carries that unit's record unscored (collect once). Marks are in before the
+a child in six groups of five. Each check draws its items from earlier units, never the unit just assessed, and no
+artifact is scored twice (collect once). Marks are in before the
 respond day. Arts are specials in K to 2, so these weeks do not count against the classroom teacher's stagger
 (CALENDAR.md rule 1); they sit on the frame's weeks, off every core check week of each grade.
 
-| Check | Days (week) | Samples | Unit just assessed (carried unscored) |
+| Check | Days (week) | Samples | Record carried unscored |
 |---|---|---|---|
 | Year K mid-year | 41, respond 42 (week 21) | MA:Cn11.1.Kb (safe-use picture sort: knowing the rule), MA:Re7.1.Ka (talk), both unit 1 | Unit 2 (days 38 and 39) |
-| Year K year-end | 53, respond 54 (week 27) | MA:Cr2.1.K (three-box plan, unit 2), MA:Re7.1.Kb (talk, unit 1) | Unit 3 (day 51) |
+| Year K year-end | 63, respond 64 (week 32) | MA:Cr2.1.K (three-box plan, unit 2), MA:Re7.1.Kb (talk, unit 1) | Unit 3 (day 51) |
 | Year 1 mid-year | 105, respond 106 (week 21) | MA:Cn11.1.1b (fair-turn sort: knowing the rule), MA:Re7.1.1a (talk), both unit 5 | Unit 6 (day 103) |
-| Year 1 year-end | 117, respond 118 (week 27) | MA:Cr1.1.1 (three sketches, one folded into a stand-up paper model, unit 6), MA:Cn11.1.1a (talk, unit 5) | Unit 7 (day 115) |
+| Year 1 year-end | 127, respond 128 (week 32) | MA:Cr1.1.1 (three sketches, one folded into a stand-up paper model, unit 6), MA:Cn11.1.1a (talk, unit 5) | Unit 7 (day 115) |
 | Year 2 mid-year | 169, respond 170 (week 21) | MA:Cn11.1.2b (one-message card with credit: knowing the rule), MA:Re7.1.2a (talk), both unit 9 | Unit 10 (day 167) |
-| Year 2 year-end | 181, respond 182 (week 27) | MA:Cr2.1.2 (three ideas as the input, the chosen storyboard folded into a stand-up mockup, unit 10), MA:Re7.1.2b (talk, unit 9) | Unit 11 (day 179) |
+| Year 2 year-end | 191, respond 192 (week 32) | MA:Cr2.1.2 (three ideas as the input, the chosen storyboard folded into a stand-up mockup, unit 10), MA:Re7.1.2b (talk, unit 9) | Unit 11 (day 179) |
 
 **Codes not sampled on a course-level check, and why** (rule 3). The frame's check design samples 12 of the 54 ids:
 each check has one table task and one talk item a child in 40 minutes. The other 42 are assessed only in their own
 units, for these reasons:
 
 - Units 4, 8 and 12 (MA:Pr4.1.K, Pr6.1.Ka, Pr6.1.Kb, Cn10.1.Ka, Cn10.1.Kb; MA:Pr4.1.1, Pr6.1.1a, Pr6.1.1b, Cn10.1.1a,
-  Cn10.1.1b; MA:Pr4.1.2, Pr6.1.2a, Pr6.1.2b, Cn10.1.2a, Cn10.1.2b): taught after both checks of their year, because
-  the frame keeps the year-end check in week 27, before the screening unit of weeks 28 to 32; the screening is their
-  own assessment. (The older reason, staying off the core checks of weeks 29 to 32, no longer holds: CALENDAR.md
-  rule 1 says arts specials do not count against the classroom teacher's stagger. Moving the year-end check to week
-  32 is a frame choice for the lead; see For the lead item 1.)
+  Cn10.1.1b; MA:Pr4.1.2, Pr6.1.2a, Pr6.1.2b, Cn10.1.2a, Cn10.1.2b): the screening unit is the unit just before the
+  year-end check of week 32 (lead structure pass, 2026-11-26), so by rule that check does not draw from it; the
+  screening is their own assessment.
 - Units 3, 7 and 11 (MA:Cr3.1.Ka, Cr3.1.Kb, Re8.1.K, Re9.1.K; MA:Cr3.1.1a, Cr3.1.1b, Re8.1.1, Re9.1.1; MA:Cr3.1.2a,
-  Cr3.1.2b, Re8.1.2, Re9.1.2): assessed two days before the year-end check, which by rule draws from earlier units and
-  reuses their record.
+  Cr3.1.2b, Re8.1.2, Re9.1.2): since the year-end check moved to week 32 these units are no longer the unit just
+  before it, but its items were kept as written (each day keeps its content and codes); sampling the third unit's
+  judge row there is open (For the lead item 1).
 - The shadow, flip-book and stop-motion production ids (MA:Pr5.1.Ka, Kb, Kc; MA:Pr5.1.1a, 1b, 1c; MA:Pr5.1.2a, 2b,
   2c) and MA:Cr1.1.K, MA:Cr2.1.1: performed or made in the unit just before the mid-year check and carried unscored, and
   a fresh production task does not fit a 40-minute talk check day beside six talk groups.
-- MA:Cr1.1.2 (unit 10, "brainstorming and improvising"): a paper table task cannot show improvising, so on day 181
+- MA:Cr1.1.2 (unit 10, "brainstorming and improvising"): a paper table task cannot show improvising, so on day 191
   the three ideas are only the input to choosing; the id stays assessed on unit 10's brainstorm page.
 - MA:Cn11.1.Ka (unit 1), MA:Re7.1.1b (unit 5) and MA:Cn11.1.2a (unit 9): each year's checks already sample two other
   ids of that unit; one talk item a child per check day leaves no room for a third.
 
 The safe-use ids (MA:Cn11.1.Kb, 1b and 2b) are rotation items, never an end-of-unit check day item. A course-level
 check samples knowing the rule by a fresh paper task (the picture sort or the credit card); the use itself stays
-assessed at the unit's tray rotation. The lead item below asks whether to keep this design or widen the year-end
+assessed at the unit's tray rotation. For the lead item 1 asks whether to widen the year-end
 checks.
 
 ## Leans and the calendar
@@ -377,7 +380,7 @@ counting rules (day 108); the critique practices collaborative conversation (SL.
 47 carry the frame's bridge (the turn-taking rules shown in pictures and modeled) in case ELA has not yet taught them.
 Social studies grade 2 unit 6 ("Family stories and culture") sits near unit 9; the art unit teaches its own setting on
 work cards and never asks a child to explain their family's culture. Credit and asking before a picture are taught in
-short steps here (days 1, 73, 129, 136, 185) and do not wait for computer science.
+short steps here (days 1, 73, 129, 136, 183) and do not wait for computer science.
 
 ## Shorter path
 
@@ -396,8 +399,9 @@ openers. Positions are the unit's own days (1 is its first day):
 
 The rotating look-fors fall on the last two making sessions, fifteen children a session. The weeks are the frame's:
 first unit weeks 1 to 8, second 9 to 17, the third unit's first three sessions weeks 18 to 20, mid-year check week 21
-and respond week 22, the third unit's last two sessions weeks 23 and 24, the screening unit's first two sessions weeks
-25 and 26, year-end check week 27 and respond week 28, the screening unit's last four sessions weeks 29 to 32.
+and respond week 22, the third unit's last two sessions weeks 23 and 24, the screening unit's six sessions weeks 25 to
+30, year-end check week 31 and respond week 32 (as in media arts 6 to 8, the check session sits in week 31 on this
+path because a once-a-week year has one session in week 32).
 
 **A shorter session.** On a 30-minute period, set-up and clean-up stay, making time shrinks, and a talk check day moves
 its self-check to the end of the day before, so the six talk groups still fit (5 + 21 + 4).
@@ -420,14 +424,13 @@ arts are specials in K to 2, so this breaks no stagger rule.
 
 ## For the lead
 
-1. **Rule 3 coverage and the year-end week (later.csv L107; expert read finding 4).** The frame's checks sample 12
-   of 54 ids (MA:Cr1.1.2 left day 181 in the 2026-11-26 fix pass); this scope names the other 42 and why. The
-   frame's reason for week 27 (staying off the core checks of weeks 29 to 32) no longer holds under CALENDAR.md
-   rule 1, and has been struck from the frame and this file. The expert's pick, not applied here because it moves
-   the frame's check weeks and CALENDAR.md's target weeks: move each year-end check to week 32, after the screening
-   unit (days 63 and 64 of each year, the screening unit in weeks 28 to 31), so it can sample unit 3, 7 or 11
-   (make, judge) as well, and the once-a-week screening unit no longer pauses for a check. Otherwise week 27 stands
-   as written.
+1. **Rule 3 coverage (later.csv L107; expert read finding 4).** The frame's checks sample 12 of 54 ids (MA:Cr1.1.2
+   left the year 2 year-end check in the 2026-11-26 fix pass); this scope names the other 42 and why. The year-end
+   week is settled: the lead's structure pass (2026-11-26, option (a) of the media arts group read finding 1) moved
+   each year-end check and its respond day to week 32, after the screening unit (days 63 and 64 of each year, the
+   screening unit in weeks 27 to 31), and the once-a-week screening unit no longer pauses for a check. Each day kept
+   its content and codes, so the checks still sample the same ids; widening them to the third unit's judge row
+   (MA:Re8.1.K, 1, 2), as media arts 6 to 8 does, is left open.
 2. **Candidate picks still owed by the unit plans:** a living maker's picture sequence from Africa or the Americas
    (unit 3, day 47), an animated work by a living maker from Asia (unit 6, day 95) and a media message piece by a
    maker from Africa (unit 9, day 134), each with its rights line and checked against every arts frame for a repeat.

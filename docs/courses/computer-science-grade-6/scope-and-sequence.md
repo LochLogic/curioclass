@@ -16,12 +16,12 @@ page holds the judgment.
   land where the frame sets them: days 37 and 38 on school days 87 and 89 (week 18), respond day 39 on 92 (week 19);
   days 62 and 63 on 155 and 158 (weeks 31 and 32, week 32 the finals week), respond day 64 on 160.
 - **Every session opens** with a three-minute retrieval trace or a predict task (APPROACH.md "How a day opens"); the
-  `retrieves` column names what it brings back. Device sessions keep their last five minutes to save or print and shut
-  devices, with cords behind the table; each device day's note names its paper path.
+  `retrieves` column names what it brings back. Device sessions keep three minutes at the start to get devices out and open the page and their last
+  four minutes to save or print and shut devices, with cords behind the table; each device day's note names its paper path.
 - **Trace, modify, make.** In every unit a construct is traced (Understanding) before it is modified (Fluency or a
   worked-then-modify Understanding day) and modified before it is made (Application): unit 1 days 1 to 4 trace, 3 and
   5 modify, 6 makes; procedures trace on 7, modify on 8, make on 9; the team program makes on 11 to 13 after day 10's
-  plan. Pairs are assigned and switch driver and navigator at a stated time on every pair device day; the team days
+  plan. Pairs are assigned and switch driver and navigator at the halfway signal on every pair device day; the team days
   (11 to 13) run teams of four on one device, with driver, navigator, tester and recorder rotating every eight minutes
   (on paper the recorder writes and the same rotation holds). Day 49 (predict, then watch) is Understanding, since it
   makes nothing.
@@ -174,7 +174,8 @@ on units 3, 4 and 5 (data, design, the triangle).
 - **End-of-unit assessment:** lesson one of the year-end course-level check (day 62) scores the unit in full, as the
   frame sets: the check on the day right after the unit's last day stands for its end-of-unit assessment. Day 61's
   written claim is collected for respond day 64, not scored. Response time: day 64, once.
-- **Sensitivity:** days 58 and 59 (Dorothy Vaughan and the segregation she worked under, named as a sourced fact);
+- **Sensitivity:** days 58 and 59 (Dorothy Vaughan and the segregation she worked under, named as a sourced fact;
+  sensitivity read before the case cards (docs/pipeline/briefs/sensitivity-read.md));
   days 60 and 61 (sharing a private photo) carry health's steps. Companies are never named.
 - **Candidate:** dropped, a visit by a local worker who uses an industry device: the cards carry the row and a visit
   needs a school's own arrangement, zero days.
@@ -200,23 +201,27 @@ on units 3, 4 and 5 (data, design, the triangle).
 
 ## Shorter path
 
-- **A shorter period (40 minutes).** The opening retrieval holds to three minutes, device days keep their five-minute
-  shut-down, and the teaching block runs about 30 minutes; the exit ticket shrinks to one question. Check days keep
+- **A shorter period (40 minutes).** The opening retrieval holds to three minutes, device days keep their three minutes
+  to open and four to shut down, and the teaching block runs about 28 minutes; the exit ticket shrinks to one question. Check days keep
   their 40 minutes by starting at the bell with materials on desks.
-- **A year about 10 days short.** Ten fold-in days, each folding into a neighbor, nothing assessed and no owned part
-  cut. Each saves about 35 of its 45 minutes (about 10 move to the neighbor):
+- **A year about 10 school days short** (two weeks, four sessions at two a week). Fold in the four marked
+  "10 school days" below: days 8, 24, 49 and 57, about 140 minutes, leaving 60 of the frame's 64 course days. The
+  other six (days 2, 4, 18, 21, 29 and 36) are a named spare list for a year shorter still; day 2, the first editor
+  session, is folded last. Each fold-in folds into a neighbor, nothing assessed and no owned part cut, and saves about
+  35 of its 45 minutes (about 10 move to the neighbor):
   - Day 2 (first editor session) folds into day 3's first 10 minutes: the worked program run there.
   - Day 4 (choice and repeat traced) folds into day 5: the anchor's choice and repeat are traced before it is modified.
-  - Day 8 (procedure blanks) folds into day 9 as a blank-fill warm-up.
+  - (10 school days) Day 8 (procedure blanks) folds into day 9 as a blank-fill warm-up.
   - Day 18 (fix disagreeing models) folds into day 19's first task.
   - Day 21 (programs run on test inputs) folds into day 22 on the sealed answer sheet.
-  - Day 24 (pseudocode for a worker case) folds into day 23's last 15 minutes as one shorter case.
+  - (10 school days) Day 24 (pseudocode for a worker case) folds into day 23's last 15 minutes as one shorter case.
   - Day 29 (photo properties) folds into day 28's last 10 minutes: pairs open the supplied photo's properties on a
     device (the printed panel only where there is none), so DC-22's device part is kept.
   - Day 36 (two options tried) folds into day 35 as one option tried on paper.
-  - Day 49 (toy network) folds into day 48 as a teacher demonstration.
-  - Day 57 (sensor loop) folds into day 56: the chosen device's function written on its card.
-  Total: 10 days, about 350 minutes, leaving 54 of the frame's 64 course days; every check and respond day stays.
+  - (10 school days) Day 49 (toy network) folds into day 48 as a teacher demonstration.
+  - (10 school days) Day 57 (sensor loop) folds into day 56: the chosen device's function written on its card.
+  Total: the four marked days save about 140 minutes (60 of 64 course days); with the spare list, 10 days, about 350
+  minutes, leaving 54. Every check and respond day stays on either path.
 
 ## For the lead
 

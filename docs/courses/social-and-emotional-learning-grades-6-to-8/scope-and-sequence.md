@@ -9,7 +9,8 @@ social-and-emotional-learning-grades-6-to-8, Social and Emotional Learning, Grad
 - **school_day formula.** For year index i (0, 1, 2) and session s within the year (1 to 64): school_day = 160·i + ceil(2.5·s). The value is cumulative through the band, so frame.py sorts the three years in order (it splits years by 160-day spans); it equals frame.py's own default spread. Read within its year: day in year = school_day - 160·i, week = (day in year - 1) // 5 + 1.
 - Each grade's year shape: four 11s, two 10s or 9s and two 8s, by the frame's Units table; the course-level checks are the end-of-unit Check of units 3, 6, 9, 12, 15 and 18.
 - Each three-group unit runs 3 × (Understanding, Fluency, Application), then Check and Respond; each two-group unit 2 × (Understanding, Fluency, Fluency, Application), then Check and Respond. Units 3, 6, 9, 12, 15 and 18 end on their last Application day; the course-level Check on the next day is their end-of-unit assessment.
-- Readiness: only course day 1 (the start-of-band check in the last ten minutes of session 1, rule 2). Every later row assumes the row one grade back, so each group's Understanding day opens with that row as retrieval, one item with a part per row; Fluency and Application openings retrieve earlier rows of the same year for spacing. The retrieves column names them.
+- Readiness: no readiness check anywhere in the band. Every row assumes the row one grade back (grade 6 rows the grade 5 rows SEL 3 to 5 taught the year before), so each group's Understanding day opens with that row as retrieval, course day 1 included, one item with a part per row; Fluency and Application openings retrieve earlier rows of the same year for spacing. The retrieves column names them.
+- Carriers on the days (bar part 9): each unit's carry-out cue on its first day, its family activity on its Respond day (for units 3, 6, 9, 12, 15 and 18, the course-level Respond day after them), the disclosure line (health's steps) on its first Understanding day, and the health unit and core link on the day that leans on them.
 - Every evidence point is a character's choice on an invented case. SA7 and SA9 pages are private and seen only for their steps; in grade 8 a skill is judged on its steps, never on willingness.
 
 ## Year 1: grade 6 (days 1 to 64)
@@ -19,8 +20,8 @@ social-and-emotional-learning-grades-6-to-8, Social and Emotional Learning, Grad
 Days 1 to 10, weeks 1 to 5; Check day 9 (school day 23), Respond day 10. Groups: 1.1 SM5, SM3, SA7 (days 1 to 4); 1.2 SO7, RS8 (days 5 to 8).
 - Arc: getting organized for a new school, then reading new settings and choosing the helper.
 - Order: organizing first because the first weeks need it; the meter and helper choice come before health unit 2 (week 4) retrieves them.
-- Readiness: day 1, assess readiness, on g5-rds-careful-thinking, g5-rel-ask-offer-help and g5-sm-set-goal, watched in the last ten minutes of session 1, after the hook and the modeling, and marked on the class sheet. Day 1 models its three sub-skills on one invented first week, one case in three parts, and quotes the goal steps card word for word (goal, steps, block and plan, check). A class without SEL 3 to 5 gets the grade 5 forms modeled in the first ten minutes of the group that first uses them (goal steps day 2, stop-think-choose and the meter day 5).
-- Retrieval: g5-sm-plan-and-tidy (day 2), g5-sm-stay-on-task (day 3), g5-sa-i-can-try (day 4), g5-soc-read-situation and g5-rel-ask-offer-help (day 5).
+- Readiness: none. Day 1 opens, after the hook, with one retrieval item in three parts on g5-sm-plan-and-tidy, g5-sm-stay-on-task and g5-sa-i-can-try, then models its three sub-skills on one invented first week, one case in three parts, and quotes the goal steps card word for word (goal, steps, block and plan, check). A class without SEL 3 to 5 gets the grade 5 card forms (goal steps, four-step stop-think-choose, the four-level meter) in day 1's first ten minutes as the bridge, claiming nothing, as SEL 3 to 5 day 1 does for a class without K to 2.
+- Retrieval: g5-sm-plan-and-tidy, g5-sm-stay-on-task and g5-sa-i-can-try (day 1, then spaced again on days 2, 3 and 4), g5-soc-read-situation and g5-rel-ask-offer-help (day 5).
 - Evidence: SM3 and SA7 on day 4's class sheet; SM5 (the planner and the materials system, with the reason), SO7 and RS8 on the Check page and the watched ask rehearsal. SM3 carries AASL.V.D.1 at grade 6 depth (day 1).
 - Candidate cells settled: the six-class planner page is a print check at the unit plan, no day cost.
 
@@ -50,7 +51,7 @@ Day 30, school day 75, week 15; Respond day 31, school day 78, week 16. Unit 3's
 
 Days 32 to 42, weeks 16 to 21; Check day 41 (school day 103), Respond day 42. Groups: 4.1 RS1, RS2, RS5; 4.2 SO1, SO4, SO3; 4.3 RS6, SO5.
 - Arc: the talk turn card, friendship paths and the I-statement, then another's view and care, then refusal and thanks.
-- Order: refusal follows health unit 4 (weeks 11 to 14); day 38 names that health unit.
+- Order: refusal follows health unit 4 (weeks 11 to 14); day 38 names that health unit. The refusal options keep health's "a reason or none" (the plain no) and the second push carried from grade 5 (if it comes again: say it, say it again, move away, tell), rehearsed against the card's repeat on days 38 and 40, and again in units 8 (days 76, 79) and 14 (days 145, 147).
 - Leave-out bridges: day 32 models the five-step cards' one-step forms (if unit 3 left out) and the feelings scale's one-step form (if unit 2 left out), inside the same ten minutes.
 - Evidence: RS2 and RS5 day 34; SO4 and SO3 day 37; SO5 day 40; RS1, SO1 and RS6 on the Check.
 - Candidate cells settled: plain-text paper threads and the refusal-card wording check stay inside days 32 and 38.
@@ -71,6 +72,7 @@ Days 54 to 62, weeks 27 to 31; the year-end check on day 63 is its end-of-unit a
 - Order: after health units 7 and 8 (weeks 22 to 28).
 - Leave-out bridges: day 54, the first Understanding day, for unit 3 and unit 4 inside the same ten minutes.
 - Evidence: SM6 and SM7 day 56 (each student's own first step and written presentation choice with the reason); RS7 and RS3 day 59; the rest on the year-end check.
+- Step up from grade 5: SEL 3 to 5 day 170 took a proposal to the principal or student council on a reasons-and-evidence sheet; here the way to present is chosen among options and weighed against the term goal, for a grade team or the principal (day 54 note).
 - Safety and supplies: inside the school day, the teacher present, about $5 of poster paper.
 - Candidate cells settled: the proposal is scoped to three Application sessions, inside day 56.
 
@@ -100,7 +102,7 @@ Day 94, school day 75 of grade 7, week 15; Respond day 95, school day 78, week 1
 
 ### Unit 10. Inside and shown
 
-Days 96 to 106, weeks 16 to 21; Check day 105 (school day 103), Respond day 106. Groups: 10.1 SA3, SA5; 10.2 SM1, SM2; 10.3 SA4, SA7, SA8. Leave-out bridge (unit 2 or 3) on day 96. Evidence: SM1 day 101; SA7 (private) and SA8 day 104; the rest on the Check. Candidates settled: SA8 as a practice change, and the cover-for-a-friend case written to differ from unit 14, inside day 102.
+Days 96 to 106, weeks 16 to 21; Check day 105 (school day 103), Respond day 106. Groups: 10.1 SA3, SA5; 10.2 SM1, SM2; 10.3 SA4, SA7, SA8. Leave-out bridge (unit 2 or 3) on day 96. Day 99 names the health units (grade 6 unit 3 for stress coping, grade 7 unit 11 for seeking support; grade 7 health has no stress unit). Evidence: SM1 day 101; SA7 (private) and SA8 day 104; the rest on the Check. Candidates settled: SA8 as a practice change, and the cover-for-a-friend case written to differ from unit 14, inside day 102.
 
 ### Unit 11. Repair and support
 
@@ -183,7 +185,7 @@ Grade 8 checks sample SA3, SM2, SM3 (with AASL.V.D.1), SA8 (with AASL.V.D.2), SM
 
 ## Shorter path
 
-- **Once a week** (frame): a three-group unit runs in 5 sessions (Understanding and Fluency together per group, the Applications together, Check and Respond together); a two-group unit in 6 sessions (U+F and the second Fluency per group, the Application, Check and Respond). The shared Check and Respond session runs 5 minutes opening, 12 minutes page and rehearsals, 8 minutes reteach, 5 minutes close. No assessed step is cut. Once a week, the Application session marks the unit's watched rehearsal; the codes judged on Application days in the full path move to the shared Check page as one written part each (the page then holds the unit's own items, up to six). In units 6, 12 and 18, once a week, the class carries out one part of its proposal or improvement, chosen at the unit plan.
+- **Once a week** (frame): a three-group unit runs in 5 sessions (Understanding and Fluency together per group, the Applications together, Check and Respond together); a two-group unit in 6 sessions (U+F and the second Fluency per group, the Application, Check and Respond). The shared Check and Respond session runs 5 minutes opening, 12 minutes page and rehearsals, 8 minutes reteach, 5 minutes close. No assessed step is cut. Once a week, the Application session marks the unit's watched rehearsal; the codes judged on Application days in the full path move to the shared Check page as one written part each (the page then holds the unit's own items, up to six). In units 6, 12 and 18, once a week, the class carries out one part of its proposal or improvement, chosen at the unit plan. Check weeks on this path: grade 6 mid-year week 17 (session 17, after 6 + 5 + 6 sessions) and year-end week 32; grade 7 week 17 (5 + 6 + 6) and 32; grade 8 week 16 (6 + 5 + 5) and 32. Weeks 16 and 17 hold no core check of grades 6 to 8; week 17 also holds health's grade 6 and 7 mid-year checks, so the school puts the SEL session on a day other than health's check day (CALENDAR rule 3 counts days).
 - **A year 10 school days short:** merge each two-group unit's two Fluency days per group into one session, each skill rehearsed in its own block (about 10 minutes of paired rehearsal on fewer cards), the retrieval opening kept; the merged day carries the second day's number (days 2 and 3, 6 and 7, 23 and 24, 27 and 28, 77 and 78, 81 and 82, 87 and 88, 91 and 92, 130 and 131, 134 and 135, 173 and 174, 177 and 178); 4 a year, 12 in all, 180 of 192 sessions. Every assessed skill keeps a rehearsal before its evidence point; no assessed or owned part is cut.
 - **A shorter 20 to 25 minute period:** 3-minute opening and close, one fewer rehearsal card; nothing assessed is cut.
 - **A left-out unit:** a later unit that uses its card models the card's one-step form in the first ten minutes of its first Understanding day (the leave-out bridges named per unit above).

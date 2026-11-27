@@ -21,7 +21,8 @@ page holds the judgment. Provisional while its partial base is not loaded (later
 - **The 45 minutes.** Every day from day 2 opens with the three-minute retrieval trace (APPROACH.md "How a day
   opens"); the `retrieves` column names the row where it reaches back to an earlier unit or grade 7, and a blank means
   the opener traces the day before or shows the last exit ticket's wrong example. A device day keeps three minutes at
-  each end to get devices out, saved and put away, so it teaches about 34 minutes; a paper day about 40.
+  the start to get devices out and open the page and four at the end to save work and put devices away, so it
+  teaches about 33 minutes; a paper day about 40.
 - **Devices and paper.** Device days are the frame's: 4, 7, 14, 16, 17, 19, 20, 22 to 25, 30 to 33, 43, 44, 47, 50,
   51, and the year-end check's code items where devices allow. Day 13 is a paper day with the teacher's one screen for
   the live-code, so the trace the project rests on keeps about 40 minutes; pairs first open the editor on day 14. Day 21
@@ -32,13 +33,16 @@ page holds the judgment. Provisional while its partial base is not loaded (later
 - **Safety.** Copied into every device and security day's note: cords behind the table, devices carried closed with
   two hands; day 1 (the fake message beside the map) and security days 3 to 5 run only on toy systems inside our
   pages, and their teacher page carries health's "If a student tells you something" steps word for word.
-- **Debugging.** The year's debugging routine is named and taught on day 14, on the anchor game's wrong-length bug:
-  predict, run, compare, find the first place it goes wrong, change one thing, test again (CT9). Days 17, 23 and 49
+- **Debugging.** Grade 7's debugging routine (day 5) is retrieved on day 14, on the anchor game's wrong-length bug,
+  worked step by step: predict, run, compare, find the first place it goes wrong, change one thing, test again (CT9);
+  for a student new to the elective it is first teaching. Days 17, 23 and 49
   use it by name; grade 9 retrieves it.
-- **Days outside the standards (bar C1).** The list work past the middle school boundary sits on day 13 (the list
-  trace), day 14 (list changes) and the list parts of days 16, 17 and 20: about 4 of the 52 teaching days, about 8
-  percent, under the 10 percent limit. On the shorter path (day 17 folded into days 16 and 20) it is about 3.5 of 42
-  teaching days, about 8 percent, still under. No other day falls outside the standards.
+- **Days outside the standards (bar C1).** One day: day 61, the year look-back, which has no progression row or
+  code. That is 1 of the 52 teaching days, about 2 percent, under the 10 percent limit. On the shorter path day 61
+  folds into respond day 64, so none of the 48 teaching days (42 with the spare list) falls outside the standards.
+  The list work past the middle school boundary (days 13, 14 and the list parts of days 16, 17 and 20) is not counted
+  here: its row uses ~MS-ALG-PS-01 and ~MS-PRO-RD-17 again, written in `codes`, so those days are standard content
+  (begun and used-again ids are standard content).
 - **Base text.** Partial: the archived Teach Computing Curriculum (England, key stage 3, 2023), not yet loaded
   (L149). The days that lean on it carry its credit in the note: 3, 4 and 5 (Year 9 cybersecurity lessons 2, 4 and
   5), 13, 16, 17 and 20 (Year 9 Python sequences lessons 1 and 5), 18 (Year 8 layers lesson 6), 29 to 33 (Year 9 data
@@ -54,8 +58,7 @@ page holds the judgment. Provisional while its partial base is not loaded (later
 Every earlier-grade row the course assumes was last used in grade 7, the year before, so each opens as a retrieval
 task on the day the frame's Seams name, with the id in `retrieves`. No row is two or more grades back, so by rule 2 no
 readiness check is owed. Because grade 8 is an elective that never assumes grade 7 was taken (frame Course order),
-the frame still gives a ten-minute readiness check for a student who did not take grade 7, on the readiness days
-below; for a student who did, the same items serve as a second retrieval. sequence.py may note these as "readiness
+the frame still gives a ten-minute readiness check on the readiness days below. Every student sits the readiness items: for a student who took grade 7 they are the year-before retrieval, and the teacher reads them to find who needs the worked example (a teacher cannot always tell who took grade 7). sequence.py may note these as "readiness
 where retrieval is due"; that is this elective path, on purpose.
 
 | Row (last used grade 7) | Retrieval day | Readiness day (elective path) |
@@ -83,7 +86,12 @@ Each readiness check sits in the last ten minutes of day 1 (after the hook) or o
 (12, 28, 41, 53); no other unit's first day holds one. The unit's first understanding day carries the short worked
 example the frame names for flagged students, inside its minutes. Earlier units of this course come back in the
 openers too (for example unit 1's attacks on days 14 and 20, unit 2's game on days 30, 39, 47 and 49, unit 3's
-tables on days 43 and 44), so the year's rows are spaced, not met once.
+tables on days 43 and 44, unit 4's saved code samples on day 58), so the year's rows are spaced, not met once.
+
+Where a school left out grade 7's unit 4 (grade 7's Swap or leave out line), g7-improve-training-data,
+g7-examine-algorithm-harm and g7-pick-approach were taught to no one: day 41's readiness check covers them for the
+whole class, and the worked examples on the first understanding days of g8-ml-evaluate, g8-modify-for-bias and
+g8-ai-tool-day (unit 4) are the bridge for every student.
 
 ## Unit 1: Systems that hold up (days 1 to 12, weeks 1 to 6)
 
@@ -102,14 +110,14 @@ with its test (IM-36), and a short justification recorded for the HW-30 thread. 
 each part serves, the day 9 test record, the revision and retest, and each member's named role; IM-36 is scored on day
 11's item and day 10's observed team product. Response: respond day 12, which holds unit 2's readiness check.
 **Candidate.** Kept: the base's social engineering order (the trick, then its clue) inside days 3 and 4, zero days.
-**Sensitivity.** Disability needs are test conditions, never acted (days 7 to 10); online safety on days 3 to 5 as
+**Sensitivity.** Disability needs are test conditions, never acted (days 7 to 10, sensitivity read before the case cards (docs/pipeline/briefs/sensitivity-read.md)); online safety on days 3 to 5 as
 above. The CISA phishing page is a browser check.
 
 ## Unit 2: Make it, credit it, hand it over (days 13 to 25, weeks 7 to 13)
 
 **Arc.** The other class's flawed word-guess game is traced line by line on paper while the teacher live-codes on one
-screen (day 13), modified in small checked steps on the pairs' first editor day, where the debugging routine is named
-on its wrong-length bug (day 14), then each pair designs its own game with a test-table planned first (day 15) and builds it (days 16 and
+screen (day 13), modified in small checked steps on the pairs' first editor day, where grade 7's debugging routine is
+retrieved on its wrong-length bug (day 14), then each pair designs its own game with a test-table planned first (day 15) and builds it (days 16 and
 17). Credit and permission are taught unplugged (day 18) the lesson before a borrowed word-picking function enters
 the project with its credit comment (day 19). The draft is finished (day 20) and handed to a partner who traces it
 (day 21). The anchor game's accessibility faults are named as a worked example before classmates test each project
@@ -123,7 +131,7 @@ last day, which stands for the end-of-unit assessment (frame Days; sequence.py a
 screen with two classmates' feedback lines to act on, since the standard is refining from feedback. Response: day 28.
 No mid-unit assessment (13 days).
 **Candidate.** Kept: the base's live-coding of the worked program before pairs try it, inside day 13, zero days.
-**Sensitivity.** Word lists from neutral topics; no student's name, photo or voice in a program; feedback is about
+**Sensitivity.** Days 22 and 24 treat disability needs as test conditions, never acted, with the sensitivity read before the case cards (docs/pipeline/briefs/sensitivity-read.md). Word lists from neutral topics; no student's name, photo or voice in a program; feedback is about
 the program, never the classmate.
 
 ## Unit 3: Data that answers back (days 29 to 41, weeks 15 to 21)
@@ -215,11 +223,13 @@ teacher's screen). For the lead 1 offers a fix inside day 63's minutes.
 
 ## Shorter path
 
-**A shorter period (40 minutes).** The opener and the device minutes stay; a device day teaches about 29 minutes and
+**A shorter period (40 minutes).** The opener and the device minutes stay; a device day teaches about 28 minutes and
 a paper day 35. The cut comes from make-day build time (days 16, 17, 20, 23), never from a trace or modify day, and
 the check sittings (25 plus 20, 30 plus 30 minutes) still fit.
-**A year about 10 days short.** Ten fold-in days, each folding into a neighbor, nothing assessed and no owned part
-cut, 45 minutes saved each:
+**A year about 10 school days short** (two weeks, four sessions at two a week). Fold in the four marked "10 school
+days" below: days 33, 45, 50 and 61, 180 minutes, leaving 60 of the frame's 64 course days; no modify day or worked
+example is touched. The other six (days 4, 10, 17, 24, 31 and 59) are a named spare list for a year shorter still.
+Each fold-in folds into a neighbor, nothing assessed and no owned part cut, 45 minutes saved each:
 - Day 4 into days 3 and 5 (the inbox sort on paper inside day 3, preventions matched at the start of day 5).
 - Day 10 into day 9 (test and revise in one lesson, one retest; day 9 then carries day 10's observation and
   look-fors).
@@ -227,17 +237,18 @@ cut, 45 minutes saved each:
 - Day 24 into day 23 (retest at the end of the refine lesson).
 - Day 31 into days 30 and 32 (the no-relationship and falling sets as a ten-minute contrast at the end of day 30; the
   out-of-data judgment made on each pair's own set as the prediction day 32 judges).
-- Day 33 into days 32 and 38 (the pair's prediction judged at the end of day 32; the fairest chart drawn in the
+- (10 school days) Day 33 into days 32 and 38 (the pair's prediction judged at the end of day 32; the fairest chart drawn in the
   summary draft on day 38).
-- Day 45 into day 44 (the model card read at the end of day 44).
-- Day 50 into days 49 and 51 (two samples on day 49, the verdict on day 51).
+- (10 school days) Day 45 into day 44 (the model card read at the end of day 44).
+- (10 school days) Day 50 into days 49 and 51 (two samples on day 49, the verdict on day 51).
 - Day 59 into day 58 (the debate runs one round fewer and its last ten minutes are each student's own claim, backing
   and rebuttal on a card; ET-42 is still scored unseen on day 62).
-- Day 61 into day 64 (the look-back map on the respond day).
+- (10 school days) Day 61 into day 64 (the look-back map on the respond day).
 
 Day 1 keeps its hook, its new failure and its readiness check, and day 2 stays: day 1 has no room for a fold.
 
-Total 450 minutes, ten lessons: 54 of the frame's 64 course days, every unit, check and respond day kept.
+Total: the four marked days save 180 minutes (60 of 64 course days); with the spare list, 450 minutes, ten lessons,
+54 of 64. Every unit, check and respond day is kept on either path.
 
 ## For the lead
 

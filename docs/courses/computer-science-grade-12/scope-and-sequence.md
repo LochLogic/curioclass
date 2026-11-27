@@ -12,8 +12,9 @@ page holds the reasons.
 - **school_day formula:** course day 2k-1 sits on school day 5k-3 and course day 2k on school day 5k-1 (the second
   and fourth day of week k), so course days 2k-1 and 2k fall in week k; week = (school_day - 1) // 5 + 1.
 - **Each lesson:** a five-minute retrieval trace or predict task opens every lesson from day 2 on (APPROACH.md, "How a
-  day opens"); device lessons keep their last three minutes to save work to a file and shut down; paper work is
-  collected in the last two minutes. About 35 to 37 teaching minutes a lesson.
+  day opens"); device lessons keep three minutes at the start to get devices out and open the page and their last
+  four minutes to save work to a file and shut down; paper work is collected in the last two minutes. About 33
+  teaching minutes in a device lesson and about 38 in a paper lesson.
 - **Day kinds** follow docs/GLOSSARY.md: a standard's first day in the course is Understanding, so day 29 (first day
   of S1-SWD-PP-08), day 50 (first user round, HS-PRO-TR-20) and day 60 (first day of HS-SOC-CE-46) are Understanding,
   each with its worked example first.
@@ -24,7 +25,7 @@ page holds the reasons.
   base text and so no source map.
 - **Devices:** device days are 4, 32 to 43, 48 and 50 to 53 (18 lessons, as the frame counts); every unit keeps unplugged days and unit 2
   and unit 5 are wholly unplugged. Each device day's note gives the four ways (pair, stations, one screen, no device),
-  the save-and-shut-down minutes and the safety lines. The three queued editor modes (later.csv L148) are not used in
+  the open, save and shut-down minutes and the safety lines. The three queued editor modes (later.csv L148) are not used in
   grade 12; the editor's offline version history is not built yet, so day 31 runs on paper branch cards.
 
 ## Readiness and retrieval
@@ -32,7 +33,7 @@ page holds the reasons.
 Grade 12 is an elective that never assumes grade 11 was taken (frame, "Course order"). Every row it owns assumes a
 grade 11 row, last used the year before, so a student who took grade 11 meets it as a retrieval opening (the
 `retrieves` column); a student who did not takes the same items as a ten-minute readiness check before the unit opens,
-and the unit's first understanding day carries a worked example of the grade 11 idea inside its own minutes.
+and the unit's first understanding day carries a worked example of the grade 11 idea inside its own minutes. Every student sits the readiness items: for a student who took grade 11 they are the year-before retrieval, and the teacher reads them to find who needs the worked example (a teacher cannot always tell who took grade 11).
 
 | Unit | Earlier-grade row | Last used | Treatment and day |
 |---|---|---|---|
@@ -177,7 +178,12 @@ CE-45 first because its log comes from unit 3; CE-46 last because its portfolio 
 - Candidate: dropped, a visit by a computing professional (the standard asks for published accounts, and a visit needs a
   school's own arrangement), zero days.
 - Short form if seniors leave before week 31: the frame's four days in weeks 29 and 30.
-- Sensitivity: race and gender barriers in the accounts; a plan that can touch family money or status; health's
+- Swap or leave out: a school may leave this unit out (frame). HS-SOC-CE-45 and HS-SOC-CE-46 are then not claimed that
+  year, and the course page and family note say so (a school may teach CE-46's plan in its own advisory program and
+  name that in the record). No course-level check samples the unit (it follows the year-end check, and both ids are
+  scored only on day 63), so no check item is replaced; days 57 to 64 stay in the calendar for the school's own use, and
+  the calendar does not move.
+- Sensitivity: race and gender barriers in the accounts (day 59, sensitivity read before the case cards (docs/pipeline/briefs/sensitivity-read.md)); a plan that can touch family money or status; health's
   disclosure steps on the teacher page.
 
 ## Standards and their days
@@ -213,28 +219,32 @@ The capstone's revisit of grade 9's HS-PRO-PD-12 and HS-ALG-PS-01 sits inside th
 
 ## Shorter path
 
-**A shorter period (40 minutes).** The opening drops to three minutes, device days keep three minutes to save and paper
-two to collect, leaving about 32 teaching minutes. Debates run in groups of four instead of whole class; build days
+**A shorter period (40 minutes).** The opening drops to three minutes, device days keep three minutes to open and four to
+save, and paper days two to collect, leaving about 30 teaching minutes on a device day and 35 on a paper day. Debates run in groups of four instead of whole class; build days
 keep their pair switch and lose about five minutes of code time each; the sittings are already written as 40-minute
 sittings with about 35 task minutes, so they hold.
 
-**A year about 10 days short.** Ten fold-in days, none assessed and no owned part cut; each saves one 45-minute lesson
-(about 37 teaching minutes) less the minutes moved into its neighbor:
+**A year about 10 school days short** (two weeks, four sessions at two a week). Fold in the four marked "10 school
+days" in the table: days 9, 12, 26 and 57 (the reflection and three unit hooks), about 116 teaching minutes, leaving
+60 of 64 course days. The other six (days 6, 14, 17, 19, 37 and 38) are a named spare list for a year shorter still.
+None is assessed and no owned part is cut; each saves one 45-minute lesson (about 37 teaching minutes) less the
+minutes moved into its neighbor:
 
 | Fold-in day | Where its work goes | Minutes saved |
 |---|---|---|
 | 6 (checklist modify day) | The checklist is written as day 5's exit; the mixed set becomes day 7's opening | 37 |
-| 9 (written reflection) | The "which point moved me" line is written in day 8's last 8 minutes; peer feedback goes | 29 |
-| 12 (unit 2 hook) | The bus-route anchor opens day 13 in 8 minutes | 29 |
+| (10 school days) 9 (written reflection) | The "which point moved me" line is written in day 8's last 8 minutes; peer feedback goes | 29 |
+| (10 school days) 12 (unit 2 hook) | The bus-route anchor opens day 13 in 8 minutes | 29 |
 | 14 (values paragraphs) | Written as day 13's last 12 minutes, revised on day 22 | 25 |
 | 17 (law evaluation) | Written in day 16's last 12 minutes, revised on day 22 | 25 |
 | 19 (debate preparation) | Cards handed out on day 18's last 10 minutes; prepared in day 20's first 5 | 22 |
-| 26 (unit 3 hook) | The two-halves anchor opens day 27 in 8 minutes | 29 |
+| (10 school days) 26 (unit 3 hook) | The two-halves anchor opens day 27 in 8 minutes | 29 |
 | 37 (build day 5) | Teams build a smaller menu project; work spread over the other build days | 37 |
 | 38 (build day 6) | Same: the smaller project needs five build days, not seven | 37 |
-| 57 (unit 5 hook) | The two log entries open day 58 in 8 minutes | 29 |
+| (10 school days) 57 (unit 5 hook) | The two log entries open day 58 in 8 minutes | 29 |
 
-Total: 10 lessons, about 299 teaching minutes, 64 course days to 54. The readiness checks keep their placements (the
+Total: the four marked days save about 116 teaching minutes (64 course days to 60); with the spare list, 10 lessons,
+about 299 teaching minutes, 64 to 54. The readiness checks keep their placements (the
 last ten minutes before each unit), and the checks keep their order after units 2 and 4.
 
 **Bar C1 on the short path** (lead call 2026-11-26: C1 holds on the Shorter path too). None of the ten fold-ins
@@ -247,7 +257,9 @@ carries S1 time, so two Specialty lessons are shortened as well, with no owned p
   32's opening (about 5 minutes), since the version control part is part met anyway; the other half reads and traces
   the starter module on paper before day 32 changes it (HS-PRO-PD-15). Saves about 0.4 of an S1 day.
 
-S1 time on the short path: about 3.9 day-equivalents of 42 teaching days, about 9.2 percent, under 10 percent.
+S1 time with the spare list: about 3.9 day-equivalents of 42 teaching days, about 9.2 percent, under 10 percent. On
+the four-day path (48 teaching days) the day 31 half lesson above is used (it does not lean on a fold-in) and day 5
+stays whole: about 4.4 day-equivalents of 48, about 9.1 percent, under 10 percent.
 
 ## For the lead
 

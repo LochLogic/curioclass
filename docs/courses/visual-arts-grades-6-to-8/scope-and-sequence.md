@@ -27,7 +27,7 @@ Nothing here has been tried with students, and Curio Class makes no claim that a
 
 ### Unit 1. Value and the world's ways of life (days 1 to 16, weeks 1 to 8)
 
-- **Arc.** Lawrence's Street to Mbari opens how a work shows a people's life; graphite value is taught in steps, then new materials on a test sheet, a still life from observation, WPA posters for persuasion, and a hallway showing. A one-week studio waste audit (days 2 to 4) sets the class's one environmental change for the year.
+- **Arc.** Lawrence's Street to Mbari opens how a work shows a people's life; graphite value is taught in steps, then new materials on a test sheet, a still life from observation opened with blind and modified contour (day 7, first taught here, drilled day 10), WPA posters for persuasion, and a hallway showing. A one-week studio waste audit (days 2 to 4) sets the class's one environmental change for the year.
 - **Why here.** Value and studio routine come first because every later unit uses them; the look at how people live builds on the grade 5 look at cultural links.
 - **Assessments.** Baseline look day 3; end-of-unit day 15 (VA:Re7.1.6a, VA:Re7.2.6a written; VA:Cr2.1.6a, VA:Cr2.2.6a from the kept test sheet, log and waste card); respond day 16.
 - **Retrieval.** Day 2 opener retrieves va-g5-look and va-g5-craft (last used grade 5).
@@ -77,12 +77,13 @@ Samples VA:Cr1.2.6a (a new planning page for a question the student picks from t
 
 ### Unit 5. Watercolor and ink over many sessions (days 65 to 82, weeks 1 to 9)
 
-- **Arc.** The Benin plaques in three settings open how display and place change a work's value; washes in steps, Fan Kuan's layered ink, a five-session long piece with a process log, Rockwell's Freedom of Speech for audiences, the duty when sharing images online, and a classroom showing.
+- **Arc.** The Benin plaques in three settings open how display and place change a work's value; grade 5's washes as a review strip, then controlled layers and dry brush in steps (days 66, 67), Fan Kuan's layered ink, a five-session long piece with a process log, Rockwell's Freedom of Speech for audiences, the duty when sharing images online, and a classroom showing.
 - **Why here.** It opens the year with the grade 7 look and craft, the base for unit 6.
 - **Assessments.** Baseline look day 67; end-of-unit day 81 (VA:Re7.1.7a, VA:Re7.2.7a written; VA:Cr2.1.7a, VA:Cr2.2.7a from the piece, log and sharing card); respond day 82. Day 80 is practice, nothing scored; dropped on the once-a-week path and the short year.
 - **Retrieval.** Day 66 opener retrieves va-g6-look and va-g6-craft.
 - **Four processes.** Create 66 to 70, 72 to 77, 81; present 78; respond 65, 67, 71, 72, 78 to 81; connect 65, 66, 71, 76, 79; respond day 82. Critique day 72, revision day 73.
 - **Candidate.** Kept: a living maker's work shown online and in a gallery, day 79.
+- **Leave-out (frame).** A unit the course page names (the Benin plaques include objects made for royal ancestral altars, studied by looking only). A school or family may swap a work, which keeps the unit, its showing and its ids, or leave the unit out for its community's reasons; then the course page and the family note name the ids not claimed that year: VA:Re7.1.7a, VA:Re7.2.7a, VA:Cr2.1.7a, VA:Cr2.2.7a. Never a short-year or time cut.
 - **Once a week (9 sessions).** Check and respond stay whole; 65 and 66, 67 and 68, 69 and 70, 71 and 72 merge in pairs; 73 to 75 merge (day 74's drill is day 75's opener); 76 and 77 merge; 78 and 79 merge (the living maker's two displays studied at the showing); day 80 (practice, nothing scored) is dropped.
 
 ### Unit 6. Perspective, aims and criteria (days 83 to 96, weeks 10 to 16)
@@ -117,6 +118,7 @@ Samples VA:Re7.1.7a, VA:Re7.2.7a and VA:Cr2.2.7a (a new sharing plan). It draws 
 - **Retrieval.** Day 114 opener retrieves va-g6-show and va-g6-museum; day 124 va-g7-ideas and va-g7-judge.
 - **Four processes.** Present 113, 114, 116 to 125; create 118 (the catalog page or storyboard laid out with unit 7's hierarchy look-for, practice of VA:Cr2.3.7a, no claim; daily evidence line on technique and change); respond 113, 115, 119, 120, 123 to 125; connect 113, 115, 121, 125; respond day 126. Critique day 120, revision day 121.
 - **Candidate.** Kept at no day cost: the born-digital work as the third venue of day 119.
+- **Leave-out (frame).** A unit the course page names (ledger drawings made by Plains men held as prisoners). A school or family may swap a work, which keeps the unit, its showing and its ids, or leave the unit out for its community's reasons; then the course page and the family note name the ids not claimed that year: VA:Pr4.1.7a, VA:Pr5.1.7a, VA:Pr6.1.7a, VA:Cn11.1.7a. Never a short-year or time cut.
 - **Once a week (6 sessions).** Check and respond stay whole; 113 to 115, 116 to 118, 119 to 121, and 122 to 124 merge.
 
 ### Course-level check, year 7 year-end (days 127 and 128, week 32, school days 318 and 320)
@@ -151,22 +153,24 @@ Samples VA:Re7.1.8a, VA:Re7.2.8a and VA:Cr2.2.8a (source labels on a given colla
 
 ### Unit 11. Words and pictures, a mural and an argued judgment (days 163 to 178, weeks 18 to 25)
 
-- **Arc.** Baca's Great Wall of Los Angeles opens art made together; Corita Kent's prints and a grid layout lead to a zine on the unit 10 inquiry; Lam's The Jungle carries a written analysis; a class mural on a shared positive theme, its panel-and-grid method shown in steps with a step card on day 168 before day 169 paints it; claim, reasons, evidence and counterclaim; a showing to the school.
+- **Arc.** Baca's Great Wall of Los Angeles opens art made together; Corita Kent's prints and a grid layout lead to a zine on the unit 10 inquiry; Lam's The Jungle carries a written analysis; a class mural on a shared positive theme, its panel-and-grid method shown in steps with a step card on day 168 before day 169 paints it (grade 4's grid returns as known; the new steps are edge marks across panels and squaring to mural scale); claim, reasons, evidence and counterclaim; a showing to the school.
 - **Why here.** It needs unit 10's inquiry and unit 9's source labels; its mural is one of the works sorted in unit 12.
 - **Assessments.** Baseline look day 164; two end-of-unit check days, 176 (VA:Re8.1.8a written; VA:Cr2.3.8a, VA:Cn10.1.8a from the zine, panel and group note) and 177 (VA:Re9.1.8a); respond day 178. Day 175 is practice, nothing scored; dropped on the once-a-week path and the short year.
 - **Retrieval.** Day 164 opener retrieves va-g7-design and va-g7-judge; day 166 va-g8-craft; day 167 va-g8-look.
 - **Four processes.** Create 164 to 166, 168 to 171, 173, 176; present 174; respond 163, 164, 167, 170, 172, 174 to 177; connect 163, 167, 168, 173, 176; respond day 178. Critique day 170, revision day 171.
 - **Candidate.** Dropped: two products and a written argument fill the 16 days.
+- **Leave-out (frame).** A unit the course page names (Wifredo Lam's painting draws on Afro-Cuban religious figures, studied by looking only). A school or family may swap a work, which keeps the unit, its showing and its ids, or leave the unit out for its community's reasons; then the course page and the family note name the ids not claimed that year: VA:Cr2.3.8a, VA:Cn10.1.8a, VA:Re8.1.8a, VA:Re9.1.8a. Never a short-year or time cut.
 - **Once a week (7 sessions).** The two check days merge into one session (the frame's rule); respond stays whole; 163 to 165, 166 to 168, 169 to 171, 172 and 173, and 174 merge into five sessions; day 175 (practice, nothing scored) is dropped.
 
 ### Unit 12. Jurying and hanging a themed show (days 179 to 190, weeks 26 to 31)
 
 - **Arc.** The Nation to Nation treaty exhibition opens how a show's choices influence visitors; jurying the year's work against criteria; a Robert Davidson pole and a sort of how works serve a group's identity; sequencing, sight lines and exhibition stories; the year-end and band-end themed show.
-- **Why here.** The band ends with a show of the band's kept work.
+- **Why here.** The band ends with a show of the year's kept work, with the band's earlier pieces (sent home at the end of years 6 and 7) as photographs.
 - **Assessments.** Baseline look day 183; practice before the check: day 184 (two works sorted by how each serves a group's identity, VA:Cn11.1.8a, partner-marked, nothing scored); end-of-unit day 189 (VA:Pr6.1.8a, VA:Cn11.1.8a written; VA:Pr4.1.8a, VA:Pr5.1.8a from the jury card and the showing); respond day 190.
 - **Retrieval.** Day 180 opener retrieves va-g7-show and va-g7-museum; day 186 va-g8-revise and va-g8-judge.
 - **Four processes.** Present 179 to 181, 183 to 189; create 185 (the introduction panel laid out on unit 11's pictures-and-words grid, practice of VA:Cr2.3.8a, no claim; daily evidence line on technique and change); respond 179, 181, 182, 186, 188, 189; connect 179, 182, 184, 189; respond day 190. Critique day 186, revision day 187.
 - **Candidate.** Dropped: 12 days, and the unit already reads Native-told community stories.
+- **Leave-out (frame).** A unit the course page names (a Haida crest pole, studied by looking only). A school or family may swap a work, which keeps the unit, its showing and its ids, or leave the unit out for its community's reasons; then the course page and the family note name the ids not claimed that year: VA:Pr4.1.8a, VA:Pr5.1.8a, VA:Pr6.1.8a, VA:Cn11.1.8a. Never a short-year or time cut.
 - **Once a week (5 sessions).** Check and respond stay whole; 179 to 181, 182 to 185 (day 184's drill is the opener), and 186 to 188 (critique, revision and hang, the family show) merge.
 
 ### Course-level check, year 8 year-end (days 191 and 192, week 32, school days 478 and 480)

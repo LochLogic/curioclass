@@ -16,8 +16,8 @@ Course `computer-science-grade-6` (catalog id `cs-k12`), grade 6, one year. Draf
   grades 6 to 12 (docs/courses/computer-science/STANDARD.md section 2, Cory, Desk q-fix-cs-1), a real elective, so
   course day n falls on school day 2.5 n, rounded up (week n/2, rounded up). The 45 minutes hold set-up, clean-up and
   collecting work: a session opens with a retrieval trace or a predict task (three to ten minutes, APPROACH.md "How a
-  day opens"), and device sessions keep five minutes at the end to save or print work and shut devices, so a device
-  session teaches for about 35 minutes. Each unit's days include its end-of-unit assessment and end with a respond
+  day opens"), and device sessions keep three minutes at the start to get devices out and open the page and four at the end to save
+  or print work and shut devices, so a device session teaches for about 33 minutes. Each unit's days include its end-of-unit assessment and end with a respond
   day, with one shape for a unit that a course-level check follows directly: in units 3 and 6 the check stands for
   the unit's own end-of-unit assessment and the check's respond day is the unit's respond day (the kindergarten
   pilot's pattern). Units 1 to 6 teach on 13, 9, 10, 5, 5 and 8 days, 50 teaching days. Days follow the load of the
@@ -109,8 +109,8 @@ Course `computer-science-grade-6` (catalog id `cs-k12`), grade 6, one year. Draf
   course-level check that follows them (Days). No score comes from a session that first teaches a row. The respond
   day reteaches by error letter and repeats the missed item in a new form.
 - **Devices.** One device per pair is the default on a device day, never needed per student; pairs keep driver and
-  navigator roles that switch at a stated time. Unit 1's team sessions 11 to 13 run teams of four on one device, with
-  driver, navigator, tester and recorder rotating every eight minutes (on paper the recorder writes and the same
+  navigator roles that switch at the halfway signal. Unit 1's team sessions 11 to 13 run teams of four on one device, with
+  driver, navigator, tester and recorder rotating every eight minutes (the named exception for teams of four) (on paper the recorder writes and the same
   rotation holds). Device days: unit 1 sessions 2, 3, 5, 6, 8, 9 and 11 to 13 (our
   editor), unit 2 session 6 (a given program run on the test inputs), unit 3 sessions 3 and 5 to 7 and 10 (file
   properties, the table tool), unit 4 sessions 2 and 3 (a toy classifier in the page), unit 5 session 3 (a toy network

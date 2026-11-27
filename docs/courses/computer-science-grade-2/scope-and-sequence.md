@@ -165,8 +165,8 @@ is a special, so rule 1 does not count it (For the lead 2).
 
 **A shorter period (25 minutes).** The three-minute retrieval and the four put-away minutes stay; the cut comes from
 practice time. Device days keep about 8 to 15 minutes at the keys (day 2 and days 14 to 18), the worked example and its
-trace are never cut, and on the five assessment days (5, 11, 19, 26, 31) the retrieval opening is dropped: 10
-minutes of paper items read aloud, then 15 minutes of spoken groups.
+trace are never cut, and the five assessment days (5, 11, 19, 26, 31) open with settling and instructions, not a
+retrieval task, at every length: 10 minutes of paper items read aloud, then 15 minutes of spoken groups.
 
 **A year about 10 school days short (two weeks, two sessions).** Two fold-in days, both Fluency, nothing assessed and no
 owned part on them alone:
@@ -178,9 +178,7 @@ owned part on them alone:
 
 Each fold-in replaces the host day's three-minute retrieval opening and takes about five minutes in all (one card or
 one block changed, predicted and run), so the host day keeps its own teaching. That is 2 of the frame's 32 days (30
-kept), 60 minutes. E2-ALG-PS-01 stays on days 7, 9 and 11; E2-PRO-PD-04 on days 14, 17 and 19. A school that loses
-more drops no respond day and no check. The course-level checks keep weeks 11 and 26; a lost week before a check moves
-the teaching days, never the check.
+kept), 60 minutes. E2-ALG-PS-01 stays on days 7, 9 and 11; E2-PRO-PD-04 on days 14, 17 and 19. The shorter-year rule, the same from kindergarten to grade 5: a respond day after an end-of-unit sitting may fold into the next day's opener with a self-check; a respond day after a course-level check never folds; check days keep their weeks, and a lost week before a check moves the teaching days, never the check. The course-level checks keep weeks 11 and 26.
 
 ## For the lead
 

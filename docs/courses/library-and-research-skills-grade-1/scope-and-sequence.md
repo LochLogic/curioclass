@@ -78,6 +78,7 @@ day 4. Day 4 also starts the unnamed class know and wonder chart kept for the ye
   day 2's 19 minutes already hold the five-minute retrieval and two sheets, and grade 2's g2-question-to-research
   sorts which wonders a book could answer, its natural home. Saying the "big picture" idea of a read-aloud orally:
   kept, zero days, one sentence at day 4's share circle.
+- **Whose voices (C12):** the unit records the makers of its read-alouds and pictures (day 4's note).
 
 ## Unit 2. Finding the page (days 7 to 12, weeks 7 to 12)
 
@@ -109,6 +110,7 @@ back on day 10); stand-alone: "What do tree roots do?" Skill card withdrawn on d
 - **Candidates:** reading information in pictures and simple charts with help: kept, zero days, one of day 8's three
   mini-books has a labeled picture or simple chart as its answering page. Knowing what the internet is: kept, about
   2 minutes, one sentence on day 9.
+- **Whose voices (C12):** the unit records the makers of its read-alouds and pictures (day 10's note).
 
 ## Course-level check 1, mid-year (days 13 and 14, weeks 13 and 14)
 
@@ -145,6 +147,7 @@ their nests?" Skill card withdrawn on day 18.
 - **Candidates:** drawing a conclusion in discussion: kept, zero days, the group says what its facts add up to at
   day 18's share. Knowing it is wrong to copy from an author or peer: kept, about 2 minutes on day 16, said as the
   habit of naming a fact's maker, never as a warning.
+- **Whose voices (C12):** the unit records the makers of its read-alouds and pictures (day 18's note).
 
 ## Unit 4. Our class information book (days 21 to 27, weeks 21 to 27)
 
@@ -175,6 +178,7 @@ parents keep their babies fed and warm?" Skill card in hand on day 23, withdrawn
   Animal parents keep to feeding and warmth, never a hunt or a lost young one. No family photo or fact in the book.
 - **Candidates:** beginning to respond to feedback to revise: kept, zero days, day 25. A group product for classmates
   and families: kept, zero class days, the book may go home in turn by the school's rules (day 27, family note).
+- **Whose voices (C12):** the unit records the makers of its read-alouds and pictures (day 22's note).
 
 ## Course-level check 2, year-end (days 28 to 30, weeks 28 to 30)
 

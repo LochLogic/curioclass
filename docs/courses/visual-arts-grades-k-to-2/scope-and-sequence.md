@@ -36,7 +36,9 @@ data/plans/visual-arts-grades-k-to-2/days.csv; this page holds the judgment.
   card, a short response), the label marks practice, not a claim. The days are listed in each unit section below.
 - **Kinds and the unit run.** As the frame's Day kinds: understanding (a technique shown in steps with the step card,
   or a work studied with the unit's words), fluency (short drills of a taught technique), application (making with
-  some choice; the second making day holds the unit's one critique, describe, ask, suggest; the next day revises),
+  some choice; the second making day holds the unit's one critique in the critique routine (describe, ask, suggest),
+  the one name used from K to 12, with its two rules from day 15 on: critique the work, never the person; praise
+  alone is not feedback; the next day revises),
   check, respond. Technique days always come before the making that needs them. Each unit opens with a baseline look
   at its main look-for on the first fluency or making day (not scored), and one piece a unit goes into the portfolio
   folder with a spoken one-line reflection.
@@ -57,7 +59,7 @@ data/plans/visual-arts-grades-k-to-2/days.csv; this page holds the judgment.
 - **Cross-subject.** No row carries a cross-subject lean, so no bridge is owed. The frame's practiced contacts are
   carried in the notes: shapes named by pointing (kindergarten math names flat shapes in weeks 9 to 13; unit 1 day 11
   points without teaching counting, and unit 3 day 38 falls after math has taught them), sorting by use only (unit 7
-  day 102), and the critique card's turn-taking pictures for ELA's collaborative conversation (unit 1 day 15, unit 10
+  day 102), and the critique routine card's turn-taking pictures for ELA's collaborative conversation (unit 1 day 15, unit 10
   day 150).
 - **Supplies and safety.** Each hands-on day's note names its equipment, its safe use and the free path where the
   frame lists one, in the frame's words: premixed non-toxic paint, moist clay or adult-made flour-salt dough (wheat
@@ -215,7 +217,10 @@ so the unit closes the year after the year-end check.
 - Candidate settled: **kept, no added day.** The job-card sort is written as the full equal of acting (day 118), and
   it is the scored form, so acting is never needed for the mark.
 - Sensitivity and leave-out: William is a burial object, studied by looking only; the acting may be left out; no
-  child copies a named carver's design.
+  child copies a named carver's design. Leave-out (frame, a unit the course page names): leaving out the acting or
+  swapping a work keeps the unit, its showing and every id; if a school or family leaves the unit out for its
+  community's reasons, the course page and the family note name the ids not claimed that year: VA:Pr4.1.1a,
+  VA:Pr5.1.1a, VA:Pr6.1.1a, VA:Cn11.1.1a. It is never a short-year or time cut.
 
 ## Year 2 (grade 2 ids)
 
@@ -301,7 +306,10 @@ past the hook), mounted and critiqued (188) and revised (189) for the year-end t
 - Candidate settled: **kept, no added day.** Both traditions' sources are confirmed as the communities' own published
   teaching before the unit plan is written (day 183's note).
 - Sensitivity and leave-out: papel picado's Day of the Dead use is ceremonial, named and studied by looking only; no
-  child imitates either tradition's designs or explains their own family's culture.
+  child imitates either tradition's designs or explains their own family's culture. Leave-out (frame, a unit the
+  course page names): swapping a work keeps the unit, its showing and every id; if a school or family leaves the
+  unit out for its community's reasons, the course page and the family note name the ids not claimed that year:
+  VA:Pr4.1.2a, VA:Pr5.1.2a, VA:Pr6.1.2a, VA:Cn11.1.2a. It is never a short-year or time cut.
 
 ## Course-level checks
 

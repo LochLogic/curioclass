@@ -55,7 +55,8 @@ PLANS = ROOT / 'data' / 'plans'
 DOCS = ROOT / 'docs' / 'courses'
 STD = ROOT / 'data' / 'standards'
 PROGS = ROOT / 'data' / 'progressions'
-SUBJECTS = ['social-studies', 'math', 'ela', 'science']
+SUBJECTS = ['social-studies', 'math', 'ela', 'science',   # the four core subjects, then the after-core ones whose
+            'sel', 'health', 'physical-education', 'library', 'cte', 'eld']   # frames.csv subject names a progression file
 SUBJECT_STD = {   # standards files read for own-word lines and lettered parts, per subject (social studies frozen)
     'social-studies': ('ma-hss-2018.txt', 'c3-indicators.txt', 'ccss-literacy-6-12.txt'),
     'math': ('ccss-math-standards.txt',),
@@ -186,7 +187,7 @@ def std_text():
     """code -> own-word line ('' for files that hold ids only: the C3 file, the NGSS file) for the current subject."""
     if SUBJ not in _STD:
         d = {}
-        for name in SUBJECT_STD[SUBJ]:
+        for name in SUBJECT_STD.get(SUBJ, ()):
             p = STD / name
             if not p.exists():
                 continue
@@ -609,7 +610,7 @@ def source_rows(course, unit):
 
 def files_with(codes):
     names = []
-    for name in SUBJECT_STD[SUBJ]:
+    for name in SUBJECT_STD.get(SUBJ, ()):
         p = STD / name
         if not p.exists():
             continue
@@ -1209,6 +1210,30 @@ def subject_courses():
     return out
 
 
+def band_courses():
+    """Courses of the current subject whose frames.csv grade is a band (k-2, 6-8 ...), not one grade: the after-core
+    band courses, several grade years in one days.csv (lead structure pass, 2026-11-26)."""
+    return [r['course'] for r in read_csv(PLANS / 'frames.csv', FRAMES_COLS)
+            if r['subject'] == SUBJ and grade_num(r['grade']) is None and r['grade'].strip()]
+
+
+def day_grades(allrows, prog):
+    """{day: grade number} for a band course: each unit's year is the highest progression grade among its days'
+    skills, and a course-level day (stretch C) takes the year of the unit day before it."""
+    unit_g = {}
+    for r in allrows:
+        gs = [grade_num(prog[s]['grade']) for s in split_list(r['skills']) if s in prog]
+        gs = [g for g in gs if g is not None]
+        if gs and r['stretch'].isdigit():
+            unit_g[r['stretch']] = max(gs + [unit_g.get(r['stretch'], -1)])
+    out, last = {}, None
+    for r in sorted(allrows, key=lambda r: int(r['day'])):
+        g = unit_g.get(r['stretch'], last)
+        out[int(r['day'])] = g
+        last = g if g is not None else last
+    return out
+
+
 def used_on(r, skill, course_grade, prog, via=True):
     """True when a days.csv row teaches or assesses a progression row (rule 2: "used" is a day that teaches or assesses
     it): the row is in its skills, the day is not a readiness check, and for a row owned before the course's grade the
@@ -1240,6 +1265,11 @@ def earlier_rows(course, rows, allrows, prog, frame_meta, ready_day):
     used the year before or earlier this year gets retrieval; two or more grades back, a readiness check."""
     cg = grade_num(frame_meta.get('grade'))
     first, lastday = int(rows[0]['day']), int(rows[-1]['day'])
+    # A band course (several years in one days.csv): the unit's year is its grade, and the band's earlier days count
+    # by their own year (rule 2 counts by grade number, year to year inside the band)
+    dg = day_grades(allrows, prog) if cg is None else {}
+    if cg is None:
+        cg = dg.get(first)
     skills = uniq(s for r in rows for s in split_list(r['skills']))
     # Only the unit's own-grade rows bring their assumes (lead, 2026-11-15): an earlier-grade row listed for retrieval
     # (math lead call 4 puts its id in the skills column) is itself an earlier row, not a source of further ones.
@@ -1274,6 +1304,18 @@ def earlier_rows(course, rows, allrows, prog, frame_meta, ready_day):
             other.append((g, c, days_rows(c)))
         except DataError as e:
             unread.append((g, c, str(e)))
+    if cg is not None:   # band courses, this one's earlier years included, split into one entry per grade year
+        for c in band_courses():
+            try:
+                rws = allrows if c == course else days_rows(c)
+            except DataError as e:
+                unread.append((None, c, str(e)))
+                continue
+            cdg = dg if c == course else day_grades(rws, prog)
+            for g in sorted({v for v in cdg.values() if v is not None and v < cg}):
+                yr = [r for r in rws if cdg.get(int(r['day'])) == g]
+                if yr:
+                    other.append((g, c, yr))
     retr_days = {}
     for r in rows:
         if nss:
@@ -1306,6 +1348,9 @@ def earlier_rows(course, rows, allrows, prog, frame_meta, ready_day):
         e['owned'] = 'grade %s' % p['grade']
         here = [int(r['day']) for r in allrows if int(r['day']) < first and used_on(r, a, cg, prog)]
         later = [int(r["day"]) for r in allrows if int(r["day"]) > lastday and used_on(r, a, cg, prog, via=False)]
+        if dg:   # a band course: "this year" is the unit's own grade year; its earlier years are in other
+            here = [d for d in here if dg.get(d) == cg]
+            later = [d for d in later if dg.get(d) == cg]
         if og is None or cg is None:
             e['rule'] = 'grade not a number'
             e['off'] = 'the grade of %s or of the course is not a number' % a

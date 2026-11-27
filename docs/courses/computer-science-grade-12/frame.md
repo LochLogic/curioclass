@@ -18,8 +18,9 @@ Course `computer-science-grade-12` (catalog id `cs-k12`, key `cs-k12-12`), grade
   grades 6 to 12 (docs/courses/computer-science/STANDARD.md section 2, Cory, Desk q-fix-cs-1), a real elective, so
   course days 2w minus 1 and 2w fall in week w. The 45 minutes hold set-up, clean-up and collecting work: every
   lesson opens with a retrieval trace or predict task of about five minutes (APPROACH.md, "How a day opens"), device
-  lessons keep three minutes at the end to save work to a file and shut down, and paper work is collected in the
-  last two minutes, so a lesson teaches for about 35 to 37 minutes. Each unit's days include its end-of-unit
+  lessons keep three minutes at the start to get devices out and open the page and four at the end to save work to a
+  file and shut down, and paper work is collected in the last two minutes, so a device lesson teaches for about 33
+  minutes and a paper lesson for about 38. Each unit's days include its end-of-unit
   assessment (and, in units over 25 days, its mid-unit assessments; no unit here runs over 25 days). As in the
   pilot, a course-level check that directly follows a unit stands for that unit's end-of-unit assessment, and the
   check's respond day is the unit's respond day: the check after unit 2 stands for unit 2's, the check after unit 4

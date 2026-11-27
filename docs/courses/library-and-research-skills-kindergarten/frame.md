@@ -81,8 +81,7 @@ Course `library-and-research-skills-kindergarten` (catalog id `library-k`), kind
   are seeds, a rolling ball, weather, rabbits and other animals, and trees. What the agent studies first: APPROACH.md
   "Sensitive ground" items 1 (neutral K case sets), 2 (the stop rule), 3 (privacy), 4 (honest use without shaming,
   unit 4), 5 (whose voices a source set shows, C12) and 8 (unit 1's visiting staff member); and, for unit 2's stop
-  rule, the National Center for Missing and Exploited Children's free K to 2 online-safety presentation "Be Safer
-  Online with NetSmartz: Grades K-2", listed at https://www.missingkids.org/netsmartz/resources (listing read 2026-11-25 and 2026-11-26; the listing names the presentation but does not show its rule, so whether its K to 2 rule matches the stop rule rests on the presentation itself, a browser check at grade close, since the kit is a download not yet opened). Unit 2's borrowing follows its own rule (class book corner, no question about books at
+  rule, a free K to 2 online-safety presentation from a national child-safety nonprofit, listed at https://www.missingkids.org/netsmartz/resources (listing read 2026-11-25 and 2026-11-26; the listing names the presentation but does not show its rule, so whether its K to 2 rule matches the stop rule rests on the presentation itself, a browser check at grade close, since the kit is a download not yet opened). Unit 2's borrowing follows its own rule (class book corner, no question about books at
   home). No organization's name goes on a student, teacher or family page.
 - **Supplies and cost.** Printing at about 5 cents a page (ours, provisional) for a class of 30: unit 1 about $4,
   unit 2 about $8 (with color dot stickers for the bin labels, about $3, reused all year, and a stop-picture strip

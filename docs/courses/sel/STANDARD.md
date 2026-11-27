@@ -80,6 +80,9 @@ review).
 - **Units.** Six units per grade year (section 3), each with its own readiness check and end-of-unit assessment,
   sized to the minutes chosen. "Never fewer units" is met: every sub-skill is taught, practiced spaced out and
   checked every year.
+- **Owned codes off the course-level checks.** An owned code not sampled on a course-level check is assessed by its
+  own unit's end-of-unit assessment, which is rule 3's named reason; the two-sample cap on a course-level check stays.
+  Each band frame's Course-level paragraph says so (lead, 2026-11-26).
 - **Spanish.** Family notes in English and Spanish per unit (decided 2026-11-11); student pages stay English only
   for now (settled 2026-11-16, Cory, Desk card q-later-sel-eld). Growing Spanish across the site is a later roadmap
   item (the lead's note).
@@ -88,6 +91,7 @@ review).
 
 Unit numbers: data/progressions/sel.csv notes number units within the year (unit 1 to 6 of each grade); the band
 frames number units through the band (grade 7's first unit is unit 7 in the 6 to 8 frame), with the year beside it.
+The unit titles in the table below are the courses' own (grades 6 to 8 take the SEL 6 to 8 titles, 2026-11-26).
 
 The draft year for each grade. The theme sets the year's angle, so no two years of a band run alike. Each unit lists
 the sub-skills it teaches first that year; every later unit brings earlier sub-skills back in practice (C7). In
@@ -131,9 +135,9 @@ choice weighed in writing).
 | Grade 3 | Thinking, feeling, doing | 1. Think, feel, do: SA3, SA5, SM1, SM2, RD5, RD6<br>2. Who I am and what I bring: SA1, SA2, SA4, SA9, SO2<br>3. Walking in their shoes: SO1, SO3, SO4, SO5, SA6, RS3, SO8<br>4. When friends disagree: RS1, RS2, RS5, RS8, SO7, RS7<br>5. Saying no, choosing well: RS6, RS9, RD1, RD2, RD3, RD4, SO6, RD7<br>6. Goals that stretch me: SA7, SA8, SM3, SM4, SM5, SM6, SM7, RS4 |
 | Grade 4 | Working together | 1. Team rules we make: RS1, RS4, SO6, SO7, SA4<br>2. Plans and steps: SM3, SM4, SM5, SM6, SA7, RD5<br>3. Many ways to be: SA1, SA2, RS3, SO1, SO2, SA6<br>4. Feelings at work: SA3, SA5, SM1, SM2, SO3, SO4, SO5, SO8<br>5. Leading and following: RS7, RS2, RS5, RS8, RS6, RS9, SM7<br>6. Thinking it through: RD1, RD2, RD3, RD4, RD6, RD7, SA8, SA9 |
 | Grade 5 | Ready for change | 1. Changes ahead: SA3, SA5, SM1, SM2, SO7<br>2. What drives me: SA7, SA8, SA9, SM3, SM4, SM5<br>3. Who shapes what we do: SO6, SO8, RD2, RD5, SA6<br>4. Friends through change: RS1, RS2, RS5, RS6, RS8, SO1, SO3, SO4<br>5. My voice, our group: SM6, SM7, RS4, RS7, RS9, SO5, SO2, RS3<br>6. Choices with reach: RD1, RD3, RD4, RD6, RD7, SA1, SA2, SA4 |
-| Grade 6 | New school, new me | 1. Finding my way: SM5, SM3, SO7, RS8, SA7<br>2. Who am I now?: SA1, SA2, SA4, SA9, SA3, SA5<br>3. Stress and strong feelings: SM1, SM2, SA8, RD5, RD6<br>4. Friendships that change: RS1, RS2, RS5, RS6, SO1, SO4, SO3, SO5<br>5. Online and offline norms: SO6, SO8, RD1, RD2, RD4, SA6, SO2, RD7<br>6. Goals and our team: SM4, SM6, SM7, RS3, RS4, RS7, RS9, RD3 |
-| Grade 7 | Pressure and belonging | 1. Belonging and our groups: SA1, SA2, SA9, RS2, RS3, SO2, RS4<br>2. Under pressure: RS6, SO7, SO8, RD4, SM3<br>3. Snap judgments: SA6, SO1, SO6, RD1, RD2<br>4. Big feelings, steady choices: SA3, SA5, SM1, SM2, SA4, SA7, SA8<br>5. Repair and conflict: RS1, RS5, RS8, SO3, SO4, SO5, RS9, RS7<br>6. Taking the lead: SM4, SM5, SM6, SM7, RD3, RD5, RD6, RD7 |
-| Grade 8 | Choices that count | 1. How I decide: RD1, RD2, RD4, RD5, SA5, RD7<br>2. Values and integrity: SA4, SA1, SA2, SA6, RS6, SO7, SA9, SA7<br>3. Stress, focus and rest: SA3, SA8, SM1, SM2, SM3, SM5<br>4. Understanding others: SO1, SO3, SO4, SO6, RS3, SO2, SO8<br>5. Communication and conflict: RS1, RS2, RS5, RS8, SO5<br>6. Making a difference: SM4, SM6, SM7, RS4, RS7, RS9, RD3, RD6 |
+| Grade 6 | New school, new me | 1. Finding my way: SM5, SM3, SO7, RS8, SA7<br>2. Who I am in a new place: SA1, SA2, SA4, SA9, SA3, SA5<br>3. Calm and careful: SM1, SM2, SA8, RD5, RD6<br>4. Friends and talk: RS1, RS2, RS5, RS6, SO1, SO4, SO3, SO5<br>5. Rules, feeds and facts: SO6, SO8, RD1, RD2, RD4, SA6, SO2, RD7<br>6. Our class proposal: SM4, SM6, SM7, RS3, RS4, RS7, RS9, RD3 |
+| Grade 7 | Pressure and belonging | 1. Seen from both sides: SA1, SA2, SA9, RS2, RS3, SO2, RS4<br>2. Pressure and invitations: RS6, SO7, SO8, RD4, SM3<br>3. Fair and checked: SA6, SO1, SO6, RD1, RD2<br>4. Inside and shown: SA3, SA5, SM1, SM2, SA4, SA7, SA8<br>5. Repair and support: RS1, RS5, RS8, SO3, SO4, SO5, RS9, RS7<br>6. A shared plan: SM4, SM5, SM6, SM7, RD3, RD5, RD6, RD7 |
+| Grade 8 | Choices that count | 1. Deciding under pressure: RD1, RD2, RD4, RD5, SA5, RD7<br>2. Values that cost: SA4, SA1, SA2, SA6, RS6, SO7, SA9, SA7<br>3. Heavy weeks: SA3, SA8, SM1, SM2, SM3, SM5<br>4. Other views, fair norms: SO1, SO3, SO4, SO6, RS3, SO2, SO8<br>5. Hard talks and fair deals: RS1, RS2, RS5, RS8, SO5<br>6. Improving our school: SM4, SM6, SM7, RS4, RS7, RS9, RD3, RD6 |
 | Grade 9 | Finding my footing | 1. A new start: SM5, SM3, SO7, RS8, SA7, SA9<br>2. Stress and coping: SA3, SM1, SM2, SA5, SA8, RD3<br>3. Identity and assets: SA1, SA2, SA4, SA6, RS3<br>4. Relationships that are good for me: RS1, RS2, RS5, RS6, SO3, SO4, SO5<br>5. Norms, media and influence: SO6, SO8, RD1, RD2, RD4, RD5, RD7, RD6<br>6. Goals with others: SM4, SM6, SM7, RS4, RS7, RS9, SO1, SO2 |
 | Grade 10 | Respect and relationships | 1. Listening to understand: RS1, SO1, SO4, SA5, SO8<br>2. Hard conversations: RS5, RS8, SM1, SM2, SA3, SM7<br>3. Culture and respect: RS3, SO6, SA1, SA2, SA6, SO2, SA9<br>4. Saying no, setting limits: RS2, RS6, SA4, SO7, RD4, RS9<br>5. Teams that work: RS4, RS7, SM3, SM4, SM5, SM6, SO3, SO5<br>6. Fair to everyone: SA7, SA8, RD1, RD2, RD3, RD5, RD6, RD7 |
 | Grade 11 | Purpose and plans | 1. What matters to me: SA9, SA4, SA5, SA1, SA2<br>2. Plans and setbacks: SM4, SM5, SM3, SA7, SA8, SM2, SM1, SA3<br>3. Weighing evidence for choices: RD1, RD2, RD4, RD5, SA6<br>4. Working with others: RS1, RS3, RS4, RS5, SO1, SO2, SO7<br>5. Help, support and pressure: RS8, RS2, RS6, SO3, SO4, SO5, SO8<br>6. Acting on what matters: SM6, SM7, RS7, RS9, SO6, RD3, RD6, RD7 |
@@ -145,8 +149,8 @@ Unit rules:
   (naming a classmate, taking a turn), and no later unit is assumed by it.
 - **Cases stay in school, friend, family-chore, sport and online settings.** No invented case names self-harm, a
   diagnosis, dating, sex or a substance. The units that sit next to health, every grade 6 to 12 unit that teaches
-  SM2 (coping with stress) or RS6 (saying no to pressure) first (among them "Stress and strong feelings", "Under
-  pressure", "Stress and coping", "Saying no, setting limits", "Help, support and pressure" and "Steady under
+  SM2 (coping with stress) or RS6 (saying no to pressure) first (among them "Calm and careful", "Pressure
+  and invitations", "Stress and coping", "Saying no, setting limits", "Help, support and pressure" and "Steady under
   change"), name the health unit in the teacher notes and hand those topics to it.
 - **Grade 10 unit 4, "Saying no, setting limits"** (retitled from "Healthy boundaries", Cory, 2026-11-21), so the
   title does not read as dating or sexual health.
@@ -157,7 +161,7 @@ Placement notes, by sub-skill, where the grade matters most:
 - **SA6 (own snap judgments) and SO6 (norms that have been unfair)** start in K to 2 as fairness
   at play ("everyone can join"), and reach unfair rules of the past in grade 5 and later, taught from settled facts
   (see section 5). In grades 3 and 4 SO6 is a rule in a class, club or game that leaves someone out, on invented
-  cases; SO8 is how a school's or a town's rules and signs shape what people do. Grade 7 ("Snap judgments") and grade 10 ("Culture and respect") are their main years.
+  cases; SO8 is how a school's or a town's rules and signs shape what people do. Grade 7 ("Fair and checked") and grade 10 ("Culture and respect") are their main years.
 - **SA8 (ability grows)** is taught as "practice and help make you better", never as a promise that belief alone
   raises grades: the evidence for short mindset lessons is mixed (lens, sources; from memory).
 - **SO8 (systems shape behavior)** starts as "why our class has rules" and grows to media and online norms in grade
@@ -281,6 +285,9 @@ Applied to SEL:
    its first ten minutes and claims none of the left-out sub-skills; each band frame lists those bridges.
 7. **No product names, no rating words.** No program, app or registry name in public copy; no claim of being
    reviewed, approved, "evidence-based" or rated.
+8. **Cultural picks.** A place already used for a game or custom in any SEL band (and in that grade's PE and arts)
+   is not used again; the unit plan lists the places used so far. Each band frame's Sensitivity bullet carries the
+   line (K to 2 uses Ghana's Ampe in kindergarten and Japan's acchi muite hoi in grade 1).
 
 ## 6. Left out, and why
 
@@ -302,24 +309,48 @@ Applied to SEL:
   "builds on" and does not reteach the steps. Where health teaches a shared card first in a year, the SEL unit opens
   with it as retrieval where the school runs health, and teaches it where it does not; each band frame names the
   units and weeks.
-- **Shared steps (SEL, health and PE; 2026-11-25, from the K to 2 frame reads).** One set of words, so a child meets
-  one card in every course. Calm-down card: "stop, breathe" (the balloon breath) first, then count to five (grade 1),
-  then a stretch or asking for a break, chosen by the moment (grade 2); PE's "three slow breaths, count to five" uses
-  the same picture. I-statement: "I feel ___ when ___. I need ___." in K to 2 (health kindergarten's words); grade 2
-  adds asking "What do you need?" and a fair end; grades 3 to 5 add "because" (I feel, when, because, I need).
-  Refusal second push: say it again, move away, tell (health's boundary steps). Goal steps card: my goal and one step;
-  then a helper and a check; then a changed step; used by health's goal plans and PE's goal cycles. Talk turn card:
-  its two steps open health's listening card. Changes on the health and PE side are the lead's.
-  Grades 6 to 8 (as the frame quotes them): calm-down steps grow to five, "stop, breathe, name it, choose, go on"
-  (choose is choosing a tool from a menu of four, matched to settings); the talk turn card adds a first step, choose
-  how to talk (in person, a call or a message); the I-statement keeps four parts, "I feel ___ when ___ because ___. I
-  need ___."; the goal steps card has four steps (goal, steps, block and plan, check); refusal adds three options (a
-  plain no, a no with a reason, a way out of the place), chosen to fit the place. Grades 9 to 12: the I-statement adds a
-  check-back as a fifth part, "I feel ___ when ___ because ___. I need ___. Does that work for you?" ("I need ___" is
-  the request); the calm-down steps become a coping plan (the five steps, a tool for each of three settings, a back-up
-  tool and a review date); the talk turn card adds a last step (check what landed, plan the next talk); the goal steps
-  card becomes a designed plan (the goal, dated steps, the trade-off accepted, a check date, a verdict); the refusal
-  options add the plan made ahead, the ally and the second push.
+- **Shared steps (SEL, health and PE, and career education for the goal and decision cards; 2026-11-25, from the K
+  to 2 frame reads; every band's row stated 2026-11-26).** One set of words, so a child meets one card in every
+  course. Changes on the health and PE side are the lead's. Each card by band:
+  - **K to 2.** Calm-down card: "stop, breathe" (the balloon breath) first, then count to five (grade 1), then a
+    stretch or asking for a break, chosen by the moment (grade 2); PE's "three slow breaths, count to five" uses the
+    same picture. I-statement: "I feel ___ when ___. I need ___." (health kindergarten's words); grade 2 adds asking
+    "What do you need?" and a fair end. Talk turn card: two pictured steps, "eyes look, wait my turn", which open
+    health's listening card; grade 1 adds listen, then reply on the same topic. Grade 2's disagree frame, "I hear ___;
+    I think ___ because ___", is a separate frame used beside the talk turn card, not a step of it. Goal steps card: my
+    goal and one step; then a helper and a check; then a changed step; used by health's goal plans and PE's goal
+    cycles. Refusal (grade 2): two steps, say no with a reason, then offer something else; under the second push the
+    child says it again, moves away and tells (health's young boundary steps, "say it, say stop again, move away,
+    tell").
+  - **Grades 3 to 5.** Calm-down steps: four, "stop, breathe, name it, choose", with a menu of three body tools. Talk
+    turn card: four steps, "listen, say back what you heard, ask a question, add your idea". I-statement: adds
+    "because", "I feel ___ when ___ because ___. I need ___." Goal steps card: four steps, "goal, steps, block and
+    plan, check", from grade 3. Refusal steps: four, "stop and think, say no clearly, give a reason or none, offer
+    something else or walk away", and the second push in health's full boundary steps, "if it comes again: say it,
+    say it again, move away, tell".
+  - **Grades 6 to 8.** Calm-down steps grow to five, "stop, breathe, name it, choose, go on" (choose is choosing a
+    tool from a menu of four, matched to settings). The talk turn card adds a first step, choose how to talk (in
+    person, a call or a message). The I-statement keeps four parts, "I feel ___ when ___ because ___. I need ___."
+    The goal steps card keeps its four steps (goal, steps, block and plan, check) through 6 to 8; it grows only in 9
+    to 12. Refusal lays three options on the card (a plain no, a no with a reason, a way out of the place), chosen to
+    fit the place, and keeps the second push ("say it, say it again, move away, tell").
+  - **Grades 9 to 12.** The I-statement adds a check-back as a fifth part, "I feel ___ when ___ because ___. I need
+    ___. Does that work for you?" ("I need ___" is the request). The calm-down steps become a coping plan (the five
+    steps, a tool for each of three settings, a back-up tool and a review date). The talk turn card adds a last step
+    (check what landed, plan the next talk). The goal steps card becomes a designed plan (the goal, dated steps, the
+    trade-off accepted, a check date, a verdict). The refusal options add the plan made ahead and the ally; the second
+    push is carried from grades 3 to 8, retrieved, not new.
+  - **Career education** (career exploration 6 to 8, career pathways 9 to 12). Career's plan page writes its goals on
+    the band's goal steps card: in 6 to 8 each goal on the four steps (goal, steps, block and plan, check), in 9 to 12
+    on the designed plan (the goal, dated steps, the trade-off accepted, a check date, a verdict). Career adds two
+    things only: the near and far pair of goals, and the dated check against the plan (in 9 to 12, against the program
+    of study). Career's decision steps card (name the choice, list options, gather facts, weigh, choose, check later;
+    cte.csv g8-cd2-2-decision-steps) is stop-think-choose grown for career choices, not a second method. The mapping,
+    against SEL 6 to 8's five steps (stop, list options, weigh each, choose, write the reason) and SEL 9 to 12's
+    sixth (look back): name the choice is the stop; list options, weigh and choose are the same steps, with the
+    reason written at choose; gather facts, from dated sources, is career's added step before weigh; check later is
+    SEL 9 to 12's look back. Where SEL runs in the same year or ran the year before, the career day retrieves the SEL
+    card and teaches only the added steps; for a student who did not take SEL, it teaches the card whole.
 - **ELA (data/progressions/ela.csv).** The discussion rows (ek-discussion to e5-discussion, e6-collab-discussion to
   e8-collab-discussion, e9-sl-discussion, e10-sl-seminar, e11-seminar and e12-seminar) carry turn-taking, listening and building on
   others' ideas. SEL's RS1 uses the same norms and words, so a class meets one set of talk rules.

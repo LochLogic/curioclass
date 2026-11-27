@@ -183,7 +183,7 @@ Course `dance-grades-9-to-12` (catalog id `dance-9-12`), the high school band of
   student series or a supplied original practice series. Missing words and routines are retrieved or taught before
   use. Supplied work serves the later unit's own ids and never recovers an omitted unit's creating ids. Units that a course page names: unit 5 (Asadata Dafora's Kykunkor stages a West African
   ritual story, studied by watching and reading only; La Sylphide keeps DA:Cn11.1.Ia met beside a unit 3 work) and
-  unit 9 (The Rite of Spring stages an invented sacrificial rite; Ahn Eun-me's work keeps every response id met). Swapping a dance keeps
+  unit 9 (The Rite of Spring stages an invented sacrificial rite; Ahn Eun-me's work keeps every response id met), unit 12 (Grace is set partly to spiritual music; Moon Water keeps every id met) and unit 14 (Birds with Skymirrors draws on Pacific ceremony and is watched only; Creole Giselle and Admiring La Argentina keep every response id met). Swapping a dance keeps
   the unit's ids met; leaving a unit out means the course page and the unit's family note name the ids not claimed
   that level.
 - **The ordinary room.** A class of 30 in a cleared classroom, hall, gym or stage with room for every student to

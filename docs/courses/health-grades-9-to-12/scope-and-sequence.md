@@ -40,7 +40,10 @@ two or three short pair stations the teacher moves between, half on each day; an
 
 The count starts from grade 9 (rule 2, by grade number). Every grade 8 row opens as a retrieval task (named in the
 `retrieves` column and the note); the two rows last used two or more grades back get a readiness check in the last ten
-minutes of the day before their unit. Unit 1 has no readiness rows. g7-phw-living-with-conditions is a grade 7 row, but
+minutes of the day before their unit. Band entry: every non-sensitive day that retrieves a grade 8 row says that a
+student new to Curio Class health shows any gap there and the teacher reteaches that step on the card the same day
+(day 1: the one-page reminder card and a one-minute self-rating stand in for a grade 8 log; the sensitive units keep
+their one-page fallback). Unit 1 has no readiness rows. g7-phw-living-with-conditions is a grade 7 row, but
 grade 8's g8-phw-factors-shape-health assumes it and uses it in its asthma and air quality case, so by last use it was
 used the year before and opens unit 5 day 2 as a retrieval task.
 

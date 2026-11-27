@@ -39,17 +39,17 @@ owned rows and day counts are unchanged.
   before the course is called finished.
 - **Sensitivity.** Every unit day 1 note says the family note goes home (English and Spanish; the work question may go
   to any trusted adult or an invented or public worker). Every unit 6 day carries health's "If a student tells you
-  something" steps in its note (the pay-gap unit), as do day 51 (Resource Extraction on the Energy map) and any unit 7
-  packet on a sensitive sub-cluster (day 87). The military route (day 41) carries its teacher-page line.
+  something" steps in its note (the pay-gap unit), as does any unit 7 packet on a sensitive sub-cluster (day 87). Day 51
+  (Resource Extraction on the Energy map) follows STANDARD.md section 6's views rule instead (no verdict, no view graded). The military route (day 41) carries its teacher-page line.
 - **Sources.** No base text, so no source map. Every data sheet, job card, field task sheet, case and invented data set
   is Curio Class's to write; none is written yet, so every explore and field task day leans on a sheet not yet made
   (built with the unit plans). Public sources the days name: the federal outlook handbook and wage tables, the federal
   occupational database (credit line only), the federal employment-by-demographic table (day 75), a state extension
   service's planting calendar (day 50), a town's adopted budget (day 81), the young worker safety curriculum (day 33)
   and, for day 90, the federal young workers page (a safe workplace and who to ask, https://www.osha.gov/young-workers)
-with the federal Wage and Hour Division's YouthRules and child labor pages (the hours and task limits under 16 and
-under 18, https://www.dol.gov/agencies/whd/youthrules and https://www.dol.gov/agencies/whd/child-labor; a stricter
-state law applies where there is one). None is loaded into the repository; the unit plans date each figure.
+with the federal Wage and Hour Division's Fact Sheet #43 (the hours and task limits under 16 and under 18,
+https://www.dol.gov/agencies/whd/fact-sheets/43-child-labor-non-agriculture) and its YouthRules page as the
+student-facing page (https://www.dol.gov/agencies/whd/youthrules); a stricter state law applies where there is one). None is loaded into the repository; the unit plans date each figure.
 
 ## Readiness and retrieval (rule 2)
 
@@ -62,7 +62,7 @@ rows are the cross-subject leans. Each, with its last use and treatment:
 | m7-unit-rate-fractions (math 7) | grade 7, unit 4 days 47 to 68 | Retrieval | 7, 24, 40, 78 |
 | m7-compare-populations (math 7) | grade 7, unit 8 and the year-end check | Retrieval | 10, 27, 55 |
 | g7-viz-choices (computer science 7, optional) | grade 7, for a student who took it | Bridge: retrieval for one who took it, first teaching on the sheet for one who did not | 10, 19 |
-| library g6-lateral-reading | grade 7 by one hop (library 6 to 8 day 20 teaches g7-lateral-hard-cases, which assumes it) | Retrieval, a five-minute task opening day 9; the day still teaches its three steps for a student who never took library | 9 |
+| library g6-lateral-reading | grade 7 by one hop (library 6 to 8 day 20 teaches g7-lateral-hard-cases, which assumes it) | Retrieval, a five-minute task opening day 9; the day teaches the shared lateral reading card in library 9 to 12's words (stop, investigate the source, look for better coverage, trace the claim to its original), and still teaches its four steps for a student who never took library | 9 |
 
 Each unit also gives the frame's readiness items (APPROACH.md unit field 4: one item reading a table or a percent,
 one reading a dated figure; ten minutes, with a ten-minute reteach on the next unit's second day): unit 1 on day 1

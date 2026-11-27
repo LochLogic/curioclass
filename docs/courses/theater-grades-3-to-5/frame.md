@@ -211,6 +211,11 @@ Course `theater-grades-3-to-5` (catalog id `theater-3-5`), a band course for gra
   its invented-viewer option as a deliberate sensitivity trade (expert read of the scope and sequence, 2026-11-26,
   finding 5). Each section carries health's steps for "If a student tells you something"
   (docs/courses/health/APPROACH.md) on its teacher page.
+- **Content notes to families.** A studied work gets a content note to families (to the student at 18 or over) when
+  its subject includes violence against a person, a killing, sexual violence or drug use, even when only described;
+  other hard history is named plainly with no note (group read of the theater scopes, 2026-11-26, finding 6; the lead
+  states the same line once in docs/courses/arts/APPROACH.md "Sensitive ground"). The grape strike (unit 11) is hard
+  history named plainly with no note; no work studied in this band meets that line.
 - **Logic model (one page in the scope and sequence).** Inputs: two 40-minute sessions a week, a clear floor, step
   cards, scene cards, response cards, found and low-cost materials. Activities: the body, voice and design taught in
   steps, plays, forms and makers studied with their setting, improvising and rehearsal with a critique and a revision,
@@ -274,7 +279,7 @@ Each hand-on above is answered at both ends in data/progressions/arts.csv (the g
 | Model | Where it comes from | Introduced or first used here | Used again here |
 |---|---|---|---|
 | what-if-list | Theater, grades K to 2 (th-g2-imagine, model_out), by course order | Unit 1: the list of "what if" questions that starts an improvisation (what if the room is a ship, what if the character is lost), retrieved with its reteach | Unit 5 (what-if questions put to a character's given circumstances, th-g4-imagine), unit 9 (questions about a character's situation, th-g5-imagine) |
-| group-agreements | Theater, grades K to 2 (th-g2-show, model_out), by course order | Unit 1: the class's drama agreements card (take turns, build on, freeze on the signal, keep the space safe), retrieved with its reteach | Unit 5 (named jobs, th-g4-show), unit 9 (a set job each, th-g5-show); shown in every set-up as review |
+| group-agreements | Theater, grades K to 2 (th-g2-show, model_out), by course order | Unit 1: the class's drama agreements card (take turns, add on, freeze on the signal, join when ready, and from grade 3 keep the space safe), retrieved with its reteach | Unit 5 (named jobs, th-g4-show), unit 9 (a set job each, th-g5-show); shown in every set-up as review |
 | rehearsal-log | New in grade 3 (th-g3-show, model_out) | Unit 1: the rehearsal-log page: what we ran, what we kept, what we change next time, one line alone and one with the group | Unit 5 (the repeat-and-review cycle, th-g4-show), unit 9 (the self-review run, th-g5-show); every later rehearsal as review |
 | critique-protocol | New in grade 4 (th-g4-show, model_out) | Unit 5: the describe, ask, suggest card the students run themselves in small groups. Units 1 to 4 hold their one critique by the same three steps led aloud by the teacher (APPROACH "Critique") | Unit 9 (th-g5-show); every later unit's critique as review |
 | warm-up-routine | Theater, grades K to 2 (th-g2-actor, model_out), by course order | Unit 2: the body, voice and thinking warm-up, retrieved with its reteach and grown into sets | Unit 6 (a chosen ensemble exercise, th-g4-actor), unit 10 (warm-ups matched to the piece, th-g5-actor); every day's warm-up as review |

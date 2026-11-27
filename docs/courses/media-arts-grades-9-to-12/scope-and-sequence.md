@@ -51,7 +51,7 @@ Claims the 18 Proficient ids (`.I`, `.Ia` and so on). Units 1, 2, 3, 4, 5, then 
 *What does a media maker need to know before the first real piece?*
 
 - **Days:** 1 to 12 (12 days), Level 1 weeks 1 to 3.
-- **Arc:** The bridge. Day 1 is the hook on Méliès and the readiness check; days 2 to 10 reteach the eight Level 1 cards (shot set, storyboard and workflow, roles, media-ethics check, source log, critique card, revision log, screening plan) as readiness only, each used once on a six-shot team sequence; day 11 screens it unscored and fills the bridge record; day 12 responds.
+- **Arc:** The bridge. Day 1 is the hook on Méliès and the readiness check; days 2 to 10 reteach the eight Level 1 cards (shot set, storyboard and workflow, roles, media-ethics check, source log, critique card, revision log, showing plan) as readiness only, each used once on a six-shot team sequence; day 11 screens it unscored and fills the bridge record; day 12 responds.
 - **Why here:** First because Level 1 assumes no earlier media arts learning and every later unit uses the eight models (STANDARD.md 3.2: Level 1 opens with a bridge of at most 12 days). Short because it teaches only the grade 8 tools Level 1 needs, at their first step.
 - **Assessment days:** day 1 (readiness, in the note): the readiness check after the hook; day 1 (readiness): Hook; day 11 (end): Bridge check. What each scores is named in its goal in days.csv; end-of-unit evidence is the frame's, id by id.
 - **Candidate settled:** Kept, 0 days: the picture-only form of the readiness check is ready on day 1 for a student new to English.

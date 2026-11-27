@@ -217,7 +217,7 @@ computer-science-grade-8,8,computer-science,check,5,"Course-level check, year-en
 computer-science-grade-8,8,computer-science,respond,5,"Course-level check, year-end (course days 62 and 63, school days 155 and 158, we",64,64,160,160,32,32
 computer-science-grade-9,9,computer-science,unit,1,"Lists and records. How should a program hold its data, so finding and changing i",1,13,2,32,1,7
 computer-science-grade-9,9,computer-science,unit,2,"Cleaner programs. How can a program that works be made shorter, clearer and easi",14,25,34,62,7,13
-computer-science-grade-9,9,computer-science,unit,3,"Algorithms that decide. When should a program give the same answer every time, a",26,32,64,79,13,16
+computer-science-grade-9,9,computer-science,unit,3,"Rules, chance and AI. When should a program give the same answer every time, and",26,32,64,79,13,16
 computer-science-grade-9,9,computer-science,check,3,"Course-level check, mid-year (course days 33 and 34, week 17; it stands for unit",33,34,82,84,17,17
 computer-science-grade-9,9,computer-science,respond,3,"Course-level check, mid-year (course days 33 and 34, week 17; it stands for unit",35,35,87,87,18,18
 computer-science-grade-9,9,computer-science,unit,4,"Data you can trust. How do we say what good data looks like, and make data that ",36,43,89,107,18,22
@@ -704,7 +704,7 @@ health-grades-3-to-5,3,health,respond,3,Grade 3 mid-year check (week 15; respond
 health-grades-3-to-5,3,health,unit,4,"Saying it, hearing it, and standing up. How do I say what I need, really listen,",17,21,83,103,17,21
 health-grades-3-to-5,3,health,unit,5,"Strengths and a goal. What strength can I grow, and is my goal best done alone o",22,24,108,118,22,24
 health-grades-3-to-5,3,health,unit,6,"Telling more than one adult (sensitive, removable). What if a touch or a secret ",25,26,123,128,25,26
-health-grades-3-to-5,3,health,unit,7,"Respect for every person (sensitive, removable). How do we show respect to every",27,28,133,138,27,28
+health-grades-3-to-5,3,health,unit,7,Respect for every person. How do we show respect to every person and keep friend,27,28,133,138,27,28
 health-grades-3-to-5,3,health,check,7,Grade 3 year-end check (week 29; respond week 30),29,29,143,143,29,29
 health-grades-3-to-5,3,health,respond,7,Grade 3 year-end check (week 29; respond week 30),30,30,148,148,30,30
 health-grades-3-to-5,4,health,unit,8,"A plan for a goal. What does a goal plan need, and what could help or block it?",31,34,3,18,1,4
@@ -812,7 +812,7 @@ health-grades-k-to-2,1,health,respond,7,Grade 1 mid-year check (week 11; respond
 health-grades-k-to-2,1,health,unit,8,"What shapes my health. What around me helps me be healthy, and how do I choose a",41,45,63,83,13,17
 health-grades-k-to-2,1,health,unit,9,"Playing safe together, and a goal to try. How can playtime stay safe and fair, a",46,50,88,108,18,22
 health-grades-k-to-2,1,health,unit,10,"Keep telling (sensitive, removable). What if the first grown-up I tell does not ",51,52,113,118,23,24
-health-grades-k-to-2,1,health,unit,11,"Many kinds of families (sensitive, removable). How do we show respect to every f",53,54,123,128,25,26
+health-grades-k-to-2,1,health,unit,11,Many kinds of families. How do we show respect to every family and every person?,53,54,123,128,25,26
 health-grades-k-to-2,1,health,check,11,Grade 1 year-end check (week 27; respond week 28),55,55,133,133,27,27
 health-grades-k-to-2,1,health,respond,11,Grade 1 year-end check (week 27; respond week 28),56,56,138,138,28,28
 health-grades-k-to-2,2,health,unit,12,"Staying well. Why does being healthy matter, and how do I make a choice that is ",57,61,3,23,1,5
@@ -1054,25 +1054,25 @@ media-arts-grades-3-to-5,3,arts,unit,2,"Ideas in motion. How do media makers tes
 media-arts-grades-3-to-5,3,arts,check,2,"Year 3 mid-year (week 17, days 33 and 34)",33,33,82,82,17,17
 media-arts-grades-3-to-5,3,arts,respond,2,"Year 3 mid-year (week 17, days 33 and 34)",34,34,84,84,17,17
 media-arts-grades-3-to-5,3,arts,unit,3,Order and stress. How do the order of a piece and one stressed part change what ,35,50,87,124,18,25
-media-arts-grades-3-to-5,3,arts,check,3,"Year 3 year-end (week 26, days 51 and 52)",51,51,127,127,26,26
-media-arts-grades-3-to-5,3,arts,respond,3,"Year 3 year-end (week 26, days 51 and 52)",52,52,129,129,26,26
-media-arts-grades-3-to-5,3,arts,unit,4,"Our class screening. How do we blend forms into one piece and share it, and how ",53,64,132,159,27,32
+media-arts-grades-3-to-5,3,arts,unit,4,"Our class screening. How do we blend forms into one piece and share it, and how ",51,62,127,154,26,31
+media-arts-grades-3-to-5,3,arts,check,4,"Year 3 year-end (week 32, days 63 and 64)",63,63,157,157,32,32
+media-arts-grades-3-to-5,3,arts,respond,4,"Year 3 year-end (week 32, days 63 and 64)",64,64,159,159,32,32
 media-arts-grades-3-to-5,4,arts,unit,5,"Real or made? How do media makers steer an audience, and how can we tell fantasy",65,78,2,34,1,7
 media-arts-grades-3-to-5,4,arts,unit,6,"Design it, test it. How does a crew turn a goal into a working plan, and how can",79,96,37,79,8,16
 media-arts-grades-3-to-5,4,arts,check,6,"Year 4 mid-year (week 17, days 97 and 98)",97,97,82,82,17,17
 media-arts-grades-3-to-5,4,arts,respond,6,"Year 4 mid-year (week 17, days 97 and 98)",98,98,84,84,17,17
 media-arts-grades-3-to-5,4,arts,unit,7,"Balance and contrast. How do makers arrange a piece for the effect they want, an",99,112,87,119,18,24
-media-arts-grades-3-to-5,4,arts,check,7,"Year 4 year-end (week 25, days 113 and 114)",113,113,122,122,25,25
-media-arts-grades-3-to-5,4,arts,respond,7,"Year 4 year-end (week 25, days 113 and 114)",114,114,124,124,25,25
-media-arts-grades-3-to-5,4,arts,unit,8,"Show it to the school. How do we join a school subject, an art form and media in",115,128,127,159,26,32
+media-arts-grades-3-to-5,4,arts,unit,8,"Show it to the school. How do we join a school subject, an art form and media in",113,126,122,154,25,31
+media-arts-grades-3-to-5,4,arts,check,8,"Year 4 year-end (week 32, days 127 and 128)",127,127,157,157,32,32
+media-arts-grades-3-to-5,4,arts,respond,8,"Year 4 year-end (week 32, days 127 and 128)",128,128,159,159,32,32
 media-arts-grades-3-to-5,5,arts,unit,9,"Selling and telling. How do two pieces steer us differently, and how has adverti",129,144,2,39,1,8
 media-arts-grades-3-to-5,5,arts,unit,10,"Bend the rules. How do makers draw ideas from other artists' work, and what happ",145,162,42,84,9,17
 media-arts-grades-3-to-5,5,arts,check,10,"Year 5 mid-year (week 18, days 163 and 164)",163,163,87,87,18,18
 media-arts-grades-3-to-5,5,arts,respond,10,"Year 5 mid-year (week 18, days 163 and 164)",164,164,89,89,18,18
 media-arts-grades-3-to-5,5,arts,unit,11,"Make it clear. How does emphasis make a meaning clear, and how do my reading and",165,176,92,119,19,24
-media-arts-grades-3-to-5,5,arts,check,11,"Year 5 year-end (week 25, days 177 and 178)",177,177,122,122,25,25
-media-arts-grades-3-to-5,5,arts,respond,11,"Year 5 year-end (week 25, days 177 and 178)",178,178,124,124,25,25
-media-arts-grades-3-to-5,5,arts,unit,12,"Our newscast. How do news and community events shape what people remember, and w",179,192,127,159,26,32
+media-arts-grades-3-to-5,5,arts,unit,12,"Our newscast. How do news and community events shape what people remember, and w",177,190,122,154,25,31
+media-arts-grades-3-to-5,5,arts,check,12,"Year 5 year-end (week 32, days 191 and 192)",191,191,157,157,32,32
+media-arts-grades-3-to-5,5,arts,respond,12,"Year 5 year-end (week 32, days 191 and 192)",192,192,159,159,32,32
 media-arts-grades-6-to-8,6,arts,unit,1,"Reading the frame. How do the parts of a media piece build its meaning, and how ",1,14,3,35,1,7
 media-arts-grades-6-to-8,6,arts,unit,2,"Plan, test, produce. How do media makers plan and test a piece, and what does ea",15,32,38,80,8,16
 media-arts-grades-6-to-8,6,arts,check,2,"Year 6 mid-year (week 17, days 33 and 34)",33,33,83,83,17,17
@@ -1137,25 +1137,25 @@ media-arts-grades-k-to-2,K,arts,unit,2,"Playing with light and shadow. How do me
 media-arts-grades-k-to-2,K,arts,check,2,"Year K mid-year (week 21, days 41 and 42)",41,41,102,102,21,21
 media-arts-grades-k-to-2,K,arts,respond,2,"Year K mid-year (week 21, days 41 and 42)",42,42,104,104,21,21
 media-arts-grades-k-to-2,K,arts,unit,3,"Make it, change it. What can our picture-card story say, and what happens when w",43,52,107,129,22,26
-media-arts-grades-k-to-2,K,arts,check,3,"Year K year-end (week 27, days 53 and 54)",53,53,132,132,27,27
-media-arts-grades-k-to-2,K,arts,respond,3,"Year K year-end (week 27, days 53 and 54)",54,54,134,134,27,27
-media-arts-grades-k-to-2,K,arts,unit,4,"Our class screening. How can we join pictures and a dance into one show, and how",55,64,137,159,28,32
+media-arts-grades-k-to-2,K,arts,unit,4,"Our class screening. How can we join pictures and a dance into one show, and how",53,62,132,154,27,31
+media-arts-grades-k-to-2,K,arts,check,4,"Year K year-end (week 32, days 63 and 64)",63,63,157,157,32,32
+media-arts-grades-k-to-2,K,arts,respond,4,"Year K year-end (week 32, days 63 and 64)",64,64,159,159,32,32
 media-arts-grades-k-to-2,1,arts,unit,5,"Media that links people. How do pictures and films link us to people we know, an",65,82,2,44,1,9
 media-arts-grades-k-to-2,1,arts,unit,6,"Pictures in order. How do media makers plan a piece in pictures, and what jobs d",83,104,47,99,10,20
 media-arts-grades-k-to-2,1,arts,check,6,"Year 1 mid-year (week 21, days 105 and 106)",105,105,102,102,21,21
 media-arts-grades-k-to-2,1,arts,respond,6,"Year 1 mid-year (week 21, days 105 and 106)",106,106,104,104,21,21
 media-arts-grades-k-to-2,1,arts,unit,7,"Patterns that repeat. How do patterns and repeats help a media piece, and which ",107,116,107,129,22,26
-media-arts-grades-k-to-2,1,arts,check,7,"Year 1 year-end (week 27, days 117 and 118)",117,117,132,132,27,27
-media-arts-grades-k-to-2,1,arts,respond,7,"Year 1 year-end (week 27, days 117 and 118)",118,118,134,134,27,27
-media-arts-grades-k-to-2,1,arts,unit,8,"A picture-book tale. How can we mix a story, pictures and sound into one piece, ",119,128,137,159,28,32
+media-arts-grades-k-to-2,1,arts,unit,8,"A picture-book tale. How can we mix a story, pictures and sound into one piece, ",117,126,132,154,27,31
+media-arts-grades-k-to-2,1,arts,check,8,"Year 1 year-end (week 32, days 127 and 128)",127,127,157,157,32,32
+media-arts-grades-k-to-2,1,arts,respond,8,"Year 1 year-end (week 32, days 127 and 128)",128,128,159,159,32,32
 media-arts-grades-k-to-2,2,arts,unit,9,"Media messages. What messages do media pieces carry, and how do they fit the lif",129,146,2,44,1,9
 media-arts-grades-k-to-2,2,arts,unit,10,"Many ideas, one piece. How many ideas can a team find for one piece, and how do ",147,168,47,99,10,20
 media-arts-grades-k-to-2,2,arts,check,10,"Year 2 mid-year (week 21, days 169 and 170)",169,169,102,102,21,21
 media-arts-grades-k-to-2,2,arts,respond,10,"Year 2 mid-year (week 21, days 169 and 170)",170,170,104,104,21,21
 media-arts-grades-k-to-2,2,arts,unit,11,"Putting it together. How do we put many parts into one whole piece, and how well",171,180,107,129,22,26
-media-arts-grades-k-to-2,2,arts,check,11,"Year 2 year-end (week 27, days 181 and 182)",181,181,132,132,27,27
-media-arts-grades-k-to-2,2,arts,respond,11,"Year 2 year-end (week 27, days 181 and 182)",182,182,134,134,27,27
-media-arts-grades-k-to-2,2,arts,unit,12,"Our narrated picture scroll. How do we blend a story, art and sound into one sho",183,192,137,159,28,32
+media-arts-grades-k-to-2,2,arts,unit,12,"Our narrated picture scroll. How do we blend a story, art and sound into one sho",181,190,132,154,27,31
+media-arts-grades-k-to-2,2,arts,check,12,"Year 2 year-end (week 32, days 191 and 192)",191,191,157,157,32,32
+media-arts-grades-k-to-2,2,arts,respond,12,"Year 2 year-end (week 32, days 191 and 192)",192,192,159,159,32,32
 music-grades-3-to-5,3,arts,unit,1,"Music for a reason. Why do people choose the music they do, and what in a piece ",1,16,3,40,1,8
 music-grades-3-to-5,3,arts,unit,2,Two ways to play it. How do performers use loudness and speed to show what a pie,17,28,43,70,9,14
 music-grades-3-to-5,3,arts,check,2,"Year 3 mid-year (week 15, days 29 and 30)",29,29,73,73,15,15
@@ -1591,33 +1591,33 @@ social-and-emotional-learning-grades-3-to-5,5,sel,check,17,"Grade 5 year-end che
 social-and-emotional-learning-grades-3-to-5,5,sel,respond,17,"Grade 5 year-end check (session 52, week 26; respond session 53, week 27)",181,181,132,132,27,27
 social-and-emotional-learning-grades-3-to-5,5,sel,unit,18,"Choices with reach. How far does a choice reach, and who do I want to be when I ",182,192,134,159,27,32
 social-and-emotional-learning-grades-6-to-8,6,sel,unit,1,"Finding my way. How do I get organized in a new school, read what each place ask",1,10,3,25,1,5
-social-and-emotional-learning-grades-6-to-8,6,sel,unit,2,"Who am I now? How do I show who I am in new groups, and how do I name what I fee",11,21,28,53,6,11
-social-and-emotional-learning-grades-6-to-8,6,sel,unit,3,Stress and strong feelings. What can I do when a feeling is big or a week is too,22,29,55,73,11,15
+social-and-emotional-learning-grades-6-to-8,6,sel,unit,2,"Who I am in a new place. How do I show who I am in new groups, and how do I name",11,21,28,53,6,11
+social-and-emotional-learning-grades-6-to-8,6,sel,unit,3,"Calm and careful. What can I do when a feeling is big or a week is too full, bef",22,29,55,73,11,15
 social-and-emotional-learning-grades-6-to-8,6,sel,check,3,"Grade 6 mid-year check (session 30, school day 75, week 15; respond session 31, ",30,30,75,75,15,15
 social-and-emotional-learning-grades-6-to-8,6,sel,respond,3,"Grade 6 mid-year check (session 30, school day 75, week 15; respond session 31, ",31,31,78,78,16,16
-social-and-emotional-learning-grades-6-to-8,6,sel,unit,4,"Friendships that change. When friend groups shift, how do I talk, take a friend'",32,42,80,105,16,21
-social-and-emotional-learning-grades-6-to-8,6,sel,unit,5,Online and offline norms. How do the rules of a group or an app shape what we do,43,53,108,133,22,27
-social-and-emotional-learning-grades-6-to-8,6,sel,unit,6,"Goals and our team. How do we set a goal, work as a team, and stand up for someo",54,62,135,155,27,31
+social-and-emotional-learning-grades-6-to-8,6,sel,unit,4,"Friends and talk. When friend groups shift, how do I talk, take a friend's view ",32,42,80,105,16,21
+social-and-emotional-learning-grades-6-to-8,6,sel,unit,5,"Rules, feeds and facts. How do the rules of a group or an app shape what we do, ",43,53,108,133,22,27
+social-and-emotional-learning-grades-6-to-8,6,sel,unit,6,"Our class proposal. How do we set a goal, work as a team, and stand up for someo",54,62,135,155,27,31
 social-and-emotional-learning-grades-6-to-8,6,sel,check,6,"Grade 6 year-end check (session 63, school day 158, week 32; respond session 64,",63,63,158,158,32,32
 social-and-emotional-learning-grades-6-to-8,6,sel,respond,6,"Grade 6 year-end check (session 63, school day 158, week 32; respond session 64,",64,64,160,160,32,32
-social-and-emotional-learning-grades-6-to-8,7,sel,unit,7,Belonging and our groups. How does a group look to someone inside it and to some,65,75,3,28,1,6
-social-and-emotional-learning-grades-6-to-8,7,sel,unit,8,"Under pressure. When a group pushes, how do I read the moment, see the other sid",76,85,30,53,6,11
-social-and-emotional-learning-grades-6-to-8,7,sel,unit,9,"Snap judgments. How do first impressions mislead, and how do I check a guess abo",86,93,55,73,11,15
+social-and-emotional-learning-grades-6-to-8,7,sel,unit,7,Seen from both sides. How does a group look to someone inside it and to someone ,65,75,3,28,1,6
+social-and-emotional-learning-grades-6-to-8,7,sel,unit,8,"Pressure and invitations. When a group pushes, how do I read the moment, see the",76,85,30,53,6,11
+social-and-emotional-learning-grades-6-to-8,7,sel,unit,9,"Fair and checked. How do first impressions mislead, and how do I check a guess a",86,93,55,73,11,15
 social-and-emotional-learning-grades-6-to-8,7,sel,check,9,"Grade 7 mid-year check (session 30, school day 75, week 15; respond session 31, ",94,94,75,75,15,15
 social-and-emotional-learning-grades-6-to-8,7,sel,respond,9,"Grade 7 mid-year check (session 30, school day 75, week 15; respond session 31, ",95,95,78,78,16,16
-social-and-emotional-learning-grades-6-to-8,7,sel,unit,10,"Big feelings, steady choices. What does a feeling look like from outside, and ho",96,106,80,105,16,21
-social-and-emotional-learning-grades-6-to-8,7,sel,unit,11,"Repair and conflict. How do I make sure the other person is heard, repair a conf",107,117,108,133,22,27
-social-and-emotional-learning-grades-6-to-8,7,sel,unit,12,"Taking the lead. How do I plan and decide with other people, and change a plan w",118,126,135,155,27,31
+social-and-emotional-learning-grades-6-to-8,7,sel,unit,10,"Inside and shown. What does a feeling look like from outside, and how do I stay ",96,106,80,105,16,21
+social-and-emotional-learning-grades-6-to-8,7,sel,unit,11,"Repair and support. How do I make sure the other person is heard, repair a confl",107,117,108,133,22,27
+social-and-emotional-learning-grades-6-to-8,7,sel,unit,12,"A shared plan. How do I plan and decide with other people, and change a plan whe",118,126,135,155,27,31
 social-and-emotional-learning-grades-6-to-8,7,sel,check,12,"Grade 7 year-end check (session 63, school day 158, week 32; respond session 64,",127,127,158,158,32,32
 social-and-emotional-learning-grades-6-to-8,7,sel,respond,12,"Grade 7 year-end check (session 63, school day 158, week 32; respond session 64,",128,128,160,160,32,32
-social-and-emotional-learning-grades-6-to-8,8,sel,unit,13,"How I decide. How do I decide well when friends have picked a side, a rumor is s",129,138,3,25,1,5
-social-and-emotional-learning-grades-6-to-8,8,sel,unit,14,"Values and integrity. What do I hold to when holding to it costs me a win, a fri",139,149,28,53,6,11
-social-and-emotional-learning-grades-6-to-8,8,sel,unit,15,"Stress, focus and rest. When everything is due at once, how do I name it, stay c",150,158,55,75,11,15
+social-and-emotional-learning-grades-6-to-8,8,sel,unit,13,"Deciding under pressure. How do I decide well when friends have picked a side, a",129,138,3,25,1,5
+social-and-emotional-learning-grades-6-to-8,8,sel,unit,14,"Values that cost. What do I hold to when holding to it costs me a win, a friend ",139,149,28,53,6,11
+social-and-emotional-learning-grades-6-to-8,8,sel,unit,15,"Heavy weeks. When everything is due at once, how do I name it, stay calm, keep w",150,158,55,75,11,15
 social-and-emotional-learning-grades-6-to-8,8,sel,check,15,"Grade 8 mid-year check (session 31, school day 78, week 16; respond session 32, ",159,159,78,78,16,16
 social-and-emotional-learning-grades-6-to-8,8,sel,respond,15,"Grade 8 mid-year check (session 31, school day 78, week 16; respond session 32, ",160,160,80,80,16,16
-social-and-emotional-learning-grades-6-to-8,8,sel,unit,16,"Understanding others. How do I take a view I do not share, care for someone over",161,171,83,108,17,22
-social-and-emotional-learning-grades-6-to-8,8,sel,unit,17,"Communication and conflict. How do I say a hard thing plainly, strike a fair dea",172,181,110,133,22,27
-social-and-emotional-learning-grades-6-to-8,8,sel,unit,18,Making a difference. How do we carry out a school improvement that costs us some,182,190,135,155,27,31
+social-and-emotional-learning-grades-6-to-8,8,sel,unit,16,"Other views, fair norms. How do I take a view I do not share, care for someone o",161,171,83,108,17,22
+social-and-emotional-learning-grades-6-to-8,8,sel,unit,17,"Hard talks and fair deals. How do I say a hard thing plainly, strike a fair deal",172,181,110,133,22,27
+social-and-emotional-learning-grades-6-to-8,8,sel,unit,18,Improving our school. How do we carry out a school improvement that costs us som,182,190,135,155,27,31
 social-and-emotional-learning-grades-6-to-8,8,sel,check,18,"Grade 8 year-end check (session 63, school day 158, week 32; respond session 64,",191,191,158,158,32,32
 social-and-emotional-learning-grades-6-to-8,8,sel,respond,18,"Grade 8 year-end check (session 63, school day 158, week 32; respond session 64,",192,192,160,160,32,32
 social-and-emotional-learning-grades-9-to-12,9,sel,unit,1,"A new start. How do I plan my way into high school, and how will I know the plan",1,10,2,24,1,5

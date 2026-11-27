@@ -58,9 +58,9 @@ areas: programming, algorithms and design. Practices: CT7, CT8, CT9 (day 6's pla
 
 The arc runs read, then modify, then make on the structures: a list traced (day 1), its operations from worked examples
 then changed (day 2), a key-value record (days 3 and 4), a list of records (day 5), and a store, find and change
-program made against stated tests (day 6, HS-PRO-VD-16 in full), after one planted bug found with predict, run,
-compare, first wrong line (about 6 minutes, grade 8's debugging method retrieved and taught in full for a student new
-to it). The design half follows because HS-PRO-VD-16 comes
+program made against stated tests (day 6, HS-PRO-VD-16 in full), after one planted bug found with the debugging routine
+(predict, run, compare, find the first place it goes wrong, change one thing, test again; about 6 minutes, the grades
+7 and 8 routine retrieved and taught in full for a student new to it). The design half follows because HS-PRO-VD-16 comes
 before HS-ALG-PS-01: one problem solved two ways shows that structure changes the algorithm (day 7), a leaderboard is
 designed (day 8) and changed for a new need (day 9, modify), then each pair designs for a new problem with feedback
 (day 10) and builds, tests and revises it (day 11, HS-ALG-PS-01 in full; the design rubric also carries
@@ -111,7 +111,7 @@ each; trace a modular call) plus the revised modular program scored by rubric. R
 hold unit 3's readiness check (chance for every student, the grade 8 rows for a student who did not take grade 8).
 Candidate: a code-review checklist for day 23's partner feedback is kept, 0 days.
 
-## Unit 3. Algorithms that decide
+## Unit 3. Rules, chance and AI
 
 Course days 26 to 32, weeks 13 to 16. Sections 3.1 (days 26 to 28, deterministic and probabilistic) and 3.2 (days 29
 to 32, AI types and an audit). Concept area: algorithms and design, with machine learning and impacts. Practices: CT6,
@@ -124,7 +124,7 @@ runs and later on others, and can beat a front-to-back search when targets tend 
 "no faster on average" holds only when every position is equally likely). The AI tour (days 29 and 30) and the audit (days 31 and 32) begin ids owned in grades 10 and 11
 and are never scored here. The lean on math grade 7's chance words is covered by day 25's readiness check; no
 probability is computed. Days 26, 29 and 31 are unplugged; day 27 is a device day. Sensitivity flags (days 31 and 32)
-are in the notes: invented cases, a distance rule that can stand in for income, talk kept on the rule.
+are in the notes: invented cases, a distance rule that can stand in for income, talk kept on the rule; day 31 gets the sensitivity read before the case cards (docs/pipeline/briefs/sensitivity-read.md).
 
 Assessment. The mid-year check (days 33 and 34) stands for this unit's end-of-unit assessment (frame); its respond day
 35 is the unit's. Day 33 sits on the day right after the unit's last day, so it stands for the unit's end-of-unit
@@ -144,7 +144,8 @@ uses unit 3's random choice: traced with a seed (day 38), changed and checked ag
 then fed to a supplied queue simulation with one parameter changed and charted (day 40, HS-DAT-DC-21 in full). The
 society day closes the unit on the kind of data just defined (day 41, begins HS-DAT-IM-27, grade 11's). Days 36, 37 and
 41 are unplugged; 38 to 40 are device days. HS-DAT-DC-21 is device-only: dice and cards on the paper path, recorded
-"part met without a device". Transit case sensitivity is in day 41's note.
+"part met without a device". Transit case sensitivity is in day 41's note, and its teacher page carries health's "If a student tells you
+something" steps word for word.
 
 Assessment. End-of-unit day 42: unseen items (a dictionary with a rule and bad rows, a prompt per part; a generator
 changed and its result read). Response: day 43, whose last ten minutes hold unit 5's readiness check. Candidate: the
@@ -244,8 +245,11 @@ day's opener in place of the retrieval trace; on other device days the last work
 the exit ticket to one question. Check days hold, since each sitting is about 30 to 40 minutes; the 40-minute day
 12 and day 53 sittings drop to 35 by printing directions on the paper.
 
-**A year about 10 days short (54 course days).** Ten fold-in days, each a 45-minute session saved; nothing assessed is
-on them and no owned part is cut, since each day's core moves into a neighbor's minutes:
+**A year about 10 school days short** (two weeks, four sessions at two a week). Fold in the four marked "10 school
+days" in the table: days 30, 46, 51 and 61, 180 minutes, leaving 60 of the frame's 64 course days; no modify day is
+touched. The other six (days 7, 9, 14, 16, 32 and 39) are a named spare list for a year shorter still (54 course
+days). Each is a 45-minute session saved; nothing assessed is on them and no owned part is cut, since each day's core
+moves into a neighbor's minutes:
 
 | Fold-in day | Folds into | What the host day gives up | Minutes saved |
 |---|---|---|---|
@@ -253,18 +257,19 @@ on them and no owned part is cut, since each day's core moves into a neighbor's 
 | 9 (leaderboard modified) | day 10's opener, 8 minutes | its retrieval trace; the partner feedback holds two look-fors, not three | 45 |
 | 14 (anchor traced in parts) | day 15's first 12 minutes | its retrieval; one call traced in place of two | 45 |
 | 16 (repeated steps to a procedure) | day 18's first step | the second test-table run is done as the exit ticket | 45 |
-| 30 (new AI task cards) | day 29's exit ticket | the third task card is matched as a class, not in pairs | 45 |
+| (10 school days) 30 (new AI task cards) | day 29's exit ticket | the third task card is matched as a class, not in pairs | 45 |
 | 32 (audit written as a claim; begun HS-ALG-IM-10, never scored) | day 31's last 10 minutes, as its exit ticket | one case card set is audited together as a class | 45 |
 | 39 (generator changed) | day 40's first step | count and range changed once on one screen; the chart uses one run per pair | 45 |
-| 46 (toy operating system page) | day 45, an 8-minute one-screen demonstration | the software sort uses one set of eight cards | 45 |
-| 51 (trade-offs on a toy system) | day 52, whose plan charts the trade-offs first | the partner's review is one written comment | 45 |
-| 61 (private career note) | day 64's last 10 minutes, still private | the reteach covers the two most missed items | 45 |
+| (10 school days) 46 (toy operating system page) | day 45, an 8-minute one-screen demonstration | the software sort uses one set of eight cards | 45 |
+| (10 school days) 51 (trade-offs on a toy system) | day 52, whose plan charts the trade-offs first | the partner's review is one written comment | 45 |
+| (10 school days) 61 (private career note) | day 64's last 10 minutes, still private | the reteach covers the two most missed items | 45 |
 
 Day 21 (the given program split) is not a fold-in: it is HS-PRO-PD-12's only modify day, and a make day never comes
-before a modify day on the same construct (APPROACH.md). The begun-id days fall by one on this path, and no day is
+before a modify day on the same construct (APPROACH.md). The begun-id days fall by one with the spare list (day 32), and no day is
 outside the standards (C1 holds).
 
-Total: 450 minutes, ten of the frame's 64 days, leaving 54; every check, end, respond and readiness day stays.
+Total: the four marked days save 180 minutes (60 of 64 days); with the spare list, 450 minutes, ten of the frame's 64
+days, leaving 54. Every check, end, respond and readiness day stays on either path.
 
 ## For the lead
 

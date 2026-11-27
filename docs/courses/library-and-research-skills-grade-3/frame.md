@@ -54,7 +54,8 @@ Course `library-and-research-skills-grade-3` (catalog id `library-3`), grade 3. 
   self-check: each student rates their own use of the skill card's steps on a three-face scale, names one step they
   did well and one thing to do differently next time (APPROACH.md, the form of daily evidence; this answers the
   continuum's grade 3 reflect skill, own strengths and a goal). The lens's six steps (ask, find, judge, use, share,
-  reflect) are now named on the cycle card in grade 3: ask is the research question (unit 1), find the key-word
+  reflect) are now named on the cycle card in grade 3, and day 1 says so: the check picture from grade 2 is now
+  called judge; use is new, what we do with the notes. Ask is the research question (unit 1), find the key-word
   search (unit 2), judge the source's kind, maker and a second-source check (unit 3), use the notes in boxes (unit 3)
   and the product (unit 4), share the gallery walk (unit 4).
 - **Evidence.** Daily: an exit ticket that asks the student to do the unit's move once on a new case (about 5

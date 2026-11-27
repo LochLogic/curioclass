@@ -93,8 +93,7 @@ Course `library-and-research-skills-grade-1` (catalog id `library-1`), grade 1. 
   What the agent studies first: APPROACH.md "Sensitive ground" items 1 (neutral K to 5 case sets), 2 (the stop rule,
   unit 2), 3 (privacy: never typing a name or school, unit 2), 4 (honest use without shaming, units 3 and 4), 5
   (whose voices a source set shows, C12) and, for unit 4's star and wish, kind feedback on a classmate's work; and,
-  for unit 2's device day, the National Center for Missing and Exploited Children's free K to 2 online-safety
-  presentation "Be Safer Online with NetSmartz: Grades K-2", listed at https://www.missingkids.org/netsmartz/resources
+  for unit 2's device day, a free K to 2 online-safety presentation from a national child-safety nonprofit, listed at https://www.missingkids.org/netsmartz/resources
   (listing opened 2026-11-26: it names the presentation as a free download in English and Spanish but does not
   state its rule, and the presentation file was not read, so the stop rule rests on nothing in it). No organization's name goes on a
   student, teacher or family page.

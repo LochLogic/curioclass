@@ -403,6 +403,12 @@ def rule2_notes(course, subject):
         import unit_skeleton as u
     except Exception as e:   # the gate never fails on the helper itself
         return ['rule 2 check skipped: %s' % e]
+    # course-list.csv joins health and PE as health-pe; frames.csv names the subject whose progression file the
+    # skeleton reads (sel, health, physical-education, cte ...), so it wins where it has the course
+    try:
+        skel_subj = u.subject_of(course) or subject
+    except SystemExit:
+        pass
     if skel_subj not in u.SUBJECTS:
         return []
     u.set_subject(skel_subj)

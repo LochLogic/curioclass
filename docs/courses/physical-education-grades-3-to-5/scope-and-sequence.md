@@ -60,7 +60,8 @@ days live in data/plans/physical-education-grades-3-to-5/days.csv.
   unit's baseline watch (rotating groups, met, partly, not yet) falls on its first skill day and is named in the
   note; marks "carried" come from a closure watch on the unit's last Fluency day. Each check has one skill task, one
   knowledge task and one S3 conduct mark (the conduct mark reviews S3.5.3 or S3.5.4 outside the units that own them,
-  with no claim). Marks go on each child's private skill sheet, which travels with them from grade 3 to grade 6.
+  with no claim; the day that marks it writes the reviewed id with `~` in the codes column, as K to 2 does). Day 2
+  picks up the K to 2 record where the school kept it. Marks go on each child's private skill sheet, which travels with them from grade 3 to grade 6.
   Fitness data stays with the child: no comparing, ranking, posting or grade, no weighing.
 - **Readiness and retrieval.** The frame's readiness checks sit in the last ten minutes of a respond day, never on a
   unit's first day: g1-world-games for unit 16 on day
@@ -75,11 +76,13 @@ days live in data/plans/physical-education-grades-3-to-5/days.csv.
 - **Shared cards**, quoted word for word in the grades 3 to 5 form from the SEL 3 to 5 frame's "Shared steps with
   health and PE" bullet (SEL STANDARD section 7 gives the K to 2, 6 to 8 and 9 to 12 forms): the calm-down card
   "stop, breathe, name it, choose" (units 6, 11, 18, 24); the talk turn card "listen, say back, ask a question, add
-  your idea" (team talk, units 5, 11, 18); the goal steps card "goal, steps, block and plan, check" from grade 4
+  your idea" (a listening card, unit 5, day 49; it is not team talk); the goal steps card "goal, steps, block and plan, check" from grade 4
   on (units 14, 17). SEL 3 to 5 grows the goal card to four steps on its day 54 (grade 3 week 27), so units 4 and 7
   (days 36 and 67) use the K to 2 grade 2 form the class knows, "my goal and one step; a helper and a check; a changed
   step", retrieved from g2-goals. The I-statement card ("I feel ___ when ___ because ___. I need ___.") is SEL's and health's; PE uses it only
-  where SEL has taught it and claims no part of it.
+  where SEL has taught it and claims no part of it. Team talk is health's conflict steps, the PE K to 2 unit 17
+  model: the grade 2 form "stop, say what happened, listen, find a fair way, and an adult helps when words do not work" (health K to 2 day 72) on days 49, 103 and 181 and their uses, then from the grade
+  5 mid-year check (day 203, week 18) the grade 5 form "stop, calm down, each says their side, find a fair way, or walk away and get help" (health 3 to 5 day 77, unit 18, week 17).
 - **Equipment and safe use.** The supplies columns are math and science only, so every movement day's note ends
   with its unit's space line: the safe space, the equipment, the no-equipment path and the wet-day path (every day
   names one), plus water and shade on warm outdoor days. Mats come from the school's stock, inspected and
@@ -156,7 +159,7 @@ sure everyone in my group gets a turn?* Owns g3-foot-skills (S1.5.18, S1.5.20), 
 g3-kind-groups (S3.5.3).
 
 Arc: the laces kick with the baseline (46), the foot dribble (47), the hand bounce with its baseline (48), kindness
-in groups with SEL's talk turn card (49), stations (50, 52), group dribble-and-pass tasks in a changing maze, no
+in groups with SEL's talk turn card and team talk (49), stations (50, 52), group dribble-and-pass tasks in a changing maze, no
 defenders (51). Check day 53 (kick and foot dribble marked apart, the hand bounce carried from day 52; plant foot and
 eyes-up knowledge; passes to everyone), respond day 54. Retrieval: g2-ball-skills-combine (46), g3-safe-movement
 (47), g2-talk-problems (49). SEL grade 3 unit 4 runs beside this unit. Candidate kept: the "everyone touched it"
@@ -334,12 +337,12 @@ disagree about a call?* Owns g5-defend-ideas (S2.5.3), g5-conflict-solve (S3.5.5
 to S1.5.21 in new settings (no claim).
 
 Arc: defending cues with the baseline (175), passing stations with a passive defender (176), the three settings of
-S3.5.5 taught and watched in turn, alone (177), with a partner (179) and in a small team (181, with the calm-down and
-talk turn cards and a scripted scene of invented players), soccer-style and basketball-style three-on-three games
+S3.5.5 taught and watched in turn, alone (177), with a partner (179) and in a small team (181, with the calm-down card and
+team talk and a scripted scene of invented players), soccer-style and basketball-style three-on-three games
 (178, 182, 183), defend-and-attack stations (180, 184). Check days 185 (skill in a game; a call settled in a game or
 scene, the alone and partner marks carried, so S3.5.5 is checked in all three settings) and 186 (defending moves),
 respond day 187. Retrieval: g4-attack-ideas, g4-pass-gather, g4-move-and-send (175), g4-team-roles and SEL grade 4
-unit 11 (181). Health unit 18 and SEL unit 16 come later in grade 5. Candidate kept: each team's disagreement rule
+unit 11 (181). Health unit 18 and SEL unit 16 come later in grade 5, so team talk keeps the grade 2 form here. Candidate kept: each team's disagreement rule
 (day 181).
 
 ### Unit 19. Net and wall games
@@ -403,11 +406,12 @@ swimming strokes look like?* Owns g5-water-skills (S1.5.22, S2.5.18).
 Arc: the reach rescue with the water rules taught here (226; health's safe-places unit was two grades back), the
 throw rescue and the buddy rule (227), the life jacket fit and the strokes on the floor (228), stations (229, 230).
 Check day 231 (dry-land part of S1.5.22 for every school; simple swimming only in a school's own aquatics program),
-respond day 232. Water flag on every day: no child enters water. Rescue steps (call for help first, reach from a lying or kneeling
-base, throw something that floats, never go in) are sourced on days 226, 227 and 231 to the Drowning Prevention
+respond day 232. Water flag on every day: no child enters water. Rescue steps (call for help first, reach lying on
+the stomach, throw something that floats, never go in) are sourced on days 226, 227 and 231 to the Drowning Prevention
 Coalition of Palm Beach County's "Reach, Throw, Don't Go" page (opened 2026-11-26); CDC's page supports life jackets
 and supervision only. The readiness results from day 225 shape day 226.
-Candidate kept: the family water-safety card (day 230).
+New in this band: the buddy rule and floating and strokes shown on the floor, with the fit check added to K to 2's
+fastening. Candidate kept: the family water-safety card (day 230), which names those steps.
 
 ### Unit 24. Looking back on PE
 
@@ -464,22 +468,26 @@ keeps seven sessions between the baseline (day 163) and the check (day 172), abo
 weekly goal check in every warm-up, so S4.5.6's longer goal holds on the short path.
 
 **A year about 10 days short, by named fold-in days.** Ten school days short is about 5 sessions at 2.5 a week (school
-day 2n). Each year names 5 fold-in days from the list above, each folded as a 10-minute segment of the day named;
-none is assessed, a baseline or a first-teaching day.
+day 2n). Each year names 5 fold-in days from the list above: those 5 sessions (175 minutes) are not met, and each
+day's cue survives as a 10-minute segment of the day named; none is assessed, a baseline or a first-teaching day.
 
 | Year | Fold-in day | Folds into | Saves |
 |---|---|---|---|
-| 3 | 6, 17, 28, 38, 58 | 8, 19, 30, 40, 60 | 25 minutes each, 125 in all |
-| 4 | 86, 96, 106, 117, 130 | 88, 98, 109, 120, 132 | 125 |
-| 5 | 167, 180, 189, 218, 236 | 169, 184, 194, 220, 238 | 125 |
+| 3 | 6, 17, 28, 38, 58 | 8, 19, 30, 40, 60 | one 35-minute session each, 5 sessions (175 minutes) in all |
+| 4 | 86, 96, 106, 117, 130 | 88, 98, 109, 120, 132 | 5 sessions (175 minutes) |
+| 5 | 167, 180, 189, 218, 236 | 169, 184, 194, 220, 238 | 5 sessions (175 minutes) |
 
 A school that loses more uses the rest of the 64-session list in order.
+
+**A shorter period** (25 to 30 minutes instead of 35) keeps every day: the warm-up and cool-down shorten to 2
+minutes each and the closure watch keeps its place. Units with one check day hold the rotation and the knowledge task
+on the check day and drop that day's focus block.
 
 **Leave-out units and swaps.** A school or family may swap a cultural game or dance (units 8, 15, 16). A unit left
 out takes its owned codes off the course page's claim; no other unit claims them. Where a later unit uses a card a
 left-out unit made, that unit teaches the card's one-step form in its first ten minutes and claims none of the
 left-out sub-skills: the fitness-parts chart (unit 4, used by units 9 and 17), the goal steps card (unit 4 or 7, used
-by 14 and 17), team talk on SEL's talk turn card (unit 5, used by 11 and 18), the calming card (unit 6, used by 11 and
+by 14 and 17), team talk in health's conflict-step words (unit 5, used by 11 and 18), the calming card (unit 6, used by 11 and
 24), chains and sequences (units 13 and 14, used by 22), the volley, bump and serve cues (unit 12, used by 19), and
 long-tool striking (unit 6, used by 21, whose readiness check then becomes a 10-minute swing teach).
 

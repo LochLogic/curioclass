@@ -224,7 +224,7 @@ Course `media-arts-grades-6-to-8` (catalogue id `media-arts-6-8`), a band course
 
 Year 6 picks up the eight grade 5 rows of Media Arts, grades 3 to 5 (year 5), one grade back, so each opens as a
 retrieval task inside day 2 of its unit, with a ten-minute reteach for a student who did not take that course
-(Readiness and retrieval, above). Its grade 5 units sit on that course's days 129 to 192: ma-g5-read and ma-g5-society in unit 9 (days 129 to 144), ma-g5-ideas and ma-g5-craft in unit 10 (days 145 to 162), ma-g5-make and ma-g5-judge in unit 11 (days 165 to 176), ma-g5-present and ma-g5-sources in unit 12 (days 179 to 192); its "Handed on to Media Arts, grades 6 to 8" table names the same eight rows and units.
+(Readiness and retrieval, above). Its grade 5 units sit on that course's days 129 to 192: ma-g5-read and ma-g5-society in unit 9 (days 129 to 144), ma-g5-ideas and ma-g5-craft in unit 10 (days 145 to 162), ma-g5-make and ma-g5-judge in unit 11 (days 165 to 176), ma-g5-present and ma-g5-sources in unit 12 (days 177 to 190); its "Handed on to Media Arts, grades 6 to 8" table names the same eight rows and units.
 
 | Grade 5 row | What it hands on | Year 6 row that picks it up (unit) | What year 6 does with it |
 |---|---|---|---|

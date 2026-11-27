@@ -87,6 +87,10 @@ day 10's inquiry chooses, checks and ends in the two-sentence sourced answer, sh
   rule (g3-safe-searching) that day 8 models and day 11 asks.
 - End-of-unit assessment: day 11, written sitting about 27 minutes (three reason lines 12, two lateral checks with one
   statement marked 15). Response time: day 12.
+- The lateral card: day 8's "what others say" card is the first form of the band's lateral card, and day 8's note
+  names how it maps to the grades 9 to 12 routine card, its end form (stop, investigate the source, look for better
+  coverage, trace the claim): leaving the page is stop, looking up the maker is investigate the source, a second
+  source is look for better coverage; trace the claim arrives in grade 6 as "go upstream".
 - Leans: social studies grade 5 unit 3 (ss5-sourcing-corroboration) runs weeks 6 to 9, before or beside; library
   borrows only the move, on sea turtle pages. ELA grade 5 unit 2 (e5-locate-sources) runs weeks 9 to 16, beside from
   day 9. Health grade 5 unit 16 (weeks 5 to 9) runs health's source check card (who made it, what they want, is there
@@ -158,7 +162,7 @@ written sitting.
 | Check | Course day | Week | Respond | What it samples |
 |---|---|---|---|---|
 | 1, mid-year | 13 | 13 | day 14, week 14 | Unit 1 on new cases (about 25 minutes): five questions sorted and one rewritten, a query changed twice with the ad marked, a next-step line. Unit 2, which ended the week before, is carried as a class count, not re-tested |
-| 2, year-end | 28 | 28 | days 29 and 30, weeks 29 and 30 | Units 1 to 3 on new cases (about 27 minutes: 5, 8, 12, plus 2 to finish). Unit 4, which ended the week before, is carried as a class count, not re-tested. Day 29 splits 12 / 12 / 5 (unit 4 reteach, year-end gaps, a fresh try); day 30 is the year's reflect step and the handoff to grade 6 |
+| 2, year-end | 28 | 28 | days 29 and 30, weeks 29 and 30 | Units 1 to 3 on new cases (about 27 minutes: 5, 8, 12, plus 2 to finish). Unit 4, which ended the week before, is carried as a class count, not re-tested. Day 29 splits 12 / 12 / 5 (unit 4 reteach, year-end gaps, a fresh try); day 30 is the year's reflect step and the handoff to grade 6 (each student's open question, and the teacher's class-level note of the moves the class needs again for the grade 6 teacher) |
 
 Both checks come right after a unit's end-of-unit assessment and draw their items from earlier units only, as the
 frame's table sets. No task form repeats within two weeks of its last sitting (unit 1's forms were last given in

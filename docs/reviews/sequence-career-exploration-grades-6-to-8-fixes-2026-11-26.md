@@ -59,7 +59,7 @@ and For Cory item 2 (Cory's). Lead calls: 2, 3, 4, 6, 7, 11 used; 1, 8, 9, 10, 1
 | A cross-subject row used one hop later (a later row `assumes` it) is retrieval, opened on the first day that uses it | Any lean on library rows |
 | An end day's note names a prompt or product for every code it claims; a product can stand for a code when named | All career end days |
 | Each cluster's unseen end-day item is a short version of its sub-cluster's field task decision on new data | Career Pathways |
-| A minor's hours and task limits come from the Wage and Hour Division's YouthRules and child labor pages, not the OSHA young workers page | Career Pathways day on a first job |
+| A minor's hours and task limits are cited to the Wage and Hour Division's Fact Sheet #43 (https://www.dol.gov/agencies/whd/fact-sheets/43-child-labor-non-agriculture), which states them; YouthRules stays as the student-facing page and the OSHA young workers page for a safe workplace and who to ask (corrected 2026-11-26 by the career scope group read, finding 2: the YouthRules and child labor pages do not state the limits) | Career Pathways day on a first job |
 | A bridge day for a later-taught lean (day 70) never folds in a short year | Short-path lists |
 
 ## For the structure pass

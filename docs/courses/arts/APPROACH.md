@@ -232,6 +232,9 @@ teacher note in section field 1.
   marked the same.
 - **If a student tells you something.** Each section carries health's steps (docs/courses/health/APPROACH.md, "If a
   student tells you something") on its teacher page.
+- **Content notes to families.** A studied work gets a content note to families (to the student at 18 or over) when
+  its subject includes violence against a person, a killing, sexual violence or drug use, even when only described;
+  other hard history is named plainly with no note (theater group read, 2026-11-26, finding 6).
 
 ## Pacing
 

@@ -129,7 +129,7 @@ Days 15 to 32, weeks 8 to 16. Ids: MA:Cr1.1.6, MA:Cr2.1.6, MA:Pr5.1.6a, MA:Pr5.1
 ma-g6-craft).
 
 The longest unit of the year, by load: five ids, a planning portfolio and a team production. Methods are shown (day
-16) before teams set aims (17); the flip book and stop motion, the ordinary tool use, are shown and drilled (18, 19)
+16) before teams set aims (17); frame-by-frame timing on the stop motion (holds, frames per second, ease in and ease out), the ordinary tool use, is shown and drilled (18, 19), with grade 3's 12-drawing flip book as day 18's warm-up
 before Lye's experimental use (20); the portfolio card (21) comes before the storyboard and mockup (22); the role cards
 and the constraint (23, 24) come before production (25 to 28). The critique sits in production session 3 (27) and the
 revision on day 28; the screening is day 29 and the portfolio and role record are finished on day 30.
@@ -432,9 +432,9 @@ holds its folded fluency opener, so the path keeps two marks a unit.
 | 4, 8, 12 (6) | 1: days 49 to 53 (study the works, the source log, the technique demonstrated, drill in the opener); 2: days 54, 55 and 57 (research from a teacher-prepared archive packet, the pair piece made, the trial in pairs with the critique and the review frame); 3: days 56, 58 and 59 (the showing formats on the showing plan, the revision that puts the review's improvement in place, the run-through and records finished; in unit 12, session 2 holds days 182, 183 and 185, the research, the screen version and the second format with the critique, and session 3 days 184, 186 and 187, the showing plan, the trial with audience feedback and the counted revision); 4: day 60 (the scored screening); 5: day 61 (written items and self-check); 6: day 62 (respond). This moves the research and the draft out of session 1; the frame's six sessions stay, see For the lead item 7 |
 
 **A year about 10 days short.** Ten school days is about four sessions at two a week (lead call 1). Four fold-in days a
-year, each a fluency day whose drill moves into the next day's opener (and, where it holds the baseline look, the look
+year, each a fluency day whose drill moves into the next day's opener as a 5-minute warm-up (and, where it holds the baseline look, the look
 moves to the named day, a day where the look-for can be seen); nothing is assessed on them and no owned part lives
-only on them. Each saves 40 minutes, 160 minutes a year, leaving 60 of the
+only on them. Each saves 35 minutes, 140 minutes a year, leaving 60 of the
 frame's 64 days (180 of 192 over the band).
 
 | Year | Fold-in days (the day that takes the drill) |

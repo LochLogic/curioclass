@@ -61,8 +61,8 @@ Course `health-grades-6-to-8` (catalog id `health-6-8`), grades 6, 7 and 8, one 
   that returns from an earlier unit or grade gets its card back for one day, then goes without. Norms and pressure
   (bar criterion 4): each year states one norm with a current national survey figure for the age group, on an
   Understanding day of a non-sensitive unit (APPROACH.md, Kinds of day): grade 6 unit 4, the share of middle school
-  students who had not used an e-cigarette in the past 30 days (the national youth tobacco survey, latest edition; 2024: 3.5
-  percent current use, so about 96 in 100 had not); grade 7 unit 12, the
+  students who had not used an e-cigarette in the past 30 days (the national youth tobacco survey, latest edition; 2025: 2.6
+  percent current use, so about 97 in 100 had not); grade 7 unit 12, the
   share of grade 8 students who have not had alcohol in the past month (the national survey of grade 8 students,
   latest edition, named for its age group); grade 8 unit 25, the same survey's grade 8 figures for alcohol and
   cannabis, set beside what students guess first. Each figure is entered with its source and year at the expert
@@ -189,8 +189,8 @@ Course `health-grades-6-to-8` (catalog id `health-6-8`), grades 6, 7 and 8, one 
 
 ### Picked up from Health, grades 3 to 5
 
-Grade 6 picks up grade 5 of Health, grades 3 to 5, the year before, and two grade 4 rows two grades back (readiness
-checks). Grade 5 units of Health, grades 3 to 5: 15 (habits), 16 (information and care), 17 (choices under
+Grade 6 picks up grade 5 of Health, grades 3 to 5, the year before, and two grade 4 rows last used in grade 5
+(retrieval). Grade 5 units of Health, grades 3 to 5: 15 (habits), 16 (information and care), 17 (choices under
 pressure), 18 (getting along), 19 (speaking up), 20 and 21 (sensitive); grade 4 units 9 and 10. Both ends match that
 frame's Handed on table.
 
@@ -319,8 +319,8 @@ before; each returns with the card held by the teacher for one day, then by pair
 | refusal-steps (SEL STANDARD section 7's grades 6 to 8 form: three options, a plain no, a no with a reason, a way out of the place, chosen to fit the place; health's own card steps: stop and think, say no clearly, give a reason or none, offer something else or walk away) | SEL grades 3 to 5 (unit 5) and Health, grades 3 to 5 (grade 4 unit 12, grade 5 unit 17) | Unit 4 (g6-t-nicotine-facts) | Unit 12 (g7-aod-turn-down-requests), unit 25 (g8-aod-refusal-and-driving); on to grade 9 |
 | decision-steps (notice a careful choice, ask if it needs help, name options and results, pick the one that supports health, look back) | Health, grades K to 2, carried through grades 3 to 5 (grade 5 unit 17) | Unit 4 (g6-t-when-careful-decision) | Unit 6 (g6-fn-decision-process), unit 12 (g7-s-decision-process-use), unit 16 (g7-pa-options-wider-effects), unit 25 (g8-aod-decision-supports-obstacles), unit 27 (g8-pa-decision-look-back); on to grade 9 |
 | conflict-steps (stop, calm down, each says their side, find a fair way, or walk away and get help) | Health, grades K to 2, carried through grades 3 to 5 (grade 5 unit 18) | Unit 7 (g6-v-bullying-harassment-help: only calming and listening retrieved; bullying is never settled by the conflict steps) | Unit 11 (g7-v-conflict-prevent-end), unit 24 (g8-v-negotiate-compromise); on to grade 9 |
-| boundary-steps (say it, repeat it, leave, tell) | Health, grades K to 2, carried through grades 3 to 5 | Unit 7 (g6-v-bullying-harassment-help) | Unit 9 (sensitive), unit 14 (g7-s-online-boundaries), units 20 and 21 (sensitive), unit 24 (g8-v-negotiate-compromise), units 28 and 30 (sensitive); on to grade 9 |
-| speak-up-plan (notice, who, say, ask); grade 7 adds a first step, grade 8 fits it to the audience | Health, grades 3 to 5 (grade 4 unit 12, grade 5 unit 19) | Unit 7 (g6-s-speak-up-for-others) | Unit 18 (g7-s-spot-speak-up, g7-t-advocate-alone-or-group), unit 27 (g8-fn-advocacy-audience, g8-pa-advocacy-practice, g8-s-advocacy-results); on to grade 9 |
+| boundary-steps (say it, say it again, move away, tell) | Health, grades K to 2, carried through grades 3 to 5 | Unit 7 (g6-v-bullying-harassment-help) | Unit 9 (sensitive), unit 14 (g7-s-online-boundaries), units 20 and 21 (sensitive), unit 24 (g8-v-negotiate-compromise), units 28 and 30 (sensitive); on to grade 9 |
+| speak-up-plan (notice, who, say, ask); grade 7 adds a first step, spot the chance, grade 8 fits it to the audience | Health, grades 3 to 5 (grade 4 unit 12, grade 5 unit 19) | Unit 7 (g6-s-speak-up-for-others) | Unit 18 (g7-s-spot-speak-up, g7-t-advocate-alone-or-group), unit 27 (g8-fn-advocacy-audience, g8-pa-advocacy-practice, g8-s-advocacy-results); on to grade 9 |
 
 The card wordings are copied from the grades 3 to 5 frame's Models carried table, which follows SEL STANDARD
 section 7 for the I-statement, listening and refusal cards; the two additions named above are this band's only

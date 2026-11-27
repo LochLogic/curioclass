@@ -258,7 +258,7 @@ All eight come in from grade 8 (the Level 1 rows' model_in) and go on through ev
 | idea-bank | Grade 8 (mu-g8-invent, model_out) | Unit 2: the idea bank of short sound ideas for a mood, image or story (bridge unit 1 retrieves its grade 8 form) | Unit 7 (memories, texts, concepts), unit 12 (abstract and extended ideas), unit 16 (the portfolio proposal) |
 | notation-ladder | Grade 8 (mu-g8-document, model_out) | Unit 1 (bridge): staff reading and writing retaught; unit 3: dated drafts in a simple form | Unit 8 (rondo and ternary), unit 13 (complex forms), unit 16 (portfolio drafts) |
 | critique-protocol | Grade 8 (mu-g8-revise, model_out) | Unit 1 (bridge): describe, ask, suggest retaught; unit 4: revision with the teacher's criteria | Unit 9 (own criteria), unit 14 (researched criteria), unit 16; every unit's critique as review |
-| rhythm-syllables | Grade 8 (mu-g8-read, model_out) | Unit 1 (bridge): rhythm syllables and solfege for reading; unit 3: by-ear analysis and dictation | Unit 8 (score analysis), unit 13 (defended analysis), unit 17 (reviews); every opener's sight-singing as review |
+| rhythm-syllables | Grade 8 (mu-g8-read, model_out) | Unit 1 (bridge): rhythm syllables and solfege for reading; unit 3: by-ear analysis and dictation. The two systems, the same in every music band: rhythm by "ta", "ti-ti", "ta-a" and the rest, with "ti-ka-ti-ka" for sixteenths, beside beat numbers from grade 3; pitch by movable do with la-based minor, growing from so, mi and la (K to 2) to the pentatonic (grade 3) and the full major scale (grade 4), kept beside letter names from grade 4 on. A school may use its own systems instead, as long as it keeps one through the band. | Unit 8 (score analysis), unit 13 (defended analysis), unit 17 (reviews); every opener's sight-singing as review |
 | expression-map | Grade 8 (mu-g8-express, model_out) | Unit 4: the map of elements, style and mood against the composer's aim | Unit 9 (function and setting added), unit 14 (two readings set side by side), units 17 and 19 |
 | practice-plan | Grade 8 (mu-g8-perform, model_out) | Unit 3: a short analysis-to-rehearsal card (a feature, a rehearsal action, the link), with the readiness reteach; unit 5 grows it into the full rehearsal plan marking repetition and variation | Unit 10 (style and setting), unit 15 (techniques and many audiences), unit 19 (the student's program) |
 | listening-log | Grade 8 (mu-g8-choose, model_out) | Unit 2: the model-piece log with reasons and the student's tastes | Unit 7 (defended picks), unit 12 (researched picks), unit 18 (the capstone) |
@@ -318,7 +318,7 @@ grade 5. The contacts below are practiced, not owned, each with its "if later" l
 
 | Used here | Contact | If English language arts has not taught it yet |
 |---|---|---|
-| Units 4, 9 and 14 (interpretations), units 5, 10 and 15 (critiques), unit 17 (reviews) | Argument writing with claims and evidence (W.9-10.1, W.11-12.1): practiced, not owned | Each unit's step card gives the claim, evidence from the music, reasoning frame and a worked example; the music guide marks the musical evidence, not the writing standard |
+| Units 4, 9 and 14 (interpretations), units 5, 10 and 15 (critiques), unit 17 (reviews) | Argument writing with claims and evidence (W.9-10.1, W.11-12.1): practiced, not owned | Each unit's step card is the claim-and-evidence card (claim, evidence from the music with a time or a bar, reason) with a worked example; the music guide marks the musical evidence, not the writing standard |
 
 ### Mathematics
 

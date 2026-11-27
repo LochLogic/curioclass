@@ -9,8 +9,8 @@ gives the frame's weeks. Grade 10 computer science is an elective outside the co
 (CALENDAR.md rules 1 and 3 cover K to 8).
 
 **Every day.** From day 2 on, a lesson opens with a three-minute retrieval trace (or, on a unit's first day, the hook
-and its retrieval or predict task), and device lessons keep their last three minutes to save or print and close
-devices (APPROACH.md, "How a day opens"). Each device day's note carries its four paths (one device per pair,
+and its retrieval or predict task), and device lessons keep three minutes at the start to get devices out and open the page and their last four
+minutes to save or print and close devices (APPROACH.md, "How a day opens"). Each device day's note carries its four paths (one device per pair,
 stations with paper, one screen with predict and vote, no device), the pair roles switched at the halfway signal and
 the frame's two safety lines; each security day carries the case-card-only line. The credit line "Standards: 2026
 CSTA PK-12 Computer Science Standards (CC BY-NC-SA 4.0)" goes on every day that leans on a statement. No base text:
@@ -22,17 +22,19 @@ g9-modular, g9-structures-program, g9-design-with-structures, g9-optimize-proced
 g9-security-measures, g9-data-dictionary, g9-simulate-data, g9-algorithm-impacts, g9-career-interests,
 g9-emerging-differences and g9-computing-history: retrieval inside the named day for students who took grade 9;
 because grade 9 is an elective, the same items are a ten-minute readiness check before each unit for students who did
-not (frame, Course order), with a worked example in the retrieving lesson. The review threads g9-operating-systems
+not (frame, Course order), with a worked example in the retrieving lesson. Every student sits the readiness items: for a student who took grade 9 they are the year-before retrieval, and the teacher reads them to find who needs the worked example (a teacher cannot always tell who took grade 9). The review threads g9-operating-systems
 (day 22) and g9-det-vs-prob (day 7) are review, with a worked example inside the day for students who did not take
 grade 9, not readiness items. From grade 8, two grades back: g8-evaluate-ai-code and g8-attribution (readiness for every student,
-day 1) and g8-network-failure (the packet-strip item, readiness for every student, day 20). Readiness days: 1, 11, 20,
+day 1). g8-network-failure was last used on grade 9 day 49, so it is a year-before row: the packet-strip item on day
+20 is a retrieval for a student who took grade 9 and readiness for the rest. Readiness days: 1, 11, 20,
 31, 41 and 53, each the previous unit's last day or the respond day between units.
 
 ## Unit 1: Reading code closely (course days 1 to 11, weeks 1 to 6)
 
 Concept area: programming.
 
-The year opens on a working twenty-line guessing game, run once and then read. Days 2 and 3 trace a procedure call
+The year opens on a working twenty-line bus timetable lookup, run once and then read (not a guessing game: grade 7 day
+1 and grade 8 day 13 already open on one). Days 2 and 3 trace a procedure call
 on a trace-table and pass a list into it on the list-diagram; day 4 modifies the anchor with every part already
 taught; day 5 reads one saved code sample against a test-table (a first look at HS-PRO-RD-18). Days 6 to 9 turn to
 someone else's code: a documentation page read unplugged, two supplied library calls modified and one added from it
@@ -129,11 +131,13 @@ performance per day.
 
 ## Shorter path
 
-**A shorter period (40 minutes).** The retrieval trace stays at three minutes and device save minutes stay; each
+**A shorter period (40 minutes).** The retrieval trace stays at three minutes and the device minutes (three to open, four to save and close) stay; each
 lesson trims its practice by five minutes, and a check lesson holds its one scored performance of about 25 minutes.
 
-**A year about 10 days short (54 days).** Ten fold-in days, each removing one 45-minute lesson (450 minutes in all,
-64 days to 54); the neighbor takes 10 to 15 minutes of the folded work, nothing assessed or owned is cut, and no
+**A year about 10 school days short** (two weeks, four sessions at two a week). Fold in the four marked "10 school
+days" in the table: days 18, 28, 52 and 57, 180 minutes, leaving 60 of 64 days. The other six (days 5, 6, 14, 16, 37
+and 39) are a named spare list for a year shorter still (450 minutes in all, 64 days to 54). Each fold-in removes one
+45-minute lesson; the neighbor takes 10 to 15 minutes of the folded work, nothing assessed or owned is cut, and no
 fold-in removes a modify day or the only practice of a scored performance (days 4, 7, 56 and 60 stay whole; day 6's
 page read moves into day 7's first minutes, since day 7 is now the modify lesson on library calls):
 
@@ -143,14 +147,14 @@ page read moves into day 7's first minutes, since day 7 is now the modify lesson
 | 6 (reading a documentation page) | 7, first 15 minutes, before the calls are modified from it | 45 |
 | 14 (step counter on growing lists) | 13, the counts from the printed table | 45 |
 | 16 (clarity) | 15 | 45 |
-| 18 (AI justification practice) | 17 | 45 |
-| 28 (second breach case and review) | 27 | 45 |
+| (10 school days) 18 (AI justification practice) | 17 | 45 |
+| (10 school days) 28 (second breach case and review) | 27 | 45 |
 | 37 (verification applied) | 36 | 45 |
 | 39 (reading the chart) | 38 | 45 |
-| 52 (portfolio) | 53, first 15 minutes | 45 |
-| 57 (policy on the timeline) | 56, first 15 minutes | 45 |
+| (10 school days) 52 (portfolio) | 53, first 15 minutes | 45 |
+| (10 school days) 57 (policy on the timeline) | 56, first 15 minutes | 45 |
 
-Total 450 minutes, 10 of 64 days.
+Total: the four marked days save 180 minutes (60 of 64 days); with the spare list, 450 minutes, 10 of 64 days.
 
 ## For the lead
 

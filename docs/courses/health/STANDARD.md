@@ -117,7 +117,10 @@ without breaking the course. The rule:
 
 1. **Sensitive content lives in its own units.** These units are sensitive: sexual health (every band); body
    safety, meaning unwanted touch and abuse (V 8 from K, V 9 from grade 3; K to 5); sexual violence, abuse and dating violence (V 4, 8, 9;
-   6 to 12); suicide and self-harm (MEH 6, V 10; 6 to 12). No sensitive content sits inside a non-sensitive unit.
+   6 to 12); suicide and self-harm (MEH 6, V 10; 6 to 12). Respect for families of every structure is not
+   sensitive: it is taught in ordinary units, the way SEL's models show families of every kind (K to 2 unit 11,
+   3 to 5 unit 7), and a leave-out stays only for body or relationship-history content (Cory, 2026-11-26, Desk q-health-family-1).
+   No sensitive content sits inside a non-sensitive unit.
 2. **No skill lives only in a sensitive unit.** Each NHES indicator claimed in a sensitive unit is also claimed
    in a non-sensitive unit of the same band. A sensitive unit practices a skill already taught elsewhere.
 3. **Getting help is taught twice.** How to tell a trusted adult and where to find help is taught in a

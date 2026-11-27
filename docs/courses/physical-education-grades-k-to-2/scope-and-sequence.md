@@ -261,9 +261,11 @@ only).
 ### Unit 22. Safe near water, and looking back
 
 Days 229 to 240 (weeks 28 to 32). Dry land only: life jacket, reach and throw, floating and kicking shown on the
-floor, after health K to 2 unit 13's water rules are retrieved. Then a personal difficulty with the calm-down card's
+floor, after health K to 2 unit 13's water rules are retrieved. New in this band: fastening a life jacket, and a
+grown-up called first, "shout for a grown-up, then reach or throw, don't go" (days 230, 231, 237, 238), sourced on day
+230 to the Drowning Prevention Coalition of Palm Beach County's "Reach, Throw, Don't Go" page (opened 2026-11-26). Then a personal difficulty with the calm-down card's
 grade 2 form, and a look back across K to 2. Candidate settled: the family water-safety card is kept with no day
-cost (day 236). Checks 238 and 239; respond 240 hands the band's records on to grades 3 to 5. Required access: real
+cost (day 236) and names this band's steps. Checks 238 and 239; respond 240 hands the band's records on to grades 3 to 5. Required access: real
 child life jackets. Safety read (water). Sensitive: water and emotions.
 
 ## Course-level checks

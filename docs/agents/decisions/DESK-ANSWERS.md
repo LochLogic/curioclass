@@ -2139,3 +2139,42 @@ drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
   from the dashboard." data/plans/course-list.csv marks it `folded:economics`; scripts/course_status.py drops a folded
   course from the course lists and counts its topics and tools under the course it folds into. A state that requires a
   standalone half-credit course is a question for marketing time, not now.
+
+## 2026-11-26: Family-structure content and visual arts Levels 2 and 3 (Desk q-health-family-1, q-va-levels-1)
+
+- **Family-structure content is ordinary in health:** Cory picked option (b) of the health scope group read, finding 1
+  (docs/reviews/scope-group-health-2026-11-26.md): an opt-out of health K to 2 unit 11 could not keep the content away,
+  because SEL's models show families of every kind in the same weeks. Health K to 2 unit 11 (days 53 and 54) and health
+  3 to 5 unit 7 (days 27 and 28) are now ordinary units, with no leave-out note and no longer family note. Neither holds
+  body or relationship-history content, so no leave-out stays in them. Health STANDARD.md section 5 rule 1 says so; the
+  care rules (warm, neutral words, no child describes their own family, the teacher's own views note, the sensitivity
+  read) stay.
+- **Visual arts 9 to 12, Levels 2 and 3 in one room:** allowed by the same rule as Levels 1 and 2 (own units and ids,
+  shared opening and critique days); the scope and sequence's Two levels in one room section holds the shared days.
+
+## 2026-11-26: SEL and career structure pass (lead)
+
+- **SEL STANDARD and career's shared cards:** the lead applied the SEL and career scope group reads' structure picks
+  (docs/reviews/scope-structure-pass-sel-career-2026-11-26.md). SEL STANDARD section 7 states every band's card row
+  (refusal in health's words, "a reason or none" and "say it, say it again, move away, tell"; grade 2's disagree frame
+  kept apart from the talk turn card), extends the goal steps card to career and maps career's decision steps card onto
+  stop-think-choose; section 3 takes the SEL 6 to 8 unit titles; sections 2 and 5 state the owned-code reason and the
+  cultural-places line. scripts/unit_skeleton.py counts rule 2 for the after-core subjects, band courses year by year.
+
+## 2026-11-26: Scope group reads, lead calls (lead)
+
+- **Group reads:** all eleven non-core subject groups were read side by side through the grades (Cory: "all the scope
+  group reads", all non-core subjects) and fixed: docs/reviews/scope-group-<group>-2026-11-26.md and its -fixes report
+  for music, visual arts, theater, dance, media arts, computer science, health, PE, SEL, library and career. Two calls
+  went to Cory (q-health-family-1, q-va-levels-1, entry above); the rest were the lead's.
+- **Shared card words:** lateral reading uses library 9 to 12's routine card (stop, investigate the source, look for
+  better coverage, trace the claim) as the end form, earlier bands mapped to it, career quoting it. PE's team talk is
+  health's conflict steps. Debugging in computer science is the lens's six steps from grade 6 to 12.
+- **Media arts K to 5:** each year-end check and its respond day move to week 32, after the screening unit (option a).
+- **Theater 6 to 8:** blocking and stage areas taught on day 23; the once-a-week path drops the mid-year check, as 3 to 5
+  does. Arts content notes to families follow one threshold, stated once in docs/courses/arts/APPROACH.md.
+- **Computer science:** put-away minutes and pair switch set once per band in its APPROACH.md, with the K to 5
+  shorter-year rule and the check-day opener rule.
+- **Music:** one syllable and solfege system named through K to 12 (ta, ti-ti, ti-ka-ti-ka; movable do with la-based
+  minor), a school free to use its own if kept through the band.
+- **Calendar:** inside a week the weekday a school_day names is a placeholder (CALENDAR.md).

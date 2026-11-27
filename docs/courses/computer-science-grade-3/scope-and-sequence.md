@@ -28,7 +28,7 @@ unit has a readiness check:
 
 | Grade 2 row | Last used | Treatment | Day |
 |---|---|---|---|
-| g2-io-parts | grade 2 unit 1 | retrieval | 1, 2, 5 |
+| g2-io-parts | grade 2 unit 1 | retrieval | 1, 2 |
 | g2-online-consequences | grade 2 unit 1 | retrieval | 3 |
 | g2-benefits-harms | grade 2 unit 1 | retrieval | 4 |
 | g2-algorithm-loops | grade 2 unit 2 | retrieval | 7 |
@@ -174,9 +174,8 @@ part cut:
 | Day 8 (modify the game algorithm) | The last 10 minutes of day 7 change one card of the worked algorithm; day 9 opens with the partner check of one changed path before the make | 40 |
 | Day 14 (modify the game program) | The last 10 minutes of day 13 change the repeat count and run (day 13 drops its second predict program and keeps the shuffled reorder); day 15 opens with one changed question before the build | 40 |
 
-Total: 80 minutes, two of the 32 sessions, 30 left. Trace still comes before modify before make in both units. Respond
-days and check days are never folded. With both folds the checks sit in weeks 10 and 24 (the mid-year check becomes
-session 10, the year-end session 24); the lead's calendar pass confirms them. No Specialty id is claimed, so the
+Total: 80 minutes, two of the 32 sessions, 30 left. Trace still comes before modify before make in both units. The shorter-year rule, the same from kindergarten to grade 5: a respond day after an end-of-unit sitting may fold into the next day's opener with a self-check; a respond day after a course-level check never folds; check days keep their weeks, and a lost week before a check moves the teaching days, never the check. With both
+folds the checks keep weeks 11 and 26: each folded session absorbs a lost week before its check. No Specialty id is claimed, so the
 Specialty share stays at zero on this path too (bar C1).
 
 ## Base text and unloaded sources

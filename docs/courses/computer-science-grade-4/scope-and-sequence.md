@@ -8,8 +8,8 @@ page holds the judgment.
 
 - **Meeting days.** One 40-minute session a week, 32 weeks, a specials rotation (STANDARD.md section 2), so course day
   n sits in week n. Each session opens with a three-minute retrieval trace, or on a respond day with the most-missed
-  wrong example (APPROACH.md, How a day opens, b), and every device session keeps its last five minutes to save or
-  print, shut lids and return devices: about 32 minutes teach.
+  wrong example (APPROACH.md, How a day opens, b), and every device session keeps its last four minutes to save or
+  print, shut lids and return devices: about 33 minutes teach.
 - **How `school_day` is counted.** One session in the last school day of each week: `school_day = 5 x n`, and the week
   is `(school_day - 1) // 5 + 1 = n`. This matches frame.py's even spread, so calendar.csv does not move. Checked day by
   day: the mid-year check is day 11 (school day 55, week 11), its respond day 12 (week 12); the year-end check day 24
@@ -107,7 +107,7 @@ program in a trace-table, predicted then stepped through), compare (day 20: two 
 pieces with the test-table (day 21: the anchor's broken build and a second buggy build, bugs in the order of steps, an
 event, a repeat and a choice), then the team make (day 22: the quiz shell, a paper plan as numbered steps, each
 member's part, tests and comment) and the reader's feedback and revision (day 23). The ELA lean (explaining a
-procedure, ELA unit 2, weeks 8 to 16) is met before day 22. Driver and navigator switch every eight minutes. Students
+procedure, ELA unit 2, weeks 8 to 16) is met before day 22. Driver and navigator switch at the halfway signal. Students
 trace the supplied score logic and do not write a variable's start, update or comparison (grade 5).
 
 Assessments: the year-end check (day 24) stands for this unit's end-of-unit assessment. Day 23 carries `end` for the
@@ -142,7 +142,7 @@ learning comparison (day 27) as one story, the order the row sets; then the peop
 limit and what it led to (day 29, the timeline and chart from day 28 and unit 1), and workers learning new tools
 (day 30). The two rows the progression read counts as two sessions each (g4-ml-learning, g4-history-limits) get two
 days each. Days 28 and 30 are sensitive ground (Native, Black and women's history; work change in a family): every
-card carries a dated source the unit writer opens; workers are invented.
+card carries a dated source the unit writer opens; workers are invented. Both days get the sensitivity read before the case cards (docs/pipeline/briefs/sensitivity-read.md).
 
 Assessments: end-of-unit day 31, about 30 minutes, five unseen items, one per code; the worker item asks
 what the worker had to learn when the tool arrived and one way they keep learning (both parts of E4-SOC-CE-19). Response on day 32. Candidate
@@ -151,10 +151,10 @@ dropped: a local worker's visit (the cases carry the row, and a visit needs a sc
 ## Shorter path
 
 **A shorter period (30 minutes).** Every day keeps its place and its ids. The retrieval trace stays at three minutes
-and the device close at five, so teaching drops from about 32 to about 22 minutes: each Understanding day keeps its
+and the device close at four, so teaching drops from about 33 to about 23 minutes: each Understanding day keeps its
 worked example and its first practice and moves the last practice round into the next day's retrieval; days 22 and 23
 keep the build and revision on separate days (no score before the revision). The four 30-minute sittings (days 5, 11,
-17, 31) give up their retrieval trace; in a 30-minute period day 5's fault items run on picture fault cards, with no
+17, 31) open with settling and instructions, not a retrieval trace, at every length; in a 30-minute period day 5's fault items run on picture fault cards, with no
 device close; day 17 moves its case-card item to the first ten minutes of day 18, before the
 reteach, so the device items keep their time.
 
@@ -164,9 +164,10 @@ owned part only there:
 | Fold-in day | Where its work goes | Minutes saved |
 |---|---|---|
 | 8 (modify the pattern algorithm) | The rewrite with a repeat becomes day 7's last ten minutes; the one-line change to a choice opens day 9 as its retrieval | 40 |
-| 6 (unit 1 respond) | The most-missed day 5 item opens day 7 as its wrong example; the E4-SYS-NT-14 retry is day 11's retrieval (already a new connection item); in the short year day 9's retrieval becomes a new device-life item for E4-SYS-IM-15 in place of the login-or-permission cards, which day 11 samples anyway; day 12 adds both codes to its reteach beside E4-SYS-HW-12 and E4-SYS-SE-13 | 40 |
+| 6 (unit 1 respond) | The most-missed day 5 item opens day 7 as its wrong example; the E4-SYS-NT-14 retry is day 11's new connection item, inside the sitting; in the short year day 9's retrieval becomes a new device-life item for E4-SYS-IM-15 in place of the login-or-permission cards, which day 11 samples anyway; day 12 adds both codes to its reteach beside E4-SYS-HW-12 and E4-SYS-SE-13 | 40 |
 
-That is 30 of the frame's 32 sessions, 80 minutes saved. No other day folds: every other teaching day is the only day
+That is 30 of the frame's 32 sessions, 80 minutes saved. Day 6 follows the unit 1 end-of-unit sitting, so it may
+fold. The shorter-year rule, the same from kindergarten to grade 5: a respond day after an end-of-unit sitting may fold into the next day's opener with a self-check; a respond day after a course-level check never folds; check days keep their weeks, and a lost week before a check moves the teaching days, never the check. No other day folds: every other teaching day is the only day
 of its id or a check, a respond day after a check, or a step of the team quiz.
 
 ## For the lead

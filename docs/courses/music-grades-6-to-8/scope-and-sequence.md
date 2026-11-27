@@ -72,8 +72,11 @@ practice true to its culture), mu-g8-document on day 180.
   talk is day 3 (week 2), so day 3 carries the frame's bridge: the music discussion card gives the routine and the
   teacher models it; nothing is scored as ELA.
 - **ela:W.8.1** (units 9 and 10). ELA grade 8 unit 2 teaches argument writing in weeks 7 to 13; music's written
-  judgment is taught on day 137 (week 5), so that day teaches the short form (claim, evidence heard, reason) with a
-  frame and a model, scored on the music evidence only. Day 149 (week 11) uses the same frame for the backed reading.
+  judgment is taught on day 137 (week 5), so that day opens with a ten-minute reteach of the grade 5
+  claim-and-evidence card (music 3 to 5 day 132: "Claim. Evidence from the music (what you hear, with a time or a
+  bar). Reason (why that evidence shows the claim).") with a model, scored on the music evidence only. Day 149 (week
+  11) uses the same card for the backed reading, its third step "Reason: why it shows intent"; the written listening
+  items of days 17 and 81 name the same card.
 - The music and math lean ended in grade 5: dotted notes and ties are read as music signs only.
 
 ### Logic model (one page)
@@ -135,8 +138,9 @@ describes and links it. It gives year 6 a living woman maker (its only other wom
 ### Unit 3. AB and ABA
 
 Days 39 to 50, weeks 20 to 25. Three ids, one product drafted, critiqued and revised. The ABA model (39) and the
-question-and-answer phrase (40) come before the chords (41) and the notation ladder (42), so day 43's brief examples
-in AB and ABA use all three. Day 45 develops one piece; critique 46, revision 47, showing 48. Day 49 is the
+question-and-answer phrase (40) come before the chords (41, sung over the grade 5 I and V triads, music 3 to 5 days
+146 and 163) and the notation ladder (42), so day 43's brief examples in AB and ABA use all three. Day 44 drafts the
+A section, with the drills as its opener, and day 45 develops one piece; critique 46, revision 47, showing 48. Day 49 is the
 end-of-unit assessment: another pair plays four bars from each score (MU:Cr1.1.6a, MU:Cr2.1.6a, MU:Cr2.1.6b on the
 guide); day 50 responds. Processes: creating 40 to 49; responding 39, 41 (works studied, review); performing 48, 49;
 connecting 41 (each student writes one line on how Libertango's repeated phrase fits the dance it was made for,
@@ -146,7 +150,9 @@ and a fourth would cost a day; year 6 has living makers from Asia (Huun-Huur-Tu,
 
 ### Unit 4. Ready for the stage
 
-Days 51 to 62, weeks 26 to 31. Six ids met in one revised piece and one concert. The venue study (51, 53) and the
+Days 51 to 62, weeks 26 to 31. Six ids met in one revised piece and one concert. The venue study (51, 53; day 51 is
+a named revisit of the genre: music 3 to 5 day 1 heard an intertribal social song for listening; here the venue and
+its manners) and the
 judging of the unit 3 piece (52) come before revision (54), and the readiness card is taught (55) before it is used
 in rehearsal (57). Critique at the dress rehearsal (58), the final piece and revision note (59), the last rehearsal
 and kept readiness card (60). Day 61, the concert in week 31, is the end-of-unit assessment for all six ids; day 62
@@ -160,7 +166,8 @@ Candidate (the readiness card written for reuse in years 7 and 8): kept, no day 
 
 Days 65 to 82, weeks 1 to 9 of year 7. Same shape as unit 1, one step harder: two contrasting pieces, form and tempo
 signs, syncopation. Form signs (66) and tempo words with syncopation (68) come before the structure comparison (70)
-and the culture-and-history readings (71). Listening moves from Vivaldi's plan (67) to the pipa piece against it (72),
+and the culture-and-history readings (71). Listening moves from Vivaldi's plan (67, a named revisit: music K to 2 day 73 heard its opening beside a spring
+picture; here the whole movement's form and its sonnet) to the pipa piece against it (72),
 the sonnet connection (73) and judging on chosen criteria (74). Day 80 is the reading sitting (MU:Pr4.2.7a kept sheet,
 7b, 7c), day 81 the listening sitting (MU:Re7.2.7a, 7b, MU:Re9.1.7a, MU:Cn11.1.7a), day 82 the respond day.
 As in unit 1, the openers of days 76 to 79 are the rotating listening round (structure, judge, connection, setting
@@ -186,7 +193,7 @@ Wu Man (living, Asia) in unit 5, and another take would cost a day.
 ### Unit 7. Theme and variations
 
 Days 103 to 114, weeks 20 to 25. Same shape as unit 3: the four ways to vary a theme (104) and the four-chord pattern
-(105) come before unity and variety on a score (106), then the theme and first variation (107), the second variation
+(105) come before unity and variety on a score (106), then the theme and first variation (107, drafted on the score on 108), the second variation
 and notation (109), critique 110, revision 111, showing 112. Day 113 is the end-of-unit assessment (MU:Cr1.1.7a,
 MU:Cr2.1.7a, MU:Cr2.1.7b); day 114 responds. Processes: creating 104 to 113; responding 103, 106; performing 112, 113;
 connecting 103 (the tune's two national uses, told), 106 (each student says how Umoja's title, unity, shows in
@@ -206,7 +213,7 @@ Candidate (the class criteria chart carried into year 8): kept, no day cost; day
 ### Unit 9. Whole programs
 
 Days 129 to 146, weeks 1 to 9 of year 8. Same shape as unit 1, with reading at sight new: the four steps on the
-treble staff (131) and the bass staff (132) come before the drill (133, 139) and the reading day (144).
+treble staff (131, the first step the key signature of G or F, taught on that day's step card) and the bass staff (132) come before the drill (133, 139) and the reading day (144).
 Culture-and-history effects (134) precede the program studies (135, 136); the student's own criteria (137) come
 after the programs give something to judge. Day 144 is the reading day (MU:Pr4.2.8b at sight in groups at the
 teacher's spot while the others write MU:Pr4.2.8c; MU:Pr4.2.8a kept sheet), day 145 the listening sitting
@@ -231,7 +238,7 @@ Candidate (a program by a living woman composer from Africa or Asia): dropped. Y
 ### Unit 11. Intro to coda
 
 Days 167 to 178, weeks 20 to 25. Same shape as unit 3: the expanded form (168), the four ways to build tension
-(169) and the accompaniment notation (170) come before composing (171, 173). Critique 174, revision 175, showing
+(169) and the accompaniment notation (170) come before composing (171, 172, 173). Critique 174, revision 175, showing
 176. Day 177 is the end-of-unit assessment (MU:Cr1.1.8a, MU:Cr2.1.8a, MU:Cr2.1.8b, eight bars played by another
 pair); day 178 responds. Processes: creating 168 to 177; responding 167, 169; performing 176, 177; connecting 167
 (Finlandia's later uses, told), 168 (students match each part of the expanded form to a moment in the Butterfly
@@ -295,7 +302,7 @@ critique, the showing or check, and a respond session, and no merge drops a crit
 | 1 / 5 / 9 | 8 (weeks 1 to 8) | 1+2; 3+4+5; 6+7; 8+9+10+11; 12+13 (critique); 14+15 (revision and showing); 16+17 (one sitting on the budget below, the kept sheet from 14); 18 |
 | 2 / 6 / 10 | 8 (weeks 9 to 16) | 19+20; 21+22+23; 24+25; 26+27+28; 29+30 (critique); 31+32+33 (revision); 34 (showing, performance item); 35+36 |
 | Mid-year check | 2 (weeks 17, 18) | 37; 38 |
-| 3 / 7 / 11 | 6 (weeks 19 to 24) | 39+40; 41+42+44; 43+45; 46+47 (critique and revision); 48+49 (showing and check); 50 |
+| 3 / 7 / 11 | 6 (weeks 19 to 24) | 39+40; 41+42; 43+44+45; 46+47 (critique and revision); 48+49 (showing and check); 50 |
 | 4 / 8 / 12 | 6 (weeks 25 to 30) | 51+52+53; 54+55+56; 57+58 (critique); 59+60 (revision, kept readiness card); 61 (concert); 62 |
 | Year-end check | 2 (weeks 31, 32) | 63; 64 |
 
@@ -320,15 +327,16 @@ adds 128).
 | 5 | Fluency drills | the next day's opener (5 minutes); the baseline look moves into that day's first practice time, rotating groups as written | 35 |
 | 11 | Fluency drills | the next day's opener; the structure item joins day 12's listening round | 35 |
 | 23 | Fluency drills | the next day's opener; the baseline look moves into that day's first practice time, rotating groups as written | 35 |
-| 44 | Fluency drills | the next day's opener | 35 |
+| 56 | Fluency drills | the next day's opener; the baseline look moves into that day's first practice time, rotating groups as written | 35 |
 
-Total: 140 minutes a year saved, four of 64 course days (60 left), 12 of 192 over the band.
+Day 56 replaced day 44 as the fourth fold-in day (scope group read, 2026-11-26): day 44 is now one of each
+composing unit's three making days before the critique, so it is not folded. Total: 140 minutes a year saved, four of 64 course days (60
+left), 12 of 192 over the band.
 
 Spares, for a year shorter still (same rule):
 
 | Year day | Kind | Folds into | Minutes saved |
 |---|---|---|---|
-| 56 | Fluency drills | the next day's opener; the baseline look moves into that day's first practice time, rotating groups as written | 35 |
 | 15 | Showing to a partner class | the end of day 14, for the class (15 minutes); its listening round is skipped, the other three keep the spacing | 25 |
 | 48 | Showing of drafts | the end of day 47 (15 minutes) | 25 |
 | 29 | Rehearsal | days 28 and 30 (10 minutes) | 30 |
