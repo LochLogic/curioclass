@@ -83,13 +83,17 @@ All ten done 2026-11-27, checked on funders' own pages; findings live in PROSPEC
     11-item readiness list, staged path with tone and wording) and PROSPECTS.md "English-speaking nations". Shortlist:
     OECS, Sierra Leone, Uganda, Liberia, Rwanda, through development partners and open channels (Kolibri, Global
     Digital Library); no donor funds an outside curriculum directly.
+14. **Funding goes aggressive: three paths and every shot** (Cory, 2026-11-27). DONE 2026-11-27: OUTREACH-PLAN.md
+    rebuilt (fund the build first, fund the deliverable, relationships; "promise only what we control"), Part 5 queue
+    of every prospect with gate, next step and owner; bio corpus in drafts/corpus/ (git-ignored).
 
 ## Openings for outreach
 
 Sends need Cory's yes; drafts go in drafts/paste-ready (list and notes in its INDEX.md). Drafts 1 to 7 and 9 were
 written 2026-11-27; none is sent until Cory reports it.
 
-**ON HOLD 2026-11-27 (Cory): research and prep only.** Nothing below is sent, filed or joined; drafts stay as prep.
+**Hold lifted 2026-11-27 (Cory): funding goes aggressive.** Work runs from the queue in OUTREACH-PLAN.md, Part 5
+(three paths: fund the build, fund the deliverable, relationships). Cory sends, joins and applies himself.
 
 1. **CNDC fiscal sponsor inquiry** (CONTACTS.md item 2): the first step for everything above. Draft ready. Their rule
    that partner projects need "a Colorado focus or impact" is the first question to settle.

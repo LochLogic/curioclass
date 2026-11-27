@@ -2196,3 +2196,15 @@ drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
   international options are also considered." No email, form, sign-up, comment or call goes out; drafts stay as prep.
   The five funding Desk cards (q-funding-*) stay open as prep questions. Funding research now covers international
   funders, programs and legal routes as well as US ones.
+- **Funding goes aggressive: the hold is lifted for prep and actioning (2026-11-27, later the same day):** Desk cards
+  q-funding-* and chat. Cory: "i want to be more aggressive and work funding sooner"; the outreach plan should build
+  around a "fund the build" track, while keeping "options where the end deliverable is the focus" and "a way to hit
+  every singe stretch of a shot at funding". The "don't perform" tone "holds value and cant be lost, it just needs
+  re-framing": it now reads "promise only what we control" (outputs and our own schedule yes, outcomes never).
+  Tailoring: "omission isnt lying, its tailoring"; the line kept is that nothing says or implies something untrue.
+  Legal home: CNDC now (Curio Class "does run only in the US"; no inquiry email, Cory fills in the form), a Colorado
+  nonprofit alongside; LeMay Ventures LLC and the Curio Class name are "solely mine", open to restructuring, "the
+  issue is time". Board: Cory can find 2 others. Pilot: the small spring round; stipends "only if we get funding".
+  Sign-ups: "i want them all and more". ED comment: yes, post it. Bio: build a corpus from Cory's Salvo evidence
+  (done: drafts/corpus/CORPUS.md, git-ignored). Plan: docs/funding/OUTREACH-PLAN.md (three paths and the queue).
+  Cory still sends, joins, applies and creates every account himself.
