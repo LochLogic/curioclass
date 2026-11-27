@@ -655,7 +655,7 @@ s02-X75,All pufferfish have long spines.,,,A,Locate a detail and explain its con
 s02-X75,The familys are different.,,,N,Compare it with a reference and record the correction.
 s02-X75,Some porcupinefish have longer spines. The families are different.,,,L,"Add its title, author and location."
 s02-R71-purpose,Eli is the speaker.,,,AG,Connect the line of speech to what changes in the scene.
-s03-X81,The page has a timeline.,,,AF,Observed response misses this task: The 1819 and 1823 rows show that parts were usable before the whole canal opened. They add specific stages and dates.
+s03-X81,The page has a timeline.,,,AF,Observed response misses this task: Paragraph 8 says judging the canal needs a careful account of the work. The 1819 and 1823 rows add dated stages of that work: parts were usable while construction continued.
 s03-R81-gist,The timeline.,,,D,Use the matching register repair.
 s03-X82,The ocean ceremony made workers finish the canal.,,,C,Use the matching register repair.
 s03-R82-display,It says October and November.,,,AG,Use the matching register repair.
@@ -687,7 +687,8 @@ s03-X100,"A character says I in the play, so both versions have first-person nar
 s03-X101,I put them down. Then I went.,,,AK,"Observed response misses this task: For example, I stood at the kitchen table with our family's questions about the canal route. Accept first-person openings that establish who is telling, the setting and why the family is gathering its papers."
 s03-R101-decision,"The reply guarantees the tree is safe, so Ada stops asking.",,,C,Use the matching register repair.
 s03-A86a,I asked twice whether transport would be cheap.,,,J,Use the matching register repair.
-s03-A86b,Lists the history but omits the memorial used for the estimate.,,,K,Use the matching register repair.
+s03-A86b,Both categories hold the same transport notes.,,,J,Use the matching register repair.
+s03-A86b-sources,Lists the history but omits the memorial used for the estimate.,,,K,Use the matching register repair.
 s03-A86c,Build it because I like it.,,,A,Use the matching register repair.
 s03-A86d,All farmers already saved that amount.,,,B,Use the matching register repair.
 s03-A86e,I say yes because boats are fun.,,,A,Use the matching register repair.
@@ -702,39 +703,49 @@ s03-A98c,Ada changes because she is my favorite.,,,A,Use the matching register r
 s03-A98d,Ada watched Ben.,,,G,Use the matching register repair.
 s03-A99a,Sheds already protect all waiting grain.,,,B,Use the matching register repair.
 s03-A99b,Wait to open the canal.,,,H,Use the matching register repair.
+s03-A99b-example,Delay the opening until storage is ready.,,,H,Use the matching register repair.
 s03-A99c,I have no detail from either text.,,,I,Use the matching register repair.
 s03-A99d,Interrupts another turn to give an answer.,,,L,Use the matching register repair.
-s03-A99e,"Anyway, I like boats.",,,M,Use the matching register repair.
+s03-A99e,What is your favorite boat?,,,M,Use the matching register repair.
+s03-A99e-reply,"Anyway, I like boats.",,,M,Use the matching register repair.
 s03-A99f,I still think what I said first.,,,N,Use the matching register repair.
 s03-A99g,The new roof already saved the sacks.,,,B,Use the matching register repair.
 s03-A108a,Every boat crew needs morning service.,,,R,Use the matching register repair.
 s03-A108b,Open the lock in the morning.,,,H,Use the matching register repair.
+s03-A108b-counts,Three boats arrived in the afternoon.,,,C,Use the matching register repair.
 s03-A108c,I like mornings better.,,,A,Use the matching register repair.
+s03-A108c-limit,The log shows every crew needs morning service all season.,,,R,Use the matching register repair.
 s03-A115-process,I copied the same sentences neatly.,,,S,Use the matching register repair.
 s03-A115a,"The boat could carry apples but, the family still had questions.",,,T,"Observed response misses this task: The boat could carry apples, but the family still had questions."
 s03-A115b,The crew dug yesterday.,,,G,Use the matching register repair.
 s03-A115c,The workers were walking along.,,,U,"Observed response misses this task: For example, The workers were walking along the route. Accept any fitting complete place phrase."
 s03-A115d,Two workers left there tools there.,,,V,Use the matching register repair.
 s03-A115-theme,The same events happen in all three tales.,,,W,Use the matching register repair.
-s03-A115-word,Fruitless means that there were no apples.,,,X,Use the matching register repair.
+s03-A115-word,Herculean means the name of the hero.,,,X,Use the matching register repair.
+s03-A115-word-fruitless,Fruitless means that there were no apples.,,,X,Use the matching register repair.
 s03-A115e,Leaves an uncertain spelling without a reference check.,,,Y,Use the matching register repair.
 s03-A116a,The canal is our topic.,,,Z,Use the matching register repair.
 s03-A116b,"Boats are fun, so everyone benefits.",,,A,Use the matching register repair.
 s03-A116c,I think a shared desk is nice.,,,A,Use the matching register repair.
-s03-A116d,Hall saw the proposed desk in 1817.,,,AA,Use the matching register repair.
+s03-A116d,The model talks about a desk. Hall lists where people came from.,,,AD,Use the matching register repair.
+s03-A116d-differ,Hall saw the proposed desk in 1817.,,,AA,Use the matching register repair.
 s03-A117a,The opening names the topic without a position.,,,Z,Use the matching register repair.
 s03-A117b,The reasons rely on preference alone.,,,A,Use the matching register repair.
 s03-A117c,Because introduces an unrelated additional reason.,,,AB,Use the matching register repair.
 s03-A117d,My favorite toy is a painted boat.,,,AC,Use the matching register repair.
 s03-A117e,Inspect the towpath regularly.,,,H,Use the matching register repair.
+s03-A117e-example,Every mile of the towpath is damaged.,,,C,Use the matching register repair.
 s03-A119a,Gives a position with no notes or text detail.,,,I,Use the matching register repair.
 s03-A119b,Interrupts and does not carry out the named role.,,,L,Use the matching register repair.
 s03-A119c,Changes the topic to favorite boats.,,,M,Use the matching register repair.
+s03-A119c-reply,Replies without referring to anything a classmate said.,,,M,Use the matching register repair.
 s03-A119d,I still agree with my first idea.,,,N,Use the matching register repair.
 s03-A119e,My classmate favors the canal.,,,H,Use the matching register repair.
+s03-A119e-evidence,Writes only that the classmate favors the canal.,,,H,Use the matching register repair.
 s03-A119f,The comparison gives the final rates everyone paid.,,,B,Use the matching register repair.
 s03-A119g,The memorial gives numbers. Hall describes Rochester.,,,AD,Use the matching register repair.
 s03-A119h,Guesses replacement words from context without decoding.,,,Q,Use the matching register repair.
+s03-A119h-part,Says the sentence gives the meaning without naming any word part.,,,Q,Use the matching register repair.
 s03-A119i,Leaves an uncertain spelling unchecked.,,,Y,Use the matching register repair.
 s03-A119j,Only one polished essay is submitted.,,,AE,Use the matching register repair.
 s03-P90-reply,Marks the linked reply as unrelated.,,,M,Use the matching register repair.
@@ -768,7 +779,7 @@ s03-X111,The memorial has a funding plan.,,,Z,The introduction names the topic w
 s03-X111,The state should borrow because it already got all the promised income.,,,B,Expected income is treated as received.
 s03-X112,The speaker watched workers get sick.,,,AA,The invented voice cannot supply eyewitness evidence.
 s03-X112,Plans should be different because I say so.,,,A,The paragraph needs a detail that supports the reason.
-s03-X113,One kind of design is best because I like it.,,,A,"Observed response misses this task: For example, a lock changes the level of the water, while an aqueduct carries canal water over a stream. That is why planners need different designs for different obstacles."
+s03-X113,One kind of design is best because I like it.,,,A,"Observed response misses this task: For example, a lock changes the level of the water, while an aqueduct carries canal water over a stream. That is why planners need different designs for different obstacles. The linking words must state the real relationship."
 s03-X114,Go ahead because the expected income has all arrived.,,,B,Observed response misses this task: A related conclusion can recommend waiting or put a condition on borrowing because interest can come due before revenue arrives. Accept a closing judgment grounded in a financing idea from the readings.
 s03-X114,The canal has many kinds of boats.,,,AC,Observed response misses this task: A related conclusion can recommend waiting or put a condition on borrowing because interest can come due before revenue arrives. Accept a closing judgment grounded in a financing idea from the readings.
 s03-X118,Hall visited Rochester when his account appeared in 1829.,,,AA,This substitutes the publication date for the date of the observation.

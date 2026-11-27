@@ -13,10 +13,10 @@ Write the group and date. Ask each reader to read both words alone. Then show th
 | Day | Words | Sentences |
 |---|---|---|
 | 104 | deform, structured | Heat can deform the lid. We structured our notes with labels. |
-| 105 | formed, restructure | We formed a ring. We can restructure the chart with wider rows. |
-| 106 | conform, instruction | Please conform to the agreed rule. Each instruction takes one line. |
-| 107 | uniform, structure | The signs have a uniform size. Its structure has three levels. |
-| 109 | reform, structural | The class voted to reform the rule. We found a structural flaw in the shelf. |
+| 105 | formless, unstructured | A formless lump lay on the table. The unstructured list was hard to follow. |
+| 106 | conform, instructor | Please conform to the agreed rule. The instructor showed us where to start. |
+| 107 | preformed, deconstructed | The builders used a preformed arch. We deconstructed the model to see its parts. |
+| 109 | reforming, structural | They are reforming the rule. We found a structural flaw in the shelf. |
 
 Group __________  Date __________
 
