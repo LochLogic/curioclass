@@ -762,6 +762,7 @@ class SectionLane(cl.Lane):
         n = len(new) if code == 1 else 0
         if n:
             self.count(unit.course, new=n)
+        self.level(unit.course, out)
         return n
 
     def commit_stage(self, unit, stage, allowed, before, note=''):
@@ -846,12 +847,36 @@ class SectionLane(cl.Lane):
             (self.dir / 'counts.json').write_text(json.dumps(c, indent=1), encoding='utf-8')
             return n
 
+    def level(self, course, out):
+        """The course's failing lines now, without index-reports orphans, read from the gate's own summary. The pileup
+        reads this level, not the sum of 'new' reports: a line a unit's pass leaves stays one line, where the sum
+        counted it again at the next pass (math grade 1, 2026-11-27 07:20: 31 counted, 15 real). 'start' is the level
+        when the lane first reads a course, so lines older than the run do not count (set by hand when a course's
+        older lines should count, as math grade 1's 15 do)."""
+        if self.dry:
+            return
+        m = re.search(r'(\d+) failing line\(s\) for \S+ now', out)
+        if not m:
+            return
+        orph = sum(int(x) for x in re.findall(r'^\s+(\d+)\s+index-reports: orphans\s*$', out, re.M))
+        now = int(m.group(1)) - orph
+        with self.lock:
+            c = self.counts()
+            n = c.setdefault(course, {'new': 0, 'written': 0})
+            if 'start' not in n:
+                n['start'] = now
+            n['now'] = now
+            (self.dir / 'counts.json').write_text(json.dumps(c, indent=1), encoding='utf-8')
+
     def pileup(self, unit):
         n = self.count(unit.course)
-        if n['new'] > 10 + n['written']:
-            raise Stop('%s: %d new gate lines left in %d sections written; read `gate.py --course %s --verbose` and fix '
-                       'or note, then clear the "new" count in %s, before going on'
-                       % (unit.course, n['new'], n['written'], unit.course, (self.dir / 'counts.json').as_posix()))
+        left = n['now'] - n.get('start', 0) if 'now' in n else n['new']
+        if left > 10 + n['written']:
+            raise Stop('%s: %d gate lines left in %d sections written (%d failing now, %d before the run); read '
+                       '`gate.py --course %s --verbose` and fix or note them, then raise "start" in %s to the lines '
+                       'you are leaving, before going on'
+                       % (unit.course, left, n['written'], n.get('now', n['new']), n.get('start', 0), unit.course,
+                          (self.dir / 'counts.json').as_posix()))
 
     def baseline(self, unit):
         """Before a gated job: a clean course stores its baseline; a changed one with no baseline stops now, before a
@@ -859,6 +884,7 @@ class SectionLane(cl.Lane):
         if self.dry:
             return
         code, out, new = self.gate(unit.course)
+        self.level(unit.course, out)
         if code == 2:
             raise Stop('%s: the course has uncommitted changes and no gate baseline (gate.py exit 2); commit or clear '
                        'them first' % unit)
