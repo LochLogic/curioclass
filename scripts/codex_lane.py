@@ -301,8 +301,8 @@ class Lane:
         for course in LANES[self.subj]:
             only = self.only() or set()
             if any('-' in w for w in only) and course not in only:   # ONLY may also name the courses to run
-                self.log('ONLY names no %s; lane ends' % course)
-                return
+                self.log('ONLY names no %s; skipped' % course)
+                continue
             steps, err = self.queue(course)
             if steps is None:
                 if not self.wait_for_lead('%s:queue' % course, 'coursegen could not make the queue for %s:\n%s'

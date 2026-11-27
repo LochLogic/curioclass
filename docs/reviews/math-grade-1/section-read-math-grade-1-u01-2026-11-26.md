@@ -110,3 +110,18 @@ Fix list if B is kept: add a goal in student words and the kind to every day (B6
 separate marking item (B1); fix the E5 alternate key (B2); put day 1 retrieval on a paper strip (B3); restore
 counting collections on day 1 (B4); show the day 4 counting-up wrong example on day 5, after the right one (B5); set
 C1 at 30 seconds a part (B8).
+
+## Refine, 2026-11-26
+
+Set B refined in place (docs/courses/math-grade-1/u01-1.md to u01-4.md). Every fault fixed; none rejected.
+
+- **B1, fixed.** E5 is now (a) a pick, a line from 5 + 3 and 8 - 1 to the count-on or count-back pile, and (b) a separate marking item for 5 + 3. The register has no letter for a wrong pick; it is described on the record (plan point).
+- **B2, fixed.** The garbled alternate is gone: E5 uses 5 + 3 (key 8, "six, seven, eight"; from 3 also accepted), which also settles the inherited 3 + 5 point.
+- **B3, fixed.** Day 1 retrieval is a paper strip of five boxes, each read aloud; the teacher notes each row and misses feed the day 2 group. The same fault in day 7's sorting retrieval was fixed the same way (mats scanned per child).
+- **B4, fixed.** Day 1's 20 minutes are counting collections again: pairs count a bag of 6 to 10 objects and show how many on paper.
+- **B5, fixed.** Day 4 shows counting up right; B's wrong example moves to day 5's model.
+- **B6, fixed (x4).** Every day opens with its kind and a goal in student words ("**Understanding.** I can ...").
+- **B7, fixed.** E11 is three one-ask items (two picks, then circle the unmatched fish); E13 is (a) ask a more-or-fewer question, (b) mark the count that answers it.
+- **B8, fixed.** C1 is at most 30 seconds a part, one minute a child.
+
+Found in the cold re-check and fixed: E1 and E3 listed wrong answers with no letter (removed; unlettered answers are described on the record); E3's shape claimed no deck card starts at 7 while days 1, 5 and 6 do (now "no 7 + 2 or 2 + 7"); E13's 6 and 4 was a day 10 total-and-difference card (now 7, 6, 5); D2 listed "D, E or G" as one wrong answer (split); the A row in u01-3 field 4 had no wrong example (now in the day 12 model); day 4 printed crossed-out pictures against E4's shape (now real counters); day 6 card timing said 2 minutes (2.5).
