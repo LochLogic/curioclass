@@ -21,6 +21,6 @@ How would you arrange these from shortest to longest?
 
 How does this strip tell you which is longer?
 
-**Answer.** X passes the fixed strip; Y stops before it. X is longer. Paper trace captures both comparisons. Record one separate private reason per child, on 125 or 126.
+**Answer.** V passes the fixed strip; W stops before it. V is longer. V and W are new strips, not X and Y. Paper trace captures both comparisons. Record one separate private reason per child, on 125 or 126.
 
 - Equal after trimming the reference to fit each card. Error B. Changes the length between comparisons.

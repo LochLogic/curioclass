@@ -40,7 +40,7 @@ What length belongs on the puppy's path tag?
 
 The puppy path is nineteen units long. The plant path is shorter by the length of this row. How would your bars show the plant path?
 
-**Answer.** 12 units; 19 − 7 = 12. Combine 2, 2 and 3 as the difference. Align bars; the unknown spans the whole shorter bar.
+**Answer.** 10 units; 19 − 9 = 10. Combine 2, 3 and 4 as the difference. Align bars; the unknown spans the whole shorter bar.
 
-- 7 is the plant path. Error J. Uses the difference as the smaller whole.
-- Plant bar is 19 with a separate 7. Error J. Fails to remove the extra from the larger whole.
+- 9 is the plant path. Error J. Uses the difference as the smaller whole.
+- Plant bar is 19 with a separate 9. Error J. Fails to remove the extra from the larger whole.

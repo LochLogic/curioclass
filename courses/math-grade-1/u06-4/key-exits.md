@@ -11,36 +11,36 @@ Teacher copy. Use shown, shown with help, or not yet seen. Keep papers private.
 
 ## s06-X121a
 
-Rin removes twelve units. What equation tells the length left?
+Rin removes fifteen units. What equation tells the length left?
 
-**Answer.** 13 − 12 = 1. Mark the four triples, one loose unit and the removed part.
+**Answer.** 16 − 15 = 1. Mark the five triples, one loose unit and the removed part.
 
-- 12 as the length left. Error I. Puts the removed amount in the ending position.
-- 13 + 12 = 25. Error J. Adds a part to the whole it already belongs to.
+- 15 as the length left. Error I. Puts the removed amount in the ending position.
+- 16 + 15 = 31. Error J. Adds a part to the whole it already belongs to.
 
 ## s06-X121b
 
 Rin joins two more units. What equation tells the new length?
 
-**Answer.** 18 + 2 = 20. Mark both old pieces as the start and the arrival as the change.
+**Answer.** 17 + 2 = 19. Mark both old pieces as the start and the arrival as the change.
 
 - 2 as the whole path. Error J. Treats the added part as the whole.
-- 18 as the ending. Error I. Uses the start as the ending.
+- 17 as the ending. Error I. Uses the start as the ending.
 
 ## s06-X122
 
 The lid is one unit longer than the strip. How would two bars show the lid's length?
 
-**Answer.** 19 units; 18 + 1 = 19. Two bars share a start; label the lid as the full unknown bar and mark the one-unit extension.
+**Answer.** 15 units; 14 + 1 = 15. Two bars share a start; label the lid as the full unknown bar and mark the one-unit extension.
 
 - 1 as the entire lid. Error J. Treats the extension as the whole.
-- Lid bar is 18, with one extra unit drawn inside it. Error J. Places the extra inside the already matched part.
+- Lid bar is 14, with one extra unit drawn inside it. Error J. Places the extra inside the already matched part.
 
 ## s06-X123a
 
 Rin took away the tiles on this slip. What equation shows what happened?
 
-**Answer.** ? − 5 = 12. Match 2 and 3 to the five removed and the three groups of four to twelve left. Descriptive.
+**Answer.** ? − 5 = 12, or 17 − 5 = 12 once the start is found. Match 2 and 3 to the five removed and the three groups of four to twelve left. Descriptive.
 
 - 12 − 5 = ?. Error I. Moves the end to the start.
 - ? − 12 = 5. Error I. Swaps what left and what stayed.
