@@ -1,4 +1,4 @@
-# Local-model day drafting: the pilot (set up 2026-11-26, not yet run)
+# Local-model drafting: the pilots (days set up 2026-11-26, not run; section plans running 2026-11-26)
 
 Cory 2026-11-26: "could we then use a local, academic LLM to draft all the days? then have you or codex run the fixes
 and then a refinement that's done only by you?" Set up, not run, on his word. The question it answers: does a free
@@ -50,3 +50,27 @@ Everything lands in build/local-pilot/ (git-ignored). Nothing touches courses/, 
   sensitive history are harder.
 - The day skeleton is itself still a living draft, so the pilot tests it too: record what it lacked in
   DAY-SKELETON.md's lessons.
+
+## The section plan pilot (Cory 2026-11-26: "the pilot for sections only")
+
+Cory's shape for core section plans: a high-quality, low-cost prep, a zero-cost local draft, a cheap fix, then an
+Opus refine. Run first on math-grade-1 unit 1 (sections u01-1 to u01-4); grade 1 has no written sections yet, so
+there is no signed-off twin and the blind read is against a fresh write instead.
+
+1. **Skeleton:** scripts/section_skeleton.py (script, free), as for every section job.
+2. **Prep (Claude Opus):** one note per section, at most 1,100 words, carrying every judgment the local model cannot
+   make: exits solved with keys and lettered wrong answers, Shape lines, part minutes, cases, continuity from the
+   ledger, fallbacks. build/local-pilot/sec/prep/<course>/.
+3. **Local draft:** `python -X utf8 scripts/local_draft.py sec-draft math-grade-1 1`. The model sees only the rules
+   (UNIT-PLAN.md rules, fields and Length; the brief's Write and probe rules), DEFAULTS.md, the prep note and the
+   skeleton. build/local-pilot/sec/drafts/ (raw output kept beside each draft).
+4. **Fix (Sonnet):** the drafts to the gates (`sec-check ... fixed`) and the bar. build/local-pilot/sec/fixed/.
+5. **Refine (Opus):** as for any section. build/local-pilot/sec/refined/.
+6. **Baseline:** a fresh Sonnet writer does the ordinary section job from the skeleton (no ledger rows).
+   build/local-pilot/sec/fresh/.
+7. **Blind read:** refined against fresh, labels hidden, on the section plan bar.
+
+Go if the fix costs at most half the fresh write and the blind read is at least even; the whole pipeline's tokens
+(prep plus fix plus refine) are reported beside the fresh write plus its usual refine. Nothing lands in docs/ until
+Cory picks; the winner then goes through the normal gates. Early note: a smoke test answer put a ten frame as "a row
+of ten" (it is two rows of five), the kind of slip the prep and fix passes must catch.

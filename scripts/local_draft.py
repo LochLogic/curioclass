@@ -4,6 +4,8 @@
     python -X utf8 scripts/local_draft.py draft   [<course> <days>]   call the local model, write the drafts
     python -X utf8 scripts/local_draft.py check   [<course> <days>]   run lesson.py's day checks on the drafts
     python -X utf8 scripts/local_draft.py compare [<course> <days>]   size and overlap against the signed-off days
+    python -X utf8 scripts/local_draft.py sec-prompts|sec-draft [<course> <units>]   section plans (math-grade-1 u1)
+    python -X utf8 scripts/local_draft.py sec-check [<course> <units> [drafts|fixed|refined|fresh]]
 
 <days> is a list or ranges, e.g. 1-8 or 1,3,7. With no course the pilot set is used: science-grade-1 days 1 to 8
 (unit 1, sections 1.1 and 1.2; science K to 3 was signed off by Cory 2026-11-23, so every day has a known-good twin).
@@ -212,7 +214,129 @@ def compare(course, days):
           'pass and the side-by-side read (LOCAL-DRAFT-PILOT.md).')
 
 
+# ---------------------------------------------------------------- section plans (Cory 2026-11-26: "the pilot for
+# sections only"; math-grade-1 unit 1). Prep (Claude) -> local draft -> cheap fix -> refine; see LOCAL-DRAFT-PILOT.md.
+SEC = OUT / 'sec'
+SEC_MAX_OUT = 14000
+SEC_PILOT = ('math-grade-1', '1')
+
+
+def doc_parts(path, heads):
+    text = (ROOT / path).read_text(encoding='utf-8')
+    parts = re.split(r'(?=^## )', text, flags=re.M)
+    return '\n'.join(p.strip() for p in parts if any(p.startswith('## ' + h) for h in heads))
+
+
+SEC_SYSTEM = """Reasoning: low
+
+You write one section plan for Curio Class, a free K-12 curriculum, for the teacher who will teach it. You are given:
+1. The rules for section plans (from UNIT-PLAN.md and the section-write brief).
+2. The course defaults (what holds every day; write only what differs).
+3. A prep note from the lead: the decisions for this section (cases, exits, errors, routines). Follow it.
+4. The skeleton. Lines between <!-- skel --> markers are facts from our data: never copy them into the plan and
+   never contradict them. Every TODO(writer) is yours: replace it with finished prose under the same heading.
+
+Write the finished section plan file and nothing else, from its first # heading to field 11, in the skeleton's
+headings, with no <!-- skel --> markers and no TODO left. Rules: US spelling, no em dashes, "Curio Class" in full,
+plain words, every number and key solved before it is written, each wrong answer tagged with one error letter, the
+`- **N min. Part.**` lines of each day add up to the day's minutes, and nothing invented that the prep note or the
+skeleton does not give (say "source to check" instead)."""
+
+
+def sec_prompt(course, sec):
+    skel = ROOT / 'docs' / 'courses' / course / 'section-skeletons' / ('%s.md' % sec)
+    prep = SEC / 'prep' / course / ('%s.md' % sec)
+    if not prep.exists():
+        raise SystemExit('no prep note: %s (the Claude prep pass writes it first)' % prep.relative_to(ROOT))
+    rules = '\n\n'.join([doc_parts('docs/courses/UNIT-PLAN.md', ('The rules', 'The section plan: fields', 'Length')),
+                         doc_parts('docs/pipeline/briefs/section-write.md', ('Write', 'Rules from the probes'))])
+    user = '\n\n'.join([
+        '# 1. Rules\n\n' + rules,
+        '# 2. Course defaults (docs/courses/%s/DEFAULTS.md)\n\n' % course
+        + (ROOT / 'docs' / 'courses' / course / 'DEFAULTS.md').read_text(encoding='utf-8'),
+        '# 3. Prep note for %s\n\n' % sec + prep.read_text(encoding='utf-8'),
+        '# 4. Skeleton for %s\n\n' % sec + skel.read_text(encoding='utf-8'),
+    ])
+    return [{'role': 'system', 'content': SEC_SYSTEM}, {'role': 'user', 'content': user}]
+
+
+def sections(course, units):
+    out = []
+    for u in units:
+        subprocess.run([sys.executable, '-X', 'utf8', str(ROOT / 'scripts' / 'section_skeleton.py'), course,
+                        'u%d' % u], check=True, capture_output=True, cwd=ROOT)
+        out += sorted(p.stem for p in (ROOT / 'docs' / 'courses' / course / 'section-skeletons').glob('u%02d-*.md' % u))
+    return out
+
+
+def sec_prompts(course, units):
+    for sec in sections(course, units):
+        msgs = sec_prompt(course, sec)
+        n = sum(tokens(m['content']) for m in msgs)
+        print('  %s: about %5d prompt tokens + %d out = %s' % (sec, n, SEC_MAX_OUT,
+              'fits' if n + SEC_MAX_OUT <= CONTEXT else 'TOO BIG'))
+
+
+def strip_reasoning(text):
+    i = 0 if text.startswith('# ') else text.find('\n# ')
+    text = (text[i:] if i >= 0 else text).strip() + '\n'
+    # mechanical only: the model writes non-breaking and figure hyphens and narrow spaces for plain ones
+    for a, b in (('‑', '-'), ('‐', '-'), ('‒', '-'), (' ', ' '), (' ', ' ')):
+        text = text.replace(a, b)
+    return text
+
+
+def sec_draft(course, units):
+    if not server_up():
+        raise SystemExit('The local model is not answering on %s. Start S:\\AI\\Start-Coder.bat.' % API)
+    log = SEC / 'drafts' / 'log.csv'
+    log.parent.mkdir(parents=True, exist_ok=True)
+    new = not log.exists()
+    with open(log, 'a', encoding='utf-8') as f:
+        if new:
+            f.write('course,section,seconds,prompt_tokens,completion_tokens\n')
+        for sec in sections(course, units):
+            t = time.time()
+            body = json.dumps(dict(model=MODEL, messages=sec_prompt(course, sec), max_tokens=SEC_MAX_OUT,
+                                   temperature=0.4)).encode('utf-8')
+            req = urllib.request.Request(API + '/chat/completions', body, {'Content-Type': 'application/json',
+                                                                           'Authorization': 'Bearer local'})
+            with urllib.request.urlopen(req, timeout=7200) as resp:
+                out = json.loads(resp.read().decode('utf-8'))
+            raw = out['choices'][0]['message'].get('content') or ''
+            p = SEC / 'drafts' / course / ('%s.md' % sec)
+            p.parent.mkdir(parents=True, exist_ok=True)
+            (p.parent / ('%s.raw.txt' % sec)).write_text(raw, encoding='utf-8')
+            p.write_text(strip_reasoning(raw), encoding='utf-8')
+            use, s = out.get('usage', {}), round(time.time() - t)
+            f.write('%s,%s,%d,%s,%s\n' % (course, sec, s, use.get('prompt_tokens', ''), use.get('completion_tokens', '')))
+            f.flush()
+            print('  %s: %ds, %s out tokens, %d words' % (sec, s, use.get('completion_tokens', '?'),
+                                                         len(words(p.read_text(encoding='utf-8')))))
+
+
+def sec_check(course, units, stage='drafts'):
+    """unitplan.py check on a stage folder (drafts, fixed, refined, fresh), with the real unit plan copied beside."""
+    import shutil
+    d = SEC / stage / course
+    for u in units:
+        shutil.copy(ROOT / 'docs' / 'courses' / course / ('s%02d.md' % u), d / ('s%02d.md' % u))
+    r = subprocess.run([sys.executable, '-X', 'utf8', str(ROOT / 'scripts' / 'unitplan.py'), 'check', course,
+                        '--dir', str(SEC / stage)], capture_output=True, text=True, encoding='utf-8', cwd=ROOT)
+    print(r.stdout[-6000:])
+    for p in sorted(d.glob('u*-*.md')):
+        t = p.read_text(encoding='utf-8')
+        print('  %s: %d words, %d TODO, %d skel markers, %d em dashes' % (
+            p.name, len(words(t)), t.count('TODO(writer)'), t.count('<!-- skel'), t.count('\u2014')))
+
+
 def main(a):
+    if a and a[0].startswith('sec-'):
+        course, spec = (a[1], a[2]) if len(a) >= 3 else SEC_PILOT
+        units, cmd = days_arg(spec), a[0][4:]
+        if cmd == 'check':
+            return sec_check(course, units, a[3] if len(a) > 3 else 'drafts')
+        return dict(prompts=sec_prompts, draft=sec_draft)[cmd](course, units)
     if not a or a[0] not in ('prompts', 'draft', 'check', 'compare'):
         raise SystemExit(__doc__)
     course, spec = (a[1], a[2]) if len(a) >= 3 else PILOT

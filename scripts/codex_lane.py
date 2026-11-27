@@ -22,7 +22,7 @@ The lane WAITS for the lead (its state folder holds WAITING, saying why) at: a r
 lead's steps in kit/retool-stop.txt), a closed ledger gate, three failed jobs in a row, or a grade whose new gate
 failures pile up (more than 10 plus one per day written). It polls every 5 minutes and goes on when the lead runs
 `done <subject> <key>` (or deletes WAITING after fixing the cause). A usage limit pauses the lane 30 minutes and the
-same job runs again. build/lanes/STOP ends every lane gently; build/lanes/<subject>/STOP ends one.
+same job runs again. build/lanes/STOP ends every lane gently; build/lanes/<subject>/STOP ends one. build/lanes/<subject>/ONLY (job kinds, e.g. "DATA KEY") runs just those kinds and leaves the rest queued.
 
 Courses that hold an earlier Codex draft (DRAFTED, unread draft 1 written to an older kit, later.csv L105) run the same
 full queue: each make job is told that its files may already exist and is to bring them to the current kit, keeping
@@ -287,12 +287,22 @@ class Lane:
         self.log('%s lead gate check (%s): exit %d, %d new line(s)' % (step['course'], d[:60], code, len(new)))
         return True, out
 
+    def only(self):
+        """Job kinds (and any course names) in build/lanes/<subject>/ONLY (space or line separated), or None to run every kind. A skipped
+        step is not marked done, so it runs once ONLY is removed (Cory 2026-11-26: math kindergarten sections only)."""
+        f = self.dir / 'ONLY'
+        return set(f.read_text(encoding='utf-8').split()) if f.exists() else None
+
     # ------------------------------------------------------------ the lane
     def run(self):
         keep_awake(True)
         self.log('lane starts: %s' % ' > '.join(LANES[self.subj]))
         fails = 0
         for course in LANES[self.subj]:
+            only = self.only() or set()
+            if any('-' in w for w in only) and course not in only:   # ONLY may also name the courses to run
+                self.log('ONLY names no %s; lane ends' % course)
+                return
             steps, err = self.queue(course)
             if steps is None:
                 if not self.wait_for_lead('%s:queue' % course, 'coursegen could not make the queue for %s:\n%s'
@@ -311,6 +321,9 @@ class Lane:
                     self.log('STOP seen; lane ends')
                     return
                 kind = step['kind']
+                only = self.only()
+                if only and kind not in only:   # build/lanes/<subject>/ONLY: run just these kinds, leave the rest queued
+                    continue
                 if kind == 'LEAD' and step['detail'].startswith('subject close'):
                     # the queue is made one course at a time, so every course ends with this line; it is the lead's
                     # step only after the lane's last course
