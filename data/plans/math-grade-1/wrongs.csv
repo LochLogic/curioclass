@@ -201,8 +201,9 @@ s04-X73,2,6-4,2,A,Counts two remaining tens as two ones.
 s04-X73,56,60-4,56,E,Removes four singles.
 s04-X74,"3 tens, 4 ones",,,B,Reverses the quantities by place.
 s04-X74,7 ones,4+3,7,A,Counts four groups as four single ones.
-s04-X75,2 ones and 6 tens,,,B,Reverses the places.
-s04-X75,Two rods worth 2 ones,,,A,Treats each rod as a single.
+s04-X75,2 ones,2,2,A,Draws two tens but counts the rods as two ones.
+s04-X75,2 ones from the ones place,,,B,Treats the left digit as the ones digit.
+s04-X75b,60,6*10,60,B,Treats the right digit as the tens digit.
 s04-X76,28,2*10+8,28,B,Reverses the places.
 s04-X76,10,8+2,10,A,Counts the towers and singles all as ones.
 s04-X77,5 + 9,5+9,14,A,Counts each rod as one one.
@@ -221,11 +222,12 @@ s04-X82,47 because seven ones beat two,,,C,Lets ones decide with unequal tens.
 s04-X82,47 with seven tens shown,,,B,Treats the ones digit as the number of tens.
 s04-X83a,63 is less than 58,,,D,Reverses the sign despite correctly comparing the amounts.
 s04-X83b,The point means 38 is greater,,,D,Correctly compares the amounts but reverses what the printed sign claims.
-s04-X84,> in the first link,,,D,Writes the opposite sign after correctly saying 46 is less.
-s04-X84,< in the middle link,,,A,Counts the left picture of the middle pair as nine ones.
-s04-X84,< in the last link,,,C,Lets one loose one versus nine decide.
-s04-X85,62 < 65 < 27,,,C,Makes 27 greatest because its ones digit is greatest.
-s04-X85,27 > 62 > 65,,,D,Orders correctly and reverses both signs despite saying less than.
+s04-X84,46 > 81,,,D,Writes the opposite sign after correctly saying the first amount is less.
+s04-X84b,< in the middle box,,,A,"Counts the eight sticks on the left as eight ones, treating that side as nine."
+s04-X84c,81 < 69,,,C,Compares the single one with the nine loose ones despite unequal tens.
+s04-X85,"62, 65, 27",,,C,Makes 27 greatest because its ones digit is greatest.
+s04-X85b,27 > 62,,,D,Writes the opposite sign after saying twenty-seven is less.
+s04-X85c,62 > 65,,,D,Writes the opposite sign after saying sixty-two is less.
 s04-X86,33 > 37,,,D,Writes the opposite sign despite saying the left has fewer.
 s04-X86,33 < 73,,,B,Reverses 37 after correctly grouping it.
 s04-X87,Three tens and two singles,,,A,The opened ten becomes one single.
@@ -251,6 +253,7 @@ s04-X90,79 is greater because nine is more than four,,,C,Compares ones first.
 s04-X90,12 < 16,,,A,Counts each rod as one one in both amounts.
 s04-A90more,84,83+1,84,E,Changes one single instead of one ten.
 s04-A90less,82,83-1,82,E,Changes one single instead of one ten.
+s04-X91a,First estimate box left empty,,,,"Missing first response. Estimate accuracy is unscored, so no error letter applies."
 s04-X91b,94,90+4,94,B,Switches the two places.
 s04-X91b,13,4+9,13,A,Counts each full bundle as one one.
 s04-A91more,67,66+1,67,E,Changes one single instead of one ten.
