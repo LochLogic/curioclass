@@ -15,4 +15,4 @@ Keep this copy with the teacher. Use the exact prompts in s02-A44l and s02-A44m.
 The photographic record caught a brief movement.  
 The claw moved inward during retraction.
 
-For the dictation, say **protection** and **attraction**, in that order. Show the student only the numbered blanks. Allow the child to identify and check a doubtful spelling with a reference. Record the original and correction separately.
+For the dictation, say **distraction** and **attraction**, in that order. Show the student only the numbered blanks. Allow the child to identify and check a doubtful spelling with a reference. Record the original and correction separately.

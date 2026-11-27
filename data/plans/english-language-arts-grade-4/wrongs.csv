@@ -483,7 +483,7 @@ s02-X55,"Glands, warning posture, and limited spray in a pile without names.",,,
 s02-X57,Two facts written without groups or headings.,,,T,Create named categories before organizing the notes or paragraphs.
 s02-X58,This article explains how a skunk changes the color of its stripes.,,,A,Locate a detail and explain its connection to the claim.
 s02-X59,The final sentence changes to what the octopus eats.,,,W,Connect the ending to the preceding explanation or encounter.
-s02-X60,Zara lifted her pencil. Pip must escape.,,,Y,Contrast may with the condition the sentence actually expresses.
+s02-X60,Pip must escape.,,,Y,Contrast may with the condition the sentence actually expresses.
 s02-X61,The card states An octopus can change the appearance of its skin.,,,AP,Mark the exact source words and punctuate their boundary with the reporting clause.
 s02-X39,The octopus becomes invisible on every background.,,,Q,State only the conclusion the source or invented counts support.
 s02-X40,The name alone guarantees nine bands.,,,K,Match the note to a question before keeping it.
@@ -494,6 +494,7 @@ s02-X46,Twelve real animals survived.,,,AL,Identify the counted variable and dis
 s02-X47,Every pufferfish has long spines.,,,A,Locate a detail and explain its connection to the claim.
 s02-X49,"The mantle pushes water out, with no source location.",,,L,"Add its title, author and location."
 s02-X50,The defense never has any use.,,,A,Locate a detail and explain its connection to the claim.
+s02-X50,Lists the article's point and the book's point without joining them.,,,U,Join complementary details in one explanation.
 s02-X50-oral,Spray never discourages a predator.,,,A,Locate a detail and explain its connection to the claim.
 s02-X51,How many years does it live? The passage gives no lifespan.,,,A,Locate a detail and explain its connection to the claim.
 s02-X52,Every mention of a tree proves it serves as a defense.,,,K,Match the note to a question before keeping it.
@@ -502,7 +503,7 @@ s02-X54,Copies a diagram arrow label without explaining the liquid response.,,,A
 s02-X57,Two unrelated source lists have no group purpose.,,,U,Join complementary details in one explanation.
 s02-X58,The preview promises a food section but lists only coat details.,,,T,Create named categories before organizing the notes or paragraphs.
 s02-X59,Ink physically pushes the octopus.,,,A,Locate a detail and explain its connection to the claim.
-s02-X60,Zara lunged into the pool. Pip may escape.,,,F,"Compare the intended action, feeling or state before replacing the word."
+s02-X60-word,Zara lunged into the pool.,,,F,"Compare the intended action, feeling or state before replacing the word."
 s02-A44k,Says the quills frighten every predator without citing any support.,,,A,Locate a detail and explain its connection to the claim.
 s02-A56b,Keeps a note on the passage length as evidence about the turtle.,,,K,Match the note to a question before keeping it.
 s02-A56b,Leaves accurate notes in one undifferentiated pile.,,,T,Create named categories before organizing the notes or paragraphs.
@@ -641,15 +642,15 @@ s02-X68,The drawing has to come first because the researcher used it to test the
 s02-X69,It waited there for them.,,,Z,Establish the situation and participants before the choice.
 s02-X69,The skunk was in a nice place.,,,AB,Replace one generic phrase with a concrete sensory detail.
 s02-X71,"Eli said, I cannot see her now.",,,AO,Enclose the speech and place the separating comma in a model before editing.
-s02-X73,Pip's outline stood out against the pale broad patch.,,,AF,Rehearse size before physical quality in the model sentence.
-s02-X73,Everything looked nice beside Pip.,,,AB,Replace one generic phrase with a concrete sensory detail.
+s02-X73,A pale broad patch lay beside Pip.,,,AF,Rehearse size before physical quality in the model sentence.
+s02-X73-detail,Everything looked nice beside Pip.,,,AB,Replace one generic phrase with a concrete sensory detail.
 s02-X66,I shared my corrected sketch. Only afterward did I check the diagram and make the correction.,,,AA,Reorder events so each grows from the preceding one.
 s02-X66,I fixed the drawing by showing a cloud of ink pushing the octopus forward.,,,AK,Compare the invented action with the researched mechanism and replace it with a plausible action.
 s02-X67,It shoots its quills across the clearing.,,,AK,Compare the invented action with the researched mechanism and replace it with a plausible action.
 s02-X72,"Eli said, ""Did you bring lunch?""",,,AG,Make a line of speech reveal a response to an event.
 s02-X72,"Eli said, It might still be against the rock.",,,AO,Enclose the speech and place the separating comma in a model before editing.
 s02-X74,"Before the cloud thinned, Eli looked at the open patch.",,,V,Say the intended relationship before choosing the phrase.
-s02-X74,"Finally, Zara left to buy a kite.",,,W,Connect the ending to the preceding explanation or encounter.
+s02-X74-end,"Finally, Zara left to buy a kite.",,,W,Connect the ending to the preceding explanation or encounter.
 s02-X75,All pufferfish have long spines.,,,A,Locate a detail and explain its connection to the claim.
 s02-X75,The familys are different.,,,N,Compare it with a reference and record the correction.
 s02-X75,Some porcupinefish have longer spines. The families are different.,,,L,"Add its title, author and location."

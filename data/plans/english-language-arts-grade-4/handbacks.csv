@@ -185,6 +185,7 @@ from_day,to_day,what,where,minutes,error,note
 58,59,s02-X58,Return,5,A,Return dated feedback in the named slot. Independent retry uses a different case. Share one priority repair per child.
 59,60,s02-X59,Return,5,W,Return dated feedback in the named slot. Independent retry uses a different case. Share one priority repair per child.
 60,61,s02-X60,Return,5,Y,Return dated feedback in the named slot. Independent retry uses a different case. Share one priority repair per child.
+60,61,s02-X60-word,Return,0,F,Return with X60 in the same slot. Share one priority repair per child.
 61,62,s02-X61,Launch,0,AP,Return dated feedback with the existing papers. Share the receiving part's existing allocation.
 38,40,Unit 1 discussion and presentation record,Formal,0,,Use its actual component evidence to set the first discussion repair.
 42,43,s02-R42-organization,Return,0,,Return beside X42. Assign only one priority.
@@ -248,6 +249,7 @@ from_day,to_day,what,where,minutes,error,note
 71,72,s02-X71,Return,10,,"Inspect the speech boundary, then independently correct the punctuation. Use five minutes for inspection and five for the independent correction."
 72,73,s02-X72,Return,10,,"Check how the speech responds to the scene, then independently revise the line. Use five minutes for inspection and five for the independent correction."
 73,74,s02-X73,regrouping,10,,Inspect a different example for five minutes and independently correct for five. Use one priority per child.
+73,74,s02-X73-detail,regrouping,0,AB,Return with X73 in the same slot. Use one priority per child.
 63,64,Day 63 listening and written annotations,Return,0,,Hear six on 63. Return written next steps to the other 24 children alongside X63.
 64,65,Day 64 written folder responses,Return,0,,Hear six at 45 seconds each in the folder part. Read the other 24 paper responses and return written notes with the named feedback.
 65,66,Day 65 written folder responses,Return,0,,Hear six at 45 seconds each in the folder part. Read the other 24 paper responses and return written notes with the named feedback.
@@ -266,5 +268,6 @@ from_day,to_day,what,where,minutes,error,note
 73,74,Eligible first-branch revisions for D74a/b/l,revision,0,,Audit only the dated versions independently revised after the day 72 feedback.
 73,75,Eligible direct speech for D75k,Folder,0,,Use the dated day 72 collection and day 73 independent correction.
 74,75,s02-X74,Return,5,,Use the five-minute independent correction after the common inspection shared with D74. Choose one priority per child.
+74,75,s02-X74-end,Return,0,W,Return with X74 in the same slot. Choose one priority per child.
 75,76,s02-X75,Launch,0,,Return the written note during launch. Carry substantial repair to day 77.
 75,77,s02-X75,Response,5,,Use one of the four five-minute response groups. Assign each child only one gap.
