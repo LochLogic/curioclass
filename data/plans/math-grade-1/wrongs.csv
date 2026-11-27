@@ -263,3 +263,44 @@ s04-A92tens,72 < 68 after saying the left is greater,,,D,Writes the opposite sig
 s04-A92ones,24 > 29 after saying the left is less,,,D,Writes the opposite sign despite correctly comparing.
 s04-A92equal,One side is 8,,,A,Counts each rod on just one side as one one.
 s04-A92difference,5 ones,8-3,5,A,Counts each remaining stick as one one.
+s05-R96a,7,1+6,7,D,Counts the circled group as one square.
+s05-R96b,6,4+2,6,D,Reads the four ten-strips as four singles.
+s05-X96a,11,5+3+3,11,D,"Counts five tens as five singles, alongside the two sets of three singles."
+s05-X96b,39,34+5,39,C,Treats the five added strips as five singles.
+s05-X97,12,6+6,12,D,Counts each of the six strips as one single.
+s05-X97,30,22+4+4,30,C,"Adds four singles for the forty in the second card, plus its other four singles."
+s05-X98,62 + 34 = 92 = 96,,,E,Joins unequal amounts with equals.
+s05-X98,15,9+6,15,D,Treats nine strips as nine singles.
+s05-X99,14,6+1+7,14,D,Counts six strips as six singles.
+s05-X99,61 + 7 = 60 = 68,,,E,Uses an equals sign to join different amounts.
+s05-X100,33,37+6-10,33,A,Drops the ten instead of making a strip.
+s05-X100,16,3+7+6,16,D,Counts the three starting tens as three singles alongside thirteen loose ones.
+s05-X101,38,39+9-10,38,A,Loses the newly filled ten.
+s05-X101,58,39+9+10,58,B,Keeps the ten singles beside their replacement strip.
+s05-X102a,"Yes, 13 ones",4+5+4,13,D,Reads four old ten-strips as four more singles.
+s05-X102b,"No, 40",45+5-10,40,A,Crosses out ten ones without preserving them in one strip.
+s05-X102b,"Yes, 60",45+5+10,60,B,The prediction is correct; only the corroborating work shows duplicated quantity.
+s05-X103,71,72+9-10,71,A,Discards the traded ten.
+s05-X103,91,72+9+10,91,B,Keeps both the traded ten and its ten loose ones.
+s05-X104,76,29+57-10,76,A,Drops the ten from the sixteen loose ones.
+s05-X104,96,29+57+10,96,B,Keeps ten loose ones that are already a strip.
+s05-X105,64,46+28-10,64,A,Throws away ten while pooling the ones.
+s05-X105,56,46+2+8,56,C,"Adds two singles in place of two strips, followed by eight singles."
+s05-X106,63,57+16-10,63,A,Discards ten singles without making a new strip.
+s05-X106,83,70+13,83,B,Draws seven tens and all thirteen loose ones at the finish.
+s05-X107,85 + 15 = 90 = 100,,,E,Links unequal amounts with equals.
+s05-X107,90,85+15-10,90,A,Keeps only the nine old tens after trading ten singles.
+s05-X108,62,49+23-10,62,A,Drops the new ten.
+s05-X108,82,49+23+10,82,B,Keeps the exchanged singles and their strip.
+s05-X109,57,38+29-10,57,A,Loses the exchanged ten.
+s05-X109,77,38+29+10,77,B,Leaves the ten loose ones in the total as well as their strip.
+s05-AP1,12,5+4+3,12,D,"Counts five strips as five singles, obtaining 12 (D)."
+s05-AP2,38,36+2,38,C,Counts the two added tens as two singles and writes 38 (C).
+s05-AP3,43,48+5-10,43,A,Crosses out ten and writes 43 (A).
+s05-AP4,12,2+3+3+4,12,D,Writes 12 by counting each of the five strips as a single (D).
+s05-AP5,73,56+27-10,73,A,Draws only seven strips and three singles after crossing out ten (A).
+s05-AP5,93,56+27+10,93,B,Keeps the new ten and all thirteen of the loose ones.
+s05-AP5,56 + 27 = 70 = 83,,,E,Uses an equals sign to join unequal amounts.
+s05-AP5-link,I counted the new stick and all thirteen singles.,,,B,Counts the exchanged group twice.
+s05-AF,65,58+17-10,65,A,Drops the newly made ten.
+s05-AF,58 + 17 = 60 = 75,,,E,Connects different quantities with equals.
