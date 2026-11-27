@@ -444,24 +444,24 @@ from_day,to_day,what,where,minutes,error,note
 110,111,s03-A110C,Return,0,M,Return the earlier verification marks and written feedback on the unscored 110 revision for an independent 111 correction.
 110,111,s03-A110D,Return,0,N,Return the earlier verification marks and written feedback on the unscored 110 revision for an independent 111 correction.
 110,111,s03-A110E,Return,0,R,Return the earlier verification marks and written feedback on the unscored 110 revision for an independent 111 correction.
-116,117,s03-A116A,Feedback,0,S,Return a written cue and keep the original. Use the existing transition or feedback slot.
-116,117,s03-A116B,Feedback,0,Q,Return a written cue and keep the original. Use the existing transition or feedback slot.
-116,117,s03-A116C,Feedback,0,M,Return a written cue and keep the original. Use the existing transition or feedback slot.
-116,117,s03-A116D,Feedback,0,T,Return a written cue and keep the original. Use the existing transition or feedback slot.
-116,117,s03-A116E,Feedback,0,N,Return a written cue and keep the original. Use the existing transition or feedback slot.
-116,117,s03-A116F,Feedback,0,O,Return a written cue and keep the original. Use the existing transition or feedback slot.
-116,117,s03-A116G,Feedback,0,C,Return a written cue and keep the original. Use the existing transition or feedback slot.
-117,118,s03-A117A,Planning,0,S,Return a written cue and keep the original. Use the existing transition or feedback slot.
-117,118,s03-A117B,Planning,0,Q,Return a written cue and keep the original. Use the existing transition or feedback slot.
-117,118,s03-A117C,Planning,0,M,Return a written cue and keep the original. Use the existing transition or feedback slot.
-117,118,s03-A117D,Planning,0,T,Return a written cue and keep the original. Use the existing transition or feedback slot.
-117,118,s03-A117E,Planning,0,N,Return a written cue and keep the original. Use the existing transition or feedback slot.
-117,118,s03-A117F,Planning,0,O,Return a written cue and keep the original. Use the existing transition or feedback slot.
-117,118,s03-A117G,Planning,0,R,Return a written cue and keep the original. Use the existing transition or feedback slot.
-121,122,s03-A121A,Verification,0,U,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
-121,122,s03-A121B,Verification,0,V,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
-121,122,s03-A121C,Verification,0,W,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
-121,122,s03-A121D,Verification,0,O,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+116,117,s03-A116A,Revision,0,S,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116B,Revision,0,Q,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116C,Revision,0,M,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116D,Revision,0,T,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116E,Revision,0,N,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116F,Revision,0,O,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116G,Revision,0,C,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117A,Return,0,S,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117B,Return,0,Q,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117C,Return,0,M,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117D,Return,0,T,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117E,Return,0,N,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117F,Return,0,O,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117G,Return,0,R,Return a written cue and keep the original. Use the existing transition or feedback slot.
+121,122,s03-A121A,Return,0,U,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+121,122,s03-A121B,Return,0,V,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+121,122,s03-A121C,Return,0,W,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+121,122,s03-A121D,Return,0,O,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
 122,123,s03-A122A,Response,0,K,Share verification feedback on the saved correction. Keep the original and correction together.
 122,123,s03-A122B,Response,0,L,Share verification feedback on the saved correction. Keep the original and correction together.
 122,123,s03-A122C,Response,0,M,Share verification feedback on the saved correction. Keep the original and correction together.
@@ -550,3 +550,50 @@ from_day,to_day,what,where,minutes,error,note
 88,89,s03-A88E5,Return,0,E,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
 88,89,s03-A88E6,Return,0,E,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
 95,96,s03-A95B2,Return,0,D,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+111,112,s03-X111,Return,10,AG,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+111,112,s03-X111a,Return,0,AF,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+111,112,s03-P111N,Return,0,Y,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+112,113,s03-X112,Return,10,AG,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+112,113,s03-X112a,Return,0,T,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+113,114,s03-X113,Return,10,S,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+113,114,s03-X113a,Return,0,O,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+114,115,s03-X114,Drafting,5,S,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+114,115,s03-X114a,Drafting,0,AI,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+114,115,s03-P114E,Drafting,0,Q,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+115,116,s03-X115,Organization,5,T,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+115,116,s03-X115a,Organization,0,M,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+119,120,s03-X119,Preparation,5,C,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+119,120,s03-X119a,Preparation,0,V,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+119,120,s03-P119L,Preparation,0,V,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+120,121,s03-X120,Choice,5,W,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+120,121,s03-X120a,Choice,0,W,Share this slot with other written cues. Return the first response and preserve an independently corrected copy.
+113,114,dated source chart and source list,Return,0,AG,Return a written cue and keep the first response and independent correction dated separately.
+112,114,due private rereading turns,rereading,5,,"Hear the next six in 45-second turns. Use the remaining private turns on 117, 119 and 122 for pupils still unheard."
+112,117,next private rereading turns,rereading,5,,Prioritize six still unheard. Partners continue with released prose during the logged turns.
+112,122,remaining private rereading turns,rereading,5,,Use the final six private turns after the earlier observations and log absences individually.
+113,114,next source-focus conference turns,Plan,5,,"Hear six pupils still unheard on day 113, one 45-second turn each."
+113,114,second set of source-focus conference turns,Evidence,5,,Hear another six pupils in 45-second turns while others work on the chart.
+113,115,third set of source-focus conference turns,Choice,5,,Hear the next six outstanding pupils in 45-second conferences.
+113,116,last source-focus conference turns,Choice,5,,Use six 45-second turns. Date an individual make-up only for an absence.
+113,115,pending digital source lookup,Drafting,3,,Use one managed turn per available device while other pupils write. Save the passage found under its title. Date remaining names for 119.
+115,116,"plan, first draft, written cue and independent comparison correction",Organization,5,,Locate the dated correction for the check. Keep new work diagnostic.
+115,119,remaining digital source lookups,Making,3,,Continue only among pupils with an outstanding action. Use an available managed device and preserve a named passage and date.
+116,117,written revision feedback and dated change record,Revision,0,R,Use the opening of the existing independent revision block. Preserve the record for G.
+117,118,comparison process comments,Return,5,R,Return individual written comments and carry any shared repair to 119.
+118,119,D feedback and audience notes,Return,10,,At 11 of 30 address one leading issue across days 115 to 118 for five minutes. Keep five for independent corrections.
+119,120,caption and written caption cue,Caption,10,,Save an independently corrected caption and the unscored first version separately.
+119,120,display and feature-explanation cue,Preparation,0,V,Share the preparation repair time with exit returns. Correct the display and explanation independently.
+120,121,pending word-transfer corrections,Independent,0,Z,Complete corrections from the written cue in day 120 File check. Reserve an individual turn here for absence or a still-pending observation.
+120,121,s03-P120I1,Independent,0,Z,Return written cues and correct in 120 File check. Carry forward only missing evidence and unfinished corrections.
+120,121,s03-P120C1,Independent,0,Z,Return written cues and correct in 120 File check. Carry forward only missing evidence and unfinished corrections.
+120,121,s03-P120I2,Independent,0,Z,Return written cues and correct in 120 File check. Carry forward only missing evidence and unfinished corrections.
+120,121,s03-P120C2,Independent,0,Z,Return written cues and correct in 120 File check. Carry forward only missing evidence and unfinished corrections.
+120,121,s03-P120S1,Independent,0,Z,Return written cues and correct in 120 File check. Carry forward only missing evidence and unfinished corrections.
+120,121,s03-P120S2,Independent,0,Z,Return written cues and correct in 120 File check. Carry forward only missing evidence and unfinished corrections.
+120,121,s03-P120E,Independent,0,Z,Return written cues and correct in 120 File check. Carry forward only missing evidence and unfinished corrections.
+120,121,groups 1 to 3 protected rehearsals and cues,Independent,15,,Verify once within Independent preparation using the corrected recordings and dated first versions and cues.
+120,123,groups 4 to 6 protected rehearsals and cues,Performance,15,,Verify once in the recording half of Performance using the corrected recordings and dated first versions and cues.
+120,122,"corrected caption, display, explanation and word record",Display,5,,Use five Display minutes for F. Verify caption and word evidence separately after class.
+113,122,independently corrected research and digital record,Verification,0,,Use the original and dated 114 correction for existing research criteria. Preserve actual print and digital evidence.
+113,124,dated research notes and pending source actions,Hook,0,,Send the earlier research folder to the planned earlier-research retrieval. Keep missing actions dated.
+113,125,dated research notes and source labels,Research,0,,"Reuse the source tag routine during the new inquiry, with the new federal sources."
