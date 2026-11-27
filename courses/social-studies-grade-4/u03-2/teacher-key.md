@@ -1,11 +1,14 @@
 ---
-piece: key
+piece: blank
+audience: teacher
 course: social-studies-grade-4
 unit: 3.2
 stretch: 3
 version: draft, not yet taught
 credit: Curio Class original text; image credits accompany images.
 ---
+<style>body.student {font-size:11pt;line-height:1.2;column-count:2;column-gap:.3in} body.student p {margin:.2em 0} body.student h1 {font-size:16pt;column-span:all;margin:.3em 0} body.student h2 {font-size:12pt;margin:.5em 0 .2em;break-after:avoid} body.student h2+p {break-before:avoid}</style>
+
 # Section 3.2 teacher key
 
 Teacher only. Keep separate from student packets.

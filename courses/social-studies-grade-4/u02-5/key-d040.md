@@ -3,7 +3,7 @@ piece: blank
 audience: teacher
 course: social-studies-grade-4
 unit: C
-version: draft 1, not ready, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
 <style>body.student {font-size:11pt;line-height:1.25} body.student p {margin:.25em 0} body.student h1 {font-size:16pt;margin:.4em 0} body.student h2 {font-size:12pt;margin:.5em 0 .2em}</style>
@@ -30,7 +30,7 @@ Wrong: All four are facts because they are printed. Error L. A printed claim sti
 
 ## C1-E40-2
 
-Use Source B to judge sentence 1. Explain your evidence.
+Explain whether Source B supports sentence 1.
 
 Supported: the thick Yukon River line runs through the outline labeled Alaska. A location detail, not merely the source title, supports sentence 1.
 

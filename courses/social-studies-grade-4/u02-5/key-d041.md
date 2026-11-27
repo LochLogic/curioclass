@@ -3,7 +3,7 @@ piece: blank
 audience: teacher
 course: social-studies-grade-4
 unit: C
-version: draft 1, not ready, not yet taught
+version: draft 2, not ready, not yet taught
 credit: ours
 ---
 <style>body.student {font-size:11pt;line-height:1.25;column-count:2;column-gap:.3in} body.student p {margin:.25em 0} body.student h1 {font-size:16pt;margin:.4em 0;column-span:all} body.student h2 {font-size:12pt;margin:.5em 0 .2em}</style>
@@ -14,11 +14,11 @@ Keep this sheet separate from every student packet.
 Use one scale per component: shown; shown with help; not yet seen.
 Access support is separate from content help. No points or totals.
 
-Record columns: assigned route; repair components; exit supported claim; exit limit; access/help; speaker names; next step. Only the assigned route is marked.
+Record columns: assigned route; repair components; exit judgment; exit map evidence; access/help; speaker names; next step. Only the assigned route is marked.
 
 ## C1-K41-1
 
-Repair this made-up key record: triangles mean water.
+Key: triangles mark hills; waves mark water. Repair this record: triangles mean water.
 
 Triangles mark hills in the supplied teaching key.
 
@@ -30,7 +30,7 @@ Wrong: Triangles mean water. Error A. The supplied teaching key says hills.
 
 ## C1-K41-2
 
-Repair this made-up bar record: 3 bars mean 3 kilometers.
+Each bar represents 50 kilometers. Repair this record: 3 bars mean 3 kilometers.
 
 Each bar is 50 kilometers; 3 bars represent 150 kilometers.
 
@@ -75,6 +75,8 @@ Teaching sequence: Look for: The dotted area is reeds. The square is west of the
 Samples, first shows the component, second needs work: Dots mark reeds; the square is west of the circle. | Dots are water; the square is east.
 
 Wrong: The square is east of the circle. Error B. Use the downward north arrow.
+
+Wrong: The dotted area is water. Error A. Read the supplied reeds key.
 
 ## C1-P41-B
 
@@ -122,13 +124,8 @@ Wrong: Both are independent countries. Error E. Distinguish a division from its 
 
 ## C1-X41
 
-Use the new map to judge the card. Explain one supported claim and one limit.
+Explain whether the new map supports the card's claim.
 
-Supported: the footbridge is north of the reeds, using the upward north arrow and the bridge above reeds. Limit: the map cannot show that the bridge is everyone's favorite place. Accept equivalent supported reasoning.
+No. The footbridge is north of the reeds. It is above the reeds, and the north arrow points up. The card says south, so the mapped position contradicts it. Accept an annotated arrow or equivalent explanation.
 
-Teaching sequence: Look for: Supported: the footbridge is north of the reeds, using the upward north arrow and the bridge above reeds. Limit: the map cannot show that the bridge is everyone's favorite place. Accept equivalent supported reasoning.
-
-Samples, first shows the component, second needs work: The bridge is above the reeds with north up; favorite is not mapped. | The map proves everyone likes the bridge.
-
-Wrong: The map proves everyone likes the bridge. Error C. Separate a mapped location from an unmapped preference.
-
+Wrong: The bridge is south because the card says so. Error D. Check the separate map and north arrow.

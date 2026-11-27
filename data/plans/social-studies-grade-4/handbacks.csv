@@ -84,7 +84,7 @@ from_day,to_day,what,where,minutes,error,note
 35,36,s02-E9,Return,0,,Return importance record with exit feedback.
 36,38,s02-X36 s02-P36,Feedback,0,,No content coaching on 37.
 37,38,s02-E1 s02-E2a s02-E2b s02-E2c s02-E2d s02-E2e s02-E3a s02-E3b s02-E3c s02-E4a s02-E4b s02-E5a s02-E5b s02-E6 s02-E10,Feedback,5,,"Return all assessment components; four sequential five-minute adult groups, written moves for everyone."
-38,39,s02-P38a s02-P38b s02-P38c s02-P38d,opening,0,,"Day 39 writer: return each assigned fresh attempt privately before map check, written cue only."
+38,39,s02-P38a s02-P38b s02-P38c s02-P38d,Opening,1,,"One shared distribution minute returns whichever main or variant card was assigned and s02-P38-R, with one private written cue; no content repair."
 23,24,s02-P23-R,Return,0,,"Return this component with the prior exit and practice in the same five-minute slot; one priority per child, no added queue."
 23,24,s02-P23-1,Return,0,,"Return this component with the prior exit and practice in the same five-minute slot; one priority per child, no added queue."
 24,25,s02-P24-R,Return,0,,"Return this component with the prior exit and practice in the same five-minute slot; one priority per child, no added queue."
@@ -280,13 +280,9 @@ from_day,to_day,what,where,minutes,error,note
 131,132,s06-F1a s06-F1b s06-F1c s06-F1d s06-F1e s06-F1f s06-F1g s06-F2a s06-F2b s06-F2c s06-F2d s06-F3a s06-F3b s06-F3c s06-F3d s06-F3e s06-F3u s06-F4q s06-F4g s06-F4c s06-F4s s06-F4i s06-F4settle s06-F4move s06-F5w s06-F5b s06-F6a s06-F6b s06-F6c s06-F2-se s06-F2-mw s06-F2-sw s06-F2-we,Response groups,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "
 119,120,s06-P119-1 s06-P119-2 s06-P119-3 s06-P119-4 s06-P119-5 original records and criterion cues,Unaided revision,10,,Two minutes per record. Preserve originals/cues/revisions. Do not reteach or supply the answer. Score the revised records as M5b M5m M5w M5l M5t.
 120,123,unfinished mid-unit component cues,Compare and repair,10,,Two sequential five-minute small groups for unresolved priorities; other children compare independently.
-132,132,s06-W132-1 s06-W132-2 s06-W132-3 s06-W132-4 s06-P132-1 s06-P132-2 s06-P132-3 s06-P132-4,Reflect and hand on,5,,Same-day private cue for every assigned paper; one priority per child. Checking starts during independent work.
 133,135,C3-E133-M C3-E133-G,Feedback,2,,Return all maps and explanations with a private cue; shared five-minute feedback block with 134.
 134,135,C3-E134-A1 C3-E134-A2 C3-E134-A3 C3-E134-B1 C3-E134-B2 C3-E134-B3 C3-E134-C C3-E134-R,Feedback,3,,"Return all history papers; one priority across both checks, not one meeting per error."
 135,136,C3-X135-M C3-X135-G C3-X135-S C3-X135-C C3-X135-S2 C3-X135-S3 C3-X135-R1,Feedback,5,,Return the assigned written task retry and common exit. One priority remains; unassigned components stay blank.
-135,135,C3-K135-M C3-K135-G C3-K135-S C3-K135-C C3-K135-S2 C3-K135-S3,Response groups,0,,Feedback within the allocated group; only assigned teaching component required.
-136,136,C3-K136-M C3-K136-G C3-K136-S C3-K136-C C3-K136-S1,Targeted repair,0,,Feedback within allocated repair block.
-136,136,C3-X136-M C3-X136-G C3-X136-S C3-X136-C C3-X136-S1 C3-X136-S2 C3-X136-R1,Exit ticket and reflect,7,,Return checked written task retries and common exit tickets with a private cue. Begin checking during the last six independent minutes; record unfinished marking without claiming closure.
 137,138,s07-X137 s07-RET137 s07-P137 s07-P137-questions s07-P137-evidence,Return and repair,10,,One shared block for related errors. Comparison then fresh evidence-label attempt; written cues reach all thirty. Oral samples never replace papers.
 138,139,s07-X138 s07-P138 s07-F138,Return and repair,10,,One shared block for related errors. Comparison then fresh evidence-label attempt; written cues reach all thirty. Oral samples never replace papers.
 139,140,s07-X139 s07-P139 s07-F139,Return and repair,10,,One shared block for related errors. Comparison then fresh evidence-label attempt; written cues reach all thirty. Oral samples never replace papers.
@@ -313,8 +309,9 @@ from_day,to_day,what,where,minutes,error,note
 157,159,s07-P2-product s07-P157,End-of-unit assessment,0,,Score collected revised product; no sitting writing or first-encounter score.
 159,160,s07-C1-1 s07-C1-2 s07-C1-3 s07-C1-4 s07-C1-5 s07-C2-1 s07-C2-2 s07-C2-3 s07-C2-4 s07-C3-1 s07-C3-2 s07-C3-3 s07-C3-4 s07-C4-1 s07-C4-2 s07-C4-3 s07-C4-4 s07-C4-5 s07-C5-1 s07-C5-2 s07-C5-3 s07-C5-4 s07-C5-5 s07-C5-6 s07-C5-7 s07-C5-compare s07-H1 s07-H2 s07-H3 s07-H4 s07-M1 s07-M2a s07-M2b s07-P1 s07-P2 s07-A1 s07-A2 s07-A1-argument s07-P2-product,Feedback,0,,Share five-minute Feedback block with E158 notes; Response groups holds four five-minute meetings.
 158,160,s07-X158,Feedback,0,H,Error H shares the existing five-minute Feedback block with error R; no extra minutes and no repair on day 159.
-41,42,C1-P41-A C1-P41-B C1-P41-C C1-P41-CP C1-P41-D C1-X41,Retrieval,0,,Private distribution of marked fresh route and exit with one written cue while retrieval starts. Content repairs remain recorded; no additional teaching block.
+41,42,C1-P41-A C1-P41-B C1-P41-C C1-P41-CP C1-P41-D C1-X41,Retrieval,1,,First Retrieval minute returns assigned fresh route and map-judgment exit with one cue; four minutes remain for retrieval; unresolved needs stay recorded.
 38,39,s02-P38a-B s02-P38a-J s02-P38a-Q s02-P38b-I s02-P38b-K s02-P38b-L s02-P38b-M s02-P38c-E s02-P38c-O s02-P38d-H s02-P38d-P,Opening,0,,"Return whichever single fresh priority card the child received, alongside main-card attempts within day 39's existing two-minute opening. Written cue only; no new teaching."
 18,19,s02-P18-BIO1 s02-P18-BIO2,Return,0,,Return the two-minute biography retrieval with the existing exit/practice papers in the five-minute Return and repair slot; one private written cue.
 17,18,s02-P17-H,Return,0,,Return the formative warm-up with the existing timed feedback papers; no second score or extra repair minutes.
 38,39,s02-P38-R,Opening,0,,Return the formative warm-up with the existing timed feedback papers; no second score or extra repair minutes.
+136,137,C3-X136-R1,Hook,1,,"Return only tickets whose marking finishes after day 136, with one written cue in the first Hook minute. Tickets already returned on day 136 stay in student folders. Four Hook minutes remain; no content repair."

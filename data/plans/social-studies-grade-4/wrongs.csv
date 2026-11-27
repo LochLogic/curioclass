@@ -403,7 +403,7 @@ C1-P41-A,The square is east of the circle.,,,B,Use the downward north arrow.
 C1-P41-C,"A stays at 60 N, 50 W.",,,G,Read target latitude then longitude.
 C1-P41-D,The right location proves quietest.,,,C,A location detail cannot establish a preference.
 C1-P41-B,210 kilometers,210,210,M,Omits the half-bar portion.
-C1-X41,The map proves everyone likes the bridge.,,,C,Separate a mapped location from an unmapped preference.
+C1-X41,The bridge is south because the card says so.,,,D,Repeats the card instead of checking the separate map and north arrow.
 s03-X42,Old buildings are fun.,,,N,Interest alone does not explain the writer's need.
 s03-X43a,V; deepest always means oldest.,,,K,The later pit changes original associations.
 s03-X43b,Only record attractive finds.,,,F,Every context matters.
@@ -1505,3 +1505,4 @@ s02-P31,Arrowhead marks origin.,,,D,"Cold-checked from the supplied map key: the
 s02-P32,All change alike.,,,F,"The separately supplied group cards show distinct purchase, price and order changes, not one uniform effect."
 s02-P35,Every country makes everything alone.,,,O,Leaves the supplied false evidence link unchanged; the selected records show exchanges.
 s02-P35,All groups benefit because the title says trade.,,,F,Source titles do not show universal group benefits.
+C1-P41-A,The dotted area is water.,,,A,Uses appearance rather than the supplied reeds key.
