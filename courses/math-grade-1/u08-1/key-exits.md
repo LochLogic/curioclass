@@ -19,6 +19,6 @@ Teacher copy. Read the cues aloud. Use shown, shown with help, and not yet seen 
 
 ## Day 153
 
-**s08-X153a.** Which fact counts the dots still outside the full ten? 4 + 6 = 10. Look for a mark on the right fact. The moved dot belongs to the filled ten and the four and six outside combine without counting it again. Error B: 5 + 6 = 11. Counts the moved dot in its former group.
+**s08-X153a.** Which fact counts all the dots still outside the full ten? 4 + 1 + 3 = 8. Look for the fact that counts the three groups still outside. The moved dot belongs to the full ten. Error B: 5 + 1 + 3 = 9. Counts the moved dot in its former group.
 
-**s08-X153b.** Which strip finds how many tiles stayed out? The strip from 10 through 17. It shows 8 new counts. Look for the strip whose first added count comes after all nine removed tiles. Keep the first slip covered. Error A: Nine through seventeen. Includes the starting amount as a new count.
+**s08-X153b.** Which strip finds how many tiles stayed out? The strip with 16 and 17. It shows 2 new counts. Look for the strip whose first new count comes after all fifteen put-away tiles. Keep the first panel covered until its mark is saved. Error A: 15, 16, 17. Includes the starting amount as a new count.

@@ -464,10 +464,11 @@ s08-X156b,12 + 1 = 13,12+1,13,D,Adds the two groups rather than finding their di
 s08-P156-fewer,13,12+1,13,D,Adds both exposed amounts.
 s08-X157,37,9+28,37,E,Counts every ten-stick as one square.
 s08-X157,109,8*10+1+28,109,E,Counts one of nine ten-sticks as one square.
-s08-X158,719,700+19,719,F,Joins the seven and nineteen as adjacent digits.
+s08-X158,Crosses out one loose square for the new stick,8*10+18,98,E,Treats the new ten-stick as one loose square.
 s08-X159,Six sticks and three loose squares,6*10+3,63,G,Checks the stick count alone.
 s08-X159b,Checks six sticks only,,,G,Treats one marked clue as sufficient.
 s08-X160,Nine tens and four ones,9*10+4,94,G,Checks the tens alone.
+s08-R1a,Circles one loose square,,,E,Treats the stick it trades for as one loose square.
 s08-R1b,317,300+17,317,F,Joins stick and loose-square counts as adjacent digits.
 s08-R2a,68 fits both clues,,,G,Accepts the candidate after checking only tens.
 s08-R2b,68,60+8,68,G,Keeps the original without testing the ones.
@@ -475,9 +476,9 @@ s08-R2c,Six tens so it fits,,,G,Checks just one of the two clues.
 s08-X157b,"97, 98, 99, 100, 101, 102, 103, 104",97+7,104,A,Uses the printed start as the first new hook.
 s08-P155-check,19 − 4 − 2 − 3 = 11,19-(4+2+3)+1,11,A,Counts the held nine as a new count when checking by counting up.
 s08-P160-response-a,The second card shows 413,4*100+13,413,F,Writes the four tens and thirteen ones as adjacent counts.
-s08-P160-response-b,54 fits because it has five tens,,,G,Accepts the numeral after checking only the tens.
-s08-X153a,4 + 2 + 3 = 9,4+2+3,9,B,Counts the moved dot in its former group.
-s08-X154,18 tags,10+8,18,C,Uses the ending quantity for the joining change.
+s08-P160-response-b,"Yes, 54 has five tens",,,G,Accepts the numeral after checking only the tens.
+s08-X153a,5 + 1 + 3 = 9,5+1+3,9,B,Counts the moved dot in its former group.
+s08-X154,15 tags,10+5,15,C,Uses the ending quantity for the joining change.
 s08-X154b,4 pins,4,4,C,Uses the ending quantity for the removal.
 s08-X155,11 dot cards,19-(4+2+3)+1,11,A,Starts the new counts at the known nine.
 s08-X155b,4 + 2 + 3 + 10 = 18,4+2+3+10-1,18,A,Includes the held nine among the ten new counts.

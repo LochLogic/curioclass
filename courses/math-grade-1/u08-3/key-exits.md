@@ -11,7 +11,7 @@ Teacher copy. Read the cues aloud. Use shown, shown with help, and not yet seen 
 
 ## Day 158
 
-**s08-X158.** How would you fix the loose squares to show where this new stick came from? Cross out ten loose squares in picture B and link them to its new stick. Eight tens and nine ones still make 89. A circle, crossing marks or a drawn link can identify the ten loose ones that became the new stick. A correct numeral by itself leaves the reason open. Error F: 719. Joins the seven and nineteen as adjacent digits.
+**s08-X158.** How would you fix the loose squares to show where this new stick came from? Cross out ten loose squares in picture B and link them to its new stick. Eight tens and nine ones still make 89. A circle, crossing marks or a drawn link can identify the ten loose ones that became the new stick. A correct numeral by itself leaves the reason open. Error E: Crosses out one loose square for the new stick. Treats the new ten-stick as one loose square.
 
 ## Day 159
 

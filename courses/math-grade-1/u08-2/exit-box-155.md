@@ -8,6 +8,6 @@ teacher_note: Read every cue and label aloud. Before class set aside key-exits.m
 ---
 # Day 155 Exit box
 
-<p style="font-size:18pt;margin:3px 0">What subtraction checks your answer?</p>
+<p style="font-size:18pt;margin:3px 0">What subtraction leaves just the dot cards?</p>
 
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 575 48" role="img" aria-label="Response space" style="display:block;max-width:100%;height:48px;margin:3px auto"><g fill="white" stroke="black" stroke-width="1.5"><text x="9" y="29" fill="black" stroke="none" font-size="18" font-family="sans-serif"></text><rect x="116" y="3" width="437" height="40" rx="0"/></g></svg>

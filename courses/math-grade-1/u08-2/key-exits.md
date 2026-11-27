@@ -11,25 +11,25 @@ Teacher copy. Read the cues aloud. Use shown, shown with help, and not yet seen 
 
 ## Day 154
 
-**s08-X154.** How many tags did Rin add? 18 tags. The mark or numeral belongs in the change space. Accept eighteen marks or a matching equation with eighteen in the box. Error C: 19 tags. Uses the ending quantity for the joining change.
+**s08-X154.** How many tags did Rin put on the mat? 6 tags. Count all three starting groups once. Look for six added tags in the change space. Save the first slip before the next cue. Error C: 15 tags. Uses the ending quantity for the joining change.
 
-**s08-X154b.** How many pins did Rin take off? 17 pins. Look for seventeen removed pins in the change space. The ending pin was still attached. Collect the first slip before this cue. Error C: 1 pin. Uses the ending quantity for the removal.
+**s08-X154b.** How many pins did Rin take off altogether? 13 pins. The emptied strip lost eight pins. The other lost five, since four of nine stay. Both groups count in the one removal. Error C: 4 pins. Uses the ending quantity for the removal.
 
 ## Day 155
 
-**s08-X155.** How many cards have a dot? 13 dot cards. The child may mark or draw thirteen in the unmeasured dot part. Look for one count of every card. Keep the first response before showing later cues. Error A: 14 dot cards. Starts the new counts at the known five.
+**s08-X155.** How many cards have a dot? 10 dot cards. Keep the three known groups separate when setting up the problem. Look for all nineteen cards accounted for once and ten dot cards. Save the count before more cues. Error A: 11 dot cards. Starts the new counts at the known nine.
 
-**s08-X155b.** What addition puts the cards back together? 2 + 3 + 13 = 18 or 5 + 13 = 18. Read the cue after saving the count. Accept a true matching equation, linked paper quantities or neutral dictation beside the child's mark. Error A: 5 + 13 = 17. Includes the held five among the thirteen counts.
+**s08-X155b.** What addition counts all four groups of cards? 4 + 2 + 3 + 10 = 19, in any addend order. Look for each card type represented separately in the addition. Accept linked paper quantities or neutral dictation beside the child's mark. Error A: 4 + 2 + 3 + 10 = 18. Includes the held nine among the ten new counts.
 
-**s08-P155-check.** What subtraction checks your answer? 18 − 5 = 13 or 18 − 13 = 5. Accept a drawing, matching true equation or neutral dictation. The known part is two clipped and three banded cards. Give descriptive feedback for a wrong order with no demonstrated error letter.
+**s08-P155-check.** What subtraction leaves just the dot cards? 19 − 4 − 2 − 3 = 10, in any order of taking away the three known groups. Accept a drawing or equivalent subtraction that accounts for each of the three types taken out and leaves ten. Error A: 19 − 4 − 2 − 3 = 11. Counts the held nine as a new count when checking by counting up.
 
 ## Day 156
 
-**s08-X156.** Draw bars to show how many more beads Pine has. Aligned Pine and Elm bars with equal hidden parts, one matched visible bead and 11 extra beads at Pine. Starts align and units match. Accept matching brackets of unspecified equal length or equal hidden lengths from one to eight. Look for a visible gap and correct labels. Error D: 13 extra beads. Adds both exposed amounts. Error A: 12 extra beads. Counts the first already matched bead again.
+**s08-X156.** Draw bars to show how many more beads Pine has. Aligned Pine and Elm bars with equal hidden parts, one matched visible bead and 11 extra beads at Pine. Starts align and units match. Accept matching brackets of unspecified equal length or equal hidden lengths from one to eight. Look for a visible difference and correct labels. Error D: 13 extra beads. Adds both exposed amounts. Error A: 12 extra beads. Counts the first already matched bead again.
 
-**s08-X156b.** What number sentence shows the extra beads? 1 + 11 = 12 or 12 − 1 = 11; a true matching equation using the child's whole bars also works. Collect the bar drawing before this cue. Supply a view of that child's own bars if needed without changing the marks. Accept linked quantities or neutral dictation. Error D: 12 + 1 = 13. Adds the two groups rather than finding their gap.
+**s08-X156b.** What number sentence shows the extra beads? 1 + 11 = 12 or 12 − 1 = 11; a true matching equation using the child's whole bars also works. Collect the bar drawing before this cue. Supply a view of that child's own bars if needed without changing the marks. Accept linked quantities or neutral dictation. Error D: 12 + 1 = 13. Adds the two groups rather than finding their difference.
 
-**s08-P156-fewer.** How many fewer beads does Elm have? 11. Accept a mark or point to the same gap. Look for the same unmatched section on the child's own bars. Accept a numeral or eleven matching marks. Error D: 13. Adds both exposed amounts.
+**s08-P156-fewer.** How many fewer beads does Elm have? 11. Accept a mark or point to the same difference. Look for the same unmatched section on the child's own bars. Accept a numeral or eleven matching marks. Error D: 13. Adds both exposed amounts.
 
 ## Day 157
 
