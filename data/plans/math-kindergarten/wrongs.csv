@@ -1503,7 +1503,7 @@ s08-X144,Only arriving two called whole.,,,L,Assign letter only when described a
 s08-X145,"Joins stored three, says eleven.",,,C,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X146,"Ten, twenty, twenty-one while tracing.",,,K,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X147,Only plain two as whole.,,,L,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-X148,Covered four recorded as remaining.,,,M,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
+s08-X148,Covered four recorded as remaining.,,,M,"For the fully hidden domino, this means recording the four taken-away dots as the remainder. Assign M only when that part confusion is observed; unexplained misses get descriptive notes. Access support separate."
 s08-X150,"Adds, records three.",,,C,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X151,Visible two drawn as hidden.,,,M,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-B140-empty,Writes one for no objects.,,,x,Descriptive zero-quantity miss. O is specifically retaining the original amount after the whole set is removed.
@@ -2031,7 +2031,6 @@ s08-X135,Pencils placed before the empty ball mat.,,,x,Unexpected ordering miss:
 s08-X138,Added-to set stays eleven.,,,D,Assign this letter only for the stated observed action; otherwise describe the response. Record mathematical help separately.
 s08-X149,Adds two to four and tries to record six.,4+2,6,C,Six is not an offered pile. Record this only if the child independently adds or attempts six; an incorrect offered choice alone has no inferred letter.
 s08-X149,Links four without an observed reason.,,,x,Describe this mark; ignoring removal does not establish joining.
-s08-X139,Begins at one despite the supplied thirteen.,,,E,Only when heard; no oral start inferred from the paper order.
 s08-S135,Tab placed on ring mat.,,,N,Assign this letter only for the stated observed action; otherwise describe the response. Record mathematical help separately.
 s08-L135-1,Numeral does not match the counted category.,,,x,Describe unexplained label errors; observe tracking or digit order before assigning a specific letter.
 s08-L135-2,Numeral does not match the counted category.,,,x,Describe unexplained label errors; observe tracking or digit order before assigning a specific letter.

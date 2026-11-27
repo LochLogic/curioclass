@@ -57,7 +57,7 @@ Put these cards in counting order.
 
 Key: 13, 14, 15, 16.
 
-Look for: Quantities stay with numerals. Oral start judged only if heard. | Shape: Organize four mixed quantity/numeral arrays; practice repairs one gap in supplied sequence.
+Look for: Quantities stay with numerals. This ticket checks the order of the quantity/numeral cards only. No supplied-start oral count is requested; counting from one while solving is not an error on this item. | Shape: Organize four mixed quantity/numeral arrays; practice repairs one gap in supplied sequence.
 
 Shown: Ascending thirteen through sixteen. | Shown with help: correct after a mathematical prompt. | Not yet seen: Sixteen, fifteen, fourteen, thirteen.
 

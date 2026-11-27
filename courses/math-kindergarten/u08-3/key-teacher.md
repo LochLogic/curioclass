@@ -11,15 +11,17 @@ credit: All ours.
 Teacher only. Open privately before class; never display or include in student print packets. One marking scale: shown, shown with help, not yet seen. Record access and mathematical help separately.
 
 
+Before class, day 148: prepare a fully covered domino, with neither half visible. At the exit read the original total and removal from the new stem; keep both halves hidden until collection. The printed sealed master and this setup replace the earlier right-half-only flap directions.
+
 ## s08-X146
 
 Trace the groups as you count by tens to one hundred.
 
-Key: Ten traces; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred if heard.
+Key: Heard tens sequence: ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred. One trace per group records the route; traces alone do not establish counting.
 
-Look for: Each cluster ten dots. Paper shows tracing only; sequence only if heard. | Shape: Paper group route with whisper count; practice moves physical groups, no paper route; F2 has no group cues.
+Look for: Each cluster has ten dots. Read the stem aloud. Hear at most two assigned 45-second counts inside the five-minute exit; other children trace and whisper independently. Judge K.CC.A.1 only from the actual heard sequence. An unheard count stays not yet seen with a pending note; ten traces alone are not shown. Record names heard and mathematical help separately. | Shape: Independent whispered count along a fresh paper route; practice moves physical groups, no paper route. F2 has no group cues.
 
-Shown: Ten group traces. | Shown with help: correct after a mathematical prompt. | Not yet seen: Ten, twenty, twenty-one while tracing.
+Shown: Heard independently saying ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred while tracing each group. | Shown with help: correct after a mathematical prompt. | Not yet seen: Heard switching to twenty-one after twenty, or count not heard (pending, no inferred error letter).
 
 ## s08-X147
 
@@ -33,13 +35,13 @@ Shown: Both parts joined as three. | Shown with help: correct after a mathematic
 
 ## s08-X148
 
-Record the fact when this part is covered.
+Five dots were here. Four dots are taken away. Draw how many stay.
 
-Key: 5 - 4 = 1, or one remaining mark.
+Key: 1, since 5 - 4 = 1; one remaining mark, spoken one or directed adult mark.
 
-Look for: Show one/four domino, cover four-dot half, use private setup. | Shape: Recall removal from newly covered one/four domino; practice fixes unhidden zero/three and zero/four totals.
+Look for: Read the complete stem aloud with the domino fully hidden. Both halves remain covered throughout the response; never expose the one-dot remainder before collection. The spoken five supplies the original total and four supplies the removed part. Accept one drawn dot, spoken one or an adult mark directed by the child. At most two assigned 45-second observations fit the five-minute exit; paper answers are collected from everyone. Record strategy only if observed. | Shape: Produce an unseen remainder from a spoken domino removal; practice repairs supplied unhidden domino totals. Whole five-minus-four case remains reserved.
 
-Shown: One remaining dot. | Shown with help: correct after a mathematical prompt. | Not yet seen: Covered four recorded as remaining.
+Shown: Independently records one remaining dot or says one. | Shown with help: correct after a mathematical prompt. | Not yet seen: Draws the four taken-away dots as the dots that stay.
 
 ## s08-X149
 

@@ -5,6 +5,7 @@ unit: 8.3
 stretch: 8
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Read aloud. Hear at most two assigned 45-second counts during this five-minute exit and record their names. A trace records the route only; mark oral counting from the heard sequence. An unheard count stays pending.
 exit: half
 ---
 # Day 146
