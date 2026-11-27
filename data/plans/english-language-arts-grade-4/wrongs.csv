@@ -831,12 +831,10 @@ s04-A2-character,She is nice because I like her.,,,A,Use the matching repair in 
 s04-A2-evidence,She is brave. No action from the scene is needed.,,,A,Use the matching repair in the unit error register.
 s04-A3-word,Afraid to open the tin.,,,F,Use the matching repair in the unit error register.
 s04-A3-idiom,Put pieces of paper in the writer’s mouth.,,,F,Use the matching repair in the unit error register.
-s04-A4-delivery,The reading and the text are both about letters.,,,D,Use the matching repair in the unit error register.
 s04-A5-opposite,Keen is the opposite.,,,P,Use the matching repair in the unit error register.
 s04-A5-nuance,Both words have exactly the same meaning.,,,P,Use the matching repair in the unit error register.
 s04-B1-conference,The initial by itself proves Ruth wrote it.,,,A,Use the matching repair in the unit error register.
 s04-B1-range,This one short scene proves grade-band reading across every genre.,,,S,Use the matching repair in the unit error register.
-s04-C1-compare,Burn’s date proves he saw certification.,,,C,Use the matching repair in the unit error register.
 s04-C1-explicit,He states he certified the amendment.,,,AG,Use the matching repair in the unit error register.
 s04-C1-infer,His wording proves that every legislator agreed.,,,A,Use the matching repair in the unit error register.
 s04-C1-support,The states met the requirement because they met it.,,,M,Use the matching repair in the unit error register.
@@ -883,11 +881,8 @@ s04-E1-close,Ends with a prize that no scene reports.,,,N,Use the matching repai
 s04-E1-reader,Begins You know which note I mean.,,,AB,Use the matching repair in the unit error register.
 s04-E1-inference,Reports an inferred motive as a stated fact.,,,AG,Use the matching repair in the unit error register.
 s04-E1-relevance,Offers a quotation in isolation.,,,AF,Use the matching repair in the unit error register.
-s04-F1-aspects,The only aspect is that the town has a drop-off place.,,,AE,Use the matching repair in the unit error register.
-s04-F1-notes,Lists titles but leaves each note unattributed.,,,Z,Use the matching repair in the unit error register.
 s04-F1-integrate,The only fact is that there was a newsletter.,,,I,Use the matching repair in the unit error register.
 s04-F1-support,Every resident changed how they handled food scraps.,,,AC,Use the matching repair in the unit error register.
-s04-G1-compare,Burn heard every private conversation because he was there in 1920.,,,C,Use the matching repair in the unit error register.
 s04-G2-precision,Did stuff tells what the volunteers did.,,,J,Use the matching repair in the unit error register.
 s04-G2-punctuation,Punctuation makes no difference.,,,AH,Use the matching repair in the unit error register.
 s04-G2-register,The same wording fits every listener.,,,AI,Use the matching repair in the unit error register.
@@ -896,16 +891,12 @@ s04-H1-register,The child assumes that the same wording fits both listener group
 s04-H1-report,Facts come in an order that makes the point difficult to follow.,,,K,Use the matching repair in the unit error register.
 s04-H1-media,Unrelated decoration is offered as support.,,,U,Use the matching repair in the unit error register.
 s04-H2-contrast,Informal language is always wrong.,,,AA,Use the matching repair in the unit error register.
-s04-H3-listening,"The speaker said garden, so garden is the evidence.",,,AJ,Use the matching repair in the unit error register.
 s04-I1-script,You know what the group did.,,,AB,Use the matching repair in the unit error register.
-s04-I1-relative,Students which organized the project set up a place whom residents could use.,,,H,Use the matching repair in the unit error register.
 s04-I1-precision,Did things describes the work clearly.,,,J,Use the matching repair in the unit error register.
 s04-I1-punctuation,More exclamation marks always help.,,,AH,Use the matching repair in the unit error register.
 s04-I1-register,I chose formal language only because there were more people.,,,AI,Use the matching repair in the unit error register.
-s04-J1-release,Several facts appear with no clear topic or grouping.,,,K,Use the matching repair in the unit error register.
 s04-J1-detail,Our classroom announcement fixed a town problem.,,,AC,Use the matching repair in the unit error register.
 s04-J1-links,Because connects facts with no causal relation.,,,L,Use the matching repair in the unit error register.
-s04-J1-terms,Calls every source a thing.,,,J,Use the matching repair in the unit error register.
 s04-J1-close,The closing announces an unobserved community result.,,,N,Use the matching repair in the unit error register.
 s04-J1-precision,Did stuff is precise enough.,,,J,Use the matching repair in the unit error register.
 s04-J1-punctuation,The mark has no possible effect.,,,AH,Use the matching repair in the unit error register.
@@ -913,8 +904,6 @@ s04-J1-register,Only the number of readers matters.,,,AI,Use the matching repair
 s04-J1-oral-record,The written note proves what the child said.,,,V,Use the matching repair in the unit error register.
 s04-J1-process-record,A clean final copy is all the process evidence.,,,T,Use the matching repair in the unit error register.
 s04-J1-digital,A handwritten release establishes online publication.,,,W,Use the matching repair in the unit error register.
-s04-J1-spelling,"The guesses looked close enough, so I kept them.",,,X,Use the matching repair in the unit error register.
-s04-J1-portfolio,One final copy proves routine writing across the year.,,,Y,Use the matching repair in the unit error register.
 s04-X143,Vegetables went to a pantry. I left off the source.,,,Z,The detail needs the source tag on the note.
 s04-X143,Growing Food Together shows that no one in town went hungry.,,,AC,The donation does not establish how much food everyone received.
 s04-X145,"You remember our garden thing, so I can skip the background.",,,AI,New listeners need the garden and action identified.
@@ -958,3 +947,35 @@ s04-X150-punctuation,The mark makes no difference to a reader.,,,AH,"On release,
 s04-X155,The garden had ended hunger across town that evening.,,,AC,Check one new narrative detail against a different source.
 s04-X155-time,"In Bay Shore, Landon began planning the garden.",,,K,Distinguish a time cue from a place cue in a new fragment.
 s04-X155-dialogue,"“I will start a garden,” Landon said.",,,AG,Mark invented speech as imagined in a different source-based scene.
+s04-A4-delivery,They both mention letters.,,,D,Use the matching repair in the unit error register.
+s04-A4-stress,The reader stresses Maya looked again.,,,D,Use the matching repair in the unit error register.
+s04-A4-effect,The emphasis shows Ruth definitely wrote it.,,,A,Use the matching repair in the unit error register.
+s04-C1-compare,Burn’s date proves he witnessed every step of the process.,,,C,Use the matching repair in the unit error register.
+s04-C1-information,Burn personally certified the amendment.,,,C,Use the matching repair in the unit error register.
+s04-X128-barrier,The article says every woman could vote.,,,AG,Use the matching repair in the unit error register.
+s04-F1-aspects,"They ran an event, so there was no collection site.",,,AG,Use the matching repair in the unit error register.
+s04-F1-outreach,The collection site is the only aspect.,,,AE,Use the matching repair in the unit error register.
+s04-F1-notes,Every fact belongs under newsletter.,,,K,Use the matching repair in the unit error register.
+s04-F1-sources,"Both titles are listed, but no note has a source.",,,Z,Use the matching repair in the unit error register.
+s04-G1-compare,Burn describes every private conversation because he was there.,,,C,Use the matching repair in the unit error register.
+s04-G1-information,Only the later account mentions his mother’s advice.,,,AG,Use the matching repair in the unit error register.
+s04-H3-listening,"The speaker said garden, so the reason is garden.",,,AJ,Use the matching repair in the unit error register.
+s04-H3-evidence,"The speaker said garden, so garden is the evidence.",,,AJ,Use the matching repair in the unit error register.
+s04-I1-relative,The students which organized the project set up a public collection site.,,,H,Use the matching repair in the unit error register.
+s04-I1-relative-adverb,They set up a place whom residents could leave material for composting.,,,H,Use the matching repair in the unit error register.
+s04-J1-release,Here are some facts about that thing.,,,K,Use the matching repair in the unit error register.
+s04-J1-grouping,"Donation, headings, planting and source labels appear in random order.",,,K,Use the matching repair in the unit error register.
+s04-J1-terms,They did stuff.,,,J,Use the matching repair in the unit error register.
+s04-J1-evidence-term,That thing proves it.,,,J,Use the matching repair in the unit error register.
+s04-J1-spelling,"The first guess looked close enough, so I kept it.",,,X,Use the matching repair in the unit error register.
+s04-J1-spelling-second,I copied my second guess again without checking it.,,,X,Use the matching repair in the unit error register.
+s04-J1-portfolio,One undated final page shows all my writing.,,,Y,Use the matching repair in the unit error register.
+s04-J1-portfolio-extended,I put another copy of the short response in the folder.,,,Y,Use the matching repair in the unit error register.
+s04-P134-spell-1,reconstruckt,,,X,Use the matching repair in the unit error register.
+s04-P134-spell-2,extractabel,,,X,Use the matching repair in the unit error register.
+s04-P134-parts-1,recon + struct,,,R,Use the matching repair in the unit error register.
+s04-P134-parts-2,extrac + table,,,R,Use the matching repair in the unit error register.
+s04-P135-spell-1,postskript,,,X,Use the matching repair in the unit error register.
+s04-P135-spell-2,retractabel,,,X,Use the matching repair in the unit error register.
+s04-P135-parts-1,posts + cript,,,R,Use the matching repair in the unit error register.
+s04-P135-parts-2,retrac + table,,,R,Use the matching repair in the unit error register.
