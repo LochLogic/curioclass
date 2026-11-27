@@ -71,12 +71,18 @@ All ten done 2026-11-27, checked on funders' own pages; findings live in PROSPEC
 10. **What evidence each funder wants.** DONE 2026-11-27: one pilot design reaching ESSA Tier 4 with no student data
     (PROSPECTS.md, "What evidence funders want").
 11. **A legal home of our own: a Colorado nonprofit, and whether LeMay Ventures LLC can help** (Cory, 2026-11-27).
-    DONE 2026-11-27: LEGAL-HOME.md. CNDC as the bridge, a Colorado nonprofit in parallel (about $685 and 7 months),
-    the LLC kept separate and used only where a for-profit applicant fits.
+    DONE 2026-11-27: LEGAL-HOME.md. Updated the same day in OUTREACH-PLAN.md: form a Colorado nonprofit now
+    (about $685 and 7 months), with CNDC or Players Philanthropy Fund as an optional bridge only if a funder appears
+    first; the LLC kept separate and used only where a for-profit applicant fits.
 12. **International options, weighed alongside US ones** (Cory, 2026-11-27). DONE 2026-11-27: PROSPECTS.md
     "International routes" (money, free help in kind, listing by country, ruled out) and LEGAL-HOME.md
     "International". Best fits: FLOSS/fund, the Digital Public Goods registry, Kiwix offline, India's DIKSHA and
     Singapore's SLS listings; Erasmus+ is closed to US groups.
+13. **A baseline, readiness list and outreach path; English-speaking nations** (Cory, 2026-11-27: don't put Curio
+    Class where it's expected to "perform"; apply more broadly). DONE 2026-11-27: OUTREACH-PLAN.md (who we are,
+    11-item readiness list, staged path with tone and wording) and PROSPECTS.md "English-speaking nations". Shortlist:
+    OECS, Sierra Leone, Uganda, Liberia, Rwanda, through development partners and open channels (Kolibri, Global
+    Digital Library); no donor funds an outside curriculum directly.
 
 ## Openings for outreach
 

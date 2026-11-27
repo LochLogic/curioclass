@@ -126,7 +126,7 @@ can use the route.
 
 ### Ruled out (checked 2026-11-27; don't re-research)
 
-- **Commonwealth of Learning, UNESCO, Australia, New Zealand, Ireland, Scotland, Wales:** no open calls a US project can
+- **Commonwealth of Learning (a peer partner instead: "English-speaking nations"), UNESCO, Australia, New Zealand, Ireland, Scotland, Wales:** no open calls a US project can
   use. UNESCO's King Hamad Prize is by national commission or partner-NGO nomination only. NZ and Australia buy
   resources by tender. Oak National Academy has no partner route, but its post-2022 lessons are under the Open
   Government Licence v3 (attribution-style), so they can be adapted with credit like a CC BY base text.
@@ -309,6 +309,88 @@ Not reached yet: Nigeria, Pakistan, Mexico, Jamaica, Uganda, Zambia, Alberta, Sa
   Stiftung (a possible OER partner, not a funder).
 - **Browser check for Cory:** unicefventurefund.org/apply, prototypefund.de/en, idrc-crdi.ca KIX call page,
   scoilnet.ie, e-koolikott.ee (CAPTCHA).
+
+## English-speaking nations (researched 2026-11-27)
+
+Cory asked (2026-11-27) whether English-speaking nations could use a fully open K-12 curriculum and might help fund
+it. This section covers Africa, the Caribbean, the Pacific and Asia. It draws on ministry, World Bank, GPE and
+partner pages. "Browser check" marks a page that didn't load for us and that Cory opens. Nothing here has been
+contacted.
+
+**How the money flows, in one paragraph.** Almost all curriculum money in these countries goes to the government. It
+comes from GPE grants, World Bank loans and bilateral donors, and the ministry, through a grant agent like UNICEF or
+the World Bank, buys writing, printing and training through tenders. The writing is done by local curriculum
+officers and contracted firms. No donor pays for an outside curriculum to be "installed". The routes that fit Curio
+Class: (a) be a free, CC BY source that funded ministries and their writers can draw on and rebrand; (b) put content
+in the open channels ministries already use (Kolibri, the Global Digital Library, African Storybook, StoryWeaver,
+Commonwealth of Learning collections); and (c) later, a small adaptation grant led by a local partner. Ministries
+expect government ownership and branding, local authors, alignment to the national curriculum, the mother tongue in
+the early grades, print first, and teacher guides. These conditions are in the 2026 WISTLE terms of reference, which
+say "lead with local expertise" and "build on existing initiatives, do not duplicate". Tone rules for this work are
+in OUTREACH-PLAN.md, Part 4.
+
+### Shortlist (where to start relationships, in order)
+
+| Country or body | Why it fits | Reform moment | Best first door | Status |
+|---|---|---|---|---|
+| **OECS** (9 Eastern Caribbean states) | The strongest open stance found: open-source platforms, Kolibri, a Global Digital Library it calls a Digital Public Good. Its Director General says "There is no vendor market". The K-6 harmonized curriculum (OHPC) in four core subjects overlaps our finished science K-3 | OHPC being digitized under OECS PEARL (GPE, US$10M); WISTLE (P508559) lower-secondary writing 2026-28 is let to a firm, so we can only be source material | EDMU, Lisa Sargusingh-Terrance (CONTACTS.md) | verified on oecs.int; DG quote from press |
+| **Sierra Leone** | English medium (national languages allowed in classes 1-3). There is a CC BY precedent: the Leh Wi Learn lesson plans are CC BY 4.0 on Zenodo. Open-policy culture, print plus digital | Digital Learning Strategy 2025-2030; GPE US$46.8M via UNICEF; World Bank FREE (P167897) | MBSSE, with UNICEF as GPE grant agent | mostly verified; the claim that the 2020 framework is CC BY is **not verified** (mbsse.pubpub.org is a policy platform; no license found) |
+| **Uganda** | NCDC already curates outside open content into Kolibri and its Moodle portal, with UNICEF | ULEARN (P179397): US$324.80M committed, total US$903.50M, approved 2025-06-04, closes 2030-06-30. Primary curriculum review rolls out about 2028 | UNICEF Uganda e-learning with NCDC's ICT and Multimedia Department | ULEARN verified in Chrome |
+| **Liberia** | English medium; the ministry is hiring local content writers now | EXCEL (US$88.7M, World Bank plus GPE, 2025) puts curriculum first and is commissioning ELA and math materials | MoE Planning, Research and Development (CONTACTS.md) | EXCEL verified; project ID conflict (P510448 vs P181455) to settle; grades 1-12 rewrite not verified |
+| **Rwanda** | English from P1; all textbooks are free online and the government buys editing rights; there is an OER framework | Revised competency-based primary curriculum from 2025; GPE US$31.29M via UNICEF | UNICEF Rwanda and REB's curriculum and resources unit | researched; REB e-learning license terms browser check |
+
+### Others worth a later look
+
+| Country or body | Note | Status |
+|---|---|---|
+| Nigeria | The Nigeria Learning Passport (Federal Ministry with UNICEF) takes outside open content after review. NERDC has revised curricula since 2025/26, with English-only instruction since Nov 2025. HOPE-Education US$552M | platform and NERDC verified; reform details from news |
+| Ghana | Any material needs NaCCA approval. The revised KG-P6 curriculum is pending, and KG-P3 is taught in Ghanaian languages. T-TEL (Mastercard Foundation US$81M) is the local technical partner | mostly verified; cendlos.gov.gh browser check |
+| Zambia | 2023 curriculum phased in a band a year from 2025; the Learning Passport is open to curated content. GPE US$12.62M via Save the Children US | researched; no verified ministry site |
+| Malawi | MIE is writing new Grades 1-4 and lower-secondary syllabuses; onebillion's royalty-free license is a precedent | researched; MIE July 2026 notice browser check |
+| South Africa | Peer route only: Siyavula (on the DBE site), Funda Wande, Saide | researched |
+| Kenya | KICD requires a Kenyan-registered body or a certified local agent, plus a fee | researched; low |
+| SPC EQAP and PacREF (Pacific) | Regional curriculum and assessment service for Samoa, Tuvalu and Vanuatu; pooled GPE money | researched; curricula page browser check |
+| CXC Learning Hub (Caribbean) | Exam body; lists OER tagged to its syllabi | researched |
+| Commonwealth of Learning (COL) | A peer, not a funder: national OER collections for Pacific states, the Virtual University for Small States, and OER mapped to curricula through ministry Focal Points | official, snippet |
+| Philippines, Pakistan, Sri Lanka, Bangladesh | Big systems mid-reform (MATATAG to 2027-28, about 1,000 titles still needed; Sri Lanka G1 2026). Later, once more grades are finished | DepEd matatag page browser check |
+| The Gambia, Eswatini, Belize, Guyana, Barbados, Jamaica | Reforms underway; revisit when a matching band is finished | partly verified |
+
+Not a fit now: anglophone Cameroon, Tanzania (Kiswahili primary), Zimbabwe (heritage framing), Botswana, Namibia,
+Lesotho, Mauritius, Malaysia, Brunei, Bhutan, PNG ("All rights reserved"), and the UK, Ireland, Canada, Australia,
+NZ and Singapore as adopters. Those six are comparators only. Singapore SLS listing is under "International routes".
+
+### Funders: who pays, and whether we can ask
+
+| Funder | Takes proposals from us? | Our route |
+|---|---|---|
+| GPE (STG, Multiplier) | No; governments apply via a grant agent | Be free source material inside funded plans |
+| World Bank IDA and the Accelerator (Ghana, Liberia, Sierra Leone, Rwanda, Malawi, Tanzania, Eswatini) | Only through government tenders | Same; never bid as one person |
+| FCDO | Tenders only; budget shrinking (0.3% of GNI in 2027) | None now |
+| EU Global Gateway (RTIA), DFAT, MFAT, ADB, IDB, CDB | Tenders via managing contractors, or loans to governments | Watch CDB's planned Caribbean Digital Education Ecosystem (shared repositories) |
+| Gates (growing), Echidna, Hewlett, CIFF, Dubai Cares | No open route found | Later, through a partner |
+| Education Outcomes Fund | Pays operating providers on results | No: it's a performance contract |
+| Commonwealth Secretariat | No | n/a |
+
+### Partner organizations (peers to learn from or contribute to)
+
+| Organization | Why | License | Route | Status |
+|---|---|---|---|---|
+| **Learning Equality (Kolibri)** | Package Curio Class as a Kolibri channel. One step reaches Uganda, the OECS and many UNICEF programs offline | Open source | Contact form at learningequality.org | verified |
+| **Global Digital Library** (Global Book Alliance) | Published contribution route; used by the OECS | CC BY recommended | admin@globalbookalliance.org | verified |
+| **African Storybook** (Saide) | Open storybooks in 262 African languages; content exchange | CC BY 4.0 | africanstorybook.org | verified |
+| **StoryWeaver** (Pratham Books) | Open storybooks in about 330 languages | CC BY 4.0 | storyweaver.org.in | official, snippet |
+| Rising Academies | Runs structured curricula in Sierra Leone, Liberia, Ghana and Rwanda; learn from them | Copyright | risingacademies.com | verified |
+| Open Development and Education (ODE) | Evidence and edtech advisor to ministries | Often open | opendeved.net "Start a Project" | verified |
+| Siyavula, Room to Read, TaRL Africa | Models for handover and level-based use | Mixed | their sites | partly verified |
+| NewGlobe | Cautionary case: proprietary, and Edo State ended its contract in 2025 | All rights reserved | none | Edo notice browser check |
+
+### Browser check for Cory (nations)
+
+edostate.gov.ng/edo-subeb-terminates-contract-with-new-globe/, edtechhub.org/sierra-leone, cendlos.gov.gh (expired
+certificate), the planipolis page for Sierra Leone's Digital Learning Strategy, eqap.spc.int/focusareas/curricula,
+deped.gov.ph/matatagcurriculumk147/, education.gov.fj, elearning.reb.rw (license terms), mie.edu.mw (July 2026 notice),
+kicd.ac.ke material-evaluation PDFs, and World Bank pages P176867 (Kenya), P507745 and P174329 (Malawi) and P158570
+(Zambia). P179397 (Uganda) is done.
 
 ## Sources
 

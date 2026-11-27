@@ -150,6 +150,16 @@ Each from the organization's own page that day. Drafts in drafts/paste-ready (se
 | Tällberg-SNF-Eliasson Prize | Prize office | prize@tallbergfoundation.org (seen in a search summary of its FAQ) | Someone else nominates Cory |
 | Translators without Borders | Partnerships | info@translatorswithoutborders.org | Needs an entity or sponsor |
 | Siemens Stiftung | General | info@siemens-stiftung.org | OER cross-listing partner, not a funder |
+| OECS Commission, EDMU (Saint Lucia) | Lisa Sargusingh-Terrance, Senior Technical Specialist, Education | +1 758 285 3787; oecs.int/en/contact-us (no email published) | Best regional fit; K-6 OHPC, Kolibri, open source |
+| Learning Equality (Kolibri) | General | contact form at learningequality.org | A Kolibri channel; offline reach |
+| Global Digital Library (Global Book Alliance) | Contributions | admin@globalbookalliance.org | CC BY contribution route |
+| Uganda, NCDC | General | admin@ncdc.go.ug, +256 393 112 088 | Door is UNICEF Uganda e-learning with NCDC ICT |
+| Sierra Leone, MBSSE | General | info@mbsse.gov.sl, +232 78 570129 | Via UNICEF (GPE grant agent) |
+| Liberia, Ministry of Education | Oscar G. Flomo, Asst. Minister, Planning, Research and Development | oflomo@moe.gov.lr (general contact@moe.gov.lr) | EXCEL curriculum materials |
+| Rwanda, REB | General | info@reb.rw | Via UNICEF Rwanda |
+| Nigeria Learning Passport (FME) | Platform team | nlp@education.gov.ng | Takes reviewed open content |
+| Nigeria, NERDC | General | info@nerdc.gov.ng | National curriculum body |
+| Ghana, NaCCA | General | info@nacca.gov.gh, +233 302 909071 | Approval gate for all materials |
 | Bureau of Indian Education | Central office | biecentraloffice@bie.edu, 202-208-4896 | Only if a tribal partner leads |
 
 ## A 30-second opener for every call
