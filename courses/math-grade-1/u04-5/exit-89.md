@@ -10,7 +10,7 @@ teacher_note: Keep this half slip closed until Exit ticket. Read the printed ste
 
 <p style="font-size:18pt;margin:0.2em 0">What comparison do these pictures show?</p>
 
-<table style="width:100%"><tr><td style="width:33.33%;vertical-align:top;padding:0.25em"><div style="font-family:monospace;white-space:nowrap;font-size:12pt;line-height:1.08">□□□□□□□□□□<br>□□□□□□□□□□<br>□□□□□□□□□□<br>□□□□□□□□□□<br>□ □ □ □ □ □<br>□ □ □ □ □ □<br>□ □ □ □</div></td><td style="width:33.33%;vertical-align:top;padding:0.25em">□</td><td style="width:33.33%;vertical-align:top;padding:0.25em"><div style="font-family:monospace;white-space:nowrap;font-size:12pt;line-height:1.08">□□□□□□□□□□<br>□□□□□□□□□□<br>□□□□□□□□□□<br>□□□□□□□□□□<br>□□□□□□□□□□<br>□ □ □ □ □</div></td></tr></table>
+<table style="width:100%"><tr><td style="width:33.33%;vertical-align:top;padding:0.25em"><div style="font-family:monospace;white-space:nowrap;font-size:12pt;line-height:1.08">□□□□□□□□□□<br>□□□□□□□□□□<br>□□□□□□□□□□<br>□□□□□□□□□□<br>□ □ □ □ □ □<br>□ □ □ □ □ □<br>□ □ □ □</div></td><td style="width:33.33%;vertical-align:top;padding:0.25em"><div style="border:2px solid black;width:1.6em;height:1.6em;margin-top:1.5em"></div></td><td style="width:33.33%;vertical-align:top;padding:0.25em"><div style="font-family:monospace;white-space:nowrap;font-size:12pt;line-height:1.08">□□□□□□□□□□<br>□□□□□□□□□□<br>□□□□□□□□□□<br>□□□□□□□□□□<br>□□□□□□□□□□<br>□ □ □ □ □</div></td></tr></table>
 
 <div style="border:1px solid black;min-height:2em"></div>
 

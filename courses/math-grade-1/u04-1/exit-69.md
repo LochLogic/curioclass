@@ -15,6 +15,6 @@ teacher_note: Keep this half slip closed until Exit ticket. Read the printed ste
 □  □  □  □  □     □  □  □  □  □  □  □  □
 □  □  □     □  □  □  □  □  □  □  □  □  □
 □  □  □  □  □  □  □  □        □     □  □
-□  □  □  □  □  □     □  □  □  □  □  □</pre><p style="font-size:18pt;margin:0.2em 0">Count __________</p>
+□  □  □  □  □  □     □  □  □  □  □  □</pre><p style="font-size:18pt;margin:0.2em 0">Tag __________</p>
 
 Invented for practice.

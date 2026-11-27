@@ -20,12 +20,20 @@ Shape: Organize fixed marks to distinguish tens from loose ones.
 
 ### s04-X75
 
-The 2 stands for 20 and the 6 stands for 6.
+20; the 2 names two tens.
 
-Shape: Annotate both digit contributions in linked callouts.
+Shape: Give the value of the left digit of a bare numeral in its linked callout.
 
-- B: 2 ones and 6 tens. Reverses the places.
-- A: Two rods worth 2 ones. Treats each rod as a single.
+- A: 2 ones. Draws two tens but counts the rods as two ones.
+- B: 2 ones from the ones place. Treats the left digit as the ones digit.
+
+### s04-X75b
+
+6; the 6 names six ones.
+
+Shape: Give the value of the right digit of a bare numeral in its own linked callout.
+
+- B: 60. Treats the right digit as the tens digit.
 
 ### s04-X76
 
