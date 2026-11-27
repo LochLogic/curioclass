@@ -140,6 +140,16 @@ Each from the organization's own page that day. Drafts in drafts/paste-ready (se
 | White House AI education pledge | Pledge inbox | EDAI@who.eop.gov | Public pledge list. Draft ready, Cory's call |
 | Overdeck Family Foundation, research | Concept notes, rolling | research@overdeck.org | After pilot results |
 | UNESCO OER Dynamic Coalition | Membership questions | info@oerdynamiccoalition.org | Free to join; visibility only |
+| FLOSS/fund (Zerodha) | Submissions | dir.floss.fund/submit (funding.json URL) | $10k to $100k a year, any country; needs usage evidence |
+| Digital Public Goods Alliance | Application support | support@digitalpublicgoods.net | Free registry listing; settle ownership first |
+| Kiwix / openZIM | Offline packaging requests | github.com/openzim/zim-requests (a GitHub issue) | Free offline copy worldwide |
+| India, DIKSHA VidyaDaan | Contributor support | vdnsupport@teamdiksha.org | National listing; NCERT or state mapping |
+| Singapore MOE, Student Learning Space | SLS Partnerships Team | go.gov.sg/sls-partnerships-contact (form) | Whitelisting free sites |
+| Cambridge International | Publisher Relations | publisher.relations@cambridge.org | Endorsement; fees; frozen edition |
+| Ontario Trillium List | Submissions | trilliumlist@asheducation.ca | Full Ontario programs only; long term |
+| Tällberg-SNF-Eliasson Prize | Prize office | prize@tallbergfoundation.org (seen in a search summary of its FAQ) | Someone else nominates Cory |
+| Translators without Borders | Partnerships | info@translatorswithoutborders.org | Needs an entity or sponsor |
+| Siemens Stiftung | General | info@siemens-stiftung.org | OER cross-listing partner, not a funder |
 | Bureau of Indian Education | Central office | biecentraloffice@bie.edu, 202-208-4896 | Only if a tribal partner leads |
 
 ## A 30-second opener for every call

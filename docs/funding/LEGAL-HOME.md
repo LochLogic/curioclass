@@ -8,7 +8,9 @@ items marked **CPA** or **attorney** need a professional before acting. The choi
 ## The short answer
 
 Use CNDC as the bridge now, form a Colorado nonprofit in parallel, and keep Curio Class out of LeMay Ventures LLC. The
-LLC helps only where a for-profit is the applicant on purpose (AWS credits; SBIR if a paid product line ever exists).
+LLC helps only where a for-profit is the applicant on purpose (AWS credits; SBIR if a paid product line ever exists). A
+worldwide audience doesn't change this: CNDC still works if it confirms worldwide access in writing, and
+Players Philanthropy Fund is the fallback sponsor that allows work abroad (see "International" below).
 
 ## Forming a Colorado nonprofit with 501(c)(3) status
 
@@ -84,6 +86,68 @@ Its UEI (N6WPEQQNUSP5) is not full SAM registration.
 **Why keep them apart:** consulting liability could reach Curio Class assets; one SAM registration would mix both
 businesses; federal audit rules would cover the whole LLC; and the LLC sells to governments Curio Class may also
 approach (a conflict to disclose).
+
+## International: foreign money, work abroad, and a worldwide audience (researched 2026-11-27)
+
+Information, not legal advice. Full notes with every quote are kept in the research file for this pass; the facts that
+matter are below.
+
+**Foreign money is allowed.** A US 501(c)(3) or a fiscally sponsored project may take grants from foreign foundations
+and governments. The hurdles sit on the funder's side: UK charities must take "reasonable steps" to check a foreign
+grantee (for small one-off grants an exchange of letters is normally enough); since 2022 Canadian charities may grant
+to a US group that is not a "qualified donee" if they meet CRA's accountability rules; EU programs mostly take US
+groups only as partners of EU-led teams (see PROSPECTS.md, "International routes").
+
+**Reporting.** Schedule B lists every donor of $5,000 or more, foreign or not (names not public for most filers).
+Schedule F starts only with spending abroad: over $10,000 in total, or over $5,000 in grants to one foreign group.
+FARA is very unlikely for neutral education grants; Section 117 covers colleges only. **CPA** to confirm.
+
+**Spending abroad is allowed.** Work that is charitable at home is "also charitable when carried out overseas"
+(Rev. Rul. 71-460). Paying a translator abroad is buying a service, not making a grant (W-8BEN, no 1099: **CPA**).
+Check every foreign payee against OFAC's sanctions list. Free content reaching sanctioned countries falls under
+OFAC's "informational materials" exemption; paying anyone living in a sanctioned country needs an **attorney**.
+
+**CNDC and a worldwide site.** CNDC's eligibility page asks that projects "Provide benefit to Colorado communities"
+and "Can be insured under CNDC's policies, including having exclusive operations in the US." It says nothing about
+website users. A site run from Colorado that people abroad can open is not an operation abroad, so CNDC still works
+if Colorado teachers and students are named as the first audience and CNDC confirms in writing (a) worldwide access
+and (b) occasional paid contractors abroad. If (b) is a no, pay only US vendors. CNDC's own pages give no fee; a
+directory lists 10 percent (14 on government money). https://cndc.org/partner-with-cndc/next-steps/
+
+**Fiscal sponsors that allow international work (fallbacks to CNDC):**
+
+| Sponsor | Fee | International (quoted) | Fits Curio Class? | Source |
+|---|---|---|---|---|
+| Players Philanthropy Fund (ppf.org) | 6% on deposits; $5,000 opening deposit (confirmed in Chrome) | "projects worldwide, making a difference in all 50 states and 35 countries" | Likely; any qualified charitable mission | https://ppf.org/faq/ |
+| Social Good Fund | $67 a month plus 8% (under $500k); 8% for international projects | Allowed with "someone currently based in the US who can represent you" | Possible; education not named | socialgoodfund.org |
+| Code for Science & Society | 15% of cash received | Not stated; applicants asked about staff abroad | Plausible: "public education" and technology | codeforsociety.org |
+| Multiplier, Tides | 9%; Tides needs a US full-time employee | Yes (Multiplier); limited (Tides) | Too large for a one-person project now | multiplier.org, tides.org |
+| Open Source Collective | 10% | "from anywhere in the world, in any language" | Software only; a 501(c)(6), so gifts are not deductible and the repo must sit in a GitHub organization | oscollective.org |
+| Software Freedom Conservancy, NumFOCUS, Hack Club HCB | 7 to 10% | Varies | No: free-software, science or teen-led only | their own pages |
+
+Open Collective Foundation closed its fiscal sponsorship on 2024-09-30.
+
+**A sister entity abroad** (a UK community interest company from about £115, a Canadian nonprofit about $200, plus
+local directors and yearly filings) is not worth it until a specific funder needs a local body.
+
+**Ownership comes first internationally too.** The Digital Public Goods registry asks for "clear ownership", and
+Netlify and Crowdin exclude "commercial" projects, so name the owner (Cory now, the nonprofit later) on the site and
+keep LeMay Ventures out of the branding.
+
+**Privacy for a worldwide site that collects nothing.** With no accounts, forms, cookies or analytics, GDPR, UK GDPR,
+COPPA (only sites that collect children's data; most nonprofits excluded) and Canada's PIPEDA (commercial activity)
+ask very little. The host still sees IP addresses, so the privacy notice should name the host and its logs, any
+browser storage the site uses (a UK cookie-rule point), children, a contact address and an update date.
+
+**International questions for a CPA or attorney:**
+
+- Does a free worldwide website plus occasional foreign contractors count as operations outside the US under CNDC's
+  insurance? (Ask CNDC in writing, then counsel reads the agreement.) **Attorney**
+- When would paying translators abroad trigger Schedule F, and what forms and withholding apply? **CPA**
+- Do foreign grants count toward the public support test like US grants (Schedule A)? **CPA**
+- If pages are published in EU languages, is an EU or UK representative needed when only host logs are processed?
+  **Attorney**
+- Any tax relief route for Canadian and UK donors (treaty, CAF-style intermediaries)? **CPA**
 
 ## Questions for Cory, a CPA or an attorney
 

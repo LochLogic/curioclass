@@ -240,6 +240,76 @@ partner for the next OSPI round.
 | Wisconsin | WISELearn OER Innovation Grants ($10k, districts and CESAs), last call 2022 | None | Weak: dormant | https://dpi.wi.gov/wiselearn/oer-innovation-grants | unverified |
 | Wyoming | Open Range Wyoming OER platform on OER Commons | None | Weak: hub listing | https://edu.wyoming.gov/?p=22010 | unverified |
 
+## International routes (researched 2026-11-27)
+
+Cory asked that international options always be weighed alongside US ones. Checked on funders' and ministries' own
+pages; "browser check" means the page blocked even Claude in Chrome and Cory opens it. The short version: the large
+European education foundations take no cold proposals, and almost no foreign government money can be led by a US
+group. What works is open-source money, free listings and offline distribution, national platforms that list free
+resources, and partner roles in other groups' bids. Legal and tax rules for foreign money are in LEGAL-HOME.md.
+
+### Money and prizes
+
+| Route | Amount | When | Who can apply (quoted) | Fit | Gate | Source | Check |
+|---|---|---|---|---|---|---|---|
+| **FLOSS/fund** (Zerodha, India) | $10k to $100k a year | Rolling, reviewed quarterly | "For individuals and orgs, big and small"; favors "existing, widely used, and impactful projects", skips those with "minimal usage" | High on paper: no geography or entity rule; MIT code fits | Usage evidence (counted without tracking students); a funding.json manifest submitted at dir.floss.fund/submit | https://floss.fund/faq/ | verified |
+| **Tällberg-SNF-Eliasson Global Leadership Prize** | $50k unrestricted, to a person | 2026 window was Feb 1 to Mar 31; 2027 dates not posted | "Anyone, anywhere can make nominations (except ... the nominees themselves)" | Medium, a long shot | Someone else nominates Cory, likely by Feb 2027 | https://tallberg-snf-prize.org/ | verified |
+| **Mozilla Foundation Incubator** | Not posted ("significant, non-dilutive funding") | Open call "Human-Scale AI" | "Working technologies" with "early evidence that people value what they're building" | Medium: AI-drafted, human-signed, small and community-scaled | A community story (teachers, contributors); "Tell us what you're building" intake | https://www.mozillafoundation.org/en/what-we-do/grantmaking/incubator/ | verified in Chrome |
+| **NLnet Restack** (EU money) | EUR 5k to 50k | Closes 2027-01-03, 12:00 CET | A US applicant "does not qualify on their own"; people from eligible countries receive "at least 60% of the funds"; "AI-related projects are not within scope" | Low to medium | A European lead partner (a translation team, say); framed as an open app, not an AI project | https://nlnet.nl/restack/ | verified |
+| **WISE Prize** (Qatar) | $1M pool; finalists $100k to $125k | 2026-27 closed 2026-06-27 | "a legally registered organization ... operating for a minimum of two years" | Medium, later | An entity at least two years old | https://www.wise-qatar.org/wise-prize-process.html | verified |
+| **Learning Engineering Tools Competition** | $50k, $150k, $300k | Next cycle not posted | Global; tools must "generate novel learning data" and "support continuous data collection" | Weak: clashes with the no-student-data promise | Only a design where districts hold any data | https://tools-competition.org/ | verified in Chrome |
+| **Global Innovation Fund** (UK) | Not posted | No call open (last closed 2025-01-15) | "Any type of organisation ... in any country"; aimed at people "living on less than $5 a day" | Low now | An entity plus a pilot in a low-income country | https://www.globalinnovation.fund/apply-for-funding/ | verified |
+| **Horizon Europe** | Unfunded for US partners as a rule | Per call | US groups join as "Associated Partners by bringing their own funding" | Low | An EU consortium that invites Curio Class | research-and-innovation.ec.europa.eu (United States page) | verified |
+| **GPE KIX** (via Canada's IDRC) | Not posted | Next phase starts July 2027 | Leads sit in GPE partner countries | Low to medium | A partner-country lead | idrc-crdi.ca KIX news, 2026-06-12 | verified; call page browser check |
+| **IDB Lab** (Latin America) | Per call | Per call | Applicant registered in one of IDB's 48 member countries (US qualifies); work in borrowing countries | Low to medium | An entity, a Latin American partner, Spanish or Portuguese | https://bidlab.org/en/products/financing/origination-how-apply | partly verified |
+| **UN Global Marketplace** (UN tenders) | Contracts | Rolling | Any size or location; "Register at no cost" | Low to medium | An entity; watch for OER tenders | https://www.ungm.org/ | verified |
+
+### Free help in kind
+
+| Route | What it gives | Rule (quoted) | Gate | Source | Check |
+|---|---|---|---|---|---|
+| **Digital Public Goods Alliance registry** | Recognition used as a screen by UNICEF and other funders | Applied for by "an authorised representative" for the "organisation(s) or individual(s) that own the solution"; nine indicators incl. open license, clear ownership, privacy, do no harm; reviewed within 30 days; renew yearly | No entity needed. Settle who owns Curio Class first and state it on the site | https://www.digitalpublicgoods.net/digital-public-goods/submission-guide | verified in Chrome |
+| **Kiwix / openZIM** | Offline copy of the site in the Kiwix library worldwide | "You must clarify the License field"; "Do NOT request copyrighted material" | A GitHub issue; the site must crawl as static pages | https://github.com/openzim/zim-requests | verified |
+| **Kolibri** (Learning Equality) | Offline library used in low-connectivity schools | Content page returned 404 | Ask through Learning Equality's contact form | learningequality.org | not verified |
+| **Weblate Libre plan** | Translation platform, 160k strings | "Public libre projects can also apply for gratis hosting" | A Weblate account (Cory's call) | https://weblate.org/en/hosting/ | verified in Chrome |
+| **Crowdin Open Source plan** | Translation platform | "no commercial products related to the project"; "an active group of collaborators" | A few volunteer translators; a news page | https://crowdin.com/page/open-source-project-setup-request | verified |
+| **Translators without Borders** | Volunteer translation | "legal status as a non-profit, charity, social enterprise, or registered entity"; output "openly available without charge" | An entity or sponsor; a humanitarian language case | https://translatorswithoutborders.org/partner-with-us/ | verified |
+| **Netlify Open Source plan; Fastly Fast Forward** | Hosting or CDN | Netlify: "Must not be a commercial project"; Fastly: "eligible open source projects and nonprofits" | A code of conduct; keep LeMay Ventures out of the branding | netlify.com/legal/open-source-policy, fastly.com/fast-forward | verified |
+
+### Listing and adoption by country
+
+| System | Route | Outside contributors? | Needs | Fit | Source | Check |
+|---|---|---|---|---|---|---|
+| **India: DIKSHA VidyaDaan** | National repository via state, UT and CBSE projects | Open to "individuals, teachers, educationists, subject experts, schools, government and non-government organisations"; no nationality rule | Mapping to NCERT or state chapters; a Creative Commons license (CC BY works); published content "cannot be withdrawn" | High, no money, big reach | https://diksha.gov.in/contribute-us | verified |
+| **Singapore: Student Learning Space** | Whitelisting free sites | SLS "can whitelist content/tools which are offered freely or have a free tier" | Nothing on our side: whitelisted links open with no login | High | https://www.learning.moe.edu.sg/partners/partnership/partnership-models/ | verified |
+| **Cambridge International endorsement** | Endorsement, then syllabus resource lists, 10,000+ schools | "Any publisher or provider can submit", not-for-profits included | Close match to a Cambridge Primary or Lower Secondary syllabus; review fees; a frozen edition | Medium | Cambridge endorsement guide (PDF, 2026) | verified |
+| **UNICEF Learning Passport** | Platform content via a UNICEF Country Office | No formal provider program; precedent: Imperial College and Twig science content | A country office sponsor; their platform uses logins under UNICEF's privacy notice | Medium | https://www.unicef.org/learningpassport/join-us | verified |
+| **Canada, British Columbia** | Districts choose; Focused Education reviews free websites "publicly accessible or accessible through anonymized logins, and are not fee-based" | A BC teacher (BCTF member) requests the review; 6 to 8 months | BC curriculum match | Medium | https://focusedresources.ca/evaluation-services | verified in Chrome |
+| **Canada, Ontario: Trillium List** | Minister-approved textbooks | Publishers contact trilliumlist@asheducation.ca | A full Ontario program, reviewed by Ontario experts | Low, long term | https://www.ontario.ca/page/trillium-list | verified in Chrome |
+| **Kenya KICD** | Approved supplementary materials | Only bodies "legally incorporated and registered in Kenya", or via a certified local agent; fee | Kenyan curriculum and examples | Low | kicd.ac.ke standards PDF | verified (2016-era document) |
+| South Africa DBE catalogue, Ghana NaCCA, Philippines DepEd, Hong Kong EDB, Netherlands Wikiwijs | Catalogues or portals with no open outside route found | n/a | Local curriculum and language | Low | ministry sites | partly verified |
+| Brazil MEC RED, India NROER, IB, Rwanda, Bangladesh, Malaysia | Leads only | n/a | Translation or local curriculum | Low to medium | search results only | not verified |
+
+Not reached yet: Nigeria, Pakistan, Mexico, Jamaica, Uganda, Zambia, Alberta, Saskatchewan, Norway (NDLA).
+
+### International ruled out (checked 2026-11-27; don't re-research)
+
+- **No cold proposals:** Jacobs Foundation, Fondation Botnar, Porticus, UBS Optimus ("not currently adding new
+  programs"), LEGO Foundation, Skoll, Schwab Foundation (selection only).
+- **Wrong place or people:** Mastercard Foundation (Africa and Indigenous youth in Canada), Fundação Lemann (Brazil,
+  by partnership), Allan & Gill Gray (Africa), Prototype Fund (Germany; page blocked even in Chrome), UNICEF Venture
+  Fund (program-country registration; page blocked even in Chrome), KOICA CTS (Korean firms), Innovate UK (UK lead).
+- **Not eligible:** Erasmus+ Cooperation Partnerships (the US is Region 12; only regions 1 to 3 may join), Erasmus+
+  small-scale and mobility, European School Education Platform (EU projects only), Wikimedia Rapid Fund (Wikimedia
+  projects only), Sovereign Tech Fund (infrastructure only, not "user-facing applications").
+- **Closed or off-topic:** NLnet NGI Zero Commons (final call closed 2026-06-01), NLnet CodeSupply, Grand Challenges
+  Canada (health and climate), Google.org Generative AI Accelerator (closed), Zayed Global High Schools, Lui Che Woo
+  (invitation only), Cloudflare Project Galileo (at-risk civil society), Robert Bosch Stiftung (no calls), EdTech Hub
+  and What Works Hub (research partners, not funders), Education Cannot Wait (crisis-country presence), Siemens
+  Stiftung (a possible OER partner, not a funder).
+- **Browser check for Cory:** unicefventurefund.org/apply, prototypefund.de/en, idrc-crdi.ca KIX call page,
+  scoilnet.ie, e-koolikott.ee (CAPTCHA).
+
 ## Sources
 
 - Emergent Ventures: https://www.mercatus.org/economic-insights/expert-commentary/application-process-opens-emergent-ventures

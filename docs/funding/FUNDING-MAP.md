@@ -73,11 +73,17 @@ All ten done 2026-11-27, checked on funders' own pages; findings live in PROSPEC
 11. **A legal home of our own: a Colorado nonprofit, and whether LeMay Ventures LLC can help** (Cory, 2026-11-27).
     DONE 2026-11-27: LEGAL-HOME.md. CNDC as the bridge, a Colorado nonprofit in parallel (about $685 and 7 months),
     the LLC kept separate and used only where a for-profit applicant fits.
+12. **International options, weighed alongside US ones** (Cory, 2026-11-27). DONE 2026-11-27: PROSPECTS.md
+    "International routes" (money, free help in kind, listing by country, ruled out) and LEGAL-HOME.md
+    "International". Best fits: FLOSS/fund, the Digital Public Goods registry, Kiwix offline, India's DIKSHA and
+    Singapore's SLS listings; Erasmus+ is closed to US groups.
 
 ## Openings for outreach
 
 Sends need Cory's yes; drafts go in drafts/paste-ready (list and notes in its INDEX.md). Drafts 1 to 7 and 9 were
 written 2026-11-27; none is sent until Cory reports it.
+
+**ON HOLD 2026-11-27 (Cory): research and prep only.** Nothing below is sent, filed or joined; drafts stay as prep.
 
 1. **CNDC fiscal sponsor inquiry** (CONTACTS.md item 2): the first step for everything above. Draft ready. Their rule
    that partner projects need "a Colorado focus or impact" is the first question to settle.

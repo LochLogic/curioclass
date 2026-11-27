@@ -2192,3 +2192,7 @@ drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
 - **Gate 3 for six groups:** Cory: "Approve all six". The scope and sequence baselines for arts and music, health and
   PE, computer science, career, SEL and library are approved after the 2026-11-26 group reads and fixes. Unit plans may
   start for those courses. ELD stays held on C11; world languages stay shelved.
+- **Funding outreach on hold (2026-11-27):** Cory: "hold for now, this should all be research and prep. please ensure
+  international options are also considered." No email, form, sign-up, comment or call goes out; drafts stay as prep.
+  The five funding Desk cards (q-funding-*) stay open as prep questions. Funding research now covers international
+  funders, programs and legal routes as well as US ones.
