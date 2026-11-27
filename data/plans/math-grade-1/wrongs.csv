@@ -455,3 +455,27 @@ s07-AS2-write,Writes 8:06.,,,H,Error H. See the unit 7 register for a fresh repa
 s07-AS2-draw,Draws the short hand exactly at 11.,,,F,Error F. See the unit 7 register for a fresh repair.
 s07-AS2-draw,Draws the short hand at 6 and the long one at the midpoint.,,,G,Error G. See the unit 7 register for a fresh repair.
 s07-P129-equality-retry,Says no because 20 should come right after the equal sign.,,,,"Record as Error L in Unit 6. This retry follows the Unit 6 handback, so it has no Unit 7 letter."
+s08-X151,6,3+3+1-1,6,A,Starts one set of new counts at the held amount.
+s08-X151,5,3+3+1-2,5,A,Starts both sets of new counts at the held amount.
+s08-X152,4 + 4 = 7,4+4-1,7,A,Starts the four new counts with four.
+s08-X153a,5 + 6 = 11,5+6,11,B,Counts the moved dot in its former group.
+s08-X153b,Nine through seventeen,17-9+1,9,A,Includes the starting amount as a new count.
+s08-X154,19 tags,10+9,19,C,Uses the ending quantity for the joining change.
+s08-X154b,1 pin,1,1,C,Uses the ending quantity for the removal.
+s08-X155,14 dot cards,18-(2+3)+1,14,A,Starts the new counts at the known five.
+s08-X155b,5 + 13 = 17,5+13-1,17,A,Includes the held five among the thirteen counts.
+s08-X156,13 extra beads,12+1,13,D,Adds both exposed amounts.
+s08-X156,12 extra beads,12-1+1,12,A,Counts the first already matched bead again.
+s08-X156b,12 + 1 = 13,12+1,13,D,Adds the two groups rather than finding their gap.
+s08-P156-fewer,13,12+1,13,D,Adds both exposed amounts.
+s08-X157,37,9+28,37,E,Counts every ten-stick as one square.
+s08-X157,109,8*10+1+28,109,E,Counts one of nine ten-sticks as one square.
+s08-X158,719,700+19,719,F,Joins the seven and nineteen as adjacent digits.
+s08-X159,Six sticks and three loose squares,6*10+3,63,G,Checks the stick count alone.
+s08-X159b,Checks six sticks only,,,G,Treats one marked clue as sufficient.
+s08-X160,Nine tens and four ones,9*10+4,94,G,Checks the tens alone.
+s08-R1b,317,300+17,317,F,Joins stick and loose-square counts as adjacent digits.
+s08-R2a,68 fits both clues,,,G,Accepts the candidate after checking only tens.
+s08-R2b,68,60+8,68,G,Keeps the original without testing the ones.
+s08-R2c,Six tens so it fits,,,G,Checks just one of the two clues.
+s08-X157b,"97, 98, 99, 100, 101, 102, 103, 104",97+7,104,A,Uses the printed start as the first new hook.
