@@ -24,7 +24,7 @@ Shown: Ten enclosed, nine further, 19. | Not yet seen: 91 with reversal confirme
 
 ## s06-X113
 
-Match this picture to the card that names its two parts.
+Match each picture group to its number on a card.
 
 Answer: 10 + 7 linked to ten squares and seven further squares.
 
