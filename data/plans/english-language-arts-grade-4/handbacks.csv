@@ -351,3 +351,41 @@ from_day,to_day,what,where,minutes,error,note
 113,114,s03-X113-comma,repair,3,T,Return this separately marked line during the shared return block. Use the remaining time for one priority retry per child.
 115,118,s03-A115a-why,Response,1,T,Return this separately marked line during the shared return block. Use the remaining time for one priority retry per child.
 115,118,s03-A115c-action,Response,1,AB,Return this separately marked line during the shared return block. Use the remaining time for one priority retry per child.
+120,121,s04-X120,repair,1,,Return the original paper with one written next move. Check the claim against the letter’s maker and what it actually says. Share one priority per child across exit and Exit box.
+120,121,s04-R120-times,repair,1,,Return this separately marked Exit box with the exit. Use a different case for any needed retry.
+121,122,s04-X121,repair,5,,Return the original paper with one written next move. Match a different action to an evidence-based character inference.
+122,125,s04-X122,repair,1,,Return the original paper with one written next move. Inspect one pause on a different line. Use the shared priority slot with the two checks.
+125,126,s04-X125,repair,1,,Return the original paper with one written next move. Repair one missing event or one mismatched antecedent on a fresh component. Share one priority per child across exit and Exit box.
+125,126,s04-R125-theme,repair,1,,Return this separately marked Exit box with the exit. Use a different case for any needed retry.
+126,127,s04-X126,repair,1,,Return the original paper with one written next move. Show one difference between the speaker’s claim and a historical detail. Share one priority per child across exit and Exit box.
+126,127,s04-R126-context,repair,1,,Return this separately marked Exit box with the exit. Use a different case for any needed retry.
+127,128,s04-X127,repair,1,,"Return the original paper with one written next move. If the reading hold was resolved, correct a fresh source label or punctuation effect. Share one priority per child across exit and Exit box."
+127,128,s04-R127-language,repair,1,,Return this separately marked Exit box with the exit. Use a different case for any needed retry.
+128,130,s04-X128,repair,1,,Return the original paper with one written next move. Check the limit of a new source statement. Share the priority slot with day 129 records.
+130,131,s04-X130,repair,5,,"Return the original paper with one written next move. Inspect a topic-only claim or a mismatched pronoun, in a different scene."
+131,132,s04-X131,repair,5,,Return the original paper with one written next move. Select one contextual clue to correct a literal gloss in a different saying.
+132,133,s04-X132,repair,5,,Return the original paper with one written next move. Remove one personal rating or unsupported detail from a fresh fragment.
+133,134,s04-X133,repair,5,,Return the original paper with one written next move. Correct a separate literal misreading using its own context.
+134,135,s04-X134,repair,1,,"Return the original paper with one written next move. Write a message rather than a topic, or link to a real partner comment on a different line. Share one priority per child across exit and Exit box."
+134,135,s04-R134-listening,repair,1,,Return this separately marked Exit box with the exit. Use a different case for any needed retry.
+135,136,s04-X135,repair,5,,Return the original paper with one written next move. Trace a relative form to its antecedent or remove an opinion from a different fragment.
+136,138,s04-X136,repair,1,,Return the original paper with one written next move. Repair one evidence link on a new fragment. Share the slot with day 137 priorities.
+138,139,s04-X138,repair,5,,Return the original paper with one written next move. Locate one misplaced detail in a different fragment.
+139,140,s04-X139,repair,5,,Return the original paper with one written next move. Find missing context in a different opening fragment.
+140,141,s04-X140,repair,5,,Return the original paper with one written next move. Inspect one missing evidence link in a different scene; keep private draft feedback separate.
+141,143,s04-X141,repair,1,,Return the original paper with one written next move. Check one theme statement against a different ending after the independent day 142 check.
+119,128,retained day 119 discussion entries,Discussion,3,,Use one documented role or linked-response need to select a faulty turn. Keep missing evidence blank.
+123,124,s04-A1 to A5 original literary responses,Feedback,5,,Return the dated originals and mark one criterion to read privately. Keep revised versions separate.
+123,125,s04-A1 to A5 priority from original responses,repair,2,,Reteach one shared need on a new fragment. Keep the original check scored separately.
+124,125,s04-B1 and B2 individual evidence,repair,2,,"Return conference and due reading feedback privately. Repair one recorded need, or date the next observation."
+129,130,s04-C1 and due reading record,repair,4,,Use actual evidence only. Held C1 has no cold score. Return the due reading note and keep unresolved criteria visible.
+134,135,day 134 word pattern probe,Pattern,10,,Return the actual paper. Teach the observed pattern for five minutes and use a different word for five minutes.
+137,138,s04-D1 to D3 and due reading record,repair,4,,Return marked criteria privately. Repair one need with a fresh fragment. Hold unresolved allusion/adage evidence.
+138,139,unjudged evidence-plan feedback,introduction,3,,Return one written next move before the child starts the private draft. Keep original and newer versions.
+140,141,unjudged body-draft feedback,Feedback,10,,"Read the day 140 comment beside the original. Revise one component. Store first draft, comment and revision together."
+142,143,"s04-E1 essay components, summary and reading entries",repair,4,,Return the individually marked components. Select one priority per child and leave later needs dated.
+146,147,"s04-F1 investigation, notes, integration and support",repair,4,,Return notes and explanation. Repair one source or aspect criterion with a different case.
+151,154,s04-G1 and G2 comparison and script audit,repair,2,,Return the actual comparison and writing criteria privately and choose one common priority.
+152,154,s04-H1 to H3 and reading observations,repair,2,,Return individual observed criteria and paper notes privately. Preserve actual register evidence for day 156.
+153,154,s04-I1 script and language criteria,repair,2,,Return the script with one written move. Share repair time with days 151 and 152.
+156,159,"s04-J1 release, language and retained evidence",repair,4,,Return privately after the cold checks. Use the requested Return and repair slot for one priority. Do not infer technology or oral evidence that is missing.

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 500" width="300" height="312" role="img" aria-labelledby="title desc">
+  <title id="title">Portrait from the story</title>
+  <desc id="desc">A woman with her chin raised holds a closed book and rests her other hand on a wooden chair.</desc>
+  <rect x="0" y="0" width="480" height="500" fill="white"/>
+  <rect x="24" y="22" width="432" height="455" rx="3" fill="#fff" stroke="#333" stroke-width="2"/>
+  <g fill="none" stroke="#342a23" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M75 435 87 235Q87 218 100 218H169Q182 218 182 235L191 435"/>
+    <path d="M87 242h95M90 299h92M111 244v53m24-53v53m24-53v53"/>
+    <path d="M82 333h103l27 22H99zM100 355l1 82m111-82-2 81"/>
+  </g>
+  <g stroke="#292323" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M261 414l-6 33q-24 0-34 11v7h55l8-47m14-1 8 28q17 5 25 14v6h-47l-6-43" fill="#333"/>
+    <path d="M235 272q-3 55-26 142 45 14 124 4-16-73-34-146z" fill="#4d4a49"/>
+    <path d="m244 297-16 113m33-106-6 114m24-112 4 115m11-122 20 114" fill="none" stroke="#252322" stroke-width="2"/>
+    <path d="M245 135q-19 8-29 34l-27 42-22-2-2 15 29 8q12 3 21-10l18-28 3 77q30 10 63 0l4-83 21 44 19-6-21-63q-6-16-30-26z" fill="#dedad5"/>
+    <path d="m254 148 14 21 20-20 7 21-25 32-29-38 6-15" fill="#f0eeec"/>
+    <path d="m254 124-3 21 16 23 23-22-8-22" fill="#9a705d"/>
+    <path d="M241 87q-10-39 27-48 40-6 50 28 6 17-2 35l-17 10-51-7z" fill="#2c2423"/>
+    <path d="M248 75q17 2 39-14 16 10 18 25l8 12-10 4q0 19-20 25-21 5-33-14-13 0-13-13 1-8 9-4z" fill="#a97d68"/>
+    <path d="M278 87q6-4 13 0m-12 3h2m8 17q7 1 10-3" fill="none" stroke-width="2"/>
+    <path d="M165 209q-8-8-20-4l-8 4 2 6 19-1-8 6 2 5 14-1z" fill="#a97d68"/>
+    <path d="m328 196 55 4-5 77-53-4z" fill="#494444"/>
+    <path d="m330 204 43 3-4 62-44-3m8-54 33 2" fill="none" stroke="#eee" stroke-width="2"/>
+    <path d="m337 227 12-4 16 5-1 7-11-1 10 7-3 6-25-8z" fill="#a97d68"/>
+  </g>
+</svg>
