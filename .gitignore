@@ -52,3 +52,7 @@ docs/courses/*/unit-skeletons/
 data/index.db
 data/index.*.tmp
 data/ids-registry.csv
+
+# safe_write.py lock and temp files (never committed; section run review 2026-11-26)
+data/plans/**/*.lock
+data/plans/**/*.tmp

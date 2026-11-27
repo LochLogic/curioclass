@@ -198,7 +198,10 @@ class Lane:
             return git('rev-parse', '--short', 'HEAD')[1].strip()
 
     # ------------------------------------------------------------ one Codex job
-    def codex(self, step, prompt):
+    def codex(self, step, prompt, extra=()):
+        """One Codex job; extra holds added exec options, such as ('-c', 'model="gpt-6.2-sol"', '-c',
+        'model_reasoning_effort="high"') from scripts/section_run.py (they hold for the resume too)."""
+        extra = list(extra)
         stem = self.dir / 'jobs' / ('%s-%s-%s' % (step['course'], step['num'], step['kind'].lower()))
         stem.parent.mkdir(parents=True, exist_ok=True)
         job = dict(thread=None, usage=[0, 0, 0, 0], limit=False, last='', t0=time.time())
@@ -248,10 +251,10 @@ class Lane:
         def resume(text, suffix):
             job['t0'] = time.time()
             return session(['exec', 'resume', '-c', 'sandbox_mode="workspace-write"', '-c', 'tools.web_search=true',
-                            job['thread']], text, suffix)
+                            *extra, job['thread']], text, suffix)
 
         stalled = session(['exec', '-s', 'workspace-write', '-C', str(ROOT), '-c', 'tools.web_search=true',
-                           '--color', 'never'], prompt, '')
+                           '--color', 'never', *extra], prompt, '')
         if not job['limit'] and (stalled or not job['last'].strip()) and job['thread']:
             self.log('%s: %s; resuming once' % (step['num'], 'silent 20 minutes' if stalled else 'no last message'))
             resume(HUNG if stalled else CARRY, '-resume')
