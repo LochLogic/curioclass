@@ -358,3 +358,195 @@ from_day,to_day,what,where,minutes,error,note
 74,75,s02-P74R2,Independent,0,U,Return the brief reading-practice cue. Use the released text for an independent correction within the shared two minutes. File it with the practice.
 75,76,s02-P75R1,Preparation,0,I,Return the reading-practice cue and allow a brief correction within the ten minutes already reserved for source-note revision.
 75,76,s02-P75R2,Preparation,0,B,Return the reading-practice cue and allow a brief correction within the ten minutes already reserved for source-note revision.
+84,85,s03-X84,Return,10,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+84,85,s03-X84a,Return,0,A,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+85,86,s03-X85,Return,10,B,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+85,86,s03-X85a,Return,0,B,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+85,86,s03-X85b,Return,0,B,Return the judged Exit box response with the other exit feedback. Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+85,86,s03-X85c,Return,0,B,Return the judged Exit box response with the other exit feedback. Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+85,86,s03-X85d,Return,0,E,Return the judged Exit box response with the other exit feedback. Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+86,87,s03-X86,Return,10,B,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+86,87,s03-X86a,Return,0,F,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+87,88,s03-X87,Transition,5,C,Return a written cue and keep the original. Use the existing transition or feedback slot.
+89,90,s03-X89,Return,10,B,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+89,90,s03-X89a,Return,0,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+90,91,s03-X90,Return,10,G,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+90,91,s03-X90a,Return,0,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+91,92,s03-X91,Return,10,D,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+91,92,s03-X91a,Return,0,D,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+91,92,s03-X91b,Return,0,A,Return the judged Exit box response with the other exit feedback. Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+91,92,s03-X91c,Return,0,D,Return the judged Exit box response with the other exit feedback. Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+92,93,s03-X92,Return,10,H,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+92,93,s03-X92a,Return,0,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+93,94,s03-X93,Return,10,AC,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+94,96,s03-X94,Return,10,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+94,96,s03-X94a,Return,0,Y,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+94,96,s03-X94b,Return,0,Y,Return the judged Exit box response with the other exit feedback. Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+94,96,s03-X94c,Return,0,AL,Return the judged Exit box response with the other exit feedback. Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+96,97,s03-X96,Return,10,H,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+96,97,s03-X96a,Return,0,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+97,98,s03-X97,Return,10,J,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+97,98,s03-X97a,Return,0,I,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+98,99,s03-X98,Return,10,I,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+98,99,s03-X98a,Return,0,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+98,99,s03-X98b,Return,0,I,Return the judged Exit box response with the other exit feedback. Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+99,100,s03-X99,Return,10,J,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+99,100,s03-X99a,Return,0,G,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+100,102,s03-X100,Return,10,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+100,102,s03-X100a,Return,0,AJ,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+100,102,s03-X100b,Return,0,AK,Return the judged Exit box response with the other exit feedback. Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+102,103,s03-X102,Return,10,K,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+102,103,s03-X102a,Return,0,O,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+103,104,s03-X103,Return,10,AC,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+103,104,s03-X103a,Return,0,AD,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+104,105,s03-X104,Return,10,L,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+104,105,s03-X104a,Return,0,R,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+105,106,s03-X105,Return,10,O,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+105,106,s03-X105a,Return,0,L,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+106,107,s03-X106,Return,10,K,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+107,108,s03-X107,Folio,5,L,Return a written cue and keep the original. Use the existing transition or feedback slot.
+109,111,s03-X109,Return,10,AJ,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+109,111,s03-X109a,Return,0,N,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+109,111,s03-X109b,Return,0,AJ,Return the judged Exit box response with the other exit feedback. Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88D,Return,5,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88A1,Return,0,A,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88A2,Return,0,A,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88B1,Return,0,B,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88B2,Return,0,B,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88B3,Return,0,B,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88C,Return,0,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88E1,Return,0,E,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88E2,Return,0,E,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88E3,Return,0,E,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88F,Return,0,F,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+95,96,s03-A95B,Return,0,D,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+95,96,s03-A95A,Return,0,C,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+95,96,s03-A95C,Return,0,G,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+101,102,s03-A101A,Return,0,H,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+101,102,s03-A101B1,Return,0,I,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+101,102,s03-A101B2,Return,0,I,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+101,102,s03-A101C1,Return,0,J,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+101,102,s03-A101C2,Return,0,I,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+118,119,s03-A118A,Return,0,H,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+118,119,s03-A118B1,Return,0,I,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+118,119,s03-A118B2,Return,0,I,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+118,119,s03-A118C1,Return,0,J,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+118,119,s03-A118C2,Return,0,J,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+108,109,s03-A108A,Response,15,K,Return written feedback on eligible work and today's new sections; save the independent 109 correction.
+108,109,s03-A108B,Response,0,L,Return written feedback on eligible work and today's new sections; save the independent 109 correction.
+108,109,s03-A108C,Response,0,M,Return written feedback on eligible work and today's new sections; save the independent 109 correction.
+108,109,s03-A108D,Response,0,N,Return written feedback on eligible work and today's new sections; save the independent 109 correction.
+108,109,s03-A108E,Response,0,O,Return written feedback on eligible work and today's new sections; save the independent 109 correction.
+108,109,s03-A108F,Response,0,P,Return written feedback on eligible work and today's new sections; save the independent 109 correction.
+108,109,s03-A108G,Response,0,Q,Return written feedback on eligible work and today's new sections; save the independent 109 correction.
+110,111,s03-A110A,Return,0,K,Return the earlier verification marks and written feedback on the unscored 110 revision for an independent 111 correction.
+110,111,s03-A110B,Return,0,L,Return the earlier verification marks and written feedback on the unscored 110 revision for an independent 111 correction.
+110,111,s03-A110C,Return,0,M,Return the earlier verification marks and written feedback on the unscored 110 revision for an independent 111 correction.
+110,111,s03-A110D,Return,0,N,Return the earlier verification marks and written feedback on the unscored 110 revision for an independent 111 correction.
+110,111,s03-A110E,Return,0,R,Return the earlier verification marks and written feedback on the unscored 110 revision for an independent 111 correction.
+116,117,s03-A116A,Feedback,0,S,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116B,Feedback,0,Q,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116C,Feedback,0,M,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116D,Feedback,0,T,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116E,Feedback,0,N,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116F,Feedback,0,O,Return a written cue and keep the original. Use the existing transition or feedback slot.
+116,117,s03-A116G,Feedback,0,C,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117A,Planning,0,S,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117B,Planning,0,Q,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117C,Planning,0,M,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117D,Planning,0,T,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117E,Planning,0,N,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117F,Planning,0,O,Return a written cue and keep the original. Use the existing transition or feedback slot.
+117,118,s03-A117G,Planning,0,R,Return a written cue and keep the original. Use the existing transition or feedback slot.
+121,122,s03-A121A,Verification,0,U,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+121,122,s03-A121B,Verification,0,V,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+121,122,s03-A121C,Verification,0,W,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+121,122,s03-A121D,Verification,0,O,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+122,123,s03-A122A,Response,0,K,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122B,Response,0,L,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122C,Response,0,M,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122D,Response,0,N,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122E,Response,0,O,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122F,Response,0,V,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122G,Response,0,A,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122H,Response,0,B,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122I,Response,0,C,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122J,Response,0,D,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122K,Response,0,Y,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122L1,Response,0,Y,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122L2,Response,0,AL,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122M,Response,0,Z,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122N1,Response,0,D,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122N2,Response,0,Z,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122N3,Response,0,Z,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122O,Response,0,G,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122P1,Response,0,AA,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122P2,Response,0,AB,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122P3,Response,0,AC,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122P4,Response,0,AD,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122Q1,Response,0,S,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122Q2,Response,0,Q,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122Q3,Response,0,M,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122Q4,Response,0,T,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122Q5,Response,0,N,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122R,Response,0,P,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122S,Response,0,R,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122T,Response,0,Q,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122U,Response,0,AE,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122V1,Response,0,AF,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122V2,Response,0,AG,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122W,Response,0,AH,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122X,Response,0,E,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122Y,Response,0,F,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122Z,Response,0,AI,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122AA,Response,0,AJ,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122AB,Response,0,AK,Share verification feedback on the saved correction. Keep the original and correction together.
+122,123,s03-A122AC,Response,0,Y,Share verification feedback on the saved correction. Keep the original and correction together.
+123,124,s03-A123A,Return,0,U,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+123,124,s03-A123B,Return,0,V,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+123,124,s03-A123C,Return,0,W,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+123,124,s03-A123D,Return,0,O,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+123,124,s03-A123E,Return,0,X,Give individual written feedback on the saved recording or record. Keep new live speaking diagnostic.
+94,96,s03-P94W1,Return,0,Y,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+94,96,s03-P94W2,Return,0,Y,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+94,96,s03-P94W3,Return,0,AL,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+94,96,s03-P94R,Return,0,D,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+94,96,s03-P94D,Return,0,AL,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+90,91,s03-P90I1,Choice,20,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+90,91,s03-P90C1,Choice,0,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+90,91,s03-P90S1,Choice,0,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+90,91,s03-P90I2,Choice,0,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+90,91,s03-P90C2,Choice,0,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+90,91,s03-P90S2,Choice,0,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+105,106,s03-P105I1,Choice,20,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+105,106,s03-P105C1,Choice,0,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+105,106,s03-P105S1,Choice,0,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+105,106,s03-P105I2,Choice,0,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+105,106,s03-P105C2,Choice,0,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+105,106,s03-P105S2,Choice,0,Z,Return private written cues. Hear up to 26 pupils here at 45 seconds per turn. Hear the last four within the named work part if needed. Return the spelling cue on paper.
+87,88,s03-P87E,Transition,0,A,Return a written cue and keep the original. Use the existing transition or feedback slot.
+93,94,s03-P93D,Return,0,Q,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+98,99,s03-P98R,Return,0,I,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+100,102,s03-P100V1,Return,0,Y,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+100,102,s03-P100V2,Return,0,Y,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+104,105,s03-P104C,Return,0,M,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+105,106,s03-P105E,Return,0,I,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+107,108,s03-P107E,Folio,0,Q,Return a written cue and keep the original. Use the existing transition or feedback slot.
+80,84,earlier source folio,Return,0,,Set out the saved folios if present. Teach the local distinction with the firsthand cards.
+78,87,s02-A78A relationship record,Return,0,,Use the corrected earlier evidence or a relation in the released packet.
+90,91,private word reading overflow,Source,3,Z,Hear up to four additional private retries in Source comparison if all 30 are due.
+105,106,private word reading overflow,Audience,3,Z,Hear up to four additional private retries while pupils inspect the independent sentence.
+93,94,discussion written preparation and conclusion notes,Return,0,,Return an individual cue. Check a new contribution in an available turn and log unheard names.
+93,103,unheard discussion turns,Discussion,15,,Start with two previously unheard groups of five. Observe two 45-second rounds per group.
+103,104,discussion written preparation and conclusion notes,Return,0,,Return written feedback and use an existing accessible individual turn.
+103,120,unheard discussion turns,Preparation,0,,Reserve observation first for pupils still pending while groups record in parallel. Use the individual component sheet.
+105,107,dated unscored opinion map,Reason,0,,Return it as a planning aid. The student's map stays unscored.
+106,107,dated opening draft,Return,0,,Return a context or position cue. Save the first version and the independent change.
+107,108,independently corrected opening and reason,assessment,0,,Use work already revised after written feedback. The 25-minute Folio part includes five minutes to retrieve and file it.
+109,110,independently corrected essay and revision record,assessment,0,,Make the saved 109 revision available for 110A to E without taking extra student time.
+110,111,unscored 110 revision for feedback and correction,Return,0,,Return written feedback and give an independent correction opportunity in the shared Return slot.
+110,122,eligible opinion revision after 111 correction,Verification,0,,Verify the earlier independently corrected opinion. Use 122A to D; do not score new display writing as an opinion.
+88,89,s03-A88E4,Return,0,E,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88E5,Return,0,E,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+88,89,s03-A88E6,Return,0,E,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
+95,96,s03-A95B2,Return,0,D,Use one common five-minute repair at 11 of 30 and reserve five minutes for independent correction. This row shares that slot with the other written cues.
