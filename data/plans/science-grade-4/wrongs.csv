@@ -192,16 +192,15 @@ C-E39-predict,Energy disappears when the toy slows.,,,B,Error B: Energy disappea
 C-E39-sound,A shared board proves sound crossed air.,,,F,Error F: Shared support proves sound crossed air.
 C-E39-light,Dark color proves this patch is warmer.,,,O,Error O: Appearance replaces temperature evidence.
 C-E39-heat,No resolved change proves no energy passed.,,,E,Error E: Unresolved instrument change proves no transfer.
-C-E39-current,One wire to one terminal completes the lamp circuit.,,,G,Error G: One terminal connection completes a circuit.
+C-E39-current,One wire to one terminal completes the lamp circuit.,,,G,Error G: see the course error register and the selected evidence.
 C-E39-predict,All energy becomes sound.,,,D,Error D: motion and warming destinations omitted.
-C-E39-current,The generator creates energy.,,,H,Error H: input and conversion omitted.
 C-E40-origin,A refinery is the natural origin of crude oil.,,,I,Error I: Refinery is the natural origin of crude oil.
 C-E40-origin,Oil deposits refill each year.,,,J,Error J: slow formation confused with yearly replenishment.
 C-E40-use,"Only the made truck is needed, with no natural resource.",,,x,Error x: Unsupported or unavailable evidence; confer.
 C-E40-effects,Extracting and moving oil never affect surroundings.,,,K,Error K: Extracting or moving oil has no environmental effects.
 C-E40-change,Two ship walls remove every effect.,,,L,Error L: One improvement removes every environmental effect.
 C-P41-motion,Energy vanishes when the puck slows.,,,B,Error B: Energy disappears when motion slows.
-C-P41-paths,One terminal alone still supplies the whole path.,,,G,Error G: One terminal connection completes a circuit.
+C-P41-paths,One terminal alone still supplies the whole path.,,,G,Error G: see the course error register and the selected evidence.
 C-P41-resources,The smaller site removes every effect.,,,L,Error L: One improvement removes every environmental effect.
 C-P41-revise,Copy corrections without evidence.,,,x,Error x: Unsupported or unavailable evidence; confer.
 C-E41-record,Treat supplied observations as firsthand performance.,,,x,Error x: Unsupported or unavailable evidence; confer.
@@ -747,3 +746,11 @@ s02-P26-1,A pleasant signal needs no checkable result.,,,C,Error C; compare the 
 s02-P27-1,My preferred change proves success without evidence.,,,D,Error D; compare the response with the evidence. Blank work gets a conference.
 s02-P28-1,My preferred change needs no retest.,,,D,Error D; compare the response with the evidence. Blank work gets a conference.
 s02-P29-1,The change alone proves improvement without test evidence.,,,D,Error D; compare the response with the evidence. Blank work gets a conference.
+C-E39-generator,The generator creates energy.,,,H,Error H: see the course error register and the selected evidence.
+C-P41-origin,A refinery is the natural origin of crude oil.,,,I,Error I: see the course error register and the selected evidence.
+C-P41-origin,Oil deposits refill each year.,,,J,Error J: slow formation is not yearly replenishment.
+C-P41-paths,A shared board proves sound crossed air.,,,F,"Error F: selected earlier teaching comparison, never supplied as firsthand evidence."
+C-P41-paths,Dark color proves this patch is warmer.,,,O,"Error O: selected earlier teaching comparison, never supplied as firsthand evidence."
+C-P41-paths,No resolved change proves no energy passed.,,,E,"Error E: selected earlier teaching comparison, never supplied as firsthand evidence."
+C-P41-paths,The cooler spoon makes its own warmth.,,,P,"Error P: selected earlier teaching comparison, never supplied as firsthand evidence."
+C-P41-paths,The generator creates energy.,,,H,"Error H: selected earlier teaching comparison, never supplied as firsthand evidence."

@@ -144,19 +144,19 @@ from_day,to_day,what,where,minutes,error,note
 31,32,s02-K31-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
 32,33,s02-K32-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
 33,34,s02-K33-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
-39,41,C-E39-speed,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-speed,Return feedback,2,,Two minutes for the entire day 39 packet; other component rows share these minutes. Repair/revision occur in their separate named blocks.
 39,41,C-E39-question,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
 39,41,C-E39-predict,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
 39,41,C-E39-sound,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
 39,41,C-E39-light,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
 39,41,C-E39-heat,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
 39,41,C-E39-current,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
-40,41,C-E40-origin,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+40,41,C-E40-origin,Return feedback,3,,Three minutes for the entire day 40 packet; other component rows share these minutes. Together the returned packets fill the five-minute opening.
 40,41,C-E40-use,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
 40,41,C-E40-effects,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
 40,41,C-E40-change,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
-41,43,C-R41-source,older-row response,5,,"Within reserved fifteen-minute response, five minutes per causal direction. Grade 1 causal models planned: teach missing directions as new; day 42 keeps hook."
-41,43,C-R41-receiver,older-row response,5,,"Within reserved fifteen-minute response, five minutes per causal direction. Grade 1 causal models planned: teach missing directions as new; day 42 keeps hook."
+41,43,C-R41-source,older-row response,5,,Five minutes for this causal direction within the fifteen-minute response. Review written grade 1 teaching; reteach individual gaps. Day 42 keeps the hook.
+41,43,C-R41-receiver,older-row response,5,,Five minutes for this causal direction within the fifteen-minute response. Review written grade 1 teaching; reteach individual gaps. Day 42 keeps the hook.
 41,42,C-P41-revise C-E41-record,opening,0,,"Return revised papers with written note, informational only; no extra repair."
 41,42,C-P41-motion,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
 41,42,C-P41-paths,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
@@ -385,7 +385,6 @@ from_day,to_day,what,where,minutes,error,note
 108,109,s06-P108-inside s06-P108-roots s06-P108-fruit  individual diagram labels and sequence papers,Return,0,,"Return all individual work, including children not heard. Feedback shares the scheduled repair slot."
 118,120,C-E118-table C-E118-audit C-E118-limit C-E118-add C-E118-compare C-E118-harm C-E118-model C-E118-predict C-E118-test,Return feedback,2,,Return once with feedback. Keep initial evidence separate from revisions.
 119,120,C-E119-select C-E119-predict C-E119-test C-E119-plant C-E119-animal,Return feedback,3,,Return once with feedback. Keep initial evidence separate from revisions.
-120,120,C-X120,Handoff,0,,Private feedback in the existing final-day Handoff; no later course day exists.
 1,2,s01-P1 s01-K1 s01-Pq1,Return and repair,0,,Return one written next step for every collected paper alongside ticket feedback. Examples receive the class annotation. Continue the rotating heard roster with previously unheard children; remaining children receive paper feedback here.
 2,3,s01-P2 s01-K2 s01-Pr2,Return and repair,0,,Return one written next step for every collected paper alongside ticket feedback. Examples receive the class annotation. Continue the rotating heard roster with previously unheard children; remaining children receive paper feedback here.
 3,4,s01-P3 s01-K3 s01-Pp3 s01-Pr3,Return and repair,0,,Return one written next step for every collected paper alongside ticket feedback. Examples receive the class annotation. Continue the rotating heard roster with previously unheard children; remaining children receive paper feedback here.
@@ -416,3 +415,5 @@ from_day,to_day,what,where,minutes,error,note
 38,39,s02-P38-A s02-P38-B s02-P38-L s02-P38-C s02-P38-D s02-P38-E s02-P38-F s02-P38-I s02-P38-J s02-P38-K s02-P38-G s02-P38-H,opening,0,,"Return assigned repair answers in the Side 1 table of the s02-P38-1 revision packet, already returned in day 39 Launch. Prompt strips stay in folders. Written feedback shares the existing final marking allowance; no extra repair, score or interview."
 34,35,s02-X34-graph,Return and repair,0,,"Return graph feedback with the existing E34 ticket; use the same five-minute return slot, without another repair round."
 16,17,s02-P16-report,Return and repair,0,,Return on the question strip with written feedback alongside the ticket; no extra repair round.
+39,41,C-E39-generator,Return feedback,0,,"Included in the two-minute day 39 packet return; independent generator ask, no extra return time."
+41,42,C-P41-origin,opening,0,,"Return any completed origin repair with the other day 41 papers and a written note, informational only."

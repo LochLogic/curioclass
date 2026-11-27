@@ -11,7 +11,8 @@ TEACHER ONLY. Keep off child pages and displays. Hypothetical cases and supplied
 
 Write feedback before day 41. After revision, record each component as shown, shown with help or not yet seen. Shown means independent explanation meeting its components; content coaching means shown with help. Note unavailable opportunities separately. No total or second scale. Keep day 36 observations and portfolio unchanged. Allow thirty minutes for day 39 feedback, twenty for day 40, twenty for revised components.
 
-Routing: errors A to D, motion; E to H, O and P, paths; I to L, resources. More than ten of thirty prioritizes the existing visit, no added meeting. At most two repair records per child. Readiness M/N use day 43's reserved five minutes per direction. Causal models remain planned: teach missing directions as new. The ruler demonstrates vibration producing sound, separate-support records sound producing vibration.
+Routing: errors A to D, motion; E to H, O and P, paths; I to L, resources. More than ten of thirty prioritizes the existing visit, no added meeting. One priority group and one main repair per child. Readiness M/N use day 43's reserved five minutes per direction. Review the written grade 1 models and reteach individual gaps. The ruler demonstrates vibration producing sound, separate-support records sound producing vibration.
+
 
 
 ## C-E40-origin
@@ -21,6 +22,7 @@ Answer: Crude oil comes from ancient living remains changed underground over mil
 Look for: Look for natural origin, refinery distinction and renewal timescale. One category per component.
 
 Wrong: A refinery is the natural origin of crude oil. Error I.
+
 Wrong: Oil deposits refill each year. Error J.
 
 ## C-E40-use

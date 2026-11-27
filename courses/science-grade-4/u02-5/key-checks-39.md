@@ -11,7 +11,8 @@ TEACHER ONLY. Keep off child pages and displays. Hypothetical cases and supplied
 
 Write feedback before day 41. After revision, record each component as shown, shown with help or not yet seen. Shown means independent explanation meeting its components; content coaching means shown with help. Note unavailable opportunities separately. No total or second scale. Keep day 36 observations and portfolio unchanged. Allow thirty minutes for day 39 feedback, twenty for day 40, twenty for revised components.
 
-Routing: errors A to D, motion; E to H, O and P, paths; I to L, resources. More than ten of thirty prioritizes the existing visit, no added meeting. At most two repair records per child. Readiness M/N use day 43's reserved five minutes per direction. Causal models remain planned: teach missing directions as new. The ruler demonstrates vibration producing sound, separate-support records sound producing vibration.
+Routing: errors A to D, motion; E to H, O and P, paths; I to L, resources. More than ten of thirty prioritizes the existing visit, no added meeting. One priority group and one main repair per child. Readiness M/N use day 43's reserved five minutes per direction. Review the written grade 1 models and reteach individual gaps. The ruler demonstrates vibration producing sound, separate-support records sound producing vibration.
+
 
 
 ## C-E39-speed
@@ -37,6 +38,7 @@ Answer: Compared with a faster repeat, predict less gate motion and usually quie
 Look for: Look for both objects and motion-energy changes, slower/faster comparison, sound/warming destinations and evidence/account distinction. One category per component.
 
 Wrong: Energy disappears when the toy slows. Error B.
+
 Wrong: All energy becomes sound. Error D.
 
 ## C-E39-sound
@@ -62,13 +64,21 @@ Answer: Energy passes warmer spoon to cooler spoon. After hand removal, source c
 Look for: Look for warmer-to-cooler direction with comparative evidence, not claimed measured energy.
 
 Wrong: No resolved change proves no energy passed. Error E.
+
 Wrong: The cooler spoon makes its own warmth. Error P.
 
 ## C-E39-current
 
-Answer: A complete path through bulb and both battery terminals is needed. Current carries stored battery energy to light. Turning the sealed generator supplies motion energy converted into electrical energy carried by current to the lamp. Cite closed/open and turning/stopped evidence. Delayed light may use stored energy.
+Answer: Only closing both breaks completes the path through the bulb and both battery terminals. The closed circuit lights the bulb; opening either break stops its light. Current carries stored battery energy to the bulb.
 
-Look for: One category for circuit with evidence; one for generator input, conversion and output with evidence. No design or portfolio score.
+Look for: Look for a complete path through both terminals and the bulb, closed/open evidence, and battery-to-light energy transfer. Use shown, shown with help, not yet seen for each component.
 
 Wrong: One wire to one terminal completes the lamp circuit. Error G.
+
+## C-E39-generator
+
+Answer: Turning supplies motion energy. The generator converts it into electrical energy carried by current to the lamp. Turning lights the lamp; after stopping, the light fades. Any delayed light can use stored energy; the generator creates no energy.
+
+Look for: Look for motion input, conversion, current-to-light transfer and turning/stopped evidence. Use the same component categories; no design score.
+
 Wrong: The generator creates energy. Error H.

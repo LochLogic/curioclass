@@ -11,7 +11,8 @@ TEACHER ONLY. Keep off child pages and displays. Hypothetical cases and supplied
 
 Write feedback before day 41. After revision, record each component as shown, shown with help or not yet seen. Shown means independent explanation meeting its components; content coaching means shown with help. Note unavailable opportunities separately. No total or second scale. Keep day 36 observations and portfolio unchanged. Allow thirty minutes for day 39 feedback, twenty for day 40, twenty for revised components.
 
-Routing: errors A to D, motion; E to H, O and P, paths; I to L, resources. More than ten of thirty prioritizes the existing visit, no added meeting. At most two repair records per child. Readiness M/N use day 43's reserved five minutes per direction. Causal models remain planned: teach missing directions as new. The ruler demonstrates vibration producing sound, separate-support records sound producing vibration.
+Routing: errors A to D, motion; E to H, O and P, paths; I to L, resources. More than ten of thirty prioritizes the existing visit, no added meeting. One priority group and one main repair per child. Readiness M/N use day 43's reserved five minutes per direction. Review the written grade 1 models and reteach individual gaps. The ruler demonstrates vibration producing sound, separate-support records sound producing vibration.
+
 
 
 ## C-P41-motion
@@ -24,11 +25,21 @@ Wrong: Energy vanishes when the puck slows. Error B.
 
 ## C-P41-paths
 
-Answer: Opening interrupts the complete current path. Energy is no longer carried through it to sustain fan motion. A fan may coast before stopping; energy does not disappear.
+Answer: F: separate-support receiver movement during sound, compared with silence, supports a sound path. O: matched starting and final cloth readings support light carrying energy; color alone does not. E or P: warmer-source cooling with cooler-recipient warming supports heat transfer toward the recipient; unresolved readings establish no resolved change. G: the complete cell-to-bulb loop joins both terminals. H: turning supplies motion converted to electrical energy, never energy creation.
 
-Look for: Paper drawing only. Explain source, complete path and output; separate evidence from inference.
+Look for: Select one matching record before class: sound log F, warming table O/E/P, circuit layouts G, or familiar crank drawing H. Judge only that selected explanation. Each version needs a source, recipient and appropriate comparison; one categorical scale.
 
 Wrong: One terminal alone still supplies the whole path. Error G.
+
+Wrong: A shared board proves sound crossed air. Error F.
+
+Wrong: Dark color proves this patch is warmer. Error O.
+
+Wrong: No resolved change proves no energy passed. Error E.
+
+Wrong: The cooler spoon makes its own warmth. Error P.
+
+Wrong: The generator creates energy. Error H.
 
 ## C-P41-resources
 
@@ -58,7 +69,7 @@ Wrong: Treat supplied observations as firsthand performance. Error x.
 
 Answer: The vibrating ruler produces sound. Stopping its vibration stops its sound.
 
-Look for: Diagnostic only: connection between vibration and sound, no grade 4 achievement claim. Missing causal model is new learning on day 43.
+Look for: Diagnostic only: vibration producing sound, reviewing written grade 1 day 31. Record the individual connection; reteach a gap on day 43. No grade 4 achievement score.
 
 Wrong: The ruler keeps making sound after vibration stops. Error M.
 
@@ -66,7 +77,7 @@ Wrong: The ruler keeps making sound after vibration stops. Error M.
 
 Answer: The untouched receiver moves during sound and rests during silence on separate supports. This comparison suggests sound causes vibration; a shared support leaves a direct contact route.
 
-Look for: Diagnostic only: sounding/silent comparison and receiver motion. Supplied record, no grains today. Missing causal model is new learning on day 43.
+Look for: Diagnostic only: sounding/silent comparison and receiving motion, reviewing written grade 1 day 32. Supplied record, no grains today. Reteach individual gaps on day 43.
 
 Wrong: The silent comparison does not matter. Error N.
 
@@ -77,3 +88,13 @@ Answer: Does changing the same puck speed change how far the same ring moves? Ac
 Look for: During the motion group only. One category for changed speed with observable outcome; no separate spoken round.
 
 Wrong: Which speed is best? Error C.
+
+## C-P41-origin
+
+Answer: Ancient living remains changed underground over millions of years into crude oil. Extraction and refining provide heating oil for the boiler. Refining separates useful products; it does not replenish crude oil. This resource is nonrenewable on human timescales.
+
+Look for: Use Source A from day 40, covering the child response. For I, trace natural origin versus refinery; for J, compare formation time with use. Accept labeled arrows and a brief renewal note.
+
+Wrong: A refinery is the natural origin of crude oil. Error I.
+
+Wrong: Oil deposits refill each year. Error J.
