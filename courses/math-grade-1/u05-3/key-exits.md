@@ -17,7 +17,7 @@ What would the two groups look like together?
 
 Show the contribution from both starting quantities and preserve the exchanged group once.
 
-Shown: Marks a group of ten from the sixteen and traces it to the eighth strip, with six loose ones left.. Not yet seen: Draws seven strips and six singles after discarding ten (A).
+Shown: Marks a group of ten from the sixteen and traces it to the eighth strip, with six loose ones left. Not yet seen: Draws seven strips and six singles after discarding ten (A).
 
 - 76 (A). Drops the ten from the sixteen loose ones.
 - 96 (B). Keeps ten loose ones that are already a strip.
@@ -30,7 +30,7 @@ How did the two children use the same pieces in different ways?
 
 In both paths mark the same two tens and eight ones from 28. One path pools like units; the other starts with all of 46. A shared total alone leaves the comparison open.
 
-Shown: Links two sticks and eight dots from 28 to both methods. The adding-on path starts with 46.. Not yet seen: Marks 64 on the like-unit path after dropping ten (A).
+Shown: Links two sticks and eight dots from 28 to both methods. The adding-on path starts with 46. Not yet seen: Marks 64 on the like-unit path after dropping ten (A).
 
 - 64 (A). Throws away ten while pooling the ones.
 - 56 (C). Adds two singles in place of two strips, followed by eight singles.
@@ -43,7 +43,7 @@ What is happening to the pieces in this child's number sentences?
 
 Connect the middle drawing's thirteen singles to the six tens in the final line. The printed total alone supplies no evidence.
 
-Shown: Shows six old strips, then thirteen loose ones, then an exchanged strip and three loose ones alongside the six strips.. Not yet seen: Shows six strips and three singles on the last line after losing a ten (A).
+Shown: Shows six old strips, then thirteen loose ones, then an exchanged strip and three loose ones alongside the six strips. Not yet seen: Shows six strips and three singles on the last line after losing a ten (A).
 
 - 63 (A). Discards ten singles without making a new strip.
 - 83 (B). Draws seven tens and all thirteen loose ones at the finish.
@@ -56,7 +56,7 @@ What number sentences show your way of putting these together?
 
 Accept true steps linked to both addends and a finish of ten tens with zero loose ones.
 
-Shown: Links the first two steps to nine old tens and ten loose ones, then makes the tenth strip.. Not yet seen: Writes 85 + 15 = 90 = 100 (E).
+Shown: Links the first two steps to nine old tens and ten loose ones, then makes the tenth strip. Not yet seen: Writes 85 + 15 = 90 = 100 (E).
 
 - 85 + 15 = 90 = 100 (E). Links unequal amounts with equals.
 - 90 (A). Keeps only the nine old tens after trading ten singles.

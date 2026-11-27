@@ -294,11 +294,11 @@ s05-X108,62,49+23-10,62,A,Drops the new ten.
 s05-X108,82,49+23+10,82,B,Keeps the exchanged singles and their strip.
 s05-X109,57,38+29-10,57,A,Loses the exchanged ten.
 s05-X109,77,38+29+10,77,B,Leaves the ten loose ones in the total as well as their strip.
-s05-AP1,12,5+4+3,12,D,"Counts five strips as five singles, obtaining 12 (D)."
-s05-AP2,38,36+2,38,C,Counts the two added tens as two singles and writes 38 (C).
-s05-AP3,43,48+5-10,43,A,Crosses out ten and writes 43 (A).
-s05-AP4,12,2+3+3+4,12,D,Writes 12 by counting each of the five strips as a single (D).
-s05-AP5,73,56+27-10,73,A,Draws only seven strips and three singles after crossing out ten (A).
+s05-AP1,12,5+4+3,12,D,Counts the five strips as five singles.
+s05-AP2,38,36+2,38,C,Adds the two whole tens as two singles.
+s05-AP3,43,48+5-10,43,A,Crosses out ten ones without making a new strip.
+s05-AP4,12,2+3+3+4,12,D,Counts each of the five strips as one single.
+s05-AP5,73,56+27-10,73,A,Drops the ten made from the thirteen loose ones.
 s05-AP5,93,56+27+10,93,B,Keeps the new ten and all thirteen of the loose ones.
 s05-AP5,56 + 27 = 70 = 83,,,E,Uses an equals sign to join unequal amounts.
 s05-AP5-link,I counted the new stick and all thirteen singles.,,,B,Counts the exchanged group twice.

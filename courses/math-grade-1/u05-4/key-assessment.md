@@ -19,9 +19,9 @@ How would you show your way to add 54 and 3?
 
 Five tens stay unchanged; four singles join three. A linked mark can show the reason.
 
-Shown: Points from the original five strips to the five strips in the finish; seven singles.. Not yet seen: Counts five strips as five singles, obtaining 12 (D).
+Shown: Points from the original five strips to the five strips in the finish; seven singles. Not yet seen: Counts five strips as five singles, obtaining 12 (D).
 
-- 12 (D). Counts five strips as five singles, obtaining 12 (D).
+- 12 (D). Counts the five strips as five singles.
 
 ## s05-AP2
 
@@ -31,9 +31,9 @@ How would you show your way to add 36 and 20?
 
 Two whole strips join three. Six singles stay unchanged and match the written method.
 
-Shown: Matches two added strips to 20 and keeps all six ones.. Not yet seen: Counts the two added tens as two singles and writes 38 (C).
+Shown: Matches two added strips to 20 and keeps all six ones. Not yet seen: Counts the two added tens as two singles and writes 38 (C).
 
-- 38 (C). Counts the two added tens as two singles and writes 38 (C).
+- 38 (C). Adds the two whole tens as two singles.
 
 ## s05-AP3
 
@@ -43,9 +43,9 @@ How would you show your way to add 48 and 5?
 
 The thirteen ones make one new ten with three singles left. Accept an equivalent true method.
 
-Shown: Circles ten of thirteen ones and links the circle to the fifth strip and the step that makes 50.. Not yet seen: Crosses out ten and writes 43 (A).
+Shown: Circles ten of thirteen ones and links the circle to the fifth strip and the step that makes 50. Not yet seen: Crosses out ten and writes 43 (A).
 
-- 43 (A). Crosses out ten and writes 43 (A).
+- 43 (A). Crosses out ten ones without making a new strip.
 
 ## s05-AP4
 
@@ -55,9 +55,9 @@ How would you show your way to add 23 and 34?
 
 Identify the contribution of both addends in the pictured and written method.
 
-Shown: Links two and three strips to 50 and three and four singles to 7.. Not yet seen: Writes 12 by counting each of the five strips as a single (D).
+Shown: Links two and three strips to 50 and three and four singles to 7. Not yet seen: Writes 12 by counting each of the five strips as a single (D).
 
-- 12 (D). Writes 12 by counting each of the five strips as a single (D).
+- 12 (D). Counts each of the five strips as one single.
 
 ## s05-AP5
 
@@ -67,9 +67,9 @@ How would you show your way to add 56 and 27?
 
 Account for seven old strips, one new strip and three loose ones using the child's own model and written steps.
 
-Shown: Links ten of the thirteen loose ones to the eighth strip; keeps three loose ones.. Not yet seen: Draws only seven strips and three singles after crossing out ten (A).
+Shown: Links ten of the thirteen loose ones to the eighth strip; keeps three loose ones. Not yet seen: Draws only seven strips and three singles after crossing out ten (A).
 
-- 73 (A). Draws only seven strips and three singles after crossing out ten (A).
+- 73 (A). Drops the ten made from the thirteen loose ones.
 - 93 (B). Keeps the new ten and all thirteen of the loose ones.
 - 56 + 27 = 70 = 83 (E). Uses an equals sign to join unequal amounts.
 
@@ -81,7 +81,7 @@ How does your writing show the ten you made?
 
 Hear roster 1 to 15 on day 108 and 16 to 30 on day 109. Retain one oral link per child; the child may speak, sign or point without writing.
 
-Shown: These ten circled ones are part of the 13 in 70 + 13. They make the eighth stick and three stay loose.. Not yet seen: Says the new stick is in the total along with all thirteen singles (B).
+Shown: These ten circled ones are part of the 13 in 70 + 13. They make the eighth stick and three stay loose. Not yet seen: Says the new stick is in the total along with all thirteen singles (B).
 
 - I counted the new stick and all thirteen singles. (B). Counts the exchanged group twice.
 
@@ -93,7 +93,7 @@ How would you fill in the new count label so another child can check it?
 
 The child selects a method, links it to the quantities and accounts for exactly one newly made ten. A drawing and true steps show the reason as one record.
 
-Shown: Pairs the eight old and seven new loose ones, marks ten into a seventh strip and links the five left to 75.. Not yet seen: Shows only six strips and five loose ones after removing ten (A).
+Shown: Pairs the eight old and seven new loose ones, marks ten into a seventh strip and links the five left to 75. Not yet seen: Shows only six strips and five loose ones after removing ten (A).
 
 - 65 (A). Drops the newly made ten.
 - 58 + 17 = 60 = 75 (E). Connects different quantities with equals.

@@ -17,7 +17,7 @@ Show how sixteen makes a ten with ones left.
 
 One closed mark groups exactly ten; the six further ones are indicated by marks or a numeral.
 
-Shown: Circles ten and puts a 6 beside the untouched squares.. Not yet seen: Labels the collection 7 after reading the circled ten as one square (D).
+Shown: Circles ten and puts a 6 beside the untouched squares. Not yet seen: Labels the collection 7 after reading the circled ten as one square (D).
 
 - 7 (D). Counts the circled group as one square.
 
@@ -29,6 +29,6 @@ What number do these pieces show?
 
 All four strips count as tens.
 
-Shown: Labels the picture 42.. Not yet seen: Labels it 6 after counting each strip as one square (D).
+Shown: Labels the picture 42. Not yet seen: Labels it 6 after counting each strip as one square (D).
 
 - 6 (D). Reads the four ten-strips as four singles.
