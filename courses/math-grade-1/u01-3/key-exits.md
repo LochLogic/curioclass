@@ -11,26 +11,28 @@ Teacher only. Before class, print and keep apart from child tickets. Read all pr
 
 ## s01-X11a
 
-Mark the true total: 3 or 8.
+Fix this total claim: '3 altogether.'
 
 Answer: 8.
 
 Turtles 2, fish 5, snails 1. All marks count, not category names.
 
-Shown: 8 selected | Not yet seen: 3 selected, error H
+Shown: 8 with all response marks counted | Not yet seen: 3, error H
 
 - 3: error H. Counts categories instead of responses.
+
 ## s01-X11b
 
-5 fish, 2 turtles. How many more fish: 5 or 3?
+Fix this claim: '5 more fish than turtles.'
 
 Answer: 3.
 
 Two turtles pair with two fish, leaving three.
 
-Shown: 3 selected | Not yet seen: 5 selected, error F
+Shown: 3 more, from two unique matches | Not yet seen: 5 more, error F
 
 - 5: error F. Uses the fish count.
+
 ## s01-X11c
 
 Circle the fish that have no turtle to match.
@@ -42,6 +44,7 @@ Reveal only during exit, in the student-page Exit box. Three unmatched fish, not
 Shown: Two unique matches and three fish circled | Not yet seen: All five fish circled, error F
 
 - All 5 fish circled: error F. Larger group used as the unmatched count.
+
 ## s01-X12a
 
 Write each group's count.
@@ -51,6 +54,7 @@ Answer: Stars 7, moons 5, suns 1.
 Read the three pictured groups, one mark per response.
 
 Shown: 7, 5, 1 | Not yet seen: A group count does not match its marks; describe it
+
 
 ## s01-X12b
 
@@ -64,6 +68,7 @@ Shown: 7 held; six steps ending at 13 | Not yet seen: 12 from counting seven as 
 
 - 12 with seven counted as first step: error A. Counts start.
 - 3: error H. Counts category names.
+
 ## s01-X13a
 
 Draw a more or fewer question for this display.
@@ -73,6 +78,7 @@ Answer: Any answerable comparison of hopping 7, drawing 6, building 5.
 Child composes a picture question naming two categories; adult may scribe words without choosing the comparison.
 
 Shown: How many fewer building than hopping? | Not yet seen: Which game is funniest? is not answered by these marks
+
 
 ## s01-X13b
 

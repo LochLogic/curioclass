@@ -35,7 +35,7 @@ Teacher only; keep apart from cards and child pages. All cases invented for prac
 
 ## Two-group cards
 
-9, 1: total 10, extras 8; 7, 3: total 10, extras 4; 8, 1: total 9, extras 7; 3, 3: total 6, extras 0; 6, 4: total 10, extras 2; 4, 2: total 6, extras 2; 8, 2: total 10, extras 6; 7, 1: total 8, extras 6.
+9, 1: total 10, extras 8; 7, 3: total 10, extras 4; 6, 2: total 8, extras 4; 3, 3: total 6, extras 0; 6, 4: total 10, extras 2; 4, 2: total 6, extras 2; 8, 2: total 10, extras 6; 7, 1: total 8, extras 6.
 
 ## Claim sort
 

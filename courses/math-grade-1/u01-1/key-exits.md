@@ -21,6 +21,7 @@ Shown: 6, 7, 8, 9 on the added counters | Not yet seen: 5, 6, 7, 8 on added coun
 
 - 5, 6, 7, 8 on the added counters: error A. Counts the starting number as the first added step.
 - 1 to 9 written on every counter: error C. Recounts the entire starting group instead of holding it.
+
 ## s01-X1b
 
 Circle the total after four more.
@@ -32,28 +33,31 @@ Nine circled; use the marks from X1a to distinguish method from result.
 Shown: 9 circled | Not yet seen: 8 circled with the start counted, error A
 
 - 8, with start counted as a step: error A. Off by one because five was the first step.
+
 ## s01-X2a
 
 Write a plus expression for this picture.
 
-Answer: 2 + 5; 5 + 2 accepted.
+Answer: 4 + 5; 5 + 4 accepted.
 
 One addend for each pictured dot group; plus expression need not include an equal sign.
 
-Shown: 2 + 5 | Not yet seen: Only one group recorded; describe without guessing a letter
+Shown: 4 + 5 | Not yet seen: Only one group recorded; describe without guessing a letter
+
 
 ## s01-X2b
 
 Mark a count that finds the total.
 
-Answer: 7; hold either group and count on.
+Answer: 9; hold either group and count on.
 
-Hold 5, mark 6, 7; or hold 2, mark 3, 4, 5, 6, 7. Recounting all may give the right total but does not show holding.
+Hold 5, mark 6, 7, 8, 9; or hold 4, mark 5, 6, 7, 8, 9. Recounting all may give the right total but does not show holding.
 
-Shown: 5 held, two new steps ending at 7 | Not yet seen: 2 counted as first step, ends at 6, error A
+Shown: 5 held, four new steps ending at 9 | Not yet seen: 5 counted as first step, ends at 8, error A
 
-- 6 with the starting number marked as a step: error A. Counts start as first step.
-- Every dot numbered 1 to 7: error C. Correct total but count-on method not yet shown.
+- 8 with the starting number marked as a step: error A. Counts the start as the first new step.
+- Every dot numbered 1 to 9: error C. Correct total but count-on method not yet shown.
+
 ## s01-X3a
 
 Mark the new counting word.
@@ -65,6 +69,7 @@ Card 8 + 1; hold 8 and label only the new counter 9.
 Shown: 9 beside the added counter | Not yet seen: 8 beside the added counter, error A
 
 - 8 on the added counter: error A. Counts eight as the added step.
+
 ## s01-X3b
 
 Circle the total after one more.
@@ -76,6 +81,7 @@ Answer: 9.
 Shown: 9 circled | Not yet seen: 8 circled with the start counted, error A
 
 - 8 with eight as the added step: error A. Does not advance to nine.
+
 ## s01-X4
 
 Mark a count that shows how many are left.
@@ -88,28 +94,33 @@ Shown: 8 then 7; seven remaining dots marked | Not yet seen: 9 then 8, answer 8,
 
 - 8 with counting words 9, 8: error A. Starts with nine as a removal step.
 - 9 with steps from 2 to 9: error B. Reports the last count word rather than seven steps.
+
 ## s01-X5a
 
-Draw a line from each card to the way you count it.
+Mark how you count 8 - 1.
 
-Answer: 5 + 3 to count on; 8 - 1 to count back.
+Answer: 7; hold 8 and count back to 7; or seven steps from 1 to 8.
 
-One method-selection task covering two cards. Accept counting up for subtraction if the child indicates that taught method. A swapped method is described without a register letter.
+One subtraction ask. Accept counting back one step after 8 or counting seven steps up from 1 to 8. Judge the shown counting method, not a matching choice.
 
-Shown: Both method lines appropriate | Not yet seen: Plus card linked to count back; describe the choice
+Shown: 8 held, one back step to 7 | Not yet seen: 8 used as the removal step, error A
+
+- 8 as the first removed step: error A. Counts the starting word as the removal step.
+- 8 reported after seven steps from 1: error B. Reports the stopping word instead of seven steps.
 
 ## s01-X5b
 
-Mark how you count 5 + 3.
+Mark how you count 5 + 5.
 
-Answer: 8; 6, 7, 8 after holding 5.
+Answer: 10; hold 5 and count 6, 7, 8, 9, 10.
 
-Hold either addend and mark each new count. From 3, 4, 5, 6, 7, 8 also accepted.
+Keep one five counted, then mark five new words. A correct total without preserving a group does not show counting on.
 
-Shown: 5 held; 6, 7, 8 marked | Not yet seen: 5, 6, 7, error A
+Shown: 5 held; 6, 7, 8, 9, 10 marked | Not yet seen: 5, 6, 7, 8, 9, error A
 
-- 7 with five as the first step: error A. Counts the start.
-- All counters numbered 1 to 8: error C. Recounts instead of holding a group.
+- 9 with five as the first step: error A. Counts the start.
+- All counters numbered 1 to 10: error C. Recounts instead of holding a group.
+
 ## s01-X6a
 
 Mark how you count 6 + 3.
@@ -121,6 +132,7 @@ Keep the start and mark one new word per added counter; either addend can be hel
 Shown: 6 held; 7, 8, 9 marked | Not yet seen: 6, 7, 8, error A
 
 - 8 with six counted as a step: error A. Counts the start.
+
 ## s01-X6b
 
 Mark how you count 7 - 2.

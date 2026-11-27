@@ -2,21 +2,15 @@ item_id,shown,compute,value,error,note
 s01-X1a,"5, 6, 7, 8 on the added counters",,,A,Counts the starting number as the first added step.
 s01-X1a,1 to 9 written on every counter,,,C,Recounts the entire starting group instead of holding it.
 s01-X1b,"8, with start counted as a step",5+4-1,8,A,Off by one because five was the first step.
-s01-X2b,6 with the starting number marked as a step,2+5-1,6,A,Counts start as first step.
-s01-X2b,Every dot numbered 1 to 7,,,C,Correct total but count-on method not yet shown.
 s01-X3a,8 on the added counter,,,A,Counts eight as the added step.
 s01-X3b,8 with eight as the added step,8+1-1,8,A,Does not advance to nine.
 s01-X4,"8 with counting words 9, 8",9-2+1,8,A,Starts with nine as a removal step.
 s01-X4,9 with steps from 2 to 9,,,B,Reports the last count word rather than seven steps.
-s01-X5b,7 with five as the first step,5+3-1,7,A,Counts the start.
-s01-X5b,All counters numbered 1 to 8,,,C,Recounts instead of holding a group.
 s01-X6a,8 with six counted as a step,6+3-1,8,A,Counts the start.
 s01-X6b,"6 with 7, 6 as the count",7-2+1,6,A,Counts seven as the first removed step.
 s01-X6b,7 with five counting-up steps shown,,,B,Reports endpoint instead of step count.
 s01-X7a,One shape in two loops,,,D,"Overlapping membership; counts 3, 2, 2 for shape groups."
-s01-X7b,"3, 1, 1 with one square uncounted",,,E,Omits a response.
 s01-X8,Correct marks without labels,,,G,Reader cannot identify groups.
-s01-X8,"4, 3, 0 with the square left out",,,E,Omits the square.
 s01-X8,"9 marks, one shape recorded in two categories",,,D,Only classify D when the paper shows membership in two categories; duplicate within one category gets a description.
 s01-X9a,Only 2 marks,,,E,One heard response left out.
 s01-X9b,"2 drums and 2 bells, same response in both",,,D,One response placed in both categories.
@@ -45,7 +39,7 @@ s01-X15c,8 without step marks,,,F,Larger count used as difference.
 s01-X15c,8 with step marks ending at 8,,,B,Endpoint instead of five steps.
 s01-C1a,13 with eleven counted as first added step,11+3-1,13,A,Counts start.
 s01-C1a,Counts the whole pictured start from one,,,C,Does not keep a counted group.
-s01-C1b,5 steps including twelve,16-12+1,5,A,Counts twelve as a step.
+s01-C1b,5 steps including twelve,16-12+1,5,A,Only for counting up from 12: counting the held start makes five rather than four steps. Do not apply this label to a valid backward count.
 s01-C1b,"16, with four steps shown",,,B,Reports endpoint.
 s01-D1,A response in two categories,,,D,One slip belongs to two groups.
 s01-D1,One response omitted,,,E,Marks do not cover the raw list.
@@ -54,5 +48,15 @@ s01-D2a,One slip in two groups,,,D,Overlapping categories.
 s01-D2a,One slip omitted,,,E,Missing response.
 s01-D2a,No labels,,,G,Unidentified categories.
 s01-D2r-total,3,3,3,H,Counts three categories instead of eleven responses.
-s01-D2r-more,6,6,6,F,Uses larger category count instead of four extras.
-s01-D2r-fewer,6,6,6,F,Uses larger category count instead of three unmatched.
+s01-D2r-more,6,6,6,F,Error F only when the child chooses a comparison involving the six kites and gives that larger count as the difference. Otherwise describe the response without assigning F.
+s01-D2r-fewer,6,6,6,F,Error F only when the child chooses a comparison involving the six kites and gives that larger count as the difference. Otherwise describe the response without assigning F.
+s01-X2b,8 with the starting number marked as a step,4+5-1,8,A,Counts the start as the first new step.
+s01-X2b,Every dot numbered 1 to 9,,,C,Correct total but count-on method not yet shown.
+s01-X5b,9 with five as the first step,5+5-1,9,A,Counts the start.
+s01-X5b,All counters numbered 1 to 10,,,C,Recounts instead of holding a group.
+s01-X7b,"3, 1, 1 with one oval uncounted",,,E,One oval in the new picture is omitted. Match the counts to the chosen valid rule.
+s01-X8,"4, 3, 0 with the cross left out",,,E,Omits the single cross.
+s01-X5a,8 as the first removed step,8-1+1,8,A,Counts the starting word as the removal step.
+s01-X5a,8 reported after seven steps from 1,,,B,Reports the stopping word instead of seven steps.
+s01-D2r-more,3 as the larger count for spirals and puffs,3,3,F,"Three spirals compared with two puffs have one unmatched response, not three."
+s01-D2r-fewer,3 as the larger count for spirals and puffs,3,3,F,"Three spirals compared with two puffs have one unmatched response, not three."

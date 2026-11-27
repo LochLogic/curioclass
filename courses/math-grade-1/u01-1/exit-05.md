@@ -10,7 +10,7 @@ teacher_note: Before class: print this half-sheet ticket for every child and kee
 
 Invented for practice.
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" width="100%" role="img" style="max-height:2.4in;font-size:24px;stroke:black;fill:white;stroke-width:2"><text x="15" y="35" fill="black" stroke="none" font-family="sans-serif" font-size="24">5 + 3</text><text x="15" y="115" fill="black" stroke="none" font-family="sans-serif" font-size="24">8 - 1</text><text x="360" y="30" fill="black" stroke="none" font-family="sans-serif" font-size="24">count on</text><text x="360" y="110" fill="black" stroke="none" font-family="sans-serif" font-size="24">count back</text><rect x="300" y="43" width="250" height="45"/><path d="M320 65 L520 65 L505 53 M520 65 L505 77"/><rect x="300" y="123" width="250" height="45"/><path d="M320 145 L520 145 M320 145 L335 133 M320 145 L335 157"/></svg>
-<p style="font-size:18pt">Draw a line from each card to the way you count it.</p>
-<div style="border:2px solid black;height:44px;margin:10px 0"></div><p style="font-size:18pt">Mark how you count 5 + 3.</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 155" width="100%" role="img" style="max-height:2.4in;font-size:24px;stroke:black;fill:white;stroke-width:2"><text x="20" y="40" fill="black" stroke="none" font-family="sans-serif" font-size="24">8 - 1</text><rect x="150" y="5" width="390" height="60"/><text x="20" y="120" fill="black" stroke="none" font-family="sans-serif" font-size="24">5 + 5</text><rect x="150" y="85" width="390" height="60"/></svg>
+<p style="font-size:18pt">Mark how you count 8 - 1.</p>
+<div style="border:2px solid black;height:44px;margin:10px 0"></div><p style="font-size:18pt">Mark how you count 5 + 5.</p>
 <div style="border:2px solid black;height:44px;margin:10px 0"></div>

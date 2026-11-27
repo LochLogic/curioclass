@@ -36,12 +36,12 @@ Invented for practice.
 <p style="font-size:18pt">Mark how many spirals.</p>
 <div style="border-bottom:2px solid black;height:28px"></div>
 
-<p style="font-size:18pt">Draw a question: how many more kites than puffs?</p>
+<p style="font-size:18pt">Draw a more question about these creatures.</p>
 <div style="border:2px solid black;height:62px;margin:10px 0"></div>
-<p style="font-size:18pt">Mark how many more kites than puffs.</p>
+<p style="font-size:18pt">Mark your count to answer your more question.</p>
 <div style="border-bottom:2px solid black;height:28px"></div>
 
-<p style="font-size:18pt">Draw a question: how many fewer spirals than kites?</p>
+<p style="font-size:18pt">Draw a fewer question about these creatures.</p>
 <div style="border:2px solid black;height:62px;margin:10px 0"></div>
-<p style="font-size:18pt">Mark how many fewer spirals than kites.</p>
+<p style="font-size:18pt">Mark your count to answer your fewer question.</p>
 <div style="border-bottom:2px solid black;height:28px"></div>
