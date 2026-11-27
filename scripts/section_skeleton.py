@@ -57,6 +57,22 @@ def mentions(line, days):
     return any(int(x) in days for x in DAYNUM.findall(line))
 
 
+DAYPHRASE = re.compile(r'\b[Dd]ays?\s+(\d{1,3}(?:\s*(?:,|to|and|-)\s*\d{1,3})*)')
+
+
+def register_days(line):
+    """The day numbers an error register row names as days ("Day 3", "days 4, 7 and 12", "days 4 to 6")."""
+    out = set()
+    for m in DAYPHRASE.finditer(line):
+        for s in re.split(r'\s*(?:,|and)\s*', m.group(1)):
+            ab = [int(x) for x in re.findall(r'\d{1,3}', s)]
+            if len(ab) == 2 and re.search(r'to|-', s):
+                out.update(range(ab[0], ab[1] + 1))
+            else:
+                out.update(ab)
+    return out
+
+
 def split_blocks(body):
     """[(kind, lines)]: kind 'table' for a markdown table, 'text' for a paragraph or list item run."""
     out, cur, kind = [], [], None
@@ -372,7 +388,13 @@ def build(course, section):
     w('')
     f6, _ = sliced(field(text, r'6\.'), dayset)
     reg = [b for b in (field(text, r'6\.').split('\n')) if b.lstrip().startswith('|')]
-    named = [ln for ln in reg[2:] if mentions(ln, dayset)]
+    # A register row names its days as "Day 3" or "days 4 and 12"; the bare numbers in its worked example
+    # ("6 + 2 = 7") are not days (fixed 2026-11-26: the old bare-number match pulled letters from other days and missed
+    # real ones). A section that holds the unit's Check day meets every letter, so it gets the whole register.
+    if any(r['kind'] == 'Check' for r in rows):
+        named = reg[2:]
+    else:
+        named = [ln for ln in reg[2:] if register_days(ln) & dayset]
     w(u.OPEN)
     if named:
         w('Error register rows (unit plan field 6) that name one of this section\'s days:')
