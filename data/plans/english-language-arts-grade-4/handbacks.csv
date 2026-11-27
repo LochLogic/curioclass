@@ -389,3 +389,26 @@ from_day,to_day,what,where,minutes,error,note
 152,154,s04-H1 to H3 and reading observations,repair,2,,Return individual observed criteria and paper notes privately. Preserve actual register evidence for day 156.
 153,154,s04-I1 script and language criteria,repair,2,,Return the script with one written move. Share repair time with days 151 and 152.
 156,159,"s04-J1 release, language and retained evidence",repair,4,,Return privately after the cold checks. Use the requested Return and repair slot for one priority. Do not infer technology or oral evidence that is missing.
+143,144,s04-X143,repair,3,,Return the attributed note with one source-tag move. Repair with one unrelated note.
+143,144,s04-R143-question,repair,1,,Return the separate Exit box judgment. Mark whether the question can be answered from its source.
+142,144,s04-E1 secondary feedback,repair,2,,Use the remaining priority only when the day 143 response called for it.
+144,145,s04-X144,repair,4,,Return the integration and inspect an unsupported connection in a different passage.
+144,145,unsupported-claim practice,repair,1,,Return the isolated judgment with a source limit marked.
+145,147,s04-X145,repair,2,,Return after F1. Give one next move about listener background or a claim’s reach.
+145,147,s04-R145-register,repair,1,,Return the six observed records privately. Mark the wording used and the next listener move.
+145,147,s04-R145-register makeup turns,discussion,20,,Hear the remaining 24 children in 18 speaking minutes and two handover minutes using the same released instructional paragraph.
+145,147,inference and audience practice,repair,1,,Return each isolated judgment with one different-case repair priority.
+147,148,s04-R145-register completed observations,repair,1,,Return the 24 completed individual marks from day 147 privately alongside other feedback.
+147,148,s04-X147,repair,4,,Return the paper plan and inspect a missing detail or listener-context need in a different case.
+146,148,s04-F1 secondary feedback,repair,2,,"Use only an unresolved priority remaining after day 147, with a fresh fragment."
+148,149,s04-X148,repair,4,,"On release, return one noted support issue and repair it with a different fragment."
+148,149,s04-R148-language,repair,1,,"On release, return the Exit box mark for the explanation of the colon’s effect."
+149,150,s04-X149,repair,4,,"On release, return the paper exit privately and use an unrelated opening to inspect a missing component."
+149,150,unjudged introduction feedback,revision,3,,Use one written comment in the existing own revision block; retain comment and original.
+150,154,s04-X150,repair,2,,"On release, return the linked sentence after the independent checks. Choose one repair criterion only."
+150,154,s04-R150-close,repair,1,,"On release, return the separate Exit box mark after the checks."
+154,155,s04-X154,repair,3,,"On release, return the organization analysis with one next move. Keep the reserved narrative paragraph closed."
+154,155,s04-R154-register,repair,1,,"On release, return the separate Exit box mark for the shared context explanation."
+153,155,days 151 to 153 secondary feedback,repair,3,,Choose an unresolved priority from actual evidence after day 154. Use one fresh component.
+155,159,s04-X155,repair,2,,Return privately in the requested day 159 repair after the cold checks. Check one different-case narrative component.
+155,159,unjudged narrative comment,repair,2,,Read one teacher comment and mark a place to improve in the retained own scene.
