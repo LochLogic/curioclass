@@ -60,6 +60,13 @@ CLAUDE_TOOLS = ','.join(['Read', 'Edit', 'Write', 'Glob', 'Grep', 'Bash(python:*
 CLAUDE_TIMEOUT = 3 * 3600
 LIMIT_WORDS = cl.LIMIT_WORDS + ('hit your limit', 'limit reached', 'reached your', 'usage cap', 'out of credits',
                                 'credit balance')
+# Codex's sandbox may run a Python without the markdown module, so a gate can crash before any edit
+# (math-grade-1 u04 data stopped this way, 2026-11-27 04:57).
+PY_NOTE = ('\n\nPython: use C:\\Users\\Cory\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 (it has every '
+           'module the gates need). If a gate or check you run before your edits still crashes or exits 2 for a '
+           'reason outside your job (a missing module, no baseline), do not stop: do the job, run the checks your job '
+           'can, and say so in your last message. The lead re-runs the course gate after every job and hands new '
+           'lines back.')
 NEVER = ('Never open .claude/, docs/Return/, Gemini/, Gemini.*, data/closet/words/, closet/words/, '
          'data/media-manifest.txt, data/docs-manifest.txt, any path containing math-4 or ela-6. No git commands at all. '
          'No em dashes, US spelling, "Curio Class" in full.')
@@ -591,6 +598,7 @@ class SectionLane(cl.Lane):
         _, model, effort = MODELS[stage.split('-')[0]]
         extra = ['-c', 'model="%s"' % model, '-c', 'model_reasoning_effort="%s"' % effort]
         step = dict(course=unit.course, num='u%s' % unit.uu, kind=stage)
+        prompt += PY_NOTE
         if self.dry:
             self.dry_show(unit, stage, prompt, 'codex exec %s' % ' '.join(extra))
             return dict(last='dry run', thread=None, resume=lambda *a: None)
