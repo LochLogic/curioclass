@@ -458,15 +458,9 @@ s07-P129-equality-retry,Says no because 20 should come right after the equal sig
 s08-X151,6,3+3+1-1,6,A,Starts one set of new counts at the held amount.
 s08-X151,5,3+3+1-2,5,A,Starts both sets of new counts at the held amount.
 s08-X152,4 + 4 = 7,4+4-1,7,A,Starts the four new counts with four.
-s08-X153a,5 + 6 = 11,5+6,11,B,Counts the moved dot in its former group.
-s08-X153b,Nine through seventeen,17-9+1,9,A,Includes the starting amount as a new count.
-s08-X154,19 tags,10+9,19,C,Uses the ending quantity for the joining change.
-s08-X154b,1 pin,1,1,C,Uses the ending quantity for the removal.
-s08-X155,14 dot cards,18-(2+3)+1,14,A,Starts the new counts at the known five.
-s08-X155b,5 + 13 = 17,5+13-1,17,A,Includes the held five among the thirteen counts.
 s08-X156,13 extra beads,12+1,13,D,Adds both exposed amounts.
 s08-X156,12 extra beads,12-1+1,12,A,Counts the first already matched bead again.
-s08-X156b,12 + 1 = 13,12+1,13,D,Adds the two groups rather than finding their gap.
+s08-X156b,12 + 1 = 13,12+1,13,D,Adds the two groups rather than finding their difference.
 s08-P156-fewer,13,12+1,13,D,Adds both exposed amounts.
 s08-X157,37,9+28,37,E,Counts every ten-stick as one square.
 s08-X157,109,8*10+1+28,109,E,Counts one of nine ten-sticks as one square.
@@ -479,3 +473,12 @@ s08-R2a,68 fits both clues,,,G,Accepts the candidate after checking only tens.
 s08-R2b,68,60+8,68,G,Keeps the original without testing the ones.
 s08-R2c,Six tens so it fits,,,G,Checks just one of the two clues.
 s08-X157b,"97, 98, 99, 100, 101, 102, 103, 104",97+7,104,A,Uses the printed start as the first new hook.
+s08-P155-check,19 − 4 − 2 − 3 = 11,19-(4+2+3)+1,11,A,Counts the held nine as a new count when checking by counting up.
+s08-P160-response-a,The second card shows 413,4*100+13,413,F,Writes the four tens and thirteen ones as adjacent counts.
+s08-P160-response-b,54 fits because it has five tens,,,G,Accepts the numeral after checking only the tens.
+s08-X153a,4 + 2 + 3 = 9,4+2+3,9,B,Counts the moved dot in its former group.
+s08-X154,18 tags,10+8,18,C,Uses the ending quantity for the joining change.
+s08-X154b,4 pins,4,4,C,Uses the ending quantity for the removal.
+s08-X155,11 dot cards,19-(4+2+3)+1,11,A,Starts the new counts at the known nine.
+s08-X155b,4 + 2 + 3 + 10 = 18,4+2+3+10-1,18,A,Includes the held nine among the ten new counts.
+s08-X153b,"15, 16, 17",17-(3+4+8)+1,3,A,Includes the starting amount as a new count.
