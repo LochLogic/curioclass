@@ -2178,3 +2178,11 @@ drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
 - **Music:** one syllable and solfege system named through K to 12 (ta, ti-ti, ti-ka-ti-ka; movable do with la-based
   minor), a school free to use its own if kept through the band.
 - **Calendar:** inside a week the weekday a school_day names is a placeholder (CALENDAR.md).
+
+## 2026-11-26: Codex day lanes stopped and baselined (chat)
+
+- **Soft stop:** Cory: "softly stop the codex work on days so we can pivot those tokens elsewhere". build/lanes/STOP let
+  each running job finish; all four lanes ended by 18:25.
+- **Ingest and baseline:** Cory: "ingest all its work and baseline it for refining later". Every lane job had committed
+  on main; gate baselines stored at commit 471687123 and counted in docs/reviews/codex-lanes-baseline-2026-11-26.md.
+  The refine is later.csv L161.
