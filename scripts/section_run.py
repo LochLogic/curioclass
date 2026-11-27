@@ -880,7 +880,8 @@ class SectionLane(cl.Lane):
                 n = cl.merge_texts(unit.course, second)
             code, out = self.py('scripts/section_skeleton.py', unit.course, 'u%d' % unit.u)
             self.log('%s %s: %d text rows merged; skeletons rebuilt (exit %d)' % (unit, stage, n, code))
-        self.finish(unit, stage, ('courses/%s/texts/' % unit.course, 'data/plans/ela-texts.csv'), before)
+        self.finish(unit, stage, ('courses/%s/texts/' % unit.course, 'data/plans/ela-texts.csv',
+                                  'data/plans/%s/sources.csv' % unit.course), before)
 
     def feedback(self, unit):
         marks = self.done()
