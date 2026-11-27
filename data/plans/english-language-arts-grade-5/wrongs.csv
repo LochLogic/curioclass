@@ -1,0 +1,189 @@
+item_id,shown,compute,value,error,note
+s01-X1,A richer person matters more.,,,B,An inference is unwarranted by the text.
+s01-X1,Everyone deserves a car.,,,BF,"A claim or right is brought in from memory or invented, not found in the text."
+s01-X2,Runs Mom's last sentence into A month sounded without a break.,,,AP,Rushing removes meaningful phrase boundaries.
+s01-X2b,"Marks only apart, leaving the final syllable unaccounted for.",,,AQ,The reader guesses before completing decoding.
+s01-X3,She hates Noor.,,,B,An inference is unwarranted by the text.
+s01-X3,She made Noor play one more round fairly.,,,A,A copied quotation changes the source's words.
+s01-X4,Only the final category counts.,,,I,A word meaning ignores its contextual clue.
+s01-X4,Status means an online post.,,,K,An unrelated contextual sense is chosen.
+s01-X5,He decides everyone's pay.,,,B,An inference is unwarranted by the text.
+s01-X5,Everyone gets free rides.,,,BF,"A claim or right is brought in from memory or invented, not found in the text."
+s01-X6,Workers have families.,,,C,A detail is presented as the entire main idea.
+s01-X6,Pay and other protection help families.,,,D,Only one of two main ideas is identified.
+s01-X7,He owns it because he drove it.,,,B,An inference is unwarranted by the text.
+s01-X7,Everyone gets a new wheel.,,,BF,"A claim or right is brought in from memory or invented, not found in the text."
+s01-X8,Tal gets a shelf for everyone.,,,B,An inference is unwarranted by the text.
+s01-X8,Article 2 promises a free shelf.,,,BF,"A claim or right is brought in from memory or invented, not found in the text."
+s01-X10,She was forbidden water.,,,B,An inference is unwarranted by the text.
+s01-X10,Every worker gets bottled water.,,,BF,"A claim or right is brought in from memory or invented, not found in the text."
+s01-X11,She works until six every Tuesday.,,,A,A copied quotation changes the source's words.
+s01-X11,She runs the meeting.,,,B,An inference is unwarranted by the text.
+s01-X13,Maren fixes it.,,,F,A comparison describes only one instance.
+s01-X13,Tal wants the city ruined.,,,B,An inference is unwarranted by the text.
+s01-X14,His jacket stuck.,,,H,A figurative phrase is read literally.
+s01-X14,Everyone leaves quickly.,,,B,An inference is unwarranted by the text.
+s01-X15,She opens the book again.,,,F,A comparison describes only one instance.
+s01-X15,Both forgot how to read.,,,B,An inference is unwarranted by the text.
+s01-X16,Cut the tag in half.,,,H,A figurative phrase is read literally.
+s01-X16,The theme is tools.,,,E,A topic label is offered as a theme.
+s01-X17,Article 2 guarantees a shelf.,,,BF,"A claim or right is brought in from memory or invented, not found in the text."
+s01-X17,She bars weekly users.,,,B,An inference is unwarranted by the text.
+s01-X18,The crew can gather around the farm board.,,,F,A comparison describes only one instance.
+s01-X18,Tal refuses to help.,,,B,An inference is unwarranted by the text.
+s01-X19,She writes p.m.,,,F,A comparison describes only one instance.
+s01-X19,The latch needs a new key.,,,B,An inference is unwarranted by the text.
+s01-X20,Maren would like Monday.,,,Q,Revision merely recopies the draft.
+s01-X20,She cancels Tuesday.,,,B,An inference is unwarranted by the text.
+s01-X21,"First radishes, then turnips.",,,G,Parts are listed without their relationship.
+s01-X21,She erases Dad's line.,,,B,An inference is unwarranted by the text.
+s01-A9A1,freedom to move and live across every country's borders,,,A,A copied quotation changes the source's words.
+s01-A9A2,Moving means she gives up her right to leave or return.,,,B,An inference is unwarranted by the text.
+s01-A9B1,It mentions towns.,,,C,A detail is presented as the entire main idea.
+s01-A9B2,The only freedom is choosing a town.,,,D,Only one of two main ideas is identified.
+s01-A9B3,People can move between towns.,,,D,Only one of two main ideas is identified.
+s01-A9C,A mood or condition.,,,K,An unrelated contextual sense is chosen.
+s01-A9D,People can go anywhere on vacation because I remember it.,,,BF,"A claim or right is brought in from memory or invented, not found in the text."
+s01-A9E,Welcomed.,,,I,A word meaning ignores its contextual clue.
+s01-A9F,It means going somewhere for the first time.,,,J,A morpheme is assigned the wrong meaning.
+s01-A9G1,Marks the last syllable as stressed.,,,I,A word meaning ignores its contextual clue.
+s01-A9G2,Duties of an office.,,,I,A word meaning ignores its contextual clue.
+s01-A12A1,a new line showing when people changed jobs,,,A,A copied quotation changes the source's words.
+s01-A12A2,She will check the old sheets because she found proof on them.,,,B,An inference is unwarranted by the text.
+s01-A12B,The article says everyone must get a free table.,,,BF,"A claim or right is brought in from memory or invented, not found in the text."
+s01-A12C,The chapter titles are Green Beans and Cucumbers.,,,G,Parts are listed without their relationship.
+s01-A12D,It was nice.,,,L,A claim has no relevant supporting detail.
+s01-A12E1,Uses no prepared source note.,,,AK,Discussion begins without prepared evidence.
+s01-A12E2,Talks over another student's turn.,,,AL,The speaker takes another person's agreed turn.
+s01-A12E3,Ignores the answer and repeats the opening point.,,,V,A discussion reply ignores the partner's idea.
+s01-A12E4,Repeats the opening view without reference to discussion.,,,AM,The conclusion does not review discussion ideas.
+s01-A22A1,Lane took the green card downstairs.,,,A,A copied quotation changes the source's words.
+s01-A22A2,She knows that the address is all they need.,,,B,An inference is unwarranted by the text.
+s01-A22B1,Notices.,,,E,A topic label is offered as a theme.
+s01-A22B2,A drop of water lands on a card.,,,C,A detail is presented as the entire main idea.
+s01-A22C1,Lane wants to throw it out.,,,F,A comparison describes only one instance.
+s01-A22C2,Upstairs is crowded.,,,F,A comparison describes only one instance.
+s01-A22C3,Lane tries a real path with things in his hands.,,,F,A comparison describes only one instance.
+s01-A22D1,Someone grabbed the card in a fist.,,,H,A figurative phrase is read literally.
+s01-A22D2,Maren sharpens a pencil onto the card.,,,H,A figurative phrase is read literally.
+s01-A22E,The new directions still send people upstairs.,,,B,An inference is unwarranted by the text.
+s01-A22F1,Climb onto a tree branch to see the card.,,,H,A figurative phrase is read literally.
+s01-A22F2,The wet card is attached to a broken chain.,,,H,A figurative phrase is read literally.
+s01-A22G1,One is completely dry.,,,K,An unrelated contextual sense is chosen.
+s01-A22G2,Both refer to the same floor.,,,K,An unrelated contextual sense is chosen.
+s01-A22G3,Both mean a stamp showing the town symbol.,,,K,An unrelated contextual sense is chosen.
+s01-A28A1,Mixes evidence about unrelated choices under one heading.,,,M,Unrelated ideas are put in one writing group.
+s01-A28A2,"Help is important, without a relevant detail.",,,L,A claim has no relevant supporting detail.
+s01-A28A3,Although joins two details intended to reinforce the same point.,,,N,A transition expresses the wrong relationship.
+s01-A28A4,Thing names the article's specific protection.,,,O,A vague placeholder replaces a precise word.
+s01-A28A5,Adds an unrelated opinion about a different chapter.,,,P,An informative ending introduces an unrelated claim.
+s01-A28A6,Only copied the old draft again.,,,Q,Revision merely recopies the draft.
+s01-A33A1,"I waited there, with no context for the speaker or problem.",,,R,The narrative situation is not established.
+s01-A33A2,Each event receives one equally flat statement.,,,S,Every narrated moment receives the same attention.
+s01-A33A3,After links the events in the opposite order.,,,T,A time expression reverses the intended sequence.
+s01-A33A3,Then begins every event.,,,BE,A narrative repeats only one transitional form.
+s01-A33A4,I grabbed the thing and went somewhere.,,,O,A vague placeholder replaces a precise word.
+s01-A33A5,A stranger solves the problem with no setup.,,,U,A narrative ending has no preparation in prior events.
+s01-A33A6,Everyone already knows where I am.,,,R,The narrative situation is not established.
+s01-A38A1,Mira put the books down.,,,A,A copied quotation changes the source's words.
+s01-A38A2,Tomas makes her accept his help.,,,B,An inference is unwarranted by the text.
+s01-A38B1,The theme is help.,,,E,A topic label is offered as a theme.
+s01-A38B2,The top book slipped sideways.,,,C,A detail is presented as the entire main idea.
+s01-A38B3,Working together.,,,E,A topic label is offered as a theme.
+s01-A38B4,The speaker moves a chair.,,,C,A detail is presented as the entire main idea.
+s01-A38C1,A wooden crossing was built inside the library.,,,H,A figurative phrase is read literally.
+s01-A38C2,Someone dropped a seed under a chair.,,,H,A figurative phrase is read literally.
+s01-A38D1,"Radishes is first, and Turnips is last.",,,G,Parts are listed without their relationship.
+s01-A38D2,First they talk by the wash table. Then Kira is next to a line.,,,G,Parts are listed without their relationship.
+s01-A38D3,The poem has two stanzas of four lines each.,,,G,Parts are listed without their relationship.
+s01-A38E1,the right to money when you lose your job,,,A,A copied quotation changes the source's words.
+s01-A38E2,Yes. The article only protects people who keep a job.,,,B,An inference is unwarranted by the text.
+s01-A38F1,A neighborhood.,,,K,An unrelated contextual sense is chosen.
+s01-A38F2,A guard stationed at a door.,,,K,An unrelated contextual sense is chosen.
+s01-A38G1,Optional extras.,,,I,A word meaning ignores its contextual clue.
+s01-A38G2,"Spect means speak, so a spectator calls out the plays.",,,J,A morpheme is assigned the wrong meaning.
+s01-A38G3,Stresses hood.,,,I,A word meaning ignores its contextual clue.
+s01-A38G4,A neighborhood.,,,I,A word meaning ignores its contextual clue.
+s01-A38H1,Tomas offers Mira an extra hand to keep.,,,H,A figurative phrase is read literally.
+s01-A38H2,Hands make the room brighter.,,,H,A figurative phrase is read literally.
+s01-A38I1,Both mean locked shut.,,,K,An unrelated contextual sense is chosen.
+s01-A38I2,They describe the same door position.,,,K,An unrelated contextual sense is chosen.
+s01-A38I3,"Lamp light makes the work easier, so the words have the same meaning.",,,K,An unrelated contextual sense is chosen.
+s01-A38J1,"The note claims the article guarantees a new job, with no supporting line.",,,L,A claim has no relevant supporting detail.
+s01-A38J2,Uses moreover to signal a contradiction.,,,N,A transition expresses the wrong relationship.
+s01-A39A1,"Over there it happened, with no speaker or situation identified.",,,R,The narrative situation is not established.
+s01-A39A2,Gives the central choice the same rushed treatment as every other event.,,,S,Every narrated moment receives the same attention.
+s01-A39A3,Before puts the second event first.,,,T,A time expression reverses the intended sequence.
+s01-A39A3,Begins every sentence with then.,,,BE,A narrative repeats only one transitional form.
+s01-A39A4,The character picks up some stuff.,,,O,A vague placeholder replaces a precise word.
+s01-A39A5,An unmentioned person arrives and fixes everything.,,,U,A narrative ending has no preparation in prior events.
+s01-A39B1,I left the place unnamed because the audience just knows it.,,,R,The narrative situation is not established.
+s01-A39B2,I wrote the same sentences more neatly.,,,Q,Revision merely recopies the draft.
+s01-A39B3,Copies the note without addressing the feedback.,,,Q,Revision merely recopies the draft.
+s01-A40A1,One group includes unrelated evidence.,,,M,Unrelated ideas are put in one writing group.
+s01-A40A2,Chooses a quotation that does not support the focus.,,,L,A claim has no relevant supporting detail.
+s01-A40A3,Although signals contrast between two details that agree.,,,N,A transition expresses the wrong relationship.
+s01-A40A4,The word stuff says exactly what the article protects.,,,O,A vague placeholder replaces a precise word.
+s01-A40A5,The closing switches to an unrelated topic.,,,P,An informative ending introduces an unrelated claim.
+s01-A40A6,Adds a heading that puts unrelated details in the same group.,,,M,Unrelated ideas are put in one writing group.
+s01-A40B1,"Jo offers a ride, with no second response.",,,F,A comparison describes only one instance.
+s01-A40B2,The classroom window shows heads.,,,F,A comparison describes only one instance.
+s01-A40B3,Ona May offers a room.,,,F,A comparison describes only one instance.
+s01-A40C1,The passage mentions print.,,,C,A detail is presented as the entire main idea.
+s01-A40C2,Large print is the only solution.,,,D,Only one of two main ideas is identified.
+s01-A40C3,Everyone can read large print.,,,D,Only one of two main ideas is identified.
+s01-A40D,The chart shows four.,,,AN,A heard summary reports only chart numbers.
+s01-A40E1,I just need to say the words.,,,AO,The reader cannot explain the passage's meaning.
+s01-A40E2,I don't know what either line means.,,,AO,The reader cannot explain the passage's meaning.
+s01-A40E3,Rushes across the punctuation so a change in speaker or thought is hard to hear.,,,AP,Rushing removes meaningful phrase boundaries.
+s01-A40E4,Guessed from the topic after seeing the first letter.,,,AQ,The reader guesses before completing decoding.
+s01-A41A1,Starts without evidence from the assigned monologue.,,,AK,Discussion begins without prepared evidence.
+s01-A41A2,Interrupts and takes a peer's agreed turn.,,,AL,The speaker takes another person's agreed turn.
+s01-A41A3,Repeats the opening view without using the reply.,,,V,A discussion reply ignores the partner's idea.
+s01-A41A4,Copies the first claim without using an idea from discussion.,,,AM,The conclusion does not review discussion ideas.
+s01-A41B1,Shows a speech that assumes the new listener knows the place and problem.,,,R,The narrative situation is not established.
+s01-A41B2,Offers one undated page.,,,AR,One undated piece is used to claim routine writing.
+s01-A41C1,Mira liked apples at lunch before Tomas reached the door.,,,AS,Sentence expansion adds irrelevant information.
+s01-A41C2,Tomas opened the door and reached for Mira's box.,,,AS,Sentence expansion adds irrelevant information.
+s01-A41C3,Mira thought for another hour before she moved.,,,AS,Sentence expansion adds irrelevant information.
+s01-A41C4,Longer is always better.,,,AS,Sentence expansion adds irrelevant information.
+s01-A41C5,And shows the location of the paper.,,,AT,A preposition is identified as a conjunction.
+s01-A41C6,Against joins two complete thoughts.,,,AT,A preposition is identified as a conjunction.
+s01-A41C7,Oh tells where the door is.,,,AT,A preposition is identified as a conjunction.
+s01-A41C8,Mira had balance the box before Tomas opened the door.,,,AU,A perfect verb lacks its past participle.
+s01-A41C9,Mira has balance the box.,,,AU,A perfect verb lacks its past participle.
+s01-A41C10,Mira will have balance the box.,,,AU,A perfect verb lacks its past participle.
+s01-A41C11,Tomas reached the door before Mira balanced the box.,,,T,A time expression reverses the intended sequence.
+s01-A41C12,She became unsure before she balanced the box.,,,T,A time expression reverses the intended sequence.
+s01-A41C13,"If Tomas steadies the box tomorrow, Mira carried it yesterday.",,,T,A time expression reverses the intended sequence.
+s01-A41C14,Leaves offers in the past narrative.,,,AV,A past narrative shifts unintentionally to present.
+s01-A41C15,Either Mira nor Tomas; neither Mira or Tomas.,,,AW,Correlative conjunctions are mismatched.
+s01-A41C16,Inside lay books pencils and paper.,,,AX,A written series has no separators.
+s01-A41C17,After a pause Mira stopped.,,,AY,An introductory element is not separated.
+s01-A41C18,"Yes, Tomas the box is heavy, isn't it?",,,AZ,Direct address is not set off.
+s01-A41C18,"Yes Tomas, the box is heavy, isn't it?",,,BC,An introductory yes or no is not separated.
+s01-A41C18,"Yes, Tomas, the box is heavy isn't it?",,,BD,A tag question is not separated.
+s01-A41C19,No it is not.,,,BC,An introductory yes or no is not separated.
+s01-A41C20,Leaves The Open Door unmarked.,,,BA,A work's title is left unmarked.
+s01-A41C21,Dignaty stays as printed.,,,BB,A misspelling remains after reference checking.
+s01-A41C22,I wrote dignaty because it looked familiar.,,,BB,A misspelling remains after reference checking.
+s01-A41D1,Guesses a word from the first syllable.,,,AQ,The reader guesses before completing decoding.
+s01-A41D2,Replaces impartial with important after looking at the first letters.,,,AQ,The reader guesses before completing decoding.
+s01-A41D3,Writes partial when impartial is dictated.,,,AQ,The reader guesses before completing decoding.
+s01-A41D4,"It began with im, so I guessed important.",,,AQ,The reader guesses before completing decoding.
+s01-A41E1,The notes say only that the student read the words.,,,AO,The reader cannot explain the passage's meaning.
+s01-A41E2,Audio rushes straight through phrase boundaries.,,,AP,Rushing removes meaningful phrase boundaries.
+s01-A41E3,The reader guesses from the topic before checking syllables.,,,AQ,The reader guesses before completing decoding.
+s01-A22H,The quote fits because it sounds good.,,,L,A claim has no relevant supporting detail.
+s01-A38K1,"Claims that Tomas chooses where the books go, contrary to the ending.",,,B,An inference is unwarranted by the text.
+s01-A38K2,Answers from a familiar article on fair pay without consulting Article 25.,,,BF,"A claim or right is brought in from memory or invented, not found in the text."
+s01-A38K3,Copies the first line of the poem to support a claim about its conclusion with no connection.,,,L,A claim has no relevant supporting detail.
+s01-P2-screen,Runs Tal's warning into the next narration without a pause.,,,AP,Rushing removes meaningful phrase boundaries.
+s01-P2-words,Reads occupied for unoccupied.,,,AQ,The reader guesses before completing decoding.
+s01-P15-word,Reads obscure after seeing only the start.,,,AQ,The reader guesses before completing decoding.
+s01-P15-line,Guesses a different word about fading.,,,AQ,The reader guesses before completing decoding.
+s01-P15-spell,Writes obscurety.,,,AQ,The reader guesses before completing decoding.
+s01-P15,Chooses a focus about how to draw a map.,,,L,A claim has no relevant supporting detail.
+s01-P19,Chooses an opening about bringing food.,,,M,Unrelated ideas are put in one writing group.
+s01-P20,Chooses the note asking for neater handwriting.,,,Q,Revision merely recopies the draft.
+s01-A28A7,I added a heading to decorate the page.,,,M,The formatting choice does not help the reader follow the evidence groups.
