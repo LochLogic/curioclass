@@ -39,6 +39,8 @@ How could Rin split the loose dots to fill both trays?
 
 4 to the six-dot tray and 2 to the eight-dot tray. Both trays reach 10 and all 6 loose dots are used once.
 
-Shape: Infer one split from two different gaps. Practice traces one completed transfer. Reserve both unfinished trays and the loose group.
+Shape: Infer one split from the number of spaces left in each tray. Practice traces one completed transfer. Reserve both unfinished trays and the loose group.
 
-- **C.** Moves 4 to the first tray and still tries to put all 6 in the second one.
+- **C.** Marks 6 for the first tray and 2 for the second, reusing the two already assigned to the second.
+
+- **C.** Marks 4 for the first tray and 6 for the second, reusing the four already assigned to the first.

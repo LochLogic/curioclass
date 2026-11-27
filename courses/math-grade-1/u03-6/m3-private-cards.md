@@ -18,7 +18,7 @@ teacher_note: Teacher holds and reads these in a quiet individual turn. Show no 
 
 | 3 |
 | :---: |
-| 1 + 8. How many? |
+| 2 + 2. How many? |
 
 | 4 |
 | :---: |

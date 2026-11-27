@@ -51,23 +51,23 @@ Shape: Answer one private bare fact mentally. After the interview, mark its blan
 
 ## M1c
 
-1 + 1. How many?
+1 + 6. How many?
 
-2. Record the first independent mental answer and describe any observed method separately from the later paper.
+7. Record the first independent mental answer and describe any observed method separately from the later paper.
 
 Shape: Answer one private bare fact mentally. After the interview, mark its blank response panel independently.
 
-- **A.** Says 1 after counting the held one as the new count.
+- **A.** Says 6 after counting the held six as the new count.
 
 ## M1d
 
-9 - 8. How many?
+3 − 2. How many?
 
 1. Record the first independent mental answer and describe any observed method separately from the later paper.
 
 Shape: Answer one private bare fact mentally. After the interview, mark its blank response panel independently.
 
-- **H.** 2 after copying 9 - 7 despite the extra piece removed.
+- **A.** Gives 2 by including the held two when counting up to three.
 
 ## M1e
 
@@ -111,13 +111,13 @@ Shape: Answer one private bare fact mentally. After the interview, mark its blan
 
 ## M3c
 
-1 + 8. How many?
+2 + 2. How many?
 
-9. Record the first independent mental answer and describe any observed method separately from the later paper.
+4. Record the first independent mental answer and describe any observed method separately from the later paper.
 
 Shape: Answer one private bare fact mentally. After the interview, mark its blank response panel independently.
 
-- **A.** 8 after counting the held 8 as the first step.
+- **A.** Says 3 after treating the held two as the first of two new counts.
 
 ## M3d
 
@@ -151,13 +151,13 @@ Shape: Answer one private bare fact mentally. After the interview, mark its blan
 
 ## P54
 
-Why do 5 and 4 make the same total as 4 and 5?
+Why do 15 plus 0 and 0 plus 15 make the same total?
 
-The same 4 and 5 swap places. Both make 9. Accept arrows accounting for both entire groups.
+The same group of 15 and the same empty group swap places. Both totals are 15. Accept arrows linking both mats to their new positions.
 
 Shape: explain a specified reversal with the original groups, on a dedicated slip. Practice handles three groups on trains.
 
-- **A.** Gets 8 after counting the held 5 as the first new count.
+- **H.** Says both totals are 14 because 14 plus zero was 14, even though this card shows a different starting group.
 
 ## P55
 
@@ -171,13 +171,13 @@ Shape: select an order from a bare three-number expression and record the groups
 
 ## M2
 
-9 + 6. How could a ten help you find the sum?
+8 + 3 + 6. How could a ten help you find the sum?
 
-Move 1 of 6 to the 9, leaving 5. 9 + 1 + 5 = 10 + 5 = 15.
+Move 2 of the 3 beside 8. Add 1 and 6 to the ten to get 17. Accept another split that makes ten and keeps all pieces.
 
 Shape: construct the whole make-ten record, picture and equation, on an unworked slip. Practice traces already completed moves.
 
-- **C.** Moves one from six and still adds all six to ten, giving 16.
+- **C.** Moves two from three, then adds the whole three and six to ten, giving 19.
 
 ## S63
 
@@ -191,93 +191,93 @@ Shape: independently build a forward-count record from a stated addend and three
 
 ## S64a
 
-8 + 8 = 16. How does it help with 8 + 7?
+7 + 7 = 14. How does it help with 7 + 6 + 2?
 
-15. Mark the one fewer in the second group and adjust the known total by one.
+15. Starting from 14, remove one from the second group and then include the two new pieces.
 
-Shape: adjust a supplied addition fact on a reserved one-fewer picture. Model other quantities on physical pieces.
+Shape: adjust a supplied addition fact on a reserved picture with one removal and two arrivals. Model other quantities on physical pieces.
 
-- **H.** Copies 16 despite marking one fewer.
+- **H.** Copies 14 from the double despite showing both changes.
 
 ## S64b
 
-17 − 9 = 8. How does it help with 16 − 9?
+13 − 6 = 7. How does it help with 13 − 7?
 
-7. A one-smaller start with the same 9 removed leaves one fewer.
+6. With the same start and one more removed, one fewer remains.
 
 Shape: adjust a supplied subtraction fact on the paired reserved picture. Practice explains an already marked change.
 
-- **H.** Copies 8 even after marking that the start has one fewer.
+- **H.** Copies 7 even after marking the one extra removal.
 
 ## S64c
 
-How could you count up to find 11 take away 8?
+How could you count up to find 18 take away 17?
 
-Hold 8. Mark 9, 10 and 11 as three new counts, showing 8 + 3 = 11, so the difference is 3.
+Hold 17. Mark 18 as one new count. Link 17 + 1 = 18, so the difference is 1.
 
 Shape: produce an independent count-up record linked to a related addition. Practice evaluates supplied working.
 
-- **A.** Makes 4 new marks by including the held 8.
+- **A.** Makes two new marks by including the held 17.
 
 ## N65a
 
-□ + 5 = 12. What number goes in the box?
+□ + 0 = 13. What number goes in the box?
 
-7 in the box.
+13 in the box. Adding zero leaves the starting amount unchanged.
 
 Shape: fill the first addend of a bare equation. Practice acts the story.
 
-- **A.** Writes 8 by including the 5 when counting up to 12.
+- **H.** Writes 12 by copying the result of a known twelve-plus-zero fact after reading 13.
 
 ## N65b
 
-7 + □ = 13. What number goes in the box?
+9 + □ = 10. What number goes in the box?
 
-6 in the box.
+1 in the box.
 
 Shape: fill the second addend without group pictures. Practice moves a supplied story label.
 
-- **A.** Writes 7 by including the 7 when counting up to 13.
+- **A.** Writes 2 by including 9 when counting up to 10.
 
 ## N65c
 
-6 + 8 = □. What number goes in the box?
+0 + 11 = □. What number goes in the box?
 
-14 in the box.
+11 in the box.
 
 Shape: determine the sum in a bare equation. Practice traces groups on acted scenes.
 
-- **A.** Writes 13 after saying 8 as the first of six new counts.
+- **A.** Writes 10 after saying zero as the first of eleven new counts.
 
 ## N65d
 
-□ − 3 = 9. What number goes in the box?
+□ − 5 = 10. What number goes in the box?
 
-12 in the box. The picture must show the corresponding marked story quantity.
+15 in the box. Show five departing from a starting group of 15 and leaving 10.
 
 Shape: determine a subtraction start and mark it on a blank picture mat. Practice models a start with removal pieces.
 
-- **I.** Writes 6 by subtracting 3 from the result.
+- **I.** Writes 5 by subtracting 5 from the result, 10.
 
 ## N65e
 
-16 − □ = 5. What number goes in the box?
+16 − □ = 0. What number goes in the box?
 
-11 in the box. The picture must show the corresponding marked story quantity.
+16 in the box. Mark all sixteen pieces departing, with zero left.
 
 Shape: determine a removal change and mark it on a blank picture mat. Practice revises a supplied label.
 
-- **F.** Writes 5 in the box for the group that left.
+- **F.** Writes 0 for the amount removed, copying how many pieces stayed.
 
 ## N65f
 
-19 − 6 = □. What number goes in the box?
+20 − 0 = □. What number goes in the box?
 
-13 in the box.
+20 in the box. Nothing is removed.
 
 Shape: determine a difference in a bare equation. Practice compares completed scene equations.
 
-- **G.** Writes 12 after marking one removal and then all six.
+- **H.** Writes 19 by copying the result of taking one away, even after reading zero.
 
 ## S67
 
@@ -311,13 +311,13 @@ Shape: regroup one's own whole story record and link it to subtraction. Practice
 
 ## P67-removal
 
-If Rin takes away her 7 square tiles, how many stay?
+Rin takes away her 7 square tiles. How would you show what stays?
 
-10 stay. The groups of two and eight give the remainder. Use 17 − 7 = 10 or the related addition.
+Mark 7 square tiles leaving and 10 staying. An equation such as 17 − 7 = 10 or its addition relation can support the marks.
 
 Shape: Identify what remains after removing one stated group from the child’s retained story drawing.
 
-- **E.** Writes 7 − 17 = 10 because subtraction can be reversed.
+- **E.** Starts with the seven square tiles and tries to cross out seventeen because they reversed the numbers.
 
 ## T67a
 
@@ -341,30 +341,30 @@ Shape: build a teen drawing from a spoken numeral in an empty space. Practice re
 
 ## S67b
 
-18 take away 11. How would you show the steps?
+17 take away 11. How would you show the steps?
 
-Partition the 11 into ten and one, removing exactly 11. 18 − 10 − 1 = 7.
+Partition 11 into ten and one. 17 − 10 − 1 = 6.
 
 Shape: generate a teen removal partition and steps without a supplied split. Model tracking pieces in a different case.
 
-- **G.** Tries to remove 11 more after removing ten, running three short.
+- **G.** Tries to take 11 more after removing ten and runs four short.
 
 ## C1
 
-7 + 6. How could you make a ten to find the sum?
+7 + 4 + 7. How could you make a ten to find the sum?
 
-Move 3 of 6 to the 7, leaving another 3. 7 + 3 + 3 = 10 + 3 = 13.
+For example, move 3 from 4 to a group of 7, leaving 1. 10 + 1 + 7 = 18. Accept another conserved split that makes ten.
 
 Shape: independently produce a picture and equation showing a conserved split. Keep this family and the blank slip format out of unit 3 model and practice.
 
-- **C.** Retains all 6 after moving 3 to the 7 and gives 16.
+- **C.** Moves 3 from 4 and still tries to add the whole 4 and the other 7, giving 21.
 
 ## C2
 
-14 take away 6. How could you reach ten on the way?
+16 take away 11. How could you reach ten on the way?
 
-Remove 4 to reach ten, then 2 more. 14 − 4 − 2 = 10 − 2 = 8.
+Remove 6 to reach ten, then 5 more. 16 − 6 − 5 = 5.
 
 Shape: independently show both stages of a reach-ten removal. Practice uses already tracked moves.
 
-- **G.** Removes the whole 6 again after reaching ten and gets 4.
+- **G.** Tries to remove all 11 again after reaching ten, and runs one short.

@@ -8,24 +8,24 @@ teacher_note: Keep closed until its named assessment part. Read each stem aloud.
 ---
 # Strategy folder adjustment sheet
 
-<p style="font-size:18pt;margin:4px 0">8 + 8 = 16. How does it help with 8 + 7?</p>
+<p style="font-size:18pt;margin:4px 0">7 + 7 = 14. How does it help with 7 + 6 + 2?</p>
 
-| First group | Second group |
+| First group | Second group | Join |
+| :---: | :---: | :---: |
+| ● ● ● ● ● ● ● | ● ● ● ● ● ● ⊗ | + ● &nbsp; + ● |
+
+7 + 6 + 2 = □
+
+<p style="font-size:18pt;margin:4px 0">13 − 6 = 7. How does it help with 13 − 7?</p>
+
+| 13 − 6 | 13 − 7 |
 | :---: | :---: |
-| ● ● ● ● ● ● ● ● | ● ● ● ● ● ● ● ● |
+| ⊗ ⊗ ⊗ ⊗ ⊗<br>⊗ ● ● ● ●<br>● ● ● | ⊗ ⊗ ⊗ ⊗ ⊗<br>⊗ ⊗ ● ● ●<br>● ● ● |
 
-8 + 7 = □
+13 − 7 = □
 
-<p style="font-size:18pt;margin:4px 0">17 − 9 = 8. How does it help with 16 − 9?</p>
+<p style="font-size:18pt;margin:4px 0">How could you count up to find 18 take away 17?</p>
 
-| Start of 17 | One fewer |
-| :---: | :---: |
-| ● ● ● ● ●<br>● ● ● ● ●<br>● ● ● ● ●<br>● ● | <div style="height: 1.3em; border: 1px solid black"></div> |
-
-16 − 9 = □
-
-<p style="font-size:18pt;margin:4px 0">How could you count up to find 11 take away 8?</p>
-
-8 &nbsp; → &nbsp; ________
+17 &nbsp; → &nbsp; ________
 
 <div style="height: 1.3em; border: 1px solid black"></div>

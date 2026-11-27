@@ -34,6 +34,6 @@ Use your picture from this story.
 
 <div style="height: 1.3em; border: 1px solid black"></div>
 
-<p style="font-size:18pt;margin:4px 0">If Rin takes away her 7 square tiles, how many stay?</p>
+<p style="font-size:18pt;margin:4px 0">Rin takes away her 7 square tiles. How would you show what stays?</p>
 
 <div style="height: 1.3em; border: 1px solid black"></div>

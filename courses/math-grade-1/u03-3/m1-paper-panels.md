@@ -16,11 +16,11 @@ teacher_note: Fold before distributing. Open only after the oral turn. Mark at t
 
 <div style="height: 1.3em; border: 1px solid black"></div>
 
-<p style="font-size:18pt;margin:4px 0">1 + 1. How many?</p>
+<p style="font-size:18pt;margin:4px 0">1 + 6. How many?</p>
 
 <div style="height: 1.3em; border: 1px solid black"></div>
 
-<p style="font-size:18pt;margin:4px 0">9 - 8. How many?</p>
+<p style="font-size:18pt;margin:4px 0">3 − 2. How many?</p>
 
 <div style="height: 1.3em; border: 1px solid black"></div>
 

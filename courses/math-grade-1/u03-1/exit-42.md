@@ -16,4 +16,4 @@ teacher_note: Before class print this half slip. Keep it closed until day 42 Exi
 
 | &nbsp; | &nbsp; | &nbsp; |
 | :---: | :---: | :---: |
-| ▧ &nbsp; ○ ○<br>▢ | ▧ &nbsp; ○ ○ ○<br>▢ | ▧ &nbsp; ○ ○ ○ ○<br>▢ |
+| ○ ○ &nbsp; ▧<br>▢ | ○ ○ ○ &nbsp; ▧<br>▢ | ○ ○ ○ ○ &nbsp; ▧<br>▢ |

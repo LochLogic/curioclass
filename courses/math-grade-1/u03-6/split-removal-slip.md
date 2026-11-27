@@ -8,7 +8,7 @@ teacher_note: Keep closed until its named assessment part. Read each stem aloud.
 ---
 # Strategy folder split-removal slip
 
-<p style="font-size:18pt;margin:4px 0">18 take away 11. How would you show the steps?</p>
+<p style="font-size:18pt;margin:4px 0">17 take away 11. How would you show the steps?</p>
 
 <div style="height: 2.5em; border: 1px solid black"></div>
 

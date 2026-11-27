@@ -35,9 +35,9 @@ Shape: Recover the new total from a removal that is already recorded. Practice u
 
 ## E52a
 
-Rin had 16 flags. She put one in each cup and one on a shelf. How many stayed on the tray?
+Rin had 19 flags. She put one in each cup and one on a shelf. How many stayed on the tray?
 
-13 stay. Three leave, so the ten and three loose flags remain.
+13 stay. Five cups and the shelf take six, so the ten and three loose flags remain.
 
 Shape: Produce the remaining amount from a fresh flag scene on the first of two independent panels. Practice repairs a label on an acted single scene. Reserve this layout and its numbers.
 
@@ -45,15 +45,13 @@ Shape: Produce the remaining amount from a fresh flag scene on the first of two 
 
 ## E52b
 
-Rin had 18 flags. She took some away. 17 stayed. How many did she take?
+Look at the two flag pictures. How many flags did Rin take away?
 
-1 flag leaves. The ten stays in both pictures and eight singles become seven.
+1 flag. Exactly one flag on the first tray is missing from its place on the second. The tied bundle stays.
 
-Shape: Produce the leaving amount from a separate fresh flag scene. Keep the two-panel result/change comparison and these numbers out of teaching, repairs and practice cards.
+Shape: Produce the leaving amount from a separate fresh flag scene. Keep the two-panel result/change comparison and this picture out of teaching, repairs and practice cards.
 
-- **F.** Marks 17 for the amount taken.
-
-- **A.** Marks 2 after counting both 17 and 18 as new steps.
+- **F.** Marks the flags still on the second tray as the flags Rin took.
 
 ## E53
 
@@ -63,6 +61,6 @@ Draw 4 more ones beside the stamped ten, showing all 14 because zero were remove
 
 Shape: Complete a partial answer representation when the removal is zero. Practice uses oral requests or loose-piece trades without stamped answer slips and keeps this case out.
 
-- **B.** Labels the finished picture 5 after treating the stick as one.
+- **B.** Draws 13 loose ones because the stamped ten is treated as one.
 
 - **H.** Draws 3 more by copying the result for one removed.

@@ -12,6 +12,6 @@ teacher_note: Before class print this half slip. Keep it closed until day 47 Exi
 
 | Strips | Loose | Sleeve |
 | :---: | :---: | :---: |
-| [▪ ▪ ▪ ▪ ▪ ▪]<br>[▪ ▪ ▪ ▪ ▪ ▪] | ▪ ▪ ▪ ▪ | □ □ □ □ □<br>□ □ □ □ □ |
+| [▪ ▪ ▪ ▪]<br>[▪ ▪ ▪ ▪ ▪ ▪ ▪] | ▪ ▪ ▪<br>▪ ▪ ▪ | □ □ □ □ □<br>□ □ □ □ □ |
 
 <div style="height: 2.5em; border: 1px solid black"></div>

@@ -18,11 +18,11 @@ teacher_note: Teacher holds and reads these in a quiet individual turn. Show no 
 
 | 3 |
 | :---: |
-| 1 + 1. How many? |
+| 1 + 6. How many? |
 
 | 4 |
 | :---: |
-| 9 - 8. How many? |
+| 3 − 2. How many? |
 
 | 5 |
 | :---: |

@@ -20,6 +20,6 @@ teacher_note: Before class print this half slip. Keep it closed until day 46 Exi
 
 | &nbsp; |
 | :---: |
-| ● ⊗ ● ● □ ⊗ ● ⊗ |
+| ⊗ ● □ ⊗ ⊗ ⊗ |
 
 ________

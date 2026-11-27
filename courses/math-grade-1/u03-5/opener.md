@@ -9,7 +9,7 @@ credit: ours
 
 ## The mathematics
 
-A pair making ten helps with many sums, and a known double can be a shorter path on some cases. Moving a piece within the whole preserves the total. In subtraction, partition what leaves before crossing it out. Counting up from the removed amount to the start measures the same gap as subtracting.
+A pair making ten helps with many sums, and a known double can be a shorter path on some cases. Moving a piece within the whole preserves the total. In subtraction, partition what leaves before crossing it out. Counting up from the removed amount to the start finds the same difference as subtracting.
 
 ## In class
 

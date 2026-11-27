@@ -45,13 +45,23 @@ Shape: reconstruct one score from a pictured turn record. Practice uses familiar
 
 ## E61
 
-How would you finish this removal strip?
+Rin will take away 19 dots in all. Ten are on the mat now, and 10 still need to go. How many are already gone?
 
-Mark 9 already removed because 11 off in all minus the 2 still to take is 9. Cross out exactly 2 of the 10 left to show 8. A starting numeral is optional.
+9. Nine gone and ten still to go make 19. Write 9 in the Already gone box.
 
-Shape: Recover the covered removal from the two parts of the instruction. Practice begins with a visible start and physically separates what goes. Reserve the folded record.
+Shape: Recover the covered removal from the whole removal and the part still to go. Practice begins with a visible start and physically separates what goes. Reserve the folded record.
 
-- **G.** Starts a fresh removal of 11 from the 10 left and runs out.
+- **F.** Writes 10 in Already gone by copying the number of dots still on the mat.
+
+## E61-left
+
+Rin takes away the 10 on the mat. How many are left at the end?
+
+0. Cross out each of the ten on the mat once and write 0 in the Left at the end box.
+
+Shape: Show the second removal on the same strip, so the two parts make the whole 19. Practice begins with a visible start and physically separates what goes. Reserve the folded record.
+
+- **G.** Tries to take all 19 again from the ten on the mat and runs out.
 
 ## E62
 

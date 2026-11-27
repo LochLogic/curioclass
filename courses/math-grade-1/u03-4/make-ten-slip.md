@@ -8,7 +8,7 @@ teacher_note: Keep closed until its named assessment part. Read each stem aloud.
 ---
 # Make-ten slip
 
-<p style="font-size:18pt;margin:4px 0">9 + 6. How could a ten help you find the sum?</p>
+<p style="font-size:18pt;margin:4px 0">8 + 3 + 6. How could a ten help you find the sum?</p>
 
 <div style="height: 2.5em; border: 1px solid black"></div>
 

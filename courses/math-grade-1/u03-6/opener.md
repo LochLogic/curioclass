@@ -9,7 +9,7 @@ credit: ours
 
 ## The mathematics
 
-Choose a strategy that fits the numbers. A short count up makes a small gap visible. A related double or a ten can make a longer difference easier. A missing start can be rebuilt by returning the removed pieces to those that remain.
+Choose a strategy that fits the numbers. A short count up makes a small difference easy to see. A related double or a ten can make a larger difference easier. A missing start can be rebuilt by returning the removed pieces to those that remain.
 
 ## In class
 

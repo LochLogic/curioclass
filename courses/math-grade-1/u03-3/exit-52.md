@@ -8,20 +8,20 @@ teacher_note: Before class print this half slip. Keep it closed until day 52 Exi
 ---
 # Exit 52
 
-<p style="font-size:18pt;margin:4px 0">Rin had 16 flags. She put one in each cup and one on a shelf. How many stayed on the tray?</p>
+<p style="font-size:18pt;margin:4px 0">Rin had 19 flags. She put one in each cup and one on a shelf. How many stayed on the tray?</p>
 
-| Tray before | Two cups and shelf |
+| Tray before | Cups and shelf |
 | :---: | :---: |
-| ▰<br>⚑ ⚑ ⚑ ⚑ ⚑ ⚑ | ☐ &nbsp; ☐ &nbsp; ▱ |
+| ▰<br>⚑ ⚑ ⚑ ⚑ ⚑<br>⚑ ⚑ ⚑ ⚑ | ☐ &nbsp; ☐ &nbsp; ☐ &nbsp; ☐ &nbsp; ☐ &nbsp; ▱ |
 
 <div style="height: 1.3em; border: 1px solid black"></div>
 
 Invented for practice.
 
-<p style="font-size:18pt;margin:4px 0">Rin had 18 flags. She took some away. 17 stayed. How many did she take?</p>
+<p style="font-size:18pt;margin:4px 0">Look at the two flag pictures. How many flags did Rin take away?</p>
 
-| Start | Stayed | Left |
+| Before | After | Taken away |
 | :---: | :---: | :---: |
-| ▰<br>⚑ ⚑ ⚑ ⚑ ⚑ ⚑ ⚑ ⚑ | ▰<br>⚑ ⚑ ⚑ ⚑ ⚑ ⚑ ⚑ | <div style="height: 1.3em; border: 1px solid black"></div> |
+| ▰<br>⚑ ⚑ ⚑ ⚑ ⚑ ⚑ ⚑ ⚑ | ▰<br>⚑ ⚑ ⚑ &nbsp; &nbsp; ⚑ ⚑ ⚑ ⚑ | <div style="height: 1.3em; border: 1px solid black"></div> |
 
 Invented for practice.

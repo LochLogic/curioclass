@@ -8,10 +8,14 @@ teacher_note: Before class print this half slip. Keep it closed until day 61 Exi
 ---
 # Exit 61
 
-<p style="font-size:18pt;margin:4px 0">How would you finish this removal strip?</p>
+<p style="font-size:18pt;margin:4px 0">Rin will take away 19 dots in all. Ten are on the mat now, and 10 still need to go. How many are already gone?</p>
 
-11 to take away altogether.
+| Already gone | On the mat now |
+| :---: | :---: |
+| ▧<br><div style="height: 1.3em; border: 1px solid black"></div> | ● ● ● ● ●<br>● ● ● ● ● |
 
-| Already gone | 10 left | Finish |
-| :---: | :---: | :---: |
-| ▧<br><div style="height: 1.3em; border: 1px solid black"></div> | ● ● ● ● ●<br>● ● ● ● ● | 2 still to take |
+<p style="font-size:18pt;margin:4px 0">Rin takes away the 10 on the mat. How many are left at the end?</p>
+
+| Left at the end |
+| :---: |
+| <div style="height: 1.3em; border: 1px solid black"></div> |

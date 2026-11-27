@@ -8,10 +8,8 @@ teacher_note: Before class print this half slip. Keep it closed until day 43 Exi
 ---
 # Exit 43
 
-<p style="font-size:18pt;margin:4px 0">Both pockets hold 10 dots. What total stays after these moves?</p>
+<p style="font-size:18pt;margin:4px 0">One arrow moves a dot to the other pocket. One arrow moves a dot onto the floor. Which move changes how many dots are in the pockets?</p>
 
 | Move across | Fall out |
 | :---: | :---: |
 | ▣ &nbsp; ● → &nbsp; ▣ | ▣ &nbsp; ▣<br>↓ ● |
-
-________

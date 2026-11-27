@@ -12,9 +12,9 @@ teacher_note: Before class print this half slip. Keep it closed until day 65 Exi
 
 | Rin hangs | On display |
 | :---: | :---: |
-| ⟨◈ ◈ ◇ ◇ ◇⟩ | ◇ ◇ ◇ ◇ ◇<br>◇ ◇ ◇ ◇ ◇<br>◇ ◇ ◇ ◇ ◇<br>◇ ◇ ◇ ◇ ◇ |
+| ⟨◈ ◈ ◈ ◇ ◇ ◇ ◇⟩ | ◇ ◇ ◇ ◇ ◇<br>◇ ◇ ◇ ◇ ◇<br>◇ &nbsp; ⟨◈ ◈ ◈ ◇ ◇ ◇ ◇⟩ |
 
-□ + ⟨◈ ◈ ◇ ◇ ◇⟩ = 20
+□ + ⟨◈ ◈ ◈ ◇ ◇ ◇ ◇⟩ = 18
 
 Invented for practice.
 

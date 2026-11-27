@@ -19,17 +19,17 @@ Shape: select and justify a strategy on an unworked picture. Practice checks the
 
 - **A.** Includes the held 9 in the new steps, giving 10.
 
-- **H.** Copies 8 from the related supplied fact after noticing the start is different.
+- **H.** Copies 8 from 17 take away 9 after noticing the larger start.
 
 ## E65a
 
 How many kites did Rin have up before the bunch arrived?
 
-15 were up before. Two striped and three plain arrived together and made 20 in all. Mark the start with a drawing or the first box. Describe help used.
+11 were up before. Three striped and four plain arrived together and made 18 in all. Mark the start with a drawing or the first box. Describe help used.
 
-Shape: Find the start after identifying which pieces arrived together. Practice fixes supplied labels on acted scenes. Reserve the twenty-kite display and the two-part arrival.
+Shape: Find the start after identifying which pieces arrived together. Practice fixes supplied labels on acted scenes. Reserve the eighteen-kite display and the two-part arrival.
 
-- **A.** Gives 16 by counting 5 itself as a new step up to 20.
+- **A.** Gives 12 by counting 7 itself as a new step up to 18.
 
 ## E65b
 

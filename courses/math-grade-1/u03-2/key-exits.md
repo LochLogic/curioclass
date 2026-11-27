@@ -33,21 +33,21 @@ Shape: Infer one equal part from a final score and a bonus. Practice starts with
 
 What subtraction shows the score that is left?
 
-7 - 3 = 4. Distinguish the empty spot from the three crossed-out scores.
+5 − 4 = 1. The empty space was never occupied. Four of the five points were crossed out.
 
-Shape: Recover the starting score before subtracting. Practice starts with the number on the card. Keep the eight-space strip and both kinds of marks out of rounds.
+Shape: Recover the starting score before subtracting. Practice starts with the number on the card. Keep the six-space strip and both kinds of marks out of rounds.
 
-- **G.** Crosses one occupied spot and then crosses all three again, leaving 3.
+- **G.** Crosses out one of the five first and then crosses out four more, leaving zero.
 
 ## E47
 
 How could you pack these squares so a friend can count them with the sleeve shut?
 
-Pack one six-strip with the four singles. A closed ten and 6 singles make 16. Accept any packing that preserves all 16.
+Pack the four-square strip and the six loose squares. A closed ten and seven visible squares make 17. Accept any packing preserving all 17.
 
-Shape: Build a ten across groups and replace it with one closed unit. Practice exchanges an already filled frame. Reserve the two short strips and four loose squares.
+Shape: Build a ten across groups and replace it with one closed unit. Practice exchanges an already filled frame. Reserve the two short strips and six loose squares.
 
-- **B.** Labels the result 7 after counting the closed ten as one one.
+- **B.** Labels the drawing 8 after counting the closed ten as one one.
 
 ## E48
 

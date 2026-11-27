@@ -8,18 +8,18 @@ teacher_note: Keep closed until its named assessment part. Read each stem aloud.
 ---
 # Unknown-equation sheet
 
-<p style="font-size:18pt;margin:4px 0">□ + 5 = 12. What number goes in the box?</p>
+<p style="font-size:18pt;margin:4px 0">□ + 0 = 13. What number goes in the box?</p>
 
-<p style="font-size:18pt;margin:4px 0">7 + □ = 13. What number goes in the box?</p>
+<p style="font-size:18pt;margin:4px 0">9 + □ = 10. What number goes in the box?</p>
 
-<p style="font-size:18pt;margin:4px 0">6 + 8 = □. What number goes in the box?</p>
+<p style="font-size:18pt;margin:4px 0">0 + 11 = □. What number goes in the box?</p>
 
-<p style="font-size:18pt;margin:4px 0">□ − 3 = 9. What number goes in the box?</p>
-
-<div style="height: 2.5em; border: 1px solid black"></div>
-
-<p style="font-size:18pt;margin:4px 0">16 − □ = 5. What number goes in the box?</p>
+<p style="font-size:18pt;margin:4px 0">□ − 5 = 10. What number goes in the box?</p>
 
 <div style="height: 2.5em; border: 1px solid black"></div>
 
-<p style="font-size:18pt;margin:4px 0">19 − 6 = □. What number goes in the box?</p>
+<p style="font-size:18pt;margin:4px 0">16 − □ = 0. What number goes in the box?</p>
+
+<div style="height: 2.5em; border: 1px solid black"></div>
+
+<p style="font-size:18pt;margin:4px 0">20 − 0 = □. What number goes in the box?</p>

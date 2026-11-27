@@ -8,10 +8,10 @@ teacher_note: Keep closed until its named assessment part. Read each stem aloud.
 ---
 # Properties folder swap slip
 
-<p style="font-size:18pt;margin:4px 0">Why do 5 and 4 make the same total as 4 and 5?</p>
+<p style="font-size:18pt;margin:4px 0">Why do 15 plus 0 and 0 plus 15 make the same total?</p>
 
-| 4 + 5 | 5 + 4 |
+| 15 + 0 | 0 + 15 |
 | :---: | :---: |
-| ○ ○ ○ ○ &nbsp; ◍ ◍ ◍ ◍ ◍ | ◍ ◍ ◍ ◍ ◍ &nbsp; ○ ○ ○ ○ |
+| ○ ○ ○ ○ ○<br>○ ○ ○ ○ ○<br>○ ○ ○ ○ ○ &nbsp; ▢ | ▢ &nbsp; ○ ○ ○ ○ ○<br>○ ○ ○ ○ ○<br>○ ○ ○ ○ ○ |
 
 <div style="height: 1.3em; border: 1px solid black"></div>

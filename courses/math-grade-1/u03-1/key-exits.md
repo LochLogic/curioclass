@@ -63,13 +63,13 @@ Shape: Match two expressions for a collection whose bag count stays hidden. Prac
 
 ## E43
 
-Both pockets hold 10 dots. What total stays after these moves?
+One arrow moves a dot to the other pocket. One arrow moves a dot onto the floor. Which move changes how many dots are in the pockets?
 
-9. An internal move keeps the total 10. Only the dot that falls out reduces it.
+Mark only the arrow to the floor. A move from one pocket to the other keeps the same total.
 
-Shape: Predict a nearby sum from two different moves without needing the starting split. Practice builds and changes one known pair on a frame. Reserve the pocket picture and both arrows.
+Shape: Compare two moves with the starting counts hidden. Practice changes a known pair on a frame. Reserve the pocket picture and both arrows.
 
-- **H.** Keeps 10 after noting that a dot left the pockets.
+- **H.** Marks neither arrow and says the total stays the same even after seeing one fall out.
 
 ## E44
 
