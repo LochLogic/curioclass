@@ -60,3 +60,54 @@ s01-X5a,8 as the first removed step,8-1+1,8,A,Counts the starting word as the re
 s01-X5a,8 reported after seven steps from 1,,,B,Reports the stopping word instead of seven steps.
 s01-D2r-more,3 as the larger count for spirals and puffs,3,3,F,"Three spirals compared with two puffs have one unmatched response, not three."
 s01-D2r-fewer,3 as the larger count for spirals and puffs,3,3,F,"Three spirals compared with two puffs have one unmatched response, not three."
+s02-X17,12 + 7 with 18 pictured,12+7-1,18,H,Counts twelve as the first new step.
+s02-X18,Crosses out 17 = 14 + 3,,,A,Rejects a true equation solely because the total comes first.
+s02-X19,19 arriving stars,19,19,C,Copies the ending quantity.
+s02-X19,9 arriving stars,19-11+1,9,H,Includes eleven as a new step.
+s02-X20,12 flags on the patch,12,12,C,Marks the number left as the change.
+s02-X21,16 bells lose 2 and end with 18,16+2,18,I,Uses addition for pieces that leave.
+s02-X22,19 fish,14+6-1,19,H,Includes fourteen as the first added count.
+s02-X23,5 striped and 6 spotted,5+6,11,G,The two parts make eleven instead of ten.
+s02-X24,17 triangles,13+4,17,D,Adds the whole and known part.
+s02-X24,10 triangles,13-4+1,10,H,Counts four as a first new step.
+s02-X25,Chooses the mat with 5 circles and 19 squares,14+5,19,D,Adds fourteen and five to find the missing category.
+s02-X26,25 hidden,20+5,25,D,Adds whole and known part.
+s02-X26,16 hidden,20-5+1,16,H,Includes five as a new step.
+s02-X27,All 13 triangles ringed,13,13,E,Counts the larger group instead of the extra.
+s02-X28,11 extra brushes,11,11,E,Rings the whole larger group.
+s02-X28,10 extra brushes,11-2+1,10,H,Counts two as a new step.
+s02-X29,All 16 red marks ringed,16,16,E,Reports the larger group as the gap.
+s02-X30a,10 + 18 = 28,10+18,28,E,Uses the larger count as the missing addend.
+s02-X30a,9 extra leaves,18-10+1,9,H,Includes ten as a new step.
+s02-X30b,18 as the difference,18,18,E,Uses the full larger group as the difference.
+s02-X31b,Rings all 20 spoons,20,20,E,Confuses the larger group with the extra.
+s02-X32,20 extras,20,20,E,Marks all triangles.
+s02-X32,9 extras,20-12+1,9,H,Includes twelve as a new step.
+s02-X33c,Rings all 19 pins,19,19,E,Uses the full larger group as the clue.
+s02-X34,Marks the final group of 20,20,20,C,Uses all the lanterns as the change.
+s02-X35,10 departures,10,10,C,Copies the end as the change.
+s02-X35,7 departures,16-10+1,7,H,Includes ten as a new step.
+s02-X36,29 in the starting group,20+9,29,D,Adds the known total and the added part.
+s02-X37,13 pictured at the end,13+1-1,13,H,Includes the start as the added step.
+s02-X38,14 marked as the difference,14,14,E,Rings the larger category.
+s02-X38,Rejects 14 = 4 + □ with 10 placed,,,A,Rejects equality because the total comes first.
+s02-S25a,10 tiles,6+5-1,10,H,Includes six as the first new count.
+s02-S25b,19 triangles,12+7,19,D,Adds the whole and the known part.
+s02-S25c,6 and 4,6+4,10,G,The parts total ten rather than eight.
+s02-S30a,12 more brushes,12,12,E,Uses the larger group instead of the unmatched amount.
+s02-S30b,12 fewer pencils,12,12,E,Uses the larger group instead of the unmatched amount.
+s02-S30c,8 + 12 = 20,8+12,20,E,Uses the larger group instead of the unmatched amount.
+s02-S30d,12 as the subtraction answer,12,12,E,Uses the larger group instead of the unmatched amount.
+s02-S31a,13 up,11+3-1,13,H,Counts eleven as the first new step.
+s02-S31b,23 up,16+7,23,I,Adds the departing flags.
+s02-S31c,14 added,14,14,C,Copies the final group as the change.
+s02-S31d,9 removed,9,9,C,Copies the final group as the change.
+s02-Q34a,False; there is no operation,,,A,Treats equals as a command to calculate.
+s02-Q34b,False; the result is first,,,A,Rejects a true total-first equation.
+s02-Q34c,False; eight is not two,,,B,Reads only the first number in the right expression.
+s02-Q34d,True; four and three make seven,,,B,Checks only the left side.
+s02-Q34e,False; seven is not three,,,B,Reads only the first number in the right expression.
+s02-N35f,3 in the starting box,6-3,3,F,Subtracts the removed amount from the result.
+s02-Oa,12 is the difference,12,12,E,Names the larger group.
+s02-Oa,20 missing,12+8,20,D,Adds the whole and known part.
+s02-Ob,It means the answer comes next,,,A,Interprets equals as an instruction with one fixed direction.

@@ -1,0 +1,15 @@
+---
+piece: blank
+course: math-grade-1
+unit: 2.2
+version: draft 1, not ready, not yet taught
+credit: ours
+teacher_note: Read aloud that these are invented cats. Trace the shared boundary. Cut the supplied number cards and move them to their groups. No questions about having a pet.
+---
+# Imagined animal picture cards
+
+<p style="font-size:18pt;margin:4px 0">Invented for practice.</p>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 620 105" role="img" aria-label="Two groups of pretend cats inside a single boundary" style="display:block;max-height:117px"><g fill="white" stroke="black" stroke-width="2"><rect x="4" y="5" width="612" height="93" rx="12"/><text x="14" y="34" font-family="sans-serif" font-size="24" fill="black" stroke="none">Curled</text><text x="16" y="78" font-family="sans-serif" font-size="24" fill="black" stroke="none">Stretched</text><g transform="translate(152,12) scale(1)"><path d="M6 8 5 2l4 3 5-3 1 6q6 9-5 10-11-1-4-8z M8 12q3-3 6 0l-2 3"/></g><g transform="translate(177,12) scale(1)"><path d="M6 8 5 2l4 3 5-3 1 6q6 9-5 10-11-1-4-8z M8 12q3-3 6 0l-2 3"/></g><g transform="translate(202,12) scale(1)"><path d="M6 8 5 2l4 3 5-3 1 6q6 9-5 10-11-1-4-8z M8 12q3-3 6 0l-2 3"/></g><g transform="translate(227,12) scale(1)"><path d="M6 8 5 2l4 3 5-3 1 6q6 9-5 10-11-1-4-8z M8 12q3-3 6 0l-2 3"/></g><g transform="translate(252,12) scale(1)"><path d="M6 8 5 2l4 3 5-3 1 6q6 9-5 10-11-1-4-8z M8 12q3-3 6 0l-2 3"/></g><g transform="translate(277,12) scale(1)"><path d="M6 8 5 2l4 3 5-3 1 6q6 9-5 10-11-1-4-8z M8 12q3-3 6 0l-2 3"/></g><g transform="translate(302,12) scale(1)"><path d="M6 8 5 2l4 3 5-3 1 6q6 9-5 10-11-1-4-8z M8 12q3-3 6 0l-2 3"/></g><g transform="translate(327,12) scale(1)"><path d="M6 8 5 2l4 3 5-3 1 6q6 9-5 10-11-1-4-8z M8 12q3-3 6 0l-2 3"/></g><g transform="translate(352,12) scale(1)"><path d="M6 8 5 2l4 3 5-3 1 6q6 9-5 10-11-1-4-8z M8 12q3-3 6 0l-2 3"/></g><g transform="translate(377,12) scale(1)"><path d="M6 8 5 2l4 3 5-3 1 6q6 9-5 10-11-1-4-8z M8 12q3-3 6 0l-2 3"/></g><g transform="translate(152,56) scale(1)"><path d="M4 10 3 4l4 2 4-2 1 6q8 0 6 4H3z M6 15v3m8-3v3"/></g><g transform="translate(177,56) scale(1)"><path d="M4 10 3 4l4 2 4-2 1 6q8 0 6 4H3z M6 15v3m8-3v3"/></g><g transform="translate(202,56) scale(1)"><path d="M4 10 3 4l4 2 4-2 1 6q8 0 6 4H3z M6 15v3m8-3v3"/></g></g></svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 620 44" role="img" aria-label="Label choices" style="display:block;max-height:56px"><g fill="white" stroke="black" stroke-width="2"><rect x="8" y="5" width="190" height="32" rx="8"/><text x="18" y="29" font-family="sans-serif" font-size="24" fill="black" stroke="none">10</text><rect x="214" y="5" width="190" height="32" rx="8"/><text x="224" y="29" font-family="sans-serif" font-size="24" fill="black" stroke="none">3</text><rect x="420" y="5" width="190" height="32" rx="8"/><text x="430" y="29" font-family="sans-serif" font-size="24" fill="black" stroke="none">13</text></g></svg>
