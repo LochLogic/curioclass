@@ -2131,3 +2131,11 @@ drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
   deadline comes earlier teaches day 86 in its own registration week, and the plan-day revision stays in unit 7.
 - **Career pathways 9 to 12, 64-session path:** unit 6 runs a lighter applied project there: one option tested, its
   second try on paper, the effects map cut to one line, every scored code kept.
+
+## 2026-11-26: Personal Finance off the Dashboard (chat)
+
+- Cory in chat 2026-11-26, after the lead's recommendation that no Personal Finance frame or scope is needed (Economics
+  units 8 and 9 teach Massachusetts PFL.T1 to T4, NSPFE 2021 as reference): "If it's not needed then let's remove it
+  from the dashboard." data/plans/course-list.csv marks it `folded:economics`; scripts/course_status.py drops a folded
+  course from the course lists and counts its topics and tools under the course it folds into. A state that requires a
+  standalone half-credit course is a question for marketing time, not now.

@@ -99,10 +99,18 @@ for key in [k for k, d in info.items() if d['kind'] == 'course']:
     assert key in _listed, 'course %s is placed from the catalogue but has no row in data/plans/course-list.csv' % key
     del_ = info.pop(key)
     info['_cat:' + key] = del_
+_folded = []   # status folded:<course id>: taught inside that course (Personal Finance in Economics, Cory 2026-11-26)
 for i, r in enumerate(COURSE_LIST):
     cat = info.pop('_cat:' + r['catalog_key'], None) or dict(mods=0, tools=collections.Counter())
+    if r['status'].startswith('folded:'):
+        _folded.append((r['status'].split(':', 1)[1], cat))
+        continue
     info[r['id']] = dict(kind='course', title=r['title'], subject=r['subject'], sort=(i,), mods=cat['mods'],
                          tools=cat['tools'], core=r['core'] == 'yes', fid='', status=r['status'])
+for into, cat in _folded:   # its topics and tools count under the course that teaches it
+    assert into in info, 'folded into %s, which is not in data/plans/course-list.csv' % into
+    info[into]['mods'] += cat['mods']
+    info[into]['tools'].update(cat['tools'])
 assert not [k for k in info if k.startswith('_cat:')], 'catalogue courses with no row in course-list.csv'
 
 import re

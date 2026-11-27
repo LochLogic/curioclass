@@ -24,17 +24,17 @@ No course has lessons, print, checks with keys or teacher pages yet. That is lay
 | Math | 15 | 12 | 15 | 12 | 144 | 112 / 18 / 14 |
 | English Language Arts | 13 | 13 | 13 | 13 | 113 | 105 / 6 / 4 |
 | Science | 14 | 12 | 14 | 12 | 110 | 77 / 24 / 9 |
-| Social Studies | 16 | 15 | 16 | 15 | 146 | 122 / 4 / 5 |
-| **The four core subjects** | **58** | **52** | **58** | **52** | **513** | **416 / 52 / 32** |
+| Social Studies | 16 | 15 | 16 | 15 | 152 | 125 / 5 / 7 |
+| **The four core subjects** | **58** | **52** | **58** | **52** | **519** | **419 / 53 / 34** |
 | Arts and Music | 20 | 0 | 20 | 0 | 72 | 0 / 58 / 14 |
 | Health and PE | 8 | 8 | 8 | 0 | 33 | 16 / 8 / 8 |
 | Computer Science | 13 | 0 | 13 | 0 | 20 | 2 / 10 / 8 |
 | World Languages | 2 | 0 | 0 | 0 | 20 | 18 / 0 / 2 |
-| Career and Technical Education | 3 | 0 | 2 | 0 | 19 | 12 / 3 / 4 |
+| Career and Technical Education | 2 | 0 | 2 | 0 | 13 | 9 / 2 / 2 |
 | Social and Emotional Learning | 4 | 0 | 4 | 0 | 10 | 2 / 0 / 8 |
 | English Language Development | 4 | 0 | 4 | 0 | 23 | 16 / 1 / 5 |
 | Library and Research Skills | 8 | 0 | 8 | 0 | 13 | 7 / 4 / 2 |
-| **All courses** | **120** | **60** | **117** | **52** | **723** | **489 / 136 / 83** |
+| **All courses** | **119** | **60** | **117** | **52** | **723** | **489 / 136 / 83** |
 
 Tool counts here leave out tools that sit on shared topics (last table). "Spec" includes a few that are still ideas.
 
@@ -111,7 +111,7 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 | World History I | yes | no | lens and rubric | yes | yes | 11 | 16 | 6 / 0 / 0 |
 | World History II | yes | no | lens and rubric | yes | yes | 11 | 13 | 11 / 0 / 0 |
 | US History I | yes | no | lens and rubric | yes | yes | 10 | 10 | 10 / 0 / 0 |
-| Economics | yes | no | lens and rubric | yes | yes | 9 | 7 | 4 / 2 / 1 |
+| Economics | yes | no | lens and rubric | yes | yes | 9 | 13 | 7 / 3 / 3 |
 | US Government and Politics | yes | no | lens and rubric | yes | yes | 9 | 8 | 8 / 0 / 0 |
 | Psychology |  | no | lens and rubric | yes | yes | no | 7 | 6 / 1 / 0 |
 | US History II | yes | no | lens and rubric | yes | yes | 12 | 11 | 8 / 0 / 0 |
@@ -179,13 +179,12 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 | American Sign Language, all levels |  | no | shared page only | no | no | no | 9 | 7 / 0 / 2 |
 | Spanish, all levels |  | no | shared page only | no | no | no | 11 | 11 / 0 / 0 |
 
-## Career and Technical Education (3 courses)
+## Career and Technical Education (2 courses)
 
 | Course | Core | Rubric file | Approach | Progression | Scope and sequence | Plans | Topics | Tools: spec / built / live |
 |---|---|---|---|---|---|---|---|---|
 | Career Exploration, grades 6 to 8 |  | no | shared page only | no | yes | no | 8 | 4 / 2 / 2 |
 | Career Pathways, grades 9 to 12 |  | no | shared page only | no | yes | no | 5 | 5 / 0 / 0 |
-| Personal Finance, grades 9 to 12 |  | no | shared page only | no | no | no | 6 | 3 / 1 / 2 |
 
 ## Social and Emotional Learning (4 courses)
 
