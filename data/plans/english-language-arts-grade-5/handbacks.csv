@@ -48,3 +48,29 @@ from_day,to_day,what,where,minutes,error,note
 40,41,40A–40E written feedback and recorded corrections,Response,8,,Allow written corrections and parallel rerecording in the first eight minutes. With one live path hear up to 16 corrected segments here.
 40,41,40E additional live corrected segments,Independent,7,,"With one live path hear up to fourteen corrected segments, 30 seconds each, before the later Response rotation."
 41,42,41A and 41C written feedback,Return,5,,Reserve the first five minutes of day 42 for independent corrections before scoring. Confirm the receiving part name when section 2.1 is written.
+23,24,s01-X23,Return,10,F,Find the missing second response in a fresh case. Rebuild the earlier sequence if needed.
+24,25,s01-X24,Return,10,L,"Choose one detail that supports an idea, or place it in a group that it fits."
+25,26,s01-X25,Return,10,F,Find both responses in a different case. Use a separate matched word or precision card as needed.
+26,27,s01-X26,Return,10,L,Match a new detail to a claim and identify the relationship before choosing a link.
+27,28,s01-X27,Revision,0,P,Return the slip and written cue with the essay. Use the separate Response part for any parallel matched retry.
+29,30,s01-X29,Return,10,B,Point to a feature of a different speech beat that makes the listener wait.
+30,31,s01-X30,Return,10,R,"Locate who is speaking, where, and the immediate problem in a different sample."
+31,32,s01-X31,Return,10,S,"Mark one beat worth slowing, or put two actions back in order in a different case."
+32,34,s01-X32,Return,0,U,Share the ten-minute Return with day 33. Route an earned ending or sequence need in parallel.
+34,35,s01-X34,Return,10,AU,Restore the participle or order the actions using a fresh sentence.
+35,36,s01-X35,Return,5,Q,"Return both looks together. Pick a change that affects meaning, or replace a vague word precisely."
+35,36,s01-X35b,Return,0,Q,Return the listener note with the E35 rewrite in the same five-minute Return.
+36,37,s01-X36,Return,10,AP,"Play back or return a written phrase cue. Without audio, hear 12 private turns in eight minutes after a two-minute cue."
+37,42,s01-X37,Return,0,L,Return written notes within the first five minutes reserved for day 41 feedback. Route a separate five-minute supported source-note track. Receiving plan pending.
+25,26,s01-P25,Return,0,AW,Return this practice choice with the parallel priority cue.
+26,27,s01-P26,Return,0,N,Return this practice choice with the parallel priority cue.
+32,34,s01-P32,Return,0,U,Return this practice choice with the parallel priority cue.
+35,36,s01-P35,Return,0,Q,Return this practice choice with the parallel priority cue.
+37,42,s01-P37,Return,0,A,Return this practice choice with the parallel priority cue.
+36,37,s01-X36 second private rotation,Partner,8,AP,"Without audio, hear the second 12 pending readers at 40 seconds each. Give a private phrase cue, then a reread in pairs. Record the date and cue."
+30,31,41D private pending word reads,Independent,0,AQ,Use independent reading conferences for absences or when private rerecording is unavailable. Keep the evidence pending until observed.
+40,41,41A prepared source tags and live discussion fallback,Independent,12,,"Without six recorders, reserve 11 minutes 15 seconds for three day 41 groups here and the other three in Discussion. Prioritize the scheduled seven-minute audio repair rotation separately."
+41,42,"41B, 41D and 41E saved evidence or pending turns",Return,0,,Use the same first five minutes for written cues. Hear any pending turn later in a private conference. Receiving plan pending.
+28,29,essay response card,Return,0,,Return one cue in the same track as the essay revision.
+33,34,monologue response card,Return,0,,Return one cue in the same track as the draft.
+41,42,closing response card,Return,0,,Return one cue with the day 41 feedback. Receiving plan pending.
