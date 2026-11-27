@@ -12,11 +12,11 @@ Teacher only. Before class keep this page private. One scale: shown, shown with 
 
 ## s05-X101
 
-Show the partner that completes this tower of ten.
+Show ten by joining the missing pieces to these seven.
 
 Key: Three hidden pieces; seven and three make ten.
 
-Look-fors: Paper shows three missing-piece marks connected by a line or enclosing mark to the visible seven, representing the complete ten. A numeral or isolated three alone leaves the relationship not yet seen. Usual communication or directed adult marks accepted; six may explain their same response. | Stimulus in exit-101.md. Eight minutes: launch 1, six concurrent paper minutes including six 45-second observations, collect 1. | Shape: Infer and justify a concealed tower part without a frame, preserving seven visible and ten altogether.
+Look-fors: Paper shows three new missing-piece marks joined to the visible seven by a line, an enclosing mark or a continuous train, representing the complete ten. An isolated numeral or three unconnected marks do not show the requested joining. Usual communication or directed adult marks accepted; no additional oral explanation is required. Six may explain their same response. | Stimulus in exit-101.md. Eight minutes: launch 1, six concurrent paper minutes including six 45-second observations, collect 1. | Shape: Infer and justify a concealed tower part without a frame, preserving seven visible and ten altogether.
 
 Shown: Three missing-piece marks linked to the seven visible pieces as one whole ten. | Not yet seen: Repeats the visible seven as its partner (D).
 
@@ -24,13 +24,15 @@ Wrong D: Repeats the visible seven as partner. Observe the matching action or ex
 
 ## s05-X102
 
-Tell a fruit story for ten with a different pair from this one.
+Show a ten-fruit story with a different number of peaches.
 
 Key: Any labeled peach/plum allocation totaling ten except 2 peaches/8 plums, communicated by a complete Rin picture story or usual communication; 8 peaches/2 plums counts.
 
 Look-fors: All mark a complete labeled picture story with Rin as the sole actor: two fruit counts, fixed total ten, changed labeled pair. Directed adult marking and usual communication accepted. The picture communicates the mathematical story; do not infer exact unheard words. Six may tell their same response; the other twenty-four are reached through their complete paper scene and next-day written feedback. | Stimulus in exit-102.md; read category labels neutrally. Eight minutes: launch 1, concurrent paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Independently create a whole fruit story with a changed labeled pair.
 
 Shown: Picture scene has Rin with three peach pictures and seven plum pictures, ten altogether; six may communicate the same story aloud. | Not yet seen: Repositions the same two peaches/eight plums and calls the labeled pair different.
+
+Wrong B: Repositions two peaches/eight plums as a new pair. Observe the matching action or explanation; never infer a letter from a wrong numeral.
 
 ## s05-F1-0-1
 

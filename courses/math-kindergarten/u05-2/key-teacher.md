@@ -46,9 +46,13 @@ Draw one way Rin's seven hats could look.
 
 Key: Any star/spot allocation totaling seven, such as four star/three spot.
 
-Look-fors: All seven hats assigned once; categories meaningful. | Stimulus in exit-94.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Independently draw a complete both-parts-unknown hat solution.
+Look-fors: Rin decorates seven hats. Each hat has only stars or only spots. All seven hats assigned once; categories meaningful. | Stimulus in exit-94.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Independently draw a complete both-parts-unknown hat solution.
 
 Shown: Four star/three spot. | Not yet seen: Six assigned hats and one omitted.
+
+Wrong A: Six assigned hats and one omitted. Observe the matching action or explanation; never infer a letter from a wrong numeral.
+
+Wrong F: One object assigned to both categories. Observed double assignment.
 
 ## s05-X95
 
@@ -56,22 +60,25 @@ Record two different possible solutions for Rin's nine pieces.
 
 Key: Any two distinct labeled pairs totaling nine; for example 4 round/5 square then 2 round/7 square.
 
-Look-fors: Round-tab/square-tab labels meaningful; all nine once per solution. | Stimulus in exit-95.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Generate two complete labeled puzzle-piece records without starter counts.
+Look-fors: Rin has nine puzzle pieces. Each has one marked tab, round or square. Round-tab/square-tab labels meaningful; all nine once per solution. | Stimulus in exit-95.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Generate two complete labeled puzzle-piece records without starter counts.
 
 Shown: Four/five then two/seven. | Not yet seen: Same labeled counts redrawn as new.
 
+Wrong B: Same labeled counts redrawn as new. Observe the matching action or explanation; never infer a letter from a wrong numeral.
+
 ## s05-X96
 
-Circle the model that fits Rin's story.
+Trace Rin's starting boats and added boat on the matching model.
 
 Key: A, seven joined by one, 8 = 7 + 1.
 
-Look-fors: All three models end with eight. Paper choice A includes tracing its seven starting marks and one arriving mark as the representation of the story. A circle or final count alone leaves the initial/change correspondence not yet seen. | Stimulus in exit-96.md; read the story and all cards neutrally. Eight minutes: launch 1, six concurrent paper minutes including six 45-second observations, collect 1. | Shape: Recognize a representation by story structure among equal-result models, preserving both given quantities and the joining action.
+Look-fors: All three models end with eight. Trace A's seven starting marks and its one arriving mark. These correspondence marks are the response; no separate circle or oral explanation is required. Tracing only the final eight leaves the initial/change correspondence not yet seen. | Stimulus in exit-96.md; read the story and all cards neutrally. Eight minutes: launch 1, six concurrent paper minutes including six 45-second observations, collect 1. | Shape: Recognize a representation by story structure among equal-result models, preserving both given quantities and the joining action.
 
-Shown: A circled with the seven starting marks and one arriving mark traced. | Not yet seen: Refuses A solely for its total-left equation (C). Choosing only by result gets a descriptive action note.
+Shown: A's seven starting marks and one arriving mark traced. | Not yet seen: Refuses A solely for its total-left equation (C). Choosing only by result gets a descriptive action note.
 
 Wrong C: Rejects A solely for total-left order. Observe the matching action or explanation; never infer a letter from a wrong numeral.
-Wrong x: B or C because its result is eight. Record action mismatch descriptively.
+
+Wrong x: Traces B or C because its result is eight. Record the action mismatch descriptively; do not infer a register letter from the final count.
 
 ## s05-F3-1
 

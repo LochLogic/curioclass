@@ -13,7 +13,7 @@ teacher_note: Teacher reads all words and labels aloud. Invented for practice.
 Invented for practice.
 
 
-Rin's nine puzzle pieces have round or square tabs.
+Rin has nine puzzle pieces. Each has one marked tab, round or square.
 
 ## s05-X95
 

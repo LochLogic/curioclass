@@ -13,7 +13,7 @@ teacher_note: Teacher reads all words and labels aloud. Invented for practice.
 Invented for practice.
 
 
-Rin decorates seven paper hats with stars or spots.
+Rin decorates seven hats. Each hat has only stars or only spots.
 
 ## s05-X94
 

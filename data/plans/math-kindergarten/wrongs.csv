@@ -910,7 +910,7 @@ s05-X94,Six assigned hats and one omitted.,,,A,Observe the matching action or ex
 s05-X94,One object assigned to both categories.,,,F,Observed double assignment.
 s05-X95,Same labeled counts redrawn as new.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-X96,Rejects A solely for total-left order.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
-s05-X96,B or C because its result is eight.,,,x,Record action mismatch descriptively.
+s05-X96,Traces B or C because its result is eight.,,,x,Record the action mismatch descriptively; do not infer a register letter from the final count.
 s05-X97,Adds six because six were given.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-X98,Rejects first card solely for total-left order.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-X98,Says the given eight must also be the added part.,,,D,Observed repeated-given-part explanation; a mismatched card alone does not establish D.

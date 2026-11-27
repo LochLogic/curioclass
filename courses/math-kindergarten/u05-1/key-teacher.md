@@ -22,13 +22,17 @@ Shown: One/four then two/three. | Not yet seen: One/four copied twice as a new p
 
 ## s05-X88
 
-Show two ways to make a seven-piece design using triangles and squares.
+Show two seven-piece designs with different numbers of triangles.
 
 Key: Two seven-piece designs with different type counts, such as 2 triangles/5 squares then 3 triangles/4 squares.
 
 Look-fors: One shape per slot; count pieces, not area. | Stimulus in exit-88.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Produce two new counted-shape decompositions in seven-slot designs.
 
 Shown: Two/five then three/four. | Not yet seen: Six assigned slots and one empty.
+
+Wrong A: Six assigned slots and one empty. Observe the matching action or explanation; never infer a letter from a wrong numeral.
+
+Wrong F: One object assigned to both categories. Observed double assignment.
 
 ## s05-X89
 
