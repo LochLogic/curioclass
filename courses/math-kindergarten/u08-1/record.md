@@ -52,6 +52,14 @@ Child: ____________________    Actual papers located: ____________________
 
 | Component | Collection date | Original observation | Picture feedback date | Later revision date | Help used | Judgment/date |
 |---|---|---|---|---|---|---|
+| S135 sorted categories | | | | | | |
+| L135 rings numeral | | | | | | |
+| L135 tabs numeral | | | | | | |
+| L135 empty category numeral | | | | | | |
+| Formative one-less record | | | | | | |
+| A142 number clue | | | | | | |
+| A143 chosen count | | | | | | |
+| C151 connection | | | | | | |
 | Empty book page | | | | | | |
 | Block book page | | | | | | |
 | Tab book page | | | | | | |
@@ -81,3 +89,15 @@ Unit 7 priority route: ______ observed component ______ feedback ______ revision
 Pending components and funded receiving day/part: ____________________
 
 Books: collect 140, revise 141; new teen work 141 revises 142. Stories: collect 144, revise 145; new 145 work revises 146. Counting/fact windows: written feedback after each collection, next-day independent revision, preserve original observations. Judge eligible earlier work 151. New 151 work waits for revision 152 before first judgment. Carry finalized record once to 152/153; never repeat secure evidence or infer a missing component from a summary.
+
+## Pending geometry language roster
+
+Assign only actual first-unmet E/F language components. Six 45-second turns plus thirty seconds reset fit five minutes. On day 136 those turns sit inside the ten-minute transfer; days 137 to 140 use Counting centers. All other children continue independent known work. No second component is implied.
+
+| Day | Six actual names, route and exact words | Written feedback date | Revision 142 and help | Later judgment |
+|---|---|---|---|---|
+| 136 | | | | |
+| 137 | | | | |
+| 138 | | | | |
+| 139 | | | | |
+| 140 | | | | |

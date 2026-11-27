@@ -1492,10 +1492,8 @@ s07-F36,Marks reference object.,,,x,Record observed mark descriptively; this alo
 s07-F4a,Joins cone to cylinder by pose.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
 s05-A103-F4,Earlier record rejects 8 = 3 + 5 solely because the total comes first.,,,C,Carry the recorded equality-orientation gap from unit 4; no new question.
 s03-X51,Calls the long turned rectangle a square despite its unequal adjacent sides.,,,x,Describe the observed classification error. A wrong name alone does not establish an orientation misconception.
-s08-X135,Pencil on book mat.,,,N,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X136,Seven stars because wider.,,,B,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X137,Leaves seven after arrival.,,,D,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-X138,Eleven on add-one side.,,,D,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X139,"Sixteen, fifteen, fourteen, thirteen.",,,x,Unexplained misses get descriptive notes. Access support separate.
 s08-X140,Counts twelve correctly but reverses written digits.,,,I,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X141,One mark for ten plus nine called nineteen.,,,F,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
@@ -1506,10 +1504,9 @@ s08-X145,"Joins stored three, says eleven.",,,C,Assign letter only when describe
 s08-X146,"Ten, twenty, twenty-one while tracing.",,,K,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X147,Only plain two as whole.,,,L,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X148,Covered four recorded as remaining.,,,M,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-X149,"Links four, ignores removal.",,,C,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X150,"Adds, records three.",,,C,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X151,Visible two drawn as hidden.,,,M,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-B140-empty,Writes one for no objects.,,,O,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
+s08-B140-empty,Writes one for no objects.,,,x,Descriptive zero-quantity miss. O is specifically retaining the original amount after the whole set is removed.
 s08-B140-blocks,"Revisits block, says five.",,,A,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-B140-tabs,Counts fourteen correctly but reverses written digits.,,,I,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-B141-teen,One mark for ten plus four.,,,F,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
@@ -1534,9 +1531,6 @@ s08-R-flat-solid,Component evidence absent.,,,x,Unexplained misses get descripti
 s08-R-features,Component evidence absent.,,,x,Unexplained misses get descriptive notes. Access support separate.
 s08-R-represent,Component evidence absent.,,,x,Unexplained misses get descriptive notes. Access support separate.
 s08-R-stories,Component evidence absent.,,,x,Unexplained misses get descriptive notes. Access support separate.
-s08-T136a,Calls whole box flat for its face.,,,x,Unexplained misses get descriptive notes. Access support separate.
-s08-T136b,Rejects square because turned.,,,x,Unexplained misses get descriptive notes. Access support separate.
-s08-T136c,Chooses cone only for red color.,,,x,Unexplained misses get descriptive notes. Access support separate.
 s08-G135-1,Rejects matching result without checking.,,,x,Unexplained misses get descriptive notes. Access support separate.
 s08-G136-1,Rejects matching result without checking.,,,x,Unexplained misses get descriptive notes. Access support separate.
 s08-G137-1,Rejects matching result without checking.,,,x,Unexplained misses get descriptive notes. Access support separate.
@@ -1674,7 +1668,6 @@ s08-P150-1,"Keeps starting four, ignoring removal.",,,x,Use letter only for desc
 s08-P150-2,Calls empty part zero the whole.,,,L,Use letter only for described observed action; otherwise describe response. Access help separate.
 s08-P151-1,Calls visible one hidden.,,,M,Use letter only for described observed action; otherwise describe response. Access help separate.
 s08-P151-2,Says zero hidden because none visible.,,,M,Use letter only for described observed action; otherwise describe response. Access help separate.
-s08-X135,Revisits a pencil and claims six pencils.,,,A,Only if the repeated visit is observed; a final unexplained mark is descriptive.
 s08-X142,Calls the whole cube flat because its face is square.,,,G,"Only if this reason is actually observed/heard, never inferred from an incorrect trace."
 s08-Q135-flat,Whole cube treated as flat.,,,x,"Descriptive diagnostic/practice note, not scored evidence or inferred misconception."
 s08-Q135-count,Does not count all six rings.,,,x,"Descriptive diagnostic/practice note, not scored evidence or inferred misconception."
@@ -2034,3 +2027,31 @@ s07-G129-1,Shows only arriving 2.,,,I,Assign the letter only when the observed a
 s07-G129-2,"Shows 5, adding instead.",,,H,Assign the letter only when the observed action supports it; otherwise describe the marks.
 s07-G129-3,Shows only arriving 1.,,,I,Assign the letter only when the observed action supports it; otherwise describe the marks.
 s07-G129-4,"Shows 5, adding instead.",,,H,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s08-X135,Pencils placed before the empty ball mat.,,,x,Unexpected ordering miss: describe it; do not infer a counting or category error from this supplied-count ordering task.
+s08-X138,Added-to set stays eleven.,,,D,Assign this letter only for the stated observed action; otherwise describe the response. Record mathematical help separately.
+s08-X149,Adds two to four and tries to record six.,4+2,6,C,Six is not an offered pile. Record this only if the child independently adds or attempts six; an incorrect offered choice alone has no inferred letter.
+s08-X149,Links four without an observed reason.,,,x,Describe this mark; ignoring removal does not establish joining.
+s08-X139,Begins at one despite the supplied thirteen.,,,E,Only when heard; no oral start inferred from the paper order.
+s08-S135,Tab placed on ring mat.,,,N,Assign this letter only for the stated observed action; otherwise describe the response. Record mathematical help separately.
+s08-L135-1,Numeral does not match the counted category.,,,x,Describe unexplained label errors; observe tracking or digit order before assigning a specific letter.
+s08-L135-2,Numeral does not match the counted category.,,,x,Describe unexplained label errors; observe tracking or digit order before assigning a specific letter.
+s08-L135-3,Numeral does not match the counted category.,,,x,Describe unexplained label errors; observe tracking or digit order before assigning a specific letter.
+s08-L135-1,"Revisits a ring, writes five.",,,A,Assign this letter only for the stated observed action; otherwise describe the response. Record mathematical help separately.
+s08-T136a,Calls the whole box flat because its face is flat.,,,G,Unit 7 letter B on the retained geometry record only when this response is observed. Unit 8 code G is descriptive x where its register has no matching category; never transplant a different unit letter meaning.
+s08-T136b,Rejects the square because it is turned.,,,H,Unit 7 letter C on the retained geometry record only when this response is observed. Unit 8 code H is descriptive x where its register has no matching category; never transplant a different unit letter meaning.
+s08-T136c,Chooses the cone only because it is green.,,,x,Unit 7 letter D on the retained geometry record only when this response is observed. Unit 8 code x is descriptive x where its register has no matching category; never transplant a different unit letter meaning.
+s08-T136-flat,Calls the cylinder flat because it is sideways.,,,x,Unit 7 letter A on the retained geometry record only when this response is observed. Unit 8 code x is descriptive x where its register has no matching category; never transplant a different unit letter meaning.
+s08-T136-behind,Calls behind in front.,,,x,Unit 7 letter E on the retained geometry record only when this response is observed. Unit 8 code x is descriptive x where its register has no matching category; never transplant a different unit letter meaning.
+s08-T136-cone,Calls the cone a triangle.,,,x,Unit 7 letter F on the retained geometry record only when this response is observed. Unit 8 code x is descriptive x where its register has no matching category; never transplant a different unit letter meaning.
+s08-T136-picture,Rejects the sphere picture because paper is flat.,,,x,Unit 7 letter M on the retained geometry record only when this response is observed. Unit 8 code x is descriptive x where its register has no matching category; never transplant a different unit letter meaning.
+s08-T136-parts,Links both different parts to 3.,,,x,Unit 7 letter N on the retained geometry record only when this response is observed. Unit 8 code x is descriptive x where its register has no matching category; never transplant a different unit letter meaning.
+s08-T136-body,Calls the whole cylinder flat because its end is flat.,,,x,Unit 7 letter O on the retained geometry record only when this response is observed. Unit 8 code x is descriptive x where its register has no matching category; never transplant a different unit letter meaning.
+s08-A142-number,"Revisits a loop, counts sixteen and rejects the fifteen-loop row.",,,A,Assign this letter only for the stated observed action; otherwise describe the response. Record mathematical help separately.
+s08-C151,Joins the departing bell instead of removing it.,,,C,Assign this letter only for the stated observed action; otherwise describe the response. Record mathematical help separately.
+s08-C151,Links removed one to the remaining value.,,,M,Assign this letter only for the stated observed action; otherwise describe the response. Record mathematical help separately.
+s08-G135-7,Does not check both pictured parts.,,,x,Describe this practice response; no misconception inferred without an observed action.
+s08-G135-8,Does not check both pictured parts.,,,x,Describe this practice response; no misconception inferred without an observed action.
+s08-G135-9,Does not check both pictured parts.,,,x,Describe this practice response; no misconception inferred without an observed action.
+s08-G135-10,Does not check both pictured parts.,,,x,Describe this practice response; no misconception inferred without an observed action.
+s08-A138-less,"Joins the moved sail instead, shows ten on the mat.",9+1,10,C,Use C only when joining instead of removal is observed; other wrong pictures get descriptive notes.
+s08-A138-less,Keeps nine without an observed action.,,,x,"Describe this response; D specifically concerns an unchanged total after addition, not this removal."

@@ -5,6 +5,7 @@ unit: 8.1
 stretch: 8
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Count-track icon marks a missed or repeated visit; question box means a pending component; plain box holds specific dictated feedback. Name component and date, never a future reserved answer. Record access and mathematical help separately.
 ---
 # Picture feedback
 
@@ -17,5 +18,3 @@ Use the picture note to revise your record.
 Invented for practice.
 
 </div>
-
-Teacher only: count-track icon for missed/repeated visit, question box for pending component, plain box for specific dictated feedback. Name component/date, never a future reserved answer. Access and mathematical help separately.

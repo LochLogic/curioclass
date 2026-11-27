@@ -3,11 +3,9 @@ piece: story
 course: math-kindergarten
 unit: 8.2
 stretch: 8
-version: draft, not yet taught
+version: draft 3, not yet taught
 credit: All ours.
 ---
 # Private teacher answer key
 
-Teacher only. Open [the private answer-key packet](key-teacher.md) before class. It holds the exit, retained-product and daily-practice keys. Keep it separate from every child copy.
-
-The packet uses the same marking scale: shown, shown with help, not yet seen. Record access support separately from mathematical help.
+Teacher only. Open [the private answer-key packet](key-teacher.md) before class. Keep that packet off student copies and shared displays. The packet contains the exact item stems, look-fors and samples from the current data.

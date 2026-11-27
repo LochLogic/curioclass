@@ -3,12 +3,12 @@ piece: story
 course: math-kindergarten
 unit: 8.2
 stretch: 8
-version: draft, not yet taught
+version: draft 3, not yet taught
 credit: All ours.
 ---
-# Private teacher key
+# Private teacher answer key
 
-Before class: open this key privately, never display or print it on child masters. Read child directions aloud. Marks: shown, shown with help, not yet seen. Access support separate from mathematical help. Strategy notes are descriptive only.
+Teacher only. Open privately before class; never display or include in student print packets. One marking scale: shown, shown with help, not yet seen. Record access and mathematical help separately.
 
 ## s08-X140
 
@@ -132,7 +132,7 @@ Shown: Two moved out/four remain. | Shown with help: correct after a mathematica
 
 ## s08-S145-join
 
-Rin has four tabs. Rin adds two tabs. Make a story picture.
+Rin starts with four tabs. Rin brings two more tabs. Show the solution picture.
 
 Key: Six altogether; four initial/two arriving; 4 + 2 = 6 optional.
 
@@ -142,7 +142,7 @@ Shown: Six includes both parts. | Shown with help: correct after a mathematical 
 
 ## s08-S145-take
 
-Rin has six tabs. Rin removes two tabs. Make a story picture.
+Rin starts with six tabs. Rin puts two tabs away. Show the solution picture.
 
 Key: Four remain, two removed; 6 - 2 = 4 or 4 = 6 - 2 optional.
 
@@ -524,29 +524,29 @@ Shown: Six rings; add the missing sixth record mark beside five supplied marks; 
 
 Trace this supplied correct label.
 
-Key: 16 matches sixteen separate rings.
+Key: 18 matches eighteen separate rings.
 
-Look for: Show sixteen rings in two rows of eight beside correct 16. Point to digits in order, trace 16, cover it, then form a fresh label. Never display reversed out-of-range digits or a nineteen-tab cover.
+Look for: Show eighteen rings in two rows of nine beside correct 18 only. Privately compare a child-made reversed label if actually present. Trace correct 18, cover it and form a fresh label. No nineteen case.
 
 Shown: 16 matches sixteen separate rings. | Shown with help: correct after a mathematical prompt. | Not yet seen: Counts sixteen correctly but reverses its digits.
 
 ## s08-P141-1
 
-Repair this supplied twelve model.
+Repair this supplied seventeen model.
 
-Key: Ten individual ones and two further ones, twelve in all.
+Key: Ten individual ones and seven further ones, seventeen in all.
 
-Look for: Failed supplied model has one token inside a large boundary, two outside, and 12. Boundary needs ten actual ones, not one token called ten. Replace token with ten visible pieces; keep two outside; child repairs copy.
+Look for: Supplied failed model has one token inside a ten boundary, seven outside, label 17. Replace inside token with ten individual ones; keep seven outside. Repair only supplied model, no blank complete teen page.
 
 Shown: Ten individual ones and two further ones, twelve in all. | Shown with help: correct after a mathematical prompt. | Not yet seen: Retains one token for ten, with two outside.
 
 ## s08-P141-2
 
-Finish this supplied twelve label.
+Finish this supplied seventeen label.
 
-Key: 12; 12 = 10 + 2.
+Key: 17; 17 = 10 + 7.
 
-Look for: Show ten visible ones and two further ones, supplied part labels 10 and 2, separate blank total label. Record total 12; afterward write complete 12 = 10 + 2. Never present an unknown-position equation.
+Look for: Ten visible ones and seven further ones, supplied part labels 10 and 7, separate blank total label. Complete 17; afterward teacher shows the complete equation 17 = 10 + 7. No unknown-position equation.
 
 Shown: 12; 12 = 10 + 2. | Shown with help: correct after a mathematical prompt. | Not yet seen: Calls one token ten and two more twelve.
 
@@ -574,9 +574,9 @@ Shown: Square stays square through the turn. | Shown with help: correct after a 
 
 Finish the supplied number clue.
 
-Key: 12; twelve selected paper squares.
+Key: 18; eighteen selected squares, each visited once.
 
-Look for: Supplied twelve-square clue match in two rows of six. Teacher links eleven squares to counted visits, omits last link. Child restores link and writes 12. Supplied count correction, never independent shape selection.
+Look for: One supplied eighteen-square horizontal row; seventeen visit links provided and one missing. Restore only the missing link and count label 18. No choice between two new rows. | Shape: Repair one missing tracking link on a supplied single collection.
 
 Shown: 12; twelve selected paper squares. | Shown with help: correct after a mathematical prompt. | Not yet seen: Records eleven after omitting a square.
 
@@ -640,8 +640,6 @@ Look for: Show supplied three strips/one arrival, incorrect 3 = 3 + 1. Correct t
 
 Shown: 4 = 3 + 1; also 3 + 1 = 4. | Shown with help: correct after a mathematical prompt. | Not yet seen: Keeps 3 = 3 + 1 despite four actual strips.
 
-## Additional daily records
-
 ## s08-R140
 
 Continue this supplied six-start.
@@ -654,11 +652,11 @@ Shown: Six, seven, eight. | Shown with help: correct after a mathematical prompt
 
 ## s08-Q140
 
-Echo six, seven, eight.
+Echo the day 140 count after the teacher.
 
-Key: six, seven, eight; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
+Key: sixty-nine, seventy, seventy-one, seventy-two, seventy-three; then ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
 
-Look for: Teacher supplies six, seven, eight; children echo and touch a paper route box per word. Then supply each tens word, ten through one hundred, with children echoing. No individual full recital or written numeral above twenty.
+Look for: Teacher supplies every word: sixty-nine, seventy, seventy-one, seventy-two, seventy-three. Children echo with one practice mark for each of the 5 supplied words. Three minutes include feedback on this stretch, one minute echoed tens, one regroup/retry. Then teacher supplies ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred, children echo. No independent full recital, new written numeral above twenty, score or route cues for F2. Review the oral sequence first demonstrated on day 137.
 
 Shown: six, seven, eight; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred. | Shown with help: correct after a mathematical prompt. | Not yet seen: Misses a word in the supplied stretch.
 
@@ -666,19 +664,19 @@ Shown: six, seven, eight; ten, twenty, thirty, forty, fifty, sixty, seventy, eig
 
 Repair this supplied numeral label.
 
-Key: 16 beside sixteen individual rings.
+Key: 18 beside eighteen individual rings.
 
-Look for: Draw sixteen rings, two rows of eight. Show correct 16 privately; child traces, covers, then forms a fresh label with counted set visible. Never show reversed out-of-range digits.
+Look for: Day 140 digit-order feedback: eighteen rings, two rows of nine, correct 18 privately. Trace/count, cover and form a label for a different counted practice collection. No numeral above twenty displayed.
 
 Shown: 16 beside sixteen individual rings. | Shown with help: correct after a mathematical prompt. | Not yet seen: Correctly counts sixteen but reverses its digits.
 
 ## s08-Q141
 
-Echo eight, nine, ten.
+Echo the day 141 count after the teacher.
 
-Key: eight, nine, ten; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
+Key: seventy-nine, eighty, eighty-one, eighty-two, eighty-three; then ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
 
-Look for: Teacher supplies eight, nine, ten; children echo and touch a paper route box per word. Then supply each tens word, ten through one hundred, with children echoing. No individual full recital or written numeral above twenty.
+Look for: Teacher supplies every word: seventy-nine, eighty, eighty-one, eighty-two, eighty-three. Children echo with one practice mark for each of the 5 supplied words. Three minutes include feedback on this stretch, one minute echoed tens, one regroup/retry. Then teacher supplies ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred, children echo. No independent full recital, new written numeral above twenty, score or route cues for F2. Review the oral sequence first demonstrated on day 137.
 
 Shown: eight, nine, ten; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred. | Shown with help: correct after a mathematical prompt. | Not yet seen: Misses a word in the supplied stretch.
 
@@ -686,19 +684,19 @@ Shown: eight, nine, ten; ten, twenty, thirty, forty, fifty, sixty, seventy, eigh
 
 Repair this supplied ten group.
 
-Key: Ten individual ones plus two further ones, twelve.
+Key: Ten individual ones plus seven further ones, seventeen.
 
-Look for: Draw a ten boundary with one token inside/two outside. Replace inside token with ten individual squares; trace one per square and record twelve. Fresh partial retry, no blank nineteen cover.
+Look for: Regroup the failed seventeen model from feedback: ten boundary with one token inside, seven outside. Replace inside token with ten ones; preserve seven. Fresh partial retry, no blank nineteen cover.
 
 Shown: Ten individual ones plus two further ones, twelve. | Shown with help: correct after a mathematical prompt. | Not yet seen: Leaves one token representing ten.
 
 ## s08-Q142
 
-Echo twelve, thirteen, fourteen.
+Echo the day 142 count after the teacher.
 
-Key: twelve, thirteen, fourteen; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
+Key: eighty-nine, ninety, ninety-one, ninety-two, ninety-three; then ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
 
-Look for: Teacher supplies twelve, thirteen, fourteen; children echo and touch a paper route box per word. Then supply each tens word, ten through one hundred, with children echoing. No individual full recital or written numeral above twenty.
+Look for: Teacher supplies every word: eighty-nine, ninety, ninety-one, ninety-two, ninety-three. Children echo with one practice mark for each of the 5 supplied words. Three minutes include feedback on this stretch, one minute echoed tens, one regroup/retry. Then teacher supplies ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred, children echo. No independent full recital, new written numeral above twenty, score or route cues for F2. Review the oral sequence first demonstrated on day 137.
 
 Shown: twelve, thirteen, fourteen; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred. | Shown with help: correct after a mathematical prompt. | Not yet seen: Misses a word in the supplied stretch.
 
@@ -724,11 +722,11 @@ Shown: Square stays square. | Shown with help: correct after a mathematical prom
 
 ## s08-Q143
 
-Echo sixteen, seventeen, eighteen.
+Echo the day 143 count after the teacher.
 
-Key: sixteen, seventeen, eighteen; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
+Key: ninety-six, ninety-seven, ninety-eight, ninety-nine, one hundred; then ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
 
-Look for: Teacher supplies sixteen, seventeen, eighteen; children echo and touch a paper route box per word. Then supply each tens word, ten through one hundred, with children echoing. No individual full recital or written numeral above twenty.
+Look for: Teacher supplies every word: ninety-six, ninety-seven, ninety-eight, ninety-nine, one hundred. Children echo with one practice mark for each of the 5 supplied words. Three minutes include feedback on this stretch, one minute echoed tens, one regroup/retry. Then teacher supplies ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred, children echo. No independent full recital, new written numeral above twenty, score or route cues for F2. Review the oral sequence first demonstrated on day 137.
 
 Shown: sixteen, seventeen, eighteen; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred. | Shown with help: correct after a mathematical prompt. | Not yet seen: Misses a word in the supplied stretch.
 
@@ -744,11 +742,11 @@ Shown: Both groups of three rings, six altogether. | Shown with help: correct af
 
 ## s08-Q144
 
-Echo thirty-six, thirty-seven, thirty-eight.
+Echo the day 144 count after the teacher.
 
-Key: thirty-six, thirty-seven, thirty-eight; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
+Key: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50; then ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
 
-Look for: Teacher supplies thirty-six, thirty-seven, thirty-eight; children echo and touch a paper route box per word. Then supply each tens word, ten through one hundred, with children echoing. No individual full recital or written numeral above twenty.
+Look for: Teacher supplies every word: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50. Children echo with one blank practice mark while echoing. Three minutes include feedback on this stretch, one minute echoed tens, one regroup/retry. Then teacher supplies ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred, children echo. No independent full recital, new written numeral above twenty, score or route cues for F2. Review the oral sequence first demonstrated on day 137.
 
 Shown: thirty-six, thirty-seven, thirty-eight; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred. | Shown with help: correct after a mathematical prompt. | Not yet seen: Misses a word in the supplied stretch.
 
@@ -774,11 +772,11 @@ Shown: 3; four disks with one stored leave three. | Shown with help: correct aft
 
 ## s08-Q145
 
-Echo forty-six, forty-seven, forty-eight.
+Echo the day 145 count after the teacher.
 
-Key: forty-six, forty-seven, forty-eight; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
+Key: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100; then ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
 
-Look for: Teacher supplies forty-six, forty-seven, forty-eight; children echo and touch a paper route box per word. Then supply each tens word, ten through one hundred, with children echoing. No individual full recital or written numeral above twenty.
+Look for: Teacher supplies every word: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100. Children echo with one blank practice mark while echoing. Three minutes include feedback on this stretch, one minute echoed tens, one regroup/retry. Then teacher supplies ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred, children echo. No independent full recital, new written numeral above twenty, score or route cues for F2. Review the oral sequence first demonstrated on day 137.
 
 Shown: forty-six, forty-seven, forty-eight; ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred. | Shown with help: correct after a mathematical prompt. | Not yet seen: Misses a word in the supplied stretch.
 
@@ -788,7 +786,7 @@ Mark the row with fifteen loops.
 
 Key: Lower row only: fifteen loops.
 
-Look for: Two unseen rows show thirteen loops and fifteen loops, each in a horizontal line. Match spoken target fifteen to the whole row; mark lower row. No numeral answer or second ask. Independent paper collection after supplied practice; feedback after 142, revise 143, judge eligible record 151.
+Look for: Two unseen rows show thirteen loops and fifteen loops, each in a horizontal line. Match spoken target fifteen to the whole row; mark lower row. No numeral answer or second ask. Independent paper collection after supplied practice; feedback after 142, revise 143, judge eligible record 151. | Shape: Match a spoken quantity to an entire new equal-width row; practice repairs a missing link on one supplied row.
 
 Shown: Lower row only: fifteen loops. | Shown with help: correct after a mathematical prompt. | Not yet seen: Marks thirteen-loop row.
 
@@ -798,30 +796,7 @@ Show what your chosen count tells us.
 
 Key: Chosen ring plan: eight rings, 8; chosen triangle plan: ten triangles, 10; whole count shown across both parts.
 
-Look for: Read two fresh puzzle plans: all rings on the mat, three beside five; all triangles on the mat, five beside five. Child selects a plan and draws/labels its whole counted collection. Choice plus model explains what count reveals without an extra spoken ask. Spontaneous dictation accepted, not required. Give feedback after 143, revise 144, judge eligible record 151.
+Look for: Read two fresh puzzle plans: all rings on the mat, three beside five; all triangles on the mat, five beside five. Child selects a plan and draws/labels its whole counted collection. Choice plus model explains what count reveals without an extra spoken ask. Spontaneous dictation accepted, not required. Give feedback after 143, revise 144, judge eligible record 151. | Shape: Represent the meaning of a freely chosen whole count; practice repairs an already selected count label.
 
 Shown: Chosen ring plan: eight rings, 8; chosen triangle plan: ten triangles, 10; whole count shown across both parts. | Shown with help: correct after a mathematical prompt. | Not yet seen: Records only one part as whole.
 
-## Anticipated errors and response
-
-- A: Four tokens called five after revisit. Correct: Four moved once give four. Day 136: boundary, fresh three-piece partial retry.
-- N: Stripe on dot mat. Correct: Stripe belongs on stripe mat. Day 136: compare icons, fresh partial sort.
-- B: Spaced four more than compact six. Correct: Six has two extras after matching. Day 137: repair supplied two/five links.
-- C: Six remove one called seven. Correct: Six remove one leaves five. Day 138: moved region, fresh four-remove-one retry.
-- D: Four gain one still four. Correct: Four gain one makes five. Day 139: three gain one/four.
-- E: Supplied eight starts one. Correct: Eight, nine, ten. Day 140: echo supplied six, continue seven/eight.
-- I: Sixteen digits reversed privately. Correct: 16 beside sixteen rings. Day 141: trace 16 privately, fresh formation; no out-of-range display.
-- F: One mark plus two called twelve. Correct: Ten ones and two further. Day 142: ungroup ten; repair twelve.
-- G: Cube flat because face flat. Correct: Cube solid, face flat. Day 143: trace face/feel depth, fresh box label.
-- H: Turned square rejected. Correct: Equal sides/corners stay after turn. Day 143: rotate tracing, fresh label.
-- L: Four joined by four called four. Correct: Both parts enclosed as eight. Day 144: supplied three/three whole, six.
-- J: Sixty-nine then eighty. Correct: Sixty-nine, seventy, seventy-one. Day 147: physical transition, fresh echoed stretch.
-- K: Ten, twenty, twenty-one for tens. Correct: Ten, twenty, thirty. Day 147: group per word, fresh partial stretch.
-- M: Four total/one visible/hidden one. Correct: Three hidden, one visible. Day 148: uncover/separate, fresh partial cover within four.
-- O: Three remove three still three. Correct: Nothing remains, zero. Day 149: empty mat, five-remove-five correction.
-
-For day 148, draw a large rectangle divided into two halves, one dot left/four right. Show the whole before placing folded paper over the right half. Child master shows the covered state only. Day 151 show five actual counters then conceal three, two visible. No equation with an unknown-position box is required.
-
-Before class setup: day 135 cut only the five loose pencil and three loose book pictures into cards, and cut the three large icon mats separately. Mat icons are category labels, never loose cards to count. Each child sorts cards, orders mats, then traces placements on paper before collection. Day 140 read the two tall box outlines as boxes and the low open outline as the empty ball tray. Day 143 pencils project into the cup outlines. Day 141 target nineteen is spoken by the teacher, no exemplar shown. For stories, read Invented for practice before the stem, Rin is the only actor.
-
-Repair routing correction: E137 unchanged total is D. E147 part/whole L uses day 148 Connected work, five minutes; actual P147-2 M uses Return and repair five. Day 149 prioritizes E148 M with a fresh within-four partial cover; use O empty-result correction only if no M need. Never infer M from a joining mark.

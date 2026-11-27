@@ -5,6 +5,7 @@ unit: 8.1
 stretch: 8
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Read all cards aloud. Each game includes at least two nonzero-addend additions and one removal. Three parallel partner rounds of two 45-second turns plus thirty seconds tidy fit five minutes. Partners check with supplied pictures, no racing. Omit game on day 137.
 ---
 # Mixed game cards
 
