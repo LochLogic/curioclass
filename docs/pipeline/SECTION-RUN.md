@@ -38,6 +38,10 @@ The lane stores each nonempty Claude list once in `build/sections/<subject>/carr
 
 At each boundary, including during the final drain, one `sweep` job per affected course uses GPT-6.2 Sol at high effort on the Codex-complete units still awaiting review. The prompt assigns each list to its eligible units, excludes the source and any unit under review, and limits edits to those units' plans, ledger entries and data rows. The job applies a lesson where it fits, preserves content that a gate cannot judge, and passes through the gate and commit before the lane records `applied_to`. A full write that already received the list needs no sweep for it. The unit's Claude prompt names its swept lists for verification.
 
+## Read bundles
+
+Each job's prompt ends with a read bundle: the files that job is told to read whole, put in full as they stood just before it (Cory 2026-11-27), so the model spends no turns opening them. The lead rebuilds the unit's skeletons first. Prep, write and Codex refine get AGENTS.md, the section-write brief, the UNIT-PLAN.md rules parts, DEFAULTS.md, the APPROACH file, the unit plan, the skeletons, and the prep notes and plans that exist. Data gets the plan-data brief, data/plans/README.md, LESSON-DAY.md, the unit plan, DEFAULTS.md and its sections' plans. The sweep gets its units' plans. The Claude pass gets only the rule files: its key read solves the packet cold, so plans, prep notes, skeletons and the unit plan stay out. Filtered reads (the ledger, frame.md rows, CSV tables) stay commands. Past 80,000 words the largest files are listed as paths instead. Every job is also told to make its writes in as few tool calls as it can. The files on disk stay one per section.
+
 ## Limits, stops and resume
 
 - A Claude usage limit keeps the same unit at the front. The lane saves the reset time locally and continues Codex work. An unreadable or missing reset time gives a 60-minute cooldown. A sign-in failure stops the lane.

@@ -242,6 +242,98 @@ def changed_list(previous, carry, course=None):
     return '\n'.join(reversed(dict.fromkeys(reversed(lines))))
 
 
+# ---------------------------------------------------------------- read bundles (Cory 2026-11-27)
+
+BUNDLE_CAP = 80000          # words; past it the largest files stay as paths for the model to open
+UNIT_RULES = ('The rules', 'The section plan: fields, in order', 'Length')
+WRITE_NOTE = ('\n\nWriting: when you create or change several files, do it in as few tool calls as you can (one '
+              'apply_patch call can add or change several files; Claude: send independent edits together in one '
+              'message), then run the checks once over all of them.')
+
+
+def cut(text, heads):
+    """The parts of a Markdown file under the named headings (any level), each to the next heading of its level or
+    higher."""
+    out, keep = [], 0
+    for ln in text.splitlines():
+        m = re.match(r'^(#{1,6}) (.*?)\s*$', ln)
+        if m:
+            lvl = len(m.group(1))
+            if keep and lvl <= keep:
+                keep = 0
+            if not keep and m.group(2).strip() in heads:
+                keep = lvl
+        if keep:
+            out.append(ln)
+    return '\n'.join(out)
+
+
+def bundle(entries):
+    """Files put in the prompt in full, so a job spends no turns opening them. entries: (path, heads or None).
+    Missing files are skipped; past BUNDLE_CAP words the largest are listed as paths instead."""
+    got = []
+    for rel, heads in entries:
+        p = ROOT / rel
+        if not p.is_file() or any(rel == g[0] for g in got):
+            continue
+        text = p.read_text(encoding='utf-8', errors='replace')
+        if heads:
+            text = cut(text, heads)
+            if not text.strip():
+                continue
+        got.append((rel, heads, text.strip()))
+    left = []
+    while got and sum(len(t.split()) for _, _, t in got) > BUNDLE_CAP:
+        big = max(got, key=lambda g: len(g[2].split()))
+        got.remove(big)
+        left.append(big[0])
+    if not got:
+        return ''
+    parts = ['\n\n# Read bundle from the section run lead\n\nThese files are below in full as they stood just before '
+             'your job (a heading list means only those parts). Do not open them again; read them here. Where your '
+             'job says to read only part of one, use that part. After you edit one of them, read your edit from disk, '
+             'not from here. Open other files as your job says.' +
+             ('\nLeft out for length (open them as your job says): %s.' % ', '.join(left) if left else '')]
+    for rel, heads, text in got:
+        parts.append('\n===== %s%s =====\n%s' % (rel, ' (parts: %s)' % '; '.join(heads) if heads else '', text))
+    parts.append('\n===== end of the read bundle =====')
+    return '\n'.join(parts)
+
+
+def rule_files(unit, unit_plan=True):
+    approach = 'docs/APPROACH-%s.md' % ('ELA' if unit.ela else 'MATH')
+    out = [('AGENTS.md', None), ('docs/pipeline/briefs/section-write.md', None),
+           ('docs/courses/UNIT-PLAN.md', UNIT_RULES), ('docs/courses/%s/DEFAULTS.md' % unit.course, None),
+           (approach, None)]
+    if unit_plan:
+        out.append(('docs/courses/%s/s%s.md' % (unit.course, unit.uu), None))
+    return out
+
+
+def unit_files(unit, names=None, skel=True, prep=True, plans=True):
+    out = []
+    for n in names or unit.names:
+        if skel:
+            out.append(('docs/courses/%s/section-skeletons/%s.md' % (unit.course, n), None))
+        if prep:
+            out.append(('build/sections/prep/%s/%s.md' % (unit.course, n), None))
+        if plans:
+            out.append(('docs/courses/%s/%s.md' % (unit.course, n), None))
+    return out
+
+
+def plan_before(unit):
+    """This course's section plan just before the unit's first section (the last plan of the unit before)."""
+    if unit.u <= 1:
+        return []
+
+    def num(p):
+        m = re.search(r'-(\d+)\.md$', p.name)
+        return int(m.group(1)) if m else 0
+    prev = sorted((ROOT / 'docs' / 'courses' / unit.course).glob('u%02d-*.md' % (unit.u - 1)), key=num)
+    return [(prev[-1].relative_to(ROOT).as_posix(), None)] if prev else []
+
+
 # ---------------------------------------------------------------- prompts
 
 def kit_job(lane, unit, kind, template, extra, detail):
@@ -598,7 +690,7 @@ class SectionLane(cl.Lane):
         _, model, effort = MODELS[stage.split('-')[0]]
         extra = ['-c', 'model="%s"' % model, '-c', 'model_reasoning_effort="%s"' % effort]
         step = dict(course=unit.course, num='u%s' % unit.uu, kind=stage)
-        prompt += PY_NOTE
+        prompt += PY_NOTE + WRITE_NOTE
         if self.dry:
             self.dry_show(unit, stage, prompt, 'codex exec %s' % ' '.join(extra))
             return dict(last='dry run', thread=None, resume=lambda *a: None)
@@ -923,12 +1015,20 @@ class SectionLane(cl.Lane):
             return
         self.check_stop()
         carry = self.feedback(unit)
-        self.run_codex(unit, 'prep', prep_prompt(unit, changed_list(previous, carry, unit.course)))
+        self.skeletons(unit)
+        self.run_codex(unit, 'prep', prep_prompt(unit, changed_list(previous, carry, unit.course)) + bundle(
+            rule_files(unit) + unit_files(unit, prep=False, plans=False) +
+            plan_before(unit)))
         miss = [n for n in unit.missing_plans() if not (PREP / unit.course / ('%s.md' % n)).exists()]
         if miss and not self.dry:
             raise Stop('%s prep wrote no note for %s' % (unit, ', '.join(miss)))
         self.mark('\n'.join(['%s:prep-carry:%s' % (unit, item['unit']) for item in carry] + ['%s:prep' % unit]))
         self.log('done %s prep' % unit)
+
+    def skeletons(self, unit):
+        """Rebuild the unit's section skeletons before a bundle reads them (the job would rebuild them anyway)."""
+        if not self.dry:
+            self.py('scripts/section_skeleton.py', unit.course, 'u%d' % unit.u)
 
     def start_bg_prep(self, nxt, previous):
         """One worker does the next unit's texts and then prep while Opus reviews an older unit."""
@@ -974,9 +1074,12 @@ class SectionLane(cl.Lane):
             return 0
         self.check_stop()
         written = 0
+        self.skeletons(unit)
         for names, text in write_prompts(self, unit, changed):
             self.check_stop()
             self.baseline(unit)
+            text += bundle(rule_files(unit) + unit_files(unit, names, plans=False) + plan_before(unit) +
+                           [('docs/courses/%s/%s.md' % (unit.course, n), None) for n in unit.names if n not in names])
             before = dict(cl.porcelain()) if not self.dry else {}
             self.start(unit, 'write')
             with quota_guard(self.plan_paths(unit, names), self.dry):
@@ -1009,7 +1112,10 @@ class SectionLane(cl.Lane):
         allowed = self.plan_paths(unit) + (rep.relative_to(ROOT).as_posix(),)
         self.start(unit, 'crefine')
         with quota_guard(allowed, self.dry):
-            job = None if report_changes(rep) else self.run_codex(unit, 'crefine', refine_prompt(unit, 'crefine'))
+            if not report_changes(rep):
+                self.skeletons(unit)
+            job = None if report_changes(rep) else self.run_codex(
+                unit, 'crefine', refine_prompt(unit, 'crefine') + bundle(rule_files(unit) + unit_files(unit)))
             newn = self.gated(unit, 'crefine', job=job)
         if not self.dry and not report_changes(rep):
             raise Stop('%s crefine left no final Changed list in %s' % (unit, rep))
@@ -1029,6 +1135,7 @@ class SectionLane(cl.Lane):
         allowed = owned + ('data/plans/defects.csv',)
         rebuild = not self.dry and not unit.has_items()
         halves = data_prompts(self, unit)
+        groups = cg.halves(unit.secs) if unit.ela else [unit.secs]
         for i, (half, text) in enumerate(halves):
             st = 'data' + ('-' + half if half else '')
             if self.stage_done(unit, st) and not rebuild:
@@ -1042,6 +1149,13 @@ class SectionLane(cl.Lane):
                 self.baseline(unit)
             before = dict(cl.porcelain()) if not self.dry else {}
             self.start(unit, st)
+            names = [cg.sname(unit.uu, s) for s, _ in groups[i]] if i < len(groups) else unit.names
+            text += bundle([('AGENTS.md', None), ('docs/pipeline/briefs/plan-data.md', None),
+                            ('data/plans/README.md', None), ('docs/courses/LESSON-DAY.md', None),
+                            ('docs/courses/%s/s%s.md' % (unit.course, unit.uu), None),
+                            ('docs/courses/%s/DEFAULTS.md' % unit.course, None)] +
+                           ([('docs/courses/UNIT-PLAN.md', ('English language arts data',))] if unit.ela else []) +
+                           unit_files(unit, names, skel=False, prep=False))
             with quota_guard(owned, self.dry):
                 job = self.run_codex(unit, st, text)
                 newn = self.gated(unit, st, job=job) if last else 0
@@ -1093,6 +1207,8 @@ class SectionLane(cl.Lane):
                       % ('\n'.join(allowed), '\n\n'.join('%s (sections %s, days %d to %d)\n%s' % (
                           u, ', '.join(u.names), min(u.days), max(u.days), changed_list(None, items))
                           for u, items in targets), NEVER, course))
+            prompt += bundle([('AGENTS.md', None), ('docs/pipeline/briefs/section-write.md', None)] +
+                             [f for u, _ in targets for f in unit_files(u, skel=False, prep=False)])
             self.baseline(first)
             before = {} if self.dry else dict(cl.porcelain())
             with quota_guard(allowed, self.dry):
@@ -1143,6 +1259,11 @@ class SectionLane(cl.Lane):
                        'apply where relevant. Identify any applicable fix outside that scope in the report:\n' +
                        changed_list(None, pending))
 
+        # Rules only: the key read solves its packet cold before it sees plans, prep notes, skeletons or the unit
+        # plan, so none of those are bundled (they hold keys).
+        prompt += WRITE_NOTE + bundle(rule_files(unit, unit_plan=False) if combined else
+                         [('AGENTS.md', None), ('docs/pipeline/briefs/sensitivity-read.md',
+                                                ('1. Study first (every kind)', '2. Read the target'))])
         # An interrupted old key read can legitimately predate the final Changed heading.
         legacy_key = (not combined and self.started(unit, 'key') and key.exists() and
                       not self.stage_done(unit, 'key-with-carry'))
