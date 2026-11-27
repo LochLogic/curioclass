@@ -2186,3 +2186,9 @@ drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
 - **Ingest and baseline:** Cory: "ingest all its work and baseline it for refining later". Every lane job had committed
   on main; gate baselines stored at commit 471687123 and counted in docs/reviews/codex-lanes-baseline-2026-11-26.md.
   The refine is later.csv L161.
+
+## 2026-11-26: Non-core scope baselines approved (chat)
+
+- **Gate 3 for six groups:** Cory: "Approve all six". The scope and sequence baselines for arts and music, health and
+  PE, computer science, career, SEL and library are approved after the 2026-11-26 group reads and fixes. Unit plans may
+  start for those courses. ELD stays held on C11; world languages stay shelved.
