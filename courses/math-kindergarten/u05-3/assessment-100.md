@@ -5,10 +5,10 @@ unit: 5.3
 stretch: 5
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Teacher reads each ask from key-teacher.md. One panel, one ask.
 ---
 # Day 100 assessment paper
 
-Teacher reads each ask from key-teacher.md. One panel, one ask.
 
 ## Side 1
 

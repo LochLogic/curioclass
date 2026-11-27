@@ -5,10 +5,10 @@ unit: 5.3
 stretch: 5
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Teacher reads aloud.
 ---
 # F1 equation record
 
-Teacher reads aloud.
 
 ## s05-F1-equation
 

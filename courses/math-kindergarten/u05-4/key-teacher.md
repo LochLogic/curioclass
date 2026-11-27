@@ -16,9 +16,11 @@ Show the partner that completes this tower of ten.
 
 Key: Three hidden pieces; seven and three make ten.
 
-Look-fors: Infer concealed tower part without a frame; all children mark three. | Stimulus in exit-101.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Infer concealed tower part from seven visible and a ten-total label.
+Look-fors: Paper shows three missing-piece marks connected by a line or enclosing mark to the visible seven, representing the complete ten. A numeral or isolated three alone leaves the relationship not yet seen. Usual communication or directed adult marks accepted; six may explain their same response. | Stimulus in exit-101.md. Eight minutes: launch 1, six concurrent paper minutes including six 45-second observations, collect 1. | Shape: Infer and justify a concealed tower part without a frame, preserving seven visible and ten altogether.
 
-Shown: Three marks. | Not yet seen: Repeats the visible seven as partner.
+Shown: Three missing-piece marks linked to the seven visible pieces as one whole ten. | Not yet seen: Repeats the visible seven as its partner (D).
+
+Wrong D: Repeats the visible seven as partner. Observe the matching action or explanation; never infer a letter from a wrong numeral.
 
 ## s05-X102
 
@@ -444,21 +446,25 @@ Shown: Three/one and two/two both use four stamps. | Not yet seen: One stamp ass
 
 F1 record. Scored from the work you handed in. Write nothing here.
 
-Key: One part grows by one, the other shrinks by one; total fixed.
+Key: Retained drawings assign every dot once for totals zero through ten; totals two through ten have different unordered pairs. Zero has only zero/zero and one has only zero/one. One matching equation puts the total first. One-up/one-down explanation keeps the whole fixed.
 
 Look-fors: Teacher-only interpretation, no child task. F1 four/F2 three/F3 three minutes within Interpret existing products. Earlier components judged only after written feedback and later revision. First-heard day 103 evidence stays pending; days 104/105 response.  | Shape: Close retained component records without a repeated complete task or interview.
 
-Shown: Three/five becomes four/four, still eight. | Not yet seen: Calls unchanged three/five a different pair.
+Shown: Eight dots split three/five and two/six, matching 8 = 3 + 5; arrows show one part grows as the other shrinks. | Not yet seen: A dot omitted (A), same unordered pair repeated for a total at least two (B), order-only equation refusal (C), or a dot assigned to both parts (F). Record each observed component separately.
+
+Wrong B: Calls unchanged three/five a different pair. Observe the matching action or explanation; never infer a letter from a wrong numeral.
 
 ## s05-A103-F2
 
 F2 record. Scored from the work you handed in. Write nothing here.
 
-Key: Explain given and added parts with the child's retained picture and the structure of ten.
+Key: Retained starts 1,2,3,4,5,6,7,8,9 need 9,8,7,6,5,4,3,2,1. Given marks are preserved and each empty cell filled once; the drawing records the partner. Retained explanation relates occupied and empty places to ten.
 
 Look-fors: Teacher-only interpretation, no child task. F1 four/F2 three/F3 three minutes within Interpret existing products. Earlier components judged only after written feedback and later revision. First-heard day 103 evidence stays pending; days 104/105 response.  | Shape: Close retained component records without a repeated complete task or interview.
 
-Shown: Seven were there, five and two; three places empty. | Not yet seen: Repeats given seven as partner.
+Shown: Seven given marks preserved and three empty places filled once; explanation uses five and two given and three spaces. | Not yet seen: Repeats seven as partner (D), or labels empty places zero, one, two and reports two (E).
+
+Wrong D: Repeats given seven as partner. Observe the matching action or explanation; never infer a letter from a wrong numeral.
 
 ## s05-A103-F3
 

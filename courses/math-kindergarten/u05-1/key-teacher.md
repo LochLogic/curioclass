@@ -32,23 +32,27 @@ Shown: Two/five then three/four. | Not yet seen: Six assigned slots and one empt
 
 ## s05-X89
 
-Show where you would snap this train into two parts.
+Show the split after this move.
 
-Key: Any one boundary making parts totaling nine. Deliberate empty end accepted.
+Key: Five in the first part and four in the second; all nine cells retained.
 
-Look-fors: All nine cells belong to exactly one part; six heard children name their same split. | Stimulus in exit-89.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Choose an independent snap boundary on a fresh nine-cell train.
+Look-fors: Given nine-cell train starts four/five. The arrow moves the first cell of the second part into the first. Paper marks show five/four, one gained and one lost, whole unchanged. | Stimulus in exit-89.md; read the supplied move neutrally. Eight minutes: launch 1, six concurrent paper minutes with six 45-second observations, collect 1. | Shape: Predict the resulting split of a supplied nine-cell train change; never choose an arbitrary snap boundary.
 
-Shown: Four and five. | Not yet seen: One cell outside both stated parts, four and four.
+Shown: Boundary after five cells, four left in the other part; all nine used. | Not yet seen: Four/four with one cell visibly omitted (A). Unchanged four/five gets a descriptive relationship note.
+
+Wrong A: One cell outside both stated parts, four and four. Observe the matching action or explanation; never infer a letter from a wrong numeral.
 
 ## s05-X90
 
-Mark the pair of records that repeats the same split.
+Show why two records repeat the same split.
 
 Key: First and third: both one and seven.
 
-Look-fors: Use counts, not positions. Hear only six same-ask explanations. | Stimulus in exit-90.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Identify repetition within an unordered four-record list for eight.
+Look-fors: Connect the first and third records, matching their one-piece parts and their seven-piece parts. Correspondence marks can show unchanged counts; a choice alone leaves the reason not yet seen. | Stimulus in exit-90.md. Eight minutes: launch 1, six concurrent paper minutes with six 45-second same-ask observations, collect 1. | Shape: Produce a count-based reason for repetition within an unordered multi-record list for eight.
 
-Shown: Records one and three marked. | Not yet seen: Calls rearranged one/seven a new pair.
+Shown: Links both one-piece parts and both seven-piece parts on records one and three; positions changed, counts did not. | Not yet seen: Calls the rearranged one/seven a new pair (B).
+
+Wrong B: Calls rearranged one/seven a new pair. Observe the matching action or explanation; never infer a letter from a wrong numeral.
 
 ## s05-R87-quantity
 
@@ -346,9 +350,11 @@ Show how many squares are here now.
 
 Key: 4 squares.
 
-Look-fors: Invented for practice: Rin starts with 1 squares and brings 3 more. Teacher models on day 87 before rehearsal. Partners exchange handler/checker roles, check collection, repeat in five concurrent minutes. No timer. All leave quantity marks.
+Look-fors: Invented for practice: Rin starts with 1 square and brings 3 more. Teacher models on day 87 before rehearsal. Partners exchange handler/checker roles, check collection, repeat in five concurrent minutes. No timer. All leave quantity marks.
 
 Shown: 4 after the action. | Not yet seen: Action does not match story.
+
+Wrong x: Action does not match story. Describe the mismatch; no forced register letter.
 
 ## s05-G87-4
 
@@ -386,9 +392,11 @@ Show how many squares are here now.
 
 Key: 4 squares.
 
-Look-fors: Invented for practice: Rin starts with 1 squares and brings 3 more. Teacher models on day 87 before rehearsal. Partners exchange handler/checker roles, check collection, repeat in five concurrent minutes. No timer. All leave quantity marks.
+Look-fors: Invented for practice: Rin starts with 1 square and brings 3 more. Teacher models on day 87 before rehearsal. Partners exchange handler/checker roles, check collection, repeat in five concurrent minutes. No timer. All leave quantity marks.
 
 Shown: 4 after the action. | Not yet seen: Action does not match story.
+
+Wrong x: Action does not match story. Describe the mismatch; no forced register letter.
 
 ## s05-G88-4
 
@@ -426,9 +434,11 @@ Show how many squares are here now.
 
 Key: 4 squares.
 
-Look-fors: Invented for practice: Rin starts with 1 squares and brings 3 more. Teacher models on day 87 before rehearsal. Partners exchange handler/checker roles, check collection, repeat in five concurrent minutes. No timer. All leave quantity marks.
+Look-fors: Invented for practice: Rin starts with 1 square and brings 3 more. Teacher models on day 87 before rehearsal. Partners exchange handler/checker roles, check collection, repeat in five concurrent minutes. No timer. All leave quantity marks.
 
 Shown: 4 after the action. | Not yet seen: Action does not match story.
+
+Wrong x: Action does not match story. Describe the mismatch; no forced register letter.
 
 ## s05-G89-4
 
@@ -466,9 +476,11 @@ Show how many squares are here now.
 
 Key: 4 squares.
 
-Look-fors: Invented for practice: Rin starts with 1 squares and brings 3 more. Teacher models on day 87 before rehearsal. Partners exchange handler/checker roles, check collection, repeat in five concurrent minutes. No timer. All leave quantity marks.
+Look-fors: Invented for practice: Rin starts with 1 square and brings 3 more. Teacher models on day 87 before rehearsal. Partners exchange handler/checker roles, check collection, repeat in five concurrent minutes. No timer. All leave quantity marks.
 
 Shown: 4 after the action. | Not yet seen: Action does not match story.
+
+Wrong x: Action does not match story. Describe the mismatch; no forced register letter.
 
 ## s05-G90-4
 
@@ -493,3 +505,68 @@ D: Four/four makes eight; four/six makes ten. Repair: Preserve given part, fill 
 E: Five spaces numbered 0-4 reported four versus count 1-5. Repair: Touch each place while counting from one.
 
 F: Six squares in overlapping loops counted three/four with one shared; correct disjoint three/three. Repair: Trace each square to one part; remove second assignment.
+
+## s05-M87-train
+
+Complete this supplied six-piece train record.
+
+Key: Four in the second part, two in the first.
+
+Look-fors: Teacher separates the six-piece train at its supplied two/four joint and supplies the first count. Children complete the missing second count on an already separated record. No independent snap choice or prediction; paper strips replace cubes. Use within the existing seven Teaching first minutes, then rehearse day 89.
+
+Shown: Four marks in the missing-count box. | Not yet seen: Three while one of the four cells is visibly skipped (A).
+
+Wrong A: Three while one of the four second-part cells is visibly skipped. Letter requires the observed omission, not a bare count.
+
+
+## s05-L88-eight
+
+Show two parts of these eight loose pieces.
+
+Key: Any two disjoint parts using all 8 pieces; for example 3 and 5. An empty part is valid.
+
+Look-fors: Child-led construction on two plain mats: the child chooses a split of 8 large paper key shapes or square stand-ins, then keeps one small sketch in the blank mat boxes. No second split is requested. Four minutes replace correction time: two 45-second partner turns, two minutes handling/checking, thirty seconds sketch. The teacher checks the paper after class and returns it with the next exit packet. Reuse this same practice row when the later section block calls for the same total; a new optional example split is not another assessment. Never use the independent dot-strip, story or train evidence layouts.
+
+Shown: 3/5, every piece in one part and whole 8. | Not yet seen: One piece left outside both parts (A).
+
+Wrong A: One piece left outside both parts. Assign the unused piece to one part; judge initial and supported work separately.
+
+
+## s05-L89-ten
+
+Show two parts of these ten loose pieces.
+
+Key: Any two disjoint parts using all 10 pieces; for example 4 and 6. An empty part is valid.
+
+Look-fors: Child-led construction on two plain mats: the child chooses a split of 10 large paper key shapes or square stand-ins, then keeps one small sketch in the blank mat boxes. No second split is requested. Four minutes replace correction time: two 45-second partner turns, two minutes handling/checking, thirty seconds sketch. The teacher checks the paper after class and returns it with the next exit packet. Reuse this same practice row when the later section block calls for the same total; a new optional example split is not another assessment. Never use the independent dot-strip, story or train evidence layouts.
+
+Shown: 4/6, every piece in one part and whole 10. | Not yet seen: One piece left outside both parts (A).
+
+Wrong A: One piece left outside both parts. Assign the unused piece to one part; judge initial and supported work separately.
+
+
+## s05-L87-three
+
+Show two parts of these three loose pieces.
+
+Key: Any two disjoint parts using all 3 pieces; for example 1 and 2. An empty part is valid.
+
+Look-fors: Child-led construction on two plain mats: the child chooses a split of 3 large paper key shapes or square stand-ins, then keeps one small sketch in the blank mat boxes. No second split is requested. Four minutes replace correction time: two 45-second partner turns, two minutes handling/checking, thirty seconds sketch. The teacher checks the paper after class and returns it with the next exit packet. Reuse this same practice row when the later section block calls for the same total; a new optional example split is not another assessment. Never use the independent dot-strip, story or train evidence layouts.
+
+Shown: 1/2, every piece in one part and whole 3. | Not yet seen: One piece left outside both parts (A).
+
+Wrong A: One piece left outside both parts. Assign the unused piece to one part; judge initial and supported work separately.
+
+
+## s05-L90-four
+
+Show two parts of these four loose pieces.
+
+Key: Any two disjoint parts using all 4 pieces; for example 0 and 4. An empty part is valid.
+
+Look-fors: Child-led construction on two plain mats: the child chooses a split of 4 large paper key shapes or square stand-ins, then keeps one small sketch in the blank mat boxes. No second split is requested. Four minutes replace correction time: two 45-second partner turns, two minutes handling/checking, thirty seconds sketch. The teacher checks the paper after class and returns it with the next exit packet. Reuse this same practice row when the later section block calls for the same total; a new optional example split is not another assessment. Never use the independent dot-strip, story or train evidence layouts.
+
+Shown: 0/4, every piece in one part and whole 4. | Not yet seen: One piece left outside both parts (A).
+
+Wrong A: One piece left outside both parts. Assign the unused piece to one part; judge initial and supported work separately.
+

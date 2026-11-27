@@ -353,3 +353,16 @@ D: Four/four makes eight; four/six makes ten. Repair: Preserve given part, fill 
 E: Five spaces numbered 0-4 reported four versus count 1-5. Repair: Touch each place while counting from one.
 
 F: Six squares in overlapping loops counted three/four with one shared; correct disjoint three/three. Repair: Trace each square to one part; remove second assignment.
+
+## s05-M98-tower
+
+Complete the missing label beside this full tower.
+
+Key: Six plain pieces; four patterned and six plain make ten.
+
+Look-fors: A complete ten-piece tower has four patterned and six plain cells beside a completed matching ten-frame. The first count four is supplied; all six other cells remain visible while children complete its count label. Each tower cell maps to one frame cell. No concealment, independent partner production or equation choices. Teach this link inside the existing eight Teaching first minutes; day 101 rehearses it.
+
+Shown: Six in the supplied label space, linked to six plain cells. | Not yet seen: Repeats four for the other part (D).
+
+Wrong D: Repeats four as the label for the six plain cells. Observe the repeated-given-part action.
+

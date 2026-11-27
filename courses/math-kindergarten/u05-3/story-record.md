@@ -5,10 +5,12 @@ unit: 5.3
 stretch: 5
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Teacher reads each ask separately. Invented for practice: Rin puts four stamps in a red album or a blue album.
 ---
 # F3 story paper
 
-Teacher reads each ask separately. Invented for practice: Rin puts four stamps in a red album or a blue album.
+Invented for practice.
+
 
 ## s05-F3-1
 

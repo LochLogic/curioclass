@@ -66,9 +66,12 @@ Circle the model that fits Rin's story.
 
 Key: A, seven joined by one, 8 = 7 + 1.
 
-Look-fors: All three end with eight; match initial seven and joining one, not only result. | Stimulus in exit-96.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Recognize story structure among three equal-result models.
+Look-fors: All three models end with eight. Paper choice A includes tracing its seven starting marks and one arriving mark as the representation of the story. A circle or final count alone leaves the initial/change correspondence not yet seen. | Stimulus in exit-96.md; read the story and all cards neutrally. Eight minutes: launch 1, six concurrent paper minutes including six 45-second observations, collect 1. | Shape: Recognize a representation by story structure among equal-result models, preserving both given quantities and the joining action.
 
-Shown: A marked. | Not yet seen: Rejects A solely for total-left order.
+Shown: A circled with the seven starting marks and one arriving mark traced. | Not yet seen: Refuses A solely for its total-left equation (C). Choosing only by result gets a descriptive action note.
+
+Wrong C: Rejects A solely for total-left order. Observe the matching action or explanation; never infer a letter from a wrong numeral.
+Wrong x: B or C because its result is eight. Record action mismatch descriptively.
 
 ## s05-F3-1
 
@@ -403,3 +406,42 @@ D: Four/four makes eight; four/six makes ten. Repair: Preserve given part, fill 
 E: Five spaces numbered 0-4 reported four versus count 1-5. Repair: Touch each place while counting from one.
 
 F: Six squares in overlapping loops counted three/four with one shared; correct disjoint three/three. Repair: Trace each square to one part; remove second assignment.
+
+## s05-L95-five
+
+Show two parts of these five loose pieces.
+
+Key: Any two disjoint parts using all 5 pieces; for example 2 and 3. An empty part is valid.
+
+Look-fors: Child-led construction on two plain mats: the child chooses a split of 5 large paper key shapes or square stand-ins, then keeps one small sketch in the blank mat boxes. No second split is requested. Four minutes replace correction time: two 45-second partner turns, two minutes handling/checking, thirty seconds sketch. The teacher checks the paper after class and returns it with the next exit packet. Reuse this same practice row when the later section block calls for the same total; a new optional example split is not another assessment. Never use the independent dot-strip, story or train evidence layouts.
+
+Shown: 2/3, every piece in one part and whole 5. | Not yet seen: One piece left outside both parts (A).
+
+Wrong A: One piece left outside both parts. Assign the unused piece to one part; judge initial and supported work separately.
+
+
+## s05-L91-nine
+
+Show two parts of these nine loose pieces.
+
+Key: Any two disjoint parts using all 9 pieces; for example 4 and 5. An empty part is valid.
+
+Look-fors: Child-led construction on two plain mats: the child chooses a split of 9 large paper key shapes or square stand-ins, then keeps one small sketch in the blank mat boxes. No second split is requested. Four minutes replace correction time: two 45-second partner turns, two minutes handling/checking, thirty seconds sketch. The teacher checks the paper after class and returns it with the next exit packet. Reuse this same practice row when the later section block calls for the same total; a new optional example split is not another assessment. Never use the independent dot-strip, story or train evidence layouts.
+
+Shown: 4/5, every piece in one part and whole 9. | Not yet seen: One piece left outside both parts (A).
+
+Wrong A: One piece left outside both parts. Assign the unused piece to one part; judge initial and supported work separately.
+
+
+## s05-M92-scenes
+
+Mark the squares arriving in the lower scene.
+
+Key: The two incoming squares in the lower scene.
+
+Look-fors: Invented for practice: Rin is the sole actor. Upper scene has two patterned and four plain squares already present, six altogether, with no movement. Lower scene starts with four squares; Rin brings the two patterned squares along the arrow. Explain the static/arrival contrast before this single correction ask. Children mark the two arrivals on the supplied lower picture; never solve a fresh independent bookmark story. This review connects taught part/whole and joining models inside Story rehearsal.
+
+Shown: The two lower incoming squares marked. | Not yet seen: Marks all six as arriving; describe the action mismatch, with no forced register letter.
+
+Wrong x: Marks all six squares as arriving. Describe static/arrival mismatch; do not invent a unit-register letter.
+

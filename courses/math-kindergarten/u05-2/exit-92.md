@@ -6,10 +6,12 @@ stretch: 5
 version: draft, not yet taught
 credit: All ours.
 exit: half
+teacher_note: Teacher reads all words and labels aloud. Invented for practice.
 ---
 # Day 92 exit ticket
 
-Teacher reads all words and labels aloud. Invented for practice.
+Invented for practice.
+
 
 Rin has three striped bookmarks and six plain bookmarks.
 

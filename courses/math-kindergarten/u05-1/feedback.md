@@ -5,10 +5,10 @@ unit: 5.1
 stretch: 5
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Teacher reads feedback aloud. Keep first marks visible. Teacher dates: initial ______ feedback ______ revision ______ judgment ______
 ---
 # Feedback and revision
 
-Teacher reads feedback aloud. Keep first marks visible.
 
 Name: __________________
 
@@ -16,4 +16,3 @@ Name: __________________
 |---|---|
 | <br><br><br><br><br><br><br> | <br><br><br><br><br><br><br> |
 
-Teacher dates: initial ______ feedback ______ revision ______ judgment ______

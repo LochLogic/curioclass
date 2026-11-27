@@ -5,10 +5,10 @@ unit: 5.4
 stretch: 5
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Teacher reads this ask separately for each row: "Mark what this frame needs to make ten."
 ---
 # F2 partner sheet
 
-Teacher reads this ask separately for each row: "Mark what this frame needs to make ten."
 
 ## Side 1
 

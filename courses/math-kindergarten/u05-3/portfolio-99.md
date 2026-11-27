@@ -5,10 +5,12 @@ unit: 5.3
 stretch: 5
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Teacher reads each row separately. First copy: "Mark this whole as two parts." Second copy: "Mark a different split of this whole." Invented for practice.
 ---
 # F1 paper record, day 99
 
-Teacher reads each row separately. First copy: "Mark this whole as two parts." Second copy: "Mark a different split of this whole." Invented for practice.
+Invented for practice.
+
 
 ## Side 1
 

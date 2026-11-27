@@ -5,10 +5,12 @@ unit: 5.1
 stretch: 5
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Teacher reads aloud. Invented for practice.
 ---
 # Day 87 retrieval
 
-Teacher reads aloud. Invented for practice.
+Invented for practice.
+
 
 ## s05-R87-quantity
 

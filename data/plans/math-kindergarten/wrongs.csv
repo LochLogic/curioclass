@@ -2013,3 +2013,16 @@ sC-E84-9b,Rejects thin triangle because unlike usual triangle.,,,O,"Prototype-on
 sC-E84-9c,"Only diamond, never square because tilted.",,,I,"Orientation determines name, unit 3 error B."
 sC-E84-9d,Calls the long rectangle a square.,,,x,Unmatched shape name; retain a descriptive note.
 sC-E84-9e,Calls the six-sided card a pentagon.,,,x,Unmatched shape name; retain a descriptive note.
+s05-L87-three,One piece left outside both parts.,,,A,Assign the unused piece to one part; judge initial and supported work separately.
+s05-L88-eight,One piece left outside both parts.,,,A,Assign the unused piece to one part; judge initial and supported work separately.
+s05-L89-ten,One piece left outside both parts.,,,A,Assign the unused piece to one part; judge initial and supported work separately.
+s05-L90-four,One piece left outside both parts.,,,A,Assign the unused piece to one part; judge initial and supported work separately.
+s05-L91-nine,One piece left outside both parts.,,,A,Assign the unused piece to one part; judge initial and supported work separately.
+s05-L95-five,One piece left outside both parts.,,,A,Assign the unused piece to one part; judge initial and supported work separately.
+s05-M87-train,Three while one of the four second-part cells is visibly skipped.,,,A,"Letter requires the observed omission, not a bare count."
+s05-M92-scenes,Marks all six squares as arriving.,,,x,Describe static/arrival mismatch; do not invent a unit-register letter.
+s05-M98-tower,Repeats four as the label for the six plain cells.,,,D,Observe the repeated-given-part action.
+s05-A103-F1,A dot in a retained split is left outside both parts.,,,A,Use the observed action on the retained product; keep component feedback and revision dates.
+s05-A103-F1,A matching retained total-left equation is refused solely for its order.,,,C,Use the observed action on the retained product; keep component feedback and revision dates.
+s05-A103-F1,One dot in a retained split is assigned to both parts.,,,F,Use the observed action on the retained product; keep component feedback and revision dates.
+s05-A103-F2,"Three empty places are labeled zero, one, two and reported as two.",,,E,Use the observed action on the retained product; keep component feedback and revision dates.
