@@ -9,6 +9,15 @@ credit: ours
 
 Teacher copy. Read each exact stem from its learner piece. Use shown, shown with help, or not yet seen. Record a letter only when the picture or the child's words show that reasoning.
 
+## Day 39 scoring
+
+Use each child's original pages, conference notes and revisions. Record the help given and mark each component separately. Leave a missing page or observation pending with a date to collect it.
+
+- s02-A39-O uses the missing-addend explanation from s02-Oa.
+- s02-A39-Q uses the equality explanation from s02-Ob and the six judgments on the Equality strip.
+- s02-A39-N uses the six positions on the Unknown strip.
+- s02-A39-S uses the three part-whole pages, the comparison page and the four flag pages in the Story booklet. Refer to the same conference note for the comparison explanation.
+
 ## S25a
 
 How many tiles are on the mat?

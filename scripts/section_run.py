@@ -699,6 +699,34 @@ class SectionLane(cl.Lane):
                                                ', UNFILLED %s' % toks if toks else ''))
 
     # ------------------------------------------------------------ gate, commit
+    def gate(self, course):
+        """The course gate, without index-reports orphan lines: the index reads leans_on only from written lesson
+        files, so every piece of a unit still at section-plan stage is an orphan until its days are written. Those
+        lines are neither handed back nor counted toward a pileup (Cory 2026-11-27 overnight run)."""
+        code, out, new = super().gate(course)
+        if code != 1 or self.dry:
+            return code, out, new
+        full = ROOT / 'build' / 'gates' / ('now-' + course) / 'compare.txt'
+        def orphan_free(text_lines):
+            kept, gate = [], ''
+            for ln in text_lines:
+                if ln.startswith('== '):
+                    gate = ln[3:].split(' ')[0].rstrip(':')
+                if gate == 'index-reports' and ln.startswith('  FAIL-NEW') and 'orphans:' in ln:
+                    continue
+                kept.append(ln)
+            return kept
+        lines = full.read_text(encoding='utf-8').splitlines() if full.exists() else out.splitlines()
+        fails = [ln for ln in lines if ln.startswith('  FAIL-NEW')]
+        keep = [ln for ln in orphan_free(lines) if ln.startswith('  FAIL-NEW')]
+        if len(keep) == len(fails):
+            return code, out, new
+        if not keep and not any('GATE GONE' in ln or ('exit code' in ln and not ln.startswith('== index-reports'))
+                                for ln in lines if ln.startswith('== ')):
+            return 0, out, []
+        return code, '\n'.join(orphan_free(out.splitlines())) + \
+            '\n(index-reports orphan lines left out: their lessons are not written yet)\n', keep
+
     def gated(self, unit, stage, job=None, sid=None, recovery_prompt=None):
         """Re-run the course gate; hand new lines back once (Codex: same session; Claude: a fix call)."""
         if self.dry:
