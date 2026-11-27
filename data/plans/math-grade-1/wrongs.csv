@@ -454,3 +454,4 @@ s07-AR4-d30,Draws the short hand at 6 and the long one at the midpoint.,,,G,Erro
 s07-AS2-write,Writes 8:06.,,,H,Error H. See the unit 7 register for a fresh repair.
 s07-AS2-draw,Draws the short hand exactly at 11.,,,F,Error F. See the unit 7 register for a fresh repair.
 s07-AS2-draw,Draws the short hand at 6 and the long one at the midpoint.,,,G,Error G. See the unit 7 register for a fresh repair.
+s07-P129-equality-retry,Says no because 20 should come right after the equal sign.,,,,"Record as Error L in Unit 6. This retry follows the Unit 6 handback, so it has no Unit 7 letter."
