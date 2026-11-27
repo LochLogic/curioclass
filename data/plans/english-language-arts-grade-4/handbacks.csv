@@ -354,32 +354,32 @@ from_day,to_day,what,where,minutes,error,note
 120,121,s04-X120,repair,1,,Return the original paper with one written next move. Check the claim against the letter’s maker and what it actually says. Share one priority per child across exit and Exit box.
 120,121,s04-R120-times,repair,1,,Return this separately marked Exit box with the exit. Use a different case for any needed retry.
 121,122,s04-X121,repair,5,,Return the original paper with one written next move. Match a different action to an evidence-based character inference.
-122,125,s04-X122,repair,1,,Return the original paper with one written next move. Inspect one pause on a different line. Use the shared priority slot with the two checks.
-125,126,s04-X125,repair,1,,Return the original paper with one written next move. Repair one missing event or one mismatched antecedent on a fresh component. Share one priority per child across exit and Exit box.
+122,125,s04-X122,repair,1,,"Return this marked response privately. On a different line, match the reader's voice to a word in the narration."
+125,126,s04-X125,repair,1,,Return this marked response privately. Remove an opinion from a fresh summary.
 125,126,s04-R125-theme,repair,1,,Return this separately marked Exit box with the exit. Use a different case for any needed retry.
 126,127,s04-X126,repair,1,,Return the original paper with one written next move. Show one difference between the speaker’s claim and a historical detail. Share one priority per child across exit and Exit box.
 126,127,s04-R126-context,repair,1,,Return this separately marked Exit box with the exit. Use a different case for any needed retry.
-127,128,s04-X127,repair,1,,"Return the original paper with one written next move. If the reading hold was resolved, correct a fresh source label or punctuation effect. Share one priority per child across exit and Exit box."
+127,128,s04-X127,repair,1,,"Return evidence only after the reserved reading is released. On release, check what a different speaker could know."
 127,128,s04-R127-language,repair,1,,Return this separately marked Exit box with the exit. Use a different case for any needed retry.
 128,130,s04-X128,repair,1,,Return the original paper with one written next move. Check the limit of a new source statement. Share the priority slot with day 129 records.
-130,131,s04-X130,repair,5,,"Return the original paper with one written next move. Inspect a topic-only claim or a mismatched pronoun, in a different scene."
-131,132,s04-X131,repair,5,,Return the original paper with one written next move. Select one contextual clue to correct a literal gloss in a different saying.
+130,131,s04-X130,repair,5,,Return this marked response privately. Connect a message to an action in a new scene.
+131,132,s04-X131,repair,5,,Return this marked response privately. Use a different saying and its context to correct a literal interpretation.
 132,133,s04-X132,repair,5,,Return the original paper with one written next move. Remove one personal rating or unsupported detail from a fresh fragment.
-133,134,s04-X133,repair,5,,Return the original paper with one written next move. Correct a separate literal misreading using its own context.
+133,134,s04-X133,repair,5,,Return this marked response privately. Correct a literal reading using a detail in another scene.
 134,135,s04-X134,repair,1,,"Return the original paper with one written next move. Write a message rather than a topic, or link to a real partner comment on a different line. Share one priority per child across exit and Exit box."
 134,135,s04-R134-listening,repair,1,,Return this separately marked Exit box with the exit. Use a different case for any needed retry.
-135,136,s04-X135,repair,5,,Return the original paper with one written next move. Trace a relative form to its antecedent or remove an opinion from a different fragment.
+135,136,s04-X135,repair,5,,Return this marked response privately. Use a different scene to remove an opinion from a summary.
 136,138,s04-X136,repair,1,,Return the original paper with one written next move. Repair one evidence link on a new fragment. Share the slot with day 137 priorities.
-138,139,s04-X138,repair,5,,Return the original paper with one written next move. Locate one misplaced detail in a different fragment.
+138,139,s04-X138,repair,5,,"Return evidence only after the reserved reading is released. On release, locate a misplaced detail in a different fragment."
 139,140,s04-X139,repair,5,,Return the original paper with one written next move. Find missing context in a different opening fragment.
-140,141,s04-X140,repair,5,,Return the original paper with one written next move. Inspect one missing evidence link in a different scene; keep private draft feedback separate.
+140,141,s04-X140,repair,5,,"Return this marked response privately. On a fresh detail, explain its connection to a theme."
 141,143,s04-X141,repair,1,,Return the original paper with one written next move. Check one theme statement against a different ending after the independent day 142 check.
 119,128,retained day 119 discussion entries,Discussion,3,,Use one documented role or linked-response need to select a faulty turn. Keep missing evidence blank.
 123,124,s04-A1 to A5 original literary responses,Feedback,5,,Return the dated originals and mark one criterion to read privately. Keep revised versions separate.
 123,125,s04-A1 to A5 priority from original responses,repair,2,,Reteach one shared need on a new fragment. Keep the original check scored separately.
 124,125,s04-B1 and B2 individual evidence,repair,2,,"Return conference and due reading feedback privately. Repair one recorded need, or date the next observation."
 129,130,s04-C1 and due reading record,repair,4,,Use actual evidence only. Held C1 has no cold score. Return the due reading note and keep unresolved criteria visible.
-134,135,day 134 word pattern probe,Pattern,10,,Return the actual paper. Teach the observed pattern for five minutes and use a different word for five minutes.
+134,135,day 134 word pattern probe,Pattern,10,,Return both numbered responses. Reteach the observed pattern for five minutes using a different worked word. Retry with the two fresh oral words named in section 4.3.
 137,138,s04-D1 to D3 and due reading record,repair,4,,Return marked criteria privately. Repair one need with a fresh fragment. Hold unresolved allusion/adage evidence.
 138,139,unjudged evidence-plan feedback,introduction,3,,Return one written next move before the child starts the private draft. Keep original and newer versions.
 140,141,unjudged body-draft feedback,Feedback,10,,"Read the day 140 comment beside the original. Revise one component. Store first draft, comment and revision together."
@@ -392,23 +392,35 @@ from_day,to_day,what,where,minutes,error,note
 143,144,s04-X143,repair,3,,Return the attributed note with one source-tag move. Repair with one unrelated note.
 143,144,s04-R143-question,repair,1,,Return the separate Exit box judgment. Mark whether the question can be answered from its source.
 142,144,s04-E1 secondary feedback,repair,2,,Use the remaining priority only when the day 143 response called for it.
-144,145,s04-X144,repair,4,,Return the integration and inspect an unsupported connection in a different passage.
+144,145,s04-X144,repair,4,,Return this marked response privately. Use an unrelated pair to connect two details without claiming an unobserved result.
 144,145,unsupported-claim practice,repair,1,,Return the isolated judgment with a source limit marked.
 145,147,s04-X145,repair,2,,Return after F1. Give one next move about listener background or a claim’s reach.
 145,147,s04-R145-register,repair,1,,Return the six observed records privately. Mark the wording used and the next listener move.
 145,147,s04-R145-register makeup turns,discussion,20,,Hear the remaining 24 children in 18 speaking minutes and two handover minutes using the same released instructional paragraph.
 145,147,inference and audience practice,repair,1,,Return each isolated judgment with one different-case repair priority.
 147,148,s04-R145-register completed observations,repair,1,,Return the 24 completed individual marks from day 147 privately alongside other feedback.
-147,148,s04-X147,repair,4,,Return the paper plan and inspect a missing detail or listener-context need in a different case.
+147,148,s04-X147,repair,4,,Return this marked response privately. Use a different card to repair factual support or audience context.
 146,148,s04-F1 secondary feedback,repair,2,,"Use only an unresolved priority remaining after day 147, with a fresh fragment."
 148,149,s04-X148,repair,4,,"On release, return one noted support issue and repair it with a different fragment."
 148,149,s04-R148-language,repair,1,,"On release, return the Exit box mark for the explanation of the colon’s effect."
-149,150,s04-X149,repair,4,,"On release, return the paper exit privately and use an unrelated opening to inspect a missing component."
+149,150,s04-X149,repair,4,,"Return evidence only after the reserved reading is released. On release, inspect the context of an unrelated opening."
 149,150,unjudged introduction feedback,revision,3,,Use one written comment in the existing own revision block; retain comment and original.
-150,154,s04-X150,repair,2,,"On release, return the linked sentence after the independent checks. Choose one repair criterion only."
+150,154,s04-X150,repair,2,,"Return evidence only after the reserved reading is released. On release, link a relative form to its antecedent in a fresh detail."
 150,154,s04-R150-close,repair,1,,"On release, return the separate Exit box mark after the checks."
 154,155,s04-X154,repair,3,,"On release, return the organization analysis with one next move. Keep the reserved narrative paragraph closed."
 154,155,s04-R154-register,repair,1,,"On release, return the separate Exit box mark for the shared context explanation."
 153,155,days 151 to 153 secondary feedback,repair,3,,Choose an unresolved priority from actual evidence after day 154. Use one fresh component.
-155,159,s04-X155,repair,2,,Return privately in the requested day 159 repair after the cold checks. Check one different-case narrative component.
+155,159,s04-X155,repair,2,,Return this marked response privately. Check one new narrative detail against a different source.
 155,159,unjudged narrative comment,repair,2,,Read one teacher comment and mark a place to improve in the retained own scene.
+122,125,s04-X122-pause,repair,1,,Return this marked response privately. Use another scene to match a pause to a sentence break. Give one repair priority per child across the returned items.
+125,126,s04-X125-pronoun,repair,1,,Return this marked response privately. Trace a pronoun to a person in a fresh sentence. Give one repair priority per child across the returned items.
+125,126,s04-X125-adverb,repair,1,,Return this marked response privately. Trace an adverb to a place in a fresh sentence. Give one repair priority per child across the returned items.
+130,131,s04-X130-pronoun,repair,1,,Return this marked response privately. Match a relative pronoun to a person in a different sentence. Give one repair priority per child across the returned items.
+131,132,s04-X131-adverb,repair,1,,Return this marked response privately. Use a different scene to link a place to a relative adverb. Give one repair priority per child across the returned items.
+135,136,s04-X135-clause,repair,1,,Return this marked response privately. Match a relative form to the thing it describes in a fresh sentence. Give one repair priority per child across the returned items.
+140,141,s04-X140-link,repair,1,,Return this marked response privately. Check a linking phrase against the actual relationship in another scene. Give one repair priority per child across the returned items.
+140,141,s04-X140-precision,repair,1,,Return this marked response privately. Replace a vague action word on a different fragment. Give one repair priority per child across the returned items.
+149,150,s04-X149-support,repair,1,,"Return evidence only after the reserved reading is released. On release, distinguish a fact from an opinion repeated as support. Give one repair priority per child across the returned items."
+150,154,s04-X150-punctuation,repair,1,,"Return evidence only after the reserved reading is released. On release, explain a mark's effect on a different sentence. Give one repair priority per child across the returned items."
+155,159,s04-X155-time,repair,1,,Return this marked response privately. Distinguish a time cue from a place cue in a new fragment. Give one repair priority per child across the returned items.
+155,159,s04-X155-dialogue,repair,1,,Return this marked response privately. Mark invented speech as imagined in a different source-based scene. Give one repair priority per child across the returned items.

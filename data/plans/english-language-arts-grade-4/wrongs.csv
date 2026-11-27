@@ -797,33 +797,16 @@ s03-A115c-action,It describes the workers.,,,AB,Observed response misses this ta
 s04-X120,Every woman could attend.,,,A,Use the matching repair in the unit error register.
 s04-X121,She is kind because I like her.,,,A,Use the matching repair in the unit error register.
 s04-X121,She tears the envelope up.,,,AG,Use the matching repair in the unit error register.
-s04-X122,Both are about Maya.,,,D,Use the matching repair in the unit error register.
-s04-X122,"The reader shouts, just as Maya does.",,,AG,Use the matching repair in the unit error register.
-s04-X125,Maya checks the names at the desk who holds her notes.,,,H,Use the matching repair in the unit error register.
-s04-X125,The boring list wastes her time.,,,G,Use the matching repair in the unit error register.
 s04-X126,He says nothing about voting rights.,,,AG,Use the matching repair in the unit error register.
-s04-X127,"The participant made the first account, so they saw every delivery.",,,C,Use the matching repair in the unit error register.
 s04-X128,His statement proves that all women could register.,,,C,Use the matching repair in the unit error register.
 s04-X128,The article says there were discriminatory laws.,,,M,Use the matching repair in the unit error register.
-s04-X130,The theme is charts.,,,E,Use the matching repair in the unit error register.
-s04-X130,The chart who has a gap shows checking matters.,,,H,Use the matching repair in the unit error register.
-s04-X131,The shelf feels sorry.,,,F,Use the matching repair in the unit error register.
-s04-X131,She checks the shelf whom she found the envelope.,,,H,Use the matching repair in the unit error register.
 s04-X132,Boring Maya wastes time on dates.,,,G,Use the matching repair in the unit error register.
 s04-X132,Maya proves when the undated note was written.,,,AG,Use the matching repair in the unit error register.
-s04-X133,The weather makes it too foggy to read.,,,F,Use the matching repair in the unit error register.
-s04-X133,Maya writes the complete name.,,,AG,Use the matching repair in the unit error register.
 s04-X134,The theme is relatives.,,,E,Use the matching repair in the unit error register.
-s04-X135,The label that Maya finds is boring.,,,G,Use the matching repair in the unit error register.
-s04-X135,Maya checks the invitation who gives the date.,,,H,Use the matching repair in the unit error register.
 s04-X136,The theme is reading.,,,E,Use the matching repair in the unit error register.
 s04-X136,Maya refuses help.,,,AG,Use the matching repair in the unit error register.
-s04-X138,The paragraph is just an unrelated list.,,,K,Use the matching repair in the unit error register.
-s04-X138,"The theme is sharing, and the rest has nothing to do with it.",,,E,Use the matching repair in the unit error register.
 s04-X139,Maya proves the uncertain name was right.,,,AG,Use the matching repair in the unit error register.
 s04-X139,Here are some things from the book.,,,K,Use the matching repair in the unit error register.
-s04-X140,A word did not match. That is all I need to say.,,,AF,Use the matching repair in the unit error register.
-s04-X140,Maya checks the label because it is already correct.,,,L,Use the matching repair in the unit error register.
 s04-X141,The theme is pencils.,,,E,Use the matching repair in the unit error register.
 s04-X141,Maya will win a prize for the display.,,,N,Use the matching repair in the unit error register.
 s04-R120-times,The letter’s date tells when Maya wrote her notebook entry.,,,C,Use the matching repair in the unit error register.
@@ -923,22 +906,44 @@ s04-J1-spelling,"The guesses looked close enough, so I kept them.",,,X,Use the m
 s04-J1-portfolio,One final copy proves routine writing across the year.,,,Y,Use the matching repair in the unit error register.
 s04-X143,Vegetables went to a pantry. I left off the source.,,,Z,The detail needs the source tag on the note.
 s04-X143,Growing Food Together shows that no one in town went hungry.,,,AC,The donation does not establish how much food everyone received.
-s04-X144,I only used the sentence about vegetables.,,,I,The account about bed preparation contributes a different relevant detail.
-s04-X144,"These are two articles, so they prove different gardens gave away vegetables.",,,M,"The passages concern two aspects of one garden, not two projects."
 s04-X145,"You remember our garden thing, so I can skip the background.",,,AI,New listeners need the garden and action identified.
 s04-X145,The volunteers made sure nobody in town went hungry.,,,AC,The card documents work for donation and gives no town-wide result.
-s04-X147,The report proves that everyone liked the donated vegetables.,,,AC,The card says it does not report every recipient’s response.
 s04-X148,The opinion is true because it says to explain the garden.,,,M,Repeating the point leaves out the donation detail and its connection.
-s04-X149,You know which display I mean.,,,AB,Visitors who missed the reading need its topic named.
-s04-X149,We should share the display because we should.,,,M,A fact from the source card must support the opinion.
-s04-X150,Volunteers which built the beds prepared the site.,,,H,Who or that can refer to the volunteers in this clause.
-s04-X150,The volunteers who built the beds harvested a record amount.,,,N,The card supplies no harvest total.
 s04-X154,For example shows the labels caused the visitors to agree.,,,L,The phrase introduces a specific detail about the display and gives no evidence about agreement.
-s04-X155,"By evening, the garden had ended hunger across the town.",,,AC,The source never reports a town-wide result.
-s04-X155,"Landon made a garden plan. “We can grow food,” he said (invented).",,,K,A time transition needs to show how this moment follows the preceding one.
-s04-X155,"Later, Landon said, “I will start a garden.”",,,AG,The source gives no quotation. Label the dialogue invented.
 s04-R143-question,Did everyone in town get enough food?,,,AE,The available text does not answer that outcome question.
 s04-R145-register,I always use the same words with every listener.,,,AI,The explanation needs a choice suited to what this listener knows.
 s04-R148-language,The colon is just a decoration.,,,AH,It prepares the reader for the action/result contrast that follows.
 s04-R150-close,The garden won a prize for its harvest.,,,N,The source does not report a prize or any harvest result.
 s04-R154-register,Any visitor already knows which labels they discussed.,,,AB,A visitor may not share that prior conversation.
+s04-X122,"The reader shouts, just as Maya does.",,,AG,"On a different line, match the reader's voice to a word in the narration."
+s04-X122-pause,Both are about Maya.,,,D,Use another scene to match a pause to a sentence break.
+s04-X122-pause,The pause comes between the words inside Maya's speech.,,,AG,Use another scene to match a pause to a sentence break.
+s04-X125,The boring list wastes her time.,,,G,Remove an opinion from a fresh summary.
+s04-X125-pronoun,"Maya, which had hurried earlier, slowed down.",,,H,Trace a pronoun to a person in a fresh sentence.
+s04-X125-adverb,Maya checked the names at the desk whom her notes lay.,,,H,Trace an adverb to a place in a fresh sentence.
+s04-X127,"The participant folded them, so that account shows every delivery.",,,C,"On release, check what a different speaker could know."
+s04-X130,The theme is charts.,,,E,Connect a message to an action in a new scene.
+s04-X130-pronoun,"Her brother, which can check another source, can help Maya.",,,H,Match a relative pronoun to a person in a different sentence.
+s04-X131,The shelf feels sorry.,,,F,Use a different saying and its context to correct a literal interpretation.
+s04-X131-adverb,She checks the shelf whom she found the envelope.,,,H,Use a different scene to link a place to a relative adverb.
+s04-X133,Weather covers the label.,,,F,Correct a literal reading using a detail in another scene.
+s04-X133,She writes a complete name.,,,AG,Correct a literal reading using a detail in another scene.
+s04-X135,The label Maya finds is boring.,,,G,Use a different scene to remove an opinion from a summary.
+s04-X135-clause,Maya checks the invitation who gives the date.,,,H,Match a relative form to the thing it describes in a fresh sentence.
+s04-X138,The paragraph is just an unrelated list.,,,K,"On release, locate a misplaced detail in a different fragment."
+s04-X138,"The paragraph gives only a topic, sharing.",,,E,"On release, locate a misplaced detail in a different fragment."
+s04-X140,A word did not match. That is all I need to say.,,,AF,"On a fresh detail, explain its connection to a theme."
+s04-X140-link,Maya checks the label because it is already correct.,,,L,Check a linking phrase against the actual relationship in another scene.
+s04-X140-precision,Does stuff.,,,J,Replace a vague action word on a different fragment.
+s04-X144,The garden grew vegetables. The other article adds nothing.,,,I,Use an unrelated pair to connect two details without claiming an unobserved result.
+s04-X144,Together they prove every household got enough food.,,,AC,Use an unrelated pair to connect two details without claiming an unobserved result.
+s04-X147,The report proves that everyone liked the donated vegetables.,,,AC,Use a different card to repair factual support or audience context.
+s04-X147,We should tell visitors about that thing we did.,,,AB,Use a different card to repair factual support or audience context.
+s04-X149,You know which display I mean.,,,AB,"On release, inspect the context of an unrelated opening."
+s04-X149-support,We should share it because we should.,,,M,"On release, distinguish a fact from an opinion repeated as support."
+s04-X150,Volunteers which built the beds prepared the site.,,,H,"On release, link a relative form to its antecedent in a fresh detail."
+s04-X150,The volunteers who built the beds harvested a record amount.,,,AG,"On release, link a relative form to its antecedent in a fresh detail."
+s04-X150-punctuation,The mark makes no difference to a reader.,,,AH,"On release, explain a mark's effect on a different sentence."
+s04-X155,The garden had ended hunger across town that evening.,,,AC,Check one new narrative detail against a different source.
+s04-X155-time,"In Bay Shore, Landon began planning the garden.",,,K,Distinguish a time cue from a place cue in a new fragment.
+s04-X155-dialogue,"“I will start a garden,” Landon said.",,,AG,Mark invented speech as imagined in a different source-based scene.
