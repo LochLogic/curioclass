@@ -37,4 +37,4 @@ Keep this key with the teacher. Use shown, shown with help, and not yet seen. Le
 
 **s07-X136b.** Add one piece to this solid whole. Adds one touching solid to the original two joined cubes. The cubes still share their original face. Error D: Separates the cubes to add the third solid.
 
-**s07-X136c.** Mark a feature that makes it a square. Marks four equal straight sides or four square corners on the original square. A necessary feature is sufficient for this item. Do not use the added piece’s outline. Error A: Marks the blue fill as what makes it square.
+**s07-X136c.** Mark a feature that makes it a square. Marks four equal straight sides or four square corners on the original square. A necessary feature is sufficient for this item. Do not use the added piece’s outline. Error A: Marks the fill and gives color as the deciding feature.

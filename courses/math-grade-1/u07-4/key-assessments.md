@@ -17,7 +17,7 @@ Keep this key with the teacher. Use shown, shown with help, and not yet seen. Le
 
 **s07-AS1-r2.** Mark half of this rectangle. Marks one of the two triangular halves. Either region on either side of the single diagonal has equal area. Error E: Marks a subregion that is smaller than a half and calls it equal to the rest.
 
-**s07-AS1-r4.** Mark a quarter of this rectangle. Marks any one of the four triangles. The diagonal intersection halves both diagonals; each triangular area is one fourth. Shapes need not match. Error E: Marks a small corner of one triangle and calls all the shares equal.
+**s07-AS1-r4.** Mark a quarter of this rectangle. Marks any one of the four triangles. A center line and one diagonal in each half make four matching triangles; any one is a quarter. Stacking checks it. Error E: Marks a small corner of one triangle and calls all the shares equal.
 
 **s07-AS1-rsize.** Circle the smaller share on the rectangle pair. The marked quarter of the rectangle. Both rectangles match. Compare only the marked pieces. Error I: Circles the half because a quarter has the larger share count.
 

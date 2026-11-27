@@ -21,4 +21,4 @@ Keep this key with the teacher. Use shown, shown with help, and not yet seen. Le
 
 **s07-X131a.** Circle shapes that belong together because of their sides. Both triangles for three straight sides, or both triangles and the square for only straight sides. Credit another consistent side rule only if the group includes all and only its members. Error A: Circles only the upright triangle because the other is turned.
 
-**s07-X131b.** What is your side rule? Three straight sides, only straight sides, or another matching side rule. Accept a picture mark of the shared feature or neutral transcription. A word omission alone does not undo a correct mark. Error A: Gives blue as what makes the triangles triangles.
+**s07-X131b.** What is your side rule? Three straight sides, only straight sides, or another matching side rule. Accept a picture mark of the shared feature or neutral transcription. A word omission alone does not undo a correct mark. Error A: Gives the shapes' color as the side rule.

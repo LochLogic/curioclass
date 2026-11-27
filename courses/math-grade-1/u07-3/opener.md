@@ -9,7 +9,7 @@ credit: ours
 
 Review circle, rectangle and whole. Fold practice paper to make it cover itself and stack the resulting pieces. Equal shares have the same area and together cover the whole once. Stacking pieces that match is one way to show equal area. Pieces can also have equal area with different outlines, so use matching or splitting when an overlay alone cannot settle it.
 
-Use half of for one of two equal shares. Use fourth of and quarter of for one of four. Rebuild the whole and say halves, fourths or quarters. Compare shares of matching wholes by laying two fourths on a half. When the whole stays the same size, a fourth is smaller than a half. The diagonal rectangle can be split into four equal triangles using both diagonals: the diagonals meet at their midpoints, and each half is split again into two equal areas.
+Use half of for one of two equal shares. Use fourth of and quarter of for one of four. Rebuild the whole and say halves, fourths or quarters. Compare shares of matching wholes by laying two fourths on a half. When the whole stays the same size, a fourth is smaller than a half. One diagonal splits the rectangle into two matching halves. A center line with one diagonal in each half splits it into four matching triangles, and each one is a quarter. Keep both diagonals of a long rectangle out: those four pieces have equal area but different shapes, a grade 2 idea.
 
 For error E compare the actual areas before naming equal shares. For error I cover a practice half with two fourths. Keep fold practice, loose pieces and the R3 blanks on separate stock. An adult cuts overlays and share pieces. Stack matching scraps if no transparent overlay is available. Use paper for all sharing tasks.
 

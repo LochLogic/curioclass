@@ -9,13 +9,13 @@ credit: ours
 
 Keep this key with the teacher. Use shown, shown with help, and not yet seen. Leave an unheard response open. Record language separately when a picture already shows the mathematics.
 
-**s07-AR1-sort.** Which one is a triangle? The first, closed scalene triangle only. Look for three straight sides that join. Read position without naming the chosen figure. Error A: Rejects the closed triangle because it is tilted. Error B: Marks the figure with the gap. Error C: Marks the closed figure with the arc.
+**s07-AR1-sort.** Which one is a triangle? The first, closed scalene triangle only. Look for three straight sides that join. Read position without naming the chosen figure. Error A: Rejects the closed triangle because it is tilted. Error B: Marks the open figure. Error C: Marks the closed figure with the arc.
 
 **s07-AR1-sort-feature.** Mark the parts that make it a triangle. Marks all three straight sides and their joined endpoints. Use the same reserved card after the first choice is recorded. Error C: Marks a curved edge as an acceptable straight side.
 
 **s07-AR1-nondef.** Cross out the things that can change in a triangle. Crosses out color, turn and size. Read the icon labels in order. The closed straight-sided boundary still defines membership. Error A: Leaves turn as required because a triangle must stand up.
 
-**s07-AR1-build.** Build a triangle with these strips. Uses all three unequal strips in a closed three-sided build. The longest strip is shorter than the other two together. Save the child’s outline as evidence. Error B: Leaves a gap at one joint and calls it a triangle.
+**s07-AR1-build.** Build a triangle with these strips. Uses all three unequal strips in a closed three-sided build. The longest strip is shorter than the other two together. Save the child’s outline as evidence. Error B: Leaves one join open and calls it a triangle.
 
 **s07-AR1-draw.** Draw around your triangle. Makes a closed drawing with three straight sides. Trace the edge of the child’s own build. Accept intended edges despite planned motor supports. Error B: Traces an open path that omits a join and calls it a triangle.
 

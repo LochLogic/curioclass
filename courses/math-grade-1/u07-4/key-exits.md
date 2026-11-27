@@ -17,7 +17,7 @@ Keep this key with the teacher. Use shown, shown with help, and not yet seen. Le
 
 **s07-X142a.** Draw the hands for half past five. Long hand at 6 and short hand halfway between 5 and 6. Judge both placements and the relative lengths. Accept intended midpoint. Error F: Draws the short hand right on 5. Error G: Draws the short hand at 6 and long hand at the midpoint.
 
-**s07-X142b.** Show why the short hand belongs there. Marks half the gap from 5 to 6 or shows that half the hour has passed. Accept a midpoint mark with movement forward from 5 or a neutral transcription accompanying the child’s clock. Error F: Leaves the hour hand fixed on 5 through the half hour.
+**s07-X142b.** Show why the short hand belongs there. Marks halfway from 5 to 6 or shows that half the hour has passed. Accept a midpoint mark with movement forward from 5 or a neutral transcription accompanying the child’s clock. Error F: Leaves the hour hand fixed on 5 through the half hour.
 
 **s07-X143a.** Match each hand to its job. Short hand to hour, long hand to minute. Match the word labels to the hands on the paper clock. Error G: Links the long hand to hour.
 
