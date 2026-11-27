@@ -5,6 +5,7 @@ unit: 7.3
 stretch: 7
 version: draft, not yet taught
 credit: All ours.
+teacher_note: Read the practice prompt aloud. Before the exit, state the choice legend with two matching small squares for same and a square beside a triangle for different. Children see only these flat examples during this explanation; do not compare a large solid with a tiny flat form.
 ---
 # Practice 128
 

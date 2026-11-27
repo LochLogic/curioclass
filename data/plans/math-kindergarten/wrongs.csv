@@ -1379,8 +1379,6 @@ s07-X120a,Leaves a visible gap.,,,K,Assign this letter only when response or obs
 s07-X120b,Revisits a triangle and writes 4.,,,L,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X121,Marks three-rectangle build because its row spreads wider.,,,G,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X122b,"For a total question, counts only two arriving squares as the whole.",,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-X123,"Chooses 7 = 3 + 3, repeating square count.",,,N,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-X123,7 = 4 + 4,,,N,Repeats triangle count for both parts.
 s07-X124,Shows only arriving two as the total.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X125a,"Leaves one unassigned, claims eight and one make ten.",,,J,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X125b,Claims eight and one form all ten.,,,J,Assign this letter only when response or observed method shows it; otherwise describe the response.
@@ -1399,12 +1397,9 @@ s07-X132a,Revisits one solid and records 6.,,,L,Assign this letter only when res
 s07-X132b,Chooses cone solely by matching color.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X133a,Chooses red cone for red ball solely by color.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X133b,Links color only.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-F1,Calls tipped cylinder flat for its pose.,,,A,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-F2d,Links only colors for geometric similarity.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-F2e,Rejects tilted square as square.,,,C,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-F2f,Whole cube is square.,,,B,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-F3s,Calls cylinder behind box in front.,,,E,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-F4b,Sideways cone called triangle.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-P120,Leaves a gap.,,,K,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-P121,Calls four spread pieces more than six.,,,G,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-P122,Gives an ending that the partial picture cannot answer.,,,x,The stem asks for a question ending; an unrelated ending does not establish part/whole error I. Describe the response.
@@ -1461,28 +1456,12 @@ s07-K129-frame,Calls whole frame a flat square because its front boundary is squ
 s07-K126-hook,Says every pictured object is flat because it is on paper.,,,M,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
 s07-W126-tens,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
 s07-W126-ones,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-G126-1,Shows only arriving one.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G126-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G126-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G126-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-W127-tens,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
 s07-W127-ones,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-G127-1,Shows only arriving one.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G127-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G127-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G127-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-W128-tens,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
 s07-W128-ones,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-G128-1,Shows only arriving one.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G128-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G128-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G128-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-W129-tens,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
 s07-W129-ones,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-G129-1,Shows only arriving one.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G129-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G129-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G129-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-K130-whole,Whole tube is flat because its end is flat.,,,O,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
 s07-K130-name,Whole block is a flat square.,,,B,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
 s07-K130-place-1,Cube below the oblong box.,,,x,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
@@ -1513,7 +1492,6 @@ s07-F36,Marks reference object.,,,x,Record observed mark descriptively; this alo
 s07-F4a,Joins cone to cylinder by pose.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
 s05-A103-F4,Earlier record rejects 8 = 3 + 5 solely because the total comes first.,,,C,Carry the recorded equality-orientation gap from unit 4; no new question.
 s03-X51,Calls the long turned rectangle a square despite its unequal adjacent sides.,,,x,Describe the observed classification error. A wrong name alone does not establish an orientation misconception.
-s07-X122a,Asks an unrelated question that cannot be answered from the displayed pieces.,,,x,"The question must be answerable by counting the displayed pieces. An unheard question remains pending, not wrong."
 s08-X135,Pencil on book mat.,,,N,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X136,Seven stars because wider.,,,B,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-X137,Leaves seven after arrival.,,,D,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
@@ -2024,3 +2002,35 @@ s05-A103-F1,One dot in a retained split is assigned to both parts.,,,F,Use the o
 s05-A103-F2,"Three empty places are labeled zero, one, two and reported as two.",,,E,Use the observed action on the retained product; keep component feedback and revision dates.
 s06-X110b,One tab stands for ten; one further tab.,,,F,Only F when the child identifies one tab as replacing the ten; an unexplained wrong quantity gets a descriptive note.
 s06-Q114,"1 + 6 = 16, with one said to replace ten ones.",,,F,Only F when the representation replaces the ten visible ones with one object. Other equation or formation errors receive descriptive notes.
+s07-X122a,Calls the two squares the whole sign before asking how many pieces make the sign.,,,I,"The observed part-for-whole claim supports I. An unrelated or unheard question receives a descriptive note, not an inferred letter."
+s07-X123,Links both piece groups to the same addend.,,,N,Only observed repeated-group links support N; selecting a distractor alone receives a descriptive note.
+s07-F3s,Names or marks the target without describing its relation.,,,x,Record the exact words and support. E requires an observed behind/in-front reversal; other missing relations are descriptive.
+s07-F3s2,Names or marks the target without describing its relation.,,,x,Record the exact words and support. E requires an observed behind/in-front reversal; other missing relations are descriptive.
+s07-F3s3,Names or marks the target without describing its relation.,,,x,Record the exact words and support. E requires an observed behind/in-front reversal; other missing relations are descriptive.
+s07-F3s4,Names or marks the target without describing its relation.,,,x,Record the exact words and support. E requires an observed behind/in-front reversal; other missing relations are descriptive.
+s07-F3s5,Names or marks the target without describing its relation.,,,x,Record the exact words and support. E requires an observed behind/in-front reversal; other missing relations are descriptive.
+s07-F3s6,Says in front of when the folded card is hidden behind the tray.,,,E,Record the exact words and support. E requires an observed behind/in-front reversal; other missing relations are descriptive.
+s07-F4b,Calls whole cube square.,,,B,Record the heard name; picture matching never establishes an unheard name.
+s07-F4b2,Gives a flat shape name for the whole object.,,,x,Record the heard name; picture matching never establishes an unheard name.
+s07-F4b3,Gives a flat shape name for the whole object.,,,x,Record the heard name; picture matching never establishes an unheard name.
+s07-F4b4,Calls cone triangle from its outline.,,,F,Record the heard name; picture matching never establishes an unheard name.
+s07-F1,Marks the other category.,,,x,A requires the observed pose-based reason; an unexplained category mark receives a descriptive note.
+s07-F1b,Marks the other category.,,,x,A requires the observed pose-based reason; an unexplained category mark receives a descriptive note.
+s07-F1c,Marks the other category.,,,x,A requires the observed pose-based reason; an unexplained category mark receives a descriptive note.
+s07-F1d,Calls tipped cylinder flat because it lies on its side.,,,A,A requires the observed pose-based reason; an unexplained category mark receives a descriptive note.
+s07-G126-1,Shows only arriving 1.,,,I,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G126-2,"Shows 6, adding instead.",,,H,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G126-3,Shows only arriving 3.,,,I,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G126-4,"Shows 6, adding instead.",,,H,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G127-1,Shows only arriving 2.,,,I,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G127-2,"Shows 4, adding instead.",,,H,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G127-3,Shows only arriving 3.,,,I,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G127-4,"Shows 9, adding instead.",,,H,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G128-1,Shows only arriving 1.,,,I,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G128-2,"Shows 7, adding instead.",,,H,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G128-3,Shows only arriving 4.,,,I,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G128-4,"Shows 8, adding instead.",,,H,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G129-1,Shows only arriving 2.,,,I,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G129-2,"Shows 5, adding instead.",,,H,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G129-3,Shows only arriving 1.,,,I,Assign the letter only when the observed action supports it; otherwise describe the marks.
+s07-G129-4,"Shows 5, adding instead.",,,H,Assign the letter only when the observed action supports it; otherwise describe the marks.
