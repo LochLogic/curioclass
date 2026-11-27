@@ -459,8 +459,10 @@ class SectionLane(cl.Lane):
     def run_claude(self, unit, stage, prompt, resume=None):
         """One Claude CLI job. Returns (text, session id). resume: a session id to continue (the gate hand-back)."""
         _, model, effort = MODELS[stage.split('-')[0]]
+        # --tools loads only these six: the fixed overhead per call drops from about 31k to 13k tokens (measured
+        # 2026-11-26); --allowedTools then scopes what Bash may run
         base = [claude_exe() if not self.dry else 'claude.exe', '-p', '--model', model, '--effort', effort,
-                '--output-format', 'json']
+                '--output-format', 'json', '--tools', 'Read,Edit,Write,Glob,Grep,Bash']
         if self.dry:
             self.dry_show(unit, stage, prompt, ' '.join(base + ['--session-id', '<uuid>', '--allowedTools', CLAUDE_TOOLS]))
             return 'dry run', None
