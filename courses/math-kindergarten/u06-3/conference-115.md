@@ -21,7 +21,7 @@ Count out eleven paper squares from this supply.
 </div>
 <div style="break-before:page;font-size:18pt">
 
-Tell this number both ways.
+What number does this card show?
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 140" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2"><circle cx="28" cy="25.0" r="8"/><circle cx="62" cy="25.0" r="8"/><circle cx="96" cy="25.0" r="8"/><circle cx="130" cy="25.0" r="8"/><circle cx="164" cy="25.0" r="8"/><circle cx="198" cy="25.0" r="8"/><circle cx="232" cy="25.0" r="8"/><circle cx="266" cy="25.0" r="8"/><circle cx="300" cy="25.0" r="8"/><circle cx="334" cy="25.0" r="8"/><circle cx="28" cy="115.0" r="8"/><circle cx="62" cy="115.0" r="8"/><circle cx="96" cy="115.0" r="8"/><circle cx="130" cy="115.0" r="8"/><circle cx="164" cy="115.0" r="8"/><circle cx="198" cy="115.0" r="8"/><circle cx="232" cy="115.0" r="8"/><circle cx="266" cy="115.0" r="8"/><circle cx="300" cy="115.0" r="8"/><rect x="580" y="47" width="45" height="46"/></g></svg>
 

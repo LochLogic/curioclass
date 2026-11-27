@@ -11,7 +11,9 @@ rows: 30
 
 Teacher only. One scale: shown, shown with help, not yet seen. Pending belongs in follow-up scheduling, not the scale. A blank heard date means no oral evidence. Preserve initial work, ordinary access, mathematical help, written feedback and later revision separately. Formation is not inferred from dictated quantities.
 
-All thirty submit paper each teaching day. Exit roster rotates six: 1-6 on days 104/109/114, 7-12 on 105/110/115, 13-18 on 106/111/116, 19-24 on 107/112/117, 25-30 on 108/113/118. On days 106 and 117 hear the first three for panel a and last three for panel b. Paper-only explanations may establish mathematical content, never unheard wording. Follow-up for unheard sequence/name/equation: assigned final conference days 115-118 gives fresh evidence for its domain; any component still not observed remains pending for response days 120/121. Do not copy a new finding into an old unheard exit.
+All thirty submit paper each teaching day. Exit roster rotates six: 1-6 on days 104/109/114, 7-12 on 105/110/115, 13-18 on 106/111/116, 19-24 on 107/112/117, 25-30 on 108/113/118. On days 106, 110 and 117 hear the first three for panel a and last three for panel b. Paper-only explanations may establish mathematical content, never unheard wording. Follow-up for unheard sequence/name: assigned final conference days 115-118 gives fresh evidence for its domain; any component still not observed remains pending for response days 120/121. Do not copy a new finding into an old unheard exit.
+
+The teen naming ask requests only the usual name; its two-part record comes from day 116 paper. Q114 uses five centers minutes and six 45-second observations on day 114, replacing ordinary practice turns.
 
 Each combined final conference is four separate 45-second asks, three minutes per child. Eight/eight/eight/six children use 24/24/24/18 minutes inside 28-minute centers. No secure domain is repeated. Paper is 16 minutes on day 115, 16 on day 116, eight on day 117. Reserve after-class written feedback time: 60, 60, 30, 30 teacher minutes on days 115-118. Revision takes five next-day work minutes, then ten on day 119 before closeout. Unfinished evidence is not inferred from a peer.
 
@@ -99,7 +101,8 @@ Name: __________________
 | F2 scatter 10 | | | | | | |
 | F2 conference circle 18 | | | | | | |
 | F2 count-out 11 from 20 | | | | | | |
-| F3 spoken nineteen, ten/nine | | | | | | |
+| F3 Q114 equation: day 114 paper, day 115 revision | | | | | | |
+| F3 spoken usual name nineteen | | | | | | |
 | F4 start seven through twelve | | | | | | |
 
 ## Exit record, copy for each child
@@ -113,11 +116,13 @@ Name: __________________
 | 107 / s06-X107 | | | | 108 | |
 | 108 / s06-X108 | | | | 109 | |
 | 109 / s06-X109 | | | | 110 | |
-| 110 / s06-X110 | | | | 111 | |
+| 110 / s06-X110, usual name | | | | 111 | |
+| 110 / s06-X110b, two parts | | | | 111 | |
 | 111 / s06-X111 | | | | 112 | |
 | 112 / s06-X112 | | | | 113 | |
 | 113 / s06-X113 | | | | 114 | |
-| 114 / s06-X114 | | | | 115 | |
+| 114 / s06-X114, drawing | | | | 115 | |
+| 114 / s06-Q114, equation | | | | 115 | |
 | 115 / s06-X115 | | | | 116 | |
 | 116 / s06-X116 | | | | 117 | |
 | 117 / s06-X117a | | | | 118 | |
