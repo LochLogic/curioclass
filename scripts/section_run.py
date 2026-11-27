@@ -465,11 +465,11 @@ def data_prompts(lane, unit):
             text += ('\n\nNote from the section run (it wins over the job above): data/plans/%s/ already holds rows for '
                      'this unit (an earlier draft or run). Update them in place by their full ids; never add a second row '
                      'for an id or a case that is already there.\n' % unit.course)
-        if unit.ela:
-            text += ('\n\nNote from the section run (it wins over the job above): every source-map.csv row of these days '
-                     'with an order_conflict needs harms_learning set to yes, no or unclear, decided by you from the unit '
-                     'plan and the days, with the reason in `why`; list every "unclear" in your last message (the lead '
-                     'takes those to the Desk).\n')
+        text += ('\n\nNote from the section run (it wins over the job above): every source-map.csv row of these days '
+                 'with an order_conflict needs harms_learning set to exactly yes, no or unclear (one word, nothing after '
+                 'it), decided by you from the unit plan and the days, with the reason in `why`; leave order_conflict '
+                 'blank where there is no clash. List every "unclear" in your last message (the lead takes those to the '
+                 'Desk).\n')
         out.append(('%s' % ('ab'[i] if len(hs) > 1 else ''), text))
     return out
 
