@@ -993,17 +993,23 @@ class SectionLane(cl.Lane):
                  'docs/courses/%s/u%s-' % (unit.course, unit.uu))
         allowed = owned + ('data/plans/defects.csv',)
         rebuild = not self.dry and not unit.has_items()
-        for half, text in data_prompts(self, unit):
+        halves = data_prompts(self, unit)
+        for i, (half, text) in enumerate(halves):
             st = 'data' + ('-' + half if half else '')
             if self.stage_done(unit, st) and not rebuild:
                 continue
             self.check_stop()
-            self.baseline(unit)
+            # A split data stage is gated once, after its last half, against the baseline from before the first
+            # half: the first half's open lines (often the exits the second half writes) are not counted twice,
+            # and what neither half fixed goes back to the last half's session (Cory 2026-11-27 overnight run).
+            last = i == len(halves) - 1
+            if i == 0:
+                self.baseline(unit)
             before = dict(cl.porcelain()) if not self.dry else {}
             self.start(unit, st)
             with quota_guard(owned, self.dry):
                 job = self.run_codex(unit, st, text)
-                newn = self.gated(unit, st, job=job)
+                newn = self.gated(unit, st, job=job) if last else 0
             self.finish(unit, st, allowed, before, newn)
         if not self.dry and not unit.has_items():
             raise Stop('%s data wrote no items.csv rows for the unit' % unit)
