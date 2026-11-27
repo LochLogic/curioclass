@@ -20,6 +20,8 @@ Every day lasts 45 minutes. Each child keeps individual paper evidence. Read dir
 
 Teach from observations before naming explanations. Label and announce every supplied record: invented for practice. Keep actual observations with collector, date and conditions; mark unclear readings. Retry once inside the existing observation slot, then use the named fallback separately. No simulation or paper record proves practical performance.
 
-Before class, print only that day's student pages, its reserved exit sheet, and the teacher-only key. Keep future exits and portfolio transfer cases sealed. Never project the teacher-only key. Packets use 14 point type and at most 350 student words a day, including questions. Exits use half sheets. Day 50 and day 54 have two judged exit rows; other exits each ask one task with at most two parts.
+Before class, print only that day's student pages, its reserved exit sheet, and the teacher-only key. Keep future exits and portfolio transfer cases sealed. Never project the teacher-only key. Packets use 14 point type and at most 350 student words a day, including questions. Exits use half sheets. Day 50 has one square exit; its boundary diagnostic occurs during Assemble. Day 54 has one grid-rule exit; the pond model occurs during Anchor consensus.
 
-Use the formative record's three categories. Preserve originals and second-color revisions. Assessment points go only on assessment-record.md. No public grading or child used as a mistake example.
+Use the formative record's three categories. Preserve originals and second-color revisions. Assessment points go only on ../u03-1/assessment-record.md. No public grading or child used as a mistake example.
+
+Day 46 uses guided-water-model.md for the supported water-tag synthesis. Keep portfolio-wave.md private until independent work.

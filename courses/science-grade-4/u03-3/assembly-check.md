@@ -4,19 +4,22 @@ course: science-grade-4
 unit: 3.3
 version: draft, not yet taught
 credit: ours
+item_ids: s03-P50-assemble
 ---
 
 # Our chosen systems
 
 Names: __________________ Date: __________________
 
-Complete both keys before testing. Leave actual performance blank until trials.
+Complete both chosen system keys for BEND, ROLL, and PRESS, including boundaries and materials.
+
+Leave actual performance blank until trials.
 
 | Message | Card system | Other system |
 |---|---|---|
-| LOOK | | |
-| LIFT | | |
-| LOWER | | |
+| BEND | | |
+| ROLL | | |
+| PRESS | | |
 
 Card boundary: ____________________________________
 

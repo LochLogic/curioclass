@@ -4,19 +4,20 @@ course: science-grade-4
 unit: 3.3
 version: draft, not yet taught
 credit: ours
+item_ids: s03-P50-proposals
 ---
 
 # Fresh proposals and peer response
 
 Name: __________ Date: __________
 
-[[s03-P50-proposals]]
+Complete two fresh three-message proposals with a peer-response note.
 
 | Message | Fresh proposal 1 | Fresh proposal 2 |
 |---|---|---|
-| LOOK | | |
-| LIFT | | |
-| LOWER | | |
+| BEND | | |
+| ROLL | | |
+| PRESS | | |
 
 Each proposal's boundary: __________________________
 

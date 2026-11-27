@@ -8,92 +8,58 @@ credit: ours
 
 # Section 3.2 teacher answer key
 
-Teacher only. Keep away from student sheets and displays. Read answers cold before use. Judge the named look-fors; accept equivalent evidence-based responses. All child-facing questions are paper responses, including scribed responses. Public talk is optional practice.
+Teacher only. Keep this page away from student sheets and displays. Use each answer statement as the look-fors and accept equivalent evidence. A: material rides with the crest. B: height and spacing must change together. C: speed overrides accuracy. D: one condition proves all conditions. E: no shared meaning, order or boundary rule. F: decoration proves improvement. Use a letter only when that thinking is evident. Unrelated or blank work gets a component note. Blank work receives a component note. Preserve original observations and revisions.
 
 ## s03-X45
 
-Answer: Fabric dot moves up/down; cart dots move back/forth locally. Pattern and energy travel right through both materials.
+Fabric dot moves up/down; cart dots move back/forth locally. Pattern and energy travel right through both materials.
 
-Look-fors: Two contrasting local directions. | Common onward pattern and energy, not material transport. | Shape: draw two contrasting local-motion directions and explain common pattern/energy travel.
-
-Samples: Meets: Fabric dot moves up/down; cart dots move back/forth locally. Pattern and energy travel right through both materials. | Does not meet: The marked material travels to the far end with a crest. (error A).
-
-Hand-back: 46
-
-Wrong: The marked material travels to the far end with a crest. Error A: Confuses local material motion with traveling pattern and energy.
+Diagnostic letters: A.
 
 ## s03-X46
 
-Answer: Both rings stay local. X has greater amplitude; spacing is equal. Pattern and energy travel without carrying rings to the wall.
+Both rings stay local. X has greater amplitude; spacing is equal. Pattern and energy travel without carrying rings to the wall.
 
-Look-fors: Repair both ring journeys. | Greater X amplitude with equal wavelength, linked to observed range. | Shape: repair paired drifting-ring models with an amplitude contrast and equal spacing.
-
-Samples: Meets: Both rings stay local. X has greater amplitude; spacing is equal. Pattern and energy travel without carrying rings to the wall. | Does not meet: The marked material travels to the far end with a crest. (error A).
-
-Hand-back: 47
-
-Wrong: The marked material travels to the far end with a crest. Error A: Confuses local material motion with traveling pattern and energy.
-
-Wrong: Wider peak spacing always makes waves taller. Error B: Treats amplitude and wavelength as inseparable.
+Diagnostic letters: A, B.
 
 ## s03-X47
 
-Answer: Replace the point arrow with local up/down motion. Repeated nearby positions support this. A separate rightward arrow shows pattern and energy.
+Replace the point arrow with local up/down motion. Repeated nearby positions support this. A separate rightward arrow shows pattern and energy.
 
-Look-fors: Correct local arrow. | Cite temporal positions beside a fixed mark; distinguish onward energy. | Shape: correct one falsely assigned local arrow and justify it with temporal positions.
-
-Samples: Meets: Replace the point arrow with local up/down motion. Repeated nearby positions support this. A separate rightward arrow shows pattern and energy. | Does not meet: The marked material travels to the far end with a crest. (error A).
-
-Hand-back: 48
-
-Wrong: The marked material travels to the far end with a crest. Error A: Confuses local material motion with traveling pattern and energy.
+Diagnostic letters: A.
 
 ## s03-T46-model
 
-Answer: B and C have equal smaller amplitude than A; C alone has wider spacing. The bird stays local at both moments. Pattern and energy travel; recorded bird movement shows energy reaches its place.
+B and C have equal smaller amplitude than A; C alone has wider spacing. The bird stays local at both moments. Pattern and energy travel; recorded bird movement shows energy reaches its place.
 
-Look-fors: Independent day 46, feedback afterward, revise day 47; no points until day 55. | Height 2: all-three comparison and matching marks. | Spacing 2: all-three comparison and matching marks. | Local motion 2: one per corrected moment. | Energy 2: traveling energy and link to observed local movement.
-
-Samples: Meets: B and C have equal smaller amplitude than A; C alone has wider spacing. The bird stays local at both moments. Pattern and energy travel; recorded bird movement shows energy reaches its place. | Does not meet: The marked material travels to the far end with a crest. (error A).
-
-Hand-back: 47, 55
-
-Wrong: The marked material travels to the far end with a crest. Error A: Confuses local material motion with traveling pattern and energy.
-
-Wrong: Wider peak spacing always makes waves taller. Error B: Treats amplitude and wavelength as inseparable.
+Diagnostic letters: A, B.
 
 ## s03-P45-motion
 
-Answer: Rope tag moves locally across the rope direction; coil tag moves along it. Pattern and energy progress.
+Rope tag moves locally across the rope direction; coil tag moves along it. Pattern and energy progress.
 
-Look-fors: Direction words/notices only, no paired explanatory drawing.
-
-Samples: Meets: Rope tag moves locally across the rope direction; coil tag moves along it. Pattern and energy progress. | Does not meet: The marked material travels to the far end with a crest. (error A).
-
-Hand-back: 46
-
-Wrong: The marked material travels to the far end with a crest. Error A: Confuses local material motion with traveling pattern and energy.
+Diagnostic letters: A.
 
 ## s03-P46-features
 
-Answer: Rest, peak, trough, amplitude and wavelength match the indicated single features.
+Rest A; peak B; trough C; amplitude D; wavelength E.
 
-Look-fors: Correct-feature cards only, no three-record repair.
-
-Samples: Meets: Rest, peak, trough, amplitude and wavelength match the indicated single features. | Does not meet: Wider peak spacing always makes waves taller. (error B).
-
-Hand-back: 47
-
-Wrong: Wider peak spacing always makes waves taller. Error B: Treats amplitude and wavelength as inseparable.
+Diagnostic letters: B.
 
 ## s03-P47-evidence
 
-Answer: Cork stays near one marker while crests pass farther markers. Modest drift can occur.
+Cork stays near one marker while crests pass farther markers. Modest drift can occur.
 
-Look-fors: An evidence sentence from familiar observations; no faulty-arrow editing.
+Diagnostic letters: A.
 
-Samples: Meets: Cork stays near one marker while crests pass farther markers. Modest drift can occur. | Does not meet: The marked material travels to the far end with a crest. (error A).
+## s03-P45-energy
 
-Hand-back: 48
+Energy and the repeating pattern travel along each material.
 
-Wrong: The marked material travels to the far end with a crest. Error A: Confuses local material motion with traveling pattern and energy.
+Diagnostic letters: A.
+
+## s03-K46-water
+
+Place the cork beside its marker with a local-motion arrow. Connect traveling peaks and energy to the onward direction. Link one actual observation, or explicitly labeled fallback W, to the model. A simple drawing does not show every water movement or reflection.
+
+Diagnostic letter: A. This is a supported example, with no individual score.

@@ -4,6 +4,7 @@ course: science-grade-4
 unit: 3.1
 version: draft, not yet taught
 credit: ours
+item_ids: s03-X42
 exit: half
 ---
 
@@ -15,10 +16,8 @@ Use the separately supplied reserved observation card.
 
 Frames run in time order from top to bottom.
 
-[[s03-X42]]
+Invented for practice. Use these three rope frames. Draw a two-moment model with a question label about unexplained motion.
 
-________________________________________________________________
+<div style="border:1px solid black;min-height:1.1in;margin:.15in 0"></div>
 
-________________________________________________________________
-
-________________________________________________________________
+Evidence labels: __________________________________

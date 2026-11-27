@@ -4,20 +4,21 @@ course: science-grade-4
 unit: 3.3
 version: draft, not yet taught
 credit: ours
+item_ids: s03-P48-source;s03-P48-research
 ---
 
 # Research notes
 
 Name: __________ Date: __________
 
-[[s03-P48-source]]
+Record one claim from the account and its paragraph number.
 
 | Claim in my words | Paragraph number | What it helps us decide |
 |---|---|---|
 | | | |
 | | | |
 
-[[s03-P48-research]]
+Record what the six receivers detect in quiet and conversation at fixed positions.
 
 | Receiver | Position | Quiet reception | Conversation reception |
 |---|---|---|---|

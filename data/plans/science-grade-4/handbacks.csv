@@ -164,18 +164,18 @@ from_day,to_day,what,where,minutes,error,note
 41,42,C-P41-question,opening,0,,"Return completed personal question with written note, informational only."
 42,44,s03-X42,Return,0,A,"Return tentative models with E43; its A repair supplies five shared minutes, no added slot."
 42,43,s03-P42-observe; s03-P42-question,Older-row,0,,Written notes to folders; keep question board open.
-43,44,s03-X43,Return,10,A,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
-44,45,s03-X44,Return,10,B,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+43,44,s03-X43,Return,10,A,"Return everyone, including children not heard publicly. A and B receive separate five-minute moves in Return and repair; tentative E42 joins A without added minutes."
+44,45,s03-X44,Return,10,B,Return all papers. Five A minutes and five B minutes occupy day 45 Return and repair.
 45,46,s03-X45,Return,5,A,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
-46,47,s03-X46,Return,10,B,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+46,47,s03-X46,Return,10,B,Return all papers. Five A minutes and five B minutes occupy day 47 Return and repair; portfolio revision has its own ten-minute part.
 47,48,s03-X47,Return,5,A,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
 48,49,s03-X48,Return,5,E,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
-49,50,s03-X49,Return,5,F,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+49,50,s03-X49,Return,5,F,Five Return and repair minutes address the commonest E or F gap. Other children get written component prompts during Fresh proposals and peer response.
 50,51,s03-X50a s03-X50b,Return,5,E,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
 51,52,s03-X51,Return,5,C,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
 52,53,s03-X52,Return,5,D,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
-53,54,s03-X53,Return,5,C,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
-54,56,s03-X54a s03-X54b,Read,0,E,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+53,54,s03-X53,Return,5,C,One five-minute complete-table move addresses C/D together within day 54 Return and repair. Separate portfolio F repair takes the other five minutes.
+54,56,s03-X54a s03-X54b,Read,0,E,"Return supported X54a pond evidence and independent X54b exit with day 55 feedback in Read feedback. Repair within existing parallel packets, with no added minutes."
 48,49,s03-X48,Criteria,5,D,"Five-minute D move before criteria agreement, separate from E48 E Return slot."
 46,47,s03-T46-model,Portfolio,10,,"Written component feedback; second-color revision, originals preserved; no points until day 55."
 48,51,s03-P48-source s03-P48-research,Return,2,,Source revisions share five minutes with proposals; E50 takes other five.
@@ -184,15 +184,15 @@ from_day,to_day,what,where,minutes,error,note
 53,54,s03-T53-alternatives s03-T53-comparison s03-T53-trials s03-T53-improvement s03-T53-encode s03-T53-decode s03-T53-voice,Portfolio,10,,"Written components then private revision, originals retained; first score day 55."
 51,52,s03-P51-log,Changed,0,,Return annotated quiet logs alongside new records; no added repair.
 52,53,s03-P52-log,Personal,0,,Annotated both-condition logs support individual notes within ten minutes.
-46,55,s03-T46-model,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
-48,55,s03-P48-source,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
-50,55,s03-P50-proposals,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
-51,55,s03-P51-log,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
-52,55,s03-P52-log,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
-53,55,s03-P53-compare s03-T53-alternatives s03-T53-comparison s03-T53-trials s03-T53-improvement s03-T53-encode s03-T53-decode s03-T53-voice,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
+46,55,s03-T46-model,assessment,4,,"Identify all earlier originals and revisions in the same four-minute assessment evidence selection part; first scoring after class. Other rows share these minutes, not extra rounds. No new scored response."
+48,55,s03-P48-source,assessment,0,,"Identify all earlier originals and revisions in the same four-minute assessment evidence selection part; first scoring after class. Other rows share these minutes, not extra rounds. No new scored response."
+50,55,s03-P50-proposals,assessment,0,,"Identify all earlier originals and revisions in the same four-minute assessment evidence selection part; first scoring after class. Other rows share these minutes, not extra rounds. No new scored response."
+51,55,s03-P51-log,assessment,0,,"Identify all earlier originals and revisions in the same four-minute assessment evidence selection part; first scoring after class. Other rows share these minutes, not extra rounds. No new scored response."
+52,55,s03-P52-log,assessment,0,,"Identify all earlier originals and revisions in the same four-minute assessment evidence selection part; first scoring after class. Other rows share these minutes, not extra rounds. No new scored response."
+53,55,s03-P53-compare s03-T53-alternatives s03-T53-comparison s03-T53-trials s03-T53-improvement s03-T53-encode s03-T53-decode s03-T53-voice,assessment,0,,"Identify all earlier originals and revisions in the same four-minute assessment evidence selection part; first scoring after class. Other rows share these minutes, not extra rounds. No new scored response."
 55,56,s03-E1 s03-E2-alternatives s03-E2-comparison s03-E2-trials s03-E2-improvement s03-E2-encode s03-E2-decode s03-E2-voice s03-E3,Read,5,,"Return 24-point component feedback plus diagnostic observations. Repairs in fifteen parallel minutes, no rescoring."
 55,56,s03-D55-wave s03-D55-codes s03-D55-picture,Targeted,0,,"Unscored diagnostics route into existing repair time, no added minutes."
-56,59,s03-R56,response,10,,Carrying/design-evidence five minutes each within day 59 response. No correction beforehand or unit 3 letter.
+56,59,s03-R56,response,10,,Day 59 response holds five carrying-gap and five design-evidence minutes. Preserve uncorrected readiness until then; do not consume day 57 hook time.
 43,44,s03-P43-table,Return,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
 44,45,s03-P44-labels,Return,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
 45,46,s03-P45-motion,Return,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
@@ -417,3 +417,4 @@ from_day,to_day,what,where,minutes,error,note
 16,17,s02-P16-report,Return and repair,0,,Return on the question strip with written feedback alongside the ticket; no extra repair round.
 39,41,C-E39-generator,Return feedback,0,,"Included in the two-minute day 39 packet return; independent generator ask, no extra return time."
 41,42,C-P41-origin,opening,0,,"Return any completed origin repair with the other day 41 papers and a written note, informational only."
+48,49,s03-P48-fallback,Return,0,,"Only if fallback R was used: written component note, separate from actual receiver records; no additional repair minutes."

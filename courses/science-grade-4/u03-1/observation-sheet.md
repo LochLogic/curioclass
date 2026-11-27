@@ -4,6 +4,7 @@ course: science-grade-4
 unit: 3.1
 version: draft, not yet taught
 credit: ours
+item_ids: s03-P42-observe;s03-P42-question
 ---
 
 # Our wave observations
@@ -12,24 +13,15 @@ Name: __________ Date: __________ Collector: __________
 
 Evidence: actual observation / unclear / invented fallback W
 
-[[s03-P42-observe]]
+Draw one still tub view with labels for rest, peak, trough, amplitude, and wavelength.
 
-________________________________________________________________
+<div style="border:1px solid black;min-height:1.1in;margin:.15in 0"></div>
 
-________________________________________________________________
+<div style="height:.26in;border-bottom:1px solid #999"></div>
+<div style="height:.26in;border-bottom:1px solid #999"></div>
+<div style="height:.26in;border-bottom:1px solid #999"></div>
+<div style="height:.26in;border-bottom:1px solid #999"></div>
+Write one question about the cork observation.
 
-________________________________________________________________
-
-________________________________________________________________
-[[s03-P43-table]]
-
-| View | Height from rest | Peak spacing | Float movement | Unclear evidence |
-|---|---|---|---|---|
-| First | | | | |
-| Second | | | | |
-
-[[s03-P42-question]]
-
-________________________________________________________________
-
-________________________________________________________________
+<div style="height:.26in;border-bottom:1px solid #999"></div>
+<div style="height:.26in;border-bottom:1px solid #999"></div>

@@ -4,6 +4,7 @@ course: science-grade-4
 unit: 3.1
 version: draft, not yet taught
 credit: ours
+item_ids: s03-X44
 exit: half
 ---
 
@@ -13,10 +14,8 @@ Name: ____________________
 
 Use the separately supplied reserved observation card.
 
-[[s03-X44]]
+Invented for practice. Revise the faulty model using the rope observations about height, spacing, and tag motion.
 
-________________________________________________________________
+<div style="border:1px solid black;min-height:1.1in;margin:.15in 0"></div>
 
-________________________________________________________________
-
-________________________________________________________________
+Evidence labels: __________________________________

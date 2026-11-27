@@ -4,13 +4,14 @@ course: science-grade-4
 unit: 3.2
 version: draft, not yet taught
 credit: ours
+item_ids: s03-P46-features
 ---
 
 # Single-feature matching
 
 Invented for practice. Use separate correct teaching strips from section 3.1.
 
-[[s03-P46-features]]
+Match each teaching label to one isolated feature card.
 
 | Feature label | Matching card letter |
 |---|---|

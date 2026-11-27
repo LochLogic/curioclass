@@ -4,21 +4,22 @@ course: science-grade-4
 unit: 3.3
 version: draft, not yet taught
 credit: ours
+item_ids: s03-P49-proposals
 ---
 
 # My two three-message proposals
 
 Name: __________ Date: __________
 
-Use a fresh copy on day 50. Keep the earlier version.
+Keep this day 49 version. Day 50 uses a separate fresh proposal sheet.
 
-[[s03-P49-proposals]]
+Complete two different three-message rule tables for BEND, ROLL, and PRESS.
 
 | Message | Proposal 1 pattern | Proposal 2 pattern |
 |---|---|---|
-| LOOK | | |
-| LIFT | | |
-| LOWER | | |
+| BEND | | |
+| ROLL | | |
+| PRESS | | |
 
 Proposal 1 message boundary: _______________________
 

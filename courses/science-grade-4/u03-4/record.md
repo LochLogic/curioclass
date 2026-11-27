@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: opener
 course: science-grade-4
 unit: 3.4
 version: draft, not yet taught
@@ -8,7 +8,7 @@ credit: ours
 
 # Section 3.4 formative record
 
-Teacher only. One category per look-for: shown, shown with help, or not yet seen. Add a date and error letter when justified. Blank or unrelated work gets a component note, not a false letter. Absence is not a zero. Circle the rotating six heard publicly; written work reaches everyone. Keep originals and revisions. Teacher-key.md holds each item's look-fors and hand-back day. Use a fresh copy for each component. Assessment points belong only on assessment-record.md.
+Teacher only. One category per look-for: shown, shown with help, or not yet seen. Add a date and error letter when justified. Blank or unrelated work gets a component note, not a false letter. Absence is not a zero. Circle the rotating six heard publicly; written work reaches everyone. Keep originals and revisions. Teacher-key.md holds each item's look-fors and hand-back day. Use a fresh copy for each component. Assessment points belong only on ../u03-1/assessment-record.md.
 
 Day: ____ Component: ____
 

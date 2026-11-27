@@ -4,27 +4,26 @@ course: science-grade-4
 unit: 3.4
 version: draft, not yet taught
 credit: ours
+item_ids: s03-P53-compare
 ---
 
-# Personal evidence notes
+# Evidence notes
 
 Name: __________ Date: __________
 
-[[s03-P53-compare]]
+Complete evidence notes for both criteria and conditions, including one failure-linked possible change.
 
-| Criterion | Quiet evidence, both systems | Conversation evidence, both systems |
+Both systems:
+
+| Criterion | Quiet | Conversation |
 |---|---|---|
-| Correct reception | | |
+| Accuracy | | |
 | Duration | | |
 
-Recorded failure: _________________________________
+Failure: ____________________ Change: ____________________
 
-Possible change: __________________________________
+Why: ____________________
 
-How the change addresses that failure: ______________
+Further test: ____________________
 
-Evidence still needed: _____________________________
-
-Peer evidence question: ___________________________
-
-My response: ______________________________________
+Peer's question: ____________________ My response: ____________________

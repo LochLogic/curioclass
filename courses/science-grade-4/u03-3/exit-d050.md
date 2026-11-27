@@ -4,6 +4,7 @@ course: science-grade-4
 unit: 3.3
 version: draft, not yet taught
 credit: ours
+item_ids: s03-X50a
 exit: half
 ---
 
@@ -11,17 +12,8 @@ exit: half
 
 Name: ____________________
 
-[[s03-X50a]]
+Invented for practice. The square picture is black-white above white-black. Use 1 for black and 0 for white. Read each row left to right, top row first. Encode this picture.
 
-________________________________________________________________
-
-________________________________________________________________
-
-________________________________________________________________
-[[s03-X50b]]
-
-________________________________________________________________
-
-________________________________________________________________
-
-________________________________________________________________
+<div style="height:.26in;border-bottom:1px solid #999"></div>
+<div style="height:.26in;border-bottom:1px solid #999"></div>
+<div style="height:.26in;border-bottom:1px solid #999"></div>

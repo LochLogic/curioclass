@@ -4,6 +4,7 @@ course: science-grade-4
 unit: 3.3
 version: draft, not yet taught
 credit: ours
+item_ids: s03-X49
 exit: half
 ---
 
@@ -11,10 +12,8 @@ exit: half
 
 Name: ____________________
 
-[[s03-X49]]
+Invented for practice. A desk sender needs WAIT and COME messages across a room. Only paper and one flashlight are available. The receiver distinguishes shapes but cannot count repeated displays. Draw two complete visual solutions meeting this limit.
 
-________________________________________________________________
+<div style="border:1px solid black;min-height:1.1in;margin:.15in 0"></div>
 
-________________________________________________________________
-
-________________________________________________________________
+Evidence labels: __________________________________
