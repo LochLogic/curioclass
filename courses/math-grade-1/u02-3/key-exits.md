@@ -11,7 +11,7 @@ Teacher copy. Read each exact stem from its learner piece. Use shown, shown with
 
 ## E27
 
-Which triangles have no partner?
+Pair the square with one triangle. Which have no partner?
 
 **Answer.** 12 triangles marked after one valid pair.
 
