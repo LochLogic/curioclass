@@ -1,0 +1,81 @@
+item_id,shown,compute,value,error,note
+s01-X1a,1,1+1-1,1,A,The starting dot was counted as the one advance.
+s01-X1b,Crosses out the reversed equation.,,,I,Rejects a total on the left despite equal quantities.
+s01-X2a,Rejects the addition with the total on the left.,,,I,The child explains that an answer must come last.
+s01-X2b,6 - 6 = 6,6,6,J,The removed group is counted as the part that remains.
+s01-X3,Crosses out the reversed sum.,,,I,The child rejects 19 on the left of the addition equation.
+s01-X3,16,16,16,J,The part subtracted is also given as the remaining part.
+s01-X4,Count all the dots.,,,B,The chosen route starts a new count instead of using the fact.
+s01-X4,Count five numbers with 14 first.,,,A,The starting amount is counted as one of the advances.
+s01-X5,42,14+16+13-1,42,A,Counts the held subtotal as the first of the thirteen advances.
+s01-X5,44,14+16+10+4,44,G,Represents 13 as ten and four without checking the regrouped parts.
+s01-X6a,19,16+4-1,19,A,Starts counting on with the starting amount.
+s01-X6b,1,1,1,J,The part removed is treated as the part that remains.
+s01-X6c,9,9,9,J,The part removed is treated as the part that remains.
+s01-X7,"3 flags, 1 drum, 4 hats, 1 cup as all ten.",,,G,The paper groups are not reconciled with the whole.
+s01-X7,One wide hat takes two cells.,,,C,The place size varies with the appearance of the icon.
+s01-X8,Two cloth zippers.,,,C,Treats a thick outline as two units.
+s01-X8,Half a cloth zipper.,,,C,Sizes the unit by its appearance.
+s01-X9,19,11+8,19,E,Joins the lengths rather than finding the unmatched span.
+s01-X9,4,11-(8-1),4,D,Reads the flat bar from tick 1 instead of 0.
+s01-X10,Cross starts at tick 1 and stops at 7.,,,D,The tick at 1 is used as the baseline.
+s01-X10,Bend fills four cells for two responses.,,,C,Applies a two-cell unit in just one row.
+s01-X11a,How many ridged and smooth treads altogether?,,,E,Treats a comparison question as a combined total.
+s01-X11b,17,12+5,17,E,Joins the two lengths.
+s01-X11b,8,12-(5-1),8,D,Reads smooth from 1 and ridged from 0.
+s01-X12a,20,10+10,20,E,Joins both equal bars.
+s01-X12a,1,10-(10-1),1,D,Starts the narrow bar at 1 and the wide bar at 0.
+s01-X12b,10 + 10 = 20,10+10,20,E,Uses the joined total as the comparison.
+s01-X13,21-unit extra,16+5,21,E,Joins the two bars to show extra.
+s01-X13,Labels the entire cone tape with the gap.,,,F,Uses the given numbers without locating the missing span.
+s01-X14,Marks Paz on B.,,,K,"Attaches the extra to the wrong owner, making Paz larger."
+s01-X14,Marks the gap on C.,,,F,Fills a gap without locating the requested whole shorter tape.
+s01-X15,13,15-2,13,F,Subtracts the two given numbers instead of locating the starting whole.
+s01-X15,16,15+2-1,16,A,Counts 15 as the first of two advances.
+s01-X16a,Ivo,,,K,Assigns the extra five to Ivo.
+s01-X16b,7,12-5,7,H,Uses fewer as an instruction to subtract with the larger owner correctly named.
+s01-X17,38,30+9-1,38,A,Counts 30 as the first of nine advances.
+s01-X17,40,,,G,Copies the claim without recombining the marked parts.
+s01-X18a,Slide uses four cells.,,,C,Counts two cells for a slide vote and one for a spin vote.
+s01-X18b,15,13+2,15,E,Joins both counts.
+s01-X18b,9,13-2*2,9,C,Matches the spin bar against four falsely plotted slide cells.
+s01-F1,7,7+1-1,7,A,The observed spoken count names the starting amount as an advance.
+s01-F2,11,6+6-1,11,A,The observed spoken count names the starting amount as an advance.
+s01-F3,13,9+5-1,13,A,The observed spoken count names the starting amount as an advance.
+s01-F4,9,9,9,J,The child identifies the removed part as the remaining part.
+s01-F5,8,8,8,J,The child identifies the removed part as the remaining part.
+s01-F6,Counts the full start then counts all that remain.,,,B,The observed method recounts every single unit. The number itself may be correct.
+s01-F7,I counted all fourteen from 1.,,,B,An observed full recount is different from mental recall or deriving a fact.
+s01-G1,Two symbols for a triangle vote.,,,C,The picture units vary by category.
+s01-G2,Bars start at tick 1.,,,D,Starts after the first unit interval.
+s01-G2,Some votes get two cells each.,,,C,Changes the unit between categories.
+s01-G3,Writes 1 after subtracting 5 from 6.,,,F,The child used a difference without identifying the requested combined amount.
+s01-G4,Adds 6 to 16 and writes 22.,,,F,The removed category is treated as an additional part.
+s01-G5,Adds the two counts and writes 7.,,,E,Combines the two categories instead of comparing their bar lengths.
+s01-S1,1,5-4,1,F,Subtracts the arrival instead of combining to find the result.
+s01-S2,20,6+14,20,F,Combines the start and the already enlarged result.
+s01-S3,18,13+5,18,F,Adds the change to the ending group.
+s01-S4,23,17+6,23,F,Adds removed counters to the starting group.
+s01-S5,31,19+12,31,F,Joins the starting and remaining groups.
+s01-S6,7,11-4,7,F,Treats the remaining quantity as the starting amount and subtracts from it.
+s01-S7,4,7-3,4,F,Finds the difference between two parts instead of their whole.
+s01-S9,4 red and 6 blue.,,,G,Accepts a split without rejoining to check against nine.
+s01-S10a,26,16+10,26,E,Adds the two counts instead of comparing them.
+s01-S10b,26,16+10,26,E,Treats the second direction as a combined total.
+s01-S11a,3,8-5,3,H,Chooses subtraction solely from the word fewer.
+s01-S11b,Noor’s tape is drawn longer.,,,K,The extra is assigned to the wrong person.
+s01-S11c,8 - 5 = □,,,H,Uses fewer as the operation cue even when finding the larger quantity.
+s01-S11d,Fewer means I subtract.,,,H,Uses the comparison word without connecting it to the relative lengths.
+s01-S12,22,18+4,22,H,Takes more as an instruction to add while finding the smaller owner.
+s01-S13,9,12-3,9,K,Assigns the smaller quantity to Lian and subtracts.
+s01-S14,26,20+6,26,F,Combines given counts without locating the smaller amount.
+s01-R1,Leaves out equations with the total alone on the left.,,,I,Rejects reversed addition equality.
+s01-R1,17 - 9 = 9,9,9,J,Retains the removed part rather than the complementary part.
+s01-R2,"When I take away the 9, 9 stays.",,,J,Does not distinguish the removed part and the part that stays.
+s01-P3-equation,10 + 12 = □,,,F,Adds two given amounts without locating the missing change.
+s01-P11-parts,12 and 3.,,,G,The two groups are accepted without verifying the fixed whole.
+s01-P13-labels,Puts the square on the entire longer tape.,,,F,The child assigns the unknown to a given quantity.
+s01-P13-equation,"For 13 and 4, 4 + 13 = □.",,,E,Adds both full lengths to find the gap.
+s01-P15-parts,8 and 3.,,,G,Accepts eleven pieces as all twelve without checking the joined whole.
+s01-X1a,Uncovers both dots to count both from one.,,,B,Shows where to practice deriving a nearby fact; record that the flap was lifted.
+s01-S8,27,19+8,27,F,Adds a part to its whole as if the two groups were separate.

@@ -1,0 +1,54 @@
+from_day,to_day,what,where,minutes,error,note
+1,2,s01-X1a,Warm-up,5,A,Hold the first number and mark each advance.
+1,2,s01-X1a,Return,5,B,Derive a nearby fact when full counting was observed.
+1,2,s01-X1b,Return,5,I,Show the same amount on both sides.
+1,2,Opening retrieval papers,Return,5,J,Cover one part and find the other on fresh stock.
+2,3,s01-X2a,Return,5,I,Read equal quantities in both directions.
+2,3,s01-X2b,Return,5,J,Cover the removed group and name what stays.
+3,4,s01-X3,Return,5,I,Show the same quantity on both sides.
+3,4,s01-X3,Return,5,J,Cover the named part in a fresh drawing.
+3,4,s01-P3-equation,Return,5,F,Mark the unknown before computing.
+4,5,s01-X4,Return,5,B,Derive a nearby fact without recounting.
+4,5,s01-X4,Return,5,A,Mark new steps only.
+5,6,s01-X5,Return,5,A,Try a new count-on case.
+5,6,s01-X5,Return,5,G,Rejoin every part of the original total.
+6,7,s01-X6a,return,5,A,Use two genuine advances from five.
+6,7,s01-X6b and s01-X6c,return,4,J,"Return both difference papers, including the Exit box, and cover five of seven to find two."
+7,8,s01-X7,Return,5,G,Account for each icon on new stock.
+7,8,s01-X7,Return,5,C,Match each icon to one equal place.
+8,9,s01-X8,Return,5,C,Pair one equal mark with each response.
+9,10,s01-X9,Return,5,D,Trace the interval from zero to one.
+9,10,s01-X9,Return,5,E,Mark only the unmatched span.
+10,11,s01-X10,Return,5,D,Revisit the first interval of a different graph.
+10,11,s01-X10 and s01-P10-labels,Return,5,C,Check the category labels and equal cells.
+11,12,s01-X11a and s01-X11b,Return,5,D,Return both marks and start each practice bar from zero.
+11,12,s01-X11a and s01-X11b,Return,5,E,Separate a total question from a comparison.
+11,12,s01-P11-parts,Pairs,5,G,Return the split and physically rejoin its parts.
+12,13,s01-X12a and s01-X12b,Return,5,E,Match on fresh bars.
+12,13,s01-X12a and s01-X12b,Return,5,D,Trace the first cell for each bar.
+13,14,s01-X13 and s01-P13-equation,Return,5,E,Align starts and compare only the extension.
+13,14,s01-X13 and s01-P13-labels,Return,5,F,Locate the missing span before calculating.
+14,15,s01-X14,Return,5,K,Place names beside the corresponding tape lengths.
+14,15,s01-X14,Return,5,F,Mark the named unknown before calculating.
+14,15,Model comparison evidence,Pairs,5,H,Name the larger owner before considering which operation fits.
+15,16,s01-X15,Return,5,F,Find the location of the missing start first.
+15,16,s01-X15,Return,5,A,Mark only the added steps.
+15,16,s01-P15-parts,Return,5,G,Return the proposed parts and test a fresh split against its fixed whole.
+16,17,s01-X16a and s01-X16b,Rehearsal,5,H,Return both marks. Name the larger amount on a fresh comparison.
+16,17,s01-X16a and s01-X16b,Rehearsal,5,K,Attach both owners to the correct lengths.
+17,18,s01-X17,Warm-up,5,,Return the first mark with a written or pictured cue during mixed facts.
+18,19,s01-X18a and s01-X18b,Warm-up,5,,Return both first marks with a private cue during mixed facts.
+1,7,Opening data retrieval papers,Data,5,,Use fresh pictured sets and pair one object with one mark.
+1,12,Opening comparison retrieval papers,Comparison,5,,Use fresh pictured sets and pair objects at a common start.
+1,15,Opening missing-start retrieval papers,Start,5,,Use a fresh action picture and locate the starting amount.
+17,19,F first roster original and feedback,Revision,2,,Save the initial accuracy and strategy separately.
+18,19,F second roster original and feedback,Revision,2,,Same prompts on a different roster; keep first replies.
+18,19,"G original graphs, tally, calculations and feedback",Revision,3,,Keep both original graphs and the marked changes with their tally.
+17,20,s01-X17 retry,Return,1,,Place A in round 1 or G in round 2; instruct during the parallel group.
+18,20,s01-X18a and s01-X18b retry,Return,1,,Place C or E in round 1 with fresh graph stock.
+19,20,"Closing originals and written feedback, round 1",Return,3,,"A, C, E and F in parallel. Hear the next rotating six privately where needed."
+19,20,Closing repair round 2,Return,5,,"B, D, G and H in parallel. Use new cases."
+19,21,"Closing repair, next round",Return,5,,K and I in parallel. Route any unmade oral turn with the dated record.
+19,21,"Closing repair, last round",Return,5,,J and open needs. Keep original marks and retries together.
+17,18,"s01-X17 grouping reasons, positions 11 and 12",Share,2,,"Hear two private grouping turns, up to 45 seconds per child, alongside the regular exit rotation."
+6,7,s01-X6c,return,1,J,Return the separately collected Exit box mark within the J move.
