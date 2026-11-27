@@ -230,9 +230,9 @@ from_day,to_day,what,where,minutes,error,note
 137,138,s07-X137a; s07-X137b,Opening,5,,"Return all privately. When 11 or more miss, teach one priority repair with new practice stock. With fewer misses, use the small-group practice slot. Recorded letters for this ticket: E."
 137,138,s07-X137c,Opening,0,,Return the Exit box marks with the ticket in the same slot. Keep first attempts and descriptive feedback together.
 137,138,Fresh exit retry,Retry,5,,Use one new item on the priority letter after the opening repair. Use a teacher group if fewer children need it.
-138,139,s07-X138a; s07-X138b,Opening,5,,"Return all privately. When 11 or more miss, teach one priority repair with new practice stock. With fewer misses, use the small-group practice slot. Recorded letters for this ticket: E."
-138,139,s07-X138c; s07-X138d,Opening,0,,Return the Exit box marks with the ticket in the same slot. Keep first attempts and descriptive feedback together.
-138,139,Fresh exit retry,Practice,5,,Use one new item on the priority letter after the opening repair. Use a teacher group if fewer children need it.
+138,139,s07-X138a; s07-X138b,Opening,5,,"Return the share labels privately. If 11 or more miss, model a label on a different divided whole in the opening; otherwise rehearse with a small group. Use descriptive feedback on the label."
+138,139,s07-X138c; s07-X138d,Opening,0,,Return both count marks with the ticket. Keep first attempts and descriptive feedback on each count together.
+138,139,Fresh exit retry,Practice,5,,"Give one new label or count cue using a different whole, based on the feedback from the opening."
 139,140,s07-X139a-circle; s07-X139a-rectangle,Opening,5,,"Return all privately. When 11 or more miss, teach one priority repair with new practice stock. With fewer misses, use the small-group practice slot. Recorded letters for this ticket: I."
 139,140,s07-X139b,Opening,0,,Return the Exit box marks with the ticket in the same slot. Keep first attempts and descriptive feedback together.
 139,140,Fresh exit retry,Practice,5,,Use one new item on the priority letter after the opening repair. Use a teacher group if fewer children need it.
@@ -247,7 +247,6 @@ from_day,to_day,what,where,minutes,error,note
 144,145,s07-X144a; s07-X144b,Opening,5,,"Return all privately. When 11 or more miss, teach one priority repair with new practice stock. With fewer misses, use the small-group practice slot. Recorded letters for this ticket: F, G."
 144,145,Fresh exit retry,Retry,5,,Use one new item on the priority letter after the opening repair. Use a teacher group if fewer children need it.
 145,146,s07-X145a; s07-X145c,Launch,2,,Return the copy and clock marks privately. File shape and clock priorities for day 150. Use no reteaching today.
-145,146,s07-X145b,Launch,0,,Return the Exit box marks with the ticket in the same slot. Keep first attempts and descriptive feedback together.
 129,130,s07-P129-beside; s07-P129-flat; s07-P129-difference,Building,10,,Use the separately reserved kindergarten face-matching slot after the exit retry if retrieval was missed. Offer a private practice turn to any rostered child still due.
 130,131,s07-P130-join,Partner,10,,Use a different broad outline and paper pieces for the kindergarten join repair. Return the independent attempt before showing the repair.
 135,137,s07-AR1-sort; s07-AR1-sort-feature; s07-AR1-nondef; s07-AR1-build; s07-AR1-draw; s07-AR1-feature; s07-AR1-color; s07-AR1-size; s07-AR1-turn; s07-AR1-rect; s07-AR2-solid; s07-AR2-solid-parts; s07-AR2-solid-outline; s07-AR2-solid-use,Practice,2,,Children 1 to 16 receive private R1 and solid R2 feedback. Use the shared five-minute revision slot together with the next roster.
@@ -263,7 +262,6 @@ from_day,to_day,what,where,minutes,error,note
 141,143,Whole-hour oral follow-up for names 1 to 6,Clock,0,,"Use the existing practice roster for one 45-second read of a different whole-hour face, or count matching R4 evidence once. Record the new date and leave the original unheard exit speech blank. Return the practice feedback orally that day."
 141,144,Whole-hour oral follow-up for names 7 to 12,Clock,0,,"Use the existing practice roster for one 45-second read of a different whole-hour face, or count matching R4 evidence once. Record the new date and leave the original unheard exit speech blank. Return the practice feedback orally that day."
 141,145,Whole-hour oral follow-up for names 13 to 18,Clock,0,,"Use the existing practice roster for one 45-second read of a different whole-hour face, or count matching R4 evidence once. Record the new date and leave the original unheard exit speech blank. Return the practice feedback orally that day."
-145,149,s07-X145b,Stations,0,,File any remaining number gap for the existing course-response station. Paper was returned on 146.
 145,150,s07-X145a; s07-X145c,Stations,0,,File D and H for the existing shape and clock response stations. Papers were returned on 146.
 146,147,s07-AS1-c2; s07-AS1-c4; s07-AS1-csize; s07-AS1-r2; s07-AS1-r4; s07-AS1-rsize; s07-AS1-halves; s07-AS1-fourths; s07-AS1-quarter; s07-AS1-why; s07-AS2-write; s07-AS2-draw,Launch,0,,Put private marked supplements in the portfolio handed back at launch. Give no repeat interview and use the existing course-evidence launch.
 146,148,Unit 7 closed portfolio,Launch,0,,Use the existing launch to reference the finished geometry and time evidence without rescoring.
