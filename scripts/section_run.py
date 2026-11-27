@@ -245,6 +245,8 @@ def changed_list(previous, carry, course=None):
 # ---------------------------------------------------------------- read bundles (Cory 2026-11-27)
 
 BUNDLE_CAP = 80000          # words; past it the largest files stay as paths for the model to open
+SHORT_CAP = 30000           # prep and a second data half: short jobs that pay for a big prompt on every turn
+                            # (ELA grade 5, 2026-11-27: prep 6.0M to 10.9M input with a 78k-word bundle)
 UNIT_RULES = ('The rules', 'The section plan: fields, in order', 'Length')
 WRITE_NOTE = ('\n\nWriting: when you create or change several files, do it in as few tool calls as you can (one '
               'apply_patch call can add or change several files; Claude: send independent edits together in one '
@@ -268,7 +270,7 @@ def cut(text, heads):
     return '\n'.join(out)
 
 
-def bundle(entries):
+def bundle(entries, cap=BUNDLE_CAP):
     """Files put in the prompt in full, so a job spends no turns opening them. entries: (path, heads or None).
     Missing files are skipped; past BUNDLE_CAP words the largest are listed as paths instead."""
     got = []
@@ -283,7 +285,7 @@ def bundle(entries):
                 continue
         got.append((rel, heads, text.strip()))
     left = []
-    while got and sum(len(t.split()) for _, _, t in got) > BUNDLE_CAP:
+    while got and sum(len(t.split()) for _, _, t in got) > cap:
         big = max(got, key=lambda g: len(g[2].split()))
         got.remove(big)
         left.append(big[0])
@@ -1018,7 +1020,7 @@ class SectionLane(cl.Lane):
         self.skeletons(unit)
         self.run_codex(unit, 'prep', prep_prompt(unit, changed_list(previous, carry, unit.course)) + bundle(
             rule_files(unit) + unit_files(unit, prep=False, plans=False) +
-            plan_before(unit)))
+            plan_before(unit), SHORT_CAP))
         miss = [n for n in unit.missing_plans() if not (PREP / unit.course / ('%s.md' % n)).exists()]
         if miss and not self.dry:
             raise Stop('%s prep wrote no note for %s' % (unit, ', '.join(miss)))
@@ -1155,7 +1157,7 @@ class SectionLane(cl.Lane):
                             ('docs/courses/%s/s%s.md' % (unit.course, unit.uu), None),
                             ('docs/courses/%s/DEFAULTS.md' % unit.course, None)] +
                            ([('docs/courses/UNIT-PLAN.md', ('English language arts data',))] if unit.ela else []) +
-                           unit_files(unit, names, skel=False, prep=False))
+                           unit_files(unit, names, skel=False, prep=False), SHORT_CAP if i else BUNDLE_CAP)
             with quota_guard(owned, self.dry):
                 job = self.run_codex(unit, st, text)
                 newn = self.gated(unit, st, job=job) if last else 0
