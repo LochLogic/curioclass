@@ -304,3 +304,80 @@ s05-AP5,56 + 27 = 70 = 83,,,E,Uses an equals sign to join unequal amounts.
 s05-AP5-link,I counted the new stick and all thirteen singles.,,,B,Counts the exchanged group twice.
 s05-AF,65,58+17-10,65,A,Drops the newly made ten.
 s05-AF,58 + 17 = 60 = 75,,,E,Connects different quantities with equals.
+s06-X111,P is longer.,,,A,Compares staggered far ends.
+s06-X112,P is longer.,,,A,Reads the far tips in page position.
+s06-X112,Same length after shortening the reference separately for each card.,,,B,Changes the reference span.
+s06-X113,Slides the second mark between comparisons.,,,B,The reference length changes.
+s06-X114a,17 from 4 + 7 + 6.,,,K,Counts forty as four ones.
+s06-X114a,54 after recounting an incoming one.,,,G,Counts one object twice.
+s06-X114b,"False, 17 should come next.",,,L,Reads equals as an instruction.
+s06-X115,5 equal units with gaps.,,,C,Counts open spaces as covered.
+s06-X115,7 overlapping units.,,,D,Counts some length twice.
+s06-X115,5 units using four singles and a double.,,,E,Counts unequal pieces as the same length.
+s06-X116,"Four units, gaps left open.",,,C,Accepts gapped measurement.
+s06-X116,"Six units, overlaps left in.",,,D,Accepts overlapped measurement.
+s06-X116,Four single units including the double.,,,E,Combines sizes into one count.
+s06-X117a,9 after pointing to one unit twice.,,,G,Counts a unit twice.
+s06-X117b,Counts three large pieces and two small pieces as five large units.,,,E,Mixes sizes in a count.
+s06-X118,1009 after saying one hundred nine.,,,F,Appends the ones to 100.
+s06-X118,110 after using both stars in the count.,,,G,Counts the same unit twice.
+s06-X119a,117 after repeating one single.,,,G,Counts a piece twice.
+s06-X119a,126 after repeating one ten.,,,G,Counts a piece twice.
+s06-X119b,1001 for 101.,,,F,Appends ones to 100.
+s06-X119b,1003 for 103.,,,F,Appends ones to 100.
+s06-X120a,12 equal pieces with open spaces.,,,C,Accepts gaps.
+s06-X120a,14 equal pieces with overlaps.,,,D,Accepts overlaps.
+s06-X120b,15 from 4 + 3 + 8.,,,K,Treats forty as four ones.
+s06-X120b,52 after counting an incoming one twice.,,,G,Counts an object twice.
+s06-X121a,12 as the length left.,,,I,Puts the removed amount in the ending position.
+s06-X121a,13 + 12 = 25.,,,J,Adds a part to the whole it already belongs to.
+s06-X121b,2 as the whole path.,,,J,Treats the added part as the whole.
+s06-X121b,18 as the ending.,,,I,Uses the start as the ending.
+s06-X122,1 as the entire lid.,,,J,Treats the extension as the whole.
+s06-X122,"Lid bar is 18, with one extra unit drawn inside it.",,,J,Places the extra inside the already matched part.
+s06-X123a,12 − 5 = ?.,,,I,Moves the end to the start.
+s06-X123a,? − 12 = 5.,,,I,Swaps what left and what stayed.
+s06-X123b,17 + 5 = 22.,,,I,Uses the original amount as the group left.
+s06-X124a,Marks the empty start.,,,I,Uses the first moment as the change.
+s06-X124a,Marks the final book.,,,I,Uses the ending as the change.
+s06-X124b,Marks the whole sheet.,,,J,Treats the whole as the missing part.
+s06-X124b,Draws a second whole sheet as the missing part.,,,J,Uses a whole in place of a part.
+s06-X125,"25, because more means add.",,,H,Chooses from a keyword.
+s06-X125,10 as the difference.,,,J,Uses the whole smaller row as the extra.
+s06-X126a,114 after recounting a single.,,,G,Counts a single twice.
+s06-X126a,123 after recounting a ten.,,,G,Counts a ten twice.
+s06-X126b,3 units with spaces.,,,C,Counts a gapped row.
+s06-X126b,5 overlapping units.,,,D,Counts overlapping units.
+s06-X127a,18 units with gaps.,,,C,Accepts gaps.
+s06-X127a,20 units with an overlap.,,,D,Accepts overlap.
+s06-X127b,7 is the plant path.,,,J,Uses the difference as the smaller whole.
+s06-X127b,Plant bar is 19 with a separate 7.,,,J,Fails to remove the extra from the larger whole.
+s06-AL-order,X first because its staggered far tip is farthest left.,,,A,Orders by the far tips alone.
+s06-AL-compare,Equal after trimming the reference to fit each card.,,,B,Changes the length between comparisons.
+s06-AM-length,8 copies spaced across the whole.,,,C,Accepts gaps.
+s06-AM-space,"Yes, because all pieces are equal.",,,C,Accepts a gapped row.
+s06-AM-overlap,"Yes, because the pieces touch.",,,D,Accepts overlapping units.
+s06-AM-mixed,"Yes, because all the ends touch.",,,E,Treats unequal pieces as one size.
+s06-AN-more,97 because ten adds one single.,,,K,Adds a ten as one one.
+s06-AN-write1,113 after counting a square twice.,,,G,Counts one square twice.
+s06-AN-write2,1007 after finding one hundred seven.,,,F,Appends ones to 100.
+s06-AN-write3,130 after counting a bundle twice.,,,G,Counts one bundle twice.
+s06-AS1,3 on the final board,,,I,Uses the arrival as the ending.
+s06-AS2,18 added,,,I,Uses the ending as the change.
+s06-AS3,17 at the start,,,I,Uses the ending as the start.
+s06-AS4,7 stay,,,I,Uses the departure as the ending.
+s06-AS5,2 taken,,,I,Uses the ending as the departure.
+s06-AS6,16 first,,,I,Uses the end as the start.
+s06-AS7,13 altogether,,,J,Treats one part as the whole.
+s06-AS8,20 triangles and 4 circles,,,J,Treats the whole as a separate part.
+s06-AS9a,19 on both trays,,,J,Uses the whole as each part.
+s06-AS9b,19 on one tray and 1 on the other,,,J,Treats the whole as one part and adds a unit.
+s06-AS10,31 because of more,,,H,Uses the keyword to choose addition.
+s06-AS11,16 as the difference,,,J,Uses the larger whole as the extra.
+s06-AS12,4 on orange,,,J,Uses the extra as the entire larger whole.
+s06-AS13,7 from 13 − 6 because of fewer,,,H,Chooses subtraction from a keyword.
+s06-AS14,4 on white,,,J,Uses the difference as the smaller whole.
+s06-AS15,27 from more,,,H,Chooses addition from a keyword.
+s06-AF-short,10 pieces with open spaces.,,,C,Accepts gaps.
+s06-AF-long,17 pieces with overlap.,,,D,Accepts doubled coverage.
+s06-AF-extend,16 more units.,,,J,Uses the longer whole as the added part.
