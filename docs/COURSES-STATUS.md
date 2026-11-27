@@ -27,14 +27,14 @@ No course has lessons, print, checks with keys or teacher pages yet. That is lay
 | Social Studies | 16 | 15 | 16 | 15 | 146 | 122 / 4 / 5 |
 | **The four core subjects** | **58** | **52** | **58** | **52** | **513** | **416 / 52 / 32** |
 | Arts and Music | 20 | 0 | 20 | 0 | 72 | 0 / 58 / 14 |
-| Health and PE | 8 | 8 | 0 | 0 | 33 | 16 / 8 / 8 |
+| Health and PE | 8 | 8 | 8 | 0 | 33 | 16 / 8 / 8 |
 | Computer Science | 13 | 0 | 13 | 0 | 20 | 2 / 10 / 8 |
 | World Languages | 2 | 0 | 0 | 0 | 20 | 18 / 0 / 2 |
-| Career and Technical Education | 3 | 0 | 0 | 0 | 19 | 12 / 3 / 4 |
-| Social and Emotional Learning | 4 | 0 | 0 | 0 | 10 | 2 / 0 / 8 |
-| English Language Development | 4 | 0 | 0 | 0 | 23 | 16 / 1 / 5 |
-| Library and Research Skills | 8 | 0 | 0 | 0 | 13 | 7 / 4 / 2 |
-| **All courses** | **120** | **60** | **91** | **52** | **723** | **489 / 136 / 83** |
+| Career and Technical Education | 3 | 0 | 2 | 0 | 19 | 12 / 3 / 4 |
+| Social and Emotional Learning | 4 | 0 | 4 | 0 | 10 | 2 / 0 / 8 |
+| English Language Development | 4 | 0 | 4 | 0 | 23 | 16 / 1 / 5 |
+| Library and Research Skills | 8 | 0 | 8 | 0 | 13 | 7 / 4 / 2 |
+| **All courses** | **120** | **60** | **117** | **52** | **723** | **489 / 136 / 83** |
 
 Tool counts here leave out tools that sit on shared topics (last table). "Spec" includes a few that are still ideas.
 
@@ -145,14 +145,14 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 
 | Course | Core | Rubric file | Approach | Progression | Scope and sequence | Plans | Topics | Tools: spec / built / live |
 |---|---|---|---|---|---|---|---|---|
-| Health, grades K to 2 | yes | no | shared page only | no | no | no | 5 | 1 / 0 / 4 |
-| Physical Education, grades K to 2 | yes | no | shared page only | no | no | no | 3 | 1 / 1 / 1 |
-| Health, grades 3 to 5 | yes | no | shared page only | no | no | no | 7 | 3 / 2 / 2 |
-| Physical Education, grades 3 to 5 | yes | no | shared page only | no | no | no | 3 | 2 / 1 / 0 |
-| Health, grades 6 to 8 | yes | no | shared page only | no | no | no | 4 | 4 / 0 / 0 |
-| Physical Education, grades 6 to 8 | yes | no | shared page only | no | no | no | 3 | 2 / 1 / 0 |
-| Health, grades 9 to 12 | yes | no | shared page only | no | no | no | 5 | 2 / 2 / 1 |
-| Physical Education, grades 9 to 12 | yes | no | shared page only | no | no | no | 3 | 1 / 1 / 0 |
+| Health, grades K to 2 | yes | no | shared page only | no | yes | no | 5 | 1 / 0 / 4 |
+| Physical Education, grades K to 2 | yes | no | shared page only | no | yes | no | 3 | 1 / 1 / 1 |
+| Health, grades 3 to 5 | yes | no | shared page only | no | yes | no | 7 | 3 / 2 / 2 |
+| Physical Education, grades 3 to 5 | yes | no | shared page only | no | yes | no | 3 | 2 / 1 / 0 |
+| Health, grades 6 to 8 | yes | no | shared page only | no | yes | no | 4 | 4 / 0 / 0 |
+| Physical Education, grades 6 to 8 | yes | no | shared page only | no | yes | no | 3 | 2 / 1 / 0 |
+| Health, grades 9 to 12 | yes | no | shared page only | no | yes | no | 5 | 2 / 2 / 1 |
+| Physical Education, grades 9 to 12 | yes | no | shared page only | no | yes | no | 3 | 1 / 1 / 0 |
 
 ## Computer Science (13 courses)
 
@@ -183,40 +183,40 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 
 | Course | Core | Rubric file | Approach | Progression | Scope and sequence | Plans | Topics | Tools: spec / built / live |
 |---|---|---|---|---|---|---|---|---|
-| Career Exploration, grades 6 to 8 |  | no | shared page only | no | no | no | 8 | 4 / 2 / 2 |
-| Career Pathways, grades 9 to 12 |  | no | shared page only | no | no | no | 5 | 5 / 0 / 0 |
+| Career Exploration, grades 6 to 8 |  | no | shared page only | no | yes | no | 8 | 4 / 2 / 2 |
+| Career Pathways, grades 9 to 12 |  | no | shared page only | no | yes | no | 5 | 5 / 0 / 0 |
 | Personal Finance, grades 9 to 12 |  | no | shared page only | no | no | no | 6 | 3 / 1 / 2 |
 
 ## Social and Emotional Learning (4 courses)
 
 | Course | Core | Rubric file | Approach | Progression | Scope and sequence | Plans | Topics | Tools: spec / built / live |
 |---|---|---|---|---|---|---|---|---|
-| Social and Emotional Learning, grades K to 2 |  | no | shared page only | no | no | no | 3 | 1 / 0 / 2 |
-| Social and Emotional Learning, grades 3 to 5 |  | no | shared page only | no | no | no | 2 | 0 / 0 / 2 |
-| Social and Emotional Learning, grades 6 to 8 |  | no | shared page only | no | no | no | 2 | 0 / 0 / 2 |
-| Social and Emotional Learning, grades 9 to 12 |  | no | shared page only | no | no | no | 3 | 1 / 0 / 2 |
+| Social and Emotional Learning, grades K to 2 |  | no | shared page only | no | yes | no | 3 | 1 / 0 / 2 |
+| Social and Emotional Learning, grades 3 to 5 |  | no | shared page only | no | yes | no | 2 | 0 / 0 / 2 |
+| Social and Emotional Learning, grades 6 to 8 |  | no | shared page only | no | yes | no | 2 | 0 / 0 / 2 |
+| Social and Emotional Learning, grades 9 to 12 |  | no | shared page only | no | yes | no | 3 | 1 / 0 / 2 |
 
 ## English Language Development (4 courses)
 
 | Course | Core | Rubric file | Approach | Progression | Scope and sequence | Plans | Topics | Tools: spec / built / live |
 |---|---|---|---|---|---|---|---|---|
-| English Language Development, grades K to 2 |  | yes | shared page only | no | no | no | 6 | 2 / 0 / 4 |
-| English Language Development, grades 3 to 5 |  | yes | shared page only | no | no | no | 5 | 5 / 0 / 0 |
-| English Language Development, grades 6 to 8 |  | yes | shared page only | no | no | no | 6 | 5 / 0 / 1 |
-| English Language Development, grades 9 to 12 |  | yes | shared page only | no | no | no | 6 | 4 / 1 / 0 |
+| English Language Development, grades K to 2 |  | yes | shared page only | no | yes | no | 6 | 2 / 0 / 4 |
+| English Language Development, grades 3 to 5 |  | yes | shared page only | no | yes | no | 5 | 5 / 0 / 0 |
+| English Language Development, grades 6 to 8 |  | yes | shared page only | no | yes | no | 6 | 5 / 0 / 1 |
+| English Language Development, grades 9 to 12 |  | yes | shared page only | no | yes | no | 6 | 4 / 1 / 0 |
 
 ## Library and Research Skills (8 courses)
 
 | Course | Core | Rubric file | Approach | Progression | Scope and sequence | Plans | Topics | Tools: spec / built / live |
 |---|---|---|---|---|---|---|---|---|
-| Library and Research Skills, kindergarten |  | no | shared page only | no | no | no | 3 | 1 / 0 / 2 |
-| Library and Research Skills, grade 1 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
-| Library and Research Skills, grade 2 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
-| Library and Research Skills, grade 3 |  | no | shared page only | no | no | no | 3 | 1 / 2 / 0 |
-| Library and Research Skills, grade 4 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
-| Library and Research Skills, grade 5 |  | no | shared page only | no | no | no | 0 | 0 / 0 / 0 |
-| Library and Research Skills, grades 6 to 8 |  | no | shared page only | no | no | no | 3 | 1 / 2 / 0 |
-| Library and Research Skills, grades 9 to 12 |  | no | shared page only | no | no | no | 4 | 4 / 0 / 0 |
+| Library and Research Skills, kindergarten |  | no | shared page only | no | yes | no | 3 | 1 / 0 / 2 |
+| Library and Research Skills, grade 1 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
+| Library and Research Skills, grade 2 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
+| Library and Research Skills, grade 3 |  | no | shared page only | no | yes | no | 3 | 1 / 2 / 0 |
+| Library and Research Skills, grade 4 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
+| Library and Research Skills, grade 5 |  | no | shared page only | no | yes | no | 0 | 0 / 0 / 0 |
+| Library and Research Skills, grades 6 to 8 |  | no | shared page only | no | yes | no | 3 | 1 / 2 / 0 |
+| Library and Research Skills, grades 9 to 12 |  | no | shared page only | no | yes | no | 4 | 4 / 0 / 0 |
 
 ## Topics that belong to no single course
 

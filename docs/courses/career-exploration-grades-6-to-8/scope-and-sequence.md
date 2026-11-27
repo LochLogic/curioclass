@@ -196,7 +196,9 @@ with the check-in (89), the email, a spoken answer and a first job's rights (90)
 for next term (91), then closing 92 to 94.
 **Why this order.** The packet days alternate with the skill days so the packet has a day to grow between sessions
 and the check-in finds a step done; the course choices are drafted on day 86 and revised on plan day 92, the course's
-most consequential real choice. The job search comes last because it uses every earlier unit's skills.
+most consequential real choice. Day 86 sits in week 29; a school whose high school registration deadline comes earlier
+teaches day 86 out of order in its own registration week, and the plan-day revision stays in unit 7 (Cory 2026-11-26,
+Desk q-career-scope-1; the course page says so). The job search comes last because it uses every earlier unit's skills.
 **Leans.** ELA e8-informative-writing and e8-revise-purpose-audience are taught first (ELA unit 1); e8-present-reasoning
 runs alongside (ELA unit 5), so the model answer comes first on day 90. Library g8-research-product is taught first
 (library 6 to 8 grade 8 unit 9, school days 98 to 143); day 87 still names its own three search steps.
@@ -233,12 +235,13 @@ these codes is scored on a product after feedback. A wider sample is a frame cha
 
 ## Shorter path
 
-**Two sessions a week (64 sessions, 48 hours), the frame's floor.** The 32 folds, by day, as the frame's "Shorter path,
+**Two sessions a week (66 sessions, about 50 hours; Cory 2026-11-26, Desk q-career-scope-1).** The 30 folds, by day, as the frame's "Shorter path,
 unit by unit" table sets them; every cluster keeps one explore session and its field task, every unit its plan,
 assessment and respond days, and nothing assessed or owned is cut:
-- Unit 1 (16 to 9): day 2 into 1; days 4 and 5 into 3; day 6 into 7; day 8 into 7; day 10 into 9; day 12 into 11.
-  Day 1 then holds the hook, the inventory, the values cards and the readiness check: the tightest session in the
-  course.
+- Unit 1 (16 to 11): day 2 into 1; day 4 into 3; day 6 into 7; day 8 into 7; day 12 into 11. Day 5 (the first plan,
+  scored on day 15) and day 10 (the figure table with the three-minute device turns) keep their own sessions, the two
+  sessions the 66-session path adds. Day 1 still holds the hook, the inventory, the values cards and the readiness
+  check: the tightest session in the course.
 - Unit 2 (14 to 9): days 18, 21 and 26 into 17, 20 and 25 (job cards split across table groups and shared); day 22's
   planning into 20 and the stand run and priced on day 23; day 24 into 20 (the owners' accounts) and 27 (the wage
   against costs).
@@ -252,10 +255,11 @@ assessment and respond days, and nothing assessed or owned is cut:
 - Unit 6 (16 to 11): days 70, 73, 77 and 80 into 69, 72, 76 and 79; day 75 into 72.
 - Unit 7 (10 to 8): day 85 into 87 (the invented worker's two plans open the first packet day); day 86 into 89 (the
   move to high school opens the second packet day).
-- The scope read (2026-11-26, finding 6) found short sessions 1, 2 and 9 of unit 1 and unit 7's course-choice session
-  (day 86 into 89) over-full. Pending Cory: whether the two-session path becomes 66 sessions (two more for unit 1) or
-  stays 64; until then the folds above stand.
-- Calendar: on two sessions a week check 1 is sessions 28 and 29; CALENDAR.md tool (a) places them on school days 77
+- The scope read (2026-11-26, finding 6) found unit 1's short sessions over-full; Cory picked 66 sessions (two more
+  for unit 1, above) over one cluster fewer, which would leave an owned sub-cluster unscored. Unit 7's course-choice
+  rows still fold into day 89 on this path; a school whose registration falls earlier teaches them in its own
+  registration week (below).
+- Calendar: on two sessions a week check 1 is sessions 30 and 31; CALENDAR.md tool (a) places them on school days 77
   and 79 (week 16), with the sessions before and after spread evenly, and check 2 on school days 159 and 160.
 
 **A year about 10 days short (86 of 96 days at three a week).** Ten fold-in days, each a cluster's second explore day
@@ -283,5 +287,4 @@ still claimed. No later unit uses a card such a swap removes, so no leave-out br
 
 ## Unsure
 
-- Whether the short path's over-full sessions (unit 1's sessions 1, 2 and 9, unit 7's course-choice session) hold;
-  the scope read found them over-full (finding 6). Pending Cory (Shorter path).
+- Settled 2026-11-26 (Cory, Desk q-career-scope-1): the two-session path is 66 sessions (Shorter path).

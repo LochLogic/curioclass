@@ -313,8 +313,8 @@ all ten. Readiness checks and every plan, assessment, panel and respond day stay
   teacher's hearings of each student run over the second half of the interview day (day 75) and the first half of the
   plan day (day 77), about 20 minutes each, so every student has written interview feedback before day 79.
 - Unit 6: days 83, 85, 86, 87, 89 (the work sessions and status notes into days 82, 84 and 88; the portfolio into day 88).
-  Pending Cory: whether this path runs a lighter applied project (the scope read found its 9 sessions cannot hold the
-  full project and three panel days).
+  On this path unit 6 runs a lighter applied project (Cory 2026-11-26, Desk q-career-scope-1): one option tested, its
+  second try on paper, the effects map cut to one line, and every scored code kept; the three panel days stay.
 
 **The grade 12 early-leave path.** As the frame gives it: where seniors leave two weeks early, course days 91 to 96 are
 lost, so six fold and every closing day stays. Unit 5 folds day 76 (its second interview day), so it runs days 68 to 79

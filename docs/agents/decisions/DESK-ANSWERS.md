@@ -2118,3 +2118,16 @@ drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
   dare or unkind line; the partner coaches with the step card.
 - **No source-map.csv yet** (L149); browser checks at grade close (L157); sensitivity and safety reads before the case
   cards (L158); Codex read after 2026-11-30 (L156).
+
+## 2026-11-26: ELD scope hold and career short paths (Desk q-eld-scope-1, q-career-scope-1)
+
+- **ELD scopes held on C11:** the four ELD scope drafts are committed as held drafts, each marked at the top. The C11
+  gate (ELD STANDARD.md section 6) still binds the expert read, fix pass, unit plans and days; when C11 passes, the read
+  runs on the draft (later.csv L159).
+- **Career exploration 6 to 8, two sessions a week:** 66 sessions, not 64. Unit 1 runs 11 short sessions: day 5 (the
+  first plan) and day 10 (the figure table with device turns) keep their own sessions. One cluster fewer was declined
+  because it leaves an owned sub-cluster unscored.
+- **Career exploration 6 to 8, day 86:** the course choices stay in unit 7; a school whose high school registration
+  deadline comes earlier teaches day 86 in its own registration week, and the plan-day revision stays in unit 7.
+- **Career pathways 9 to 12, 64-session path:** unit 6 runs a lighter applied project there: one option tested, its
+  second try on paper, the effects map cut to one line, every scored code kept.
