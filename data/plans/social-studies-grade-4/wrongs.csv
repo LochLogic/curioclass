@@ -404,7 +404,7 @@ C1-P41-C,"A stays at 60 N, 50 W.",,,G,Read target latitude then longitude.
 C1-P41-D,The right location proves quietest.,,,C,A location detail cannot establish a preference.
 C1-P41-B,210 kilometers,210,210,M,Omits the half-bar portion.
 C1-X41,The bridge is south because the card says so.,,,D,Repeats the card instead of checking the separate map and north arrow.
-s03-X42,Old buildings are fun.,,,N,Interest alone does not explain the writer's need.
+s03-X42,Old buildings are fun.,,,N,"This is a preference, not an answerable supporting question about evidence."
 s03-X43a,V; deepest always means oldest.,,,K,The later pit changes original associations.
 s03-X43b,Only record attractive finds.,,,F,Every context matters.
 s03-X43b,Nobody else needs to check.,,,O,Research needs checkable records.
@@ -1506,3 +1506,4 @@ s02-P32,All change alike.,,,F,"The separately supplied group cards show distinct
 s02-P35,Every country makes everything alone.,,,O,Leaves the supplied false evidence link unchanged; the selected records show exchanges.
 s02-P35,All groups benefit because the title says trade.,,,F,Source titles do not show universal group benefits.
 C1-P41-A,The dotted area is water.,,,A,Uses appearance rather than the supplied reeds key.
+s03-X42b,Old buildings are fun.,,,N,Interest does not explain the writer's need for accurate evidence.

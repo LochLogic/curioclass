@@ -16,7 +16,7 @@ Beringia connects the land-crossing question with separate southward-route quest
 
 A coastal route can include earlier travel across Beringia.
 
-Nipéhe is on traditional Nez Perce land, also called Cooper's Ferry.
+Nipéhe, also called Cooper's Ferry, is on traditional Nez Perce land.
 
 Researchers report stone points about 15,700 years old there.
 

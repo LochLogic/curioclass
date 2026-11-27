@@ -19,15 +19,15 @@ Supporting question: __________________________________
 
 Day 55: organize one source at a time.
 
-Day 56: use taught method notes for two linked paragraphs.
+Day 56: repair these two linked paragraphs under the given claim.
 
-Claim: __________________________________
+Claim: Careful records help people test ideas.
 
-Evidence and reason: __________________________________
+Archaeology Methods describes recording positions before objects move. My favorite window color supports this claim.
 
-Evidence and reason: __________________________________
+The Nipéhe report describes mapped objects with recorded locations. Those records prove every stage of a journey.
 
-Limit: __________________________________
+Repair the misplaced detail and unsupported reason in the supplied paragraphs.
 
 Paragraph 1: ______________________________________________________________
 
@@ -37,4 +37,4 @@ Paragraph 2: ______________________________________________________________
 
 __________________________________________________________________________
 
-Partner rehearsal may come before independent writing. Each partner takes one turn.
+Each partner takes one 45-second turn in parallel pairs.

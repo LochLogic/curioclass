@@ -14,7 +14,7 @@ An artifact is an object made and used long ago.
 
 Context means a find's recorded location, layer and associations.
 
-Climate describes usual conditions over many years.
+Review climate: what a place is usually like over many years.
 
 Invented practice records; no real excavation:
 
@@ -27,7 +27,7 @@ Invented practice records; no real excavation:
 | Sky observation | Repeated horizon positions of a star |
 | Teamwork | Different specialists' separately checked results |
 
-Match these missing fields to methods: position; edge; seed location; layer; star position; separate check.
+Match these records to methods: position; edge; seed location; pollen comparisons; star position; separate check.
 
 | Missing field | Method |
 |---|---|

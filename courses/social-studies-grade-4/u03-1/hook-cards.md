@@ -16,6 +16,13 @@ Pueblo Today: The cultural center is owned by nineteen distinct Pueblo tribes in
 
 Original summary of the Indian Pueblo Cultural Center FAQs, undated; source 42C.
 
-Write a supporting question about evidence: __________________________________
+Supplied questions:
 
-What evidence would help? __________________________________
+1. When were these walls built?
+2. What did every person think about everything?
+
+Supplied evidence: a dated building record; an unrelated color preference.
+
+Match the supplied building-date question to its needed evidence. __________________
+
+Mark the supplied question that is too broad to answer from these records. __________

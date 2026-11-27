@@ -18,4 +18,4 @@ Bar count: __________   Approximate kilometers: __________
 
 Sources: 52M and 52N. Two communities are not one nation.
 
-Teacher reference and print calibration are in teacher-key.md.
+

@@ -16,20 +16,20 @@ Number the stages in order: __________________
 
 Underline the written stage that preserves food between harvests.
 
-![Teaching exterior masonry view](teaching-rooms.jpg)
+![Labeled room outline](rooms-labeled.svg)
 
-Balcony House, Mesa Verde. NPS; date not supplied; public domain.
+Original teaching illustration, 2026; source 51F informs the room label.
 
-Write visible material words only: __________________
+Check the supplied rooms label against its marked arrow. __________________
 
-![Teaching earthwork view](../u03-4/teaching-mound.png)
+![Labeled teaching outline](teaching-earthwork.svg)
 
-Cahokia. NPS; date not supplied; public domain.
+Original teaching illustration, 2026; source 53H informs the shape.
 
-Trace the raised outline. Write visible words only: __________________
+Trace the labeled earthwork outline. __________________
 
 A mound is constructed raised earthwork.
 
 A cliff dwelling has rooms within a cliffside alcove.
 
-Keep the food task separate from the photograph observations.
+Keep the food task separate from the structure labels.

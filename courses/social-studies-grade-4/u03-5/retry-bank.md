@@ -8,7 +8,7 @@ credit: Curio Class original text; image credits accompany images.
 ---
 # Fresh response cards
 
-Teacher gives one card. Cases below are invented unless a public source is named.
+Answer your assigned card. Cases are made up unless a public source is named.
 
 ## R1
 
@@ -47,5 +47,13 @@ Separate reopening notice: rooms usable afterward.
 Claim: these records help explain the building's continued use.
 
 Support the supplied claim using one connected detail from each record.
+
+____________________________________________________________
+
+## R4N
+
+Use R4's records. The caretaker must decide whether the room can reopen safely.
+
+Explain why accurate records matter to the caretaker.
 
 ____________________________________________________________
