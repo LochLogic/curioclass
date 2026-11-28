@@ -277,6 +277,17 @@ textarea{width:100%;min-height:92px;resize:vertical;font:15px/1.45 var(--body);c
 .shead{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:flex-end;justify-content:space-between;position:relative}
 .sh3{font:700 17px/1.2 var(--display);margin:0 0 8px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
 .sh3 span{font:600 12px var(--body);color:var(--muted)}
+/* Collapsible parts: a chevron button before each part's heading; a folded part keeps only its heading row. */
+.fold{all:unset;cursor:pointer;display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;flex:none;color:var(--muted);vertical-align:middle;margin-right:4px}
+.fold:hover{background:color-mix(in srgb,var(--line) 55%,transparent);color:var(--ink)}
+.fold:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.fold svg{width:16px;height:16px;transition:transform .15s}
+.fold[aria-expanded="false"] svg{transform:rotate(-90deg)}
+.folded > :not(.foldkeep){display:none !important}
+.folded > .foldkeep .sub,.folded > .foldkeep p,.folded > .foldkeep .lsub,.folded > .foldkeep .kpis,.folded > .foldkeep .seg{display:none}
+.foldbar{display:flex;justify-content:flex-end;gap:8px;margin:0 0 -4px}
+.foldbar button{font:600 12px var(--body);border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:3px 12px;min-height:28px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.fold svg{transition:none}}
 .hero{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:22px;align-items:center;position:relative}
 .ring{position:relative;width:100%;max-width:220px;aspect-ratio:1;justify-self:center}
 .ring svg{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
@@ -1204,6 +1215,46 @@ details.oldview summary{cursor:pointer;font:700 15px var(--body);color:var(--mut
     db.collection('comments').onSnapshot(s => { comments = s.docs.map(d => ({id: d.id, ...d.data()})); soon(); }, () => {});
     db.collection('stats').onSnapshot(s => statsApply(s.docs), () => {});
   })();
+})();
+// Collapsible parts of the dashboard tab. Each part (and each sub-part with an h3) gets a fold button; which parts
+// are folded is remembered per viewer in localStorage ('rd-fold').
+(() => {
+  const dash = document.getElementById('p-dash');
+  if (!dash) return;
+  let shut = new Set();
+  try { shut = new Set(JSON.parse(localStorage.getItem('rd-fold') || '[]')); } catch {}
+  const save = () => { try { localStorage.setItem('rd-fold', JSON.stringify([...shut])); } catch {} };
+  const chev = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const parts = [];
+  const make = (box, head, key, label) => {
+    // keep: the direct child of box that holds the heading (or the heading itself)
+    let keep = head; while (keep.parentElement && keep.parentElement !== box) keep = keep.parentElement;
+    keep.classList.add('foldkeep');
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'fold'; b.innerHTML = chev;
+    b.setAttribute('aria-label', 'Show or hide ' + label);
+    head.prepend(b);
+    const set = open => {
+      box.classList.toggle('folded', !open); b.setAttribute('aria-expanded', String(open));
+      open ? shut.delete(key) : shut.add(key);
+    };
+    b.onclick = e => { e.stopPropagation(); set(box.classList.contains('folded')); save(); };
+    set(!shut.has(key));
+    parts.push(set);
+  };
+  dash.querySelectorAll(':scope > section, :scope > aside, :scope > details > section').forEach(sec => {
+    const h = sec.querySelector('h2'); if (!sec.id || !h) return;
+    make(sec, h, sec.id, sec.getAttribute('aria-label') || h.textContent.trim());
+    sec.querySelectorAll('h3.sh3').forEach((h3, i) => {
+      const box = h3.parentElement; if (!box || box === sec) return;
+      make(box, h3, sec.id + ':' + i, h3.firstChild ? h3.firstChild.textContent.trim() : 'this part');
+    });
+  });
+  const bar = document.createElement('div'); bar.className = 'foldbar';
+  const all = (open, t) => { const x = document.createElement('button'); x.type = 'button'; x.textContent = t;
+    x.onclick = () => { parts.forEach(s => s(open)); save(); }; bar.append(x); };
+  all(true, 'Open all'); all(false, 'Fold all');
+  dash.prepend(bar);
 })();
 </script>
 
