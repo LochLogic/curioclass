@@ -1,0 +1,47 @@
+from_day,to_day,what,where,minutes,error,note
+1,2,s01-X1,repair,5,A,Return both individual cues. Use one matching repair per pupil for A or B.
+2,3,s01-X2a s01-X2b,repair,5,C,Return the first map and caption; parallel C or E repair.
+3,4,s01-X3,repair,5,F,Return the slip; match error F to meaning and error A to an exact line.
+4,5,s01-X4,repair,5,C,Return the comparison; repair C or A in the same part.
+5,7,s01-X5a s01-X5b,repair,0,D,"Return summary, partner record and cue during the shared five-minute priority block. Use D, R, S, T or U only if there is no higher-priority check repair."
+5,9,discussion preparation cues and any pending private E5 turn,preparation,3,,Use the written cue to revise. Hear up to four single pending 45-second turns while others prepare; carry any remainder to day ten’s discussion.
+6,7,s01-A1a s01-A1b s01-A2 s01-A3a s01-A3b s01-A4 s01-A5,repair,5,,Return written component cues. Revise first work in the separate five-minute earlier-answer part. A5 stays an evidence note.
+7,8,s01-X7,repair,5,C,Return individual replies; repair C or A in parallel.
+7,8,named private reading follow-ups,annotations,16,,Up to eight two-minute turns while others annotate. Keep the remaining names for day nine.
+8,9,s01-X8a s01-X8b,repair,5,B,Return both parts; repair observed fact or the limit of a caption.
+8,9,remaining private reading follow-ups,maps,16,,Up to eight two-minute turns replace coaching. Continue named remainder on day ten.
+9,10,s01-X9,repair,5,E,Return the episode link. Repair sequence or support.
+9,10,remaining private reading follow-ups,conferences,14,,Up to seven two-minute turns. Pass only pending names to day eleven.
+10,11,s01-X10a s01-X10b,repair,5,D,"Return each summary and discussion cue. Match priority repair to D, T or U."
+10,11,remaining spring reading follow-ups,conferences,14,,Up to seven two-minute replacements; one more can use Plot link.
+10,11,one extra private reading follow-up if due,link,2,,The eighth pupil can use a two-minute replacement here.
+10,19,day ten written discussion cues,preparation,3,,Second cohort revises its claim or question before day twenty. Keep the other cohort’s scored evidence separate.
+10,20,pending E10 private speech turns and paired discussion cues,discussion,0,,"Use concurrent groups and the named teacher follow-up rotation. Label peer evidence, observed turns and pending components separately."
+10,30,s01-P7 earlier day ten discussion observations,submit,0,,"Reuse dated notes, day five cues and day nine preparation. Collect inside the portfolio submission block."
+11,12,s01-X11a s01-X11b,repair,5,I,Return the explanation and opening; use the G or I repair as indicated.
+12,13,s01-X12,repair,5,E,Return slips and the drawing timeline. Use one ordered-event or theme cue.
+13,14,s01-X13a1 s01-X13a2 s01-X13b1 s01-X13b2,repair,5,D,Return every independent summary and dated listener cue. Keep reading turns separately.
+13,14,named E13 private reading follow-up,conferences,9,,Up to six named 90-second replacement turns. Work through the remaining cohort in order and keep absences pending.
+13,16,named E13 private reading follow-up,conferences,9,,Up to six named 90-second replacement turns. Work through the remaining cohort in order and keep absences pending.
+13,20,named E13 private reading follow-up,conferences,9,,Up to six named 90-second replacement turns. Work through the remaining cohort in order and keep absences pending.
+13,21,named E13 private reading follow-up,conferences,9,,Up to six named 90-second replacement turns. Work through the remaining cohort in order and keep absences pending.
+14,16,s01-X14,hand-back,0,B,Return the private inference cue inside the same hand-back block as the cold work. Use one priority repair.
+15,16,s01-B1a s01-B1b s01-B2 s01-B3,hand-back,5,,Return written feedback. Use the separate repair and revision parts. The log stays an evidence note.
+16,17,s01-X16,repair,5,B,Return first work and a cue about an evidence limit or exact fact. Carry the chapter twelve record.
+20,30,s01-P7 earlier day twenty discussion observations,submit,0,,Reuse the second cohort’s notes and preserve the dated preparation and feedback.
+30,32,s01-P1 s01-P2 s01-P3 s01-P4 s01-P5 s01-P6 s01-P7,hand-back,0,,Return private portfolio feedback inside the shared return block. Day thirty speech and annotation carry no new score.
+31,32,s01-C1a s01-C1b s01-C2a s01-C2b s01-C3a s01-C3b s01-C4 s01-C5 s01-C6 s01-C7 s01-C8 s01-C9,hand-back,5,,Return cold component feedback. Use separate repair and earlier-answer revision time.
+1,2,s01-Q1a s01-Q1b s01-Q1c,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+2,3,s01-Q2a s01-Q2b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+3,4,s01-Q3a s01-Q3b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+4,5,s01-Q4a s01-Q4b s01-Q4c,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+5,7,s01-Q5a s01-Q5b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+7,8,s01-Q7a s01-Q7b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+8,9,s01-Q8a s01-Q8b s01-Q8c,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+9,10,s01-Q9a s01-Q9b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+10,11,s01-Q10a s01-Q10b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+11,12,s01-Q11a,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+12,13,s01-Q12a s01-Q12b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+13,14,s01-Q13a s01-Q13b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+14,16,s01-Q14a s01-Q14b,hand-back,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+16,17,s01-Q16a s01-Q16b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
