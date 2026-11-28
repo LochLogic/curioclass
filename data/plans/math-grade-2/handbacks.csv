@@ -146,3 +146,34 @@ from_day,to_day,what,where,minutes,error,note
 56,57,s03-C,Revisions,3,,Return for the comparison reason only. Use the same two observed counts.
 57,58,"Unit 3 first marks, private feedback and ranked errors",Return,10,,"Return all scored records including E2. Lead at most two five-minute groups ranked A, B, C, J, I, D, E, F, G, H, K, L, M. Peers use picture cards with at most one move per round."
 57,59,Unit 3 remaining ranked errors and rechecks,Return,10,,Lead the next two five-minute groups. Date deferred rechecks and return feedback privately.
+58,59,s04-X58,Practice,5,A,"Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six. Use parallel pictured groups for other evidenced letters. If a child needs a second move, use the next named Practice minutes."
+59,60,s04-X59,Return,5,A,Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six.
+60,61,s04-X60,Return,5,A,Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six.
+61,62,s04-X61,Return,5,A,Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six.
+62,63,s04-X62,Return,5,B,Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six.
+63,64,s04-X63,Return,5,A,Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six. Use parallel pictured groups for other evidenced letters.
+64,65,s04-X64,Return,5,F,Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six.
+65,66,s04-X65,Return,5,E,Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six.
+66,67,s04-X66,Return,5,C,Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six.
+67,68,s04-X67,Return,5,G,"Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six. If a child needs a second move, use the next named Practice minutes."
+68,69,s04-X68,Return,5,A,Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six. Use parallel pictured groups for other evidenced letters. Use the remaining five Return minutes for a second move as needed.
+69,70,s04-X69,Return,5,H,"Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six. Use parallel pictured groups for other evidenced letters. If a child needs a second move, use the next named Practice minutes."
+70,71,s04-X70,Return,5,D,"Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six. Use parallel pictured groups for other evidenced letters. If a child needs a second move, use the next named Practice minutes."
+71,72,s04-X71,Warm-up,5,A,Return first papers privately to all 30. Use the priority pictured move and a fresh individual recheck. Carry unheard names to the next six. Reserve any second move for the final response rounds.
+72,73,s04-X72,Directions,0,,Hand all 30 first papers back privately while giving assessment directions. Flag any repair for day 74.
+58,59,s04-P58-strip,Retrieval,5,A,Return every first strip count privately. Start repair in Warm-up as needed and finish in Retrieval repair. Preserve the separate Unit 3 rounds.
+58,60,day 58 first strip recheck,Return,5,,Use s04-P60-strip and save its first mark with the earlier count.
+60,61,s04-P60-strip,Return,0,,Return the strip count within the existing first paper return.
+69,70,s04-P69-start s04-P69-gap,Return,5,H,Return first pictures within the second five minutes of Return. Collect the two fresh strip rechecks.
+70,71,s04-P70-start s04-P70-gap,Return,0,,Return the first recheck marks during private X70 feedback.
+70,71,s04-Q1 s04-Q2 s04-Q3 s04-Q4 s04-Q5 s04-Q6 s04-Q7 s04-Q8 s04-Q1-story s04-Q4-story,Return,0,,Give the day 70 written feedback privately while distributing the first papers.
+70,72,s04-Q1 s04-Q2 s04-Q3 s04-Q4 s04-Q5 s04-Q6 s04-Q7 s04-Q8 s04-Q1-story s04-Q4-story,Riddles,4,,Revise from the written feedback. Keep the originals and revisions together. Do not recopy an already accurate answer.
+71,72,s04-F s04-F-b s04-F-c s04-F-d,Riddles,4,,Return written feedback and revise any needed work. Save accuracy and strategy notes separately.
+72,73,s04-R s04-R-equation s04-R-story s04-R-jumps,Revisions,5,,Return written feedback. Preserve first and revised work; flag need for conditional S.
+72,73,s04-Q9 s04-Q10 s04-Q11 s04-Q12 s04-Q13 s04-Q14 s04-Q15 s04-Q16,Revisions,9,,Return private feedback and file originals with dated revisions.
+70,74,s04-Q1 s04-Q2 s04-Q3 s04-Q4 s04-Q5 s04-Q6 s04-Q7 s04-Q8 s04-Q1-story s04-Q4-story,Return,0,,Return the scored story records privately with the first response round. Q1 and Q4 have one child paper each.
+71,74,s04-F s04-F-b s04-F-c s04-F-d,Return,0,,Return scored F maintenance evidence privately with the first response round.
+72,74,s04-R s04-R-equation s04-R-story s04-R-jumps s04-Q9 s04-Q10 s04-Q11 s04-Q12 s04-Q13 s04-Q14 s04-Q15 s04-Q16 s04-X72,Return,0,,Return scored R and Q records and include any pending X72 move within the ten response minutes.
+73,74,s04-N s04-N-length s04-D s04-D-equation s04-S,Return,10,,"Return all scored work privately. Run two five-minute rounds, A then B. A free slot goes to F, C, G, H or I in order. Give others pictured moves and independent fresh rechecks."
+73,75,Unit 4 second response round,Return,10,,"Run two five-minute rounds, E then D. Use the same ordered priority in free slots and allow individual fresh rechecks. Give final private feedback and date the last retry."
+74,75,Unit 4 day 74 response rechecks,Return,0,,Give private feedback on the fresh day 74 marks during the start of the first round. Preserve the new day 75 recheck and give its private feedback after class.

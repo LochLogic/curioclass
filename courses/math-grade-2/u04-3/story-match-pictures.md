@@ -1,0 +1,37 @@
+---
+piece: blank
+course: math-grade-2
+unit: 4.3
+version: draft, not yet taught
+credit: ours
+teacher_note: Adults cut between lettered pictures or copy one per slip. Match them with story match cards. Keep all completed pictures outside the independent story check.
+---
+# Matching pictures and equations
+
+<style>
+body.student, .student p, .student td, .student th {font-size:18pt}
+.student h1 {font-size:22pt;margin:.1em 0 .3em}
+.student h2 {font-size:19pt;margin:.35em 0}
+.student p {margin:.3em 0}
+.u4-panel {break-inside:avoid;margin:.2em 0 .6em}
+.u4-break {break-before:page}
+.u4-picture {display:block;width:100%;height:auto;overflow:visible}
+.u4-row {display:flex;gap:12px;margin:.25em 0 .6em}
+.u4-box {flex:1;min-height:44px;border:1.5px solid black;padding:4px}
+.u4-work {min-height:60px}
+</style>
+
+<div class="u4-panel">
+<p>P</p>
+<svg xmlns="http://www.w3.org/2000/svg" class="u4-picture" viewBox="0 0 700 82" role="img" aria-label="Tape for a starting count and two removals"><rect x="45" y="15" width="595" height="30" fill="white" stroke="black" stroke-width="1.8"/><rect x="45" y="45" width="543" height="30" fill="white" stroke="black" stroke-width="1.8"/><rect x="588" y="45" width="37" height="30" fill="white" stroke="black" stroke-width="1.8"/><rect x="625" y="45" width="15" height="30" fill="white" stroke="black" stroke-width="1.8"/><text x="340" y="38" text-anchor="middle" font-size="20" font-family="sans-serif">80</text><text x="285" y="68" text-anchor="middle" font-size="20" font-family="sans-serif">73</text><text x="606" y="67" text-anchor="middle" font-size="18" font-family="sans-serif">5</text><text x="633" y="67" text-anchor="middle" font-size="16" font-family="sans-serif">2</text></svg>
+<p>Q. 35 + 7 = 42</p>
+</div><div class="u4-panel">
+<p>R</p>
+<svg xmlns="http://www.w3.org/2000/svg" class="u4-picture" viewBox="0 0 700 97" role="img" aria-label="Two leftward jumps"><line x1="26" y1="58" x2="674" y2="58" stroke="black" stroke-width="2"/><line x1="26" y1="48" x2="26" y2="68" stroke="black" stroke-width="1.4"/><text x="26" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">70</text><line x1="69.2" y1="53" x2="69.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="112.4" y1="53" x2="112.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="155.6" y1="48" x2="155.6" y2="68" stroke="black" stroke-width="1.4"/><text x="155.6" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">73</text><line x1="198.8" y1="53" x2="198.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="242" y1="53" x2="242" y2="63" stroke="black" stroke-width="1.4"/><line x1="285.2" y1="53" x2="285.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="328.4" y1="53" x2="328.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="371.6" y1="48" x2="371.6" y2="68" stroke="black" stroke-width="1.4"/><text x="371.6" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">78</text><line x1="414.8" y1="53" x2="414.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="458" y1="48" x2="458" y2="68" stroke="black" stroke-width="1.4"/><text x="458" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">80</text><line x1="501.2" y1="53" x2="501.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="544.4" y1="53" x2="544.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="587.6" y1="53" x2="587.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="630.8" y1="53" x2="630.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="674" y1="48" x2="674" y2="68" stroke="black" stroke-width="1.4"/><text x="674" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">85</text><path d="M 458 49 Q 414.8 8 371.6 49" fill="none" stroke="black" stroke-width="2"/><path d="M 377.6 37 L 371.6 49 L 384.6 45" fill="none" stroke="black" stroke-width="2"/><text x="414.8" y="24.5" text-anchor="middle" font-size="20" font-family="sans-serif">2</text><path d="M 371.6 49 Q 263.6 17 155.6 49" fill="none" stroke="black" stroke-width="2"/><path d="M 161.6 37 L 155.6 49 L 168.6 45" fill="none" stroke="black" stroke-width="2"/><text x="263.6" y="29" text-anchor="middle" font-size="20" font-family="sans-serif">5</text></svg>
+<p>S. 80 − 2 − 5 = 73</p>
+</div><div class="u4-panel">
+<p>T</p>
+<svg xmlns="http://www.w3.org/2000/svg" class="u4-picture" viewBox="0 0 700 97" role="img" aria-label="One rightward jump"><line x1="26" y1="58" x2="674" y2="58" stroke="black" stroke-width="2"/><line x1="26" y1="48" x2="26" y2="68" stroke="black" stroke-width="1.4"/><text x="26" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">30</text><line x1="58.4" y1="53" x2="58.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="90.8" y1="53" x2="90.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="123.2" y1="53" x2="123.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="155.6" y1="53" x2="155.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="188" y1="48" x2="188" y2="68" stroke="black" stroke-width="1.4"/><text x="188" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">35</text><line x1="220.4" y1="53" x2="220.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="252.8" y1="53" x2="252.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="285.2" y1="53" x2="285.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="317.6" y1="53" x2="317.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="350" y1="53" x2="350" y2="63" stroke="black" stroke-width="1.4"/><line x1="382.4" y1="53" x2="382.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="414.8" y1="48" x2="414.8" y2="68" stroke="black" stroke-width="1.4"/><text x="414.8" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">42</text><line x1="447.2" y1="53" x2="447.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="479.6" y1="53" x2="479.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="512" y1="53" x2="512" y2="63" stroke="black" stroke-width="1.4"/><line x1="544.4" y1="53" x2="544.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="576.8" y1="53" x2="576.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="609.2" y1="53" x2="609.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="641.6" y1="53" x2="641.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="674" y1="48" x2="674" y2="68" stroke="black" stroke-width="1.4"/><text x="674" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">50</text><path d="M 188 49 Q 301.4 1 414.8 49" fill="none" stroke="black" stroke-width="2"/><path d="M 408.8 37 L 414.8 49 L 401.8 45" fill="none" stroke="black" stroke-width="2"/><text x="301.4" y="21" text-anchor="middle" font-size="20" font-family="sans-serif">7</text></svg>
+<p>U</p>
+<svg xmlns="http://www.w3.org/2000/svg" class="u4-picture" viewBox="0 0 700 82" role="img" aria-label="Tape for two joined parts and their total"><rect x="45" y="15" width="590" height="30" fill="white" stroke="black" stroke-width="1.8"/><rect x="45" y="45" width="492" height="30" fill="white" stroke="black" stroke-width="1.8"/><rect x="537" y="45" width="98" height="30" fill="white" stroke="black" stroke-width="1.8"/><text x="340" y="38" text-anchor="middle" font-size="20" font-family="sans-serif">42</text><text x="280" y="68" text-anchor="middle" font-size="20" font-family="sans-serif">35</text><text x="586" y="68" text-anchor="middle" font-size="20" font-family="sans-serif">7</text></svg>
+</div>

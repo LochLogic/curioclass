@@ -1,0 +1,24 @@
+---
+piece: blank
+course: math-grade-2
+unit: 4.1
+version: draft, not yet taught
+credit: ours
+teacher_note: The first line is for the model. Practice finds values at the already marked positions. Cover a printed label with a scrap to vary a trial only when the remaining references determine it.
+---
+# Known labels
+
+<style>
+body.student, .student p, .student td, .student th {font-size:18pt}
+.student h1 {font-size:22pt;margin:.1em 0 .3em}
+.student h2 {font-size:19pt;margin:.35em 0}
+.student p {margin:.3em 0}
+.u4-panel {break-inside:avoid;margin:.2em 0 .6em}
+.u4-break {break-before:page}
+.u4-picture {display:block;width:100%;height:auto;overflow:visible}
+.u4-row {display:flex;gap:12px;margin:.25em 0 .6em}
+.u4-box {flex:1;min-height:44px;border:1.5px solid black;padding:4px}
+.u4-work {min-height:60px}
+</style>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="u4-picture" viewBox="0 0 700 97" role="img" aria-label="A unit line with one reference label"><line x1="26" y1="58" x2="674" y2="58" stroke="black" stroke-width="2"/><line x1="26" y1="53" x2="26" y2="63" stroke="black" stroke-width="1.4"/><line x1="90.8" y1="53" x2="90.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="155.6" y1="53" x2="155.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="220.4" y1="53" x2="220.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="285.2" y1="53" x2="285.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="350" y1="48" x2="350" y2="68" stroke="black" stroke-width="1.4"/><text x="350" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">70</text><line x1="414.8" y1="53" x2="414.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="479.6" y1="53" x2="479.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="544.4" y1="53" x2="544.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="609.2" y1="53" x2="609.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="674" y1="53" x2="674" y2="63" stroke="black" stroke-width="1.4"/><circle cx="479.6" cy="58" r="5" fill="black"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="u4-picture" viewBox="0 0 700 97" role="img" aria-label="Unit line with fives as references"><line x1="26" y1="58" x2="674" y2="58" stroke="black" stroke-width="2"/><line x1="26" y1="48" x2="26" y2="68" stroke="black" stroke-width="1.4"/><text x="26" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">20</text><line x1="90.8" y1="53" x2="90.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="155.6" y1="53" x2="155.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="220.4" y1="53" x2="220.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="285.2" y1="53" x2="285.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="350" y1="48" x2="350" y2="68" stroke="black" stroke-width="1.4"/><text x="350" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">25</text><line x1="414.8" y1="53" x2="414.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="479.6" y1="53" x2="479.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="544.4" y1="53" x2="544.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="609.2" y1="53" x2="609.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="674" y1="48" x2="674" y2="68" stroke="black" stroke-width="1.4"/><text x="674" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">30</text><text x="479.6" y="45" text-anchor="middle" font-size="25" font-family="sans-serif">★</text><line x1="479.6" y1="49" x2="479.6" y2="56" stroke="black" stroke-width="1.3"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="u4-picture" viewBox="0 0 700 97" role="img" aria-label="Another unit line with fives as references"><line x1="26" y1="58" x2="674" y2="58" stroke="black" stroke-width="2"/><line x1="26" y1="48" x2="26" y2="68" stroke="black" stroke-width="1.4"/><text x="26" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">30</text><line x1="90.8" y1="53" x2="90.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="155.6" y1="53" x2="155.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="220.4" y1="53" x2="220.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="285.2" y1="53" x2="285.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="350" y1="48" x2="350" y2="68" stroke="black" stroke-width="1.4"/><text x="350" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">35</text><line x1="414.8" y1="53" x2="414.8" y2="63" stroke="black" stroke-width="1.4"/><line x1="479.6" y1="53" x2="479.6" y2="63" stroke="black" stroke-width="1.4"/><line x1="544.4" y1="53" x2="544.4" y2="63" stroke="black" stroke-width="1.4"/><line x1="609.2" y1="53" x2="609.2" y2="63" stroke="black" stroke-width="1.4"/><line x1="674" y1="48" x2="674" y2="68" stroke="black" stroke-width="1.4"/><text x="674" y="90" text-anchor="middle" font-size="24" font-family="sans-serif">40</text><circle cx="155.6" cy="58" r="5" fill="black"/></svg>

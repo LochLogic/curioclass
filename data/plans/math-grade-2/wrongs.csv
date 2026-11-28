@@ -203,3 +203,68 @@ s03-D-story,29 cm,,,H,Uses the full length for the difference.
 s03-F-L,53 cm,37+26-10,53,M,Drops the newly composed ten.
 s03-R39a,Gapped row,,,A,Ignores the uncovered sections.
 s03-R39c,34 units,,,H,Uses the longer whole.
+s04-X58,Ends at 25,26-1,25,A,Counts the starting tick as distance already traveled.
+s04-X58,Unequal spaces under consecutive labels,,,B,Changes the size of one unit.
+s04-X59,12 spaces,97-86+1,12,A,Counts the boundary ticks as if they were the traveled spaces.
+s04-X59,11 tick marks for 11 spaces,97-86,11,A,Treats the first boundary as the first space.
+s04-X60,89,84+6-1,89,A,Counts 84 first when moving right.
+s04-X60,91,93-3+1,91,A,Counts 93 first when moving left.
+s04-X61,Both are 91,90+2-1,91,A,Counts 90 as one of the two rightward spaces.
+s04-X61,Dot 92 and star 91,92-1+1|90+2-1,92|91,A,Counts each starting tick as the first movement.
+s04-X62,84 with four stretched spaces,,,B,Uses unequal unit intervals to reconcile the guess with the 100 endpoint.
+s04-X62,96 with sixteen crowded spaces,,,B,Uses unequal unit intervals to reconcile the guess with the 100 endpoint.
+s04-X63,80,78+2,80,G,Changes two ones in place of two tens.
+s04-X63,97,78+20-1,97,A,Counts 78 as the first traveled unit.
+s04-X64,+16 on the leftward arrow,85-69,16,F,Treats the decrease as an increase.
+s04-X64,Subtract 17,85-69+1,17,A,Counts both endpoints as traveled spaces.
+s04-X65,Only 0 to 29,0+29,29,E,Leaves out the first addend.
+s04-X65,48 to 19,48-29,19,F,Uses a leftward move for the addend 29.
+s04-X66,Back only; Up ruled out,,,C,Insists that a subtraction strategy must move left.
+s04-X66,91 spaces on Up,,,D,Labels the gap with the larger endpoint.
+s04-X67,84 then 82,87-3-2,82,G,Treats two tens as two ones.
+s04-X67,Ends at 65,87-3+1-20,65,A,Counts the starting 87 tick as the first of three spaces.
+s04-X68,First jump 7,60-54+1,7,A,Counts both endpoints as traveled spaces.
+s04-X68,Only 0 to 39,0+39,39,E,Leaves out the first addend.
+s04-X69,18 dots,98-81+1,18,A,Counts both ends.
+s04-X69,81 dots,,,H,Copies the number still glowing onto the change arrow.
+s04-X70,89 spaces left,,,D,Uses the larger endpoint as the distance.
+s04-X70,66 spaces left,,,H,Copies the number already hung into the unknown.
+s04-X71,96,74+3-1+20,96,A,Counts the starting tick in the three-space move.
+s04-X71,79,74+2+3,79,G,Moves two ones instead of two tens.
+s04-X72,Stops with 95 prints,70+25,95,I,Omits the second change.
+s04-X72,Adds nine on the leftward jump,,,F,Uses an increase for a leftward jump.
+s04-P58-strip,25 units,24+1,25,A,Counts the starting boundary as an extra unit.
+s04-P60-strip,32 units,31+1,32,A,Counts both outer boundary marks.
+s04-P69-start,15 units,,,H,Copies the stated change or gap instead of finding the missing length.
+s04-P69-gap,15 units,,,H,Copies the stated change or gap instead of finding the missing length.
+s04-P70-start,14 units,,,H,Copies the stated change or gap instead of finding the missing length.
+s04-P70-gap,14 units,,,H,Copies the stated change or gap instead of finding the missing length.
+s04-R,87 spaces,,,D,The work subtracts to find the gap but reports the larger endpoint instead.
+s04-R-story,An empty board gets only 29 tags,,,E,Omits the initial 58.
+s04-R-jumps,Only 0 to 29,0+29,29,E,Omits the initial amount.
+s04-R-jumps,58 to 29 as the addition,58-29,29,F,Moves left to represent adding 29.
+s04-N,Picture A,,,B,Chooses unequal intervals for consecutive whole numbers.
+s04-N-length,Length ends at 36,37-1,36,A,Counts zero as the first unit.
+s04-D,92 as the difference,,,D,Reports the larger endpoint as a distance.
+s04-D-equation,53 + 92 = 92,,,D,Substitutes the endpoint for the distance.
+s04-S,Only 0 to 37,0+37,37,E,Omits the first addend.
+s04-F,70,67+3,70,G,The picture changes the ones for the tens step.
+s04-F-b,64,56+3+5,64,G,The picture changes the ones for the tens step.
+s04-F-c,77,79-2,77,G,The picture changes the ones for the tens step.
+s04-F-d,82,92-2-8,82,G,The picture changes the ones for the tens step.
+s04-Q1,42 cm,,,H,The response copies a given amount into the unknown.
+s04-Q2,34,,,H,The response copies a given amount into the unknown.
+s04-Q3,17,,,H,The response copies a given amount into the unknown.
+s04-Q4,29 cm,,,H,The response copies a given amount into the unknown.
+s04-Q5,62,,,H,The response copies a given amount into the unknown.
+s04-Q6,58,,,H,The response copies a given amount into the unknown.
+s04-Q7,31,,,H,The response copies a given amount into the unknown.
+s04-Q8,40,,,H,The response copies a given amount into the unknown.
+s04-Q9,99 on each hook,,,H,The response copies a given amount into the unknown.
+s04-Q10,48,,,H,The response copies a given amount into the unknown.
+s04-Q11,43,,,H,The response copies a given amount into the unknown.
+s04-Q12,28,,,H,The response copies a given amount into the unknown.
+s04-Q13,58,,,H,The response copies a given amount into the unknown.
+s04-Q14,82,,,H,The response copies a given amount into the unknown.
+s04-Q15,54,,,H,The response copies a given amount into the unknown.
+s04-Q16,67,55+12,67,I,Stops after the first change.
