@@ -1,0 +1,88 @@
+{
+  "$schema": "https://fundingjson.org/schema/v1.1.0.json",
+  "version": "v1.1.0",
+  "entity": {
+    "type": "individual",
+    "role": "owner",
+    "name": "Cory LeMay",
+    "email": "cory@curioclass.org",
+    "description": "Cory LeMay builds Curio Class in Colorado, USA. He's an Air Force and Space Force veteran who spent about 18 years in cyber systems and program management, and he now builds free public tools. Curio Class is owned by Cory personally; no nonprofit exists yet, and fiscal sponsorship is being sought.",
+    "webpageUrl": {
+      "url": "https://curioclass.org"
+    }
+  },
+  "projects": [
+    {
+      "guid": "curio-class",
+      "name": "Curio Class",
+      "description": "Curio Class is a free, open K-12 curriculum and classroom toolkit, in development: full courses with lessons, printables, checks and interactive tools that a teacher or parent can run from the first day to the last. No accounts, no ads, no tracking and no student data. Every tool is a single file that works offline, and printables are a first-class product. 120 courses are planned (118 active), and every active course has a full-year scope and sequence. Kindergarten to grade 3 science is finished and signed off; days are written for science, social studies and English language arts, kindergarten to grade 3 (about 1,380 days). 92 interactive tools are live. AI drafts, separate AI readers check teaching, accessibility, play and sensitivity, and a person signs off every page. Code is MIT and content is CC BY 4.0, so anyone may use, adapt, translate and reprint it without asking.",
+      "webpageUrl": {
+        "url": "https://curioclass.org"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/LochLogic/curioclass",
+        "wellKnown": "https://github.com/LochLogic/curioclass/blob/main/.well-known/funding-manifest-urls"
+      },
+      "licenses": [
+        "spdx:MIT",
+        "spdx:CC-BY-4.0"
+      ],
+      "tags": [
+        "education",
+        "science",
+        "publishing",
+        "web-development",
+        "privacy",
+        "knowledge"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "bank-transfer",
+        "type": "bank",
+        "address": "",
+        "description": "Write to cory@curioclass.org to arrange a gift. Curio Class has no nonprofit yet; once a fiscal sponsor is in place, tax-deductible gifts go through the sponsor and this entry will name it. Payment details are shared privately, never in this file."
+      }
+    ],
+    "plans": [
+      {
+        "guid": "compute-year",
+        "status": "active",
+        "name": "A year of AI compute",
+        "description": "A full year of uninterrupted AI compute for the build: the main builder and the second parallel builder at the top subscription tier, plus overflow credits for rush waves and art redos.",
+        "amount": 5000,
+        "currency": "USD",
+        "frequency": "yearly",
+        "channels": [
+          "bank-transfer"
+        ]
+      },
+      {
+        "guid": "compute-and-hardware",
+        "status": "active",
+        "name": "Compute plus hardware",
+        "description": "A year of AI compute plus the hardware that lets art, voice and builds run together (memory, a GPU for the voice and art worker, and working and backup storage), so the curriculum is finished on the fastest path.",
+        "amount": 10000,
+        "currency": "USD",
+        "frequency": "yearly",
+        "channels": [
+          "bank-transfer"
+        ]
+      },
+      {
+        "guid": "year-one-build",
+        "status": "active",
+        "name": "The year-one build",
+        "description": "The whole year-one budget: compute, hardware, Spanish native-speaker review, thank-you stipends for classroom teachers who try it and report back, print testing, and teacher outreach.",
+        "amount": 16000,
+        "currency": "USD",
+        "frequency": "yearly",
+        "channels": [
+          "bank-transfer"
+        ]
+      }
+    ]
+  }
+}

@@ -89,7 +89,7 @@ Ordered. Items marked **(Cory)** commit him or need his facts and go on the Revi
 2. **Ownership in writing (Cory).** One page saying Cory owns the code, content, name and domain personally, and a
    note from Sara on her specs. A copyright and ownership line on the site (the Digital Public Goods registry asks
    for it).
-3. **Board and advisors (Cory).** Cory plus 3 independent directors: CNDC requires partner projects to "maintain a board with a minimum of four members that meet at least quarterly" (its services FAQ, read 2026-11-27). Cory said he can find two (Desk 2026-11-27), so one more seat is needed. Useful
+3. **Board and advisors (Cory).** Cory plus 3 independent directors: CNDC requires partner projects to "maintain a board with a minimum of four members that meet at least quarterly" (its services FAQ, read 2026-11-27). The board is Cory, Sara and two independent directors Cory will find (Desk 2026-11-27, q-funding-drafts-1). Useful
    seats: a classroom teacher outside the family and someone who has run a nonprofit; later, international
    education. Advisors (no legal duty) can be teachers who read courses. Advisors also answer "who reviews it?".
 4. **A new about page and one-pager.** ONE-PAGER.md (2026-10-28) is tools-first with old counts. Write it
@@ -275,7 +275,7 @@ PROSPECTS.md under the name shown. Status moves from open to drafted, sent, then
 | Emergent Ventures | 1 | Facts under each real form question ready (emergent-ventures-facts.txt); Cory writes every word | Cory |
 | Awesome Foundation | 1 | Drafted for Montana awesome (every Colorado chapter is inactive); a long shot | Cory |
 | GitHub Secure Open Source Fund | 1 | Drafted (github-secure-oss-fund-form.txt, public rolling form); its last box asks Cory to confirm "an active and growing set of users", early for us | Cory |
-| FLOSS/fund | 1 | funding.json drafted and schema-valid; site lead publishes it at /funding.json. FLOSS/fund skips "very new projects", so apply once there's outside interest; its grants start at $10,000 | Site lead, then Cory |
+| FLOSS/fund | 1 | funding.json in site/funding.json, copied to /funding.json by build_site.py, with .well-known/funding-manifest-urls in the repo (2026-11-28); live with the next deploy. FLOSS/fund skips "very new projects", so apply once there's outside interest; its grants start at $10,000 | Site lead, then Cory |
 | Mozilla Foundation Incubator | 1 | Human-Scale AI call CLOSED 2026-11-20; notes kept for the next cohort call (mozilla-incubator-intake.txt); weak fit (wants deployed products with users) | Watch |
 | AWS Education Equity Initiative | 1 | Drafted; organizations only and needs a paid AWS account, so it waits for CNDC or the LLC (Cory's call) | Cory |
 | Claude for Open Source | 1 | Not sent in October; answers rewritten curriculum-first 2026-11-27 (docs/funding/applications/claude-for-oss.txt). Offer is now 6 months of Claude Ultra; goes through "apply anyway" | Cory |

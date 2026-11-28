@@ -2229,3 +2229,15 @@ drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
   with the reason moved to `why` (869 rows, no judgment changed), and every data job is told the one-word rule.
 - **Pause:** Cory: "when they are done we'll pause on this work for a day or two." Both lanes stopped softly at a
   commit on 2026-11-27 (math by the gentle stop, ELA on its pileup guard, L165); resume is later.csv L162.
+
+## 2026-11-28: Funding drafts, first sends (Desk q-funding-drafts-1)
+
+- **CNDC board:** Cory: "Sara can fill it". The board is Cory, Sara and two independent directors Cory finds
+  (CNDC requires four members meeting quarterly).
+- **First sends:** Cory: "all that can be sent, up to the first 12". The list of 12 is at the top of
+  drafts/paste-ready/INDEX.md; Cory sends each and reports it.
+- **funding.json:** Cory: "A published funding.json or any other format. whatever is best for the cause." Lead call:
+  publish all three plans ($5k, $10k, $16k); FLOSS/fund funds from $10k, and other readers see the smaller asks.
+  Source site/funding.json, built to /funding.json, with .well-known/funding-manifest-urls in the repo.
+- **Cleared lines:** Cory's answer restated all three as true, read as clearing all three: AI literacy is planned in
+  the computer science courses; the disaster-recovery bio line; the name "Cory LeMay".

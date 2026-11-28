@@ -1057,6 +1057,8 @@ for _r in _redir:
 (DIST / '_redirects').write_text(''.join(f"{r['old']} {r['new']} 301\n" for r in _redir), encoding='utf-8')
 # Content Signals (contentsignals.org): Cory allows search, AI answers and AI training (2026-10-28).
 (DIST / 'robots.txt').write_text(f'User-agent: *\nContent-Signal: search=yes, ai-input=yes, ai-train=yes\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n', encoding='utf-8')
+# funding.json (fundingjson.org, read by FLOSS/fund and other funders): source in site/funding.json (Cory, Desk q-funding-drafts-1).
+shutil.copyfile(ROOT / 'site' / 'funding.json', DIST / 'funding.json')
 # Pictures are served from R2 by worker/index.js (the static-asset file limit); keep them out of the asset upload.
 # scripts/sync_media.py uploads the same patterns, and the Front Office documents too. Keep the patterns here, there
 # and in the Worker in step.
