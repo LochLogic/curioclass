@@ -2241,3 +2241,7 @@ drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
   Source site/funding.json, built to /funding.json, with .well-known/funding-manifest-urls in the repo.
 - **Cleared lines:** Cory's answer restated all three as true, read as clearing all three: AI literacy is planned in
   the computer science courses; the disaster-recovery bio line; the name "Cory LeMay".
+
+## 2026-11-27: Outreach voice hits harder (Cory, in chat)
+
+Standing change to how every funding and outreach piece reads: the impact hits harder; the ambition is global and fully philanthropic (a complete K-12 curriculum, free forever, built to reach millions of children); every piece carries hard numbers from docs/funding/SCALE.md (AI tokens processed, lesson days, courses, tools, commits); and we never self-disqualify: no lines on why a funder might not fit, only the case for why they should. The goal is labeled a goal; facts stay true and dated. Edited in place: OUTREACH-PLAN.md tone rules and word table. Hard numbers first counted 2026-11-27 (SCALE.md milestone). Sends are logged in SCALE.md, Outreach: the ED comment (tracking mwz-y2ap-8ofp) posted 2026-11-27.

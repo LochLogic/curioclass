@@ -179,8 +179,16 @@ ask small, promise nothing, learn.
 
 ### Tone rules for all three paths
 
-- **Plain, warm and short.** A few contractions, one idea per paragraph, no hype, no closing salutation, no em
-  dashes (the paste-ready rules).
+- **Hit hard (Cory, 2026-11-27).** Open with the size of the ambition and the size of the work. The ambition is
+  global and fully philanthropic: a complete K-12 curriculum, free forever, built to reach millions of children in
+  every country that wants it. State it as the goal we're building toward, then back it with hard numbers from
+  SCALE.md (billions of AI tokens processed, thousands of lesson days, 118 full-year courses, every page signed off
+  by a person). Facts stay true and dated; the goal is labeled a goal.
+- **Never self-disqualify.** Don't tell a funder why we might not fit (age, size, missing thresholds). Make the
+  case for why they should back us. If a form asks directly, answer the question truthfully and briefly, then
+  turn to the case.
+- **Plain, warm and clear.** A few contractions, one idea per paragraph, no closing salutation, no em dashes (the
+  paste-ready rules).
 - **Say what's finished and what isn't** in the first or second paragraph.
 - **Promise outputs, never outcomes.** Dates are ours to set; give margin.
 - **Tailor every send** to what that reader values (the tailoring rule above).
@@ -192,7 +200,7 @@ ask small, promise nothing, learn.
 
 | Use | Avoid |
 |---|---|
-| "finished", "in development", "planned", "scheduled for [date we set]" | "launching", "rolling out", "reach millions" |
+| "finished", "in development", "planned", "scheduled for [date we set]"; "built to reach millions of children worldwide" (a goal) | "launching", "rolling out", "reaches millions" or "used by" (as a fact, until counted) |
 | "free and open; you can adapt it without asking us" | "our product", "our platform", "license our content" |
 | "$X finishes [named work]" | "help us grow", "support our mission" with no named work |
 | "built to the criteria your reviewers use" | "meets", "approved", "endorsed" (until true) |
@@ -257,7 +265,7 @@ PROSPECTS.md under the name shown. Status moves from open to drafted, sent, then
 
 | Prospect | Path | Gate | Next step | Who | By |
 |---|---|---|---|---|---|
-| ED supplemental priorities comment | 3 | None | Final read of ed-priorities-public-comment.txt for claims; Cory posts on regulations.gov | Claude, then Cory | 2026-12-07 |
+| ED supplemental priorities comment | 3 | None | POSTED by Cory 2026-11-27, tracking mwz-y2ap-8ofp (SCALE.md, Outreach) | Done | 2026-12-07 |
 | Virginia K-12 science HQIM webinar | 2 | None | Register and attend; learn the 2027 review terms | Cory | 2026-12-14 |
 | NSF TechAccess, round 2 letter of intent | 2 | A Colorado hub lead | No Colorado lead found 2026-11-27; note drafted to CU Boulder's Research & Innovation Office asking who leads (nsf-techaccess-colorado-partner.txt) | Cory | 2026-12-15 (may move: NSF says a revised solicitation is coming) |
 | IES Seedlings to Scale, Phase One | 2 | A research partner already applying | Notes drafted (ies-seedlings-cu-note.txt, ies-seedlings-du-note.txt); send one CU note, not this and cu-isat-research-partner.txt both | Cory | 2026-12-11 |
@@ -271,7 +279,7 @@ PROSPECTS.md under the name shown. Status moves from open to drafted, sent, then
 
 | Prospect | Path | Next step | Who |
 |---|---|---|---|
-| CNDC fiscal sponsorship | all | Drafted 2026-11-27 (cndc-inquiry-form.txt; fields hidden behind a login, answers follow CNDC's listed topics). Cory creates the account and fills it in; needs a four-member board plan | Cory |
+| CNDC fiscal sponsorship | all | In progress 2026-11-27: Cory's account made and the first page done; Claude prefills the next page, Cory submits (cndc-inquiry-form.txt). Board is Cory, Sara and two independents | Cory |
 | Emergent Ventures | 1 | Facts under each real form question ready (emergent-ventures-facts.txt); Cory writes every word | Cory |
 | Awesome Foundation | 1 | Drafted for Montana awesome (every Colorado chapter is inactive); a long shot | Cory |
 | GitHub Secure Open Source Fund | 1 | Drafted (github-secure-oss-fund-form.txt, public rolling form); its last box asks Cory to confirm "an active and growing set of users", early for us | Cory |

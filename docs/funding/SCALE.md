@@ -25,6 +25,31 @@ Counted from the repository on main (`git ls-files`, `git rev-list --count HEAD`
 The consolidation (docs/CONSOLIDATION-PLAN.md) brings every platform's work back into one folder, one curriculum
 model and permanent ids, built for the tens of thousands of files the finished curriculum will hold.
 
+## Milestone: funding goes aggressive (2026-11-27)
+
+Counted from the repository on main (`git ls-files`, `git rev-list --count HEAD`) and from the AI session logs still on
+disk.
+
+| What | Count |
+|---|---|
+| Files tracked in the repository | 38,453 |
+| Commits | 1,978 (first commit 2026-10-22) |
+| Day files written (lesson days) | 2,115 |
+| Courses planned | 120 (118 active), every active course with a full-year scope and sequence |
+| Courses finished and signed off | Kindergarten to grade 3 science (2026-11-23) |
+| Interactive tools live | 92 |
+| Tool folders | 823 |
+| AI tokens processed, counted from logs still on disk | more than 4.2 billion (Codex 4.04 billion across 555 Curio Class sessions, 2026-11-20 to 2026-11-27; Claude Code 0.2 billion, 2026-11-27 only). Older logs were cleared by the tools, so the true total since 2026-10-22 is higher. Counts include cached input, the way the vendors bill and report usage. Script: the session scratch tok.py (sums `total_token_usage` per Codex session and `usage` per Claude message). |
+| Development time | Five weeks of near-daily build since 2026-10-22, with AI runs going overnight |
+
+## Outreach
+
+One row per send, added when Cory reports it (an unreported draft is not sent). Plan and queue: OUTREACH-PLAN.md.
+
+| Date | To | What | Reference | Status |
+|---|---|---|---|---|
+| 2026-11-27 | U.S. Department of Education (regulations.gov, docket ED-2026-OS-3169-0001) | Public comment | Comment Tracking Number mwz-y2ap-8ofp | Posted by Cory |
+
 ## After the consolidation
 
 Filled at step 6 with the same counts, plus what moved, what was archived and what the new index links.
