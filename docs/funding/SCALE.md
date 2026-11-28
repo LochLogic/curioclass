@@ -56,6 +56,8 @@ One row per send, added when Cory reports it (an unreported draft is not sent). 
 | 2026-11-27 | DU (Peter Organisciak) | IES Seedlings to Scale partner note | Gmail Sent | Sent by Cory (from his Gmail address) |
 | 2026-11-27 | CU Boulder Research & Innovation Office | NSF TechAccess Colorado hub partner note | Gmail Sent | Sent by Cory (from his Gmail address) |
 | 2026-11-27 | Kiwix | NLnet Restack partner idea | Gmail Sent | Sent by Cory (from cory@curioclass.org) |
+| 2026-11-27 | Colorado Department of Education OER (Mallorie Klemm, OERColorado) | Open-library fit questions | Gmail Sent | Sent by Cory (from cory@curioclass.org) |
+| 2026-11-27 | Oak National Academy (England) | Peer call request on AI quality checks | Gmail Sent | Sent by Cory (from cory@curioclass.org) |
 
 ## After the consolidation
 
