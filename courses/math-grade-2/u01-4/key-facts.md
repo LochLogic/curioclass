@@ -21,9 +21,9 @@ What is 20 - 8?
 
 What is 12 - 6?
 
-How did you find that one?
+How did you find the third fact?
 
-Record the selected fact and the method actually heard. Keep the first response and any support separate.
+Record the method actually heard. Keep the first response and any support separate.
 
 ## Teacher key
 
@@ -33,4 +33,4 @@ Record the selected fact and the method actually heard. Keep the first response 
 - F4. 7
 - F5. 12
 - F6. 6
-- F7. Accept recall or a coherent mental method for the selected saved fact. Record accuracy and method separately.
+- F7. Accept recall or a coherent mental method for the third fact, 9 + 5, such as making ten. Record accuracy and method separately.

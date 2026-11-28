@@ -30,7 +30,7 @@ Use only the brief fixed-answer items for the five-minute marking part. Keep S11
 - **s01-S9.** Any two positive whole-number parts with a sum of 9, for example 4 and 5.
   Assigns positive counts to both colors. parts account for exactly nine tiles
   Error G. Accepts a split without rejoining to check against nine.
-- **s01-S10a.** 6; 10 + □ = 16 is one matching equation.
+- **s01-S10a.** 16 - 10 = □ or 10 + □ = 16; the square is 6. Accept equivalent equations for the same unknown.
   Error E. Adds the two counts instead of comparing them.
 - **s01-S10b.** 6
   Error E. Treats the second direction as a combined total.

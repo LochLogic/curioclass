@@ -17,7 +17,7 @@ Use after everyone’s work is saved.
 - S6: □ - 4 = 11; the square is 15. Accept equivalent equations for the same unknown.
 - S7: 7 + 3 = □; the square is 10. Accept equivalent equations for the same unknown.
 - S8: 8 + □ = 19; the square is 11. Accept equivalent equations for the same unknown.
-- S10a: 6; 10 + □ = 16 is one matching equation.
+- S10a: 16 - 10 = □ or 10 + □ = 16; the square is 6. Accept equivalent equations for the same unknown.
 - S10b: 6
 - S12: □ + 4 = 18; the square is 14. Accept equivalent equations for the same unknown.
 - S13: 12 + 3 = □; the square is 15. Accept equivalent equations for the same unknown.
