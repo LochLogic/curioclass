@@ -45,3 +45,35 @@ from_day,to_day,what,where,minutes,error,note
 13,14,s01-Q13a s01-Q13b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
 14,16,s01-Q14a s01-Q14b,hand-back,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
 16,17,s01-Q16a s01-Q16b,repair,0,,Return the formative cue in the same individual hand-back. Leave the dated first work in its folder.
+17,18,s01-X17,repair,5,G,Return every first slip privately. Give one cue about narrator and situation or reader and form.
+18,19,s01-X18,repair,5,H,"Return first maps. Cue one choice and its outcome, or return the writer to narrative form."
+19,20,s01-X19a s01-X19b,repair,5,F,Return the scene and margin privately. Cue the effect of one detail or a narrative rather than instructions.
+20,21,s01-X20a s01-X20b,repair,5,H,"Return both first responses and a separate discussion cue. Match one priority about theme, outcome, evidence or turn-taking."
+21,22,s01-X21,repair,5,E,Return the scene. Use two released event tags if the order or transition needs work.
+22,23,s01-X22,repair,5,H,Return first ending and cue its cause or the limit of the evidence. Give a separate adult draft comment inside the same block.
+23,24,s01-X23a s01-X23b,repair,5,J,"Return each first revision and margin. Select one cue on meaning, sentence pattern, evidence or tone."
+24,25,s01-X24a s01-X24b,repair,5,K,Return the role and intensive slips. Match case to its job or remove emphasis to locate the subject.
+25,26,s01-X25,repair,5,N,"Return first paper or file with one written cue. Name the intended speaker, plural owners or unclear referent."
+26,27,s01-X26a s01-X26b,repair,5,O,Return the private explanation and update. Cue audience fit or the subject form. Keep pending digital acts separate.
+27,28,s01-X27a s01-X27b,repair,5,J,"Return the revision and effect note. Cue a change to meaning, the narrator’s voice or the effect on a reader."
+28,29,s01-X28a1 s01-X28a2 s01-X28b1 s01-X28b2,repair,5,C,"Return every first map and a listener cue, with one priority on sequence, theme or reading. Preserve peer and teacher listening evidence separately."
+29,30,s01-X29,repair,5,B,Return the first synthesis. Cue the scope of the test or selection of a relevant detail.
+30,32,s01-X30,repair,0,J,Give each student the E30 cue within the ten-minute priority repair. Use a separate R or T cue for the practice discussion when needed.
+32,33,s01-X32a s01-X32b,opening,5,B,Return both first slips and a written cue. Hold the first five minutes for the receiving section’s opening to use a matching released repair.
+20,23,P7 missing private discussion contexts,feedback,10,,Use the given prepared detail and cue. Hear two groups of five in five minutes each while classmates exchange written feedback.
+20,23,P7 third private discussion group,approach,5,,Use the first five minutes for up to one more group of five. Save the context and date or carry the pending evidence.
+22,23,dated N1 first draft and adult comments,repair,0,,Give each student a separate written adult comment in the same first-answer return.
+23,24,"dated N1 draft, comments and revision plan",revise,0,,Attach both written comments and keep the reasons for the change with the first version.
+26,27,"pending N1 files, publication, comments and replies",respond,0,,Log the actual school digital act. Keep paper as language evidence where school access is pending.
+27,29,day 27 held language samples and written cues,retry,5,,Give the written cue and only the matched independent card. Finish longer written retries during Synthesis.
+27,29,dated P4 private first turns and spoken retries,synthesis,16,,"Use up to twenty-one 45-second turns. Start with up to eleven first turns, then the matched spoken retries. Give written cues for any new retry needed. Carry the remainder to days 35, 36 and 40."
+27,30,s01-P1 s01-P2 s01-P3 s01-P5 s01-P6 N1 versions and digital acts,submit,0,,Gather the actual dated artifacts and reading records. Record evidence or pending access without a new task.
+29,30,s01-P4 earlier application and matched retry,submit,0,,"Use the first response, written cue and independent retry together. Keep missing evidence pending by part and mode."
+29,35,P4 overflow private spoken turns,conferences,7,,Use up to nine 45-second replacement turns for dated gaps. Give a written cue before any independent retry. Update the pending part and mode on the earlier record. Use the named roster and keep absences pending.
+28,29,E28 first group of six named private reading turns,conferences,5,,"Replace extended conferences with six 45-second individual reads of the pupil’s held form. Enter words, phrasing and any self-correction separately."
+28,32,E28 second group of six named private reading turns,conferences,5,,"Replace extended conferences with six 45-second individual reads of the pupil’s held form. Enter words, phrasing and any self-correction separately."
+28,35,E28 third group of six named private reading turns,conferences,5,,"Replace extended conferences with six 45-second individual reads of the pupil’s held form. Enter words, phrasing and any self-correction separately."
+28,36,E28 fourth group of six named private reading turns,conferences,5,,"Replace extended conferences with six 45-second individual reads of the pupil’s held form. Enter words, phrasing and any self-correction separately."
+32,33,dated next reading actions and pending roster,opening,0,,Keep each goal and named gap with the first and revised work. Carry the date and context to the next eligible individual record.
+29,36,P4 overflow private spoken turns second group,conferences,7,,Use up to nine 45-second replacement turns for dated gaps. Give a written cue before any independent retry. Update the pending part and mode on the earlier record. Use the named roster and keep absences pending.
+29,40,P4 overflow private spoken turns last group,conferences,2,,Use up to two 45-second replacement turns for dated gaps. Give a written cue before any independent retry. Update the pending part and mode on the earlier record. Use the named roster and keep absences pending.

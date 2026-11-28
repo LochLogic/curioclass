@@ -72,3 +72,39 @@ s01-P7,She changed because she felt like it.,,,R,Gives no located evidence.
 s01-P7,A speaker takes the next person’s turn.,,,S,Ignores agreed roles.
 s01-P7,I agree.,,,T,"Adds no reason, evidence or question."
 s01-P7,You think it should stay closed.,,,U,Replaces a partner’s stated case for opening it.
+s01-X17,Somebody somewhere said something.,,,G,Leaves the narrator and place unclear.
+s01-X17,The exhibition opens at noon and closes at four.,,,I,Announces hours instead of opening a story.
+s01-X18,Rainfall report: the town received heavy rain last week.,,,I,Switches from planning a story to reporting weather.
+s01-X18,The printer chooses which posters to print. The story ends when the printer wins an unrelated race.,,,H,The ending does not follow from the choice.
+s01-X19a,Instructions for lowering a rope: ask for clearance before letting go.,,,I,Gives directions instead of developing the narrative moment.
+s01-X19b,The rope pressed a red line across my palm.,,,F,Repeats a line without explaining its effect.
+s01-X20a,Packing.,,,C,Names the subject instead of stating a message.
+s01-X20b,The team watches a spaceship land.,,,H,The outcome does not follow from the matching mark.
+s01-X21,"After I showed the question at the exhibition, I went home to write it.",,,E,Reverses the supplied order.
+s01-X22,Then the club launched a rocket.,,,H,Adds an ending unrelated to the inquiry.
+s01-X22,"The stamp was smudged, but it proved the exact day the photograph was taken.",,,B,Overstates what a stamped envelope can establish.
+s01-X23a,"I checked it. I read it. I fixed it. Yo, the official report concludes.",,,J,Simply copies the draft.
+s01-X23a,I held it up. I saw a corner. I pulled it free. I fixed it.,,,P,Repeats the same short opening pattern despite the pacing cue.
+s01-X23a,I eased the corner free. The agency hereby certifies completion.,,,Q,Shifts from personal narration to unexplained report language.
+s01-X23b,When I held the page to the lamp.,,,F,Quotes the new line without saying what it does.
+s01-X24a,"I, I, mine.",,,K,Uses a subject form after to.
+s01-X24b,Myself wrote my name on it.,,,L,Replaces the subject with the intensive.
+s01-X25,I checked my labels because you wanted them accurate. The workers carried their boxes. Ana offered Jo a date.,,,M,Leaves an unintended shift to the listener.
+s01-X25,I checked my labels because I wanted them accurate. The workers carried her boxes. Ana offered Jo a date.,,,W,Leaves a singular owner where the owners are plural.
+s01-X25,"I checked my labels because I wanted them accurate. The workers carried their boxes. When Ana met Jo, she offered a date.",,,N,Leaves two possible people for she.
+s01-X26a,The minutes show the friend’s speaker is less capable.,,,O,Ranks a speaker instead of describing how wording fits an audience.
+s01-X26b,Me checked the labels. One is blank.,,,K,Uses an object form as subject in the formal update.
+s01-X27a,The gate clicked. I ran to the finish. I crossed the line.,,,J,Copies the original without addressing the reader’s question.
+s01-X27a,I saw the dog slip out beside the gate. The undersigned certifies recovery.,,,Q,Explains the pursuit but switches voice in the final sentence.
+s01-X27b,"When the gate clicked, the dog darted away.",,,F,Quotes the revision without identifying its effect.
+s01-X28a1,Eri calls the lead actor after the understudy loses her voice.,,,A,Substitutes words that change a stated event.
+s01-X28a2,Costumes.,,,C,Names a subject only.
+s01-X28a2,Eri called the understudy before the lead lost her voice.,,,E,Reverses the order of the response.
+s01-X28b1,Val presses clay into the shell before the tide comes.,,,A,Substitutes words that change a stated event.
+s01-X28b2,Shells.,,,C,Names a subject only.
+s01-X28b2,Val used clay before the tide took the print.,,,E,Reverses the order of the response.
+s01-X29,Every tile in town is too weak to carry weight.,,,B,Generalizes one test to every tile.
+s01-X29,The mason lives near a river.,,,V,Substitutes unrelated information for a rebuilding claim.
+s01-X30,I would copy the two sentences neatly and leave them as they are.,,,J,Makes no change that answers the reader’s question.
+s01-X32a,Flowers.,,,C,Names the topic instead of a message.
+s01-X32b,No birds visited the flower beds on Monday.,,,B,Treats an unobserved place as evidence that no birds visited.
