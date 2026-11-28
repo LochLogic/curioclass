@@ -291,6 +291,7 @@ PROSPECTS.md under the name shown. Status moves from open to drafted, sent, then
 | Small family foundations | 1 | List done 2026-11-27 (PROSPECTS.md, "Small and mid-size foundations"): Dunn Family first ("educational support materials for use by teachers"), then Hughes Trust, Longview (LOI 2027-01-15), Hill, El Pomar (ask first whether online curriculum counts as "media"). All need a 501(c)(3) or a sponsor, so they follow CNDC; Echoing Green needs neither (window 2027-03-31) | Cory |
 | Warm introductions (the "someone who wouldn't think twice" donor) | 1 | Drafted (warm-intro-forwardable.txt) | Cory |
 | Rotary, Kiwanis and Lions clubs | 1, 3 | Request email, talk outline and ask card drafted (club-talk-outline.txt) | Cory |
+| Relationship intros ahead of the 2027 cycles | 1, 3 | Gmail drafts made 2026-11-27, addresses checked on each site that day: Gates Family Foundation (Russell Ramsey, Ana Soler; gates-family-foundation-intro.txt), The Denver Foundation (cgp@, appointment before Cycle 1 opens 2027-01-15; denver-foundation-cgp-meeting.txt), Rose Community Foundation (for VJ Brown via info@; rose-community-foundation-fit.txt), Colorado Education Initiative (district partners; cei-rural-district-intro.txt), New America (An-Me Chung, Oak piece; new-america-chung-oak-us.txt) | Cory |
 
 ### C. After the fiscal sponsor (an EIN through CNDC)
 
