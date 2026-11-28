@@ -268,3 +268,89 @@ s04-Q13,58,,,H,The response copies a given amount into the unknown.
 s04-Q14,82,,,H,The response copies a given amount into the unknown.
 s04-Q15,54,,,H,The response copies a given amount into the unknown.
 s04-Q16,67,55+12,67,I,Stops after the first change.
+s05-X74,Ten on a band of ten strips.,,,A,Counts each ten-strip as one.
+s05-X74,"Leaves the band empty, calling the stock fifteen ones.",,,A,Treats the strips as single ones.
+s05-X75,Seven grids labeled 70.,7*10,70,C,Keeps only one zero after naming two empty places.
+s05-X75,Labels the seven grids as seven ones.,,,B,Treats the hundreds digit as ones.
+s05-X76,"Writes 6, 40, 6 under 646.",,,B,Assigns face value to the hundreds digit.
+s05-X76,"Writes 600, 4, 6 under 646.",,,B,Assigns face value to the tens digit.
+s05-X77,Marks 870 and 87 as the same amount.,,,C,Treats the missing placeholder as harmless.
+s05-X77,Labels both 7s as seven ones.,,,B,Uses the digit face value in both places.
+s05-X78,5 + 8 + 2,5+8+2,15,D,Uses the digit face values.
+s05-X78,500 + 8 + 2,500+8+2,510,D,Treats eight tens as eight ones.
+s05-X78-numeral,16,4+9+3,16,D,"Adds 4, 9 and 3 as ones."
+s05-X79,Eighty-three,,,C,Drops the empty tens place.
+s05-X79,Eleven,,,D,Adds the digit face values.
+s05-X79-sum,80 + 3,80+3,83,C,Treats 803 as 83.
+s05-X79-sum,8 + 0 + 3,8+0+3,11,D,Uses face values as expanded addends.
+s05-X80,44,4*10+4,44,C,Drops the empty tens place.
+s05-X80,8,4+4,8,B,Counts both fours as ones.
+s05-X81,At 770.,800-3*10,770,M,Counts 800 as the first backward step.
+s05-X81,At 750.,700+5*10,750,M,Counts 700 as the first forward step.
+s05-X82,"892, 893, 894",,,J,Uses steps of one from the start.
+s05-X82,"896, 897, 898",,,J,Starts with five and switches to ones.
+s05-X83,Places 196 to the right of 204.,,,E,Decides by tens despite unequal hundreds.
+s05-X83,Pins at 195 and 203.,,,M,Counts each starting mark as a space.
+s05-X84,805 < 902 after the change.,895-90,805,G,Cycles the tens without exchanging a hundred.
+s05-X84,Puts 895 after 902 before the change.,,,E,Uses the tens first.
+s05-X85,Chooses 589 as greater and points to its tens.,,,E,Compares tens before unequal hundreds.
+s05-X85,Names the drawn amount greater but writes <.,,,F,Reverses the comparison sign.
+s05-X86,Leaves 706 first after the change.,796-90,706,G,Cycles the tens without forming a hundred.
+s05-X86,Writes 802 > 806 > 814 on the final row.,,,F,Orders correctly but reverses signs.
+s05-X87,Puts 692 last and marks its nine tens.,,,E,Uses tens before unequal hundreds.
+s05-X87,Uses greater-than signs in the correct ascending row.,,,F,Reverses the signs after ordering correctly.
+s05-X88,23,2*10+3,23,C,Loses the empty ones place.
+s05-X88,32,2+30,32,B,Treats two hundreds as two ones.
+s05-F,59,54+2+3,59,B,Adds the tens digit as ones.
+s05-F-b,84,76+18-10,84,K,Loses the exchanged ten.
+s05-F-c,79,89-4-6,79,B,Removes the tens digit as ones.
+s05-F-d,35,70-40+8-3,35,L,Subtracts smaller ones from larger ones.
+s05-M,307,397-90,307,G,Cycles the tens without forming a hundred.
+s05-M-b,692,602+90,692,G,Wraps the tens to nine without removing a hundred.
+s05-M-c,459,458+1,459,H,Adds one one instead of one hundred.
+s05-M-d,719,720-1,719,H,Takes one one instead of a hundred.
+s05-M-units,Cycles the tens without forming a hundred.,,,G,Cycles the tens without forming a hundred.
+s05-M-b-units,Wraps the tens to nine without removing a hundred.,,,G,Wraps the tens to nine without removing a hundred.
+s05-M-c-units,Adds one one instead of one hundred.,,,H,Adds one one instead of one hundred.
+s05-M-d-units,Takes one one instead of a hundred.,,,H,Takes one one instead of a hundred.
+s05-O,Writes > because nine tens exceed zero tens.,,,E,The response shows the named error. Assign a letter only with the stated evidence.
+s05-O,"Names 491 smaller, then writes >.",,,F,Correct amount judgment with a reversed sign.
+s05-O-place,Writes > because nine tens exceed zero tens.,,,E,The response shows the named error. Assign a letter only with the stated evidence.
+s05-O-place,"Names 491 smaller, then writes >.",,,F,Correct amount judgment with a reversed sign.
+s05-O-b,Names 641 larger but writes <.,,,F,The response shows the named error. Assign a letter only with the stated evidence.
+s05-O-b-place,Names 641 larger but writes <.,,,F,The response shows the named error. Assign a letter only with the stated evidence.
+s05-O-c,Names 739 larger but writes >.,,,F,The response shows the named error. Assign a letter only with the stated evidence.
+s05-O-c-place,Names 739 larger but writes >.,,,F,The response shows the named error. Assign a letter only with the stated evidence.
+s05-O-d,Labels the hundreds digit as five ones when explaining the comparison.,,,B,Reads face value in the hundreds place.
+s05-O-d-place,Labels the hundreds digit as five ones when explaining the comparison.,,,B,Reads face value in the hundreds place.
+s05-O-first,Pins it at 440.,,,M,Counts 400 as the first space.
+s05-O-middle,Pins it at 510.,,,M,Counts 400 as the first space.
+s05-O-last,Pins it at 570.,,,M,Counts 400 as the first space.
+s05-C,"999, 9100",,,I,Does not rename the completed hundred at the endpoint.
+s05-C-5,"419, 420",,,J,Switches to steps of one.
+s05-C-10,"694, 695",,,J,Switches to steps of one.
+s05-C-100,"295, 296",,,J,Switches to steps of one.
+s05-C-group,17,13+4,17,A,Counts thirteen strips as thirteen ones.
+s05-C-oral,6100 after 699,,,I,Does not rename the completed hundred.
+s05-C-oral-5,289 after 288,,,J,Counts by ones.
+s05-C-oral-10,468 after 467,,,J,Counts by ones.
+s05-C-oral-100,277 after 276,,,J,Counts by ones.
+s05-H,Calls the whole group ten ones.,,,A,Counts strips without their unit.
+s05-W,Records six ones for 600.,,,B,Treats the digit face value as ones.
+s05-P,38,3*10+8,38,C,Drops the empty tens place.
+s05-P-draw,Draws six loose ones for the 6.,,,B,Gives the tens digit face value in ones.
+s05-N,15,,,D,Adds the face values rather than building a numeral.
+s05-N-name-sum,8 + 5 + 2,,,D,Uses face values as addends.
+s05-N-silent-name,Ninety-four,,,C,Drops the empty tens place.
+s05-N-silent-sum,90 + 4,,,C,Drops the empty tens place.
+s05-N-end,100,,,C,Drops a zero after identifying one thousand.
+s05-N-end-name,One hundred,,,B,Calls the thousand one hundred.
+s05-N-end-sum,1 + 0 + 0 + 0,,,D,Uses face values as addends.
+s05-N-sum-numeral,22,,,D,"Adds only the face values 7, 6 and 9."
+s05-N-sum-name,Twenty-two,,,D,Adds only the face values.
+s05-N-match,Ninety-four,,,C,Drops the empty tens place.
+s05-N-read,Ninety-four,,,C,Assign only if the child’s reading shows the omitted zero place.
+s05-N-read-endpoint,One hundred,,,C,Assign only if the child’s reading shows the omitted zero place.
+s05-L,Shades 18 spaces.,17-0+1,18,M,Counts boundary marks as units.
+s05-L-sum,Ends at 54 while counting the starting tick as one.,,,M,Counts a point as the first interval.
+s05-L-difference,Jumps right from 52 to 66 to remove 14.,52+14,66,N,Moves right for removal.
