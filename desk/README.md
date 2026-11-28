@@ -13,7 +13,8 @@ from progressions to tools live, for the 52 core courses or every course, and a 
 data/plans/defects.csv, `ledger.py recheck` totals per subject, and pass marks per grade close from
 data/plans/pass-marks.csv); then "Stage by stage" (the
 seven-stage flow), Saved for later and the tool counts. All of it reads the stats/plan parts from plan_flow.py:
-course keys, section splits (secs), health and history are in that export.
+course keys, section splits (secs), health and history are in that export. Every part and sub-part folds (a chevron before its heading, with Open all and Fold all at the top); folds are
+remembered per viewer in localStorage (`rd-fold`).
 
 ## Refreshing and publishing
 
