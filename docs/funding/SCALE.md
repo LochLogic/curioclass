@@ -58,6 +58,11 @@ One row per send, added when Cory reports it (an unreported draft is not sent). 
 | 2026-11-27 | Kiwix | NLnet Restack partner idea | Gmail Sent | Sent by Cory (from cory@curioclass.org) |
 | 2026-11-27 | Colorado Department of Education OER (Mallorie Klemm, OERColorado) | Open-library fit questions | Gmail Sent | Sent by Cory (from cory@curioclass.org) |
 | 2026-11-27 | Oak National Academy (England) | Peer call request on AI quality checks | Gmail Sent | Sent by Cory (from cory@curioclass.org) |
+| 2026-11-27 | Gates Family Foundation (Russell Ramsey, Ana Soler; info@ cc) | 20-minute introduction request | Gmail Sent | Sent by Cory |
+| 2026-11-27 | The Denver Foundation (cgp@) | Meeting before Community Grants Cycle 1 (opens 2027-01-15) | Gmail Sent | Sent by Cory |
+| 2026-11-27 | Rose Community Foundation (for VJ Brown, via info@) | Fit introduction | Gmail Sent | Sent by Cory |
+| 2026-11-27 | Colorado Education Initiative (info@) | District partner introduction | Gmail Sent | Sent by Cory |
+| 2026-11-27 | New America (An-Me Chung) | US answer to her Oak piece | Gmail Sent | Sent by Cory |
 
 ## After the consolidation
 
