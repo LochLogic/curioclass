@@ -2208,3 +2208,24 @@ drafts are held on its C11 gate (later.csv L159; Desk q-eld-scope-1).
   Sign-ups: "i want them all and more". ED comment: yes, post it. Bio: build a corpus from Cory's Salvo evidence
   (done: drafts/corpus/CORPUS.md, git-ignored). Plan: docs/funding/OUTREACH-PLAN.md (three paths and the queue).
   Cory still sends, joins, applies and creates every account himself.
+
+## 2026-11-27: The section run spends Codex, Claude trails (chat)
+
+- **ERNIE test dropped:** Cory: "drop the earnie test". The throwaway worktree work is archived in
+  S:\CurioClass-archive\ernie-u02-test-2026-11-27\.
+- **Split chain:** Cory: "spend codex tokens all night and trickle in claude tokens? time isnt an issue. claude can lag
+  way behind if it doesnt hurt quality overall", then "yes build it. if the sol test goes well, run this new plan". The
+  Sol write test passed, so each unit now runs texts, prep, write, a Codex refine and data on Codex, and one combined
+  Opus pass (refine and the narrow key read) makes it green later; a Claude limit is a cooldown, not a stop
+  (docs/pipeline/SECTION-RUN.md).
+- **Pileup counts what is left now:** Cory: "fix it if it can be done gently". The pileup reads the course's failing
+  lines now minus its level when the lane first read it, so a line left by two passes counts once.
+- **Read bundles:** Cory: "I'd like to implement bundling, but I'd like to just do it without testing for cost savings.
+  I think it's just the better option. Even a one percent savings is worth it. Let's make the implementation gentle".
+  Each job's prompt carries the files it reads whole; the Claude pass gets rule files only, so its key read stays cold.
+  Files on disk stay one per section. After the first readings (math about 10 to 25 percent less input, ELA prep up),
+  Cory: "yes, then give ELA a soft reset": prep and a second data half are capped at 30,000 words.
+- **Math source maps:** lead call. Grades 2 to 8 had harms_learning written as "no: <reason>"; it is now the one word
+  with the reason moved to `why` (869 rows, no judgment changed), and every data job is told the one-word rule.
+- **Pause:** Cory: "when they are done we'll pause on this work for a day or two." Both lanes stopped softly at a
+  commit on 2026-11-27 (math by the gentle stop, ELA on its pileup guard, L165); resume is later.csv L162.

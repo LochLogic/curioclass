@@ -98,6 +98,8 @@ time: a grade's section plans, then its days, then a retool, then the next grade
 - **Fix:** one fix job after the plan read. The key reader fixes keys and splits two-part questions itself.
 - **Retool:** after the probe only; then the kit is frozen for the grade.
 - **Gate:** plan read and key reads clean.
+- **Runner:** for math and ELA this stage runs unattended in [pipeline/SECTION-RUN.md](pipeline/SECTION-RUN.md)
+  (scripts/section_run.py), one lane per subject; paused 2026-11-27 (HANDOFF).
 
 ### Stage 6. Days (per grade, in order)
 
