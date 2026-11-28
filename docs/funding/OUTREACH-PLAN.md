@@ -279,14 +279,14 @@ PROSPECTS.md under the name shown. Status moves from open to drafted, sent, then
 
 | Prospect | Path | Next step | Who |
 |---|---|---|---|
-| CNDC fiscal sponsorship | all | In progress 2026-11-27: Cory's account made and the first page done; Claude prefills the next page, Cory submits (cndc-inquiry-form.txt). Board is Cory, Sara and two independents | Cory |
+| CNDC fiscal sponsorship | all | Inquiry SUBMITTED by Cory 2026-11-27 (SCALE.md, Outreach). CNDC replies within one week with next steps. Board is Cory, Sara and two independents | Cory |
 | Emergent Ventures | 1 | Facts under each real form question ready (emergent-ventures-facts.txt); Cory writes every word | Cory |
 | Awesome Foundation | 1 | Drafted for Montana awesome (every Colorado chapter is inactive); a long shot | Cory |
-| GitHub Secure Open Source Fund | 1 | Drafted (github-secure-oss-fund-form.txt, public rolling form); its last box asks Cory to confirm "an active and growing set of users", early for us | Cory |
+| GitHub Secure Open Source Fund | 1 | SUBMITTED by Cory 2026-11-27 (SCALE.md, Outreach). Wait for their reply | Cory |
 | FLOSS/fund | 1 | funding.json in site/funding.json, copied to /funding.json by build_site.py, with .well-known/funding-manifest-urls in the repo (2026-11-28); live with the next deploy. FLOSS/fund skips "very new projects", so apply once there's outside interest; its grants start at $10,000 | Site lead, then Cory |
 | Mozilla Foundation Incubator | 1 | Human-Scale AI call CLOSED 2026-11-20; notes kept for the next cohort call (mozilla-incubator-intake.txt); weak fit (wants deployed products with users) | Watch |
 | AWS Education Equity Initiative | 1 | Drafted; organizations only and needs a paid AWS account, so it waits for CNDC or the LLC (Cory's call) | Cory |
-| Claude for Open Source | 1 | Not sent in October; answers rewritten curriculum-first 2026-11-27 (docs/funding/applications/claude-for-oss.txt). Offer is now 6 months of Claude Ultra; goes through "apply anyway" | Cory |
+| Claude for Open Source | 1 | SUBMITTED 2026-11-27 in the hit-hard voice (docs/funding/applications/claude-for-oss.txt; SCALE.md, Outreach). If approved, an activation link arrives by email | Cory |
 | OpenAI Researcher Access | 1 | A weak fit (research credits); draft only if nothing better is open | Claude, then Cory |
 | Small family foundations | 1 | List done 2026-11-27 (PROSPECTS.md, "Small and mid-size foundations"): Dunn Family first ("educational support materials for use by teachers"), then Hughes Trust, Longview (LOI 2027-01-15), Hill, El Pomar (ask first whether online curriculum counts as "media"). All need a 501(c)(3) or a sponsor, so they follow CNDC; Echoing Green needs neither (window 2027-03-31) | Cory |
 | Warm introductions (the "someone who wouldn't think twice" donor) | 1 | Drafted (warm-intro-forwardable.txt) | Cory |
