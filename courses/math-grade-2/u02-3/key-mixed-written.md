@@ -9,7 +9,7 @@ credit: ours
 
 Keep this copy with the teacher.
 
-- **s02-P29-fact1.** 12
+- **s02-P29-fact1.** 8
 
 - **s02-P29-1.** 35
 
@@ -17,7 +17,7 @@ Keep this copy with the teacher.
 
 - **s02-P29-2.** 81
 
-- **s02-P29-fact3.** 11
+- **s02-P29-fact3.** 13
 
 - **s02-P29-3.** 33
 
