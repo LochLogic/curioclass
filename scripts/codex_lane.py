@@ -20,9 +20,10 @@ defects and ELA text tables), under one lock shared with every lane and the lead
 
 The lane WAITS for the lead (its state folder holds WAITING, saying why) at: a retool stop (every grade close: the
 lead's steps in kit/retool-stop.txt), a closed ledger gate, three failed jobs in a row, or a grade whose new gate
-failures pile up (more than 10 plus one per day written). It polls every 5 minutes and goes on when the lead runs
+failures pile up (more than 10 plus one per day written; orphan pieces and "when it exists" lines are left out, since
+the unit's day jobs clear them). It polls every 5 minutes and goes on when the lead runs
 `done <subject> <key>` (or deletes WAITING after fixing the cause). A usage limit pauses the lane 30 minutes and the
-same job runs again. build/lanes/STOP ends every lane gently; build/lanes/<subject>/STOP ends one. build/lanes/<subject>/ONLY (job kinds, e.g. "DATA KEY") runs just those kinds and leaves the rest queued.
+same job runs again; a STOP file ends a paused lane too. build/lanes/STOP ends every lane gently; build/lanes/<subject>/STOP ends one. build/lanes/<subject>/ONLY (job kinds, e.g. "DATA KEY") runs just those kinds and leaves the rest queued.
 
 Courses that hold an earlier Codex draft (DRAFTED, unread draft 1 written to an older kit, later.csv L105) run the same
 full queue: each make job is told that its files may already exist and is to bring them to the current kit, keeping
@@ -380,7 +381,13 @@ class Lane:
                 before = dict(porcelain())
                 while True:
                     while self.pause_until > time.time():
+                        if self.stopped():      # L144: STOP ends a lane under a usage limit too
+                            self.log('STOP seen during the usage-limit pause; lane ends')
+                            return
                         time.sleep(60)
+                    if self.stopped():
+                        self.log('STOP seen before %s ran again; lane ends' % key)
+                        return
                     t0 = time.time()
                     self.log('start %s %s %s %s' % (course, step['num'], kind, step['detail']))
                     job = self.codex(step, text)
@@ -407,7 +414,9 @@ class Lane:
                     if kind in ('DAY', 'CHECKS'):
                         nums = [int(x) for x in re.findall(r'\d+', step['gate'] or '')[-2:]]
                         grade_days += (nums[1] - nums[0] + 1) if len(nums) == 2 else 0
-                    grade_new += newn
+                    # L143: orphan pieces and "when it exists" lines a DATA job leaves are cleared by the unit's
+                    # day jobs, so they stay out of the pileup count (gate.py still fails them at grade close)
+                    grade_new += max(0, newn - sum(1 for ln in new if PENDING_DAYS.search(ln))) if newn else 0
                 sha = self.commit(course, '%s %s %s (job %s, %s%s)' % (kind.lower(), course, step['detail'], step['num'],
                                   result, ', %d new gate lines left' % newn if newn else ''), before)
                 self.usage_row(step, result, t0, job, newn)
@@ -431,6 +440,9 @@ class Lane:
 
 
 # ---------------------------------------------------------------- shared helpers
+
+PENDING_DAYS = re.compile(r'a piece no day leans on|when it exists:')
+
 
 def git(*args):
     r = subprocess.run(['git', *args], cwd=ROOT, capture_output=True, text=True, encoding='utf-8', errors='replace')

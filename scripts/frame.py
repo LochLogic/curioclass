@@ -688,6 +688,11 @@ def check(slug, cal_rows=None):
         fails.append('%s: data/plans/frames.csv disagrees with the frame (run scripts/frame.py sync)' % slug)
     elif any(str(v) != (r.get(k) or '') for k, v in row_of(slug).items()):
         notes.append('%s: data/plans/frames.csv is behind the frame (run scripts/frame.py sync)' % slug)
+    # Pending(<what it waits on>) marks a cell that waits on a Desk card, a load or a browser check (later.csv L154):
+    # named here as waiting, never a failure
+    waits = sorted(set(re.findall(r'Pending\(([^)]*)\)', open(path_of(slug), encoding='utf-8').read())))
+    if waits:
+        notes.append('%s: waiting on %d Pending marker(s): %s' % (slug, len(waits), '; '.join(waits)))
     return fails, notes
 
 

@@ -470,6 +470,12 @@ def data_prompts(lane, unit):
                  'it), decided by you from the unit plan and the days, with the reason in `why`; leave order_conflict '
                  'blank where there is no clash. List every "unclear" in your last message (the lead takes those to the '
                  'Desk).\n')
+        if unit.ela:   # L165: held exit passages, reader cards and excerpts written for a check are texts too
+            text += ('\n\nNote from the section run (it wins over the job above): a passage the section plans write for '
+                     'a check (a held exit passage or exit-<n>.md stimulus, a reader card, a held excerpt) is a text: '
+                     'give each one its own data/plans/ela-texts.csv row, as kindergarten does for its cold check '
+                     'passages (text_id like g6-u1-held-12-omi; author Curio Class; year 2026; rights_basis ours; the row gk-cold-77-wilma shows the shape), '
+                     'and put that text_id on every item that needs it. Never set needs_text to no to avoid a row.\n')
         out.append(('%s' % ('ab'[i] if len(hs) > 1 else ''), text))
     return out
 

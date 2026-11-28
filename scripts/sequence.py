@@ -129,11 +129,12 @@ def fluency_checks(days):
                 hits = [x for x in FLU_NOTE.finditer(note) if not FLU_NOTE_NOT.search(note[:x.start()])]
                 if hits:
                     notes.append('%s: Fluency, but the note says "%s" (Understanding or Application?)' % (lab, hits[0].group(0)))
-            new = [c for c in codes if c not in seen]
+            # ~ID marks a partial use of a code; it counts as the plain code taught earlier (later.csv L160)
+            new = [c for c in codes if c.lstrip('~') not in seen]
             if new:
                 notes.append('%s: Fluency, first day in the course for %s (practice of a taught skill, or first '
                              'teaching?)' % (lab, ', '.join(new)))
-        seen.update(codes)
+        seen.update(c.lstrip('~') for c in codes)
     return fails, notes
 
 
@@ -387,6 +388,8 @@ def check(course):
                 fails.append('unit %s: owned skill %s is on no day' % (r['#'], sk))
         for c in [x.strip() for x in r.get('Owned standards', '').split(';') if x.strip()]:
             c = c.split()[0].lstrip('~')
+            if c.rstrip('.').lower() == 'none':   # a frame cell that owns no standard (later.csv L160)
+                continue
             if not re.search(r'(?<![\w.-])%s(?![\w-])' % re.escape(c), placed):
                 notes.append('unit %s: standard %s is on no day' % (r['#'], c))
     notes += rule2_notes(course, subject_of(slug))
