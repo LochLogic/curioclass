@@ -101,3 +101,48 @@ from_day,to_day,what,where,minutes,error,note
 38,40,Closing work and feedback round 2: H and I,Return,5,,"Return all privately scored work in the first round on day 39. Assign a single move per child, use fresh numbers and date any retry."
 37,40,s02-X37 remaining needs,Return,0,F,Include in the F round if the child still needs a retry. No added minutes.
 37,39,s02-X37 remaining needs,Return,0,A,Include in the first A round without adding minutes.
+39,40,s03-X39,Measure,5,A,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+39,40,s03-X39,Measure,5,D,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+40,41,s03-X40,Repair,5,A,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+40,41,s03-X40,Repair,5,C,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+41,42,s03-X41,Repair,5,B,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+41,42,s03-X41,Repair,5,C,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+42,43,s03-X42,Repair,5,A,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+42,43,s03-X42,Repair,5,C,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+43,44,s03-X43,Repair,5,B,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+43,44,s03-X43,Repair,5,C,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+44,45,s03-X44,Repair,5,H,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+44,45,s03-X44,Repair,5,C,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+45,46,s03-X45,Repair,5,G,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+45,46,s03-X45,Repair,5,M,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+46,47,s03-X46,Repair,5,I,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+46,47,s03-X46,Repair,5,A,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+47,48,s03-X47,Repair,5,D,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+47,48,s03-X47,Repair,5,A,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+48,49,s03-X48,Repair,5,H,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+48,49,s03-X48,Repair,5,C,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+49,50,s03-X49,Repair,5,H,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+49,50,s03-X49,Repair,5,C,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+50,51,s03-X50,Repair,5,L,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+50,51,s03-X50,Repair,5,M,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+51,52,s03-X51,Measure,5,H,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+51,52,s03-X51,Measure,5,C,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+52,53,s03-X52,Plot,5,F,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+52,53,s03-X52,Plot,5,E,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+53,54,s03-X53,Plot,5,E,Return privately to everyone on this day. Allow two minutes for the model and matching try and three for a fresh recheck. Record dated support. Carry missed explanation turns first in the same practice rotation.
+39,40,Opening retrieval pictures,Repair,5,,Use five minutes in warm-up and five here for the prerequisite repair when more than a third miss it. Otherwise use a small group.
+39,41,Opening retrieval fresh recheck,Repair,0,,Use the existing A round with a new edge. Log the fresh check.
+46,47,Curved paper route practice,Repair,0,J,"Use a parallel pictured repair alongside the I or A round, as needed."
+49,50,Cut-position practice,Repair,0,K,"Use a parallel pictured repair alongside an H or C round, as needed."
+54,55,s03-X54,Directions,0,,Return to all privately during directions. Carry repair needs to the closing response without coaching today.
+54,58,s03-X54 unresolved needs,Return,0,,Use any continuing H or C need when ranking the closing response. No extra minutes.
+55,56,s03-T records,Revisions,4,,Return all four T records with feedback and save first placement marks.
+55,56,s03-E records,Revisions,2,,Return all four E records with feedback. Preserve all original forecasts.
+55,56,s03-P,Revisions,4,,Return and revise the plot while preserving individually measured readings.
+55,56,s03-T remaining private explanations,Construction,30,,"Hear pupils 16 to 30, two minutes each including notes. Use one retained station record per child."
+55,57,s03-P,Marking,0,,Score the retained plot evidence during the closing assessment. No new plot prompt.
+55,57,s03-E records,Marking,0,,Score first forecasts with revised benchmark evidence. Use separately printed optional E2 prompts only for affected units.
+56,57,s03-T records and explanations,Revisions,2,,Return and score the revised product and a single private explanation per child.
+56,57,s03-C,Revisions,3,,Return for the comparison reason only. Use the same two observed counts.
+57,58,"Unit 3 first marks, private feedback and ranked errors",Return,10,,"Return all scored records including E2. Lead at most two five-minute groups ranked A, B, C, J, I, D, E, F, G, H, K, L, M. Peers use picture cards with at most one move per round."
+57,59,Unit 3 remaining ranked errors and rechecks,Return,10,,Lead the next two five-minute groups. Date deferred rechecks and return feedback privately.

@@ -140,3 +140,66 @@ s02-S14,93,71+22,93,E,Adds because of more.
 s02-F2,72,70+2,72,A,Drops the new ten after joining twelve ones.
 s02-F4,36,30+7-1,36,B,Reverses the ones subtraction.
 s02-F4,34,80+11-57,34,C,Keeps the traded ten.
+s03-X39,10 wide tiles with gaps,,,A,The row leaves parts uncovered.
+s03-X39,More than 22 wide tiles because they are bigger,,,D,A larger unit would require fewer copies here.
+s03-X40,0 cm after spreading 16 units,,,A,The gaps conceal the uncovered length.
+s03-X40,12 cm,28-16,12,C,Counts 28 boundaries as 28 cm and subtracts 16.
+s03-X41,23 cm from starting at 1,22+1,23,B,Read the end label after starting at 1.
+s03-X41,23 cm from counting boundary marks,22+1,23,C,Counts both end marks and all inside boundaries.
+s03-X42,20 cm from four widely spaced spans,4*5,20,A,Only the marked spans have been counted.
+s03-X42,30 cm from counting six boundaries,6*5,30,C,Six boundaries were taken as six intervals.
+s03-X43,Starts at 1 and uses the end number,,,B,The ruler was not aligned at zero.
+s03-X43,Marks lines as the length units,,,C,A line is a boundary; a length unit lies between lines.
+s03-X44,73 cm,,,H,Takes the longer whole as the gap.
+s03-X44,32 cm,73-42+1,32,C,Counts both boundaries of the 31 intervals.
+s03-X45,31 cm,59-28,31,G,Subtracts the length being joined.
+s03-X45,77 cm,59+28-10,77,M,Omits the ten composed by 9 + 8.
+s03-X46,About 33 inches from centimeter spaces,,,I,Counts a different unit and labels it inches.
+s03-X46,About 10 widely spaced inches,,,A,Uncovered gaps do not count toward the length.
+s03-X47,84 marks count feet because feet are bigger,,,D,"Larger units cover more per copy, so fewer are needed."
+s03-X47,Fewer feet because there are gaps,,,A,Gaps do not give a valid measurement.
+s03-X48,76 cm,,,H,Takes the long panel's whole length.
+s03-X48,44 cm,76-33+1,44,C,Counts boundaries of the exposed part.
+s03-X49,92 cm,,,H,Uses the whole where only the remaining part is wanted.
+s03-X49,70 cm,92-23+1,70,C,Counts both ends of the remainder.
+s03-X50,58 cm,91-33,58,L,Stops after the first change.
+s03-X50,86 cm,91-33+38-10,86,M,Drops the ten made by adding 8 and 8.
+s03-X51,85 cm,,,H,Uses the entire opening for the gap.
+s03-X51,50 cm,85-35,50,C,Counts 35 boundaries as 35 cm.
+s03-X52,The circled X stands for all three readings,,,F,Each X stands for a separate observation.
+s03-X52,One tassel measured 31 cm after skipping an empty place,,,E,The empty 31 position still occupies a step.
+s03-X53,B,,,E,Omitted both empty values 65 and 66.
+s03-X53,C,,,E,Omitted the empty value 65.
+s03-X54,76 cm,,,H,Reports the whole longer length.
+s03-X54,6 cm,76-71+1,6,C,Counts boundaries rather than spaces.
+s03-T-cm,20 cm after starting at 1,,,B,The end reading includes the first extra interval.
+s03-T-cm,20 cm from counting boundaries,,,C,Counts 20 marks around the 19 spaces.
+s03-T-in,Measures straight across the curve,,,J,A chord misses the route to be measured.
+s03-E-in,Uses a centimeter for one inch,,,I,Uses a different unit benchmark.
+s03-E2-in,Uses a centimeter for one inch,,,I,Uses a different unit benchmark.
+s03-P,One mark per distinct reading,,,F,Drops two separate observations.
+s03-P,Omits 9 on equal ticks,,,E,Skips a whole-number position.
+s03-C,More feet because a foot is larger,,,D,Confuses unit size and the number of units.
+s03-D,29 cm difference,,,H,Marks the whole longer length.
+s03-D,30 cm and 13 cm,,,C,Counts both endpoints as units even though the difference stays 17.
+s03-L,11 cm,37-26,11,G,Subtracts the joined parts.
+s03-SD,81 cm,,,H,Reports the longer whole as the comparison difference.
+s03-S1,31 cm,16+25-10,31,M,Drops the new ten.
+s03-S2,70 cm from 18 + 52 = □,18+52,70,K,Joins the two known states and puts the unknown at the end.
+s03-S3,91 cm from 77 + 14 = □,77+14,91,K,Uses the end as a start and the unknown as a result.
+s03-S4,38 cm from counting the end marks,65-28+1,38,C,Counts the 38 boundaries around 37 spaces.
+s03-S5,168 cm from 95 + 73 = □,95+73,168,K,Treats start and finish as two parts and the cut as their total.
+s03-S6,13 cm from 48 − 35 = □,48-35,13,K,Uses the remaining length as the start.
+s03-S7,95 cm from 71 + 24 = □,71+24,95,K,Puts the known whole beside the part as another addend.
+s03-S8,84 cm after adding 47 + 47,47+47-10,84,M,The split is valid. Code M only for the misleading written sum.
+s03-S9,34 cm from counting the start line,22+13-1,34,C,Counts the boundary at 22 as the first added unit.
+s03-S10,45 cm from counting the start line,31+15-1,45,C,Counts the line at 31 as the first added unit.
+s03-S11,76 cm from 62 + 14 = □,62+14,76,K,Uses the longer known length as the shorter start.
+s03-S12,42 cm from counting the start line,57-16+1,42,C,Counts the line at 57 as the first unit back.
+s03-S13,59 cm,41+18,59,L,Reports the first result as the final length.
+s03-D-length,29 cm,,,H,Uses the full length for the difference.
+s03-L-story,11 cm,37-26,11,G,Models a join with subtraction.
+s03-D-story,29 cm,,,H,Uses the full length for the difference.
+s03-F-L,53 cm,37+26-10,53,M,Drops the newly composed ten.
+s03-R39a,Gapped row,,,A,Ignores the uncovered sections.
+s03-R39c,34 units,,,H,Uses the longer whole.
