@@ -52,6 +52,10 @@ One row per send, added when Cory reports it (an unreported draft is not sent). 
 | 2026-11-27 | Colorado Nonprofit Development Center | Fiscal sponsorship inquiry (formsite) | Reached CNDC's "Application Submitted" page; CNDC says it replies within one week | Submitted by Cory |
 | 2026-11-27 | GitHub Secure Open Source Fund | Application (Microsoft Form) | none shown | Submitted by Cory |
 | 2026-11-27 | Anthropic, Claude for Open Source | Application (6 months of Claude Max/Ultra), text in applications/claude-for-oss.txt | Thank-you page shown: "If approved, you'll get a link to activate Claude Max" | Submitted (page went to thank-you right after Claude pressed "Use this repository" in Cory's session) |
+| 2026-11-27 | CU Boulder iSAT (Tamara Sumner, AI Institute inbox) | IES Seedlings to Scale partner note | Gmail Sent | Sent by Cory (from his Gmail address) |
+| 2026-11-27 | DU (Peter Organisciak) | IES Seedlings to Scale partner note | Gmail Sent | Sent by Cory (from his Gmail address) |
+| 2026-11-27 | CU Boulder Research & Innovation Office | NSF TechAccess Colorado hub partner note | Gmail Sent | Sent by Cory (from his Gmail address) |
+| 2026-11-27 | Kiwix | NLnet Restack partner idea | Gmail Sent | Sent by Cory (from cory@curioclass.org) |
 
 ## After the consolidation
 
