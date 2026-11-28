@@ -658,8 +658,8 @@ from_day,to_day,what,where,minutes,error,note
 124,125,unit 4 retrieval repair,Return,5,,"Use the existing ten minutes with the exit cue. Prioritize genre, labeling or hundredths."
 124,125,water source notes and earlier research,Research,0,,Use earlier dated notes or the fresh 124 fallback.
 125,155,reserved federal talk paragraph 4,Exit,0,,"Keep the transcript, audio and display locator withheld until the 155 exit."
-126,147,reserved farmer food and community detail,Planning,0,,Keep this sentence for the argument-map retrieval.
-126,154,reserved monitoring detail,Planning,0,,Keep the detail for the later source card.
+126,147,reserved farmer food and community detail,Retrieval,0,,Keep this sentence for the argument-map retrieval.
+126,154,reserved monitoring detail,Exit,0,,Keep the detail for the later source card.
 128,130,pending digital locator turn,Discussion,10,,Schedule two-minute turns on six parallel devices. Keep the component pending if digital access is still unavailable.
 128,150,reserved dam delivery clause,Planning,0,,Keep the release clause out of early excerpts and searches.
 130,131,remaining private discussion observations,Choice,18,,Hear the remaining 24 pupils for 45 seconds each. Use their prepared note for a short conference cue.
@@ -712,3 +712,21 @@ from_day,to_day,what,where,minutes,error,note
 153,156,s04-A153D,Response,0,,"Return individual written feedback during the shared five-minute cue-reading period. Keep first evidence, correction and pending status."
 153,156,s04-A153E,Response,0,,"Return individual written feedback during the shared five-minute cue-reading period. Keep first evidence, correction and pending status."
 153,156,s04-A153F,Response,0,,"Return individual written feedback during the shared five-minute cue-reading period. Keep first evidence, correction and pending status."
+145,146,s04-X145,Return,5,W,Return one cue for W or V. Retry one locator or connection on released text.
+145,146,s04-P145-1,Return,0,W,Return the separate research note in the existing slot. Give one locator cue where needed.
+145,146,"locator-talk turns, first makeups",Choice,5,,Hear six named pupils for 45 seconds each.
+145,147,"locator-talk turns, remaining makeups",Planning,5,,Hear the final six named pupils for 45 seconds each.
+147,148,s04-X147,Return,5,AA,"Return a position or evidence cue for AA or AB on a different, released topic."
+148,149,s04-X148,Return,5,A,Return one A or AC cue. Reconnect a released detail to the point it supports.
+148,149,limits-talk turns,Revision,9,,Hear the final 12 named pupils for 45 seconds each before the device rotation.
+149,150,s04-X149,return,5,AD,Return a written cue for AD or AB during Setup and return. Try one released close.
+152,153,"rereading turns, first makeups",Choice,9,,"Hear twelve named readers for 45 seconds each, using released print."
+152,154,"rereading turns, remaining makeups",rereading,9,,Hear the last twelve named readers for 45 seconds each during parallel reading.
+153,154,s04-A153A,Return,5,AF,Use the shared five minutes for the private cue and locate the corrected leaflet. The closing response remains on day 156.
+153,154,"publication-talk turns, first makeups",Planning,9,,Hear twelve named pupils for 45 seconds each while others plan.
+153,155,"publication-talk turns, remaining makeups",conferences,9,,Hear the remaining twelve named pupils for 45 seconds each during released choice reading.
+154,155,s04-X154,Return,5,AP,Return an A or AP cue. Choose a fresh detail or visual on released work.
+154,155,planning talk follow-up,Discussion,0,,The 24 not heard on day 154 have named turns in the existing day 155 rotation.
+155,156,s04-X155,Response,0,A,Return the written cue in the existing first five minutes. Use a different released point and detail to retry.
+155,156,s04-X155B,Response,0,D,Return the spoken revision cue in the shared feedback period. Retry an unfamiliar-listener line with a partner or privately.
+155,156,unfinished day 155 private recordings,Choice,18,,Use six three-minute named turns first. Date further private turns outside the block and leave unavailable evidence pending.
