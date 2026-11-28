@@ -142,8 +142,8 @@ s02-F4,36,30+7-1,36,B,Reverses the ones subtraction.
 s02-F4,34,80+11-57,34,C,Keeps the traded ten.
 s03-X39,10 wide tiles with gaps,,,A,The row leaves parts uncovered.
 s03-X39,More than 22 wide tiles because they are bigger,,,D,A larger unit would require fewer copies here.
-s03-X40,0 cm after spreading 16 units,,,A,The gaps conceal the uncovered length.
-s03-X40,12 cm,28-16,12,C,Counts 28 boundaries as 28 cm and subtracts 16.
+s03-X40,0 cm after spreading 20 units,,,A,The gaps conceal the uncovered length.
+s03-X40,8 cm,28-20,8,C,Counts 28 boundaries as 28 cm and subtracts 20.
 s03-X41,23 cm from starting at 1,22+1,23,B,Read the end label after starting at 1.
 s03-X41,23 cm from counting boundary marks,22+1,23,C,Counts both end marks and all inside boundaries.
 s03-X42,20 cm from four widely spaced spans,4*5,20,A,Only the marked spans have been counted.
@@ -154,6 +154,8 @@ s03-X44,73 cm,,,H,Takes the longer whole as the gap.
 s03-X44,32 cm,73-42+1,32,C,Counts both boundaries of the 31 intervals.
 s03-X45,31 cm,59-28,31,G,Subtracts the length being joined.
 s03-X45,77 cm,59+28-10,77,M,Omits the ten composed by 9 + 8.
+s03-X45-estimate,About 20 cm from two spaced reference copies,2*10,20,A,Gaps between copies leave part of the extension uncounted.
+s03-X45-estimate,About 40 cm from counting four boundary marks,4*10,40,C,Counts the four marks around three spans as four spans.
 s03-X46,About 33 inches from centimeter spaces,,,I,Counts a different unit and labels it inches.
 s03-X46,About 10 widely spaced inches,,,A,Uncovered gaps do not count toward the length.
 s03-X47,84 marks count feet because feet are bigger,,,D,"Larger units cover more per copy, so fewer are needed."
@@ -166,6 +168,8 @@ s03-X50,58 cm,91-33,58,L,Stops after the first change.
 s03-X50,86 cm,91-33+38-10,86,M,Drops the ten made by adding 8 and 8.
 s03-X51,85 cm,,,H,Uses the entire opening for the gap.
 s03-X51,50 cm,85-35,50,C,Counts 35 boundaries as 35 cm.
+s03-X51-estimate,About 25 cm from five spaced reference copies,5*5,25,A,Gaps between copies leave part of the insert uncounted.
+s03-X51-estimate,About 40 cm from counting eight boundary marks,8*5,40,C,Counts the eight marks around seven spans as eight spans.
 s03-X52,The circled X stands for all three readings,,,F,Each X stands for a separate observation.
 s03-X52,One tassel measured 31 cm after skipping an empty place,,,E,The empty 31 position still occupies a step.
 s03-X53,B,,,E,Omitted both empty values 65 and 66.

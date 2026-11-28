@@ -4,7 +4,7 @@ course: math-grade-2
 unit: 3.4
 version: draft, not yet taught
 credit: ours
-teacher_note: Cover the lower task and all tools while estimates are recorded. Keep first forecasts beside their benchmark marks. Use a separate verified object and checked paper tools if needed. The route picture is schematic.
+teacher_note: Cover the lower task and all tools while estimates are recorded. Leave a checked meter strip uncovered beside the tools as the benchmark. Keep first forecasts beside their benchmark marks. Use a separate verified object and checked paper tools if needed. The route picture is schematic.
 ---
 # Station 3
 

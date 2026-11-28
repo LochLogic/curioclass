@@ -10,7 +10,7 @@ teacher_note: Give loose narrow and wide paper tiles. Adult prepares an unmarked
 
 <style>body.student {font-size:18pt} .student h1 {font-size:22pt;margin-bottom:.2em} .student p {margin:.35em 0} .student table {font-size:18pt} </style>
 
-Mika’s note: 22 narrow tiles. Two narrow tiles match one wide tile.
+Mika’s note: 22 narrow tiles. Two narrow tiles match one wide tile. Mika has only wide tiles.
 
 What tile order will fill this gate opening?
 

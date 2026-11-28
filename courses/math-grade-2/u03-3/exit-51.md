@@ -4,7 +4,7 @@ course: math-grade-2
 unit: 3.3
 version: draft, not yet taught
 credit: ours
-teacher_note: Supply a separate unmarked 34 cm insert, checked 5 cm reference and covered 40 cm ruler. Save the estimate before handing out the ruler. Read opening as the space where the insert goes.
+teacher_note: Supply a separate unmarked 34 cm insert, checked 5 cm reference and covered 40 cm ruler. Read the estimate cue and save the estimate before handing out the ruler, then read the second cue. Read opening as the space where the insert goes.
 ---
 # Exit ticket day 51
 
@@ -12,10 +12,16 @@ teacher_note: Supply a separate unmarked 34 cm insert, checked 5 cm reference an
 
 Opening: 85 cm. Reference: 5 cm.
 
+About how long is the insert in centimeters?
+
+
+<div style="width:90%;height:25px;box-sizing:border-box;border:2px solid black;padding-left:4px;margin:1px 0 4px;white-space:nowrap">Opening</div><div style="width:36%;height:23px;box-sizing:border-box;border:2px dashed black;padding-left:4px;margin:1px 0 4px;white-space:nowrap">Insert</div><div style="box-sizing:border-box;border:1.5px solid black;height:38px;width:100%;padding:3px;margin:4px 0">Insert estimate</div>
+
+
 How much empty space will be left beside the insert?
 
 
-<div style="width:90%;height:25px;box-sizing:border-box;border:2px solid black;padding-left:4px;margin:1px 0 4px;white-space:nowrap">Opening</div><div style="width:34%;height:23px;box-sizing:border-box;border:2px dashed black;padding-left:4px;margin:1px 0 4px;white-space:nowrap">Insert</div><div style="display:flex;gap:9px;margin:5px 0"><div style="box-sizing:border-box;border:1.5px solid black;height:38px;width:100%;padding:3px;margin:4px 0">Insert estimate</div><div style="box-sizing:border-box;border:1.5px solid black;height:38px;width:100%;padding:3px;margin:4px 0">Tool reading</div><div style="box-sizing:border-box;border:1.5px solid black;height:38px;width:100%;padding:3px;margin:4px 0">Empty length</div></div>
+<div style="display:flex;gap:9px;margin:5px 0"><div style="box-sizing:border-box;border:1.5px solid black;height:38px;width:100%;padding:3px;margin:4px 0">Tool reading</div><div style="box-sizing:border-box;border:1.5px solid black;height:38px;width:100%;padding:3px;margin:4px 0">Empty length</div></div>
 
 
 

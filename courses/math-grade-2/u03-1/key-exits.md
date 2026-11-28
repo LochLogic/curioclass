@@ -9,9 +9,9 @@ credit: ours
 
 Keep this copy with the teacher. Use only the entry for the current ticket. Assign a letter only when the paper or explanation shows its reasoning.
 
-**s03-X39.** 11 wide tiles. Mark touching units from end to end. The picture keeps the endpoints fixed and shows 11 equal wide spans. The order includes the unit size. The builder's 22 refers to narrow tiles. Record the support given. Accept a clear drawing or a scribed label. Watch for error A for 10 wide tiles with gaps and error D for More than 22 wide tiles because they are bigger.
+**s03-X39.** 11 wide tiles. Mark touching units from end to end. The picture keeps the endpoints fixed and shows 11 equal wide spans. The order includes the unit size. The builder's 22 refers to narrow tiles; the slip says Mika has only wide tiles. Record the support given. Accept a clear drawing or a scribed label. Watch for error A for 10 wide tiles with gaps and error D for More than 22 wide tiles because they are bigger.
 
-**s03-X40.** 11 cm. The tab measures 27 cm and the window is 16 cm. Touching centimeter pieces measure the tab. Align window and tab at one end and bracket only the excess. Record the support given. Accept a clear drawing or a scribed label. Watch for error A for 0 cm after spreading 16 units and error C for 12 cm.
+**s03-X40.** 7 cm. The tab measures 27 cm and the window is 20 cm. Touching centimeter pieces measure the tab. Align window and tab at one end and bracket only the excess. Record the support given. Accept a clear drawing or a scribed label. Watch for error A for 0 cm after spreading 20 units and error C for 8 cm.
 
 **s03-X41.** 22 cm, from zero to 22. Align the slat with zero inside the scale margin; count or identify the 22 spaces and show both endpoints. Record the support given. Accept a clear drawing or a scribed label. Watch for error B for 23 cm from starting at 1 and error C for 23 cm from counting boundary marks.
 

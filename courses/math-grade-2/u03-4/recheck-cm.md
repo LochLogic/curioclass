@@ -4,7 +4,7 @@ course: math-grade-2
 unit: 3.4
 version: draft, not yet taught
 credit: ours
-teacher_note: Only for a unit that needs a recheck. Give a fresh physical object and cover tools and labels until the child saves an independent forecast and benchmark. Return the marked work on day 58.
+teacher_note: Only for a unit that needs a recheck. Leave a checked 10 cm strip uncovered beside the tools as the benchmark. Give a fresh physical object and cover tools and labels until the child saves an independent forecast and benchmark. Return the marked work on day 58.
 ---
 # Fresh estimate in centimeters
 
